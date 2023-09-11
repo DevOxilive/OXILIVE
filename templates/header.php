@@ -25,7 +25,9 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <link href="https://fonts.gstatic.com" rel="preconnect">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="<?php echo $url_base; ?>assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -39,6 +41,11 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
   <link href="<?php echo $url_base; ?>assets/css/style.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!--Librerias de despliegue iconos-->
+
+
+
+
   <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
@@ -69,7 +76,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
 
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
-        <?php if ($_SESSION['puesto'] != 2) : ?>
+        <?php if ($_SESSION['puesto'] != 2): ?>
           <li class="nav-item dropdown">
             <a class="nav-link nav-icon" href="../secciones/oxigeno/rutas/index.php" data-bs-toggle="dropdown">
               <i class="bi bi-bell"></i>
@@ -77,7 +84,8 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                 <?php echo $totalNoti ?>
               </span>
             </a><!-- End Notification Icon -->
-            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications" style="max-height: 300px; overflow-y: auto;">
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications"
+              style="max-height: 300px; overflow-y: auto;">
               <li class="dropdown-header">
                 Tienes
                 <?php echo $totalNoti ?> nueva(s)
@@ -93,7 +101,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
               $count = 0;
               foreach ($notificaciones as $arre) {
                 if ($count < 3) { // Mostrar solo las últimas tres notificaciones
-              ?>
+                  ?>
                   <li class="notification-item">
                     <i class="bi bi-bell-fill"></i>
                     <div>
@@ -108,7 +116,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                       </p>
                     </div>
                   </li>
-              <?php
+                  <?php
                   $count++;
                 } else {
                   break;
@@ -121,7 +129,9 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="<?php echo $url_base; ?>secciones/usuarios/OXILIVE/<?php echo $_SESSION['ape'] . " " . $_SESSION['no'] ?>/<?php echo $fot; ?>" id="fot" alt="Foto de perfil" style="width: 40px; height: 40px;" class="rounded-circle">
+            <img
+              src="<?php echo $url_base; ?>secciones/usuarios/OXILIVE/<?php echo $_SESSION['ape'] . " " . $_SESSION['no'] ?>/<?php echo $fot; ?>"
+              id="fot" alt="Foto de perfil" style="width: 40px; height: 40px;" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">
               <?php echo $_SESSION['us'] ?>
             </span>
@@ -136,9 +146,10 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
             <li>
               <hr class="dropdown-divider">
             </li>
-            <?php if ($_SESSION['puesto'] != 2) : ?>
+            <?php if ($_SESSION['puesto'] != 2): ?>
               <li>
-                <a class="dropdown-item d-flex align-items-center" href="<?php echo $url_base; ?>secciones/perfil/account.php">
+                <a class="dropdown-item d-flex align-items-center"
+                  href="<?php echo $url_base; ?>secciones/perfil/account.php">
                   <i class="bi bi-gear"></i>
                   <span>Configuración</span>
                 </a>
@@ -147,9 +158,10 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                 <hr class="dropdown-divider">
               </li>
             <?php endif; ?>
-            <?php if ($_SESSION['puesto'] == 10) : ?>
+            <?php if ($_SESSION['puesto'] == 10): ?>
               <li>
-                <a class="dropdown-item d-flex align-items-center" href="<?php echo $url_base; ?>secciones/perfil/help.php">
+                <a class="dropdown-item d-flex align-items-center"
+                  href="<?php echo $url_base; ?>secciones/perfil/help.php">
                   <i class="bi bi-question-circle"></i>
                   <span>¿Necesitas ayuda?</span>
                 </a>
@@ -173,44 +185,22 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
 
   </header><!-- End Header -->
 
-  <!-- ======= barra de avegacion menu de hamburgesa una ves activado se deja ver el contenido ======= -->
+  <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
-    <!-- comienza una lista donde despliega los campos de acceso de cada usuario -->
+
     <ul class="sidebar-nav" id="sidebar-nav">
-      <?php if ($_SESSION['puesto'] == 1) : ?>
-        <!-- en caso de ser administrador mostrara el siguiente contenido -->
-
-
-
+      <?php if ($_SESSION['puesto'] == 1): ?>
         <li class="nav-item">
           <a class="nav-link " href="<?php echo $url_base; ?>index.php">
-            <i class="bi bi-grid"></i><span>Dashboard</span>
+            <i class="bi bi-grid"></i>
+            <span>Dashboard</span>
           </a>
         </li><!-- End Dashboard Nav -->
       <?php endif; ?>
-
-      <!-- organizacion de los mudulos para empleados unicamente *** TRABAJAR EN ENFEREMERIA para uso unicamente de los empleados  -->
-      <!-- 
-para para los enferemeros se hará uso de un perfil para poder interacturar con el chat generla
-para lo cual el que tenga el id_departamento == 1 sera administrador y podra acceder a enfermeria y los crud correspondientes
-para los usuarios con el id_departamento == 6 unicamente podran ver sus horarios a los que les corresponde y a demas interactuar con el chat general
-
-        @Author: oscar luis islas
-        fecha de inicio 07/09/2003.
-
-
-        primer paso: 
-        1.- organizar como se cargan las viatas de usuario.
-        2.- distingir entre departamentos usando estrcturas de control
-
-        3.- más importante tenerlo antes de la proxima semana 
-
-
- -->
-
-      <?php if ($_SESSION['puesto'] === 4 || $_SESSION['puesto'] === 1) : ?>
+      <?php if ($_SESSION['puesto'] === 4 || $_SESSION['puesto'] === 1): ?>
         <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="<?php echo $url_base; ?>secciones/oxigeno/index.php">
+          <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse"
+            href="<?php echo $url_base; ?>secciones/oxigeno/index.php">
             <i class="bi bi-clipboard2-pulse"></i><span>Oxigeno</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
@@ -263,9 +253,10 @@ para los usuarios con el id_departamento == 6 unicamente podran ver sus horarios
           </ul>
         </li><!-- End Components Nav -->
       <?php endif; ?>
-      <?php if ($_SESSION['puesto'] == 10 || $_SESSION['puesto'] === 1) : ?>
+      <?php if ($_SESSION['puesto'] == 10 || $_SESSION['puesto'] === 1): ?>
         <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-target="#cata-nav" data-bs-toggle="collapse" href="<?php echo $url_base; ?>secciones/catalogo/index.php">
+          <a class="nav-link collapsed" data-bs-target="#cata-nav" data-bs-toggle="collapse"
+            href="<?php echo $url_base; ?>secciones/catalogo/index.php">
             <i class="bi bi-book-half"></i><span>Catálogo</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="cata-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
@@ -277,9 +268,10 @@ para los usuarios con el id_departamento == 6 unicamente podran ver sus horarios
           </ul>
         </li>
       <?php endif; ?>
-      <?php if ($_SESSION['puesto'] == 9) : ?>
+      <?php if ($_SESSION['puesto'] == 9): ?>
         <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-target="#cata-nav" data-bs-toggle="collapse" href="<?php echo $url_base; ?>secciones/Pchofer/index.php">
+          <a class="nav-link collapsed" data-bs-target="#cata-nav" data-bs-toggle="collapse"
+            href="<?php echo $url_base; ?>secciones/Pchofer/index.php">
             <i class="bi bi-book-half"></i><span>Mis rutas</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="cata-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
@@ -291,9 +283,10 @@ para los usuarios con el id_departamento == 6 unicamente podran ver sus horarios
           </ul>
         </li>
       <?php endif; ?>
-      <?php if ($_SESSION['puesto'] == 2) : ?>
+      <?php if ($_SESSION['puesto'] == 2): ?>
         <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-target="#pa-nav" data-bs-toggle="collapse" href="<?php echo $url_base; ?>secciones/Padministradora/index.php">
+          <a class="nav-link collapsed" data-bs-target="#pa-nav" data-bs-toggle="collapse"
+            href="<?php echo $url_base; ?>secciones/Padministradora/index.php">
             <i class="bi bi-file-person-fill"></i><span>Mis pacientes</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="pa-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
@@ -305,7 +298,8 @@ para los usuarios con el id_departamento == 6 unicamente podran ver sus horarios
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-target="#rua-nav" data-bs-toggle="collapse" href="<?php echo $url_base; ?>secciones/Padministradora/index.php">
+          <a class="nav-link collapsed" data-bs-target="#rua-nav" data-bs-toggle="collapse"
+            href="<?php echo $url_base; ?>secciones/Padministradora/index.php">
             <i class="bi bi-pin-map-fill"></i><span>Generar ruta</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="rua-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
@@ -317,9 +311,10 @@ para los usuarios con el id_departamento == 6 unicamente podran ver sus horarios
           </ul>
         </li>
       <?php endif; ?>
-      <?php if ($_SESSION['puesto'] == 8 || $_SESSION['puesto'] === 1) : ?>
+      <?php if ($_SESSION['puesto'] == 8 || $_SESSION['puesto'] === 1): ?>
         <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-target="#alma-nav" data-bs-toggle="collapse" href="<?php echo $url_base; ?>secciones/catalogo/index.php">
+          <a class="nav-link collapsed" data-bs-target="#alma-nav" data-bs-toggle="collapse"
+            href="<?php echo $url_base; ?>secciones/catalogo/index.php">
             <i class="bi bi-house-lock-fill"></i><span>Almacen</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="alma-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
@@ -341,72 +336,36 @@ para los usuarios con el id_departamento == 6 unicamente podran ver sus horarios
           </ul>
         </li>
       <?php endif; ?>
-
-
-
-      <?php if ($_SESSION['puesto'] === 6) : ?>
-        <!-- apartado de bloque de departamento de enfermeria -->
-
+      <!-- Inicio apartado enfermeria -->
+      <?php if ($_SESSION['puesto'] === 6 || $_SESSION['puesto'] === 1): ?>
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
             <i class="bi bi-capsule"></i><span>Enfermeria</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-            <!-- <li>
-              <a href="<?php //echo $url_base; 
-                        ?>secciones/enfermeria/index.php">
-                <i class="bi bi-circle"></i><span>enfermeros</span>
-              </a>
-            </li> -->
-            <!-- <li>
-              <a href="<?php //echo $url_base; 
-                        ?>secciones/enfermeria/index.php">
-                <i class="bi bi-circle"></i><span>asignacion de horarios</span>
-              </a>
-            </li> -->
+            <!-- Módulo de horarios -->
             <li>
-              <a href="<?php echo $url_base; ?>secciones/enfermeria/chat/index.php">
-                <i class="bi bi-circle"></i><span>chat general</span>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/horarios/horarios.php">
+                <i class="bi bi-circle"></i><span>Horarios</span>
               </a>
             </li>
+            <!-- Módulo de nomina -->
+            <li>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/control_de_nómina/index.php">
+                <i class="bi bi-circle"></i><span>Nómina</span>
+              </a>
+            </li>
+            <!--Implementación de apartados de enfermeria-->
+            <li>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/hojaComplementaria/index.php">
+                <i class="bi bi-circle"></i><span>Hoja complementaria</span>
+              </a>
+            </li>
+            <!--Aquí va el termino del apartado de enfermeria-->
           </ul>
-        </li>
-
-
-
-        <!-- End Forms Nav -->
+        </li><!-- End Forms Nav -->
       <?php endif; ?>
-      <?php if ($_SESSION['puesto'] === 1) : ?>
-        <!-- apartado de bloque de departamento de enfermeria -->
-
-        <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-capsule"></i><span>Enfermeria</span><i class="bi bi-chevron-down ms-auto"></i>
-          </a>
-          <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-            <li>
-              <a href="<?php echo $url_base; ?>secciones/enfermeria/index.php">
-                <i class="bi bi-circle"></i><span>enfermeros</span>
-              </a>
-            </li>
-            <li>
-              <a href="<?php echo $url_base; ?>secciones/enfermeria/index.php">
-                <i class="bi bi-circle"></i><span>asignacion de horarios</span>
-              </a>
-            </li>
-            <li>
-              <a href="<?php echo $url_base; ?>secciones/enfermeria/chat/index.php">
-                <i class="bi bi-circle"></i><span>chat general</span>
-              </a>
-            </li>
-          </ul>
-        </li>
-
-
-
-        <!-- End Forms Nav -->
-      <?php endif; ?>
-      <?php if ($_SESSION['puesto'] === 5 || $_SESSION['puesto'] === 1) : ?>
+      <?php if ($_SESSION['puesto'] === 5 || $_SESSION['puesto'] === 1): ?>
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
             <i class="bi bi-telephone-fill"></i><span> Call Center</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -425,7 +384,7 @@ para los usuarios con el id_departamento == 6 unicamente podran ver sus horarios
           </ul>
         </li><!-- End Tables Nav -->
       <?php endif; ?>
-      <?php if ($_SESSION['puesto'] === 7 || $_SESSION['puesto'] === 1) : ?>
+      <?php if ($_SESSION['puesto'] === 7 || $_SESSION['puesto'] === 1): ?>
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
             <i class="bi bi-person-circle"></i><span>Capital Humano</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -454,7 +413,7 @@ para los usuarios con el id_departamento == 6 unicamente podran ver sus horarios
           </ul>
         </li>
       <?php endif; ?>
-      <?php if ($_SESSION['puesto'] === 3 || $_SESSION['puesto'] === 1) : ?>
+      <?php if ($_SESSION['puesto'] === 3 || $_SESSION['puesto'] === 1): ?>
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#systemas-nav" data-bs-toggle="collapse" href="#">
             <i class="bi bi-pc-display-horizontal"></i><span>Sistemas</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -495,7 +454,7 @@ para los usuarios con el id_departamento == 6 unicamente podran ver sus horarios
       var input = event.target;
       if (input.files && input.files[0]) {
         var reader = new FileReader();
-        reader.onload = function(e) {
+        reader.onload = function (e) {
           var fot = document.getElementById("fot");
           fot.src = e.target.result;
         };
@@ -531,14 +490,14 @@ para los usuarios con el id_departamento == 6 unicamente podran ver sus horarios
         data: parametros,
         url: "<?php echo $url_base; ?>cerrar.php",
         type: "POST",
-        beforeSend: function() {},
-        success: function() {
+        beforeSend: function () { },
+        success: function () {
           Swal.fire({
             icon: 'success',
             title: 'Se cerro la sesión',
             showConfirmButton: false,
             timer: 1500,
-          }).then(function() {
+          }).then(function () {
             window.location = '<?php echo $url_base; ?>login.php';
           });
         },
@@ -548,10 +507,10 @@ para los usuarios con el id_departamento == 6 unicamente podran ver sus horarios
   </script>
   <script>
     var verMasBtn = document.getElementById('verMasBtn');
-    verMasBtn.addEventListener('click', function(event) {
+    verMasBtn.addEventListener('click', function (event) {
       event.preventDefault();
       var notificacionesOcultas = document.querySelectorAll('.notification-item.hidden');
-      notificacionesOcultas.forEach(function(item) {
+      notificacionesOcultas.forEach(function (item) {
         item.classList.remove('hidden');
       });
       verMasBtn.style.display = 'none'; // Oculta el botón "Ver más"
