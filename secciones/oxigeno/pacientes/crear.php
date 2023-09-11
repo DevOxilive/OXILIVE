@@ -330,7 +330,7 @@ if (!isset($_SESSION['us'])) {
             cancelButtonText: 'No, continuar'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = "<?php echo $url_base; ?>secciones/oxigeno/pacientes/index.php";
+                window.location.href = "<?php echo $url_base; ?>secciones/Padministradora/pacientes/index.php";
             }
         });
     }

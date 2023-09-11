@@ -1,5 +1,5 @@
 <?php
-$url_base = "http://localhost:80/OXILIVE/";
+$url_base = "http://localhost:8080/OXILIVE/";
 include_once 'C:\laragon\www\OXILIVE\connection/conexion.php';
 include_once 'C:\laragon\www\OXILIVE\module/puestos.php';
 include_once 'C:\laragon\www\OXILIVE\module/foto.php';
@@ -108,12 +108,12 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                       </p>
                     </div>
                   </li>
-                <?php
+              <?php
                   $count++;
                 } else {
                   break;
                 }
-              }?>
+              } ?>
             </ul><!-- End Notification Dropdown Items -->
           </li><!-- End Notification Nav -->
 
@@ -173,18 +173,41 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
 
   </header><!-- End Header -->
 
-  <!-- ======= Sidebar ======= -->
+  <!-- ======= barra de avegacion menu de hamburgesa una ves activado se deja ver el contenido ======= -->
   <aside id="sidebar" class="sidebar">
-
+    <!-- comienza una lista donde despliega los campos de acceso de cada usuario -->
     <ul class="sidebar-nav" id="sidebar-nav">
       <?php if ($_SESSION['puesto'] == 1) : ?>
+        <!-- en caso de ser administrador mostrara el siguiente contenido -->
+
+
+
         <li class="nav-item">
           <a class="nav-link " href="<?php echo $url_base; ?>index.php">
-            <i class="bi bi-grid"></i>
-            <span>Dashboard</span>
+            <i class="bi bi-grid"></i><span>Dashboard</span>
           </a>
         </li><!-- End Dashboard Nav -->
       <?php endif; ?>
+
+      <!-- organizacion de los mudulos para empleados unicamente *** TRABAJAR EN ENFEREMERIA para uso unicamente de los empleados  -->
+      <!-- 
+para para los enferemeros se hará uso de un perfil para poder interacturar con el chat generla
+para lo cual el que tenga el id_departamento == 1 sera administrador y podra acceder a enfermeria y los crud correspondientes
+para los usuarios con el id_departamento == 6 unicamente podran ver sus horarios a los que les corresponde y a demas interactuar con el chat general
+
+        @Author: oscar luis islas
+        fecha de inicio 07/09/2003.
+
+
+        primer paso: 
+        1.- organizar como se cargan las viatas de usuario.
+        2.- distingir entre departamentos usando estrcturas de control
+
+        3.- más importante tenerlo antes de la proxima semana 
+
+
+ -->
+
       <?php if ($_SESSION['puesto'] === 4 || $_SESSION['puesto'] === 1) : ?>
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="<?php echo $url_base; ?>secciones/oxigeno/index.php">
@@ -318,31 +341,70 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
           </ul>
         </li>
       <?php endif; ?>
-      <?php if ($_SESSION['puesto'] === 6 || $_SESSION['puesto'] === 1) : ?>
+
+
+
+      <?php if ($_SESSION['puesto'] === 6) : ?>
+        <!-- apartado de bloque de departamento de enfermeria -->
+
+        <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-capsule"></i><span>Enfermeria</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <!-- <li>
+              <a href="<?php //echo $url_base; 
+                        ?>secciones/enfermeria/index.php">
+                <i class="bi bi-circle"></i><span>enfermeros</span>
+              </a>
+            </li> -->
+            <!-- <li>
+              <a href="<?php //echo $url_base; 
+                        ?>secciones/enfermeria/index.php">
+                <i class="bi bi-circle"></i><span>asignacion de horarios</span>
+              </a>
+            </li> -->
+            <li>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/chat/index.php">
+                <i class="bi bi-circle"></i><span>chat general</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+
+
+        <!-- End Forms Nav -->
+      <?php endif; ?>
+      <?php if ($_SESSION['puesto'] === 1) : ?>
+        <!-- apartado de bloque de departamento de enfermeria -->
+
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
             <i class="bi bi-capsule"></i><span>Enfermeria</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-              <a href="<?php echo $url_base; ?>secciones/oxigeno/pacientes/index.php">
-                <i class="bi bi-circle"></i><span>Pacientes</span>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/index.php">
+                <i class="bi bi-circle"></i><span>enfermeros</span>
               </a>
             </li>
             <li>
-              <a href="<?php echo $url_base; ?>secciones/aseguradoras/index.php">
-                <i class="bi bi-circle"></i><span>Aseguradoras</span>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/index.php">
+                <i class="bi bi-circle"></i><span>asignacion de horarios</span>
               </a>
             </li>
-            <!--Implementación de apartados de enfermeria-->
             <li>
-              <a href="<?php echo $url_base; ?>secciones/enfermeria/hojaComplementaria/index.php">
-                <i class="bi bi-circle"></i><span>Hoja complementaria</span>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/chat/index.php">
+                <i class="bi bi-circle"></i><span>chat general</span>
               </a>
             </li>
-            <!--Aquí va el termino del apartado de enfermeria-->
           </ul>
-        </li><!-- End Forms Nav -->
+        </li>
+
+
+
+        <!-- End Forms Nav -->
       <?php endif; ?>
       <?php if ($_SESSION['puesto'] === 5 || $_SESSION['puesto'] === 1) : ?>
         <li class="nav-item">

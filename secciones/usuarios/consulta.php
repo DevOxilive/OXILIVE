@@ -5,5 +5,3 @@ $sentencia = $con->prepare("SELECT *,
 FROM `usuarios` WHERE Estado = 1");
 $sentencia->execute();
 $lista_usuarios = $sentencia->fetchAll(PDO::FETCH_ASSOC);
-
-?>
