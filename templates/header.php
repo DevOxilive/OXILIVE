@@ -324,16 +324,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
             <i class="bi bi-capsule"></i><span>Enfermeria</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-            <li>
-              <a href="<?php echo $url_base; ?>secciones/oxigeno/pacientes/index.php">
-                <i class="bi bi-circle"></i><span>Pacientes</span>
-              </a>
-            </li>
-            <li>
-              <a href="<?php echo $url_base; ?>secciones/aseguradoras/index.php">
-                <i class="bi bi-circle"></i><span>Aseguradoras</span>
-              </a>
-            </li>
+            
             <!--Implementación de apartados de enfermeria-->
             <li>
               <a href="<?php echo $url_base; ?>secciones/enfermeria/hojaComplementaria/index.php">
@@ -341,6 +332,20 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
               </a>
             </li>
             <!--Aquí va el termino del apartado de enfermeria-->
+            <!--Implementación de apartado Procedimientos realizados-->
+            <li>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/procedimientosRealizados/index.php">
+                <i class="bi bi-circle"></i><span>Procedimientos Realizados</span>
+              </a>
+            </li>
+            <!--Aquí termina-->
+             <!--Implementación de apartado registros clínico y cuidados generales-->
+             <li>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/registroYcuidados/index.php">
+                <i class="bi bi-circle"></i><span>Registro Clínico y Cuidados Generales</span>
+              </a>
+            </li>
+            <!--Aquí termina-->
           </ul>
         </li><!-- End Forms Nav -->
       <?php endif; ?>
