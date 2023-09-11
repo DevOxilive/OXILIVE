@@ -1,0 +1,23 @@
+form .contenido input {
+    width: 100%;
+    border-radius: 15px;
+    border: 1px solid #005880;
+    padding: 10px 10px;
+    font-size: 18px;
+}
+
+form .contenido select {
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid #005880;
+    padding: 10px 10px;
+    font-size: 18px;
+}
+
+
+form .contenido label {
+    position: relative;
+    color: black;
+    top: 0;
+    left: 10px;
+}
