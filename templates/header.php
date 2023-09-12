@@ -324,7 +324,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
         </li>
       <?php endif; ?>
       <!-- Inicio apartado enfermeria -->
-      <?php if ($_SESSION['puesto'] === 6 || $_SESSION['puesto'] === 1) : ?>
+      <?php if ($_SESSION['puesto'] === 1) : ?>
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
             <i class="bi bi-capsule"></i><span>Enfermeria</span><i class="bi bi-chevron-down ms-auto"></i>
