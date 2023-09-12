@@ -142,7 +142,7 @@ if ($_POST) {
             $sentencia->bindParam(":id_pacientes", $txtID);
             $sentencia->execute();
     
-            $ruta_destino_otra = $otra_ruta . "/" . $nombre_archivo_original;
+            $ruta_destino_otra = $otra_ruta . "../../enfermeria/hojaComplementaria/PAPELETA/" . $nombre_archivo_original;
             if (!empty($archivo_guardado)) {
                 if (file_exists($ruta_destino_otra)) {
                     unlink($ruta_destino_otra);

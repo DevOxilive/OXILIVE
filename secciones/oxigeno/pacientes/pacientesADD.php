@@ -110,7 +110,7 @@ if ($_POST) {
         copy($tmp_comprobante, $carpeta_usuario . "/" . $nombre_comprobante_orginal);
     }
 
-    $otra_carpeta_usuario = "../../Padministradora/pacientes/PAPELETA/" . $Apellidos . " " . $Nombres;
+    $otra_carpeta_usuario = "../../enfermeria/hojaComplementaria/PAPELETA/" . $Apellidos . " " . $Nombres;
     if (!is_dir($otra_carpeta_usuario)) {
         mkdir($otra_carpeta_usuario);
 

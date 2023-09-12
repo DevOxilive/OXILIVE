@@ -37,8 +37,8 @@ if (!isset($_SESSION['us'])) {
               <th scope="col">Acciones</th>
             </tr>
           </thead>
-          <tbody>
         <?php foreach($pacientes as $pacien){ ?>
+
           <tr>
             <th scope="row"><?php echo $pacien['id_pacientes']; ?></th>
             <td><?php echo $pacien['Nombres']; ?></td>
@@ -57,7 +57,6 @@ if (!isset($_SESSION['us'])) {
               </td>
             </tr>
             <?php }?>
-        </tbody>
         </table>
       </div>
     </div>
