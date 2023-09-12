@@ -79,19 +79,19 @@ $cuadro_alto = 120;
 while ($userRow = $sentencia->fetch(PDO::FETCH_ASSOC)) {
     $carpeta_usuario = "./PAPELETA/" . $userRow['Apellidos'] . " " . $userRow['Nombres'];
     // Define las rutas de las imágenes dentro del bucle
-    $nombre_Credencial_front_orginal = $userRow['Credencial_front'];
-    $nombre_Credencial_post_orginal = $userRow['Credencial_post'];
+    //$nombre_Credencial_front_orginal = $userRow['Credencial_front'];
+    //$nombre_Credencial_post_orginal = $userRow['Credencial_post'];
     $nombre_Credencial_aseguradora_orginal = $userRow['Credencial_aseguradora'];
     $nombre_Credencial_aseguradoras_post_orginal = $userRow['Credencial_aseguradoras_post'];
 
-    $rutaCredencialFront = $carpeta_usuario . "/" . $nombre_Credencial_front_orginal;
-    $rutaCredencialPost = $carpeta_usuario . "/" . $nombre_Credencial_post_orginal;
+    //$rutaCredencialFront = $carpeta_usuario . "/" . $nombre_Credencial_front_orginal;
+    //$rutaCredencialPost = $carpeta_usuario . "/" . $nombre_Credencial_post_orginal;
     $rutaCredencialAseguradora = $carpeta_usuario . "/" . $nombre_Credencial_aseguradora_orginal;
     $rutaCredencialAseguradorasPost = $carpeta_usuario . "/" . $nombre_Credencial_aseguradoras_post_orginal;
     
     // Coloca las dos imágenes superiores con el tamaño deseado
-    $pdf->Image($rutaCredencialFront, 20, 140, 80, 50);
-    $pdf->Image($rutaCredencialPost, 110, 140, 80, 50);
+    //$pdf->Image($rutaCredencialFront, 20, 140, 80, 50);
+    //$pdf->Image($rutaCredencialPost, 110, 140, 80, 50);
 
     // Coloca las dos imágenes inferiores con el tamaño deseado
     $pdf->Image($rutaCredencialAseguradora, 20, 200, 80, 50);
