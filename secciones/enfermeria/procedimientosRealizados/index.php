@@ -10,13 +10,12 @@ if (!isset($_SESSION['us'])) {
   echo "Error en el sistema";
 }
 ?>
-
 <main id="main" class="main">
     <h1 style="text-align: center;">Procedimientos Realizados</h1>
     <div class="card-header" style="text-align: right;"></div>
     <div class="card">
         <div class="card-header">
-            <a  class="btn btn-outline-primary" href="./crearCPT.php" role="button"> <i
+            <a class="btn btn-outline-primary" href="./crearCPT.php" role="button"> <i
                     class="bi bi-person-fill-add"></i> Nuevo procedimiento</a>
         </div>
         <div class="card-body">
@@ -41,15 +40,16 @@ if (!isset($_SESSION['us'])) {
                             <td><?php echo $_cpt['descripcion']; ?></td>
                             <td><?php echo $_cpt['unidades']; ?></td>
                             <td><?php echo $_cpt['fecha']; ?></td>
-                            
+
                             <td>
                                 <a name="" id="" class="btn btn-outline-info"
-                                    href="#" role="button"
+                                    href="pacientes.php?txtID=<?php echo $pacien['id_pacientes']; ?>" role="button"
                                     style="font-size=10px;"><i class="bi bi-printer-fill"></i></a> |
 
                                 <a name="" id="" class="btn btn-outline-warning"
-                                    href="#" role="button"><i
-                                        class="bi bi-pencil-square"></i></a> |
+                                    href="editarCPT.php?txtID=<?php echo $_cpt['id_cpt']; ?>" role="button"><i
+                                        class="bi bi-pencil-square"></i></a>
+
                                 <a name="" id="" class="btn btn-outline-danger"
                                     onclick="eliminar(<?php echo $_cpt['id_cpt']; ?>)" role="button"
                                     style="font-size=10px;"><i class="bi bi-trash-fill"></i></a>
@@ -65,38 +65,40 @@ if (!isset($_SESSION['us'])) {
 </main>
 
 <script>
-  function eliminar(codigo) {
+function eliminar(codigo) {
     Swal.fire({
-      title: '¿Estas seguro?',
-      text: "No podrás recuperar los datos",
-      cancelButtonText: 'Cancelar',
-      icon: 'warning',
-      buttons: true,
-      showCancelButton: true,
-      dangerMode: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, Eliminar',
-      cancelButtonText: 'Cancelar'
+        title: '¿Estas seguro?',
+        text: "No podrás recuperar los datos",
+        cancelButtonText: 'Cancelar',
+        icon: 'warning',
+        buttons: true,
+        showCancelButton: true,
+        dangerMode: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, Eliminar',
+        cancelButtonText: 'Cancelar'
     }).then((result) => {
-      if (result.isConfirmed) {
-        mandar(codigo)
-      }
+        if (result.isConfirmed) {
+            mandar(codigo)
+        }
     })
-  }
+}
 
-  function mandar(codigo) {
-    parametros = { id: codigo };
+function mandar(codigo) {
+    parametros = {
+        id: codigo
+    };
     $.ajax({
-      data: parametros,
-      url: "./eliminarCPT.php",
-      type: "POST",
-      beforeSend: function () { },
-      success: function () {
-        Swal.fire("Eliminado:", "Ha sido eliminado", "success").then((result) => {
-          window.location.href = "index.php";
-        });
-      },
+        data: parametros,
+        url: "./eliminarCPT.php",
+        type: "POST",
+        beforeSend: function() {},
+        success: function() {
+            Swal.fire("Eliminado:", "Ha sido eliminado", "success").then((result) => {
+                window.location.href = "index.php";
+            });
+        },
 
     });
 
@@ -105,28 +107,27 @@ if (!isset($_SESSION['us'])) {
     // Agrega la animación a los bordes de las filas
     const rows = document.querySelectorAll(".animated-border");
     rows.forEach(row => {
-      row.addEventListener("mouseover", () => {
-        row.classList.add("border-animation");
-      });
-      row.addEventListener("mouseout", () => {
-        row.classList.remove("border-animation");
-      });
+        row.addEventListener("mouseover", () => {
+            row.classList.add("border-animation");
+        });
+        row.addEventListener("mouseout", () => {
+            row.classList.remove("border-animation");
+        });
     });
 
 
 
-  }
-  $(document).ready(function () {
+}
+$(document).ready(function() {
     $.noConflict();
 
     $('#myTable').DataTable({
-      "language": {
-        "url": "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"
-      }
+        "language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"
+        }
     });
 
-  });
-
+});
 </script>
 <?php
 include("../../../templates/footer.php");

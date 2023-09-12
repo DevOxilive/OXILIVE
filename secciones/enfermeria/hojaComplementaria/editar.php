@@ -9,7 +9,7 @@ if (!isset($_SESSION['us'])) {
     include("../../../module/banco.php");
     include("../../../module/aseguradora.php");
     include("../../../module/administradora.php");
-    include("../../oxigeno/pacientes/pacientesUP.php");
+    include("./pacientesUP.php");
 } else {
     echo "Error en el sistema";
 }
