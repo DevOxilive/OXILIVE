@@ -9,7 +9,7 @@ if (!isset($_SESSION['us'])) {
     include("../../../module/estado.php");
     include("enfermeros.php");
     include("pacientes.php");
-    include("guardias.php");
+    include("tiposGuardias.php");
 } else {
     echo "Error en el sistema";
 }
@@ -24,12 +24,12 @@ if (!isset($_SESSION['us'])) {
     <section class="section dashboard">
         <div class="card">
 
-            <!-- Encabezado del formulario de registro de usuario -->
+            <!-- Encabezado del formulario de nueva guardia-->
             <div class="card-header" style="border: 2px solid #012970; background: #005880;">
                 <h4 style="text-align: center;
                         color: #fff;
                         font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
-                    Registro de nuevo horario
+                    Registro de nueva guardia
                 </h4>
             </div>
 
@@ -144,7 +144,7 @@ function confirmCancel(event) {
     }).then((result) => {
         if (result.isConfirmed) {
             // Aquí puedes redirigir al usuario a otra página o realizar alguna otra acción
-            window.location.href = "<?php echo $url_base; ?>secciones/enfermeria/horarios/horarios.php";
+            window.location.href = "<?php echo $url_base; ?>secciones/enfermeria/guardias/index.php";
         }
     });
 }
