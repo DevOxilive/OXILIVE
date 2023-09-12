@@ -17,10 +17,10 @@ if (!isset($_SESSION['us'])) {
     <div class="row">
         <div class="card-header" style="text-align: right;">
             |<!-- Boton de para el reporte en pdf -->
-            <a class="btn btn-outline-info" href="gene_pdf.php" role="button"><i class="bi bi-printer-fill"></i></a>
+            <a class="btn btn-outline-info" href="reporte_pdf.php" target="_blank"; role="button"><i class="bi bi-printer-fill"></i></a>
             |
             <!-- Boton de para el reporte en excel -->
-            <a class="btn btn-outline-success" href="reporte.php" role="button"><i 
+            <a class="btn btn-outline-success" href="reporte_excel.php" role="button"><i 
             class="bi bi-filetype-xlsx"></i></a>
             |
         
