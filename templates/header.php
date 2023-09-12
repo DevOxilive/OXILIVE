@@ -343,20 +343,11 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
             <i class="bi bi-capsule"></i><span>Enfermeria</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-            <!-- <li>
-              <a href="<?php //echo $url_base; 
-                 
-                 ?>secciones/enfermeria/index.php">
-                <i class="bi bi-circle"></i><span>enfermeros</span>
+            <li>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/ChatApp/index.php">
+                <i class="bi bi-circle"></i><span>Chat General</span>
               </a>
-            </li> -->
-            <!-- <li>
-              <a href="<?php //echo $url_base; 
-                        ?>secciones/enfermeria/index.php">
-                <i class="bi bi-circle"></i><span>asignacion de horarios</span>
-              </a>
-            </li> -->
-            
+            </li>
             <!--Implementación de apartados de enfermeria-->
             <li>
               <a href="<?php echo $url_base; ?>secciones/enfermeria/hojaComplementaria/index.php">
