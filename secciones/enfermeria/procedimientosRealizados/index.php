@@ -16,7 +16,7 @@ if (!isset($_SESSION['us'])) {
     <div class="card-header" style="text-align: right;"></div>
     <div class="card">
         <div class="card-header">
-            <a name="" id="" class="btn btn-outline-primary" href="#" role="button"> <i
+            <a  class="btn btn-outline-primary" href="./crearCPT.php" role="button"> <i
                     class="bi bi-person-fill-add"></i> Nuevo procedimiento</a>
         </div>
         <div class="card-body">
