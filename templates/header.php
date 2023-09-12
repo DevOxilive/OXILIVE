@@ -345,8 +345,14 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
           <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <!-- Módulo de horarios -->
             <li>
-              <a href="<?php echo $url_base; ?>secciones/enfermeria/horarios/horarios.php">
-                <i class="bi bi-circle"></i><span>Horarios</span>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/guardias/index.php">
+                <i class="bi bi-circle"></i><span>Guardias</span>
+              </a>
+            </li>
+            <!-- Módulo de asistencias -->
+            <li>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/asistencia/admin/index.php">
+                <i class="bi bi-circle"></i><span>Asistencia</span>
               </a>
             </li>
             <!-- Módulo de nomina -->

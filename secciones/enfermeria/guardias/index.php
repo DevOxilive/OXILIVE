@@ -28,11 +28,12 @@ if (!isset($_SESSION['us'])) {
                 <i class="bi bi-printer-fill"></i>
             </a>
         </div>
+        <hr>
         <div class="card">
             <div class="card-header">
                 <a class="btn btn-outline-primary" href="crear.php" role="button">
-                    <i class="bi bi-person-fill-add"></i>
-                    Nuevo Horario
+                    <i class="bi bi-calendar-plus"></i>
+                    Nueva Guardia
                 </a>
             </div>
             <div class="card-body">
