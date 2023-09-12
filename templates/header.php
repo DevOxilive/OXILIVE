@@ -354,7 +354,8 @@ para los usuarios con el id_departamento == 6 unicamente podran ver sus horarios
           <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <!-- <li>
               <a href="<?php //echo $url_base; 
-                        ?>secciones/enfermeria/index.php">
+                 
+                 ?>secciones/enfermeria/index.php">
                 <i class="bi bi-circle"></i><span>enfermeros</span>
               </a>
             </li> -->
