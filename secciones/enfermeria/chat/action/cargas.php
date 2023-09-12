@@ -1,29 +1,24 @@
 <?php
-// se hace una consulta a la base de datos, donde se incluye la ruta donde se encuentra la base de datos
+
 include_once('/laragon/www/OXILIVE/connection/conexion.php');
 
-// se prepara la sentencia sql para su ejecucion una vez llamando al metodo responsable de la conexion a la base de datos
 $sentencia = $con->prepare("SELECT * FROM usuarios WHERE id_departamentos = '6'");
-// en este momento se ejecuta la consulta sql y se asigna a una variable
 $sentencia->execute();
 $valores = $sentencia->fetchAll(PDO::FETCH_ASSOC);
-// esta variable contiene cargado el valor de los usuarios en ella cargados en un arreglo
-
-
-/**
- * para darle uso a los valores cargados previa mente se debeb recorer el arreglo creado
- * con la informacion traida de la base de datos
- * 
- * ahora podemos ver la consulta ejecutada...
- * 
- * 
- *  */
-/** carga de mensajes insatantaneos */
+/** carga de mansajeria */
+if (isset($_POST['mensaje'])) {
+    $dateTime = date("Y-m-d H:i:s");
     $msg = $_POST['mensaje'];
-
-    $sentencia = $con->prepare("INSERT INTO mensajes (msg) VALUES ('$msg')");
+    $puesto = $_POST['puesto'];
+    $sentencia = $con->prepare("INSERT INTO mensajes (msg, fecha_hora, id_departamento) VALUES ('$msg', '$dateTime', '$puesto')");
     $sentencia->execute();
-//apartado de mensajeria
-$sentencia = $con->prepare("SELECT msg FROM mensajes");
+}
+
+// INSERT INTO mensajes (msg, fecha_hora, id_departamento)
+// VALUES ('hola', NOW(), 1);
+/** vista de los mansajes */
+
+$sentencia = $con->prepare("SELECT * FROM mensajes");
 $sentencia->execute();
 $verMensajes = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+
