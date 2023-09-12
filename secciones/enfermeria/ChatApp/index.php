@@ -32,8 +32,10 @@ if (!isset($_SESSION['us'])) {
             <div>
                 <div id="chat"></div>
             </div>
+</main>
+<script src="js/socket.js"></script>
 
-            </body>
-            <script src="js/socket.js"></script>
-
-            </html>
+</html>
+<?php
+include("../../../templates/footer.php");
+?>
