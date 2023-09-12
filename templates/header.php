@@ -25,9 +25,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <link href="https://fonts.gstatic.com" rel="preconnect">
-  <link
-    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="<?php echo $url_base; ?>assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -76,7 +74,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
 
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
-        <?php if ($_SESSION['puesto'] != 2): ?>
+        <?php if ($_SESSION['puesto'] != 2) : ?>
           <li class="nav-item dropdown">
             <a class="nav-link nav-icon" href="../secciones/oxigeno/rutas/index.php" data-bs-toggle="dropdown">
               <i class="bi bi-bell"></i>
@@ -84,8 +82,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                 <?php echo $totalNoti ?>
               </span>
             </a><!-- End Notification Icon -->
-            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications"
-              style="max-height: 300px; overflow-y: auto;">
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications" style="max-height: 300px; overflow-y: auto;">
               <li class="dropdown-header">
                 Tienes
                 <?php echo $totalNoti ?> nueva(s)
@@ -101,7 +98,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
               $count = 0;
               foreach ($notificaciones as $arre) {
                 if ($count < 3) { // Mostrar solo las últimas tres notificaciones
-                  ?>
+              ?>
                   <li class="notification-item">
                     <i class="bi bi-bell-fill"></i>
                     <div>
@@ -116,7 +113,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                       </p>
                     </div>
                   </li>
-                  <?php
+              <?php
                   $count++;
                 } else {
                   break;
@@ -129,9 +126,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img
-              src="<?php echo $url_base; ?>secciones/usuarios/OXILIVE/<?php echo $_SESSION['ape'] . " " . $_SESSION['no'] ?>/<?php echo $fot; ?>"
-              id="fot" alt="Foto de perfil" style="width: 40px; height: 40px;" class="rounded-circle">
+            <img src="<?php echo $url_base; ?>secciones/usuarios/OXILIVE/<?php echo $_SESSION['ape'] . " " . $_SESSION['no'] ?>/<?php echo $fot; ?>" id="fot" alt="Foto de perfil" style="width: 40px; height: 40px;" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">
               <?php echo $_SESSION['us'] ?>
             </span>
@@ -146,10 +141,9 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
             <li>
               <hr class="dropdown-divider">
             </li>
-            <?php if ($_SESSION['puesto'] != 2): ?>
+            <?php if ($_SESSION['puesto'] != 2) : ?>
               <li>
-                <a class="dropdown-item d-flex align-items-center"
-                  href="<?php echo $url_base; ?>secciones/perfil/account.php">
+                <a class="dropdown-item d-flex align-items-center" href="<?php echo $url_base; ?>secciones/perfil/account.php">
                   <i class="bi bi-gear"></i>
                   <span>Configuración</span>
                 </a>
@@ -158,10 +152,9 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                 <hr class="dropdown-divider">
               </li>
             <?php endif; ?>
-            <?php if ($_SESSION['puesto'] == 10): ?>
+            <?php if ($_SESSION['puesto'] == 10) : ?>
               <li>
-                <a class="dropdown-item d-flex align-items-center"
-                  href="<?php echo $url_base; ?>secciones/perfil/help.php">
+                <a class="dropdown-item d-flex align-items-center" href="<?php echo $url_base; ?>secciones/perfil/help.php">
                   <i class="bi bi-question-circle"></i>
                   <span>¿Necesitas ayuda?</span>
                 </a>
@@ -189,7 +182,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
   <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
-      <?php if ($_SESSION['puesto'] == 1): ?>
+      <?php if ($_SESSION['puesto'] == 1) : ?>
         <li class="nav-item">
           <a class="nav-link " href="<?php echo $url_base; ?>index.php">
             <i class="bi bi-grid"></i>
@@ -197,10 +190,9 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
           </a>
         </li><!-- End Dashboard Nav -->
       <?php endif; ?>
-      <?php if ($_SESSION['puesto'] === 4 || $_SESSION['puesto'] === 1): ?>
+      <?php if ($_SESSION['puesto'] === 4 || $_SESSION['puesto'] === 1) : ?>
         <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse"
-            href="<?php echo $url_base; ?>secciones/oxigeno/index.php">
+          <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="<?php echo $url_base; ?>secciones/oxigeno/index.php">
             <i class="bi bi-clipboard2-pulse"></i><span>Oxigeno</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
@@ -253,10 +245,9 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
           </ul>
         </li><!-- End Components Nav -->
       <?php endif; ?>
-      <?php if ($_SESSION['puesto'] == 10 || $_SESSION['puesto'] === 1): ?>
+      <?php if ($_SESSION['puesto'] == 10 || $_SESSION['puesto'] === 1) : ?>
         <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-target="#cata-nav" data-bs-toggle="collapse"
-            href="<?php echo $url_base; ?>secciones/catalogo/index.php">
+          <a class="nav-link collapsed" data-bs-target="#cata-nav" data-bs-toggle="collapse" href="<?php echo $url_base; ?>secciones/catalogo/index.php">
             <i class="bi bi-book-half"></i><span>Catálogo</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="cata-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
@@ -268,10 +259,9 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
           </ul>
         </li>
       <?php endif; ?>
-      <?php if ($_SESSION['puesto'] == 9): ?>
+      <?php if ($_SESSION['puesto'] == 9) : ?>
         <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-target="#cata-nav" data-bs-toggle="collapse"
-            href="<?php echo $url_base; ?>secciones/Pchofer/index.php">
+          <a class="nav-link collapsed" data-bs-target="#cata-nav" data-bs-toggle="collapse" href="<?php echo $url_base; ?>secciones/Pchofer/index.php">
             <i class="bi bi-book-half"></i><span>Mis rutas</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="cata-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
@@ -283,10 +273,9 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
           </ul>
         </li>
       <?php endif; ?>
-      <?php if ($_SESSION['puesto'] == 2): ?>
+      <?php if ($_SESSION['puesto'] == 2) : ?>
         <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-target="#pa-nav" data-bs-toggle="collapse"
-            href="<?php echo $url_base; ?>secciones/Padministradora/index.php">
+          <a class="nav-link collapsed" data-bs-target="#pa-nav" data-bs-toggle="collapse" href="<?php echo $url_base; ?>secciones/Padministradora/index.php">
             <i class="bi bi-file-person-fill"></i><span>Mis pacientes</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="pa-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
@@ -298,8 +287,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-target="#rua-nav" data-bs-toggle="collapse"
-            href="<?php echo $url_base; ?>secciones/Padministradora/index.php">
+          <a class="nav-link collapsed" data-bs-target="#rua-nav" data-bs-toggle="collapse" href="<?php echo $url_base; ?>secciones/Padministradora/index.php">
             <i class="bi bi-pin-map-fill"></i><span>Generar ruta</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="rua-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
@@ -311,10 +299,9 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
           </ul>
         </li>
       <?php endif; ?>
-      <?php if ($_SESSION['puesto'] == 8 || $_SESSION['puesto'] === 1): ?>
+      <?php if ($_SESSION['puesto'] == 8 || $_SESSION['puesto'] === 1) : ?>
         <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-target="#alma-nav" data-bs-toggle="collapse"
-            href="<?php echo $url_base; ?>secciones/catalogo/index.php">
+          <a class="nav-link collapsed" data-bs-target="#alma-nav" data-bs-toggle="collapse" href="<?php echo $url_base; ?>secciones/catalogo/index.php">
             <i class="bi bi-house-lock-fill"></i><span>Almacen</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="alma-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
@@ -337,26 +324,17 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
         </li>
       <?php endif; ?>
       <!-- Inicio apartado enfermeria -->
-      <?php if ($_SESSION['puesto'] === 6 || $_SESSION['puesto'] === 1): ?>
+      <?php if ($_SESSION['puesto'] === 6 || $_SESSION['puesto'] === 1) : ?>
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
             <i class="bi bi-capsule"></i><span>Enfermeria</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-            <!-- <li>
-              <a href="<?php //echo $url_base; 
-                 
-                 ?>secciones/enfermeria/index.php">
-                <i class="bi bi-circle"></i><span>enfermeros</span>
+            <li>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/ChatApp/index.php">
+                <i class="bi bi-circle"></i><span>Chat General</span>
               </a>
-            </li> -->
-            <!-- <li>
-              <a href="<?php //echo $url_base; 
-                        ?>secciones/enfermeria/index.php">
-                <i class="bi bi-circle"></i><span>asignacion de horarios</span>
-              </a>
-            </li> -->
-            
+            </li>
             <!--Implementación de apartados de enfermeria-->
             <li>
               <a href="<?php echo $url_base; ?>secciones/enfermeria/hojaComplementaria/index.php">
@@ -368,8 +346,8 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
             <li>
               <a href="<?php echo $url_base; ?>secciones/enfermeria/procedimientosRealizados/index.php">
                 <i class="bi bi-circle"></i><span>Procedimientos Realizados</span>
-                
-            <!-- Módulo de horarios -->
+
+                <!-- Módulo de horarios -->
             <li>
               <a href="<?php echo $url_base; ?>secciones/enfermeria/guardias/index.php">
                 <i class="bi bi-circle"></i><span>Guardias</span>
@@ -388,8 +366,8 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
               </a>
             </li>
             <!--Aquí termina-->
-             <!--Implementación de apartado registros clínico y cuidados generales-->
-             <li>
+            <!--Implementación de apartado registros clínico y cuidados generales-->
+            <li>
               <a href="<?php echo $url_base; ?>secciones/enfermeria/registroYcuidados/index.php">
                 <i class="bi bi-circle"></i><span>Registro Clínico y Cuidados Generales</span>
               </a>
@@ -398,7 +376,30 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
           </ul>
         </li><!-- End Forms Nav -->
       <?php endif; ?>
-      <?php if ($_SESSION['puesto'] === 5 || $_SESSION['puesto'] === 1): ?>
+
+      <?php if ($_SESSION['puesto'] === 6) : ?>
+        <!-- apartado de bloque de departamento de enfermeria -->
+
+        <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-capsule"></i><span>Enfermeria</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/chat/index.php">
+                <i class="bi bi-circle"></i><span>chat general</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+
+
+        <!-- End Forms Nav -->
+      <?php endif; ?>
+
+
+      <?php if ($_SESSION['puesto'] === 5 || $_SESSION['puesto'] === 1) : ?>
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
             <i class="bi bi-telephone-fill"></i><span> Call Center</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -417,7 +418,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
           </ul>
         </li><!-- End Tables Nav -->
       <?php endif; ?>
-      <?php if ($_SESSION['puesto'] === 7 || $_SESSION['puesto'] === 1): ?>
+      <?php if ($_SESSION['puesto'] === 7 || $_SESSION['puesto'] === 1) : ?>
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
             <i class="bi bi-person-circle"></i><span>Capital Humano</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -446,7 +447,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
           </ul>
         </li>
       <?php endif; ?>
-      <?php if ($_SESSION['puesto'] === 3 || $_SESSION['puesto'] === 1): ?>
+      <?php if ($_SESSION['puesto'] === 3 || $_SESSION['puesto'] === 1) : ?>
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#systemas-nav" data-bs-toggle="collapse" href="#">
             <i class="bi bi-pc-display-horizontal"></i><span>Sistemas</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -487,7 +488,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
       var input = event.target;
       if (input.files && input.files[0]) {
         var reader = new FileReader();
-        reader.onload = function (e) {
+        reader.onload = function(e) {
           var fot = document.getElementById("fot");
           fot.src = e.target.result;
         };
@@ -523,14 +524,14 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
         data: parametros,
         url: "<?php echo $url_base; ?>cerrar.php",
         type: "POST",
-        beforeSend: function () { },
-        success: function () {
+        beforeSend: function() {},
+        success: function() {
           Swal.fire({
             icon: 'success',
             title: 'Se cerro la sesión',
             showConfirmButton: false,
             timer: 1500,
-          }).then(function () {
+          }).then(function() {
             window.location = '<?php echo $url_base; ?>login.php';
           });
         },
@@ -540,10 +541,10 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
   </script>
   <script>
     var verMasBtn = document.getElementById('verMasBtn');
-    verMasBtn.addEventListener('click', function (event) {
+    verMasBtn.addEventListener('click', function(event) {
       event.preventDefault();
       var notificacionesOcultas = document.querySelectorAll('.notification-item.hidden');
-      notificacionesOcultas.forEach(function (item) {
+      notificacionesOcultas.forEach(function(item) {
         item.classList.remove('hidden');
       });
       verMasBtn.style.display = 'none'; // Oculta el botón "Ver más"
