@@ -345,7 +345,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
             <!--Implementación de apartado Procedimientos realizados-->
             <li>
               <a href="<?php echo $url_base; ?>secciones/enfermeria/procedimientosRealizados/index.php">
-                <i class="bi bi-circle"></i><span>Procedimientos Realizados</span>
+                <i class="bi bi-circle"></i><span>Procedimientos Realizados</span></a>
 
                 <!-- Módulo de horarios -->
             <li>
