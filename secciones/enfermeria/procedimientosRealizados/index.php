@@ -44,7 +44,7 @@ if (!isset($_SESSION['us'])) {
                             <td>
                                 <a name="" id="" class="btn btn-outline-info"
                                     href="pacientes.php?txtID=<?php echo $pacien['id_pacientes']; ?>" role="button"
-                                    style="font-size=10px;"><i class="bi bi-printer-fill"></i></a> |
+                                    style="font-size:10px;"><i class="bi bi-printer-fill"></i></a> |
 
                                 <a name="" id="" class="btn btn-outline-warning"
                                     href="editarCPT.php?txtID=<?php echo $_cpt['id_cpt']; ?>" role="button"><i
@@ -52,7 +52,7 @@ if (!isset($_SESSION['us'])) {
 
                                 <a name="" id="" class="btn btn-outline-danger"
                                     onclick="eliminar(<?php echo $_cpt['id_cpt']; ?>)" role="button"
-                                    style="font-size=10px;"><i class="bi bi-trash-fill"></i></a>
+                                    style="font-size:10px;"><i class="bi bi-trash-fill"></i></a>
                             </td>
 
                         </tr>

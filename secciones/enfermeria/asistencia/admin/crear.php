@@ -3,10 +3,10 @@ session_start();
 if (!isset($_SESSION['us'])) {
     header('Location: ../../../../../login.php');
 } elseif (isset($_SESSION['us'])){
-    include("../../../templates/header.php");
-    include("../../../connection/conexion.php");
-    include("../../../module/genero.php");
-    include("../../../module/estado.php");
+    include("../../../../templates/header.php");
+    include("../../../../connection/conexion.php");
+    include("../../../../module/genero.php");
+    include("../../../../module/estado.php");
     
 } else {
     echo "Error en el sistema";
@@ -27,28 +27,21 @@ if (!isset($_SESSION['us'])) {
                 <h4 style="text-align: center;
                         color: #fff;
                         font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
-                    Registro de nueva guardia
+                    Registro de asistencia
                 </h4>
             </div>
 
             <!-- Cuerpo del formulario de registro de usuario -->
             <div class="card-body" style="border: 2px solid #BFE5FF;">
-                <form action="<?php echo $url_base ?>secciones/usuarios/usuariosADD.php" method="POST"
+                <form action="<?php echo $url_base ?>secciones/enfermeria/asistencia/asisADD.php" method="POST"
                     enctype="multipart/form-data" class="formLogin row g-3">
 
                     <!-- Combo box para elegir el enfermero -->
+                    <input type="hidden" id="idUser" name="idUser" value="<?php echo $_SESSION['idus']; ?>">
+                    
                     <div class="contenido col-md-5">
                         <br>
-                        <label for="nombres" class="form-label">Nombre(s)</label>
-                        <select name="nombres" id="nombres" class="form-select">
-                            <option value="0">Elige el nombre del enfermero</option>
-                            <?php foreach ($lista_enfermeros as $enfermeros){ ?>
-                            <option value="<?php echo $enfermeros['id_usuarios']; ?>">
-                                <?php echo $enfermeros['Nombres']." ".$enfermeros['Apellidos'];?>
-                            </option>
-                            <?php } ?>
-                        </select>
-
+                        
                     </div>
 
                     <!-- Combo box para elegir paciente -->
@@ -172,5 +165,5 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <?php
-include("../../../templates/footer.php");
+include("../../../../templates/footer.php");
 ?>
