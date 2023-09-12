@@ -1,3 +1,4 @@
+
 <?php
 require('../../../fpdf/fpdf.php');
 class PDF extends FPDF
@@ -16,6 +17,7 @@ class PDF extends FPDF
         //Texto Explicativo
         $this->SetFont('Times', '', 18);
         $this->MultiCell(260, 5, utf8_decode('REPORTE DE NÓMINA'), 0, 'C');
+        
         // Salto de línea
         $this->Ln(25);
     }
@@ -47,6 +49,8 @@ $pdf = new PDF(); //hacemos una instancia de la clase
 $pdf->AliasNbPages();
 $pdf->AddPage(); //añade l apagina / en blanco
 $pdf->SetX(15);
+
+
 //Conexión a la base de datos
 
 require '../../../connection/conexion.php';
@@ -61,20 +65,22 @@ WHERE Nombre_puestos = 'Enfermeria' ");
 $sentencia->execute();
 $pdf->Ln(0.6);
 $pdf->setX(15);
-$pdf->SetFont('Times', 'B', 14);
-$pdf->Cell(20, 10, 'Usuario',1, 0, 'C', 0);
-$pdf->Cell(75, 10, 'Nombre completo',1, 0, 'C', 0);
-$pdf->Cell(40, 10, 'Dias laborados',1, 0, 'C', 0);
-$pdf->Cell(35, 10, utf8_decode('Sueldo total'), 1, 1, 'C', 0);
+$pdf->SetFont('Times', 'B', 12);
+$pdf->Cell(18, 10, 'Usuario',1, 0, 'C', 0);
+$pdf->Cell(70, 10, 'Nombre completo',1, 0, 'C', 0);
+$pdf->Cell(33, 10, 'Dias laborados',1, 0, 'C', 0);
+$pdf->Cell(30, 10, utf8_decode('Sueldo total'), 1, 0, 'C', 0);
+$pdf->Cell(32, 10, utf8_decode('Tipo de guardia'), 1, 1, 'C', 0);
 
 //Datos consultados
 while ($userRow = $sentencia->fetch(PDO::FETCH_ASSOC)) {
     $pdf->SetFont('Arial', '', 12);
     $pdf->setX(15);
-    $pdf->Cell(20, 10, utf8_decode($userRow['id_usuarios']) , 1, 0, 'C', 0);
-    $pdf->Cell(75, 10, utf8_decode($userRow['Nombres']) . " " . utf8_decode($userRow['Apellidos']) , 1, 0, 'C', 0);
-    $pdf->Cell(40, 10, utf8_decode($userRow['Nombre_puestos']) , 1, 0, 'C', 0);
-    $pdf->Cell(35, 10, $userRow['codigo_postal'], 1, 1, 'C', 0);
+    $pdf->Cell(18, 10, utf8_decode($userRow['id_usuarios']) , 1, 0, 'C', 0);
+    $pdf->Cell(70, 10, utf8_decode($userRow['Nombres']) . " " . utf8_decode($userRow['Apellidos']) , 1, 0, 'C', 0);
+    $pdf->Cell(33, 10, utf8_decode($userRow['Nombre_puestos']) , 1, 0, 'C', 0);
+    $pdf->Cell(30, 10, utf8_decode($userRow['codigo_postal']) , 1, 0, 'C', 0);
+    $pdf->Cell(32, 10, $userRow['rfc'], 1, 1, 'C', 0);
 }
 $pdf->Output();
 ?>
