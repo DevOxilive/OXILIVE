@@ -4,16 +4,20 @@ if (!isset($_SESSION['us'])) {
   header('Location: ../../login.php');
 } elseif (isset($_SESSION['us'])) {
   include("../../../templates/header.php");
+  include("../../../connection/conexion.php");
+  include ("./consultaCPT.php");
 } else {
   echo "Error en el sistema";
 }
 ?>
+
 <main id="main" class="main">
     <h1 style="text-align: center;">Procedimientos Realizados</h1>
-      <div class="card-header" style="text-align: right;"></div>
+    <div class="card-header" style="text-align: right;"></div>
     <div class="card">
         <div class="card-header">
-            <a name="" id="" class="btn btn-outline-primary" href="./crear.php" role="button"> <i class="bi bi-person-fill-add"></i> Nuevo procedimiento</a>
+            <a name="" id="" class="btn btn-outline-primary" href="#" role="button"> <i
+                    class="bi bi-person-fill-add"></i> Nuevo procedimiento</a>
         </div>
         <div class="card-body">
             <div class="table-responsive-sm">
@@ -22,42 +26,37 @@ if (!isset($_SESSION['us'])) {
                         <tr class="table-active table-group-divider" style="text-align: center;">
                             <th scope="col">Núm</th>
                             <th scope="col">CPT</th>
-                            <th scope="col">Nom.Paciente</th>
-                            <th scope="col">Descripción</th>
-                            <th scope="col">Fecha</th>                           
-                            
+                            <th scope="col">descripción</th>
+                            <th scope="col">unidades</th>
+                            <th scope="col">Fecha</th>
                             <th scope="col">Operaciones</th>
 
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="">
-                            <th scope="row">
-                                1
-                            </th>
-                             <td>
-                             <P>EN-BA-03</P>
-                             <td>
-                                    <p>Mora Castro Margarita</p>
-                                </td>
-                                </td>
-                                <td>
-                                    <p>Apoyo Enfermera General 8 Horas</p>
-                                </td>
-                              
-                                <td>
-                                <P>Turno 8 Horas</P>
-                                </td>
-                            <td style="text-align: center;">
-                                <a class="btn btn-outline-warning"
+                        <?php foreach($cpt as $_cpt){ ?>
+                        <tr>
+                            <th scope="row"><?php echo $_cpt['id_cpt']; ?></th>
+                            <td><?php echo $_cpt['cpt']; ?></td>
+                            <td><?php echo $_cpt['descripcion']; ?></td>
+                            <td><?php echo $_cpt['unidades']; ?></td>
+                            <td><?php echo $_cpt['fecha']; ?></td>
+                            
+                            <td>
+                                <a name="" id="" class="btn btn-outline-info"
+                                    href="#" role="button"
+                                    style="font-size=10px;"><i class="bi bi-printer-fill"></i></a> |
+
+                                <a name="" id="" class="btn btn-outline-warning"
                                     href="#" role="button"><i
-                                        class="bi bi-pencil-square"></i></a>
-                                |
-                                <a class="btn btn-outline-danger"
-                                    onclick="#" role="button"><i
-                                        class="bi bi-trash-fill"></i></a>
+                                        class="bi bi-pencil-square"></i></a> |
+                                <a name="" id="" class="btn btn-outline-danger"
+                                    onclick="eliminar(<?php echo $_cpt['id_cpt']; ?>)" role="button"
+                                    style="font-size=10px;"><i class="bi bi-trash-fill"></i></a>
                             </td>
+
                         </tr>
+                        <?php }?>
                     </tbody>
                 </table>
             </div>
@@ -65,6 +64,70 @@ if (!isset($_SESSION['us'])) {
     </div>
 </main>
 
+<script>
+  function eliminar(codigo) {
+    Swal.fire({
+      title: '¿Estas seguro?',
+      text: "No podrás recuperar los datos",
+      cancelButtonText: 'Cancelar',
+      icon: 'warning',
+      buttons: true,
+      showCancelButton: true,
+      dangerMode: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        mandar(codigo)
+      }
+    })
+  }
+
+  function mandar(codigo) {
+    parametros = { id: codigo };
+    $.ajax({
+      data: parametros,
+      url: "./eliminarCPT.php",
+      type: "POST",
+      beforeSend: function () { },
+      success: function () {
+        Swal.fire("Eliminado:", "Ha sido eliminado", "success").then((result) => {
+          window.location.href = "index.php";
+        });
+      },
+
+    });
+
+
+
+    // Agrega la animación a los bordes de las filas
+    const rows = document.querySelectorAll(".animated-border");
+    rows.forEach(row => {
+      row.addEventListener("mouseover", () => {
+        row.classList.add("border-animation");
+      });
+      row.addEventListener("mouseout", () => {
+        row.classList.remove("border-animation");
+      });
+    });
+
+
+
+  }
+  $(document).ready(function () {
+    $.noConflict();
+
+    $('#myTable').DataTable({
+      "language": {
+        "url": "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"
+      }
+    });
+
+  });
+
+</script>
 <?php
 include("../../../templates/footer.php");
 ?>
