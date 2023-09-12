@@ -1,15 +1,14 @@
 <?php
 session_start();
 if (!isset($_SESSION['us'])) {
-    header('Location: ../../login.php');
-} else if (isset($_SESSION['us'])) {
+    header('Location: ../../../login.php');
+} elseif (isset($_SESSION['us'])) {
     include("../../connection/conexion.php");
     include("./consulta.php");
     include("../../templates/header.php");
 }
 $numProductosCarrito = isset($_SESSION['carrito']) ? count($_SESSION['carrito']) : 0;
 ?>
-
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
@@ -35,7 +34,7 @@ $numProductosCarrito = isset($_SESSION['carrito']) ? count($_SESSION['carrito'])
             ?>
                 <div class="col-md-6 col-lg-4 mb-4 ">
                     <div class="card shadow-sm product-card custom-card  <?php echo $cardClass; ?> ">
-                        <img src="../../secciones/sistemas/productos/productos/<?php echo $registro['imagen']; ?>" style="padding: 10px; width: 340px; height: 180px;" class="card-img-top img-fluid" alt="<?php echo $registro['nombre']; ?>">
+                    <img src="../../secciones/sistemas/productos/productos/<?php echo $registro['imagen']; ?>" style="padding: 10px; width: 340px; height: 180px;" class="card-img-top img-fluid" alt="<?php echo $registro['nombre']; ?>">
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $registro['nombre']; ?></h5>
                             <p class="card-text">$ <?php echo number_format($registro['precio']); ?></p>
@@ -86,7 +85,7 @@ $numProductosCarrito = isset($_SESSION['carrito']) ? count($_SESSION['carrito'])
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <img src="../../secciones/sistemas/productos/productos/<?php echo $registro['imagen']; ?>" class="card-img-top img-fluid" alt="<?php echo $registro['nombre']; ?>">
+                        <img src="../../secciones/sistemas/productos/productos/<?php echo $registro['imagen']; ?>" class="card-img-top img-fluid" alt="<?php echo $registro['nombre']; ?>">
                         </div>
                         <div class="col-md-6 product-details">
                             <h5 class="product-title"><?php echo $registro['nombre']; ?></h5>
@@ -149,31 +148,31 @@ $numProductosCarrito = isset($_SESSION['carrito']) ? count($_SESSION['carrito'])
             $(this).data("oldValue", $(this).val());
         });
         $(".input-number").change(function() {
-            var minValue = parseInt($(this).attr("min"));
-            var maxValue = parseInt($(this).attr("max"));
-            var valueCurrent = parseInt($(this).val());
+    var minValue = parseInt($(this).attr("min"));
+    var maxValue = parseInt($(this).attr("max"));
+    var valueCurrent = parseInt($(this).val());
 
-            if (valueCurrent >= minValue) {
-                $(".btn-number[data-type='minus'][data-field='" + $(this).attr("id") + "']").removeAttr("disabled");
-            } else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Cantidad mínima excedida',
-                    text: 'La cantidad mínima permitida es ' + minValue,
-                });
-                $(this).val($(this).data("oldValue"));
-            }
-
-            if (valueCurrent <= maxValue) {
-                $(".btn-number[data-type='plus'][data-field='" + $(this).attr("id") + "']").removeAttr("disabled");
-            } else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Cantidad máxima excedida',
-                });
-                $(this).val($(this).data("oldValue"));
-            }
+    if (valueCurrent >= minValue) {
+        $(".btn-number[data-type='minus'][data-field='" + $(this).attr("id") + "']").removeAttr("disabled");
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Cantidad mínima excedida',
+            text: 'La cantidad mínima permitida es ' + minValue,
         });
+        $(this).val($(this).data("oldValue"));
+    }
+
+    if (valueCurrent <= maxValue) {
+        $(".btn-number[data-type='plus'][data-field='" + $(this).attr("id") + "']").removeAttr("disabled");
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Cantidad máxima excedida',
+        });
+        $(this).val($(this).data("oldValue"));  
+    }
+});
 
         $(".input-number").keydown(function(e) {
             if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 190]) !== -1 ||
@@ -199,46 +198,46 @@ $numProductosCarrito = isset($_SESSION['carrito']) ? count($_SESSION['carrito'])
         });
     });
 
-    function actualizarNumeroProductosCarrito() {
-        $.ajax({
-            type: "GET",
-            url: "./obtener_numero_productos_carrito.php",
-            dataType: "json",
-            success: function(data) {
-                $("#cart-count").text(data.numProductosCarrito);
-            },
-            error: function() {
-                console.log("Error al ontener el numero de productos del carrito")
-            }
-        });
-    }
-
-    function showErrorAlert(errorMessage) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: errorMessage,
-        });
-    }
-    $(document).ready(function() {
-        actualizarNumeroProductosCarrito();
+function actualizarNumeroProductosCarrito() {
+    $.ajax({
+        type: "GET",
+        url: "./obtener_numero_productos_carrito.php",
+        dataType: "json",
+        success: function(data) {
+            $("#cart-count").text(data.numProductosCarrito);
+        },
+        error: function() {
+            console.log("Error al ontener el numero de productos del carrito")
+        }
     });
+}
+
+function showErrorAlert(errorMessage) {
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: errorMessage,
+    });
+}
+$(document).ready(function() {
+    actualizarNumeroProductosCarrito();
+});
 
 
 
-    function actualizarNumeroProductosCarrito() {
-        $.ajax({
-            type: "GET",
-            url: "./obtener_numero_productos_carrito.php",
-            dataType: "json",
-            success: function(data) {
-                $("#cart-count").text(data.numProductosCarrito);
-            },
-            error: function() {
-                console.log("Error al obtener el número de productos del carrito.");
-            }
-        });
-    }
+function actualizarNumeroProductosCarrito() {
+    $.ajax({
+        type: "GET",
+        url: "./obtener_numero_productos_carrito.php",
+        dataType: "json",
+        success: function(data) {
+            $("#cart-count").text(data.numProductosCarrito);
+        },
+        error: function() {
+            console.log("Error al obtener el número de productos del carrito.");
+        }
+    });
+}
 
     $(document).on("click", ".add-to-cart-btn", function() {
         var productID = $(this).data("product-id");
@@ -279,7 +278,7 @@ $numProductosCarrito = isset($_SESSION['carrito']) ? count($_SESSION['carrito'])
                     var mensaje = quantity + " producto(s) de " + productName + " agregado(s) al carrito.";
                     $("#mensaje-productos-agregados").text(mensaje).fadeIn().delay(2000).fadeOut();
                     availableQuantity -= quantity;
-                    $("#quantity" + productID).attr("max", availableQuantity);
+            $("#quantity" + productID).attr("max", availableQuantity);
 
                 } else {
                     showErrorAlert("Error al agregar el producto al carrito.");
@@ -289,22 +288,23 @@ $numProductosCarrito = isset($_SESSION['carrito']) ? count($_SESSION['carrito'])
                 showErrorAlert("Error al agregar el producto al carrito.");
             }
         });
-
+        
     });
 
 
 
-    function showErrorAlert(errorMessage) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: errorMessage,
-        });
-    }
+function showErrorAlert(errorMessage) {
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: errorMessage,
+    });
+}
+
 </script>
 <?php
 include("../../templates/footer.php");
 ?>
 <script>
-
+    
 </script>
