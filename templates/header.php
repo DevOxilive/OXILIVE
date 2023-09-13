@@ -359,6 +359,12 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                 <i class="bi bi-circle"></i><span>Asistencia</span>
               </a>
             </li>
+            <!-- Módulo de Enfermeros -->
+            <li>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/enfermeros/index.php">
+                <i class="bi bi-circle"></i><span>Enfermeros</span>
+              </a>
+            </li>
             <!-- Módulo de nomina -->
             <li>
               <a href="<?php echo $url_base; ?>secciones/enfermeria/control_de_nómina/index.php">
@@ -536,7 +542,6 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
           });
         },
       });
-
     }
   </script>
   <script>
@@ -545,7 +550,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
       event.preventDefault();
       var notificacionesOcultas = document.querySelectorAll('.notification-item.hidden');
       notificacionesOcultas.forEach(function(item) {
-        item.classList.remove('hidden');
+          item.classList.remove('hidden');
       });
       verMasBtn.style.display = 'none'; // Oculta el botón "Ver más"
     });

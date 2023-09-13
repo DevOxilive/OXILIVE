@@ -40,8 +40,11 @@ if (!isset($_SESSION['us'])) {
                     <!-- Etiqueta oculta para mandar el id del usuario de la sesión que va a dar su check -->
                     <input type="hidden" id="idUser" name="idUser" value="<?php echo $_SESSION['idus']; ?>">
                     
-                    <input type="hidden" id="ubicacion" name="ubicacion" value="">
+                    <!-- Etiqueta oculta para mandar la ubicación del usuario -->
+                    <input type="hidden" id="latitud" name="latitud" value="">
+                    <input type="hidden" id="longitud" name="longitud" value="">
 
+                    <!-- Input para la fotografía del usuario -->
                     <div class="contenido col-md-5">
                         <br>
                         <label for="fotoEnfermero" class="form-label">Fotografía</label>
@@ -80,14 +83,25 @@ if (!isset($_SESSION['us'])) {
 
 </html>
 <script>
-//Script fecha para evitar registros previos a la fecha actual
 
-// Obtener fecha actual
-let fecha = new Date();
-// Obtener cadena en formato yyyy-mm-dd, eliminando zona y hora
-let fechaMin = fecha.toISOString().split('T')[0];
-// Asignar valor mínimo
-document.querySelector('#fechaGuardia').min = fechaMin;
+function pos_ok (posicion) {
+    console.log(posicion);
+    var latitud  = posicion.coords.latitude;
+    var longitud = posicion.coords.longitude;
+    document.getElementById('latitud').value = latitud;
+    document.getElementById('longitud').value = longitud;
+  }
+
+  function pos_fallo () {
+    console.log('Error al geolocalizar.');
+  }
+
+  if(!navigator.geolocation) {
+    console.log('Geolocalización no disponible.');
+  } else {
+    console.log('Geolocalizando...');
+    navigator.geolocation.getCurrentPosition(pos_ok, pos_fallo);
+  }
 
 function confirmCancel(event) {
     event.preventDefault();

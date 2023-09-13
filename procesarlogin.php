@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['tel'] = $datos["Telefono"];
             $_SESSION['email'] = $datos["Correo"];
             $_SESSION['rfc'] = $datos["rfc"];
-            $_SESSION['estado'] = $datos['datos'];
+            $_SESSION['estado'] = $datos['Estado'];
 
             switch ($datos["id_departamentos"]) {
                 case '1':
