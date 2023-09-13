@@ -1,6 +1,6 @@
 <?php
-include("../../connection/conexion.php");
-include("../../templates/hea.php");
+//include("../../connection/conexion.php");
+//include("../../templates/hea.php");
 if ($_POST) {
 
     $usuario = (isset($_POST["usuario"]) ? $_POST["usuario"] : "");

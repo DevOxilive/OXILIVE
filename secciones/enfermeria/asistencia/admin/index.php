@@ -32,7 +32,7 @@ if (!isset($_SESSION['us'])) {
             <div class="card-header">
             <a class="btn btn-outline-primary" href="crear.php" role="button">
                 <i class="bi bi-clipboard-check-fill"></i>
-                    Agregar asistencia
+                    Registrar asistencia
                 </a>
             </div>
             <div class="card-body">
