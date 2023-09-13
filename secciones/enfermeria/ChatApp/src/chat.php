@@ -36,7 +36,6 @@ class Chat implements MessageComponentInterface
             $numRecv,
             $numRecv == 1 ? '' : 's'
         );
-
         /**
          * aqui se envia el mensaje de cliente a cliente que se encuentre conectado al mismo canal o puerto y se cuenta cuantos clientes están
          */
@@ -46,7 +45,6 @@ class Chat implements MessageComponentInterface
             }
         }
     }
-
     /**
      * aquí unicamente se indica que se a cerrado la conexión entre el cliente
      */
@@ -57,7 +55,6 @@ class Chat implements MessageComponentInterface
 
         echo "Cliente {$conn->resourceId} se a desconectado\n";
     }
-
     /**
      * si no se logra conectar o sucede algo (error pues se envia a la consola).
      */
