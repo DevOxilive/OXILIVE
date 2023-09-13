@@ -14,7 +14,7 @@ if (!isset($_SESSION['us'])) {
 <main id="main" class="main">
     ENFERMERIA
     <center>
-        <h1>proximamente <b>Chat</b> en construccion agregando websockets</h1>
+        <h1>proximamente <b>Chat</b> en construccion cargando <b>mensajes<b></h1>
     </center>
     <br>
     <div class="row">
@@ -32,8 +32,23 @@ if (!isset($_SESSION['us'])) {
             <div>
                 <div id="chat"></div>
             </div>
+            <div>
+                <button id="autorizarNotificacion">Autorizar notificaciones</button>
+                <button id="mostrarNotificacion">Mostrar notificaciones</button>
+            </div>
+        </div>
 </main>
 <script src="js/socket.js"></script>
+<!-- /** trabajando en correciones en carga de datos */ -->
+
+<!-- /**
+* esto aun esta en desarrollo; 
+* trabajando en el envio de notifiaciones para ver los mensajes enviados...
+* 
+*/ -->
+<script src="js/push.min.js"></script>
+<script src="js/notifiaciones.js"></script>
+<script src="js/permiso.js"></script>
 
 </html>
 <?php
