@@ -22,7 +22,7 @@ if (!isset($_SESSION['us'])) {
     <section class="section dashboard">
         <div class="card">
 
-            <!-- Encabezado del formulario de nueva guardia-->
+            <!-- Encabezado del formulario de nueva asistencia-->
             <div class="card-header" style="border: 2px solid #012970; background: #005880;">
                 <h4 style="text-align: center;
                         color: #fff;
@@ -31,17 +31,21 @@ if (!isset($_SESSION['us'])) {
                 </h4>
             </div>
 
-            <!-- Cuerpo del formulario de registro de usuario -->
+            <!-- Cuerpo del formulario de registro de asistencia -->
             <div class="card-body" style="border: 2px solid #BFE5FF;">
                 <form action="<?php echo $url_base ?>secciones/enfermeria/asistencia/asisADD.php" method="POST"
                     enctype="multipart/form-data" class="formLogin row g-3">
-
-                    <!-- Combo box para elegir el enfermero -->
+                    <center>
+                    
+                    <!-- Etiqueta oculta para mandar el id del usuario de la sesión que va a dar su check -->
                     <input type="hidden" id="idUser" name="idUser" value="<?php echo $_SESSION['idus']; ?>">
                     
+                    <input type="hidden" id="ubicacion" name="ubicacion" value="">
+
                     <div class="contenido col-md-5">
                         <br>
-                        
+                        <label for="fotoEnfermero" class="form-label">Fotografía</label>
+                        <input type="file">
                     </div>
 
                     <!-- Combo box para elegir paciente -->
@@ -58,43 +62,6 @@ if (!isset($_SESSION['us'])) {
                         </select>
                     </div>
 
-                    <!-- Combo box para elegir el tipo de guardia -->
-                    <div class="contenido col-md-3">
-                        <br>
-                        <label for="guardia" class="form-label">Tipo de guardia</label>
-                        <select name="guardia" id="guardia" class="form-select">
-                            <?php foreach ($lista_guardias as $guardias){ ?>
-                            <option value="0">Elige el tipo de guardia</option>
-                            <option value="<?php echo $guardias['id_tiposGuardias']; ?>">
-                                <?php echo $guardias['nombre_guardia']; ?>
-                            </option>
-                            <?php } ?>
-                        </select>
-                    </div>
-
-                    <!-- Ingreso de fecha de la guardia  -->
-                    <div class="contenido col-md-3">
-                        <label for="fechaGuardia" class="form-label">Fecha</label>
-                        <input type="date" id="fechaGuardia" onkeydown="return false" name="fechaGuardia" class="form-select">
-                    </div>
-                    
-                    <!-- Combo boxes para elegir la hora del horario -->
-                    <div class="contenido col-md-3">
-                        <label for="horarioEntrada" class="form-label">Hora de entrada</label>
-                        <select name="horarioEntrada" id="horarioEntrada" class="form-select">
-                                <option value="">
-
-                                </option>
-                        </select>
-                    </div>
-                    <div class="contenido col-md-3">
-                        <label for="horarioSalida" class="form-label">Hora de salida</label>
-                        <select name="horarioSalida" id="horarioSalida" class="form-select">
-                            <option value="">
-
-                            </option>
-                        </select>
-                    </div>
                     
                     <!-- Botones -->
                     <div class="col-12">
@@ -104,6 +71,7 @@ if (!isset($_SESSION['us'])) {
                             Cancelar
                         </a>
                     </div>
+                    </center>
                 </form>
             </div>
         </div>
