@@ -30,6 +30,23 @@ if ($_POST) {
                             `usuarios` (`id_usuarios`, `Usuario`, `paswword`, `Nombres`, `Apellidos`, `Genero`, `Telefono`, `Correo`, `Estado`, `Foto_perfil`, `id_departamentos`, `rfc`, `alcaldia`, `calle`,`num_interior`,`num_exterior`,`codigo_postal`,`calleUno`,`calleDos`,`referencias`,`credencialFrente`,`credencialAtras`,`comprobante_domicilio`) 
                             VALUES (Null, :usuario, :password, :nombres, :apellidos, :genero, :telefono, :email, 1, :Foto_perfil, :departamento , :rfc , :alcaldia, :calle, :num_interior, :num_exterior, :codigo_postal, :calleUno, :calleDos, :referencias, :credencialFrente, :credencialAtras, :comprobante_domicilio);");
 
+    //Se convierten todos estos valores en mayusculas o minusculas (según sea el caso)
+    //para que quede unificada en la base de datos
+    
+    $usuario=strtolower($usuario);
+    $nombres=strtoupper($nombres);
+    $apellidos=strtoupper($apellidos);
+    $email=strtolower($email);
+    $rfc=strtoupper($rfc);
+    $alcaldia=strtoupper($alcaldia);
+    $calle=strtoupper($calle);
+    $num_interior=strtoupper($num_interior);
+    $num_exterior=strtoupper($num_exterior);
+    $calleUno=strtoupper($calleUno);
+    $calleDos=strtoupper($calleDos);
+    $referencias=strtoupper($referencias);
+
+
     $sentencia->bindParam(":usuario", $usuario);
     $sentencia->bindParam(":password", $hashedPassword);
     $sentencia->bindParam(":nombres", $nombres);

@@ -134,47 +134,47 @@ if (!isset($_SESSION['us'])) {
                     <div class="contenido col-md-2">
                         <label for="alcaldia" class="form-label">Alcaldia</label>
                         <input type="text" value="<?php echo $alcaldia; ?>" class="form-control" name="alcaldia"
-                            id="alcaldia" placeholder="alcaldia" required>
+                            id="alcaldia" placeholder="alcaldia">
                     </div>
 
                     <div class="contenido col-md-4">
                         <label for="calle" class="form-label">Calle:</label></label>
                         <input type="text" value="<?php echo $calle; ?>" class="form-control" name="calle"
-                            id="calle" placeholder="Calle" required>
+                            id="calle" placeholder="Calle">
                     </div>
 
                     <div class="contenido col-md-2">
                         <label for="num_interior" class="form-label">Numero Interior</label>
                         <input type="text" value="<?php echo $num_interior; ?>" class="form-control" name="num_interior"
-                            id="num_interior" placeholder="num_interior" required>
+                            id="num_interior" placeholder="num_interior">
                     </div>
 
                     <div class="contenido col-md-2">
                         <label for="num_exterior" class="form-label">Numero Exterior</label>
                         <input type="text" value="<?php echo $num_exterior; ?>" class="form-control" name="num_exterior"
-                            id="num_exterior" placeholder="num_exterior" required>
+                            id="num_exterior" placeholder="num_exterior">
                     </div>
                     <div class="contenido col-md-2">
                         <label for="codigo_postal" class="form-label">Codigo Postal</label>
                         <input type="text" value="<?php echo $codigo_postal; ?>" class="form-control"
-                            name="codigo_postal" id="codigo_postal" placeholder="codigo_postal" required>
+                            name="codigo_postal" id="codigo_postal" placeholder="codigo_postal">
                     </div>
 
                     <div class="contenido col-md-4">
                         <label for="calleUno" class="form-label">Entre Calle:</label></label>
                         <input type="text" value="<?php echo $calleUno; ?>" class="form-control" name="calleUno"
-                            id="calleUno" placeholder="calleUno" required>
+                            id="calleUno" placeholder="calleUno">
                     </div>
 
                     <div class="contenido col-md-4">
                         <label for="calleDos" class="form-label">Y calle:</label>
                         <input type="text" value="<?php echo $calleDos; ?>" class="form-control" name="calleDos"
-                            id="calleDos" placeholder="calleDos" required>
+                            id="calleDos" placeholder="calleDos">
                     </div>
                     <div class="contenido col-md-4">
                         <label for="referencias" class="form-label">Referencias</label>
                         <input type="text" value="<?php echo $referencias; ?>" class="form-control" name="referencias"
-                            id="referencias" placeholder="referencias" required>
+                            id="referencias" placeholder="referencias">
                     </div>
 
                     <div class="col-md-3">
