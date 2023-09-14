@@ -1,0 +1,47 @@
+.profile-picture-cre {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .profile-picture-cre .overlay-cre {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 350px;
+    height: 210px;
+    background-color: rgba(3, 3, 3, 0.5);
+    display: flex;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .img-thumbnail-ine {
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  
+  .overlay-cre {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+    padding: 8px;
+  }
+  
+  .overlay-cre:hover {
+    opacity: 1;
+  }
+  
+  .change-link-ine i {
+    color: #fff;
+    font-size: 16px;
+  }

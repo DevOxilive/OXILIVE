@@ -17,6 +17,7 @@ if (!isset($_SESSION['us'])) {
 <head>
     <link rel="stylesheet" href="<?php echo $url_base ?>assets/css/foto_perfil.css">
     <link rel="stylesheet" href="<?php echo $url_base ?>assets/css/edit.css">
+    <link rel="stylesheet" href="<?php echo $url_base ?>assets/css/fotoAsis.css">
 </head>
 <main id="main" class="main">
     <section class="section dashboard">
@@ -48,7 +49,7 @@ if (!isset($_SESSION['us'])) {
                     <div class="contenido col-md-5">
                         <br>
                         <label for="fotoEnfermero" class="form-label">Fotografía</label>
-                        <input type="file">
+                        <input type="file" class="form-control" id="fotoAsis" name="fotoAsis" onchange="filePreview('#fotoAsis')" >
                     </div>
 
                     <!-- Combo box para elegir paciente -->
@@ -84,24 +85,35 @@ if (!isset($_SESSION['us'])) {
 </html>
 <script>
 
+function filePreview(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.readAsDataURL(input.files[0]);
+        reader.onload = function (e) {
+            $('#fotoAsis + img').remove();
+            $('#fotoAsis').after('<img src="'+e.target.result+'" width="450" height="300"/>');
+        }
+    }
+}
+
 function pos_ok (posicion) {
     console.log(posicion);
     var latitud  = posicion.coords.latitude;
     var longitud = posicion.coords.longitude;
     document.getElementById('latitud').value = latitud;
     document.getElementById('longitud').value = longitud;
-  }
+}
 
-  function pos_fallo () {
+function pos_fallo () {
     console.log('Error al geolocalizar.');
-  }
+}
 
-  if(!navigator.geolocation) {
+if(!navigator.geolocation) {
     console.log('Geolocalización no disponible.');
-  } else {
+} else {
     console.log('Geolocalizando...');
     navigator.geolocation.getCurrentPosition(pos_ok, pos_fallo);
-  }
+}
 
 function confirmCancel(event) {
     event.preventDefault();
