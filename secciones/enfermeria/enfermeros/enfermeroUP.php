@@ -36,7 +36,7 @@ if (isset($_GET['txtID'])) {
 
 
 if ($_POST) {
-    include("../../connection/conexion.php");
+    include("../../../connection/conexion.php");
 
   $txtID = (isset($_POST['txtID'])) ? $_POST['txtID'] : "";
   $usuario = (isset($_POST["usuario"]) ? $_POST["usuario"] : "");
@@ -133,6 +133,6 @@ foreach ($campos_archivos as $campo_archivo) {
         $sentencia->execute();
     }
 }
-  header("Location:index.php");
+  header("Location:./index.php");
 }
 ?>

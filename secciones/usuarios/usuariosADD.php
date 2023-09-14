@@ -1,8 +1,8 @@
 <?php
-//include("../../connection/conexion.php");
-//include("../../templates/hea.php");
+include("../../connection/conexion.php");
+include("../../templates/hea.php");
 if ($_POST) {
-
+    
     $usuario = (isset($_POST["usuario"]) ? $_POST["usuario"] : "");
     $password = (isset($_POST["password"]) ? $_POST["password"] : "");
     $nombres = (isset($_POST["nombres"]) ? $_POST["nombres"] : "");
@@ -14,6 +14,7 @@ if ($_POST) {
     $departamento = (isset($_POST["departamento"]) ? $_POST["departamento"] : "");
     $rfc = (isset($_POST["rfc"]) ? $_POST["rfc"] : "");
     $alcaldia = (isset($_POST["alcaldia"]) ? $_POST["alcaldia"] : "");
+    $calle = (isset($_POST["calle"]) ? $_POST["calle"] : "");
     $num_interior = (isset($_POST["num_interior"]) ? $_POST["num_interior"] : "");
     $num_exterior = (isset($_POST["num_exterior"]) ? $_POST["num_exterior"] : "");
     $codigo_postal = (isset($_POST["codigo_postal"]) ? $_POST["codigo_postal"] : "");
@@ -26,8 +27,8 @@ if ($_POST) {
 
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     $sentencia = $con->prepare("INSERT INTO 
-                            `usuarios` (`id_usuarios`, `Usuario`, `paswword`, `Nombres`, `Apellidos`, `Genero`, `Telefono`, `Correo`, `Estado`, `Foto_perfil`, `id_departamentos`, `rfc`, `alcaldia`,`num_interior`,`num_exterior`,`codigo_postal`,`calleUno`,`calleDos`,`referencias`,`credencialFrente`,`credencialAtras`,`comprobante_domicilio`) 
-                            VALUES (Null, :usuario, :password, :nombres, :apellidos, :genero, :telefono, :email, 1, :Foto_perfil, :departamento , :rfc , :alcaldia, :num_interior, :num_exterior, :codigo_postal, :calleUno, :calleDos, :referencias, :credencialFrente, :credencialAtras, :comprobante_domicilio);");
+                            `usuarios` (`id_usuarios`, `Usuario`, `paswword`, `Nombres`, `Apellidos`, `Genero`, `Telefono`, `Correo`, `Estado`, `Foto_perfil`, `id_departamentos`, `rfc`, `alcaldia`, `calle`,`num_interior`,`num_exterior`,`codigo_postal`,`calleUno`,`calleDos`,`referencias`,`credencialFrente`,`credencialAtras`,`comprobante_domicilio`) 
+                            VALUES (Null, :usuario, :password, :nombres, :apellidos, :genero, :telefono, :email, 1, :Foto_perfil, :departamento , :rfc , :alcaldia, :calle, :num_interior, :num_exterior, :codigo_postal, :calleUno, :calleDos, :referencias, :credencialFrente, :credencialAtras, :comprobante_domicilio);");
 
     $sentencia->bindParam(":usuario", $usuario);
     $sentencia->bindParam(":password", $hashedPassword);
@@ -38,6 +39,7 @@ if ($_POST) {
     $sentencia->bindParam(":email", $email);
     $sentencia->bindParam(":rfc", $rfc);
     $sentencia->bindParam(":alcaldia", $alcaldia);
+    $sentencia->bindParam(":calle", $calle);
     $sentencia->bindParam(":num_interior", $num_interior);
     $sentencia->bindParam(":num_exterior", $num_exterior);
     $sentencia->bindParam(":codigo_postal", $codigo_postal);

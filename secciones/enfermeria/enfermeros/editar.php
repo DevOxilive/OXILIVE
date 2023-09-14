@@ -3,20 +3,20 @@ session_start();
 if (!isset($_SESSION['us'])) {
     header('Location: ../../login.php');
 } elseif (isset($_SESSION['us'])) {
-    include("../../templates/header.php");
-    include("../../connection/conexion.php");
-    include("../../secciones/puestos/consulta.php");
-    include("../../secciones/usuarios/consulta.php");
-    include("../../module/genero.php");
-    include("../../module/estado.php");
-    include("../../secciones/usuarios/usuariosUP.php");
+    include("../../../templates/header.php");
+    include("../../../connection/conexion.php");
+    include("../../../secciones/puestos/consulta.php");
+    include("../../../secciones/usuarios/consulta.php");
+    include("../../../module/genero.php");
+    include("../../../module/estado.php");
+    include("enfermeroUP.php");
 } else {
     echo "Error en el sistema";
 }
 ?>
 <html lang="en">
-<link rel="stylesheet" href="../../assets/css/foto_editar.css">
-<link rel="stylesheet" href="../../assets/css/edit.css">
+<link rel="stylesheet" href="../../../assets/css/foto_editar.css">
+<link rel="stylesheet" href="../../../assets/css/edit.css">
 
 </html>
 <main id="main" class="main">
@@ -28,7 +28,7 @@ if (!isset($_SESSION['us'])) {
                     Editar datos de Usuario</H4>
             </div>
             <div class="card-body" style="border: 2px solid #BFE5FF;"> <br>
-                <form action="./usuariosUP.php" method="POST" enctype="multipart/form-data" class="formEdit row g-3">
+                <form action="enfermeroUP.php" method="POST" enctype="multipart/form-data" class="formEdit row g-3">
                     <div class="contenido col-md-3">
                     <label for="Foto_perfil" class="form-label">Foto de perfil</label> <br>
                         <div class="profile-picture">
@@ -395,5 +395,5 @@ if (!isset($_SESSION['us'])) {
     }
 </script>
 <?php
-include("../../templates/footer.php");
+include("../../../templates/footer.php");
 ?> 

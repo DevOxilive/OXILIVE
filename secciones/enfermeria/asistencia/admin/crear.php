@@ -48,8 +48,26 @@ if (!isset($_SESSION['us'])) {
                     <!-- Input para la fotografía del usuario -->
                     <div class="contenido col-md-5">
                         <br>
-                        <label for="fotoEnfermero" class="form-label">Fotografía</label>
-                        <input type="file" class="form-control" id="fotoAsis" name="fotoAsis" onchange="filePreview('#fotoAsis')" >
+                        <label for="fotoAsis" class="form-label">Foto de asistencia</label>
+                        <div class="profile-picture-cre">
+                            <div class="picture-container-cre">
+                                <?php if (!empty($Credencial_front)) { ?>
+                                    <img id="preview" src="<?php echo $Credencial_front; ?>">
+                                <?php } else { ?>
+                                    <img id="preview" src="../../../img/post.jpg" style="width: 350px ; height: 210px;">
+                                <?php } ?>
+                                <div class="overlay-cre">
+                                    <?php if (empty($Credencial_front)) { ?>
+                                        <a href="#" class="change-link" onclick="openFilePicker(event)">
+                                            <i class="fa fa-camera"></i>
+                                        </a>
+                                    <?php } else { ?>
+                                        <a href="#" class="delete-link" onclick="deletePhoto(event)">Eliminar foto</a>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="file" class="form-control" name="Credencial_front" id="Credencial_front" onchange="previewImage(this);" style="display: none;" accept="application/jpg">    
                     </div>
 
                     <!-- Combo box para elegir paciente -->

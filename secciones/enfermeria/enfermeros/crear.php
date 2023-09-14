@@ -8,7 +8,6 @@ if (!isset($_SESSION['us'])) {
     include("../../../connection/conexion.php");
     include("../../../module/genero.php");
     include("../../../module/estado.php");
-    include("../../../secciones/usuarios/usuariosADD.php");
 } else {
     echo "Error en el sistema";
 }
