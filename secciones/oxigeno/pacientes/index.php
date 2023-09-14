@@ -57,7 +57,7 @@ if (!isset($_SESSION['us'])) {
                   <td>
                     <a name="" id="" class="btn btn-outline-info"
                       href="pacientes.php?txtID=<?php echo $pacien['id_pacientes']; ?>" role="button"
-                      style="font-size=10px;"><i class="bi bi-printer-fill"></i></a> |
+                      style="font-size:10px;"><i class="bi bi-printer-fill"></i></a> |
                     <a name="" id="" class="btn btn-outline-warning"
                       href="editar.php?txtID=<?php echo $pacien['id_pacientes']; ?>" role="button"><i
                         class="bi bi-pencil-square"></i></a> |
