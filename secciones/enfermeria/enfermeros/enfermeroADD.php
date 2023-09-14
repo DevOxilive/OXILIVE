@@ -1,6 +1,6 @@
 <?php
-include("../../connection/conexion.php");
-include("../../templates/hea.php");
+include("../../../connection/conexion.php");
+include("../../../templates/hea.php");
 if ($_POST) {
     
     $usuario = (isset($_POST["usuario"]) ? $_POST["usuario"] : "");
@@ -83,7 +83,7 @@ if ($_POST) {
         $tmp_comprobante_domicilio = $_FILES["comprobante_domicilio"]['tmp_name'];
 
         if (!empty($Foto_perfil) || !empty($credencialFrente) || !empty($credencialAtras) || !empty($comprobante_domicilio)) {
-            $carpeta_usuario = "OXILIVE/" . $apellidos . " " . $nombres;
+            $carpeta_usuario = '../../usuarios/OXILIVE/' . $apellidos . ' ' . $nombres;
             if (!is_dir($carpeta_usuario)) {
                 mkdir($carpeta_usuario);
             }

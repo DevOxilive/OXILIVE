@@ -29,7 +29,7 @@ if (!isset($_SESSION['us'])) {
                 </h4>
             </div>
             <div class="card-body" style="border: 2px solid #BFE5FF;">
-                <form action="./usuariosADD.php" method="POST" enctype="multipart/form-data" class="formLogin row g-3">
+                <form action="enfermeroADD.php" method="POST" enctype="multipart/form-data" class="formLogin row g-3">
                     <div class="col-md-2">
                         <label for="Foto_perfil" class="form-label">Sube una foto de perfil</label>
                         <div class="profile-picture">
@@ -37,7 +37,7 @@ if (!isset($_SESSION['us'])) {
                                 <?php if (!empty($Foto_perfil)) { ?>
                                     <img id="preview" src="<?php echo $Foto_perfil; ?>">
                                 <?php } else { ?>
-                                    <img id="preview" src="../../../img/png.png">
+                                    <img id="preview" src="<?php echo $url_base;?>img/png.png">
                                 <?php } ?>
                                 <div class="overlay">
                                     <?php if (empty($Foto_perfil)) { ?>

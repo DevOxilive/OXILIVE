@@ -33,17 +33,17 @@ if (!isset($_SESSION['us'])) {
                     <label for="Foto_perfil" class="form-label">Foto de perfil</label> <br>
                         <div class="profile-picture">
                             <div class="picture-container">
-                                <?php if (!empty($Foto_perfil)): ?>
+                                <?php if (!empty($Foto_perfil)){ ?>
                                     <img src="../../secciones/usuarios/OXILIVE/<?php echo $apellidos . " " .$nombres ?>/<?php echo $Foto_perfil; ?>" alt="" id="imagenActual"
                                         class="img-thumbnail rounded-circle">
-                                <?php else: ?>
-                                    <img src="./img/default-avatar.png" alt="Foto de perfil" id="imagenActual"
+                                <?php }else{ ?>
+                                    <img src="./img/png.png" alt="Foto de perfil" id="imagenActual"
                                         class="img-thumbnail">
-                                <?php endif; ?>
+                                <?php } ?>
                                 <div class="overlay">
+                                    <?php if (!empty($Foto_perfil)){ ?>    
                                     <label for="Foto_perfil" class="change-link"><i class="fas fa-camera"></i> </label>
-                                    <?php if (!empty($Foto_perfil)): ?>
-                                    <?php endif; ?>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>
