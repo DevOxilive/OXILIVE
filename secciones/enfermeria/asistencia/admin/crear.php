@@ -48,7 +48,7 @@ if (!isset($_SESSION['us'])) {
                     <div class="contenido col-md-5">
                         <br>
                         <label for="fotoEnfermero" class="form-label">Fotografía</label>
-                        <input type="file">
+                        <input type="file" id="fotoAsis" name="fotoAsis">
                     </div>
 
                     <!-- Combo box para elegir paciente -->

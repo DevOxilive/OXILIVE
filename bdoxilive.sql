@@ -352,7 +352,7 @@ CREATE TABLE IF NOT EXISTS `estado` (
   PRIMARY KEY (`id_estado`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla bdoxilive.estado: ~5 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.estado: ~4 rows (aproximadamente)
 INSERT IGNORE INTO `estado` (`id_estado`, `Nombre_estado`) VALUES
 	(1, 'Activo'),
 	(2, 'Suspendido'),
@@ -539,6 +539,18 @@ INSERT IGNORE INTO `marca_tanque` (`id_marca`, `nombre_marca`) VALUES
 	(1, 'TANQUE INFRA'),
 	(2, 'TANQUE OXILIVE'),
 	(5, 'TANQUE VERDE');
+
+-- Volcando estructura para tabla bdoxilive.mensajes
+DROP TABLE IF EXISTS `mensajes`;
+CREATE TABLE IF NOT EXISTS `mensajes` (
+  `id_msg` int NOT NULL AUTO_INCREMENT,
+  `msg` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  `fecha_hora` datetime DEFAULT NULL,
+  `id_departamento` int DEFAULT NULL,
+  PRIMARY KEY (`id_msg`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Volcando datos para la tabla bdoxilive.mensajes: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla bdoxilive.notificaciones
 DROP TABLE IF EXISTS `notificaciones`;
@@ -820,6 +832,31 @@ CREATE TABLE IF NOT EXISTS `tipos_guardias` (
 INSERT IGNORE INTO `tipos_guardias` (`id_tiposGuardias`, `nombre_guardia`, `horas_guardia`, `sueldo`) VALUES
 	(1, 'Guardia General', 08, 300);
 
+-- Volcando estructura para tabla bdoxilive.tipo_cpt
+DROP TABLE IF EXISTS `tipo_cpt`;
+CREATE TABLE IF NOT EXISTS `tipo_cpt` (
+  `id_cpt` int NOT NULL AUTO_INCREMENT,
+  `cpt` varchar(20) NOT NULL DEFAULT '0',
+  `descripcion` varchar(150) NOT NULL DEFAULT '0',
+  `unidades` varchar(150) NOT NULL DEFAULT '0',
+  `fecha` date DEFAULT NULL,
+  `id_aseguradora` int DEFAULT NULL,
+  `id_administradora` int DEFAULT NULL,
+  `Id_pacientes_oxigeno` int DEFAULT NULL,
+  PRIMARY KEY (`id_cpt`),
+  KEY `id_aseguradora` (`id_aseguradora`),
+  KEY `id_administradora` (`id_administradora`),
+  KEY `Id_pacientes_oxigeno` (`Id_pacientes_oxigeno`),
+  CONSTRAINT `FK_id_administradora` FOREIGN KEY (`id_administradora`) REFERENCES `administradora` (`id_administradora`),
+  CONSTRAINT `FK_id_aseguradora` FOREIGN KEY (`id_aseguradora`) REFERENCES `aseguradoras` (`id_aseguradora`),
+  CONSTRAINT `FK_id_pacientes_oxigeno` FOREIGN KEY (`Id_pacientes_oxigeno`) REFERENCES `pacientes_oxigeno` (`id_pacientes`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Volcando datos para la tabla bdoxilive.tipo_cpt: ~2 rows (aproximadamente)
+INSERT IGNORE INTO `tipo_cpt` (`id_cpt`, `cpt`, `descripcion`, `unidades`, `fecha`, `id_aseguradora`, `id_administradora`, `Id_pacientes_oxigeno`) VALUES
+	(1, 'EN-BA-0555', 'Apoyo 5 Horas', 'Turno 5 Horas', '2023-09-12', NULL, NULL, NULL),
+	(2, 'EN-BA-05', 'Apoyo 8 Horas', 'Turno 8 horas', '2023-09-12', NULL, NULL, NULL);
+
 -- Volcando estructura para tabla bdoxilive.tipo_equipo
 DROP TABLE IF EXISTS `tipo_equipo`;
 CREATE TABLE IF NOT EXISTS `tipo_equipo` (
@@ -900,7 +937,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 
 -- Volcando datos para la tabla bdoxilive.usuarios: ~9 rows (aproximadamente)
 INSERT IGNORE INTO `usuarios` (`id_usuarios`, `Usuario`, `paswword`, `Nombres`, `Apellidos`, `Genero`, `Telefono`, `Correo`, `Estado`, `Foto_perfil`, `id_departamentos`, `Fecha_registro`, `rfc`, `alcaldia`, `calle`, `num_interior`, `num_exterior`, `codigo_postal`, `calleUno`, `calleDos`, `referencias`, `credencialFrente`, `credencialAtras`, `comprobante_domicilio`, `inicios_sesion`, `fecha_sesion`) VALUES
-	(1, 'admin', '$2y$10$grLCbK0VC5.v93cck.YVd.idrRZSBFk/8/IEVTpBKiEQmbZKyArAO', 'OXILIVE', 'OXILIVE', 2, '0000000000', 'sistemas@oxilive.com.mx', 1, _binary 0x313639323132333638315f6465736361726761722e6a7067, 1, '2023-08-15 18:21:21', 'MABY030624', 'CHIMALHUACAN', NULL, '1', '23', 56337, 'SAN FRANCISCO', 'OYAMEL', 'ENTRANDO POR BARRANCA LADO DERECHO, A UNA DISTANCIA DE 9 CASAS ', _binary 0x313639323132333638315f496d6167656e312e706e67, _binary 0x313639323132333638315f44422e706e67, _binary 0x313639323132333638315f4746442e706466, 63, '2023-08-15 18:21:21'),
+	(1, 'admin', '$2y$10$grLCbK0VC5.v93cck.YVd.idrRZSBFk/8/IEVTpBKiEQmbZKyArAO', 'OXILIVE', 'OXILIVE', 2, '0000000000', 'sistemas@oxilive.com.mx', 1, _binary 0x313639323132333638315f6465736361726761722e6a7067, 1, '2023-08-15 18:21:21', 'MABY030624', 'CHIMALHUACAN', NULL, '1', '23', 56337, 'SAN FRANCISCO', 'OYAMEL', 'ENTRANDO POR BARRANCA LADO DERECHO, A UNA DISTANCIA DE 9 CASAS ', _binary 0x313639323132333638315f496d6167656e312e706e67, _binary 0x313639323132333638315f44422e706e67, _binary 0x313639323132333638315f4746442e706466, 65, '2023-08-15 18:21:21'),
 	(2, 'DIEGO', '$2y$10$tlQTtD.PAtWv5KTQg723SOgz8X9A6ZE3j58ucsWZOmHIzIgZJkVQ2', 'DIEGO', 'COVARRUBIAS PONCE', 1, '5511794905', 'enfermeria@oxilive.com.mx', 1, _binary 0x313639323132333832345f616161612e6a7067, 3, '2023-08-15 18:23:44', 'COPD121199', 'IXTAPALUCA', NULL, '8', '8', 12345, 'JOSE BA', 'LAURELES', 'FRENTE A UNA TIENDA ', _binary 0x313639323132333832345f696d61676573202833292e6a7067, _binary 0x313639323132333832345f6465736361726761722e6a7067, _binary 0x313639323132333832345f312e706466, 1, '2023-08-15 18:23:44'),
 	(3, 'AXA', '$2y$10$2OYqZjCb/KW8aICxL7MWe.W8d3wfU8jFXidyuqPC4xz5C/LtI/JGu', 'AXA', 'AXA', 2, '123456789', 'axa@axa.com.mx', 1, _binary 0x313639323132343136305f7072752e6a7067, 2, '2023-08-15 18:29:20', 'AXA12345', 'AXA', NULL, '5', '5', 85269, 'AXA', 'AXA', 'EN AXA', _binary 0x313639323132343136305f696d61676573202833292e6a7067, _binary 0x313639323132343136305f696d61676573202832292e6a7067, _binary 0x313639323132343136305f4746442e706466, 21, '2023-08-15 18:29:20'),
 	(4, 'MARCO', '$2y$10$IEBgYWp6bHIDNiFPiVuAc.LTWxm2S1n5SOi/W/dG.bc27Eh0zkLh2', 'MARCO ADRIAN', 'RIVERA', 1, '123456789', 'oxigeno@oxilive.com.mx', 1, _binary 0x313639323132343332355f747265652d3733363838355f313238302e6a7067, 4, '2023-08-15 18:32:05', 'RIBM111296', 'NO', NULL, '8', '8', 98745, 'NO', 'NO', 'NO', _binary 0x313639323132343332355f313336365f323030302e6a706567, _binary 0x313639323132343332355f64657363617267612e6a7067, _binary 0x313639323132343332355f312e706466, 29, '2023-08-15 18:32:05'),
