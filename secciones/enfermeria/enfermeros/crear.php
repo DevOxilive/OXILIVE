@@ -117,6 +117,11 @@ if (!isset($_SESSION['us'])) {
                         <input type="text" class="form-control" name="codigo_postal" id="codigo_postal" placeholder="12345">
                     </div>
 
+                    <div class="contenido col-md-3">
+                        <label for="calle" class="form-label">Calle:</label>
+                        <input type="text" class="form-control" name="calle" id="calle" placeholder="Girasoles">
+                    </div>
+
                     <div class="contenido col-md-2">
                         <label for="num_interior" class="form-label">Número Interior</label>
                         <input type="text" class="form-control" name="num_interior" id="num_interior">
@@ -140,17 +145,61 @@ if (!isset($_SESSION['us'])) {
                         <label for="referencias" class="form-label">Referencias</label>
                         <input type="text" class="form-control" name="referencias" id="referencias" placeholder="Ejem. Frente a tiendita">
                     </div>
-                    <div class="contenido col-md-4">
-                        <label for="referencias" class="form-label">Comprobante de domicilio</label>
-                        <input type="file" class="formulario__input-file" name="comprobante_domicilio" id="comprobante_domicilio">
+
+
+                    <div class="col-md-3">
+                        <label for="comprobante_domicilio" class="form-label">Comprobante de domicilio</label>
+                        <input type="file" value="" class="form-control" name="comprobante_domicilio" id="comprobante_domicilio">
                     </div>
-                    <div class="contenido col-md-4">
-                        <label for="credencialFrente" class="form-label">(INE) Credencial parte superior</label>
-                        <input type="file" class="formulario__input-file" name="credencialFrente" id="credencialFrente">
+
+                    <div class="col-md-4">
+                        <label for="credencialFrente" class="form-label">Credencial de elector (Anverso) </label>
+                        <br>
+                        <div class="profile-picture-cre">
+                            <div class="picture-container-cre">
+                                <?php if (!empty($credencialFrente)){ ?>
+                                    <img src="../../usuarios/OXILIVE/<?php echo $apellidos . " " . $nombres?>/<?php echo $credencialFrente; ?>"
+                                        alt="" id="imagenActual1" class="img-thumbnail-ine"
+                                        style="width: 350px ; height: 210px;">
+                                <?php }else{ ?>
+                                    <img src="../../../img/anverso.jpg" alt="foto de perfil" id="imagenActual1"
+                                        class="img-thumbnail-ine">
+                                <?php } ?>
+                                <div class="overlay-cre">
+                                    <?php if (empty($credencialFrente)){ ?>
+                                    <label for="credencialFrente" class="change-link"><i class="fas fa-camera"></i>
+                                    </label>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="file" class="form-control" name="credencialFrente" id="credencialFrente"
+                            onchange="cambiarImagen1(event)" style="display: none;">
                     </div>
-                    <div class="contenido col-md-4">
-                        <label for="credencialAtras" class="form-label">(INE) Credencial parte inferior</label>
-                        <input type="file" class="formulario__input-file" name="credencialAtras" id="credencialAtras">
+
+                    <div class="col-md-4">
+                        <label for="credencialAtras" class="form-label">Credencial de elector (Reverso) </label>
+                        <br>
+                        <div class="profile-picture-cre">
+                            <div class="picture-container-cre">
+                                <?php if (!empty($credencialAtras)){ ?>
+                                    <img src="../../usuarios/OXILIVE/<?php echo $apellidos . " " . $nombres?>/<?php echo $credencialAtras; ?>"
+                                        alt="" id="imagenActual2" class="img-thumbnail-ine"
+                                        style="width: 350px ; height: 210px;">
+                                <?php }else{ ?>
+                                    <img src="../../../img/reverso.jpg" alt="foto de perfil" id="imagenActual2"
+                                        class="img-thumbnail-ine">
+                                <?php } ?>
+                                <div class="overlay-cre">
+                                    <?php if (empty($credencialAtras)){ ?>
+                                    <label for="credencialAtras" class="change-link"><i class="fas fa-camera"></i>
+                                    </label>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="file" class="form-control" name="credencialAtras" id="credencialAtras"
+                            onchange="cambiarImagen2(event)" style="display: none;">
                     </div>
 
                     <div class="col-12">
@@ -210,32 +259,7 @@ if (!isset($_SESSION['us'])) {
         });
     }
 </script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelector('.formLogin').addEventListener('submit', function(event) {
-            // Evita el envío del formulario por defecto
-            event.preventDefault();
-
-            // Verifica si los campos obligatorios están vacíos
-            var nombres = document.getElementById('nombres').value;
-            var apellidos = document.getElementById('apellidos').value;
-            var rfc = document.getElementById('rfc').value;
-            var usuario = document.getElementById('usuario').value;
-            var password = document.getElementById('password').value;
-            var email = document.getElementById('email').value;
-
-            if (!nombres || !apellidos || !rfc || !usuario || !password || !email) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Campos vacíos',
-                    text: 'Por favor, completa todos los campos obligatorios.',
-                });
-            } else {
-                this.submit();
-            }
-        });
-    });
-</script>
+<script src="../../../assets/js/forms_validations.js"></script>
 <?php
 include("../../../templates/footer.php");
 ?>
