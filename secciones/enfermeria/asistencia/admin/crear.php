@@ -17,6 +17,7 @@ if (!isset($_SESSION['us'])) {
 <head>
     <link rel="stylesheet" href="<?php echo $url_base ?>assets/css/foto_perfil.css">
     <link rel="stylesheet" href="<?php echo $url_base ?>assets/css/edit.css">
+    <link rel="stylesheet" href="<?php echo $url_base ?>assets/css/fotoAsis.css">
 </head>
 <main id="main" class="main">
     <section class="section dashboard">
@@ -47,8 +48,26 @@ if (!isset($_SESSION['us'])) {
                     <!-- Input para la fotografía del usuario -->
                     <div class="contenido col-md-5">
                         <br>
-                        <label for="fotoEnfermero" class="form-label">Fotografía</label>
-                        <input type="file" id="fotoAsis" name="fotoAsis">
+                        <label for="fotoAsis" class="form-label">Foto de asistencia</label>
+                        <div class="profile-picture-cre">
+                            <div class="picture-container-cre">
+                                <?php if (!empty($Credencial_front)) { ?>
+                                    <img id="preview" src="<?php echo $Credencial_front; ?>">
+                                <?php } else { ?>
+                                    <img id="preview" src="../../../img/post.jpg" style="width: 350px ; height: 210px;">
+                                <?php } ?>
+                                <div class="overlay-cre">
+                                    <?php if (empty($Credencial_front)) { ?>
+                                        <a href="#" class="change-link" onclick="openFilePicker(event)">
+                                            <i class="fa fa-camera"></i>
+                                        </a>
+                                    <?php } else { ?>
+                                        <a href="#" class="delete-link" onclick="deletePhoto(event)">Eliminar foto</a>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="file" class="form-control" name="Credencial_front" id="Credencial_front" onchange="previewImage(this);" style="display: none;" accept="application/jpg">    
                     </div>
 
                     <!-- Combo box para elegir paciente -->
@@ -84,24 +103,35 @@ if (!isset($_SESSION['us'])) {
 </html>
 <script>
 
+function filePreview(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.readAsDataURL(input.files[0]);
+        reader.onload = function (e) {
+            $('#fotoAsis + img').remove();
+            $('#fotoAsis').after('<img src="'+e.target.result+'" width="450" height="300"/>');
+        }
+    }
+}
+
 function pos_ok (posicion) {
     console.log(posicion);
     var latitud  = posicion.coords.latitude;
     var longitud = posicion.coords.longitude;
     document.getElementById('latitud').value = latitud;
     document.getElementById('longitud').value = longitud;
-  }
+}
 
-  function pos_fallo () {
+function pos_fallo () {
     console.log('Error al geolocalizar.');
-  }
+}
 
-  if(!navigator.geolocation) {
+if(!navigator.geolocation) {
     console.log('Geolocalización no disponible.');
-  } else {
+} else {
     console.log('Geolocalizando...');
     navigator.geolocation.getCurrentPosition(pos_ok, pos_fallo);
-  }
+}
 
 function confirmCancel(event) {
     event.preventDefault();

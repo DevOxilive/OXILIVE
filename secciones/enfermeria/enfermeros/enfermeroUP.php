@@ -36,7 +36,7 @@ if (isset($_GET['txtID'])) {
 
 
 if ($_POST) {
-    include("../../connection/conexion.php");
+    include("../../../connection/conexion.php");
 
   $txtID = (isset($_POST['txtID'])) ? $_POST['txtID'] : "";
   $usuario = (isset($_POST["usuario"]) ? $_POST["usuario"] : "");
@@ -101,7 +101,7 @@ if ($_POST) {
   $sentencia->bindParam(":id_usuarios", $txtID);
   $sentencia->execute();
 
-  $carpeta_usuario = "OXILIVE/" . $apellidos . " " . $nombres;
+  $carpeta_usuario = "../../usuarios/OXILIVE/" . $apellidos . " " . $nombres;
 
 function guardarArchivo($tmp_file, $nombre_original, $carpeta_usuario) {
     if (!empty($nombre_original) && $tmp_file != '') {
@@ -154,6 +154,6 @@ foreach ($campos_archivos as $campo_archivo) {
         $sentencia->execute();
     }
 }
-  header("Location:index.php");
+  header("Location:./index.php");
 }
 ?>
