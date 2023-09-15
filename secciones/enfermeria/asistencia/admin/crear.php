@@ -15,9 +15,9 @@ if (!isset($_SESSION['us'])) {
 <!DOCTYPE html>
 
 <head>
-    <link rel="stylesheet" href="<?php echo $url_base ?>assets/css/foto_perfil.css">
-    <link rel="stylesheet" href="<?php echo $url_base ?>assets/css/edit.css">
-    <link rel="stylesheet" href="<?php echo $url_base ?>assets/css/fotoAsis.css">
+    <link rel="stylesheet" href="<?php echo $url_base; ?>assets/css/foto_perfil.css">
+    <link rel="stylesheet" href="<?php echo $url_base; ?>assets/css/edit.css">
+    <link rel="stylesheet" href="<?php //echo $url_base; ?>assets/css/fotoAsis.css">
 </head>
 <main id="main" class="main">
     <section class="section dashboard">
@@ -51,23 +51,23 @@ if (!isset($_SESSION['us'])) {
                         <label for="fotoAsis" class="form-label">Foto de asistencia</label>
                         <div class="profile-picture-cre">
                             <div class="picture-container-cre">
-                                <?php if (!empty($Credencial_front)) { ?>
-                                    <img id="preview" src="<?php echo $Credencial_front; ?>">
-                                <?php } else { ?>
-                                    <img id="preview" src="../../../img/post.jpg" style="width: 350px ; height: 210px;">
+                                <?php if (empty($credencialFrente)){ ?>
+                                    <img src="../../usuarios/OXILIVE/<?php echo $apellidos . " " . $nombres?>/<?php echo $credencialFrente; ?>"
+                                        alt="" id="imagenActual1" class="img-thumbnail-ine"
+                                        style="width: 350px ; height: 210px;">
+                                <?php }else{ ?>
+                                    <img src="../../../img/anverso.jpg" alt="foto de perfil" id="imagenActual1"
+                                        class="img-thumbnail-ine">
                                 <?php } ?>
                                 <div class="overlay-cre">
-                                    <?php if (empty($Credencial_front)) { ?>
-                                        <a href="#" class="change-link" onclick="openFilePicker(event)">
-                                            <i class="fa fa-camera"></i>
-                                        </a>
-                                    <?php } else { ?>
-                                        <a href="#" class="delete-link" onclick="deletePhoto(event)">Eliminar foto</a>
+                                    <?php if (empty($credencialFrente)){ ?>
+                                    <label for="credencialFrente" class="change-link"><i class="fas fa-camera"></i>
+                                    </label>
                                     <?php } ?>
                                 </div>
                             </div>
                         </div>
-                        <input type="file" class="form-control" name="Credencial_front" id="Credencial_front" onchange="previewImage(this);" style="display: none;" accept="application/jpg">    
+                        <input type="file" class="form-control" name="fotoAsis" id="fotoAsis" onchange="previewImage(this);" style="display: none;" accept="application/jpg">    
                     </div>
 
                     <!-- Combo box para elegir paciente -->
@@ -103,17 +103,22 @@ if (!isset($_SESSION['us'])) {
 </html>
 <script>
 
-function filePreview(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.readAsDataURL(input.files[0]);
-        reader.onload = function (e) {
-            $('#fotoAsis + img').remove();
-            $('#fotoAsis').after('<img src="'+e.target.result+'" width="450" height="300"/>');
-        }
-    }
+//Funcione para previsualizar y borrar foto
+function openFilePicker(event) {
+    event.preventDefault();
+    document.getElementById('fotoAsis').click();
 }
 
+function deletePhoto(event) {
+    event.preventDefault();
+    document.getElementById('preview').src = '../../img/png.png';
+    document.getElementById('preview').style.display = 'none';
+    document.getElementById('fotoAsis').value = '';
+    var deleteLink = document.querySelector('.delete-link');
+    deleteLink.style.display = 'none';
+}
+
+//Funciones para la ubicación
 function pos_ok (posicion) {
     console.log(posicion);
     var latitud  = posicion.coords.latitude;
@@ -121,7 +126,6 @@ function pos_ok (posicion) {
     document.getElementById('latitud').value = latitud;
     document.getElementById('longitud').value = longitud;
 }
-
 function pos_fallo () {
     console.log('Error al geolocalizar.');
 }
@@ -133,6 +137,7 @@ if(!navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(pos_ok, pos_fallo);
 }
 
+//Función para cancelar y soltar alerta
 function confirmCancel(event) {
     event.preventDefault();
     Swal.fire({
