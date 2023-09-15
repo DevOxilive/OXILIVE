@@ -37,7 +37,7 @@ if (!isset($_SESSION['us'])) {
                                     <img src="../../secciones/usuarios/OXILIVE/<?php echo $apellidos . " " .$nombres ?>/<?php echo $Foto_perfil; ?>" alt="" id="imagenActual"
                                         class="img-thumbnail rounded-circle">
                                 <?php }else{ ?>
-                                    <img src="./img/png.png" alt="Foto de perfil" id="imagenActual"
+                                    <img src="../../img/png.png" alt="Foto de perfil" id="imagenActual"
                                         class="img-thumbnail">
                                 <?php } ?>
                                 <div class="overlay">
@@ -184,23 +184,23 @@ if (!isset($_SESSION['us'])) {
                     </div>
 
                     <div class="col-md-4">
-                        <label for="credencialFrente" class="form-label">(INE) Credencial parte superior </label>
+                        <label for="credencialFrente" class="form-label">Credencial de elector (Anverso)</label>
                         <br>
                         <div class="profile-picture-cre">
                             <div class="picture-container-cre">
-                                <?php if (!empty($credencialFrente)): ?>
-                                    <img src="./OXILIVE/<?php echo $apellidos . " " . $nombres?>/<?php echo $credencialFrente; ?>"
+                                <?php if (!empty($credencialFrente)){ ?>
+                                    <img src="OXILIVE/<?php echo $apellidos . " " . $nombres?>/<?php echo $credencialFrente; ?>"
                                         alt="" id="imagenActual1" class="img-thumbnail-ine"
                                         style="width: 350px ; height: 210px;">
-                                <?php else: ?>
-                                    <img src="../../img/OXILIVE.ico" alt="foto de perfil" id="imagenActual1"
+                                <?php }else{ ?>
+                                    <img src="../../img/anverso.jpg" alt="foto de perfil" id="imagenActual1"
                                         class="img-thumbnail-ine">
-                                <?php endif; ?>
+                                <?php } ?>
                                 <div class="overlay-cre">
+                                    <?php if (empty($credencialFrente)){ ?>
                                     <label for="credencialFrente" class="change-link"><i class="fas fa-camera"></i>
                                     </label>
-                                    <?php if (!empty($credencialFrente)): ?>
-                                    <?php endif; ?>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>
@@ -211,23 +211,23 @@ if (!isset($_SESSION['us'])) {
 
 
                     <div class="col-md-4">
-                        <label for="credencialAtras" class="form-label">(INE) Credencial parte inferior </label>
+                        <label for="credencialAtras" class="form-label">Credencial de elector (Reverso)</label>
                         <br>
                         <div class="profile-picture-cre">
                             <div class="picture-container-cre">
-                                <?php if (!empty($credencialAtras)): ?>
-                                    <img src="./OXILIVE/<?php echo $apellidos . " " . $nombres?>/<?php echo $credencialAtras; ?>"
+                                <?php if (!empty($credencialAtras)){ ?>
+                                    <img src="OXILIVE/<?php echo $apellidos . " " . $nombres?>/<?php echo $credencialAtras; ?>"
                                         alt="" id="imagenActual2" class="img-thumbnail-ine"
                                         style="width: 350px ; height: 210px;">
-                                <?php else: ?>
-                                    <img src="../../img/OXILIVE.ico" alt="foto de perfil" id="imagenActual2"
+                                <?php }else{ ?>
+                                    <img src="../../img/reverso.jpg" alt="foto de perfil" id="imagenActual2"
                                         class="img-thumbnail-ine">
-                                <?php endif; ?>
+                                <?php } ?>
                                 <div class="overlay-cre">
+                                    <?php if (empty($credencialAtras)){ ?>
                                     <label for="credencialAtras" class="change-link"><i class="fas fa-camera"></i>
                                     </label>
-                                    <?php if (!empty($credencialAtras)): ?>
-                                    <?php endif; ?>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>

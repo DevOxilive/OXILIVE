@@ -99,12 +99,25 @@ if ($_POST) {
         $nombre_comprobante_domicilio_orginal = ($fecha_comprobante_domicilio != '') ? $fecha_comprobante_domicilio->getTimestamp() . "_" . $_FILES["comprobante_domicilio"]['name'] : "";
         $tmp_comprobante_domicilio = $_FILES["comprobante_domicilio"]['tmp_name'];
 
+
+        //Validación para evitar que pasen los archivos default
+        if($Foto_perfil=="png.png"){
+            $Foto_perfil="";
+        }
+        if($credencialFrente=="anverso.jpg"){
+            $credencialFrente="";
+        }
+        if($credencialReverso=="reverso.jpg"){
+            $credencialReverso="";
+        }
+
+
         if (!empty($Foto_perfil) || !empty($credencialFrente) || !empty($credencialAtras) || !empty($comprobante_domicilio)) {
             $carpeta_usuario = '../../usuarios/OXILIVE/' . $apellidos . ' ' . $nombres;
             if (!is_dir($carpeta_usuario)) {
                 mkdir($carpeta_usuario);
             }
-
+            
             move_uploaded_file($tmp_Foto_perfil, $carpeta_usuario . "/" . $nombre_Foto_perfil_orginal);
             move_uploaded_file($tmp_credencialFrente, $carpeta_usuario . "/" . $nombre_credencialFrente_orginal);
             move_uploaded_file($tmp_credencialAtras, $carpeta_usuario . "/" . $nombre_credencialAtras_orginal);

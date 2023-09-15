@@ -101,7 +101,7 @@ if ($_POST) {
   $sentencia->bindParam(":id_usuarios", $txtID);
   $sentencia->execute();
 
-  $carpeta_usuario = "./OXILIVE/" . $apellidos . " " . $nombres;
+  $carpeta_usuario = "OXILIVE/" . $apellidos . " " . $nombres;
 
 function guardarArchivo($tmp_file, $nombre_original, $carpeta_usuario) {
     if (!empty($nombre_original) && $tmp_file != '') {
@@ -126,6 +126,10 @@ $campos_archivos = array(
 foreach ($campos_archivos as $campo_archivo) {
     $nombre_archivo = (isset($_FILES[$campo_archivo]['name']) ? $_FILES[$campo_archivo]['name'] : "");
     $fecha_archivo = new DateTime();
+    //Validación para evitar que pasen los archivos default
+    if($nombre_archivo=="png.png" || $nombre_archivo=="anverso.jpg" || $nombre_archivo=="reverso.jpg"){
+        $nombre_archivo="";
+    }
     $nombre_archivo_original = (!empty($nombre_archivo) ? $fecha_archivo->getTimestamp() . "_" . $nombre_archivo : "");
     $tmp_archivo = $_FILES[$campo_archivo]['tmp_name'];
 
