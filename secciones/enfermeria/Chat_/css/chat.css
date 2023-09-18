@@ -1,0 +1,66 @@
+/* Estilo para el contenedor principal del chat */
+#chat-container {
+    /* pociocionamiento del chat a lo ancho de forma automatica */
+    width: auto;
+    /* Ancho deseado del chat */
+    margin: 0 auto;
+    /* Centrar el chat horizontalmente */
+    border: 1px solid #adaeae;
+    /* estilo del fondo del chat */
+    background-color: #5e90bb;
+    padding: 10px;
+    height: 300px;
+    /* Altura deseada del chat */
+    overflow-y: scroll;
+    /* Habilitar desplazamiento vertical */
+}
+
+/* Estilo para los mensajes */
+#chat-messages {
+    /* Altura máxima de los mensajes dentro del contenedor */
+    overflow-y: auto;
+    /* Habilitar desplazamiento vertical si es necesario */
+}
+
+/* Estilo para el formulario de entrada */
+#chat-form {
+    margin-top: 10px;
+}
+
+/* Otros estilos según tus preferencias */
+#username {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+#message {
+    width: 100%;
+    padding: 5px;
+}
+
+button[type="submit"] {
+    position: fixed;
+    display: block;
+    margin-top: 5px;
+}
+
+#chat-container::-webkit-scrollbar-thumb {
+    background-color: #888;
+    /* Color de la barra de desplazamiento */
+    display: none;
+    /* Ocultar la barra de desplazamiento */
+}
+
+/* Estilo para ocultar la barra de desplazamiento */
+#chat-container::-webkit-scrollbar {
+    width: 0.5em;
+    /* Ancho de la barra de desplazamiento */
+}
+/* estilos de los textos */
+.burbuja {
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    margin-bottom: 10px;
+    padding: 0 5px;
+}

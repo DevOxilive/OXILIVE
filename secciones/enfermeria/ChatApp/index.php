@@ -4,7 +4,7 @@ if (!isset($_SESSION['us'])) {
     header('Location: ../../../login.php');
 } elseif (isset($_SESSION['us'])) {
     include("../../../templates/header.php");
-    include("../../../connection/conexion.php");
+    include_once 'bin/consultas.php';
 } else {
     // esto queda pediente para mostrar una mejor vista al usuario y no se confunca sobre esto...
     echo "Error en el sistema";
@@ -24,13 +24,26 @@ if (!isset($_SESSION['us'])) {
             </div>
             <div class="card-header">
                 <h3><?php echo "(tú)" . $_SESSION['us'] ?></h3>
+                <!-- comienza el formulario -->
+                <form action="" method="post">
 
-                <input type="hidden" id="user" placeholder="Usuario" readonly value="<?php echo $_SESSION['us']; ?>">
-                <input type="text" id="message" placeholder="Mensaje" required>
-                <button onclick="sendMessage()">Enviar</button>
+                    <input type="hidden" id="user" placeholder="Usuario" readonly value="<?php echo $_SESSION['us']; ?>" name="usuario">
+                    <!-- contenido de control -->
+                    <input type="text" id="message" class="messageInput" placeholder="Mensaje" name="mensaje"> <!--contenido controlado por el js -->
+                    <br>
+
+                    <button id="submitButton" onclick="sendMessage()">Enviar</button>
+                    <!-- termina el formualrio -->
+                </form>
             </div>
             <div>
-                <div id="chat"></div>
+                <div id="chat">
+                    <?php
+                    foreach ($mensajes as $historial) {
+                        echo "<p>{$historial['usuario']}: {$historial['msg']}</p>";
+                    }
+                    ?>
+                </div>
             </div>
             <div>
                 <button id="autorizarNotificacion">Autorizar notificaciones</button>
@@ -38,7 +51,11 @@ if (!isset($_SESSION['us'])) {
             </div>
         </div>
 </main>
+
+<!-- archivos de funcionamiento -->
 <script src="js/socket.js"></script>
+<script src="js/valida.js"></script>
+
 <!-- /** trabajando en correciones en carga de datos */ -->
 
 <!-- /**
@@ -49,8 +66,6 @@ if (!isset($_SESSION['us'])) {
 <script src="js/push.min.js"></script>
 <script src="js/notifiaciones.js"></script>
 <script src="js/permiso.js"></script>
-
-</html>
 <?php
 include("../../../templates/footer.php");
 ?>
