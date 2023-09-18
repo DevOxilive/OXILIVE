@@ -384,7 +384,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
       <?php endif; ?>
 
       <?php if ($_SESSION['puesto'] === 6) : ?>
-        <!-- apartado de bloque de departamento de enfermeria -->
+        <!-- Apartado de bloque de departamento de enfermeria -->
 
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
@@ -392,8 +392,13 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
           </a>
           <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/user/index.php">
+                <i class="bi bi-circle"></i><span>Dashboard</span>
+              </a>
+            </li>
+            <li>
               <a href="<?php echo $url_base; ?>secciones/enfermeria/ChatApp/index.php">
-                <i class="bi bi-circle"></i><span>chat general</span>
+                <i class="bi bi-circle"></i><span>Chat General</span>
               </a>
             </li>
           </ul>
