@@ -83,6 +83,17 @@ if ($_POST) {
             });';
         echo '</script>';
     } else {
+        //Validación para evitar que pasen los archivos default
+        if($Foto_perfil=="png.png"){
+            $Foto_perfil="";
+        }
+        if($credencialFrente=="anverso.jpg"){
+            $credencialFrente="";
+        }
+        if($credencialReverso=="reverso.jpg"){
+            $credencialReverso="";
+        }
+
         $fecha_Foto_perfil = new DateTime();
         $nombre_Foto_perfil_orginal = ($fecha_Foto_perfil != '') ? $fecha_Foto_perfil->getTimestamp() . "_" . $_FILES["Foto_perfil"]['name'] : "";
         $tmp_Foto_perfil = $_FILES["Foto_perfil"]['tmp_name'];
@@ -99,16 +110,7 @@ if ($_POST) {
         $nombre_comprobante_domicilio_orginal = ($fecha_comprobante_domicilio != '') ? $fecha_comprobante_domicilio->getTimestamp() . "_" . $_FILES["comprobante_domicilio"]['name'] : "";
         $tmp_comprobante_domicilio = $_FILES["comprobante_domicilio"]['tmp_name'];
 
-        //Validación para evitar que pasen los archivos default
-        if($Foto_perfil=="png.png"){
-            $Foto_perfil="";
-        }
-        if($credencialFrente=="anverso.jpg"){
-            $credencialFrente="";
-        }
-        if($credencialReverso=="reverso.jpg"){
-            $credencialReverso="";
-        }
+        
 
         if (!empty($Foto_perfil) || !empty($credencialFrente) || !empty($credencialAtras) || !empty($comprobante_domicilio)) {
             $carpeta_usuario = "OXILIVE/" . $apellidos . " " . $nombres;
