@@ -1,12 +1,12 @@
 <?php
 session_start();
 if (!isset($_SESSION['us'])) {
-    header('Location: ../../../../../login.php');
+    header('Location: ../../../../login.php');
 } elseif (isset($_SESSION['us'])){
-    include("../../../../templates/header.php");
-    include("../../../../connection/conexion.php");
-    include("../../../../module/genero.php");
-    include("../../../../module/estado.php");
+    include("../../../templates/header.php");
+    include("../../../connection/conexion.php");
+    include("../../../module/genero.php");
+    include("../../../module/estado.php");
     
 } else {
     echo "Error en el sistema";
@@ -152,7 +152,7 @@ function confirmCancel(event) {
     }).then((result) => {
         if (result.isConfirmed) {
             // Aquí puedes redirigir al usuario a otra página o realizar alguna otra acción
-            window.location.href = "<?php echo $url_base; ?>secciones/enfermeria/guardias/index.php";
+            window.location.href = "<?php echo $url_base; ?>secciones/enfermeria/user/index.php";
         }
     });
 }
@@ -182,5 +182,5 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <?php
-include("../../../../templates/footer.php");
+include("../../../templates/footer.php");
 ?>

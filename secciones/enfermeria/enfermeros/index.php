@@ -36,9 +36,8 @@ if (!isset($_SESSION['us'])) {
                                     <td><?php echo $enfermeros['Apellidos']; ?></td>
                                     <td><?php echo $enfermeros['estado']; ?></td>
                                     <td>
-                                        <a name="#" id="" class="btn btn-outline-info" role="button"><i class="bi bi-printer-fill"></i></a> |
-                                        <a name="" id="" class="btn btn-outline-warning" href="editar.php?txtID=<?php echo $registro['id_usuarios']; ?>" role="button"><i class="bi bi-pencil-square"></i></a> |
-                                        <a name="" id="" class="btn btn-outline-danger" onclick="eliminar(<?php echo $registro['id_usuarios']; ?>)" role="button"><i class="bi bi-trash-fill"></i></a>
+                                        <a name="" id="" class="btn btn-outline-warning" href="editar.php?txtID=<?php echo $enfermeros['id_usuarios']; ?>" role="button"><i class="bi bi-pencil-square"></i></a> |
+                                        <a name="" id="" class="btn btn-outline-danger" onclick="eliminar(<?php echo $enfermeros['id_usuarios']; ?>)" role="button"><i class="bi bi-trash-fill"></i></a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -76,7 +75,7 @@ if (!isset($_SESSION['us'])) {
         };
         $.ajax({
             data: parametros,
-            url: "./eliminar.php",
+            url: "eliminar.php",
             type: "POST",
             beforeSend: function() {},
             success: function() {
