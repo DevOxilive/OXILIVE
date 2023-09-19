@@ -16,70 +16,96 @@ if (!isset($_SESSION['us'])) {
 <main id="main" class="main">
     <div class="row">
         <div class="card-header" style="text-align: right;">
-            |<!-- Boton de para el reporte en pdf -->
-            <a class="btn btn-outline-info" href="reporte_pdf.php" target="_blank"; role="button"><i class="bi bi-printer-fill"></i></a>
+            <input type="date" id="fecha1">
             |
-            <!-- Boton de para el reporte en excel -->
-            <a class="btn btn-outline-success" href="reporte_excel.php" role="button"><i 
-            class="bi bi-filetype-xlsx"></i></a>
-            |
-        
+            <input type="date" id="fecha2">
+            <!-- Boton para el reporte en PDF -->
+            <a class="btn btn-outline-info" href="#" onclick="generarReportePDF();" role="button">
+                <i class="bi bi-printer-fill"></i>
+            </a>
+             <!-- Boton para el reporte en Excel -->
+             <a class="btn btn-outline-success" href="#" onclick="generarReporteExcel();" role="button">
+                <i class="bi bi-filetype-xlsx"></i>
+            </a>
         </div>
-        <div class="card">
-            <div class="card-header">
-                Registro de nóminas
 
-                <!-- Inicia tabla -->
-            </div>
-            <div class="card-body">
-                <div class="table-responsive-sm">
-                    <table class="table table-bordered  border-dark table-hover" id="myTable">
-                        <thead class="table-dark">
-                            <tr class="table-active table-group-divider" style="text-align: center;">
-                                <th scope="col">Usuario</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Apellidos</th>
-                                <th scope="col">Dias laborados</th>
-                                <th scope="col">Sueldo Total</th>
-                                <th scope="col">Tipo de guardia</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($trabajador as $trab) { ?>
-                            <tr>
-                                <th scope="row">
-                                    <?php echo $trab['id_usuarios']; ?>
-                                </th>
-                                <td>
-                                    <?php echo $trab['Nombres']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $trab['Apellidos']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $trab['Nombre_puestos']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $trab['codigo_postal']; ?>
-                                </td>
-                                <td>
-                                    
-                                <?php echo $trab['rfc']; ?>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            Registro de nóminas
 
-                                </td>
-                            </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
+            <!-- Inicia tabla -->
+        </div>
+        <div class="card-body">
+            <div class="table-responsive-sm">
+                <table class="table table-bordered border-dark table-hover" id="myTable">
+                    <thead class="table-dark">
+                        <tr class="table-active table-group-divider" style="text-align: center;">
+                            <th scope="col">Asistencias</th>
+                            <th scope="col">Nombre completo</th>
+                            <th scope="col">Tipo de guardia</th>
+                            <th scope="col">Dias laborados</th>
+                            <th scope="col">Sueldo Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($trabajador as $trab) { ?>
+                        <tr>
+                            <th scope="row">
+                                <?php echo $trab['id_check']; ?>
+                            </th>
+                            <td>
+                                <?php echo $trab['Nombre completo']; ?>
+                            </td>
+                            <td>
+                                <?php echo $trab['Tipo de guardia']; ?>
+                            </td>
+                            <td>
+                                <?php echo $trab['Dias laborados']; ?>
+                            </td>
+                            <td>
 
-                  
-                    <!-- fin de la tabla -->
-                </div>
+                                <?php echo $trab['Sueldo Total']; ?>
+
+                            </td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+
+
+                <!-- fin de la tabla -->
             </div>
         </div>
+    </div>
 </main>
 <!-- End #main -->
 <script>
+function generarReportePDF() {
+    // Obtener los valores de fecha1 y fecha2
+    var fecha1 = document.getElementById("fecha1").value;
+    var fecha2 = document.getElementById("fecha2").value;
+
+    // Construir la URL con los parámetros
+    var url = "reporte_pdf.php?fecha1=" + fecha1 + "&fecha2=" + fecha2;
+
+    // Redirigir al usuario a la página con los parámetros
+    window.open(url, "_blank");
+}
+
+function generarReporteExcel() {
+        // Obtener los valores de fecha1 y fecha2
+        var fecha1 = document.getElementById("fecha1").value;
+        var fecha2 = document.getElementById("fecha2").value;
+
+        // Construir la URL con los parámetros
+        var url = "reporte_excel.php?fecha1=" + fecha1 + "&fecha2=" + fecha2;
+
+        // Redirigir al usuario a la página con los parámetros
+        window.location.href = url;
+    }
+
+
 function eliminar(codigo) {
     Swal.fire({
         title: '¿Estas seguro?',
@@ -118,6 +144,14 @@ function mandar(codigo) {
         },
 
     });
+
+    // Obtener fecha actual
+    let fecha = new Date();
+    // Obtener cadena en formato yyyy-mm-dd, eliminando zona y hora
+    let fechaMax = fecha.toISOString().split('T')[0];
+    // Asignar valor mínimo
+    document.querySelector('#fecha1').max = fechaMax;
+
 
 
 
