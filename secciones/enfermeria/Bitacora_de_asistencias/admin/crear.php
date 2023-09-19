@@ -15,8 +15,9 @@ if (!isset($_SESSION['us'])) {
 <!DOCTYPE html>
 
 <head>
-    <link rel="stylesheet" href="<?php echo $url_base ?>assets/css/foto_perfil.css">
-    <link rel="stylesheet" href="<?php echo $url_base ?>assets/css/edit.css">
+    <link rel="stylesheet" href="<?php echo $url_base; ?>assets/css/foto_perfil.css">
+    <link rel="stylesheet" href="<?php echo $url_base; ?>assets/css/edit.css">
+    <link rel="stylesheet" href="<?php //echo $url_base; ?>assets/css/fotoAsis.css">
 </head>
 <main id="main" class="main">
     <section class="section dashboard">
@@ -47,8 +48,26 @@ if (!isset($_SESSION['us'])) {
                     <!-- Input para la fotografía del usuario -->
                     <div class="contenido col-md-5">
                         <br>
-                        <label for="fotoEnfermero" class="form-label">Fotografía</label>
-                        <input type="file">
+                        <label for="fotoAsis" class="form-label">Foto de asistencia</label>
+                        <div class="profile-picture-cre">
+                            <div class="picture-container-cre">
+                                <?php if (empty($credencialFrente)){ ?>
+                                    <img src="../../usuarios/OXILIVE/<?php echo $apellidos . " " . $nombres?>/<?php echo $credencialFrente; ?>"
+                                        alt="" id="imagenActual1" class="img-thumbnail-ine"
+                                        style="width: 350px ; height: 210px;">
+                                <?php }else{ ?>
+                                    <img src="../../../img/anverso.jpg" alt="foto de perfil" id="imagenActual1"
+                                        class="img-thumbnail-ine">
+                                <?php } ?>
+                                <div class="overlay-cre">
+                                    <?php if (empty($credencialFrente)){ ?>
+                                    <label for="credencialFrente" class="change-link"><i class="fas fa-camera"></i>
+                                    </label>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="file" class="form-control" name="fotoAsis" id="fotoAsis" onchange="previewImage(this);" style="display: none;" accept="application/jpg">    
                     </div>
 
                     <!-- Combo box para elegir paciente -->
@@ -84,25 +103,41 @@ if (!isset($_SESSION['us'])) {
 </html>
 <script>
 
+//Funcione para previsualizar y borrar foto
+function openFilePicker(event) {
+    event.preventDefault();
+    document.getElementById('fotoAsis').click();
+}
+
+function deletePhoto(event) {
+    event.preventDefault();
+    document.getElementById('preview').src = '../../img/png.png';
+    document.getElementById('preview').style.display = 'none';
+    document.getElementById('fotoAsis').value = '';
+    var deleteLink = document.querySelector('.delete-link');
+    deleteLink.style.display = 'none';
+}
+
+//Funciones para la ubicación
 function pos_ok (posicion) {
     console.log(posicion);
     var latitud  = posicion.coords.latitude;
     var longitud = posicion.coords.longitude;
     document.getElementById('latitud').value = latitud;
     document.getElementById('longitud').value = longitud;
-  }
-
-  function pos_fallo () {
+}
+function pos_fallo () {
     console.log('Error al geolocalizar.');
-  }
+}
 
-  if(!navigator.geolocation) {
+if(!navigator.geolocation) {
     console.log('Geolocalización no disponible.');
-  } else {
+} else {
     console.log('Geolocalizando...');
     navigator.geolocation.getCurrentPosition(pos_ok, pos_fallo);
-  }
+}
 
+//Función para cancelar y soltar alerta
 function confirmCancel(event) {
     event.preventDefault();
     Swal.fire({
