@@ -45,42 +45,55 @@ class PDF extends FPDF
     }
 }
 // Creación del objeto de la clase heredada
-$pdf = new PDF(); //hacemos una instancia de la clase
+$pdf = new PDF();
 $pdf->AliasNbPages();
-$pdf->AddPage(); //añade l apagina / en blanco
+$pdf->AddPage();
 $pdf->SetX(15);
 
-
-//Conexión a la base de datos
-
+// Conexión a la base de datos
 require '../../../connection/conexion.php';
 
-//Consutal para añadir información al pdf
-$sentencia = $con->prepare(" SELECT trabajador.*, puestos.Nombre_puestos 
-FROM usuarios AS trabajador 
-JOIN estado AS est ON trabajador.Estado = est.id_estado
-JOIN puestos ON trabajador.id_departamentos = puestos.id_puestos
-WHERE Nombre_puestos = 'Enfermeria' ");
-//Tabla dentro del pdf con los datos a solicitar
+$fecha1 = $_GET['fecha1'];
+$fecha2 = $_GET['fecha2'];
+
+// Consulta para añadir información al PDF
+
+$sentencia = $con->prepare("SELECT COUNT(A.id_check) AS asistencias, A.id_check, CONCAT(S.Nombres, ' ', S.Apellidos) AS Nombre_completo, T.nombre_guardia AS Tipo_de_guardia,
+    H.fecha AS Dias_laborados, SUM(T.sueldo) AS Sueldo_Total
+    FROM usuarios S
+    JOIN asistencias A ON S.id_usuarios = A.id_empleadoEnfermeria
+    JOIN asignacion_horarios H ON S.id_usuarios = H.id_usuario
+    JOIN puestos P ON S.id_departamentos = P.id_puestos
+    JOIN tipos_guardias T ON T.id_tiposGuardias = H.id_tiposGuardias
+    JOIN checkk C ON C.id_check = A.id_check
+    JOIN empleados M ON M.Puesto = P.id_puestos
+    JOIN estado E ON S.Estado = E.id_estado
+    WHERE id_puestos = 6
+    AND H.fecha BETWEEN :fecha1 AND :fecha2
+    GROUP BY A.id_check, CONCAT(S.Nombres, ' ', S.Apellidos), T.nombre_guardia, H.fecha");
+
+$sentencia->bindParam(':fecha1', $fecha1);
+$sentencia->bindParam(':fecha2', $fecha2);
 $sentencia->execute();
+
 $pdf->Ln(0.6);
 $pdf->setX(15);
 $pdf->SetFont('Times', 'B', 12);
-$pdf->Cell(18, 10, 'Usuario',1, 0, 'C', 0);
-$pdf->Cell(70, 10, 'Nombre completo',1, 0, 'C', 0);
-$pdf->Cell(33, 10, 'Dias laborados',1, 0, 'C', 0);
-$pdf->Cell(30, 10, utf8_decode('Sueldo total'), 1, 0, 'C', 0);
-$pdf->Cell(32, 10, utf8_decode('Tipo de guardia'), 1, 1, 'C', 0);
+$pdf->Cell(18, 10, 'Asistencias', 1, 0, 'C', 0);
+$pdf->Cell(70, 10, 'Nombre completo', 1, 0, 'C', 0);
+$pdf->Cell(33, 10, 'Tipo de guardia', 1, 0, 'C', 0);
+$pdf->Cell(30, 10, 'Dias laborados', 1, 0, 'C', 0);
+$pdf->Cell(32, 10, 'Sueldo Total', 1, 1, 'C', 0);
 
-//Datos consultados
 while ($userRow = $sentencia->fetch(PDO::FETCH_ASSOC)) {
     $pdf->SetFont('Arial', '', 12);
     $pdf->setX(15);
-    $pdf->Cell(18, 10, utf8_decode($userRow['id_usuarios']) , 1, 0, 'C', 0);
-    $pdf->Cell(70, 10, utf8_decode($userRow['Nombres']) . " " . utf8_decode($userRow['Apellidos']) , 1, 0, 'C', 0);
-    $pdf->Cell(33, 10, utf8_decode($userRow['Nombre_puestos']) , 1, 0, 'C', 0);
-    $pdf->Cell(30, 10, utf8_decode($userRow['codigo_postal']) , 1, 0, 'C', 0);
-    $pdf->Cell(32, 10, $userRow['rfc'], 1, 1, 'C', 0);
+    $pdf->Cell(18, 10, utf8_decode($userRow['asistencias']), 1, 0, 'C', 0);
+    $pdf->Cell(70, 10, utf8_decode($userRow['Nombre_completo']), 1, 0, 'C', 0);
+    $pdf->Cell(33, 10, utf8_decode($userRow['Tipo_de_guardia']), 1, 0, 'C', 0);
+    $pdf->Cell(30, 10, utf8_decode($userRow['Dias_laborados']), 1, 0, 'C', 0);
+    $pdf->Cell(32, 10, utf8_decode($userRow['Sueldo_Total']), 1, 1, 'C', 0);
 }
+
 $pdf->Output();
 ?>
