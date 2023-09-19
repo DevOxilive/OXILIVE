@@ -3,8 +3,8 @@ session_start();
 if (!isset($_SESSION['us'])) {
     header('Location: ../../../../login.php');
 } elseif (isset($_SESSION['us'])){
-    include("../../../templates/header.php");
     include("../../../connection/conexion.php");
+    include("../../../templates/hea.php");
     include("../../../module/genero.php");
     include("../../../module/estado.php");
     
@@ -13,174 +13,60 @@ if (!isset($_SESSION['us'])) {
 }
 ?>
 <!DOCTYPE html>
-
 <head>
-    <link rel="stylesheet" href="<?php echo $url_base; ?>assets/css/foto_perfil.css">
-    <link rel="stylesheet" href="<?php echo $url_base; ?>assets/css/edit.css">
-    <link rel="stylesheet" href="<?php //echo $url_base; ?>assets/css/fotoAsis.css">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Toma de asistencia</title>
+    <!-- Google Fonts -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+    <link href="<?php echo $url_base; ?>assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo $url_base; ?>assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="<?php echo $url_base; ?>assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="<?php echo $url_base; ?>assets/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="<?php echo $url_base; ?>assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="<?php echo $url_base; ?>assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="<?php echo $url_base; ?>assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <link href="<?php echo $url_base; ?>assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!--Librerias de despliegue iconos-->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Estilos de la cámara 
+    <link rel="stylesheet" href="css/camara.css"> -->
+    <!-- Función de la cámara -->
+    <style>
+		@media only screen and (max-width: 700px) {
+			video {
+				max-width: 100%;
+			}
+		}
+	</style>
 </head>
-<main id="main" class="main">
-    <section class="section dashboard">
-        <div class="card">
-
-            <!-- Encabezado del formulario de nueva asistencia-->
-            <div class="card-header" style="border: 2px solid #012970; background: #005880;">
-                <h4 style="text-align: center;
-                        color: #fff;
-                        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
-                    Registro de asistencia
-                </h4>
-            </div>
-
-            <!-- Cuerpo del formulario de registro de asistencia -->
-            <div class="card-body" style="border: 2px solid #BFE5FF;">
-                <form action="<?php echo $url_base ?>secciones/enfermeria/asistencia/asisADD.php" method="POST"
-                    enctype="multipart/form-data" class="formLogin row g-3">
-                    <center>
-                    
-                    <!-- Etiqueta oculta para mandar el id del usuario de la sesión que va a dar su check -->
-                    <input type="hidden" id="idUser" name="idUser" value="<?php echo $_SESSION['idus']; ?>">
-                    
-                    <!-- Etiqueta oculta para mandar la ubicación del usuario -->
-                    <input type="hidden" id="latitud" name="latitud" value="">
-                    <input type="hidden" id="longitud" name="longitud" value="">
-
-                    <!-- Input para la fotografía del usuario -->
-                    <div class="contenido col-md-5">
-                        <br>
-                        <label for="fotoAsis" class="form-label">Foto de asistencia</label>
-                        <div class="profile-picture-cre">
-                            <div class="picture-container-cre">
-                                <?php if (empty($credencialFrente)){ ?>
-                                    <img src="../../usuarios/OXILIVE/<?php echo $apellidos . " " . $nombres?>/<?php echo $credencialFrente; ?>"
-                                        alt="" id="imagenActual1" class="img-thumbnail-ine"
-                                        style="width: 350px ; height: 210px;">
-                                <?php }else{ ?>
-                                    <img src="../../../img/anverso.jpg" alt="foto de perfil" id="imagenActual1"
-                                        class="img-thumbnail-ine">
-                                <?php } ?>
-                                <div class="overlay-cre">
-                                    <?php if (empty($credencialFrente)){ ?>
-                                    <label for="credencialFrente" class="change-link"><i class="fas fa-camera"></i>
-                                    </label>
-                                    <?php } ?>
-                                </div>
-                            </div>
-                        </div>
-                        <input type="file" class="form-control" name="fotoAsis" id="fotoAsis" onchange="previewImage(this);" style="display: none;" accept="application/jpg">    
-                    </div>
-
-                    <!-- Combo box para elegir paciente -->
-                    <div class="contenido col-md-4">
-                        <br>
-                        <label for="paciente" class="form-label">Paciente</label>
-                        <select id="paciente" name="paciente" class="form-select">
-                            <?php foreach ($lista_pacientes as $pacientes) { ?>
-                            <option value="0">Elige un paciente</option>
-                            <option value="<?php echo $pacientes['id_pacienteEnfermeria']; ?>">
-                                <?php echo $pacientes['nombre']." ".$pacientes['apellidos']; ?>
-                            </option>
-                            <?php } ?>
-                        </select>
-                    </div>
-
-                    
-                    <!-- Botones -->
-                    <div class="col-12">
-                        <br>
-                        <button type="submit" class="btn btn-outline-primary">Guardar</button>
-                        <a role="button" onclick="confirmCancel(event)" name="cancelar" class="btn btn-outline-danger">
-                            Cancelar
-                        </a>
-                    </div>
-                    </center>
-                </form>
-            </div>
+<body>
+    <center>
+	    <div>
+	    	<select name="listaDeDispositivos" id="listaDeDispositivos"></select>
+	    	<button id="boton">Tomar foto</button>
+	    </div>
+        <div class="ps-4" >
+            <a class="btn btn-outline-success" href="crear.php" role="button">
+                <i class="bi bi-clipboard-check-fill"></i>
+                    Comenzar servicio
+            </a>
         </div>
-    </section>
-</main>
-
-</html>
-<script>
-
-//Funcione para previsualizar y borrar foto
-function openFilePicker(event) {
-    event.preventDefault();
-    document.getElementById('fotoAsis').click();
-}
-
-function deletePhoto(event) {
-    event.preventDefault();
-    document.getElementById('preview').src = '../../img/png.png';
-    document.getElementById('preview').style.display = 'none';
-    document.getElementById('fotoAsis').value = '';
-    var deleteLink = document.querySelector('.delete-link');
-    deleteLink.style.display = 'none';
-}
-
-//Funciones para la ubicación
-function pos_ok (posicion) {
-    console.log(posicion);
-    var latitud  = posicion.coords.latitude;
-    var longitud = posicion.coords.longitude;
-    document.getElementById('latitud').value = latitud;
-    document.getElementById('longitud').value = longitud;
-}
-function pos_fallo () {
-    console.log('Error al geolocalizar.');
-}
-
-if(!navigator.geolocation) {
-    console.log('Geolocalización no disponible.');
-} else {
-    console.log('Geolocalizando...');
-    navigator.geolocation.getCurrentPosition(pos_ok, pos_fallo);
-}
-
-//Función para cancelar y soltar alerta
-function confirmCancel(event) {
-    event.preventDefault();
-    Swal.fire({
-        title: '¿Estás seguro?',
-        text: "Si cancelas, se perderán los datos ingresados.",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Sí, cancelar',
-        cancelButtonText: 'No, continuar'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            // Aquí puedes redirigir al usuario a otra página o realizar alguna otra acción
-            window.location.href = "<?php echo $url_base; ?>secciones/enfermeria/user/index.php";
-        }
-    });
-}
-</script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelector('.formLogin').addEventListener('submit', function(event) {
-        // Evita el envío del formulario por defecto
-        event.preventDefault();
-        // Verifica si los campos obligatorios están vacíos
-        var nombres = document.getElementById('nombres').value;
-        var apellidos = document.getElementById('apellidos').value;
-        var rfc = document.getElementById('rfc').value;
-        var usuario = document.getElementById('usuario').value;
-        var password = document.getElementById('password').value;
-        var email = document.getElementById('email').value;
-        if (!nombres || !apellidos || !rfc || !usuario || !password || !email) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Campos vacíos',
-                text: 'Por favor, completa todos los campos obligatorios.',
-            });
-        } else {
-            this.submit();
-        }
-    });
-});
-</script>
-<?php
-include("../../../templates/footer.php");
-?>
+	    <br>
+	    <video muted="muted" id="video"></video>
+	    <canvas id="canvas" style="display: none;"></canvas>
+    <</center>
+</body>
+<script src="js/camara.js"></script>
