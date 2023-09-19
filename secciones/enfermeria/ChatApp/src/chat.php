@@ -5,6 +5,7 @@ namespace MyApp;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 
+
 class Chat implements MessageComponentInterface
 {
     protected $clients;
@@ -28,14 +29,14 @@ class Chat implements MessageComponentInterface
      */
     public function onMessage(ConnectionInterface $from, $msg)
     {
+        session_start();
+        $usuario = $_SESSION['us'];
+        include '../../../../connection/conexion.php';
+        $sentensia = $con->prepare("INSERT INTO mensajes (msg) SELECT '$msg' WHERE usuario = '$usuario';");
+
         $numRecv = count($this->clients) - 1;
-        echo sprintf(
-            'cliente %d Enviando mensaje "%s" a %d otro cliente %s' . "\n",
-            $from->resourceId,
-            $msg,
-            $numRecv,
-            $numRecv == 1 ? '' : 's'
-        );
+        echo sprintf($msg . "\n" . $usuario);
+        $sentensia->execute();
         /**
          * aqui se envia el mensaje de cliente a cliente que se encuentre conectado al mismo canal o puerto y se cuenta cuantos clientes están
          */
