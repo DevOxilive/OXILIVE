@@ -2,41 +2,59 @@
 #chat-container {
     /* pociocionamiento del chat a lo ancho de forma automatica */
     width: auto;
-    /* Ancho deseado del chat */
     margin: 0 auto;
-    /* Centrar el chat horizontalmente */
     border: 1px solid #adaeae;
-    /* estilo del fondo del chat */
     background-color: #5e90bb;
     padding: 10px;
-    height: 300px;
-    /* Altura deseada del chat */
+    height: 55vh;
     overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     /* Habilitar desplazamiento vertical */
 }
 
-/* Estilo para los mensajes */
-#chat-messages {
-    /* Altura máxima de los mensajes dentro del contenedor */
-    overflow-y: auto;
-    /* Habilitar desplazamiento vertical si es necesario */
+.chat-header {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header h2 {
+    margin: 0;
 }
 
 /* Estilo para el formulario de entrada */
 #chat-form {
     margin-top: 10px;
+    display: flex;
+    align-items: center;
+    /* Alinea verticalmente en el centro */
 }
 
-/* Otros estilos según tus preferencias */
+/*  */
+#message {
+    flex: 1;
+    padding: 5px;
+    border: none;
+}
+
+#send {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 5px;
+}
+
+/* texto de usuario*/
 #username {
     width: 100%;
     padding: 5px;
     margin-bottom: 5px;
-}
-
-#message {
-    width: 100%;
-    padding: 5px;
 }
 
 button[type="submit"] {
@@ -57,10 +75,30 @@ button[type="submit"] {
     width: 0.5em;
     /* Ancho de la barra de desplazamiento */
 }
+
 /* estilos de los textos */
 .burbuja {
     background-color: rgb(255, 255, 255);
     border-radius: 20px;
     margin-bottom: 10px;
-    padding: 0 5px;
+    padding: 10px;
+    /* Limitar el ancho máximo de las burbujas */
+    max-width: 100%;
+    width: fit-content;
+    word-wrap: break-word;
 }
+
+.burbuja-you {
+    background-color: rgb(0, 0, 0);
+    border-radius: 20px;
+    margin-bottom: 10px;
+    padding: 10px;
+    color: white;
+    /* Limitar el ancho máximo de las burbujas */
+    width: fit-content;
+    word-wrap: break-word;
+    max-width: 100%;
+    /* Alinear a la derecha */
+}
+
+/* Estilo para el contenedor principal del chat */

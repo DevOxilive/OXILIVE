@@ -1,29 +1,34 @@
 $(document).ready(function () {
     chatBox = document.querySelector("#chat-container");
-    var userScrolled = false;
+    var userScrolled = false; //variable para detectar scroll
     // Cargar mensajes existentes
     loadMessages();
     // Enviar mensaje
     $('#send').click(function () {
         var message = $('#message').val();
         var user = $('#user').val();
+        var output = $('#output').val();
+        var userC = $('userChat').val();
         if (message !== '') {
             $.ajax({
-                url: 'send_message.php',
+                url: 'send_message.php', //ruta del archivo que envia a la base los mensajes
                 type: 'POST',
-                data: { user: user, message: message },
+                data: { user: user, message: message, output: output, userC: userC },
                 success: function () {
                     $('#message').val('');
                     loadMessages();
+                    scrollToBottom();
                 }
             });
         }
     });
 
     function loadMessages() {
+        var output = $('#output').val();
         $.ajax({
-            url: 'get_messages.php',
+            url: 'get_message.php', //ruta del archivo que genera los mensajes
             type: 'POST',
+            data: { output: output },
             success: function (data) {
                 $('#chat-messages').html(data);
                 if (!userScrolled) {
@@ -35,7 +40,7 @@ $(document).ready(function () {
 
     setInterval(() => {
         loadMessages();
-    }, 1000);
+    }, 500);
 
     function scrollToBottom() {
         chatBox.scrollTop = chatBox.scrollHeight;
@@ -54,5 +59,5 @@ $(document).ready(function () {
             userScrolled = true;
         }
     });
-    // esta funcion ayuda a actualizar el chat cada dos segundos
+    // esta funcion ayuda a actualizar el chat cada 0.5 segundos
 });

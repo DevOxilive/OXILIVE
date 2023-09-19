@@ -13,7 +13,7 @@ if (!isset($_SESSION['us'])) {
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <main id="main" class="main">
     <center>
-        <h1>proximamente <b>Chat</b> en construccion <b>version 3<b></h1>
+        <h1>proximamente <b>Chat version 3<b></h1>
     </center>
     <br>
     <div class="row">
@@ -27,12 +27,12 @@ if (!isset($_SESSION['us'])) {
                 <div id="chat-form">
                     <input type="hidden" value="<?php echo $_SESSION['us'] ?>" id="user">
                     <input type="text" id="message" placeholder="Escribe tu mensaje">
-                    <button id="send"><img src="../data/pngwing.com.png" alt="" width="40px"></button>
+                    <button id="send"><img src="../img/pngwing.com.png" alt="" width="40px"></button>
                 </div>
             </div>
         </div>
     </div>
-    <script src="../js/chatGeneral.js"></script>
+    <script src="../js/chat.js"></script>
 </main>
 <?php
 include("../../../../templates/footer.php");
