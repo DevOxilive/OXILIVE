@@ -1,6 +1,6 @@
 <?php
 include ("../../connection/conexion.php");
-include_once '../../templates/hea.php';
+include_once ('../../templates/hea.php');
 
 if(isset( $_GET['txtID'] )){
 

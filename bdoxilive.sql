@@ -126,10 +126,11 @@ CREATE TABLE IF NOT EXISTS `asignacion_horarios` (
   CONSTRAINT `FK_idUsuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuarios`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla bdoxilive.asignacion_horarios: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.asignacion_horarios: ~3 rows (aproximadamente)
 INSERT IGNORE INTO `asignacion_horarios` (`id_asignacionHorarios`, `id_usuario`, `id_tiposGuardias`, `horarioEntrada`, `horarioSalida`, `fecha`, `id_pacienteEnfermeria`) VALUES
 	(3, 8, 1, '08:00:00', '16:00:00', '2023-09-20', 0000000001),
-	(4, 11, 1, '16:00:00', '00:00:00', '2023-09-20', 0000000001);
+	(4, 11, 1, '16:00:00', '00:00:00', '2023-09-20', 0000000001),
+	(5, 24, 1, '14:00:00', '22:00:00', '2023-10-18', 0000000001);
 
 -- Volcando estructura para tabla bdoxilive.asistencias
 DROP TABLE IF EXISTS `asistencias`;
@@ -587,7 +588,7 @@ CREATE TABLE IF NOT EXISTS `pacientes_enfermeria` (
   PRIMARY KEY (`id_pacienteEnfermeria`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla bdoxilive.pacientes_enfermeria: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.pacientes_enfermeria: ~1 rows (aproximadamente)
 INSERT IGNORE INTO `pacientes_enfermeria` (`id_pacienteEnfermeria`, `nombre`, `apellidos`, `fechaNacimiento`) VALUES
 	(0000000001, 'John', 'Doe', '1990-07-20');
 
@@ -935,17 +936,18 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   CONSTRAINT `FK_genero` FOREIGN KEY (`Genero`) REFERENCES `genero` (`id_genero`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla bdoxilive.usuarios: ~9 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.usuarios: ~10 rows (aproximadamente)
 INSERT IGNORE INTO `usuarios` (`id_usuarios`, `Usuario`, `paswword`, `Nombres`, `Apellidos`, `Genero`, `Telefono`, `Correo`, `Estado`, `Foto_perfil`, `id_departamentos`, `Fecha_registro`, `rfc`, `alcaldia`, `calle`, `num_interior`, `num_exterior`, `codigo_postal`, `calleUno`, `calleDos`, `referencias`, `credencialFrente`, `credencialAtras`, `comprobante_domicilio`, `inicios_sesion`, `fecha_sesion`) VALUES
-	(1, 'admin', '$2y$10$grLCbK0VC5.v93cck.YVd.idrRZSBFk/8/IEVTpBKiEQmbZKyArAO', 'OXILIVE', 'OXILIVE', 2, '0000000000', 'sistemas@oxilive.com.mx', 1, _binary 0x313639323132333638315f6465736361726761722e6a7067, 1, '2023-08-15 18:21:21', 'MABY030624', 'CHIMALHUACAN', NULL, '1', '23', 56337, 'SAN FRANCISCO', 'OYAMEL', 'ENTRANDO POR BARRANCA LADO DERECHO, A UNA DISTANCIA DE 9 CASAS ', _binary 0x313639323132333638315f496d6167656e312e706e67, _binary 0x313639323132333638315f44422e706e67, _binary 0x313639323132333638315f4746442e706466, 65, '2023-08-15 18:21:21'),
+	(1, 'admin', '$2y$10$grLCbK0VC5.v93cck.YVd.idrRZSBFk/8/IEVTpBKiEQmbZKyArAO', 'OXILIVE', 'OXILIVE', 2, '0000000000', 'sistemas@oxilive.com.mx', 1, _binary 0x313639323132333638315f6465736361726761722e6a7067, 1, '2023-08-15 18:21:21', 'MABY030624', 'CHIMALHUACAN', NULL, '1', '23', 56337, 'SAN FRANCISCO', 'OYAMEL', 'ENTRANDO POR BARRANCA LADO DERECHO, A UNA DISTANCIA DE 9 CASAS ', _binary 0x313639323132333638315f496d6167656e312e706e67, _binary 0x313639323132333638315f44422e706e67, _binary 0x313639323132333638315f4746442e706466, 75, '2023-08-15 18:21:21'),
 	(2, 'DIEGO', '$2y$10$tlQTtD.PAtWv5KTQg723SOgz8X9A6ZE3j58ucsWZOmHIzIgZJkVQ2', 'DIEGO', 'COVARRUBIAS PONCE', 1, '5511794905', 'enfermeria@oxilive.com.mx', 1, _binary 0x313639323132333832345f616161612e6a7067, 3, '2023-08-15 18:23:44', 'COPD121199', 'IXTAPALUCA', NULL, '8', '8', 12345, 'JOSE BA', 'LAURELES', 'FRENTE A UNA TIENDA ', _binary 0x313639323132333832345f696d61676573202833292e6a7067, _binary 0x313639323132333832345f6465736361726761722e6a7067, _binary 0x313639323132333832345f312e706466, 1, '2023-08-15 18:23:44'),
 	(3, 'AXA', '$2y$10$2OYqZjCb/KW8aICxL7MWe.W8d3wfU8jFXidyuqPC4xz5C/LtI/JGu', 'AXA', 'AXA', 2, '123456789', 'axa@axa.com.mx', 1, _binary 0x313639323132343136305f7072752e6a7067, 2, '2023-08-15 18:29:20', 'AXA12345', 'AXA', NULL, '5', '5', 85269, 'AXA', 'AXA', 'EN AXA', _binary 0x313639323132343136305f696d61676573202833292e6a7067, _binary 0x313639323132343136305f696d61676573202832292e6a7067, _binary 0x313639323132343136305f4746442e706466, 21, '2023-08-15 18:29:20'),
 	(4, 'MARCO', '$2y$10$IEBgYWp6bHIDNiFPiVuAc.LTWxm2S1n5SOi/W/dG.bc27Eh0zkLh2', 'MARCO ADRIAN', 'RIVERA', 1, '123456789', 'oxigeno@oxilive.com.mx', 1, _binary 0x313639323132343332355f747265652d3733363838355f313238302e6a7067, 4, '2023-08-15 18:32:05', 'RIBM111296', 'NO', NULL, '8', '8', 98745, 'NO', 'NO', 'NO', _binary 0x313639323132343332355f313336365f323030302e6a706567, _binary 0x313639323132343332355f64657363617267612e6a7067, _binary 0x313639323132343332355f312e706466, 29, '2023-08-15 18:32:05'),
 	(5, 'PEDRO RUIZ CORTES', '$2y$10$QkRKpOc8EORhrCFlYoDJjezvE0zbtB1/Rmtfct2Q7THJvTPkqcCSq', 'ALISON', 'ARGENT', 2, '5511794905', 'ali@gmail.com', 1, _binary 0x313639323230303039305f64657363617267612e6a7067, 9, '2023-08-16 15:34:50', 'ARGA121102', 'BUENA', NULL, '89', '5', 45632, 'SAN FRANCISCO', 'OYAMEL', ' FRENTE A TIENDA', _binary 0x313639323230303039305f747265652d3733363838355f313238302e6a7067, _binary 0x313639323230303039305f313336365f323030302e6a706567, _binary 0x313639323230303039305f4746442e706466, 14, '2023-08-16 15:34:50'),
 	(6, 'PRUEBA', '$2y$10$SZXPwPZlxkXphBiONIiumeEO4zOW.F0FcM4.hderPbLR2RbsR46vi', 'PRUEBA', 'PRUEBA', 1, '12345678', 'prueba@gmail.com', 1, _binary 0x313639323239373232375f706e672e706e67, 10, '2023-08-17 18:33:47', 'PRUE123456', 'PRUEBA', NULL, '1', '1', 12345, 'PRUEBA', 'PRUEBA', 'PRUEBA ', _binary 0x313639323239373232375f6b69742e6a7067, _binary 0x313639323239373232375f5052554542412e6a7067, _binary 0x313639323239373232375f62646f78696c697665202d44442e706466, 1, '2023-08-17 18:33:47'),
 	(7, 'ASISMED', '$2y$10$b4FgofQdC69pq4iGx59tyOJo2FXVX.yPY3pLXFbv8wujJgjfisRxW', 'ASISMED', 'ASISMED', 1, '123456789', 'asismed@gmail.com', 1, _binary 0x313639323530313738375f75746e5f3235362e706e67, 2, '2023-08-20 03:23:07', 'ASISMED123', 'ASISMED', NULL, '1', '1', 12345, 'ASISMED', 'ASISMED', 'ASISMED', _binary 0x313639323530313738375f313639323234303236315f33343064636430353436353961376135353030333465353632646631326139342e6a7067, _binary 0x313639323530313738375f313639323234303236315f576861747341707020496d61676520323032332d30382d313620617420332e30392e313620504d2e6a706567, _binary 0x313639323530313738375f313639323234303236315f312e706466, 5, '2023-08-20 03:23:07'),
-	(8, 'iAlexWolf', '$2y$10$bJBPe7ExCp1bUki/6fNHV.txg6kemI1GufzRENjUZSLfRvu3vqrB2', 'Alfredo Alexis', 'Fiesco Venegas', 1, '7894561231', 'alfredo@gmail.com', 1, _binary 0x313639333934343538315f, 6, '2023-09-05 20:09:41', 'FIVA980720BN', 'La Perla', NULL, '182', '0', 57820, 'Alamos', 'Escondida', 'Saguan café', _binary 0x313639333934343538315f616e766572736f2e6a7067, _binary 0x313639333934343538315f7265766572736f2e6a7067, _binary 0x313639333934343538315f756e647261775f70726f66696c655f332e737667, 0, '2023-09-05 20:09:41'),
-	(11, 'okliokl', '$2y$10$8ChG7ggxKae67MlL1xOoL.XL0afS1acFmTslwl1yqlTIADYidMbz2', 'Jonatan', 'Bonilla', 1, '7894561236', 'aslkasda@asdas', 1, _binary 0x313639343138323634315f, 6, '2023-09-08 14:17:21', 'asdfghjk78', '', NULL, '', '', 78945, '', '', '', _binary 0x313639343138323634315f, _binary 0x313639343138323634315f, _binary 0x313639343138323634315f, 0, '2023-09-08 14:17:21');
+	(8, 'iAlexWolf', '$2y$10$9wXbGaUHMN7PojhJb8Ht8.EhN5lPZXruyWj7gRzHQo4865KdY9J.e', 'Alfredo Alex', 'Fiesco Venegas', 1, '7894561231', 'alfredo@gmail.com', 1, _binary '', 6, '2023-09-05 20:09:41', 'FIVA980720BN', 'La Perla', 'Jabillos', '182', '0', 57820, 'Alamos', 'Escondida', 'Saguan café', _binary '', _binary '', _binary '', 3, '2023-09-05 20:09:41'),
+	(11, 'okliokl', '$2y$10$X.5YkbMv.4vLxgkgGNxVyO0lkod7OlAyMzLAfYRT7Rw7wEJFmc0Ee', 'JONATAN', 'BONILLA', 1, '7894561236', 'aslkasda@asdas', 1, _binary '', 6, '2023-09-08 14:17:21', 'ASDFGHJK78', '', '', '', '', 78945, '', '', '', _binary '', _binary '', _binary '', 0, '2023-09-08 14:17:21'),
+	(24, 'hao', '$2y$10$2d5tkSQ/b2woe3ISwCbTD.mBQ.3aAlo/IDa3727GltbJi2FNKv1H.', 'PANFILO', 'PANCRASIO', 1, '1234567890', 'asdasd@adasda', 1, _binary '', 6, '2023-09-18 15:27:16', '1234567890', '', '', '', '', 1245, '', '', '', _binary '', _binary '', _binary '', 11, '2023-09-18 15:27:16');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
