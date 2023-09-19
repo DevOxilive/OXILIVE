@@ -353,10 +353,10 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                 <i class="bi bi-circle"></i><span>Guardias</span>
               </a>
             </li>
-            <!-- Módulo de asistencias -->
+            <!-- Módulo de Bitacora de asistencias -->
             <li>
-              <a href="<?php echo $url_base; ?>secciones/enfermeria/asistencia/admin/index.php">
-                <i class="bi bi-circle"></i><span>Asistencia</span>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/Bitacora_de_asistencias/admin/index.php">
+                <i class="bi bi-circle"></i><span>Bitacora de asistencias</span>
               </a>
             </li>
             <!-- Módulo de Enfermeros -->
