@@ -1,11 +1,12 @@
 <?php
 session_start();
 if (!isset($_SESSION['us'])) {
-    header('Location: ../../../../../login.php');
+    header('Location: ../../../../login.php');
 } elseif (isset($_SESSION['us'])){
     include("../../../templates/header.php");
     include("../../../connection/conexion.php");
-    include("proxServicio.php");
+    include("model/proxServicio.php");
+    include("model/horarios.php");
 } else {
     echo "Error en el sistema";
 }
@@ -14,6 +15,7 @@ if (!isset($_SESSION['us'])) {
 <head>
     <link rel="stylesheet" href="<?php echo $url_base; ?>assets/css/foto_perfil.css">
     <link rel="stylesheet" href="<?php echo $url_base; ?>assets/css/edit.css">
+    <link rel="stylesheet" href="<?php echo $url_base; ?>assets/css/">
 </head>
 <main id="main" class="main">
     <div class="pagetitle">
@@ -35,9 +37,9 @@ if (!isset($_SESSION['us'])) {
             <!-- Left side columns -->
             <div class="col-lg-8">
                 <div class="row">
-                    <!-- Sales Card -->
+                    <!-- Card Proximo Servicio -->
                     <div class="col-xxl-4 col-md-6">
-                        <div class="card info-card sales-card">
+                        <div class="card info-card next-service-card">
                             <div class="card-body">
                                 <h5 class="card-title">Próximo servicio</h5>
                                 <div class="d-flex align-items-center">
@@ -49,95 +51,84 @@ if (!isset($_SESSION['us'])) {
                                     <div class="ps-4 ">
                                         <h6><?php echo $servicios['nomPaciente']; ?></h6>
                                         <span class="text-muted small pt-2 ps-1"><?php echo $servicios['nomGuardia'] ; ?></span>
-                                        </div>
                                     </div>
                                     <?php } ?>
                                 </div>
-                                <div class="ps-4" >
-                                    <a class="btn btn-outline-primary" href="crear.php" role="button">
-                                        <i class="bi bi-clipboard-check-fill"></i>
-                                        Registrar asistencia
-                                    </a>
-                                </div>
                             </div>
-                    </div><!-- End Sales Card -->
-
-                        <!-- Revenue Card -->
-                        <div class="col-xxl-4 col-md-6">
-                            <div class="card info-card revenue-card">
-
-                                <div class="filter">
-                                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                        <li class="dropdown-header text-start">
-                                            <h6>Filter</h6>
-                                        </li>
-
-                                        <li><a class="dropdown-item" href="#">Today</a></li>
-                                        <li><a class="dropdown-item" href="#">This Month</a></li>
-                                        <li><a class="dropdown-item" href="#">This Year</a></li>
-                                    </ul>
-                                </div>
-
-                                <div class="card-body">
-                                    <h5 class="card-title">Revenue <span>| This Month</span></h5>
-
-                                    <div class="d-flex align-items-center">
-                                        <div
-                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                            <i class="bi bi-currency-dollar"></i>
-                                        </div>
-                                        <div class="ps-3">
-                                            <h6>$3,264</h6>
-                                            <span class="text-success small pt-1 fw-bold">8%</span> <span
-                                                class="text-muted small pt-2 ps-1">increase</span>
-
+                            <!-- Botón de Empezar Servicio -->
+                            <div class="ps-4" >
+                                <a class="btn btn-outline-success" href="crear.php" role="button">
+                                    <i class="bi bi-clipboard-check-fill"></i>
+                                        Comenzar servicio
+                                </a>
+                            </div>
+                            <!-- End Botón de Empezar Servicio -->
+                        </div>
+                    </div>
+                    <!-- End Card Próximo Servicio -->
+                    <!-- Horarios del usuario -->
+                    <div class="col-xxl-4 col-xl-12">
+                        <div class="card info-card customers-card">
+                            <!-- Filtro -->
+                            <div class="filter">
+                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                    <li class="dropdown-header text-start">
+                                        <h6>Filter</h6>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Today</a></li>
+                                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                </ul>
+                            </div>
+                            <!-- End Filtro -->
+                            <div class="card-body">
+                                <h5 class="card-title">Horarios <span>| This Year</span></h5>
+                                <div class="d-flex align-items-center">
+                                    <div
+                                        class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-clock"></i>
+                                    </div>
+                                    <!-- Tabla Horarios (solo muestra 3) -->
+                                    <div class="ps-3">
+                                        <div class="table-responsive-sm">
+                                            <table class="table table-bordered  border-dark table-hover" id="myTable">
+                                                <thead class="table-dark">
+                                                    <tr class="table-active table-group-divider" style="text-align: center;">
+                                                        <th scope="col">Paciente</th>
+                                                        <th scope="col">Horario</th>
+                                                        <th scope="col">Fecha</th>
+                                                        <th scope="col">Tipo de Guardia</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php foreach($lista_horarios as $horarios){ ?>
+                                                    <tr> 
+                                                        <td>
+                                                            <?php echo $horarios['nomPaciente']; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $horarios['horarioEntrada']; ?> -
+                                                            <?php echo $horarios['horarioSalida']; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $horarios['fecha']; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $horarios['nomGuardia']; ?>
+                                                        </td>
+                                                    </tr>
+                                                    <?php }?>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
-                                </div>
-
-                            </div>
-                        </div><!-- End Revenue Card -->
-
-                        <!-- Customers Card -->
-                        <div class="col-xxl-4 col-xl-12">
-
-                            <div class="card info-card customers-card">
-
-                                <div class="filter">
-                                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                        <li class="dropdown-header text-start">
-                                            <h6>Filter</h6>
-                                        </li>
-
-                                        <li><a class="dropdown-item" href="#">Today</a></li>
-                                        <li><a class="dropdown-item" href="#">This Month</a></li>
-                                        <li><a class="dropdown-item" href="#">This Year</a></li>
-                                    </ul>
-                                </div>
-
-                                <div class="card-body">
-                                    <h5 class="card-title">Customers <span>| This Year</span></h5>
-
-                                    <div class="d-flex align-items-center">
-                                        <div
-                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                            <i class="bi bi-people"></i>
-                                        </div>
-                                        <div class="ps-3">
-                                            <h6>1244</h6>
-                                            <span class="text-danger small pt-1 fw-bold">12%</span> <span
-                                                class="text-muted small pt-2 ps-1">decrease</span>
-
-                                        </div>
-                                    </div>
-
+                                    <!-- End Tabla Horarios -->
                                 </div>
                             </div>
-
-                        </div><!-- End Customers Card -->
-
+                        </div>
+                    </div>
+                    <!-- End Horarios del usuario -->
                         <!-- Reports -->
                         <div class="col-12">
                             <div class="card">
@@ -383,9 +374,9 @@ if (!isset($_SESSION['us'])) {
 
                             </div>
                         </div><!-- End Top Selling -->
-
-                    </div>
-                </div><!-- End Left side columns -->
+                </div>
+            </div>
+            <!-- End Left side columns -->
 
                 <!-- Right side columns -->
                 <div class="col-lg-4">
