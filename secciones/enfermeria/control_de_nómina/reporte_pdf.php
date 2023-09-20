@@ -58,19 +58,19 @@ $fecha2 = $_GET['fecha2'];
 
 // Consulta para añadir información al PDF
 
-$sentencia = $con->prepare("SELECT COUNT(A.id_check) AS asistencias, A.id_check, CONCAT(S.Nombres, ' ', S.Apellidos) AS Nombre_completo, T.nombre_guardia AS Tipo_de_guardia,
-    H.fecha AS Dias_laborados, SUM(T.sueldo) AS Sueldo_Total
-    FROM usuarios S
-    JOIN asistencias A ON S.id_usuarios = A.id_empleadoEnfermeria
-    JOIN asignacion_horarios H ON S.id_usuarios = H.id_usuario
-    JOIN puestos P ON S.id_departamentos = P.id_puestos
-    JOIN tipos_guardias T ON T.id_tiposGuardias = H.id_tiposGuardias
-    JOIN checkk C ON C.id_check = A.id_check
-    JOIN empleados M ON M.Puesto = P.id_puestos
-    JOIN estado E ON S.Estado = E.id_estado
-    WHERE id_puestos = 6
-    AND H.fecha BETWEEN :fecha1 AND :fecha2
-    GROUP BY A.id_check, CONCAT(S.Nombres, ' ', S.Apellidos), T.nombre_guardia, H.fecha");
+$sentencia = $con->prepare("SELECT A.id_empleadoEnfermeria, COUNT(*) AS asistencia, CONCAT(S.Nombres, ' ', S.Apellidos) AS 'Nombre completo', T.nombre_guardia AS 'Tipo de guardia',
+H.fecha AS 'Dias laborados', SUM(T.sueldo) * COUNT(A.id_asistencias)  AS 'Sueldo Total'
+FROM usuarios S
+JOIN asistencias A ON S.id_usuarios = A.id_empleadoEnfermeria
+JOIN asignacion_horarios H ON S.id_usuarios = H.id_usuario
+JOIN puestos P ON S.id_departamentos = P.id_puestos
+JOIN tipos_guardias T ON T.id_tiposGuardias = H.id_tiposGuardias
+JOIN checkk C ON C.id_check = A.id_check
+JOIN estado E ON S.Estado = E.id_estado
+WHERE id_puestos = 6
+AND E.id_estado = 1
+AND H.fecha BETWEEN :fecha1 AND :fecha2
+GROUP BY A.id_empleadoEnfermeria, CONCAT(S.Nombres, ' ', S.Apellidos), T.nombre_guardia, H.fecha, T.sueldo;");
 
 $sentencia->bindParam(':fecha1', $fecha1);
 $sentencia->bindParam(':fecha2', $fecha2);
@@ -79,7 +79,7 @@ $sentencia->execute();
 $pdf->Ln(0.6);
 $pdf->setX(15);
 $pdf->SetFont('Times', 'B', 12);
-$pdf->Cell(18, 10, 'Asistencias', 1, 0, 'C', 0);
+$pdf->Cell(18, 10, 'Asistencia', 1, 0, 'C', 0);
 $pdf->Cell(70, 10, 'Nombre completo', 1, 0, 'C', 0);
 $pdf->Cell(33, 10, 'Tipo de guardia', 1, 0, 'C', 0);
 $pdf->Cell(30, 10, 'Dias laborados', 1, 0, 'C', 0);
@@ -88,11 +88,11 @@ $pdf->Cell(32, 10, 'Sueldo Total', 1, 1, 'C', 0);
 while ($userRow = $sentencia->fetch(PDO::FETCH_ASSOC)) {
     $pdf->SetFont('Arial', '', 12);
     $pdf->setX(15);
-    $pdf->Cell(18, 10, utf8_decode($userRow['asistencias']), 1, 0, 'C', 0);
-    $pdf->Cell(70, 10, utf8_decode($userRow['Nombre_completo']), 1, 0, 'C', 0);
-    $pdf->Cell(33, 10, utf8_decode($userRow['Tipo_de_guardia']), 1, 0, 'C', 0);
-    $pdf->Cell(30, 10, utf8_decode($userRow['Dias_laborados']), 1, 0, 'C', 0);
-    $pdf->Cell(32, 10, utf8_decode($userRow['Sueldo_Total']), 1, 1, 'C', 0);
+    $pdf->Cell(18, 10, utf8_decode($userRow['asistencia']), 1, 0, 'C', 0);
+    $pdf->Cell(70, 10, utf8_decode($userRow['Nombre completo']), 1, 0, 'C', 0);
+    $pdf->Cell(33, 10, utf8_decode($userRow['Tipo de guardia']), 1, 0, 'C', 0);
+    $pdf->Cell(30, 10, utf8_decode($userRow['Dias laborados']), 1, 0, 'C', 0);
+    $pdf->Cell(32, 10, utf8_decode($userRow['Sueldo Total']), 1, 1, 'C', 0);
 }
 
 $pdf->Output();
