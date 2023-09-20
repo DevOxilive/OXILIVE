@@ -1,163 +1,132 @@
-/*
-    Tomar una fotografÃ­a y guardarla en un archivo v3
-    @date 2018-10-22
-    @author parzibyte
-    @web parzibyte.me/blog
-*/
-const tieneSoporteUserMedia = () =>
-    !!(navigator.getUserMedia || (navigator.mozGetUserMedia ||
-        navigator.mediaDevices.getUserMedia) || navigator.webkitGetUserMedia || navigator.msGetUserMedia)
+const tieneSoporteUserMedia = () => !!(navigator.getUserMedia || (navigator.mozGetUserMedia || navigator.mediaDevices.getUserMedia) || navigator.webkitGetUserMedia || navigator.msGetUserMedia)
 const _getUserMedia = (...arguments) =>
-    (navigator.getUserMedia || (navigator.mozGetUserMedia ||
-        navigator.mediaDevices.getUserMedia) || navigator.webkitGetUserMedia || navigator.msGetUserMedia)
+    (navigator.getUserMedia || (navigator.mozGetUserMedia || navigator.mediaDevices.getUserMedia) || navigator.webkitGetUserMedia || navigator.msGetUserMedia)
         .apply(navigator, arguments);
 
 // Declaramos elementos del DOM
 const $video = document.querySelector("#video"),
     $canvas = document.querySelector("#canvas"),
-    $boton = document.querySelector("#boton"),
-    $listaDeDispositivos = document.querySelector("#listaDeDispositivos");
-
-const limpiarSelect = () => {
-    for (let x = $listaDeDispositivos.options.length - 1; x >= 0; x--)
-        $listaDeDispositivos.remove(x);
-};
+    $boton = document.querySelector("#boton");
 const obtenerDispositivos = () => navigator
     .mediaDevices
     .enumerateDevices();
 
-// La funciÃ³n que es llamada despuÃ©s de que ya se dieron los permisos
-// Lo que hace es llenar el select con los dispositivos obtenidos
-const llenarSelectConDispositivosDisponibles = () => {
-
-    limpiarSelect();
-    obtenerDispositivos()
-        .then(dispositivos => {
-            const dispositivosDeVideo = [];
-            dispositivos.forEach(dispositivo => {
-                const tipo = dispositivo.kind;
-                if (tipo === "videoinput") {
-                    dispositivosDeVideo.push(dispositivo);
-                }
-            });
-
-            // Vemos si encontramos algÃºn dispositivo, y en caso de que si, entonces llamamos a la funciÃ³n
-            if (dispositivosDeVideo.length > 0) {
-                // Llenar el select
-                dispositivosDeVideo.forEach(dispositivo => {
-                    const option = document.createElement('option');
-                    option.value = dispositivo.deviceId;
-                    option.text = dispositivo.label;
-                    $listaDeDispositivos.appendChild(option);
-                });
-            }
-        });
-}
-
+// La función que es llamada después de que ya se dieron los permisos
 (function() {
     // Comenzamos viendo si tiene soporte, si no, nos detenemos
     if (!tieneSoporteUserMedia()) {
-        alert("Lo siento. Tu navegador no soporta esta caracterÃ­stica");
-        $estado.innerHTML = "Parece que tu navegador no soporta esta caracterÃ­stica. Intenta actualizarlo.";
+        alert("Lo siento. Tu navegador no soporta esta característica");
         return;
     }
-    //AquÃ­ guardaremos el stream globalmente
+    //Aquí guardaremos el stream globalmente
     let stream;
-
-
     // Comenzamos pidiendo los dispositivos
     obtenerDispositivos()
-        .then(dispositivos => {
-            // Vamos a filtrarlos y guardar aquÃ­ los de vÃ­deo
-            const dispositivosDeVideo = [];
-
-            // Recorrer y filtrar
-            dispositivos.forEach(function(dispositivo) {
-                const tipo = dispositivo.kind;
-                if (tipo === "videoinput") {
-                    dispositivosDeVideo.push(dispositivo);
-                }
-            });
-
-            // Vemos si encontramos algÃºn dispositivo, y en caso de que si, entonces llamamos a la funciÃ³n
-            // y le pasamos el id de dispositivo
-            if (dispositivosDeVideo.length > 0) {
-                // Mostrar stream con el ID del primer dispositivo, luego el usuario puede cambiar
-                mostrarStream(dispositivosDeVideo[0].deviceId);
+    .then(dispositivos => {
+        // Vamos a filtrarlos y guardar aquí­ los de vídeo
+        const dispositivosDeVideo = [];
+        // Recorrer y filtrar
+        dispositivos.forEach(function(dispositivo) {
+            const tipo = dispositivo.kind;
+            if (tipo === "videoinput") {
+                dispositivosDeVideo.push(dispositivo);
             }
         });
-
-
-
+        // Vemos si encontramos algún dispositivo, y en caso de que si, entonces llamamos a la función
+        // y le pasamos el id de dispositivo
+        if (dispositivosDeVideo.length > 0) {
+            // Mostrar stream con el ID del primer dispositivo, luego el usuario puede cambiar
+            mostrarStream(dispositivosDeVideo[0].deviceId);
+        }
+    });
     const mostrarStream = idDeDispositivo => {
         _getUserMedia({
-                video: {
-                    // Justo aquÃ­ indicamos cuÃ¡l dispositivo usar
-                    deviceId: idDeDispositivo,
-                }
-            },
-            (streamObtenido) => {
-                // AquÃ­ ya tenemos permisos, ahora sÃ­ llenamos el select,
-                // pues si no, no nos darÃ­a el nombre de los dispositivos
-                llenarSelectConDispositivosDisponibles();
-
-                // Escuchar cuando seleccionen otra opciÃ³n y entonces llamar a esta funciÃ³n
-                $listaDeDispositivos.onchange = () => {
-                    // Detener el stream
-                    if (stream) {
-                        stream.getTracks().forEach(function(track) {
-                            track.stop();
-                        });
+            video: {
+                // Justo aquí indicamos cuál dispositivo usar
+                deviceId: idDeDispositivo,
+            }
+        },
+        (streamObtenido) => {
+            // Simple asignación
+            stream = streamObtenido;
+            // Mandamos el stream de la cámara al elemento de ví­deo
+            $video.srcObject = stream;
+            $video.play();
+            //Escuchar el click del botón para tomar la foto
+            //Escuchar el click del botón para tomar la foto
+            $boton.addEventListener("click",function() {
+                //Pausar reproducción
+                $video.pause();
+                //Obtener contexto del canvas y dibujar sobre él
+                let contexto = $canvas.getContext("2d");
+                $canvas.width = $video.videoWidth;
+                $canvas.height = $video.videoHeight;
+                contexto.drawImage($video, 0, 0, $canvas.width, $canvas.height);
+                let foto = $canvas.toDataURL(); //Esta es la foto, en base 64
+                
+                fetch("model/tomarAsistencia.php", {
+                    method: "POST",
+                    body: encodeURIComponent(foto),
+                    headers: {
+                        "Content-type": "application/x-www-form-urlencoded",
                     }
-                    // Mostrar el nuevo stream con el dispositivo seleccionado
-                    mostrarStream($listaDeDispositivos.value);
-                }
+                })
+                .then(resultado => {
+                    // A los datos los decodificamos como texto plano
+                    return resultado.text()
+                })
+                .then(nombreDeLaFoto => {
+                    // nombreDeLaFoto trae el nombre de la imagen que le dio PHP
+                    console.log("La foto fue enviada correctamente");
+                    $estado.innerHTML = `Foto guardada con éxito. Puedes verla <a target='_blank' href='./${nombreDeLaFoto}'> aquí</a>`;
+                })
 
-                // Simple asignaciÃ³n
-                stream = streamObtenido;
-
-                // Mandamos el stream de la cÃ¡mara al elemento de vÃ­deo
-                $video.srcObject = stream;
+                //Reanudar reproducción
                 $video.play();
-
-                //Escuchar el click del botÃ³n para tomar la foto
-                //Escuchar el click del botÃ³n para tomar la foto
-                $boton.addEventListener("click", function() {
-
-                    //Pausar reproducciÃ³n
-                    $video.pause();
-
-                    //Obtener contexto del canvas y dibujar sobre Ã©l
-                    let contexto = $canvas.getContext("2d");
-                    $canvas.width = $video.videoWidth;
-                    $canvas.height = $video.videoHeight;
-                    contexto.drawImage($video, 0, 0, $canvas.width, $canvas.height);
-
-                    let foto = $canvas.toDataURL(); //Esta es la foto, en base 64
-                    $estado.innerHTML = "Enviando foto. Por favor, espera...";
-                    fetch("./guardar_foto.php", {
-                            method: "POST",
-                            body: encodeURIComponent(foto),
-                            headers: {
-                                "Content-type": "application/x-www-form-urlencoded",
-                            }
-                        })
-                        .then(resultado => {
-                            // A los datos los decodificamos como texto plano
-                            return resultado.text()
-                        })
-                        .then(nombreDeLaFoto => {
-                            // nombreDeLaFoto trae el nombre de la imagen que le dio PHP
-                            console.log("La foto fue enviada correctamente");
-                            $estado.innerHTML = `Foto guardada con Ã©xito. Puedes verla <a target='_blank' href='./${nombreDeLaFoto}'> aquÃ­</a>`;
-                        })
-
-                    //Reanudar reproducciÃ³n
-                    $video.play();
-                });
-            }, (error) => {
-                console.log("Permiso denegado o error: ", error);
-                $estado.innerHTML = "No se puede acceder a la cÃ¡mara, o no diste permiso.";
+                window.location.href.replace('C:\laragon\www\OXILIVE\secciones/enfermeria/user/index.php');
             });
+        },
+        (error) => {
+            console.log("Permiso denegado o error: ", error);
+        });
     }
 })();
+ //Funcion cancelar
+function confirmCancel(event) {
+    event.preventDefault();
+    Swal.fire({
+        title: '¿Estás seguro?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, cancelar',
+        cancelButtonText: 'No, continuar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Aquí puedes redirigir al usuario a otra página o realizar alguna otra acción
+            window.location.href = "index.php";
+        }
+    });
+}
+
+//Funcion de geolocalizacion
+//Funciones para la ubicación
+
+if(!navigator.geolocation) {
+    console.log('Geolocalización no disponible.');
+} else {
+    console.log('Geolocalizando...');
+    navigator.geolocation.getCurrentPosition(pos_ok, pos_fallo);
+}
+
+function pos_ok (posicion) {
+    console.log(posicion);
+    var latitud  = posicion.coords.latitude;
+    var longitud = posicion.coords.longitude;
+    document.getElementById('latitud').value = latitud;
+    document.getElementById('longitud').value = longitud;
+}
+function pos_fallo () {
+    console.log('Error al geolocalizar.');
+}

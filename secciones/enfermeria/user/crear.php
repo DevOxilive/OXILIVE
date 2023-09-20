@@ -41,32 +41,32 @@ if (!isset($_SESSION['us'])) {
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Estilos de la cámara 
-    <link rel="stylesheet" href="css/camara.css"> -->
-    <!-- Función de la cámara -->
-    <style>
-		@media only screen and (max-width: 700px) {
-			video {
-				max-width: 100%;
-			}
-		}
-	</style>
+    <!-- Estilos de la cámara -->
+    <link rel="stylesheet" href="css/camara.css"> 
 </head>
 <body>
     <center>
-	    <div>
-	    	<select name="listaDeDispositivos" id="listaDeDispositivos"></select>
-	    	<button id="boton">Tomar foto</button>
-	    </div>
-        <div class="ps-4" >
-            <a class="btn btn-outline-success" href="crear.php" role="button">
-                <i class="bi bi-clipboard-check-fill"></i>
-                    Comenzar servicio
-            </a>
+	    <video muted id="video"></video>
+	    <canvas id="canvas"></canvas>
+        <div class="row btn-bar">
+            <div class="ps-4" >
+                <a class="btn btn-outline-danger" onclick="confirmCancel(event)" id="cancelar" role="button">
+                        Cancelar
+                </a>
+            </div>
+            <div class="ps-4" >
+                <a class="btn btn-outline-primary" href="" id="boton" role="button">
+                        Tomar foto
+                </a>
+            </div>
         </div>
-	    <br>
-	    <video muted="muted" id="video"></video>
-	    <canvas id="canvas" style="display: none;"></canvas>
-    <</center>
+    </center>
+    <!-- Etiqueta oculta para mandar el id del usuario de la sesión que va a dar su check -->
+    <input type="hidden" id="idUser" name="idUser" value="<?php echo $_SESSION['idus']; ?>">
+    
+    <!-- Etiqueta oculta para mandar la ubicación del usuario -->
+    <input type="hidden" id="latitud" name="latitud">
+    <input type="hidden" id="longitud" name="longitud">
 </body>
+<!-- Función de la cámara -->
 <script src="js/camara.js"></script>
