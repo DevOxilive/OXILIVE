@@ -1,4 +1,4 @@
-<?
+<?php
 $imagenCodificada = file_get_contents("php://input"); //Obtener la imagen
 if(strlen($imagenCodificada) <= 0) exit("No se recibió ninguna imagen");
 //La imagen traerá al inicio data:image/png;base64, cosa que debemos remover

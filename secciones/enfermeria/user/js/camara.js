@@ -6,7 +6,9 @@ const _getUserMedia = (...arguments) =>
 // Declaramos elementos del DOM
 const $video = document.querySelector("#video"),
     $canvas = document.querySelector("#canvas"),
-    $boton = document.querySelector("#boton");
+    $boton = document.querySelector("#boton"),
+    $latitud = document.querySelector("#latitud"),
+    $longitud = document.querySelector("#longitud");
 const obtenerDispositivos = () => navigator
     .mediaDevices
     .enumerateDevices();
@@ -52,9 +54,35 @@ const obtenerDispositivos = () => navigator
             // Mandamos el stream de la cámara al elemento de ví­deo
             $video.srcObject = stream;
             $video.play();
+
+            //Función para mandar los datos
+            $('#boton').click(function(){
+                $video.pause();
+                let contexto = $canvas.getContext("2d");
+                $canvas.width = $video.videoWidth;
+                $canvas.height = $video.videoHeight;
+                contexto.drawImage($video, 0, 0, $canvas.width, $canvas.height);
+                let foto = $canvas.toDataURL(); //Esta es la foto, en base 64
+                let lat = $latitud;
+                let lon = $longitud;
+                //Mediante AJAX se envían por método POST
+                $.ajax({
+                    url : 'model/tomarAsistencia.php',
+                    data : foto, lat, lon,
+                    method : 'post',
+                    dataType : 'json',
+                    success : function(response){
+                        alert("funciona bien");
+                        window.location.replace("../index.php");
+                    },
+                    error: function(error){
+                        alert("No funciona");
+                    }
+                });
+            });
             //Escuchar el click del botón para tomar la foto
             //Escuchar el click del botón para tomar la foto
-            $boton.addEventListener("click",function() {
+            /*$boton.addEventListener("click",function() {
                 //Pausar reproducción
                 $video.pause();
                 //Obtener contexto del canvas y dibujar sobre él
@@ -64,6 +92,7 @@ const obtenerDispositivos = () => navigator
                 contexto.drawImage($video, 0, 0, $canvas.width, $canvas.height);
                 let foto = $canvas.toDataURL(); //Esta es la foto, en base 64
                 
+    
                 fetch("model/tomarAsistencia.php", {
                     method: "POST",
                     body: encodeURIComponent(foto),
@@ -84,13 +113,14 @@ const obtenerDispositivos = () => navigator
                 //Reanudar reproducción
                 $video.play();
                 window.location.href.replace('C:\laragon\www\OXILIVE\secciones/enfermeria/user/index.php');
-            });
+            });*/
         },
         (error) => {
             console.log("Permiso denegado o error: ", error);
         });
     }
-})();
+})
+();
  //Funcion cancelar
 function confirmCancel(event) {
     event.preventDefault();
