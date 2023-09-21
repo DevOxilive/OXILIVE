@@ -52,7 +52,7 @@ if (!isset($_SESSION['us'])) {
                         <?php foreach ($trabajador as $trab) { ?>
                         <tr>
                             <th scope="row">
-                                <?php echo $trab['id_check']; ?>
+                                <?php echo $trab['asistencia']; ?>
                             </th>
                             <td>
                                 <?php echo $trab['Nombre completo']; ?>
@@ -81,6 +81,7 @@ if (!isset($_SESSION['us'])) {
 </main>
 <!-- End #main -->
 <script>
+
 function generarReportePDF() {
     // Obtener los valores de fecha1 y fecha2
     var fecha1 = document.getElementById("fecha1").value;
