@@ -93,7 +93,7 @@ if ($_POST) {
     $sentencia->execute();
 
     $carpeta_usuario = "./PAPELETA/" . $Apellidos . " " . $Nombres;
-    $otra_ruta = "../../enfermeria/hojaComplementaria/PAPELETA/" . $Apellidos . " " . $Nombres; 
+    $otra_ruta = "../../Padministradora/pacientes/PAPELETA/" . $Apellidos . " " . $Nombres; 
     
     function guardarArchivo($tmp_file, $nombre_original, $carpeta_usuario) {
         if (!empty($nombre_original) && $tmp_file != '') {

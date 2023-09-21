@@ -4,7 +4,6 @@ if (!isset($_SESSION['us'])) {
   header('Location: ../../login.php');
 } elseif (isset($_SESSION['us'])) {
   include("../../templates/header.php");
-  include("../../connection/conexion.php");
   include("../aseguradoras/consulta.php");
 } else {
   echo "Error en el sistema";

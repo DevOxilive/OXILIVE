@@ -33,17 +33,17 @@ if (!isset($_SESSION['us'])) {
                     <label for="Foto_perfil" class="form-label">Foto de perfil</label> <br>
                         <div class="profile-picture">
                             <div class="picture-container">
-                                <?php if (!empty($Foto_perfil)){ ?>
+                                <?php if (!empty($Foto_perfil)): ?>
                                     <img src="../../secciones/usuarios/OXILIVE/<?php echo $apellidos . " " .$nombres ?>/<?php echo $Foto_perfil; ?>" alt="" id="imagenActual"
                                         class="img-thumbnail rounded-circle">
-                                <?php }else{ ?>
-                                    <img src="../../img/png.png" alt="Foto de perfil" id="imagenActual"
+                                <?php else: ?>
+                                    <img src="./img/default-avatar.png" alt="Foto de perfil" id="imagenActual"
                                         class="img-thumbnail">
-                                <?php } ?>
+                                <?php endif; ?>
                                 <div class="overlay">
-                                    <?php if (!empty($Foto_perfil)){ ?>    
                                     <label for="Foto_perfil" class="change-link"><i class="fas fa-camera"></i> </label>
-                                    <?php } ?>
+                                    <?php if (!empty($Foto_perfil)): ?>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
@@ -134,47 +134,41 @@ if (!isset($_SESSION['us'])) {
                     <div class="contenido col-md-2">
                         <label for="alcaldia" class="form-label">Alcaldia</label>
                         <input type="text" value="<?php echo $alcaldia; ?>" class="form-control" name="alcaldia"
-                            id="alcaldia" placeholder="alcaldia">
+                            id="alcaldia" placeholder="alcaldia" required>
                     </div>
 
-                    <div class="contenido col-md-4">
-                        <label for="calle" class="form-label">Calle:</label></label>
-                        <input type="text" value="<?php echo $calle; ?>" class="form-control" name="calle"
-                            id="calle" placeholder="Calle">
-                    </div>
-
-                    <div class="contenido col-md-2">
+                    <div class="contenido col-md-1">
                         <label for="num_interior" class="form-label">Numero Interior</label>
                         <input type="text" value="<?php echo $num_interior; ?>" class="form-control" name="num_interior"
-                            id="num_interior" placeholder="num_interior">
+                            id="num_interior" placeholder="num_interior" required>
                     </div>
 
-                    <div class="contenido col-md-2">
+                    <div class="contenido col-md-1">
                         <label for="num_exterior" class="form-label">Numero Exterior</label>
                         <input type="text" value="<?php echo $num_exterior; ?>" class="form-control" name="num_exterior"
-                            id="num_exterior" placeholder="num_exterior">
+                            id="num_exterior" placeholder="num_exterior" required>
                     </div>
                     <div class="contenido col-md-2">
                         <label for="codigo_postal" class="form-label">Codigo Postal</label>
                         <input type="text" value="<?php echo $codigo_postal; ?>" class="form-control"
-                            name="codigo_postal" id="codigo_postal" placeholder="codigo_postal">
+                            name="codigo_postal" id="codigo_postal" placeholder="codigo_postal" required>
                     </div>
 
-                    <div class="contenido col-md-4">
+                    <div class="contenido col-md-2">
                         <label for="calleUno" class="form-label">Entre Calle:</label></label>
                         <input type="text" value="<?php echo $calleUno; ?>" class="form-control" name="calleUno"
-                            id="calleUno" placeholder="calleUno">
+                            id="calleUno" placeholder="calleUno" required>
                     </div>
 
-                    <div class="contenido col-md-4">
+                    <div class="contenido col-md-2">
                         <label for="calleDos" class="form-label">Y calle:</label>
                         <input type="text" value="<?php echo $calleDos; ?>" class="form-control" name="calleDos"
-                            id="calleDos" placeholder="calleDos">
+                            id="calleDos" placeholder="calleDos" required>
                     </div>
                     <div class="contenido col-md-4">
                         <label for="referencias" class="form-label">Referencias</label>
                         <input type="text" value="<?php echo $referencias; ?>" class="form-control" name="referencias"
-                            id="referencias" placeholder="referencias">
+                            id="referencias" placeholder="referencias" required>
                     </div>
 
                     <div class="col-md-3">
@@ -184,23 +178,23 @@ if (!isset($_SESSION['us'])) {
                     </div>
 
                     <div class="col-md-4">
-                        <label for="credencialFrente" class="form-label">Credencial de elector (Anverso)</label>
+                        <label for="credencialFrente" class="form-label">(INE) Credencial parte superior </label>
                         <br>
                         <div class="profile-picture-cre">
                             <div class="picture-container-cre">
-                                <?php if (!empty($credencialFrente)){ ?>
-                                    <img src="OXILIVE/<?php echo $apellidos . " " . $nombres?>/<?php echo $credencialFrente; ?>"
+                                <?php if (!empty($credencialFrente)): ?>
+                                    <img src="./OXILIVE/<?php echo $apellidos . " " . $nombres?>/<?php echo $credencialFrente; ?>"
                                         alt="" id="imagenActual1" class="img-thumbnail-ine"
                                         style="width: 350px ; height: 210px;">
-                                <?php }else{ ?>
-                                    <img src="../../img/anverso.jpg" alt="foto de perfil" id="imagenActual1"
+                                <?php else: ?>
+                                    <img src="../../img/OXILIVE.ico" alt="foto de perfil" id="imagenActual1"
                                         class="img-thumbnail-ine">
-                                <?php } ?>
+                                <?php endif; ?>
                                 <div class="overlay-cre">
-                                    <?php if (empty($credencialFrente)){ ?>
                                     <label for="credencialFrente" class="change-link"><i class="fas fa-camera"></i>
                                     </label>
-                                    <?php } ?>
+                                    <?php if (!empty($credencialFrente)): ?>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
@@ -211,23 +205,23 @@ if (!isset($_SESSION['us'])) {
 
 
                     <div class="col-md-4">
-                        <label for="credencialAtras" class="form-label">Credencial de elector (Reverso)</label>
+                        <label for="credencialAtras" class="form-label">(INE) Credencial parte inferior </label>
                         <br>
                         <div class="profile-picture-cre">
                             <div class="picture-container-cre">
-                                <?php if (!empty($credencialAtras)){ ?>
-                                    <img src="OXILIVE/<?php echo $apellidos . " " . $nombres?>/<?php echo $credencialAtras; ?>"
+                                <?php if (!empty($credencialAtras)): ?>
+                                    <img src="./OXILIVE/<?php echo $apellidos . " " . $nombres?>/<?php echo $credencialAtras; ?>"
                                         alt="" id="imagenActual2" class="img-thumbnail-ine"
                                         style="width: 350px ; height: 210px;">
-                                <?php }else{ ?>
-                                    <img src="../../img/reverso.jpg" alt="foto de perfil" id="imagenActual2"
+                                <?php else: ?>
+                                    <img src="../../img/OXILIVE.ico" alt="foto de perfil" id="imagenActual2"
                                         class="img-thumbnail-ine">
-                                <?php } ?>
+                                <?php endif; ?>
                                 <div class="overlay-cre">
-                                    <?php if (empty($credencialAtras)){ ?>
                                     <label for="credencialAtras" class="change-link"><i class="fas fa-camera"></i>
                                     </label>
-                                    <?php } ?>
+                                    <?php if (!empty($credencialAtras)): ?>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>

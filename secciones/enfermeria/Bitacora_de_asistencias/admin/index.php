@@ -3,9 +3,9 @@ session_start();
 if (!isset($_SESSION['us'])) {
   header('Location: ../../../login.php');
 } elseif (isset($_SESSION['us'])) {
-  include("../../../templates/header.php");
-  include("../../../connection/conexion.php");
-  include("./consulta.php");
+  include("../../../../templates/header.php");
+  include("../../../../connection/conexion.php");
+  include("./consulta_estatus.php");
 } else {
   echo "Error en el sistema";
 }
@@ -16,23 +16,15 @@ if (!isset($_SESSION['us'])) {
 <main id="main" class="main">
     <div class="row">
         <div class="card-header" style="text-align: right;">
-            <input type="date" id="fecha1">
-            |
-            <input type="date" id="fecha2">
             <!-- Boton para el reporte en PDF -->
-            <a class="btn btn-outline-info" href="#" onclick="generarReportePDF();" role="button">
-                <i class="bi bi-printer-fill"></i>
-            </a>
-             <!-- Boton para el reporte en Excel -->
-             <a class="btn btn-outline-success" href="#" onclick="generarReporteExcel();" role="button">
-                <i class="bi bi-filetype-xlsx"></i>
-            </a>
+            <a class="btn btn-outline-info" href="" role="button"><i class="bi bi-printer-fill"></i></a>
         </div>
+    </div>
 
     </div>
     <div class="card">
         <div class="card-header">
-            Registro de nóminas
+            <p class="font-weight-bold">Bitacora de asistencia</p>
 
             <!-- Inicia tabla -->
         </div>
@@ -41,35 +33,48 @@ if (!isset($_SESSION['us'])) {
                 <table class="table table-bordered border-dark table-hover" id="myTable">
                     <thead class="table-dark">
                         <tr class="table-active table-group-divider" style="text-align: center;">
-                            <th scope="col">Asistencias</th>
                             <th scope="col">Nombre completo</th>
-                            <th scope="col">Tipo de guardia</th>
-                            <th scope="col">Dias laborados</th>
-                            <th scope="col">Sueldo Total</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Hora de entrada</th>
+                            <th scope="col">Hora de salida</th>
+                            <th scope="col">Estatus</th>
+                            <th scope="col">Mas detalles</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($trabajador as $trab) { ?>
+
+                        <?php foreach ($estatus as $St) { ?>
                         <tr>
                             <th scope="row">
-                                <?php echo $trab['asistencia']; ?>
+                                <?php echo $St['Nombre completo']; ?>
                             </th>
                             <td>
-                                <?php echo $trab['Nombre completo']; ?>
+                                <?php echo $St['fecha_asis']; ?>
                             </td>
                             <td>
-                                <?php echo $trab['Tipo de guardia']; ?>
+                                <?php echo $St['Hora de entrada']; ?>
                             </td>
                             <td>
-                                <?php echo $trab['Dias laborados']; ?>
+                                <?php echo $St['Hora de salida']; ?>
                             </td>
                             <td>
 
-                                <?php echo $trab['Sueldo Total']; ?>
+                                <?php echo $St['Estatus']; ?>
 
                             </td>
+                            <td>
+                                <a name="" id="" class="btn btn-warning"
+                                    href="pacientes.php?txtID=<?php echo $pacien['id_pacientes']; ?>" role="button"
+                                    style="font-size:10px;"><i class="bi bi-info-square"></i></a> |
+                                <a name="" id="" class="btn btn-outline-warning"
+                                    href="editar.php?txtID=<?php echo $pacien['id_pacientes']; ?>" role="button"><i
+                                        class="bi bi-info-square"></i></a> 
+                            
+                            </td>   
+
                         </tr>
                         <?php } ?>
+
                     </tbody>
                 </table>
 
@@ -81,32 +86,6 @@ if (!isset($_SESSION['us'])) {
 </main>
 <!-- End #main -->
 <script>
-
-function generarReportePDF() {
-    // Obtener los valores de fecha1 y fecha2
-    var fecha1 = document.getElementById("fecha1").value;
-    var fecha2 = document.getElementById("fecha2").value;
-
-    // Construir la URL con los parámetros
-    var url = "reporte_pdf.php?fecha1=" + fecha1 + "&fecha2=" + fecha2;
-
-    // Redirigir al usuario a la página con los parámetros
-    window.open(url, "_blank");
-}
-
-function generarReporteExcel() {
-        // Obtener los valores de fecha1 y fecha2
-        var fecha1 = document.getElementById("fecha1").value;
-        var fecha2 = document.getElementById("fecha2").value;
-
-        // Construir la URL con los parámetros
-        var url = "reporte_excel.php?fecha1=" + fecha1 + "&fecha2=" + fecha2;
-
-        // Redirigir al usuario a la página con los parámetros
-        window.location.href = url;
-    }
-
-
 function eliminar(codigo) {
     Swal.fire({
         title: '¿Estas seguro?',
@@ -146,16 +125,6 @@ function mandar(codigo) {
 
     });
 
-    // Obtener fecha actual
-    let fecha = new Date();
-    // Obtener cadena en formato yyyy-mm-dd, eliminando zona y hora
-    let fechaMax = fecha.toISOString().split('T')[0];
-    // Asignar valor mínimo
-    document.querySelector('#fecha1').max = fechaMax;
-
-
-
-
     // Agrega la animación a los bordes de las filas
     const rows = document.querySelectorAll(".animated-border");
     rows.forEach(row => {
@@ -183,5 +152,5 @@ $(document).ready(function() {
 </script>
 
 <?php
-include("../../../templates/footer.php");
+include("../../../../templates/footer.php");
 ?>

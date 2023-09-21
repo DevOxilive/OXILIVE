@@ -1,14 +1,18 @@
+
 const tieneSoporteUserMedia = () => !!(navigator.getUserMedia || (navigator.mozGetUserMedia || navigator.mediaDevices.getUserMedia) || navigator.webkitGetUserMedia || navigator.msGetUserMedia)
 const _getUserMedia = (...arguments) =>
     (navigator.getUserMedia || (navigator.mozGetUserMedia || navigator.mediaDevices.getUserMedia) || navigator.webkitGetUserMedia || navigator.msGetUserMedia)
+
         .apply(navigator, arguments);
 
 // Declaramos elementos del DOM
 const $video = document.querySelector("#video"),
     $canvas = document.querySelector("#canvas"),
     $boton = document.querySelector("#boton"),
+
     $latitud = document.querySelector("#latitud"),
     $longitud = document.querySelector("#longitud");
+
 const obtenerDispositivos = () => navigator
     .mediaDevices
     .enumerateDevices();
@@ -147,3 +151,4 @@ function pos_ok (posicion) {
 function pos_fallo () {
     console.log('Error al geolocalizar.');
 }
+

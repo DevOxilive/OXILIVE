@@ -820,9 +820,9 @@ h6 {
   flex-grow: 0;
 }
 
-.dashboard .next-service-card .card-icon {
-  color: #198754;
-  background: #96c0ac;
+.dashboard .sales-card .card-icon {
+  color: #4154f1;
+  background: #f6f6fe;
 }
 
 .dashboard .revenue-card .card-icon {

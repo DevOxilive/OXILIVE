@@ -122,11 +122,6 @@ if (!isset($_SESSION['us'])) {
             <input type="text" class="form-control" name="codigo_postal" id="codigo_postal" placeholder="12345">
           </div>
 
-          <div class="contenido col-md-3">
-            <label for="calle" class="form-label">Calle</label>
-            <input type="text" class="form-control" name="calle" id="calle" placeholder="Calle">
-          </div>
-
           <div class="contenido col-md-2">
             <label for="num_interior" class="form-label">Número Interior</label>
             <input type="text" class="form-control" name="num_interior" id="num_interior">

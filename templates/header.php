@@ -332,7 +332,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
           </a>
           <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-              <a href="<?php echo $url_base; ?>secciones/enfermeria/ChatApp/index.php">
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/Chat_/index.php">
                 <i class="bi bi-circle"></i><span>Chat General</span>
               </a>
             </li>
@@ -354,10 +354,10 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                 <i class="bi bi-circle"></i><span>Guardias</span>
               </a>
             </li>
-            <!-- Módulo de asistencias -->
+            <!-- Módulo de Bitacora de asistencias -->
             <li>
-              <a href="<?php echo $url_base; ?>secciones/enfermeria/asistencia/admin/index.php">
-                <i class="bi bi-circle"></i><span>Asistencia</span>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/Bitacora_de_asistencias/admin/index.php">
+                <i class="bi bi-circle"></i><span>Bitacora de asistencias</span>
               </a>
             </li>
             <!-- Módulo de Enfermeros -->
@@ -393,6 +393,10 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
           </a>
           <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
+<<<<<<< HEAD
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/Chat_/index.php">
+                <i class="bi bi-circle"></i><span>chat general</span>
+=======
               <a href="<?php echo $url_base; ?>secciones/enfermeria/user/index.php">
                 <i class="bi bi-circle"></i><span>Dashboard</span>
               </a>
@@ -400,6 +404,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
             <li>
               <a href="<?php echo $url_base; ?>secciones/enfermeria/ChatApp/index.php">
                 <i class="bi bi-circle"></i><span>Chat General</span>
+>>>>>>> 6d5dbd6d0de6675092181156e46e7ed9c17e6ff9
               </a>
             </li>
           </ul>
@@ -556,7 +561,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
       event.preventDefault();
       var notificacionesOcultas = document.querySelectorAll('.notification-item.hidden');
       notificacionesOcultas.forEach(function(item) {
-          item.classList.remove('hidden');
+        item.classList.remove('hidden');
       });
       verMasBtn.style.display = 'none'; // Oculta el botón "Ver más"
     });
