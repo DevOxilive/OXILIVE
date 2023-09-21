@@ -2,16 +2,20 @@
 include '../../../../connection/conexion.php';
 
 session_start();
-$sentencia = $con->prepare("SELECT * FROM usuarios WHERE id_usuarios != {$_SESSION['idus']} AND (id_departamentos = 6 OR id_departamentos = 1) ORDER BY id_usuarios DESC");
+$sentencia = $con->prepare("SELECT * FROM usuarios WHERE id_usuarios != {$_SESSION['idus']} AND (id_departamentos = 6 OR id_departamentos = 1);");
 $sentencia->execute();
 $resultado = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
 echo '<a href="src/chat.php" target="_blank" rel="noopener noreferrer">
-<li><b>Chat general</b></li>
-</a>';
+            <li><b>Chat general</b></li>
+      </a>';
 if (count($resultado) > 0) {
     foreach ($resultado as $fila) {
-        echo '<a href="php/chat.php?chat=' . $fila['id_usuarios'] . '" target="_blank" rel="noopener noreferrer"><li><b>' . $fila['Usuario'] . '</b></li></a>';
+        echo '<a href="php/chat.php?chat=' . $fila['id_usuarios'] . '" target="_blank" rel="noopener noreferrer">
+                <li>
+                    <img src="" alt="img perfil"><b>' . $fila['Usuario'] . '</b><br><p>ultimo Mensaje:</p>
+                </li>
+              </a>';
     }
 } else {
     // si no envia el mensaje de comenzar chat

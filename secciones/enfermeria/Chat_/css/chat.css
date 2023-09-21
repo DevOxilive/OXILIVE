@@ -8,9 +8,6 @@
     padding: 10px;
     height: 55vh;
     overflow-y: scroll;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
     /* Habilitar desplazamiento vertical */
 }
 
@@ -86,6 +83,8 @@ button[type="submit"] {
     max-width: 100%;
     width: fit-content;
     word-wrap: break-word;
+    float: left;
+    clear: both;
 }
 
 .burbuja-you {
@@ -98,6 +97,8 @@ button[type="submit"] {
     width: fit-content;
     word-wrap: break-word;
     max-width: 100%;
+    float: right;
+    clear: both;
     /* Alinear a la derecha */
 }
 

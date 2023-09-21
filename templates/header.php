@@ -398,7 +398,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
               </a>
             </li>
             <li>
-              <a href="<?php echo $url_base; ?>secciones/enfermeria/ChatApp/index.php">
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/Chat_/index.php">
                 <i class="bi bi-circle"></i><span>Chat General</span>
               </a>
             </li>

@@ -12,14 +12,13 @@ if (!isset($_SESSION['us'])) {
 <!-- seccion de chat formaulario-->
 <link rel="stylesheet" href="css/index.css">
 <main id="main" class="main">
-    <center>
-        <h1>proximamente <b>Chat version 3<b></h1>
-    </center>
     <br>
     <div class="row">
         <div class="content">
             <div class="user-list-container">
-                <h1>Selecciona un <b>Chat</b></h1>
+                <center>
+                    <h1>Selecciona un <b>Chat</b></h1>
+                </center>
                 <ul id="users-list">
                     <!-- aqui se generan los usuarios desde la base de datos -->
                 </ul>

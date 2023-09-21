@@ -5,11 +5,14 @@ $(document).ready(function () {
     loadMessages();
     // Enviar mensaje
     $('#send').click(function () {
-        var message = $('#message').val();
+        var message = $('#message').val().trim();
         var user = $('#user').val();
         var output = $('#output').val();
         var userC = $('userChat').val();
-        if (message !== '') {
+        // validacion
+        var contieneTexto = /\S/.test(message);
+
+        if (contieneTexto) {
             $.ajax({
                 url: 'send_message.php', //ruta del archivo que envia a la base los mensajes
                 type: 'POST',
@@ -19,6 +22,7 @@ $(document).ready(function () {
                     loadMessages();
                     scrollToBottom();
                 }
+                //no lo deja enviar si no tiene texto el mensaje.
             });
         }
     });
