@@ -26,7 +26,7 @@ $(document).ready(function () {
     function loadMessages() {
         var output = $('#output').val();
         $.ajax({
-            url: 'get_message.php', //ruta del archivo que genera los mensajes
+            url: 'get_message.php', //ruta del archivo que general los mensajes
             type: 'POST',
             data: { output: output },
             success: function (data) {
