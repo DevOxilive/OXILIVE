@@ -331,7 +331,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
           </a>
           <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-              <a href="<?php echo $url_base; ?>secciones/enfermeria/ChatApp/index.php">
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/Chat_/index.php">
                 <i class="bi bi-circle"></i><span>Chat General</span>
               </a>
             </li>
@@ -386,7 +386,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
           </a>
           <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-              <a href="<?php echo $url_base; ?>secciones/enfermeria/ChatApp/index.php">
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/Chat_/index.php">
                 <i class="bi bi-circle"></i><span>chat general</span>
               </a>
             </li>
