@@ -5,6 +5,7 @@ if (!isset($_SESSION['us'])) {
 } elseif (isset($_SESSION['us'])) {
   include("../../../../templates/header.php");
   include("../../../../connection/conexion.php");
+  include("./consulta_estatus.php");
 } else {
   echo "Error en el sistema";
 }
@@ -17,13 +18,13 @@ if (!isset($_SESSION['us'])) {
         <div class="card-header" style="text-align: right;">
             <!-- Boton para el reporte en PDF -->
             <a class="btn btn-outline-info" href="" role="button"><i class="bi bi-printer-fill"></i></a>
-    </div>
         </div>
+    </div>
 
     </div>
     <div class="card">
         <div class="card-header">
-        <p class="font-weight-bold">Bitacora de asistencia</p>
+            <p class="font-weight-bold">Bitacora de asistencia</p>
 
             <!-- Inicia tabla -->
         </div>
@@ -41,9 +42,39 @@ if (!isset($_SESSION['us'])) {
                         </tr>
                     </thead>
                     <tbody>
-                       
+
+                        <?php foreach ($estatus as $St) { ?>
+                        <tr>
+                            <th scope="row">
+                                <?php echo $St['Nombre completo']; ?>
+                            </th>
+                            <td>
+                                <?php echo $St['fecha_asis']; ?>
+                            </td>
+                            <td>
+                                <?php echo $St['Hora de entrada']; ?>
+                            </td>
+                            <td>
+                                <?php echo $St['Hora de salida']; ?>
+                            </td>
+                            <td>
+
+                                <?php echo $St['Estatus']; ?>
+
+                            </td>
+                            <td>
+                                <a name="" id="" class="btn btn-warning"
+                                    href="pacientes.php?txtID=<?php echo $pacien['id_pacientes']; ?>" role="button"
+                                    style="font-size:10px;"><i class="bi bi-info-square"></i></a> |
+                                <a name="" id="" class="btn btn-outline-warning"
+                                    href="editar.php?txtID=<?php echo $pacien['id_pacientes']; ?>" role="button"><i
+                                        class="bi bi-info-square"></i></a> 
+                            
+                            </td>   
+
                         </tr>
-                        
+                        <?php } ?>
+
                     </tbody>
                 </table>
 
@@ -55,8 +86,6 @@ if (!isset($_SESSION['us'])) {
 </main>
 <!-- End #main -->
 <script>
-
-
 function eliminar(codigo) {
     Swal.fire({
         title: '¿Estas seguro?',
