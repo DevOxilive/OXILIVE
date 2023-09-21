@@ -63,6 +63,8 @@ if (!isset($_SESSION['us'])) {
     </center>
     <!-- Etiqueta oculta para mandar el id del usuario de la sesión que va a dar su check -->
     <input type="hidden" id="idUser" name="idUser" value="<?php echo $_SESSION['idus']; ?>">
+
+    <input type="hidden" id="status" name="status" value="<?php echo $_SESSION['estado']; ?>">
     
     <!-- Etiqueta oculta para mandar la ubicación del usuario -->
     <input type="hidden" id="latitud" name="latitud">

@@ -54,48 +54,35 @@ const obtenerDispositivos = () => navigator
             // Mandamos el stream de la cámara al elemento de ví­deo
             $video.srcObject = stream;
             $video.play();
-
-            //Función para mandar los datos
-            $('#boton').click(function(){
-                $video.pause();
-                let contexto = $canvas.getContext("2d");
-                $canvas.width = $video.videoWidth;
-                $canvas.height = $video.videoHeight;
-                contexto.drawImage($video, 0, 0, $canvas.width, $canvas.height);
-                let foto = $canvas.toDataURL(); //Esta es la foto, en base 64
-                let lat = $latitud;
-                let lon = $longitud;
-                //Mediante AJAX se envían por método POST
-                $.ajax({
-                    url : 'model/tomarAsistencia.php',
-                    data : foto, lat, lon,
-                    method : 'post',
-                    dataType : 'json',
-                    success : function(response){
-                        alert("funciona bien");
-                        window.location.replace("../index.php");
-                    },
-                    error: function(error){
-                        alert("No funciona");
-                    }
-                });
-            });
             //Escuchar el click del botón para tomar la foto
-            //Escuchar el click del botón para tomar la foto
-            /*$boton.addEventListener("click",function() {
+            $boton.addEventListener("click",function() {
                 //Pausar reproducción
                 $video.pause();
                 //Obtener contexto del canvas y dibujar sobre él
                 let contexto = $canvas.getContext("2d");
+                //Damos dimensiones del video
                 $canvas.width = $video.videoWidth;
                 $canvas.height = $video.videoHeight;
+                //Tomamos captura del video pausado
                 contexto.drawImage($video, 0, 0, $canvas.width, $canvas.height);
                 let foto = $canvas.toDataURL(); //Esta es la foto, en base 64
-                
-    
+                //Se toman las coordenadas
+                let lat = document.getElementById('latitud').value;
+                let lon = document.getElementById('longitud').value;
+                let status = document.getElementById('status').value;
+                let idUser = document.getElementById('idUser').value;
+                //Se guardan los datos en tipo JSON
+                var data = {
+                    'idUser' : idUser,
+                    'lat': lat,
+                    'lon' : lon,
+                    'status' : status,
+                    'foto': encodeURIComponent(foto),
+                }
+                //Se mandan los datos con el método Fetch
                 fetch("model/tomarAsistencia.php", {
                     method: "POST",
-                    body: encodeURIComponent(foto),
+                    body: JSON.stringify(data),
                     headers: {
                         "Content-type": "application/x-www-form-urlencoded",
                     }
@@ -106,14 +93,14 @@ const obtenerDispositivos = () => navigator
                 })
                 .then(nombreDeLaFoto => {
                     // nombreDeLaFoto trae el nombre de la imagen que le dio PHP
-                    console.log("La foto fue enviada correctamente");
-                    $estado.innerHTML = `Foto guardada con éxito. Puedes verla <a target='_blank' href='./${nombreDeLaFoto}'> aquí</a>`;
+                    alert(nombreDeLaFoto);
                 })
 
                 //Reanudar reproducción
                 $video.play();
+                //Y redireccionamos a la página de inicio
                 window.location.href.replace('C:\laragon\www\OXILIVE\secciones/enfermeria/user/index.php');
-            });*/
+            });
         },
         (error) => {
             console.log("Permiso denegado o error: ", error);
