@@ -12,6 +12,6 @@ $(document).ready(function () {
 
     setInterval(() => {
         loadUsers();
-    }, 1000);
+    }, 3000);
 
 });
