@@ -10,7 +10,9 @@ if (!isset($_SESSION['us'])) {
     echo "Error en el sistema";
 }
 
+
 $s = $con->prepare("SELECT * FROM usuarios WHERE id_usuarios = '$id_envio'");
+
 $s->execute();
 
 $resultado = $s->fetch(PDO::FETCH_ASSOC);
@@ -31,6 +33,7 @@ if ($resultado) {
                             echo $valorUsuario;
                         } else {
                             echo "No se encontraron resultados";
+
                         }
                             ?></h2>
                     </div>

@@ -13,6 +13,7 @@ $(document).ready(function () {
         var contieneTexto = /\S/.test(message);
 
         if (contieneTexto) {
+
             $.ajax({
                 url: 'send_message.php', //ruta del archivo que envia a la base los mensajes
                 type: 'POST',
@@ -23,6 +24,7 @@ $(document).ready(function () {
                     scrollToBottom();
                 }
                 //no lo deja enviar si no tiene texto el mensaje.
+
             });
         }
     });
@@ -31,6 +33,7 @@ $(document).ready(function () {
         var output = $('#output').val();
         $.ajax({
             url: 'get_message.php', //ruta del archivo que general los mensajes
+
             type: 'POST',
             data: { output: output },
             success: function (data) {

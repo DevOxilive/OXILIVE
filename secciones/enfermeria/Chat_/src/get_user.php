@@ -3,6 +3,7 @@ include '../../../../connection/conexion.php';
 
 session_start();
 $sentencia = $con->prepare("SELECT *  FROM usuarios WHERE id_usuarios != {$_SESSION['idus']} AND (id_departamentos = 6 OR id_departamentos = 1);");
+
 $sentencia->execute();
 $resultado = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
@@ -18,6 +19,7 @@ if (count($resultado) > 0) {
                     <img src="img/usuario.png" alt="img perfil"><b>' . $fila['Usuario'] . '</b>
                 </li>
               </a>';
+
     }
 } else {
     // si no envia el mensaje de comenzar chat

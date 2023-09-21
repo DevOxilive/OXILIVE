@@ -3,7 +3,9 @@
     /* pociocionamiento del chat a lo ancho de forma automatica */
     width: auto;
     margin: 0 auto;
+
     background-color: #91bbfa;
+
     padding: 10px;
     height: 60vh;
     overflow-y: scroll;
@@ -11,9 +13,11 @@
 }
 
 .chat-header {
+
     background-color: #0966b3;
     border-bottom: #b4b4b4;
     color: #ffffff;
+
     padding: 10px;
     display: flex;
     justify-content: space-between;
@@ -76,6 +80,7 @@ button[type="submit"] {
 /* estilos de los textos */
 .burbuja {
     background-color: #ffffff;
+
     border-radius: 20px;
     margin-bottom: 10px;
     padding: 10px;
@@ -85,6 +90,7 @@ button[type="submit"] {
     word-wrap: break-word;
     float: left;
     clear: both;
+
 }
 
 .burbuja-you {
@@ -92,13 +98,17 @@ button[type="submit"] {
     border-radius: 20px;
     margin-bottom: 10px;
     padding: 10px;
+
     color: rgb(255, 255, 255);
+
     /* Limitar el ancho máximo de las burbujas */
     width: fit-content;
     word-wrap: break-word;
     max-width: 100%;
+
     float: right;
     clear: both;
+
     /* Alinear a la derecha */
 }
 
