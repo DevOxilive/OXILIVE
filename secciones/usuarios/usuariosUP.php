@@ -1,4 +1,6 @@
 <?php
+include("../../connection/conexion.php");
+
 if (isset($_GET['txtID'])) {
 
   $txtID = (isset($_GET['txtID'])) ? $_GET['txtID'] : "";
@@ -18,7 +20,6 @@ if (isset($_GET['txtID'])) {
   $email = $registro["Correo"];
   $status = $registro["Estado"];
   $alcaldia = $registro["alcaldia"];
-  $calle = $registro["calle"];
   $num_interior = $registro["num_interior"];
   $num_exterior = $registro["num_exterior"];
   $codigo_postal = $registro["codigo_postal"];
@@ -36,7 +37,6 @@ if (isset($_GET['txtID'])) {
 
 
 if ($_POST) {
-    include("../../connection/conexion.php");
 
   $txtID = (isset($_POST['txtID'])) ? $_POST['txtID'] : "";
   $usuario = (isset($_POST["usuario"]) ? $_POST["usuario"] : "");
@@ -48,7 +48,6 @@ if ($_POST) {
   $email = (isset($_POST["email"]) ? $_POST["email"] : "");
   $status = (isset($_POST["status"]) ? $_POST["status"] : "");
   $departamento = (isset($_POST["departamento"]) ? $_POST["departamento"] : "");
-  $calle = (isset($_POST["calle"]) ? $_POST["calle"] : "");
   $alcaldia = (isset($_POST["alcaldia"]) ? $_POST["alcaldia"] : "");
   $num_interior = (isset($_POST["num_interior"]) ? $_POST["num_interior"] : "");
   $num_exterior = (isset($_POST["num_exterior"]) ? $_POST["num_exterior"] : "");
@@ -60,25 +59,8 @@ if ($_POST) {
 
   $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
   $sentencia = $con->prepare("UPDATE usuarios
-                            SET Usuario=:usuario, paswword=:password, Nombres=:nombres, Apellidos=:apellidos, Genero=:genero, Telefono=:telefono, Correo=:email, Estado=:status, id_departamentos=:departamento, rfc=:rfc, alcaldia=:alcaldia, calle=:calle, num_interior=:num_interior, num_exterior=:num_exterior, codigo_postal=:codigo_postal, calleUno=:calleUno, calleDos=:calleDos, referencias=:referencias
+                            SET Usuario=:usuario, paswword=:password, Nombres=:nombres, Apellidos=:apellidos, Genero=:genero, Telefono=:telefono, Correo=:email, Estado=:status, id_departamentos=:departamento, rfc=:rfc, alcaldia=:alcaldia, num_interior=:num_interior, num_exterior=:num_exterior, codigo_postal=:codigo_postal, calleUno=:calleUno, calleDos=:calleDos, referencias=:referencias
                             WHERE id_usuarios=:id_usuarios");
-
-  //Se convierten todos estos valores en mayusculas o minusculas (según sea el caso)
-    //para que quede unificada en la base de datos
-    
-    $usuario=strtolower($usuario);
-    $nombres=strtoupper($nombres);
-    $apellidos=strtoupper($apellidos);
-    $email=strtolower($email);
-    $rfc=strtoupper($rfc);
-    $alcaldia=strtoupper($alcaldia);
-    $calle=strtoupper($calle);
-    $num_interior=strtoupper($num_interior);
-    $num_exterior=strtoupper($num_exterior);
-    $calleUno=strtoupper($calleUno);
-    $calleDos=strtoupper($calleDos);
-    $referencias=strtoupper($referencias);
-
 
   $sentencia->bindParam(":usuario", $usuario);
   $sentencia->bindParam(":password", $hashedPassword);
@@ -90,7 +72,6 @@ if ($_POST) {
   $sentencia->bindParam(":rfc", $rfc);
   $sentencia->bindParam(":status", $status);
   $sentencia->bindParam(":alcaldia", $alcaldia);
-  $sentencia->bindParam(":calle", $calle);
   $sentencia->bindParam(":num_interior", $num_interior);
   $sentencia->bindParam(":num_exterior", $num_exterior);
   $sentencia->bindParam(":codigo_postal", $codigo_postal);
@@ -101,7 +82,7 @@ if ($_POST) {
   $sentencia->bindParam(":id_usuarios", $txtID);
   $sentencia->execute();
 
-  $carpeta_usuario = "OXILIVE/" . $apellidos . " " . $nombres;
+  $carpeta_usuario = "./OXILIVE/" . $apellidos . " " . $nombres;
 
 function guardarArchivo($tmp_file, $nombre_original, $carpeta_usuario) {
     if (!empty($nombre_original) && $tmp_file != '') {
@@ -126,10 +107,6 @@ $campos_archivos = array(
 foreach ($campos_archivos as $campo_archivo) {
     $nombre_archivo = (isset($_FILES[$campo_archivo]['name']) ? $_FILES[$campo_archivo]['name'] : "");
     $fecha_archivo = new DateTime();
-    //Validación para evitar que pasen los archivos default
-    if($nombre_archivo=="png.png" || $nombre_archivo=="anverso.jpg" || $nombre_archivo=="reverso.jpg"){
-        $nombre_archivo="";
-    }
     $nombre_archivo_original = (!empty($nombre_archivo) ? $fecha_archivo->getTimestamp() . "_" . $nombre_archivo : "");
     $tmp_archivo = $_FILES[$campo_archivo]['tmp_name'];
 

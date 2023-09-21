@@ -10,11 +10,9 @@ if (!isset($_SESSION['us'])) {
     echo "Error en el sistema";
 }
 
-<<<<<<< HEAD
+
 $s = $con->prepare("SELECT * FROM usuarios WHERE id_usuarios = '$id_envio'");
-=======
-$s = $con->prepare("SELECT Usuario FROM usuarios WHERE id_usuarios = '$id_envio'");
->>>>>>> 6d5dbd6d0de6675092181156e46e7ed9c17e6ff9
+
 $s->execute();
 
 $resultado = $s->fetch(PDO::FETCH_ASSOC);
@@ -34,11 +32,8 @@ if ($resultado) {
                         <h2><?php
                             echo $valorUsuario;
                         } else {
-<<<<<<< HEAD
                             echo "No se encontraron resultados";
-=======
-                            echo "No se encontraron resultados para el ID proporcionado.";
->>>>>>> 6d5dbd6d0de6675092181156e46e7ed9c17e6ff9
+
                         }
                             ?></h2>
                     </div>
@@ -59,7 +54,3 @@ if ($resultado) {
     </main>
     <!-- controlador de los estilos del chat -->
     <script src="../js/chatPriv.js"></script>
-
-    <?php
-    include("../../../../templates/footer.php");
-    ?>
