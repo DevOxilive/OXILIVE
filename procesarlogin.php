@@ -30,6 +30,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['tel'] = $datos["Telefono"];
             $_SESSION['email'] = $datos["Correo"];
             $_SESSION['rfc'] = $datos["rfc"];
+<<<<<<< HEAD
+=======
+            $_SESSION['estado'] = $datos['Estado'];
+>>>>>>> 6d5dbd6d0de6675092181156e46e7ed9c17e6ff9
 
             switch ($datos["id_departamentos"]) {
                 case '1':
@@ -100,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 showConfirmButton: false,
                                 timer: 1500,
                             }).then(function() {
-                        window.location = 'secciones/enfermeria/index.php';
+                        window.location = 'secciones/enfermeria/user/index.php';
                             });
                     </script>";
                         break;

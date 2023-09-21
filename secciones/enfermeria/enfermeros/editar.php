@@ -3,20 +3,20 @@ session_start();
 if (!isset($_SESSION['us'])) {
     header('Location: ../../login.php');
 } elseif (isset($_SESSION['us'])) {
-    include("../../templates/header.php");
-    include("../../connection/conexion.php");
-    include("../../secciones/puestos/consulta.php");
-    include("../../secciones/usuarios/consulta.php");
-    include("../../module/genero.php");
-    include("../../module/estado.php");
-    include("../../secciones/usuarios/usuariosUP.php");
+    include("../../../templates/header.php");
+    include("../../../connection/conexion.php");
+    include("../../../secciones/puestos/consulta.php");
+    include("../../../secciones/usuarios/consulta.php");
+    include("../../../module/genero.php");
+    include("../../../module/estado.php");
+    include("enfermeroUP.php");
 } else {
     echo "Error en el sistema";
 }
 ?>
 <html lang="en">
-<link rel="stylesheet" href="../../assets/css/foto_editar.css">
-<link rel="stylesheet" href="../../assets/css/edit.css">
+<link rel="stylesheet" href="../../../assets/css/foto_editar.css">
+<link rel="stylesheet" href="../../../assets/css/edit.css">
 
 </html>
 <main id="main" class="main">
@@ -28,16 +28,16 @@ if (!isset($_SESSION['us'])) {
                     Editar datos de Usuario</H4>
             </div>
             <div class="card-body" style="border: 2px solid #BFE5FF;"> <br>
-                <form action="./usuariosUP.php" method="POST" enctype="multipart/form-data" class="formEdit row g-3">
+                <form action="enfermeroUP.php" method="POST" enctype="multipart/form-data" class="formEdit row g-3">
                     <div class="contenido col-md-3">
                     <label for="Foto_perfil" class="form-label">Foto de perfil</label> <br>
                         <div class="profile-picture">
                             <div class="picture-container">
                                 <?php if (!empty($Foto_perfil)){ ?>
-                                    <img src="../../secciones/usuarios/OXILIVE/<?php echo $apellidos . " " .$nombres ?>/<?php echo $Foto_perfil; ?>" alt="" id="imagenActual"
+                                    <img src="../../../secciones/usuarios/OXILIVE/<?php echo $apellidos . " " .$nombres ?>/<?php echo $Foto_perfil; ?>" alt="" id="imagenActual"
                                         class="img-thumbnail rounded-circle">
                                 <?php }else{ ?>
-                                    <img src="../../img/png.png" alt="Foto de perfil" id="imagenActual"
+                                    <img src="../../../img/png.png" alt="Foto de perfil" id="imagenActual"
                                         class="img-thumbnail">
                                 <?php } ?>
                                 <div class="overlay">
@@ -184,16 +184,16 @@ if (!isset($_SESSION['us'])) {
                     </div>
 
                     <div class="col-md-4">
-                        <label for="credencialFrente" class="form-label">Credencial de elector (Anverso)</label>
+                        <label for="credencialFrente" class="form-label">Credencial de elector (Anverso) </label>
                         <br>
                         <div class="profile-picture-cre">
                             <div class="picture-container-cre">
                                 <?php if (!empty($credencialFrente)){ ?>
-                                    <img src="OXILIVE/<?php echo $apellidos . " " . $nombres?>/<?php echo $credencialFrente; ?>"
+                                    <img src="../../usuarios/OXILIVE/<?php echo $apellidos . " " . $nombres?>/<?php echo $credencialFrente; ?>"
                                         alt="" id="imagenActual1" class="img-thumbnail-ine"
                                         style="width: 350px ; height: 210px;">
                                 <?php }else{ ?>
-                                    <img src="../../img/anverso.jpg" alt="foto de perfil" id="imagenActual1"
+                                    <img src="../../../img/anverso.jpg" alt="foto de perfil" id="imagenActual1"
                                         class="img-thumbnail-ine">
                                 <?php } ?>
                                 <div class="overlay-cre">
@@ -208,19 +208,17 @@ if (!isset($_SESSION['us'])) {
                             onchange="cambiarImagen1(event)" style="display: none;">
                     </div>
 
-
-
                     <div class="col-md-4">
-                        <label for="credencialAtras" class="form-label">Credencial de elector (Reverso)</label>
+                        <label for="credencialAtras" class="form-label">Credencial de elector (Reverso) </label>
                         <br>
                         <div class="profile-picture-cre">
                             <div class="picture-container-cre">
                                 <?php if (!empty($credencialAtras)){ ?>
-                                    <img src="OXILIVE/<?php echo $apellidos . " " . $nombres?>/<?php echo $credencialAtras; ?>"
+                                    <img src="../../usuarios/OXILIVE/<?php echo $apellidos . " " . $nombres?>/<?php echo $credencialAtras; ?>"
                                         alt="" id="imagenActual2" class="img-thumbnail-ine"
                                         style="width: 350px ; height: 210px;">
                                 <?php }else{ ?>
-                                    <img src="../../img/reverso.jpg" alt="foto de perfil" id="imagenActual2"
+                                    <img src="../../../img/reverso.jpg" alt="foto de perfil" id="imagenActual2"
                                         class="img-thumbnail-ine">
                                 <?php } ?>
                                 <div class="overlay-cre">
@@ -238,162 +236,34 @@ if (!isset($_SESSION['us'])) {
                         <button type="submit" class="btn btn-outline-primary">Guardar</button>
                         <a role="button" onclick="mostrarAlertaCancelar()" name="cancelar"
                             class="btn btn-outline-danger">
-                            Cancelar</a>
+                            Cancelar
+                        </a>
                     </div>
                 </form>
             </div>
         </div>
+    </section>
 </main>
+<script src="../../../assets/js/forms_validations.js"></script>
 <script>
-    function mostrarImagen(event) {
-        var input = event.target;
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                var imagenActual = document.getElementById("imagenActual");
-                imagenActual.src = e.target.result;
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    function abrirSelectorArchivo(event) {
-        event.preventDefault();
-        var selectorArchivo = document.getElementById("Foto_perfil");
-        selectorArchivo.click();
-    }
-
-    function cambiarImagen(event) {
-        var input = event.target;
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                var imagenActual = document.getElementById("imagenActual");
-                imagenActual.src = e.target.result;
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    function eliminarImagen(event) {
-        event.preventDefault();
-        var imagenActual = document.getElementById("imagenActual");
-        imagenActual.src = "./img/error.png";
-        var selectorArchivo = document.getElementById("Foto_perfil");
-        selectorArchivo.value = null;
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-        document.querySelector('.formEdit').addEventListener('submit', function (e) {
-            e.preventDefault(); // Evitar el envío automático del formulario
-
-            Swal.fire({
-                title: 'Datos Guardados',
-                text: 'Los datos han sido guardados correctamente.',
-                icon: 'success',
-            }).then(() => {
-                e.target.submit();
-            });
-        });
-    });
-//
-
-    //    INE1
-    function mostrarImagen1(event) {
-        var input = event.target;
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                var imagenActual1 = document.getElementById("imagenActual1");
-                imagenActual1.src = e.target.result;
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    function abrirSelectorArchivo1(event) {
-        event.preventDefault();
-        var selectorArchivo1 = document.getElementById("credencialFrente");
-        selectorArchivo1.click();
-    }
-
-    function cambiarImagen1(event) {
-        var input = event.target;
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                var imagenActual1 = document.getElementById("imagenActual1");
-                imagenActual1.src = e.target.result;
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    function eliminarImagen1(event) {
-        event.preventDefault();
-        var imagenActual1 = document.getElementById("imagenActual1");
-        imagenActual1.src = "./img/error.png";
-        var selectorArchivo1 = document.getElementById("credencialFrente");
-        selectorArchivo1.value = null;
-    }
-
-    //    INE2
-    function mostrarImagen2(event) {
-        var input = event.target;
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                var imagenActual2 = document.getElementById("imagenActual2");
-                imagenActual2.src = e.target.result;
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    function abrirSelectorArchivo2(event) {
-        event.preventDefault();
-        var selectorArchivo2 = document.getElementById("credencialAtras");
-        selectorArchivo2.click();
-    }
-
-    function cambiarImagen2(event) {
-        var input = event.target;
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                var imagenActual2 = document.getElementById("imagenActual2");
-                imagenActual2.src = e.target.result;
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    function eliminarImagen2(event) {
-        event.preventDefault();
-        var imagenActual2 = document.getElementById("imagenActual2");
-        imagenActual2.src = "./img/error.png";
-        var selectorArchivo2 = document.getElementById("credencialAtras");
-        selectorArchivo2.value = null;
-    }
-
     function mostrarAlertaCancelar() {
-        Swal.fire({
-            title: '¿Estás seguro?',
-            text: 'Los cambios no se guardarán',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Sí, cancelar',
-            cancelButtonText: 'No, continuar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Redireccionar a la página de inicio o realizar alguna acción adicional
-                window.location.href = '<?php echo $url_base; ?>secciones/usuarios/index.php';
-            }
-        })
-    }
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: 'Los cambios no se guardarán',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, cancelar',
+        cancelButtonText: 'No, continuar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Redireccionar a la página de inicio o realizar alguna acción adicional
+            window.location.href = '<?php echo $url_base; ?>secciones/enfermeria/enfermeros/index.php';
+        }
+    })
+}
 </script>
 <?php
-include("../../templates/footer.php");
+include("../../../templates/footer.php");
 ?> 

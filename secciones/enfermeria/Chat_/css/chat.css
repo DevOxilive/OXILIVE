@@ -3,17 +3,33 @@
     /* pociocionamiento del chat a lo ancho de forma automatica */
     width: auto;
     margin: 0 auto;
+<<<<<<< HEAD
     border: 1px solid #ffffff;
     background-color: #bcd9ff;
     padding: 10px;
     height: 55vh;
     overflow-y: scroll;
+=======
+    border: 1px solid #adaeae;
+    background-color: #5e90bb;
+    padding: 10px;
+    height: 55vh;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+>>>>>>> 6d5dbd6d0de6675092181156e46e7ed9c17e6ff9
     /* Habilitar desplazamiento vertical */
 }
 
 .chat-header {
+<<<<<<< HEAD
     background-color: #0966b3;
     color: #ffffff;
+=======
+    background-color: #ffffff;
+    color: #000000;
+>>>>>>> 6d5dbd6d0de6675092181156e46e7ed9c17e6ff9
     padding: 10px;
     display: flex;
     justify-content: space-between;
@@ -75,7 +91,11 @@ button[type="submit"] {
 
 /* estilos de los textos */
 .burbuja {
+<<<<<<< HEAD
     background-color: #ffffff;
+=======
+    background-color: rgb(255, 255, 255);
+>>>>>>> 6d5dbd6d0de6675092181156e46e7ed9c17e6ff9
     border-radius: 20px;
     margin-bottom: 10px;
     padding: 10px;
@@ -83,6 +103,7 @@ button[type="submit"] {
     max-width: 100%;
     width: fit-content;
     word-wrap: break-word;
+<<<<<<< HEAD
     float: left;
     clear: both;
 }
@@ -93,12 +114,25 @@ button[type="submit"] {
     margin-bottom: 10px;
     padding: 10px;
     color: rgb(255, 255, 255);
+=======
+}
+
+.burbuja-you {
+    background-color: rgb(0, 0, 0);
+    border-radius: 20px;
+    margin-bottom: 10px;
+    padding: 10px;
+    color: white;
+>>>>>>> 6d5dbd6d0de6675092181156e46e7ed9c17e6ff9
     /* Limitar el ancho máximo de las burbujas */
     width: fit-content;
     word-wrap: break-word;
     max-width: 100%;
+<<<<<<< HEAD
     float: right;
     clear: both;
+=======
+>>>>>>> 6d5dbd6d0de6675092181156e46e7ed9c17e6ff9
     /* Alinear a la derecha */
 }
 

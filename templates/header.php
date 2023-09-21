@@ -28,6 +28,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
   <link href="<?php echo $url_base; ?>assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="<?php echo $url_base; ?>assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="<?php echo $url_base; ?>assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
@@ -35,7 +36,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
   <link href="<?php echo $url_base; ?>assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="<?php echo $url_base; ?>assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="<?php echo $url_base; ?>assets/vendor/simple-datatables/style.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+  
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
   <link href="<?php echo $url_base; ?>assets/css/style.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -353,10 +354,16 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                 <i class="bi bi-circle"></i><span>Guardias</span>
               </a>
             </li>
-            <!-- Módulo de asistencias -->
+            <!-- Módulo de Bitacora de asistencias -->
             <li>
-              <a href="<?php echo $url_base; ?>secciones/enfermeria/asistencia/admin/index.php">
-                <i class="bi bi-circle"></i><span>Asistencia</span>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/Bitacora_de_asistencias/admin/index.php">
+                <i class="bi bi-circle"></i><span>Bitacora de asistencias</span>
+              </a>
+            </li>
+            <!-- Módulo de Enfermeros -->
+            <li>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/enfermeros/index.php">
+                <i class="bi bi-circle"></i><span>Enfermeros</span>
               </a>
             </li>
             <!-- Módulo de nomina -->
@@ -378,7 +385,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
       <?php endif; ?>
 
       <?php if ($_SESSION['puesto'] === 6) : ?>
-        <!-- apartado de bloque de departamento de enfermeria -->
+        <!-- Apartado de bloque de departamento de enfermeria -->
 
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
@@ -386,8 +393,18 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
           </a>
           <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
+<<<<<<< HEAD
               <a href="<?php echo $url_base; ?>secciones/enfermeria/Chat_/index.php">
                 <i class="bi bi-circle"></i><span>chat general</span>
+=======
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/user/index.php">
+                <i class="bi bi-circle"></i><span>Dashboard</span>
+              </a>
+            </li>
+            <li>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/ChatApp/index.php">
+                <i class="bi bi-circle"></i><span>Chat General</span>
+>>>>>>> 6d5dbd6d0de6675092181156e46e7ed9c17e6ff9
               </a>
             </li>
           </ul>
@@ -536,7 +553,6 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
           });
         },
       });
-
     }
   </script>
   <script>

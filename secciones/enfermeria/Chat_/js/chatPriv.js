@@ -5,6 +5,7 @@ $(document).ready(function () {
     loadMessages();
     // Enviar mensaje
     $('#send').click(function () {
+<<<<<<< HEAD
         var message = $('#message').val().trim();
         var user = $('#user').val();
         var output = $('#output').val();
@@ -13,6 +14,13 @@ $(document).ready(function () {
         var contieneTexto = /\S/.test(message);
 
         if (contieneTexto) {
+=======
+        var message = $('#message').val();
+        var user = $('#user').val();
+        var output = $('#output').val();
+        var userC = $('userChat').val();
+        if (message !== '') {
+>>>>>>> 6d5dbd6d0de6675092181156e46e7ed9c17e6ff9
             $.ajax({
                 url: 'send_message.php', //ruta del archivo que envia a la base los mensajes
                 type: 'POST',
@@ -22,7 +30,10 @@ $(document).ready(function () {
                     loadMessages();
                     scrollToBottom();
                 }
+<<<<<<< HEAD
                 //no lo deja enviar si no tiene texto el mensaje.
+=======
+>>>>>>> 6d5dbd6d0de6675092181156e46e7ed9c17e6ff9
             });
         }
     });
@@ -30,7 +41,11 @@ $(document).ready(function () {
     function loadMessages() {
         var output = $('#output').val();
         $.ajax({
+<<<<<<< HEAD
             url: 'get_message.php', //ruta del archivo que general los mensajes
+=======
+            url: 'get_message.php', //ruta del archivo que genera los mensajes
+>>>>>>> 6d5dbd6d0de6675092181156e46e7ed9c17e6ff9
             type: 'POST',
             data: { output: output },
             success: function (data) {
