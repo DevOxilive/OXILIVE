@@ -5,7 +5,8 @@ if (!isset($_SESSION['us'])) {
 } elseif (isset($_SESSION['us'])) {
   include("../../../../templates/header.php");
   include("../../../../connection/conexion.php");
-  include("./consulta_estatus.php");
+  include("./consulta_check1.php");
+  include("./consulta_check2.php");
 } else {
   echo "Error en el sistema";
 }
