@@ -34,6 +34,3 @@ if (!isset($_SESSION['us'])) {
     </div>
     <script src="../js/chat.js"></script>
 </main>
-<?php
-include("../../../../templates/footer.php");
-?>

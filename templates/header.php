@@ -28,6 +28,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
   <link href="<?php echo $url_base; ?>assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="<?php echo $url_base; ?>assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="<?php echo $url_base; ?>assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
@@ -35,10 +36,15 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
   <link href="<?php echo $url_base; ?>assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="<?php echo $url_base; ?>assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="<?php echo $url_base; ?>assets/vendor/simple-datatables/style.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+  
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
   <link href="<?php echo $url_base; ?>assets/css/style.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!--Librerias de despliegue iconos-->
+
+
+
+
   <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
@@ -108,12 +114,12 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                       </p>
                     </div>
                   </li>
-                <?php
+              <?php
                   $count++;
                 } else {
                   break;
                 }
-              }?>
+              } ?>
             </ul><!-- End Notification Dropdown Items -->
           </li><!-- End Notification Nav -->
 
@@ -318,25 +324,98 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
           </ul>
         </li>
       <?php endif; ?>
-      <?php if ($_SESSION['puesto'] === 6 || $_SESSION['puesto'] === 1) : ?>
+      <!-- Inicio apartado enfermeria -->
+      <?php if ($_SESSION['puesto'] === 1) : ?>
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
             <i class="bi bi-capsule"></i><span>Enfermeria</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-              <a href="<?php echo $url_base; ?>secciones/oxigeno/pacientes/index.php">
-                <i class="bi bi-circle"></i><span>Pacientes</span>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/Chat_/index.php">
+                <i class="bi bi-circle"></i><span>Chat General</span>
               </a>
             </li>
+            <!--Implementación de apartados de enfermeria-->
             <li>
-              <a href="<?php echo $url_base; ?>secciones/aseguradoras/index.php">
-                <i class="bi bi-circle"></i><span>Aseguradoras</span>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/hojaComplementaria/index.php">
+                <i class="bi bi-circle"></i><span>Hoja complementaria</span>
               </a>
             </li>
+            <!--Aquí va el termino del apartado de enfermeria-->
+            <!--Implementación de apartado Procedimientos realizados-->
+            <li>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/procedimientosRealizados/index.php">
+                <i class="bi bi-circle"></i><span>Procedimientos Realizados</span></a>
+
+              <!-- Módulo de horarios -->
+            <li>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/guardias/index.php">
+                <i class="bi bi-circle"></i><span>Guardias</span>
+              </a>
+            </li>
+            <!-- Módulo de Bitacora de asistencias -->
+            <li>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/Bitacora_de_asistencias/admin/index.php">
+                <i class="bi bi-circle"></i><span>Bitacora de asistencias</span>
+              </a>
+            </li>
+            <!-- Módulo de Enfermeros -->
+            <li>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/enfermeros/index.php">
+                <i class="bi bi-circle"></i><span>Enfermeros</span>
+              </a>
+            </li>
+            <!-- Módulo de nomina -->
+            <li>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/control_de_nómina/index.php">
+                <i class="bi bi-circle"></i><span>Nómina</span>
+              </a>
+            </li>
+            <!--Aquí termina-->
+            <!--Implementación de apartado registros clínico y cuidados generales-->
+            <li>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/registroYcuidados/index.php">
+                <i class="bi bi-circle"></i><span>Registro Clínico y Cuidados Generales</span>
+              </a>
+            </li>
+            <!--Aquí termina-->
           </ul>
         </li><!-- End Forms Nav -->
       <?php endif; ?>
+
+      <?php if ($_SESSION['puesto'] === 6) : ?>
+        <!-- Apartado de bloque de departamento de enfermeria -->
+
+        <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-capsule"></i><span>Enfermeria</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+<<<<<<< HEAD
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/Chat_/index.php">
+                <i class="bi bi-circle"></i><span>chat general</span>
+=======
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/user/index.php">
+                <i class="bi bi-circle"></i><span>Dashboard</span>
+              </a>
+            </li>
+            <li>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/ChatApp/index.php">
+                <i class="bi bi-circle"></i><span>Chat General</span>
+>>>>>>> 6d5dbd6d0de6675092181156e46e7ed9c17e6ff9
+              </a>
+            </li>
+          </ul>
+        </li>
+
+
+
+        <!-- End Forms Nav -->
+      <?php endif; ?>
+
+
       <?php if ($_SESSION['puesto'] === 5 || $_SESSION['puesto'] === 1) : ?>
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
@@ -385,7 +464,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
           </ul>
         </li>
       <?php endif; ?>
-      <?php if ($_SESSION['puesto'] === 3) : ?>
+      <?php if ($_SESSION['puesto'] === 3 || $_SESSION['puesto'] === 1) : ?>
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#systemas-nav" data-bs-toggle="collapse" href="#">
             <i class="bi bi-pc-display-horizontal"></i><span>Sistemas</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -474,7 +553,6 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
           });
         },
       });
-
     }
   </script>
   <script>

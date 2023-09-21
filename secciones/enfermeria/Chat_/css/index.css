@@ -28,7 +28,6 @@ en la vista principal de seleccion */
     list-style: none;
     padding: 10px 0;
     cursor: pointer;
-    border-bottom: 1px solid #ccc;
 }
 
 #users-list a {
@@ -36,8 +35,9 @@ en la vista principal de seleccion */
 }
 
 #users-list li:hover {
-    color: rgb(31, 111, 177);
-    border-bottom: 1px solid rgb(0, 140, 255);
+    color: rgb(33, 121, 180);
+    background-color: #f7f7f7;
+    border-radius: 30px;
 }
 
 .user-list-container img {

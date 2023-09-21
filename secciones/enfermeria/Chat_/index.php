@@ -16,9 +16,7 @@ if (!isset($_SESSION['us'])) {
     <div class="row">
         <div class="content">
             <div class="user-list-container">
-                <center>
-                    <h1>Selecciona un <b>Chat</b></h1>
-                </center>
+                    <h1><b>Chats</b></h1>
                 <ul id="users-list">
                     <!-- aqui se generan los usuarios desde la base de datos -->
                 </ul>

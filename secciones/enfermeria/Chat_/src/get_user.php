@@ -15,7 +15,7 @@ if (count($resultado) > 0) {
     foreach ($resultado as $fila) {
         echo '<a href="php/chat.php?chat=' . $fila['id_usuarios'] . '" target="_blank" rel="noopener noreferrer">
                 <li>
-                    <img src="data:image/jpg/png;base64'. base64_encode($fila['Foto_perfil']) .'" alt="img perfil"><b>' . $fila['Usuario'] . '</b>
+                    <img src="img/usuario.png" alt="img perfil"><b>' . $fila['Usuario'] . '</b>
                 </li>
               </a>';
     }
