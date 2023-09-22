@@ -3,21 +3,40 @@ include('../../../../connection/conexion.php');
 
 $data = json_decode(file_get_contents('php://input'), true);
 
+if(empty($data['nomFoto']) || $data['nomFoto'] == ""){
+    guardarFoto($data);
+} else{
+    registrarAsis($con, $data);
+    cambiarStatus($con, $data);
+    return true;
+}
+
+
 function registrarAsis($con, $data){
     $lon = $data['lon'];
     $lat = $data['lat'];
     $status = $data['status'];
     $idUser = $data['idUser'];
     
+    date_default_timezone_set('America/Mazatlan');
+    $fechaActual = date("Y-m-d");
+    $horaActual = date("h:i:s");
+    
+    $fotoName = $data['nomFoto'];
+
     $regAsis = $con->prepare("
         INSERT INTO asistencias
-        VALUES (NULL, :idus, :status, systime, POINT(:lat,:lon), :foto);
-    ");   
+        VALUES (NULL, :idus, :status, :fecha, :time, POINT(:lat,:lon), :foto);
+    ");
+
     $regAsis->bindParam(':idus', $idUser);
     $regAsis->bindParam(':status', $status);
+    $regAsis->bindParam(':fecha', $fechaActual);
+    $regAsis->bindParam(':time', $horaActual);
     $regAsis->bindParam(':lat', $lat);
     $regAsis->bindParam(':lon', $lon);
-    $regAsis->bindParam(':foto', guardarFoto($data));
+    $regAsis->bindParam(':foto', $fotoName);
+    $regAsis->execute();
 }
 function cambiarStatus($con, $data){
     $status = $data['status'];
@@ -49,8 +68,4 @@ function guardarFoto($data){
     file_put_contents($nombreImagenGuardada, $fotoDecod);
     return $nombreImagenGuardada;
 }
-
-
-//Terminar y regresar el nombre de la foto
-exit($newStatus);
 ?>

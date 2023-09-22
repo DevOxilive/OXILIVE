@@ -1,4 +1,3 @@
-
 const tieneSoporteUserMedia = () => !!(navigator.getUserMedia || (navigator.mozGetUserMedia || navigator.mediaDevices.getUserMedia) || navigator.webkitGetUserMedia || navigator.msGetUserMedia)
 const _getUserMedia = (...arguments) =>
     (navigator.getUserMedia || (navigator.mozGetUserMedia || navigator.mediaDevices.getUserMedia) || navigator.webkitGetUserMedia || navigator.msGetUserMedia)
@@ -9,13 +8,32 @@ const _getUserMedia = (...arguments) =>
 const $video = document.querySelector("#video"),
     $canvas = document.querySelector("#canvas"),
     $boton = document.querySelector("#boton"),
-
+    $boton2 = document.querySelector("#boton2"),
     $latitud = document.querySelector("#latitud"),
     $longitud = document.querySelector("#longitud");
 
 const obtenerDispositivos = () => navigator
     .mediaDevices
     .enumerateDevices();
+
+ //Funcion cancelar 1.1 LISTO
+ function confirmCancel(event) {
+    event.preventDefault();
+    Swal.fire({
+        title: '¿Estás seguro?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, cancelar',
+        cancelButtonText: 'No, continuar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Aquí puedes redirigir al usuario a otra página o realizar alguna otra acción
+            window.location.href = "index.php";
+        }
+    });
+}
 
 // La función que es llamada después de que ya se dieron los permisos
 (function() {
@@ -59,51 +77,71 @@ const obtenerDispositivos = () => navigator
             $video.srcObject = stream;
             $video.play();
             //Escuchar el click del botón para tomar la foto
+            var nomFoto = document.getElementById('nomFoto').value;
             $boton.addEventListener("click",function() {
-                //Pausar reproducción
-                $video.pause();
-                //Obtener contexto del canvas y dibujar sobre él
-                let contexto = $canvas.getContext("2d");
-                //Damos dimensiones del video
-                $canvas.width = $video.videoWidth;
-                $canvas.height = $video.videoHeight;
-                //Tomamos captura del video pausado
-                contexto.drawImage($video, 0, 0, $canvas.width, $canvas.height);
-                let foto = $canvas.toDataURL(); //Esta es la foto, en base 64
-                //Se toman las coordenadas
-                let lat = document.getElementById('latitud').value;
-                let lon = document.getElementById('longitud').value;
-                let status = document.getElementById('status').value;
-                let idUser = document.getElementById('idUser').value;
-                //Se guardan los datos en tipo JSON
-                var data = {
-                    'idUser' : idUser,
-                    'lat': lat,
-                    'lon' : lon,
-                    'status' : status,
-                    'foto': encodeURIComponent(foto),
-                }
-                //Se mandan los datos con el método Fetch
-                fetch("model/tomarAsistencia.php", {
-                    method: "POST",
-                    body: JSON.stringify(data),
-                    headers: {
-                        "Content-type": "application/x-www-form-urlencoded",
-                    }
-                })
-                .then(resultado => {
-                    // A los datos los decodificamos como texto plano
-                    return resultado.text()
-                })
-                .then(nombreDeLaFoto => {
-                    // nombreDeLaFoto trae el nombre de la imagen que le dio PHP
-                    alert(nombreDeLaFoto);
-                })
+                if(nomFoto != ""){
+                    //Se toman las coordenadas
+                    let lat = document.getElementById('latitud').value;
+                    let lon = document.getElementById('longitud').value;
 
-                //Reanudar reproducción
-                $video.play();
-                //Y redireccionamos a la página de inicio
-                window.location.href.replace('C:\laragon\www\OXILIVE\secciones/enfermeria/user/index.php');
+                    let status = document.getElementById('status').value;
+                    let idUser = document.getElementById('idUser').value;
+                    var data = {
+                        'lat' : lat,
+                        'lon' : lon,
+                        'status' : status,
+                        'idUser' : idUser,
+                        'nomFoto' : nomFoto,
+                    }
+                    fetch("model/tomarAsistencia", {
+                        method: "POST",
+                        body: JSON.stringify(data),
+                        headers: {
+                            "Content-type": "application/x-www-form-urlencoded",
+                        }
+                    }).then( response =>{
+                        if(response){
+                            window.location.replace("");
+                        }
+                    })
+                }else{
+                    //Pausar reproducción
+                    $video.pause();
+                    //Obtener contexto del canvas y dibujar sobre él
+                    let contexto = $canvas.getContext("2d");
+                    //Damos dimensiones del video
+                    $canvas.width = $video.videoWidth;
+                    $canvas.height = $video.videoHeight;
+                    //Tomamos captura del video pausado
+                    contexto.drawImage($video, 0, 0, $canvas.width, $canvas.height);
+                    let foto = $canvas.toDataURL(); //Esta es la foto, en base 64
+                    //Se guardan los datos en tipo JSON
+                    var data = {
+                        'nomFoto' : nomFoto,
+                        'foto': encodeURIComponent(foto),
+                    }
+                    //Se mandan los datos con el método Fetch
+                    fetch("model/tomarAsistencia.php", {
+                        method: "POST",
+                        body: JSON.stringify(data),
+                        headers: {
+                            "Content-type": "application/x-www-form-urlencoded",
+                        }
+                    })
+                    .then(resultado => {
+                        // A los datos los decodificamos como texto plano
+                        return resultado.text()
+                    })
+                    .then(nombreDeLaFoto => {
+                        // nombreDeLaFoto trae el nombre de la imagen que le dio PHP
+                        document.getElementById('nomFoto').value = nombreDeLaFoto;
+                    })
+                }
+            });
+
+            $boton2.addEventListener("click", function(){
+                
+                
             });
         },
         (error) => {
@@ -112,28 +150,9 @@ const obtenerDispositivos = () => navigator
     }
 })
 ();
- //Funcion cancelar
-function confirmCancel(event) {
-    event.preventDefault();
-    Swal.fire({
-        title: '¿Estás seguro?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Sí, cancelar',
-        cancelButtonText: 'No, continuar'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            // Aquí puedes redirigir al usuario a otra página o realizar alguna otra acción
-            window.location.href = "index.php";
-        }
-    });
-}
 
 //Funcion de geolocalizacion
 //Funciones para la ubicación
-
 if(!navigator.geolocation) {
     console.log('Geolocalización no disponible.');
 } else {
