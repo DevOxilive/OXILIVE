@@ -6,7 +6,6 @@ if (!isset($_SESSION['us'])) {
   include("../../../../templates/header.php");
   include("../../../../connection/conexion.php");
   include("./consulta_check1.php");
-  include("./consulta_check2.php");
 } else {
   echo "Error en el sistema";
 }
@@ -44,23 +43,25 @@ if (!isset($_SESSION['us'])) {
                     </thead>
                     <tbody>
 
-                        <?php foreach ($estatus as $St) { ?>
+                        <?php foreach ($concheck1 as $sl) { ?>
                         <tr>
                             <th scope="row">
-                                <?php echo $St['Nombre completo']; ?>
+                                <?php echo $sl['']; ?> 
                             </th>
                             <td>
-                                <?php echo $St['fecha_asis']; ?>
+                                <?php echo $sl['checkTime']; ?>
                             </td>
                             <td>
-                                <?php echo $St['Hora de entrada']; ?>
+                                <?php echo $sl['']; ?>
                             </td>
+
                             <td>
-                                <?php echo $St['Hora de salida']; ?>
+                                <?php echo $sl['']; ?>
                             </td>
+
                             <td>
 
-                                <?php echo $St['Estatus']; ?>
+                                <?php echo $sl['']; ?>
 
                             </td>
                             <td>
@@ -69,9 +70,9 @@ if (!isset($_SESSION['us'])) {
                                     style="font-size:10px;"><i class="bi bi-info-square"></i></a> |
                                 <a name="" id="" class="btn btn-outline-warning"
                                     href="editar.php?txtID=<?php echo $pacien['id_pacientes']; ?>" role="button"><i
-                                        class="bi bi-info-square"></i></a> 
-                            
-                            </td>   
+                                        class="bi bi-info-square"></i></a>
+
+                            </td>
 
                         </tr>
                         <?php } ?>
