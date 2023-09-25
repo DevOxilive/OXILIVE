@@ -393,18 +393,13 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
           </a>
           <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-<<<<<<< HEAD
-              <a href="<?php echo $url_base; ?>secciones/enfermeria/Chat_/index.php">
-                <i class="bi bi-circle"></i><span>chat general</span>
-=======
               <a href="<?php echo $url_base; ?>secciones/enfermeria/user/index.php">
                 <i class="bi bi-circle"></i><span>Dashboard</span>
               </a>
             </li>
             <li>
-              <a href="<?php echo $url_base; ?>secciones/enfermeria/ChatApp/index.php">
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/Chat_/index.php">
                 <i class="bi bi-circle"></i><span>Chat General</span>
->>>>>>> 6d5dbd6d0de6675092181156e46e7ed9c17e6ff9
               </a>
             </li>
           </ul>
@@ -500,6 +495,28 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
       <?php endif; ?>
     </ul>
   </aside><!-- End Sidebar-->
+  <!--<script>
+  $(document).ready(function() {
+    // Función para actualizar el estatus
+    function actualizarEstatus() {
+      $.ajax({
+        url: "get_estatus.php", // URL del servidor para obtener el estatus
+        type: "POST",
+        data: {"iduser" : $_SESSION['idus']},
+        dataType: "json",
+        success: function(response) {
+          // Actualizar el elemento en la página con el nuevo estatus
+          alert("Estado: "+reponse);
+        },
+        error: function(xhr, status, error) {
+          // Manejar errores, si es necesario
+          console.error("Error al obtener el estatus: " + error);
+        }
+      });
+    }
+  });
+  </script>-->
+    
   <script>
     function mostrarImagen(event) {
       var input = event.target;

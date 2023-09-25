@@ -52,12 +52,12 @@ if (!isset($_SESSION['us'])) {
 	    <canvas id="canvas"></canvas>
         <div class="row btn-bar">        
             <div class="ps-4" >
-                <a class="btn btn-danger" onclick="confirmCancel(event)" id="boton2" role="button">
+                <a class="btn btn-danger" id="boton2" role="button">
                     Cancelar
                 </a>
             </div>
             <div class="ps-4" >
-                <a class="btn btn-primary" href="" id="boton" role="button">
+                <a class="btn btn-primary" id="boton" role="button">
                     Tomar foto
                 </a>
             </div>

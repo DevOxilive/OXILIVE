@@ -4,13 +4,13 @@ include('../../../../connection/conexion.php');
 $data = json_decode(file_get_contents('php://input'), true);
 
 if(empty($data['nomFoto']) || $data['nomFoto'] == ""){
-    guardarFoto($data);
+    $nomFoto = guardarFoto($data);
+    exit ($nomFoto);
 } else{
     registrarAsis($con, $data);
     cambiarStatus($con, $data);
     return true;
 }
-
 
 function registrarAsis($con, $data){
     $lon = $data['lon'];
