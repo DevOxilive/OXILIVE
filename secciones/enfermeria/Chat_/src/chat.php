@@ -12,16 +12,15 @@ if (!isset($_SESSION['us'])) {
 <link rel="stylesheet" href="../css/chat.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <main id="main" class="main">
-    <center>
-        <h1>proximamente <b>Chat version 3<b></h1>
-    </center>
     <br>
     <div class="row">
         <div>
             <div>
                 <div id="chat-container">
                     <div id="chat-messages">
-                        
+
+                        <!-- Aquí se generan los mensajes -->
+
                     </div>
                 </div>
                 <div id="chat-form">
@@ -34,3 +33,6 @@ if (!isset($_SESSION['us'])) {
     </div>
     <script src="../js/chat.js"></script>
 </main>
+<?php
+include("../../../../templates/footer.php");
+?>

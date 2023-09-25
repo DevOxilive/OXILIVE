@@ -8,6 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['message'])) {
     $user = $_POST['user'];
     $salida = $_POST['output'];
     // Insertar el mensaje en la base de datos
-    $sentencia = $con->prepare("INSERT INTO mensajes (id_entrada, id_salida, msg, fecha_hora, usuario) VALUES ('{$_SESSION['idus']}','$salida', '$message', '$dateTime', '$user')");
+    $sentencia = $con->prepare("INSERT INTO mensajes (id_entrada, id_salida, msg, fecha_hora, persona) VALUES ('{$_SESSION['idus']}','$salida', '$message', '$dateTime', '$user')");
     $sentencia->execute();
 }

@@ -13,9 +13,9 @@ if (count($resultado) > 0) {
     foreach ($resultado as $fila) {
 
         if ($_SESSION['idus'] === $fila['id_entrada']) {
-            echo '<div class="burbuja-you"><b>' . $fila['usuario'] . ':</b> ' . $fila['msg'] . '<br></div>';
+            echo '<div class="burbuja-you"><b>' . $fila['persona'] . ':</b> ' . $fila['msg'] . '<br></div>';
         } else  {
-            echo '<div class="burbuja"><b>' . $fila['usuario'] . ':</b> ' . $fila['msg'] . '<br></div>';
+            echo '<div class="burbuja"><b>' . $fila['persona'] . ':</b> ' . $fila['msg'] . '<br></div>';
         }
     }
 } else {

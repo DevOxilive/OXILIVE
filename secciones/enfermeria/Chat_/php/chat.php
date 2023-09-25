@@ -1,16 +1,15 @@
 <?php
 session_start();
+
 if (!isset($_SESSION['us'])) {
     header('Location: ../../../../login.php');
 } elseif (isset($_SESSION['us'])) {
     include("../../../../templates/header.php");
-    $id_envio = $_GET['chat'];
 } else {
     // esto queda pediente para mostrar una mejor vista al usuario y no se confunca sobre esto...
     echo "Error en el sistema";
 }
-
-
+$id_envio = $_GET['chat'];
 $s = $con->prepare("SELECT * FROM usuarios WHERE id_usuarios = '$id_envio'");
 
 $s->execute();
@@ -31,11 +30,15 @@ if ($resultado) {
                     <div class="chat-header">
                         <h2><?php
                             echo $valorUsuario;
-                        } else {
-                            echo "No se encontraron resultados";
+                            ?>
 
-                        }
-                            ?></h2>
+                            <!-- comprobacion -->
+                        <?php
+                    } else {
+                        echo "No se encontraron resultados";
+                    }
+                        ?>
+                        </h2>
                     </div>
                     <div id="chat-container">
                         <div id="chat-messages">
@@ -54,3 +57,6 @@ if ($resultado) {
     </main>
     <!-- controlador de los estilos del chat -->
     <script src="../js/chatPriv.js"></script>
+    <?php
+    include("../../../../templates/footer.php");
+    ?>
