@@ -8,10 +8,8 @@ $consultaStatus->bindParam(':iduser', $iduser);
 $consultaStatus->execute();
 $newEstado = $consultaStatus->fetchAll(PDO::FETCH_ASSOC);
 
-// Lógica para obtener el estatus actual del usuario // Puedes obtener este valor de tu base de datos o de donde sea necesario
+$_SESSION['estado'] = $newEstado['Estado'];
 
-// Devolver el estatus como JSON
-$response = array("estatus" => $newEstado);
-header("Content-Type: application/json");
-echo json_encode($response);
+session_write_close();
+echo $_SESSION['estado'];
 ?>

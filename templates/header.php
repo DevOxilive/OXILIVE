@@ -495,27 +495,22 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
       <?php endif; ?>
     </ul>
   </aside><!-- End Sidebar-->
-  <!--<script>
-  $(document).ready(function() {
+  <script>
     // Función para actualizar el estatus
     function actualizarEstatus() {
       $.ajax({
-        url: "get_estatus.php", // URL del servidor para obtener el estatus
+        url: "get_status.php", // URL del servidor para obtener el estatus
         type: "POST",
-        data: {"iduser" : $_SESSION['idus']},
-        dataType: "json",
         success: function(response) {
           // Actualizar el elemento en la página con el nuevo estatus
-          alert("Estado: "+reponse);
-        },
-        error: function(xhr, status, error) {
-          // Manejar errores, si es necesario
-          console.error("Error al obtener el estatus: " + error);
+          console.log(response); 
         }
       });
     }
-  });
-  </script>-->
+    /*setInterval(() =>{
+      actualizarEstatus();
+    }, 1000);*/
+  </script>
     
   <script>
     function mostrarImagen(event) {

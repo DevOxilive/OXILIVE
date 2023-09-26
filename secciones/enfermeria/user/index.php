@@ -41,7 +41,11 @@ if (!isset($_SESSION['us'])) {
                     <div class="col-xxl-4 col-md-6">
                         <div class="card info-card next-service-card">
                             <div class="card-body">
+                                <?php if($_SESSION['estado'] == 1){ ?>
                                 <h5 class="card-title">Próximo servicio</h5>
+                                <?php } else if ($_SESSION['estado'] == 5) {?>
+                                <h5 class="card-title">Ya papu</h5>
+                                <?php } ?>
                                 <div class="d-flex align-items-center">
                                     <div
                                         class="card-icon rounded-circle d-flex align-items-center justify-content-center">
