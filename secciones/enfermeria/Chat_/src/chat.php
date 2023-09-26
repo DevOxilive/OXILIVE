@@ -11,27 +11,21 @@ if (!isset($_SESSION['us'])) {
 ?>
 <link rel="stylesheet" href="../css/chat.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../js/chat.js"></script>
 <main id="main" class="main">
-    <br>
-    <div class="row">
-        <div>
-            <div>
-                <div id="chat-container">
-                    <div id="chat-messages">
+    <div class="chat-header">
+        <h1>chat general</h1>
+    </div>
+    <div id="chat-container">
+        <div id="chat-messages">
 
-                        <!-- Aquí se generan los mensajes -->
-
-                    </div>
-                </div>
-                <div id="chat-form">
-                    <input type="hidden" value="<?php echo $_SESSION['us'] ?>" id="user">
-                    <input type="text" id="message" placeholder="Escribe tu mensaje">
-                    <button id="send"><img src="../img/pngwing.com.png" alt="" width="40px"></button>
-                </div>
-            </div>
         </div>
     </div>
-    <script src="../js/chat.js"></script>
+    <div id="chat-form">
+        <input type="hidden" value="<?php echo $_SESSION['us'] ?>" id="user">
+        <input type="text" id="message" placeholder="Escribe tu mensaje">
+        <button id="send"><img src="../img/pngwing.com.png" alt="" width="40px"></button>
+    </div>
 </main>
 <?php
 include("../../../../templates/footer.php");

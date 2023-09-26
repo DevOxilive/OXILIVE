@@ -29,6 +29,10 @@ $(document).ready(function () {
                 if (!userScrolled) {
                     scrollToBottom();
                 }
+            },
+            error: function () {
+                // Manejar errores
+                alert("Error al cargar los mensajes");
             }
         });
     }
@@ -47,12 +51,11 @@ $(document).ready(function () {
 
     chatBox.addEventListener('scroll', function () {
         if (isScrollAtBottom()) {
-            // si usuario ha vuelto al fondo, podemos activar el scroll
+            // Si el usuario ha vuelto al fondo, desactivar el scroll
             userScrolled = false;
         } else {
-            // si usuario está viendo mensajes anteriores, desactivar el scroll
+            // Si el usuario está viendo mensajes anteriores, activar el scroll
             userScrolled = true;
         }
     });
-    // esta funcion ayuda a actualizar el chat cada dos segundos
 });
