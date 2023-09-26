@@ -3,7 +3,7 @@ try {
     //code...
     session_start();
     if (!isset($_SESSION['idus'])) {
-        throw new Exception(":D refresca la pagina");
+        throw new Exception(":D ");
     }
     $idus = $_SESSION['idus'];
 
