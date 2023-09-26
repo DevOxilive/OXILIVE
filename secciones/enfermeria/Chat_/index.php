@@ -10,13 +10,14 @@ if (!isset($_SESSION['us'])) {
 }
 ?>
 <!-- seccion de chat formaulario-->
+<script src="notificaciones/js/push.min.js"></script>
 <link rel="stylesheet" href="css/index.css">
 <main id="main" class="main">
     <br>
     <div class="row">
         <div class="content">
             <div class="user-list-container">
-                    <h1><b>Chats</b></h1>
+                <h1><b>Chats</b></h1>
 
                 <ul id="users-list">
                     <!-- aqui se generan los usuarios desde la base de datos -->

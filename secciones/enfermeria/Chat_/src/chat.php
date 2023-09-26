@@ -16,6 +16,7 @@ try {
     <link rel="stylesheet" href="../css/chat.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../js/chat.js"></script>
+    <script src="../notificaciones/js/push.min.js"></script>
     <main id="main" class="main">
         <div class="chat-header">
             <h1>chat general</h1>

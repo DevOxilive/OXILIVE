@@ -20,7 +20,8 @@ try {
       </a>';
     if (count($resultado) > 0) {
         foreach ($resultado as $fila) {
-            $sql2 = "SELECT * FROM mensajes WHERE (id_salida = {$idus} AND id_entrada = {$fila['id_usuarios']}) OR (id_entrada = {$idus} AND id_salida = {$fila['id_usuarios']}) ORDER BY id_msg desc limit 1";
+            $sql2 = "SELECT * FROM mensajes WHERE (id_salida = {$idus} AND id_entrada = {$fila['id_usuarios']}) ORDER BY id_msg desc limit 1";
+            //  OR (id_entrada = {$idus} AND id_salida = {$fila['id_usuarios']}) por si algo falla aqui esta un posible solucion en la consulta....
             $sent = $con->prepare($sql2);
             $sent->execute();
             $lasMessage = $sent->fetch(PDO::FETCH_ASSOC);
@@ -47,3 +48,4 @@ try {
 } catch (Exception $e) {
     echo $e->getMessage();   //throw $th;
 }
+
