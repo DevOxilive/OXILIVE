@@ -47,17 +47,18 @@ if (!isset($_SESSION['us'])) {
 </head>
 <body>
     <center>
+        <input type="hidden" id="nomFoto" value="">
 	    <video muted id="video"></video>
 	    <canvas id="canvas"></canvas>
-        <div class="row btn-bar">
+        <div class="row btn-bar">        
             <div class="ps-4" >
-                <a class="btn btn-outline-danger" onclick="confirmCancel(event)" id="cancelar" role="button">
-                        Cancelar
+                <a class="btn btn-danger" id="boton2" onclick="confirmCancel(event)" role="button">
+                    Cancelar
                 </a>
             </div>
             <div class="ps-4" >
-                <a class="btn btn-outline-primary" href="" id="boton" role="button">
-                        Tomar foto
+                <a class="btn btn-primary" id="boton" onclick="guardarFoto(event)" role="button">
+                    Tomar foto
                 </a>
             </div>
         </div>
