@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $vPassword = $_POST["txtPass"];
 
     if (!empty($vUsuario) && !empty($vPassword)) {
-        $consu = "SELECT * FROM usuarios WHERE BINARY Usuario = :vUsuario AND Estado = 1";
+        $consu = "SELECT * FROM usuarios WHERE BINARY Usuario = :vUsuario AND Estado != 2";
         $stmt = $con->prepare($consu);
         $stmt->bindParam(":vUsuario", $vUsuario);
         $stmt->execute();

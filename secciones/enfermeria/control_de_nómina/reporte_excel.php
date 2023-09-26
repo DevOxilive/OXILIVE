@@ -12,21 +12,22 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 $fecha1 = $_GET['fecha1'];
 $fecha2 = $_GET['fecha2'];
 
-$consulta = "SELECT COUNT(A.id_check) AS asistencias, A.id_check, 
-CONCAT(S.Nombres, ' ', S.Apellidos) AS 'Nombre completo', T.nombre_guardia AS 'Tipo de guardia', H.fecha AS 'Dias laborados', 
-SUM(T.sueldo * A.id_check) AS 'Sueldo Total' 
-FROM usuarios S 
-JOIN asistencias A ON S.id_usuarios = A.id_empleadoEnfermeria 
-JOIN asignacion_horarios H ON S.id_usuarios = H.id_usuario 
-JOIN puestos P ON S.id_departamentos = P.id_puestos 
-JOIN tipos_guardias T ON T.id_tiposGuardias = H.id_tiposGuardias 
-JOIN checkk C ON C.id_check = A.id_check 
-JOIN empleados M ON M.Puesto = P.id_puestos 
-JOIN estado E ON S.Estado = E.id_estado 
+
+$consulta = "SELECT A.id_empleadoEnfermeria, COUNT(*) AS asistencia, CONCAT(S.Nombres, ' ', S.Apellidos) AS 'Nombre completo', T.nombre_guardia AS 'Tipo de guardia',
+H.fecha AS 'Dias laborados', SUM(T.sueldo) * COUNT(A.id_asistencias)  AS 'Sueldo Total'
+FROM usuarios S
+JOIN asistencias A ON S.id_usuarios = A.id_empleadoEnfermeria
+JOIN asignacion_horarios H ON S.id_usuarios = H.id_usuario
+JOIN puestos P ON S.id_departamentos = P.id_puestos
+JOIN tipos_guardias T ON T.id_tiposGuardias = H.id_tiposGuardias
+JOIN checkk C ON C.id_check = A.id_check
+JOIN estado E ON S.Estado = E.id_estado
 WHERE id_puestos = 6
+AND E.id_estado = 1
 AND H.fecha >= :fecha1
 AND H.fecha <= :fecha2 
-GROUP BY A.id_check, CONCAT(S.Nombres, ' ', S.Apellidos), T.nombre_guardia, H.fecha";
+GROUP BY A.id_empleadoEnfermeria, CONCAT(S.Nombres, ' ', S.Apellidos), T.nombre_guardia, H.fecha, T.sueldo; 
+";
 
 $sentencia = $con->prepare($consulta);
 $sentencia->bindParam(':fecha1', $fecha1);
@@ -61,7 +62,7 @@ $headerStyle = [
 $hojaActiva->getStyle('A1:E1')->applyFromArray($headerStyle);
 
 // Llena la tabla con datos
-$hojaActiva->setCellValue('A1', 'Asistencias');
+$hojaActiva->setCellValue('A1', 'Asistencia');
 $hojaActiva->setCellValue('B1', 'Nombre completo');
 $hojaActiva->setCellValue('C1', 'Tipo de guardia');
 $hojaActiva->setCellValue('D1', 'Dias laborados');
@@ -69,7 +70,7 @@ $hojaActiva->setCellValue('E1', 'Sueldo Total');
 
 $fila = 2;
 foreach ($trabajador as $row) {
-    $hojaActiva->setCellValue('A' . $fila, $row['asistencias']);
+    $hojaActiva->setCellValue('A' . $fila, $row['asistencia']);
     $hojaActiva->setCellValue('B' . $fila, $row['Nombre completo']);
     $hojaActiva->setCellValue('C' . $fila, $row['Tipo de guardia']);
     $hojaActiva->setCellValue('D' . $fila, $row['Dias laborados']);
