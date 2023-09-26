@@ -19,10 +19,7 @@ if (isset($_SESSION['us'])) {
 
 <body>
     <section id="sect1" class="sect">
-        <video
-            src="https://prod-streaming-video-msn-com.akamaized.net/49a16a97-2dfb-4296-90f4-12459a46d5d5/c5fc2d44-2573-4fff-99d7-c863763063e6.mp4"
-            autoplay="true" muted="true" loop="true"
-            poster="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA110KSi.img"></video>
+        <video src="https://prod-streaming-video-msn-com.akamaized.net/49a16a97-2dfb-4296-90f4-12459a46d5d5/c5fc2d44-2573-4fff-99d7-c863763063e6.mp4" autoplay="true" muted="true" loop="true" poster="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA110KSi.img"></video>
         <div class="section">
             <div class="container">
                 <div class="row full-height justify-content-center">
@@ -43,21 +40,17 @@ if (isset($_SESSION['us'])) {
                                                 <h4 class="mb-3 pb-3">Iniciar Sesión</h4>
                                                 <form method="POST" action="procesarlogin.php" id="formLogin">
                                                     <div class="form-group">
-                                                        <input type="text" name="txtUsu" class="form-style"
-                                                            placeholder="Usuario">
+                                                        <input type="text" name="txtUsu" class="form-style" placeholder="Usuario">
                                                         <i class="input-icon uil uil-user"></i>
                                                     </div>
                                                     <div class="form-group mt-2">
-                                                        <input type="password" name="txtPass" class="form-style"
-                                                            placeholder="Contraseña">
+                                                        <input type="password" name="txtPass" class="form-style" placeholder="Contraseña">
                                                         <i class="input-icon uil uil-lock-alt"></i>
                                                     </div>
-                                                    <button class="btn mt-4" type="submit"
-                                                        class="login-form-btn">Iniciar sesión</button>
+                                                    <button class="btn mt-4" type="submit" class="login-form-btn">Iniciar sesión</button>
                                             </div>
                                             </form>
-                                            <p class="mb-0 mt-4 text-center"><a href="registro/registro.php"
-                                                    class="link">¿No tienes cuenta? Registrate</a></p>
+                                            <p class="mb-0 mt-4 text-center"><a href="registro/registro.php" class="link">¿No tienes cuenta? Registrate</a></p>
                                         </div>
                                     </div>
                                     <div class="card-back">
@@ -86,4 +79,5 @@ if (isset($_SESSION['us'])) {
     </section>
 </body>
 <script src="JS/jquery-3.7.0.min.js"></script>
+
 </html>

@@ -3,7 +3,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     session_start();
     include_once 'templates/hea.php';
     include_once 'connection/conexion.php';
-
     $vUsuario = $_POST["txtUsu"];
     $vPassword = $_POST["txtPass"];
 
@@ -15,10 +14,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $datos = $stmt->fetch(PDO::FETCH_ASSOC);
 
         $incremento = "UPDATE usuarios SET inicios_sesion = inicios_sesion + 1 WHERE Usuario = :vUsuario";
-            $incre = $con->prepare($incremento);
-            $incre->bindParam(":vUsuario", $vUsuario);
-            $incre->execute();
-        
+        $incre = $con->prepare($incremento);
+        $incre->bindParam(":vUsuario", $vUsuario);
+        $incre->execute();
+
         if ($datos && password_verify($vPassword, $datos["paswword"])) {
             $_SESSION['idus'] = $datos["id_usuarios"];
             $_SESSION['us'] = $datos["Usuario"];
@@ -32,7 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['rfc'] = $datos["rfc"];
 
             $_SESSION['estado'] = $datos['Estado'];
-
+            $sentensia2 = $con->prepare("UPDATE usuarios SET estatus = '1' WHERE id_usuarios = '{$_SESSION['idus']}' ");
+            $sentensia2->execute();
 
             switch ($datos["id_departamentos"]) {
                 case '1':
@@ -59,8 +59,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         });
                 </script>";
                     break;
-                    case '3':
-                        echo "<script> 
+                case '3':
+                    echo "<script> 
                              Swal.fire({
                                  icon: 'success',
                                 title: 'BIENVENIDO',
@@ -70,9 +70,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         window.location = 'secciones/sistemas/index.php';
                             });
                     </script>";
-                        break;
-                    case '4':
-                        echo "<script> 
+                    break;
+                case '4':
+                    echo "<script> 
                              Swal.fire({
                                  icon: 'success',
                                 title: 'BIENVENIDO',
@@ -82,9 +82,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         window.location = 'secciones/oxigeno/index.php';
                             });
                     </script>";
-                        break;
-                    case '5':
-                        echo "<script> 
+                    break;
+                case '5':
+                    echo "<script> 
                              Swal.fire({
                                  icon: 'success',
                                 title: 'BIENVENIDO',
@@ -94,9 +94,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         window.location = 'secciones/call_center/index.php';
                             });
                     </script>";
-                        break;
-                    case '6':
-                        echo "<script> 
+                    break;
+                case '6':
+                    echo "<script> 
                              Swal.fire({
                                  icon: 'success',
                                 title: 'BIENVENIDO',
@@ -106,9 +106,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         window.location = 'secciones/enfermeria/index.php';
                             });
                     </script>";
-                        break;
-                    case '7':
-                        echo "<script> 
+                    break;
+                case '7':
+                    echo "<script> 
                                  Swal.fire({
                                      icon: 'success',
                                     title: 'BIENVENIDO',
@@ -118,9 +118,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             window.location = 'secciones/Capital_humano/index.php';
                                 });
                         </script>";
-                        break;
-                    case '8':
-                        echo "<script> 
+                    break;
+                case '8':
+                    echo "<script> 
                              Swal.fire({
                                  icon: 'success',
                                 title: 'BIENVENIDO',
@@ -130,9 +130,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         window.location = 'secciones/almacen/index.php';
                             });
                     </script>";
-                        break;
-                    case '9':
-                        echo "<script> 
+                    break;
+                case '9':
+                    echo "<script> 
                             Swal.fire({
                                 icon: 'success',
                                 title: 'BIENVENIDO',
@@ -148,9 +148,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             window.location = 'secciones/Pchofer/index.php';
                                 });
                         </script>";
-                        break;
-                        case '10':
-                            echo "<script> 
+                    break;
+                case '10':
+                    echo "<script> 
                                  Swal.fire({
                                      icon: 'success',
                                     title: 'BIENVENIDO',
@@ -160,7 +160,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             window.location = 'secciones/catalogo/index.php';
                                 });
                         </script>";
-                            break;
+                    break;
                 default:
                     redirectTo('index.php');
                     break;
@@ -183,13 +183,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-function redirectTo($location) {
+function redirectTo($location)
+{
     echo "<script>
         window.location = '$location';
     </script>";
 }
 
-function showErrorAlert($message) {
+function showErrorAlert($message)
+{
     echo "<script>
         Swal.fire({
             icon: 'error',
@@ -202,4 +204,3 @@ function showErrorAlert($message) {
         });
     </script>";
 }
-?>
