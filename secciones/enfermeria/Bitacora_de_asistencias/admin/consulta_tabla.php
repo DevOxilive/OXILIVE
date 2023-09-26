@@ -2,7 +2,7 @@
 
 include("../../../../connection/conexion.php");
 
-
+// consulta para la vista de la tabla
 $sentenciaReg = $con->prepare(
 
     'SELECT *

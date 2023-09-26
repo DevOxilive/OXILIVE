@@ -1,7 +1,10 @@
 <?php
+
+//Se asigna la varialbles checkIN y checkOut para realizar la consulta
 $checkIn= $_GET['checkIn'];
 $checkOut= $_GET['checkOut'];
 
+// si checkOut no existe pasa a inserta el checkIn
 if($checkOut == NULL ){
     $sentencia = $con->prepare(
 
@@ -11,6 +14,7 @@ if($checkOut == NULL ){
         a.id_asistencias=:checkIn;"
     );
     $sentencia->bindparam(':checkIn',$checkIn);
+// por el contrario si existe checkOut se insertan ambas   
 } else {
     $sentencia = $con->prepare(
 

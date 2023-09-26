@@ -22,9 +22,11 @@ if (!isset($_SESSION['us'])) {
     <div class="card-body">
       <div class="text-center">
         <ul class="list-group list-group-flush">
+    <!-- llama a los datos para su consulta -->          
           <li class="list-group-item list-group-item-dark">ID Usuarios: <?php echo $registro['id_empleadoEnfermeria']; ?></li>
           <li class="list-group-item list-group-item-dark">Nombres y Apellidos: <?php echo $registro['Nombres']; ?></li>
         </ul>
+<!-- Muestra la ubicacion en el mapa (espero no truene con esto) -->   
         <div class="card-text">Ubicación: <?php echo $registro['checkUbicacion']; ?></div>
       </div>
     </div>

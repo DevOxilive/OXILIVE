@@ -73,7 +73,7 @@ if (!isset($_SESSION['us'])) {
                             </td>
                             <td>
 
-
+                           <!-- El boton te muestra la salida de la informacion del empleado -->
                                 <a name="" id="" class="btn btn-outline-warning"
                                     href="prueba2.php?checkIn=<?php echo $Lsb['id_checkIn'];?>&checkOut=<?php echo $Lsb['id_checkOut'];?>" role="button"><i
                                         class="bi bi-info-square"></i></a>
