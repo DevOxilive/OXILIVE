@@ -5,7 +5,7 @@ if (!isset($_SESSION['us'])) {
 } elseif (isset($_SESSION['us'])) {
   include("../../../../templates/header.php");
   include("../../../../connection/conexion.php");
-  include("./consulta_estatus.php");
+  include("./consulta_tabla.php");
 } else {
   echo "Error en el sistema";
 }
@@ -20,57 +20,66 @@ if (!isset($_SESSION['us'])) {
             <a class="btn btn-outline-info" href="" role="button"><i class="bi bi-printer-fill"></i></a>
         </div>
     </div>
-
-    </div>
     <div class="card">
         <div class="card-header">
             <p class="font-weight-bold">Bitacora de asistencia</p>
-
-            <!-- Inicia tabla -->
         </div>
         <div class="card-body">
             <div class="table-responsive-sm">
                 <table class="table table-bordered border-dark table-hover" id="myTable">
                     <thead class="table-dark">
                         <tr class="table-active table-group-divider" style="text-align: center;">
-                            <th scope="col">Nombre completo</th>
+                            <th scope="col">Id asistencia</th>
                             <th scope="col">Fecha</th>
                             <th scope="col">Hora de entrada</th>
                             <th scope="col">Hora de salida</th>
                             <th scope="col">Estatus</th>
-                            <th scope="col">Mas detalles</th>
+                            <th scope="col">Detalles</th>
                         </tr>
                     </thead>
                     <tbody>
 
-                        <?php foreach ($estatus as $St) { ?>
+                        <?php foreach ($lista_bitacora as $Lsb) { ?>
                         <tr>
                             <th scope="row">
-                                <?php echo $St['Nombre completo']; ?>
+                                <?php echo $Lsb['id_Rbitacora']; ?>
                             </th>
                             <td>
-                                <?php echo $St['fecha_asis']; ?>
+                                <?php echo $Lsb['Registro_fecha']; ?>
                             </td>
                             <td>
-                                <?php echo $St['Hora de entrada']; ?>
+                                <?php echo $Lsb['hora_entrada']; ?>
                             </td>
+
                             <td>
-                                <?php echo $St['Hora de salida']; ?>
+                                <?php echo $Lsb['hora_salida']; ?>
+                            </td>
+
+                            <td>
+                                <?php
+                                 if ($Lsb['id_checkOut']) {
+                                 // Si existe id_checkOut, muestra "Servicio completo" en verde
+                                 echo '<span style="color: green;">Servicio completo</span>';
+                                 } elseif ($Lsb['id_checkIn']) {
+                                 // Si solo existe id_checkIn, muestra "En proceso" en naranja
+                                 echo '<span style="color: orange;">En proceso</span>';
+                                 } else {
+                                 // Si no existe ninguna de las dos, puedes mostrar un valor 
+                                 // predeterminado o un mensaje de error
+                                 // esto solo si no reliza el check de manera correcta
+                                  echo 'Error en el estatus';
+                                  }
+                                 ?>
                             </td>
                             <td>
 
-                                <?php echo $St['Estatus']; ?>
 
-                            </td>
-                            <td>
-                                <a name="" id="" class="btn btn-warning"
-                                    href="pacientes.php?txtID=<?php echo $pacien['id_pacientes']; ?>" role="button"
-                                    style="font-size:10px;"><i class="bi bi-info-square"></i></a> |
                                 <a name="" id="" class="btn btn-outline-warning"
-                                    href="editar.php?txtID=<?php echo $pacien['id_pacientes']; ?>" role="button"><i
-                                        class="bi bi-info-square"></i></a> 
-                            
-                            </td>   
+                                    href="prueba2.php?txtID=<?php echo $Lsb['id_Rbitacora']; ?>" role="button"><i
+                                        class="bi bi-info-square"></i></a>
+
+
+                            </td>
 
                         </tr>
                         <?php } ?>
