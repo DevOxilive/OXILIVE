@@ -55,14 +55,25 @@ if (!isset($_SESSION['us'])) {
                                     <?php } ?>
                                 </div>
                             </div>
+                            <?php if($_SESSION['estado']==1){?>
                             <!-- Botón de Empezar Servicio -->
-                            <div class="ps-4" >
+                            <div class="ps-4">
                                 <a class="btn btn-outline-success" href="crear.php" role="button">
                                     <i class="bi bi-clipboard-check-fill"></i>
                                         Comenzar servicio
                                 </a>
                             </div>
                             <!-- End Botón de Empezar Servicio -->
+                            <?php }else if($_SESSION['estado']==5){?>
+                            <!-- Botón de Terminar Servicio -->
+                            <div class="ps-4">
+                                <a class="btn btn-outline-danger" href="crear.php" role="button">
+                                    <i class="bi bi-clipboard-check-fill"></i>
+                                        Terminar Servicio
+                                </a>
+                            </div>
+                            <!-- End Botón de Terminar Servicio -->
+                            <?php } ?>
                         </div>
                     </div>
                     <!-- End Card Próximo Servicio -->

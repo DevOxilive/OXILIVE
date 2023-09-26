@@ -1,0 +1,54 @@
+/* estilos del listado de los usuarios 
+en la vista principal de seleccion */
+
+/* este es el contenedor donde se general los usuarios */
+.user-list-container {
+    width: 100%;
+    margin: 0 auto;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+/* estilo del encabezado */
+.user-list-container h2 {
+    text-align: center;
+    margin-top: 0;
+}
+
+/* estilo de la lista */
+#users-list {
+    list-style: none;
+    padding: 0;
+}
+
+/* estilo de las opciones de la lista */
+
+#users-list li {
+    list-style: none;
+    padding: 10px 0;
+    cursor: pointer;
+    border-bottom: 1px solid #ccc;
+}
+
+#users-list a {
+    color: black;
+}
+
+#users-list li:hover {
+    color: rgb(31, 111, 177);
+    border-bottom: 1px solid rgb(0, 140, 255);
+}
+
+.user-list-container img {
+    border-radius: 50%;
+    border: solid 0.2px black;
+    width: 50px;
+    margin-right: 10px;
+}
+
+#conexion {
+    margin-left: 10px;
+    border: none;
+    width: 20px;
+}

@@ -332,7 +332,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
           </a>
           <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-              <a href="<?php echo $url_base; ?>secciones/enfermeria/ChatApp/index.php">
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/Chat_/index.php">
                 <i class="bi bi-circle"></i><span>Chat General</span>
               </a>
             </li>
@@ -398,7 +398,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
               </a>
             </li>
             <li>
-              <a href="<?php echo $url_base; ?>secciones/enfermeria/ChatApp/index.php">
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/Chat_/index.php">
                 <i class="bi bi-circle"></i><span>Chat General</span>
               </a>
             </li>
@@ -495,6 +495,28 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
       <?php endif; ?>
     </ul>
   </aside><!-- End Sidebar-->
+  <!--<script>
+  $(document).ready(function() {
+    // Función para actualizar el estatus
+    function actualizarEstatus() {
+      $.ajax({
+        url: "get_estatus.php", // URL del servidor para obtener el estatus
+        type: "POST",
+        data: {"iduser" : $_SESSION['idus']},
+        dataType: "json",
+        success: function(response) {
+          // Actualizar el elemento en la página con el nuevo estatus
+          alert("Estado: "+reponse);
+        },
+        error: function(xhr, status, error) {
+          // Manejar errores, si es necesario
+          console.error("Error al obtener el estatus: " + error);
+        }
+      });
+    }
+  });
+  </script>-->
+    
   <script>
     function mostrarImagen(event) {
       var input = event.target;
@@ -556,7 +578,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
       event.preventDefault();
       var notificacionesOcultas = document.querySelectorAll('.notification-item.hidden');
       notificacionesOcultas.forEach(function(item) {
-          item.classList.remove('hidden');
+        item.classList.remove('hidden');
       });
       verMasBtn.style.display = 'none'; // Oculta el botón "Ver más"
     });
