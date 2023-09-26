@@ -3,13 +3,15 @@ include('../../../../connection/conexion.php');
 
 $data = json_decode(file_get_contents('php://input'), true);
 
-if(empty($data['nomFoto']) || $data['nomFoto'] == ""){
+if(empty($data['nomFoto']) || $data['nomFoto'] == "") {
     $nomFoto = guardarFoto($data);
     exit ($nomFoto);
-} else{
-    registrarAsis($con, $data);
-    cambiarStatus($con, $data);
-    return true;
+} else {
+    if(registrarAsis($con, $data) && cambiarStatus($con, $data)){
+        exit ('Registro Exitoso');
+    } else {
+        exit ('Registro Fallido');
+    }
 }
 
 function registrarAsis($con, $data){
@@ -26,7 +28,7 @@ function registrarAsis($con, $data){
 
     $regAsis = $con->prepare("
         INSERT INTO asistencias
-        VALUES (NULL, :idus, :status, :fecha, :time, POINT(:lat,:lon), :foto);
+        VALUES (NULL, :idus, :status, :fecha, :time, :lat, :lon, :foto);
     ");
 
     $regAsis->bindParam(':idus', $idUser);
@@ -56,6 +58,11 @@ function cambiarStatus($con, $data){
 }
 function guardarFoto($data){
     $fotoCod = $data['foto'];
+    $idUser = $data['idUser'];
+    $dir = '../img/asistencias/'.$idUser.'/';
+    if(!is_dir($dir)){
+        mkdir($dir);
+    }
     //Valida que traiga una imágen
     if(strlen($fotoCod) <= 0) exit("No se recibió ninguna imagen");
     //La imagen traerá al inicio data:image/png;base64, cosa que debemos remover
@@ -63,7 +70,7 @@ function guardarFoto($data){
     //Venía en base 64 y se decodifica para ser guardada
     $fotoDecod = base64_decode($fotoCodWell);
     //Calcular un nombre único
-    $nombreImagenGuardada = "foto_" . uniqid() . ".png";
+    $nombreImagenGuardada = $dir."foto_" . uniqid() . ".png";
     //Escribir el archivo
     file_put_contents($nombreImagenGuardada, $fotoDecod);
     return $nombreImagenGuardada;
