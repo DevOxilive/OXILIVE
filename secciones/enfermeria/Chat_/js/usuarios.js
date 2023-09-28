@@ -13,5 +13,18 @@ $(document).ready(function () {
     setInterval(() => {
         loadUsers();
     }, 1000);
+    // Made by Dazz
 
+    /**
+     * 
+     *          ( D- A- Z- Z )
+     *                /\
+     *              /  /
+     *            /_  /_
+     *             /_   /_
+     *              /   /
+     *             / /      
+     *             \/
+     * 
+     */
 });

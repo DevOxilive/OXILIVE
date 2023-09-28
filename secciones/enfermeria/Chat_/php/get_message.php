@@ -17,11 +17,17 @@ try {
     // comprueba que tenga filas la consulta si las tiene carga el chat
     if (count($resultado) > 0) {
         foreach ($resultado as $fila) {
-
+            if ($fila['leido'] == '1') {
+                $leido = '<i class="bi bi-check2-all"></i>';
+            }else {
+                $leido = '<i class="bi bi-check2"></i>';
+            }
             if ($_SESSION['idus'] === $fila['id_entrada']) {
-                echo '<div class="burbuja-you"><b>' . $fila['persona'] . ':</b> ' . $fila['msg'] . '<br></div>';
+                echo '<div class="burbuja-you"><b>' . $fila['persona'] . ':</b> ' . $fila['msg'] . '<p>' . $leido . '</p></div>';
             } else {
-                echo '<div class="burbuja"><b>' . $fila['persona'] . ':</b> ' . $fila['msg'] . '<br></div>';
+                $sent = $con->prepare("UPDATE mensajes SET leido = '1' WHERE id_msg={$fila['id_msg']}");
+                $sent->execute();
+                echo '<div class="burbuja"><b>' . $fila['persona'] . ':</b> ' . $fila['msg'] . '</div>';
             }
         }
     } else {
