@@ -75,7 +75,7 @@ if (!isset($_SESSION['us'])) {
                             <?php foreach ($lista_guardias as $guardias){ ?>
                             <option value="0">Elige el tipo de guardia</option>
                             <option value="<?php echo $guardias['id_tiposGuardias']; ?>">
-                                <?php echo $guardias['nombre_guardia']; ?>
+                                <?php echo $guardias['nombreServicio']; ?>
                             </option>
                             <?php } ?>
                         </select>

@@ -829,13 +829,13 @@ DROP TABLE IF EXISTS `tipos_guardias`;
 CREATE TABLE IF NOT EXISTS `tipos_guardias` (
   `id_tiposGuardias` int NOT NULL AUTO_INCREMENT,
   `nombre_guardia` varchar(50) NOT NULL DEFAULT '',
-  `horas_guardia` int(2) unsigned zerofill NOT NULL DEFAULT '00',
+  `horasServicio` int(2) unsigned zerofill NOT NULL DEFAULT '00',
   `sueldo` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_tiposGuardias`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Volcando datos para la tabla bdoxilive.tipos_guardias: ~0 rows (aproximadamente)
-INSERT IGNORE INTO `tipos_guardias` (`id_tiposGuardias`, `nombre_guardia`, `horas_guardia`, `sueldo`) VALUES
+INSERT IGNORE INTO `tipos_guardias` (`id_tiposGuardias`, `nombre_guardia`, `horasServicio`, `sueldo`) VALUES
 	(1, 'Guardia General', 08, 300);
 
 -- Volcando estructura para tabla bdoxilive.tipo_cpt
