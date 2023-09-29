@@ -1,1 +1,1 @@
-<h1>Registro clínico y cuidados generales</h1>
+<a href="./registroPDF.php">Registro Clínico PDF</a

@@ -1,7 +1,7 @@
 <?php
 include("../../connection/conexion.php");
 include_once '../../templates/hea.php';
-
+include("./administradoraUP.php");
 if (isset($_GET['txtID'])) {
 
   //CONSULTA LOS DATOS Y TRAE LOS DATOS DE LA BASE DE DATOS

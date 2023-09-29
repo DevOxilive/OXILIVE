@@ -9,7 +9,7 @@ if (!isset($_SESSION['us'])) {
     include("../../../module/banco.php");
     include("../../../module/aseguradora.php");
     include("../../../module/administradora.php");
-    include("./pacientesUP.php");
+    include("../../oxigeno/pacientes/pacientesUP.php");
 } else {
     echo "Error en el sistema";
 }
@@ -155,7 +155,48 @@ if (!isset($_SESSION['us'])) {
                         <input type="file" value="<?php echo $comprobante; ?>" class="form-control" name="comprobante" id="comprobante">
                     </div>
 
-                    
+                    <div class="col-md-4">
+                        <label for="Credencial_front" class="form-label">(INE) Credencial parte superior</label>
+                        <br>
+                        <div class="profile-picture-cre">
+                            <div class="picture-container-cre">
+                                <?php if (!empty($Credencial_front)) : ?>
+                                    <img src="./PAPELETA/<?php echo $Apellidos . " " . $Nombres ?>/<?php echo $Credencial_front; ?>" alt="" id="imagenActual" class="img-thumbnail-ine" style="width: 350px ; height: 210px;">
+                                <?php else : ?>
+                                    <img src="../../img/OXILIVE.ico" alt="foto de perfil" id="imagenActual" class="img-thumbnail-ine">
+                                <?php endif; ?>
+                                <div class="overlay-cre">
+                                    <label for="Credencial_front" class="change-link"><i class="fas fa-camera"></i>
+                                    </label>
+                                    <?php if (!empty($Credencial_front)) : ?>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="file" class="form-control" name="Credencial_front" id="Credencial_front" onchange="cambiarImagen(event)" style="display: none;">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="Credencial_post" class="form-label">(INE) Credencial parte inferior</label>
+                        <br>
+                        <div class="profile-picture-cre">
+
+                            <div class="picture-container-cre">
+                                <?php if (!empty($Credencial_post)) : ?>
+                                    <img src="./PAPELETA/<?php echo $Apellidos . " " . $Nombres ?>/<?php echo $Credencial_post; ?>" alt="" id="imagenActual1" class="img-thumbnail-ine" style="width: 350px ; height: 210px;">
+                                <?php else : ?>
+                                    <img src="../../img/OXILIVE.ico" alt="foto de perfil" id="imagenActual1" class="img-thumbnail-ine">
+                                <?php endif; ?>
+                                <div class="overlay-cre">
+                                    <label for="Credencial_post" class="change-link"><i class="fas fa-camera"></i>
+                                    </label>
+                                    <?php if (!empty($Credencial_post)) : ?>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="file" class="form-control" name="Credencial_post" id="Credencial_post" onchange="cambiarImagen1(event)" style="display: none;">
+                    </div>
+
                     <!--  -->
                     <div class="col-md-4">
                         <label for="Credencial_aseguradora" class="form-label">(ASEGURADORA) Credencial parte superior</label>
@@ -180,6 +221,9 @@ if (!isset($_SESSION['us'])) {
                     <div class="contenido col-md-1">
                         <label></label>
                     </div>
+                   
+ 
+
                     <div class="col-md-4">
                         <label for="Credencial_aseguradoras_post" class="form-label">(ASEGURADORA) Credencial parte inferior</label>
                         <br>
