@@ -47,7 +47,7 @@ $(document).ready(function () {
 
     setInterval(() => {
         loadMessages();
-    }, 500);
+    }, 500);    // esta funcion ayuda a actualizar el chat cada 0.5 segundos
 
     function scrollToBottom() {
         chatBox.scrollTop = chatBox.scrollHeight;
@@ -66,5 +66,5 @@ $(document).ready(function () {
             userScrolled = true;
         }
     });
-    // esta funcion ayuda a actualizar el chat cada 0.5 segundos
+
 });

@@ -43,17 +43,17 @@ function registrarAsis($con, $data){
 function cambiarStatus($con, $data){
     $status = $data['status'];
     $idUser = $data['idUser'];
-    $sentenciaStatus = $con->prepare("
+    $sentenciaStatus = $con->prepare('
         UPDATE usuarios 
-        SET Estado=:estado WHERE id_usuarios=:idUser;
-    ");
+        SET Estado =:estado WHERE id_usuarios=:idUser;
+    ');
     if($status == 1){
-        $newStatus=5;
+        $newStatus = 5;
     }else if($status == 5){
         $newStatus = 1;
     }
-    $sentenciaStatus->bindParam(":idUser", $idUser);
-    $sentenciaStatus->bindParam(":estado", $newStatus);
+    $sentenciaStatus->bindParam(':idUser', $idUser);
+    $sentenciaStatus->bindParam(':estado', $newStatus);
     $sentenciaStatus->execute();
 }
 function guardarFoto($data){

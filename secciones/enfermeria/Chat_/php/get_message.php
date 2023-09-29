@@ -9,6 +9,7 @@ try {
     if (!isset($_SESSION['idus'])) {
         throw new Exception(":D ");
     }
+
     // Consulta para obtener los mensajes
     $salida = $_POST['output'];
     $sentensia = $con->prepare("SELECT * FROM mensajes WHERE id_salida = {$_SESSION['idus']} AND id_entrada = {$salida} OR id_entrada = {$_SESSION['idus']} AND id_salida = {$salida} ORDER BY id_msg ASC");
@@ -17,11 +18,17 @@ try {
     // comprueba que tenga filas la consulta si las tiene carga el chat
     if (count($resultado) > 0) {
         foreach ($resultado as $fila) {
-
-            if ($_SESSION['idus'] === $fila['id_entrada']) {
-                echo '<div class="burbuja-you"><b>' . $fila['persona'] . ':</b> ' . $fila['msg'] . '<br></div>';
+            if ($fila['leido'] == '1') {
+                $leido = '<i class="bi bi-check2-all"></i>';
             } else {
-                echo '<div class="burbuja"><b>' . $fila['persona'] . ':</b> ' . $fila['msg'] . '<br></div>';
+                $leido = '<i class="bi bi-check2"></i>';
+            }
+            if ($_SESSION['idus'] === $fila['id_entrada']) {
+                echo '<div class="burbuja-you"><b>' . $fila['persona'] . ':</b> ' . $fila['msg'] . '<p>' . $leido . '</p></div>';
+            } else {
+                $sent = $con->prepare("UPDATE mensajes SET leido = '1' WHERE id_msg={$fila['id_msg']}");
+                $sent->execute();
+                echo '<div class="burbuja"><b>' . $fila['persona'] . ':</b> ' . $fila['msg'] . '</div>';
             }
         }
     } else {
@@ -29,5 +36,5 @@ try {
         echo '<center><div class="burbuja">Comenzar conversacion.<div><center>';
     }
 } catch (Exception $e) {
-    echo '<center><div class="burbuja">' . $e->getMessage() . '<div><center>';
+    echo '<center><div class="burbuja">' . $e->getMessage() . '</div><center>';
 }

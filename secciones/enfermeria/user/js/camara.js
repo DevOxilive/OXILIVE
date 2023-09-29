@@ -124,7 +124,9 @@ function tomarAsistencia(event) {
     return response.text();
   }).then(resultado =>{
     console.log(resultado);
-    window.location.replace("index.php");
+    if(resultado == "Registro Exitoso"){
+      window.location.replace("index.php");
+    }
   }).catch((error) => {
     console.log("Error: "+error);
   })
