@@ -9,6 +9,7 @@ try {
     if (!isset($_SESSION['idus'])) {
         throw new Exception(":D ");
     }
+
     // Consulta para obtener los mensajes
     $salida = $_POST['output'];
     $sentensia = $con->prepare("SELECT * FROM mensajes WHERE id_salida = {$_SESSION['idus']} AND id_entrada = {$salida} OR id_entrada = {$_SESSION['idus']} AND id_salida = {$salida} ORDER BY id_msg ASC");
@@ -19,7 +20,7 @@ try {
         foreach ($resultado as $fila) {
             if ($fila['leido'] == '1') {
                 $leido = '<i class="bi bi-check2-all"></i>';
-            }else {
+            } else {
                 $leido = '<i class="bi bi-check2"></i>';
             }
             if ($_SESSION['idus'] === $fila['id_entrada']) {
@@ -35,5 +36,5 @@ try {
         echo '<center><div class="burbuja">Comenzar conversacion.<div><center>';
     }
 } catch (Exception $e) {
-    echo '<center><div class="burbuja">' . $e->getMessage() . '<div><center>';
+    echo '<center><div class="burbuja">' . $e->getMessage() . '</div><center>';
 }

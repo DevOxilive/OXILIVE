@@ -9,7 +9,7 @@ try {
     $idus = $_SESSION['idus'];
 
     include '../../../../connection/conexion.php';
-    $sentencia = $con->prepare("SELECT * FROM usuarios WHERE id_usuarios != $idus AND (id_departamentos = 1 OR id_departamentos =6)");
+    $sentencia = $con->prepare("SELECT id_usuarios, Usuario, token, estatus FROM usuarios WHERE id_usuarios != $idus AND (id_departamentos = 1 OR id_departamentos =6)");
     $sentencia->execute();
     $resultado = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
@@ -28,7 +28,7 @@ try {
             $lastMessage = $sent->fetch(PDO::FETCH_ASSOC);
             $result = ($lastMessage) ? $lastMessage['msg'] : $result = 'No hay mensajes disponibles <i class="bi bi-chat-left-text"></i>';
             $leido = ($lastMessage && $lastMessage['leido'] == '1') ? ' <i class="bi bi-check2-all" style="color:blue"></i>' : '<i class="bi bi-check2"></i>';
-            $por = ($lastMessage && $lastMessage['persona'] == $userP) ? 'tu: ' : ':';
+            $por = ($lastMessage && $lastMessage['persona'] == $userP) ? ' <b>tu:</b> ' : ':';
             if ($result === 'No hay mensajes disponibles <i class="bi bi-chat-left-text"></i>') {
                 $estatusMensaje = '<span> ' . $result . '<span>';
             } else {
@@ -40,10 +40,9 @@ try {
             } else if ($fila['estatus'] == 0) {
                 $conectado = 'desconectado<img id="conexion" src="img/sinLinea.png" alt="">';
             }
-
-            echo '<a href="php/chat.php?chat=' . $fila['id_usuarios'] . '" rel="noopener noreferrer">
+            echo '<a href="php/chat.php?chat=' . $fila['token'] . '">
                 <li>
-                    <img src="img/usuario.png" alt="img perfil"><b>' . $fila['Usuario'] . '</b> '. $por . $estatusMensaje . '<br> ' . $conectado . '
+                    <img src="img/usuario.png" alt="img perfil"><b>' . $fila['Usuario'] . '</b>' . $por . $estatusMensaje . '<br> ' . $conectado . '
                 </li>
               </a>';
         }
