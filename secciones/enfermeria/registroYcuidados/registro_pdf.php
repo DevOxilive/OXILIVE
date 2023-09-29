@@ -4,6 +4,7 @@ require('../../../fpdf/fpdf.php');
 
 
 class PDF extends FPDF{
+    
 // Cabecera de página
 function Header(){
      // Logo
@@ -63,64 +64,80 @@ function Footer(){
 //Tabla de respiración
 function CreateTable($header, $data) {
      //Leyenda
-     $this->SetFont('arial', '', 7);
+     $this->SetFont('arial', '', 8);
      // Imprime la celda con la fuente configurada
     $this->SetFont('','B'); // Configura la fuente como negrita
     $this->Cell(18, 10, 'Realiza tu registro por horas, punteando en los recuadros. Recuerda utilizar tinta roja para temperatura y azul para el pulso.', 'C');
-    $this->Ln(10); 
-       
-// Definir alturas de las filas
-$rowHeight = 8;
-// Definir anchos de las columnas
-$colWidths = [38, 38, 38, 38, 38];
-// Cabecera de la tabla
-$this->SetFont('Arial', 'B', 8);
-$this->SetFillColor(234, 233, 233); // Color de fondo para la cabecera Gris claro
-foreach ($header as $col) { //trae los datos de la cabcera y 
-    $this->Cell(array_shift($colWidths), $rowHeight, utf8_decode($col), 1, 0, 'C', true);
-}
-$this->Ln();
+    $this->Ln(10);
+    $this->SetFont('arial', 'B', 8); 
+    $this->Cell(50, 5, utf8_decode("Temperarura (Rojo), Pulso (Azul)"), 1, 0, 'C');
+    $this->SetFillColor(23, 32, 42);
+    $this->Ln();
 
-
-    // Datos de la tabla
-    $this->SetFont('Arial', '', 12);
-    foreach ($data as $row) {
-        foreach ($row as $key => $cell) {
-            if ($key == 0) { // Cambiar a 1 para la segunda columna
-                $this->SetFillColor(248, 0, 0); // Fondo rojo
-                $this->SetTextColor(255, 255, 255); // Texto blanco
-            } else {
-                $this->SetFillColor(255, 255, 255); // Fondo blanco (predeterminado)
-                $this->SetTextColor(0, 0, 0); // Texto negro (predeterminado)
-            }
-            $this->Cell(38, 5, utf8_decode($cell), 1, 0, 'L', true);
-        }
-        $this->Ln();
-     }
+ 
+// Empieza tabla Respiracion, Tensión Arteria, Etc.
+    
+$this->Ln(4);
+     $this->SetFont('arial', 'B', );
      
-     $this->Ln("10");
-     $this->SetFont('arial', '', 7);
+     $this->Cell(30, 5, utf8_decode(""), 0, 0, 'C');
+     $this->SetTextColor(255, 255, 255);
+     $this->SetFillColor(89, 150, 216);
      
-     $this->Cell(19, 5, utf8_decode("Datos"), 0, 0, 'C');
-     $this->SetTextColor(0, 0, 0);
-     $this->SetFillColor(254, 26, 26);
+     // Datos de las columnas
+     $nombresColumnas = [
+        'De 9:00 AM a 14:00 PM', 'De 15:00 PM a 20:00 PM', 'De 21:00 PM a 02:00 AM', 'De 03:00 AM a 08:00 AM'
+     ];
      
-     // Definir 13 columnas
-     for ($i = 1; $i <= 13; $i++) {
-         $this->Cell(13, 5, utf8_decode($i . '°'), 1, 0, 'C', true);
+     // Imprimir nombres de las columnas con espacios en blanco
+     foreach ($nombresColumnas as $nombre) {
+         $this->Cell(40, 5, utf8_decode($nombre), 1, 0, 'C', true);
      }
      $this->Ln();
      
+     $this->SetFillColor(254, 26, 26);
+     // Datos en las filas
+     $filas = ["Respiración", "Tención Arterial", "SPO2", "Glicemia Capilar"];
+     
+     foreach ($filas as $fila) {
+         $this->Cell(30, 5, utf8_decode($fila), 1, 0, 'C', 1);
+         for ($i = 1; $i <= 4; $i++) {
+             $this->Cell(40, 5, utf8_decode(""), 1, 0, 'C', 0);
+         }
+         $this->Ln();
+     }
+
+// Empieza tabla vomitos, Evacuaciones, Etc.
+     $this->Ln(3);
+     $this->SetFont('arial', 'B', 8);
+     
+     $this->Cell(30, 5, utf8_decode(""), 0, 0, 'C');
+     $this->SetTextColor(255, 255, 255);
+     $this->SetFillColor(89, 150, 216);
+     
+     // Datos de las columnas
+     $nombresColumnas = [
+         "1°", "2°", "3°", "1°", "2°", "3°", "1°", "2°", "3°", "1°", "2°", "3°"
+     ];
+     
+     // Imprimir nombres de las columnas con espacios en blanco
+     foreach ($nombresColumnas as $nombre) {
+         $this->Cell(13.3, 5, utf8_decode($nombre), 1, 0, 'C', true);
+     }
+     $this->Ln();
+     
+     $this->SetFillColor(254, 26, 26);
      // Datos en las filas
      $filas = ["Vomito", "Evacuaciónes", "Orina", "Ingesta de Liquidos", "Caidas", "Drenajes y/o Ventajas"];
      
      foreach ($filas as $fila) {
          $this->Cell(30, 5, utf8_decode($fila), 1, 0, 'C', 1);
          for ($i = 1; $i <= 12; $i++) {
-             $this->Cell(8, 5, utf8_decode(""), 1, 0, 'C', 0);
+             $this->Cell(13.3, 5, utf8_decode(""), 1, 0, 'C', 0);
          }
          $this->Ln();
      }
+     
      
      $this->Ln(10);
      $this->SetFont('arial', '', 10);
@@ -128,12 +145,19 @@ $this->Ln();
      $this->SetTextColor(0, 0, 0);
      $this->SetFillColor(255, 255, 255);
      $this->MultiCell(19, 5, utf8_decode('UPP, Heridas o Hematomas' . "\n" . '(tipo y descripción)'), 1, 'C', false);
-     
-     
+    
 
         
     }
- }
+
+
+
+
+
+
+
+}
+
 //Instanciar funcionaes 
     $pdf = new PDF();
     $pdf-> AliasNbPages();
@@ -141,16 +165,10 @@ $this->Ln();
     $pdf->SetFont('Arial','B',10);
     
         // Cabecera de la tabla
-        $header = ['','De 9:00 AM a 14:00 PM', 'De 15:00 PM a 20:00 PM', 'De 21:00 PM a 02:00 AM', 'De 03:00 AM a 08:00 AM'];
+        $header = [];
 
         // Datos de la tabla (5 columnas)
-        $data = [
-            ['Respiración', '', '', '', ''],
-            ['Tención Arterial', '', '', '', ''],
-            ['SPO2', '', '', '', ''],
-            ['Glicemia Capilar', '', '', '', ''],
-            
-        ];    
+        $data = [];    
         $pdf->CreateTable($header, $data);
 
 
