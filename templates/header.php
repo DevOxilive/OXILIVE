@@ -354,6 +354,19 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                 <i class="bi bi-circle"></i><span>Guardias</span>
               </a>
             </li>
+            <!-- Módulo de Servicios -->
+            <li class="nav-item">
+              <a href="<?php echo $url_base?>secciones/enfermeria/servicios/tipos/index.php">
+                <i class="bi bi-circle"></i><span>Servicios</span><i class="bi bi-chevron-down ms-auto"></i>
+              </a>
+              <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                  <a href="#">
+                    <i class="bi bi-circle"></i><span>Horarios</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
             <!-- Módulo de Bitacora de asistencias -->
             <li>
               <a href="<?php echo $url_base; ?>secciones/enfermeria/Bitacora_de_asistencias/admin/index.php">
@@ -499,17 +512,11 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
     // Función para actualizar el estatus
     function actualizarEstatus() {
       $.ajax({
-        url: "get_status.php", // URL del servidor para obtener el estatus
+        url: "<?php echo $url_base; ?>/templates/get_estatus.php", // URL del servidor para obtener el estatus
         type: "POST",
-        success: function(response) {
-          // Actualizar el elemento en la página con el nuevo estatus
-          console.log(response); 
-        }
       });
     }
-    /*setInterval(() =>{
-      actualizarEstatus();
-    }, 1000);*/
+    setInterval(actualizarEstatus, 1000);
   </script>
     
   <script>
