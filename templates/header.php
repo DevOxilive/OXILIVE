@@ -354,6 +354,19 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                 <i class="bi bi-circle"></i><span>Guardias</span>
               </a>
             </li>
+            <!-- Módulo de Servicios -->
+            <li class="nav-item">
+              <a href="<?php echo $url_base?>secciones/enfermeria/servicios/tipos/index.php">
+                <i class="bi bi-circle"></i><span>Servicios</span><i class="bi bi-chevron-down ms-auto"></i>
+              </a>
+              <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                  <a href="#">
+                    <i class="bi bi-circle"></i><span>Horarios</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
             <!-- Módulo de Bitacora de asistencias -->
             <li>
               <a href="<?php echo $url_base; ?>secciones/enfermeria/Bitacora_de_asistencias/admin/index.php">
@@ -495,27 +508,16 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
       <?php endif; ?>
     </ul>
   </aside><!-- End Sidebar-->
-  <!--<script>
-  $(document).ready(function() {
+  <script>
     // Función para actualizar el estatus
     function actualizarEstatus() {
       $.ajax({
-        url: "get_estatus.php", // URL del servidor para obtener el estatus
+        url: "<?php echo $url_base; ?>/templates/get_estatus.php", // URL del servidor para obtener el estatus
         type: "POST",
-        data: {"iduser" : $_SESSION['idus']},
-        dataType: "json",
-        success: function(response) {
-          // Actualizar el elemento en la página con el nuevo estatus
-          alert("Estado: "+reponse);
-        },
-        error: function(xhr, status, error) {
-          // Manejar errores, si es necesario
-          console.error("Error al obtener el estatus: " + error);
-        }
       });
     }
-  });
-  </script>-->
+    setInterval(actualizarEstatus, 1000);
+  </script>
     
   <script>
     function mostrarImagen(event) {
