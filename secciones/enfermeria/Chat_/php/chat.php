@@ -9,18 +9,17 @@ if (!isset($_SESSION['us'])) {
     // esto queda pediente para mostrar una mejor vista al usuario y no se confunca sobre esto...
     echo "Error en el sistema";
 }
-$id_envio = $_GET['chat'];
-$s = $con->prepare("SELECT * FROM usuarios WHERE id_usuarios = '$id_envio'");
-
+$token = $_GET['chat'];
+$s = $con->prepare("SELECT * FROM usuarios WHERE token = '$token'");
 $s->execute();
-
-$resultado = $s->fetch(PDO::FETCH_ASSOC);
-if ($resultado) {
+$resultado = $s->fetchAll(PDO::FETCH_ASSOC);
+if (count($resultado) > 0) {
     // El resultado se encuentra en $resultado['Usuario']
-    $valorUsuario = $resultado['Usuario'];
+    foreach ($resultado as $filas) {
+        $valorUsuario = $filas['Usuario'];
+        $enviarA = $filas['id_usuarios'];
+    }
 ?>
-
-
     <link rel="stylesheet" href="../css/chat.css">
     <!-- estilos del chat -->
     <main id="main" class="main">
@@ -28,14 +27,11 @@ if ($resultado) {
             <div>
                 <div>
                     <div class="chat-header">
-                        <h2><?php
-                            echo $valorUsuario;
-                            ?>
-
-                            <!-- comprobacion -->
+                        <h2>
                         <?php
+                        echo $valorUsuario;
                     } else {
-                        echo "No se encontraron resultados";
+                        header("Location: ../../../../403.html");
                     }
                         ?>
                         </h2>
@@ -48,7 +44,7 @@ if ($resultado) {
                     <div id="chat-form">
                         <input type="hidden" value="<?php echo $_SESSION['us'] ?>" id="user">
                         <input type="text" id="message" placeholder="Escribe tu mensaje">
-                        <input type="hidden" value="<?php echo $id_envio; ?>" id='output'>
+                        <input type="hidden" value="<?php echo $enviarA; ?>" id='output'>
                         <button id="send"><img src="../img/pngwing.com.png" alt="" width="30px"></button>
                     </div>
                 </div>

@@ -29,11 +29,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['tel'] = $datos["Telefono"];
             $_SESSION['email'] = $datos["Correo"];
             $_SESSION['rfc'] = $datos["rfc"];
-
             $_SESSION['estado'] = $datos['Estado'];
+
+
             $sentensia2 = $con->prepare("UPDATE usuarios SET estatus = '1' WHERE id_usuarios = '{$_SESSION['idus']}' ");
             $sentensia2->execute();
-
+        
             switch ($datos["id_departamentos"]) {
                 case '1':
                     echo "<script> 

@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 include '../../../../connection/conexion.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['message'])) {
@@ -9,4 +10,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['message'])) {
     // Insertar el mensaje en la base de datos
     $sentencia = $con->prepare("INSERT INTO mensajes (id_entrada, id_salida , msg, fecha_hora ,persona) VALUES ('{$_SESSION['idus']}', '$salida','$message', '$dateTime', '$user')");
     $sentencia->execute();
+    
 }
