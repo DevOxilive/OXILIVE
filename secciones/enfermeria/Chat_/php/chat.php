@@ -17,6 +17,7 @@ if (count($resultado) > 0) {
     // El resultado se encuentra en $resultado['Usuario']
     foreach ($resultado as $filas) {
         $valorUsuario = $filas['Usuario'];
+        $img = $filas['Foto_perfil'];
         $enviarA = $filas['id_usuarios'];
     }
 ?>
@@ -29,6 +30,7 @@ if (count($resultado) > 0) {
                     <div class="chat-header">
                         <h2>
                         <?php
+                        echo '<img src="data:image/jpg/png;base64,' . base64_encode($img) . '" class="iconoUsuario" alt="">';
                         echo $valorUsuario;
                     } else {
                         header("Location: ../../../../403.html");

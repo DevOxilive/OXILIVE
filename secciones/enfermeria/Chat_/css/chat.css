@@ -102,4 +102,10 @@ button[type="submit"] {
     /* Alinear a la derecha */
 }
 
+.iconoUsuario{
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+    border-radius: 100%;
+}
 /* Estilo para el contenedor principal del chat */

@@ -14,8 +14,8 @@ do {
             echo "son iguales";
         } else {
             $token = bin2hex(random_bytes(32));
-            echo "este es nuevo: {$token} <br>";
             $regresar = false;
         }
     }
+    echo "este es nuevo: {$token} <br>";
 } while ($regresar == true);
