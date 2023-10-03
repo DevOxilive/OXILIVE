@@ -23,14 +23,10 @@ if (!isset($_SESSION['us'])) {
 </head>
 <main id="main" class="main">
     <div class="row">
-        <div class="card-header" style="text-align: right;">
-            <a class="btn btn-outline-dark" href="genepaci.php" role="button">
-                <i class="bi bi-printer-fill"></i>
-            </a>
-        </div>
-        <hr>
         <div class="card">
             <div class="card-header">
+                <h1>Horario de servicios</h1>
+                <hr>
                 <a class="btn btn-outline-primary" href="crear.php" role="button">
                     <i class="bi bi-calendar-plus"></i>
                     Nueva Guardia
@@ -75,7 +71,7 @@ if (!isset($_SESSION['us'])) {
                                         <i class="bi bi-arrow-left-right"></i>
                                     </a> |
                                     <a name="" id="" class="btn btn-outline-warning"
-                                        href="editar.php?txtID=<?php echo $horario['id_asignacionHorarios']; ?>"
+                                        href="editar.php?idHor=<?php echo $horario['id_asignacionHorarios']; ?>"
                                         role="button">
                                         <i class="bi bi-pencil-square"></i>
                                     </a> |
@@ -154,5 +150,5 @@ $(document).ready(function() {
 
 </html>
 <?php
-include("../../../templates/footer.php");
+include("../../../../templates/footer.php");
 ?>

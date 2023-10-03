@@ -8,6 +8,11 @@ if (!isset($_SESSION['us'])) {
     include("model/enfermeros.php");
     include("model/pacientes.php");
     include("../tipos/model/tipos.php");
+    include("model/editConsul.php");
+    $id=$_GET['idHor'];
+    $sentenciaEdit->bindParam(':id', $id);
+    $sentenciaEdit->execute();
+    $lista_horarios = $sentenciaEdit->fetchAll(PDO::FETCH_ASSOC);
 } else {
     echo "Error en el sistema";
 }
@@ -34,20 +39,19 @@ if (!isset($_SESSION['us'])) {
             <!-- Cuerpo del formulario de registro de usuario -->
             <div class="card-body" style="border: 2px solid #BFE5FF;">
                 <form method="POST" enctype="multipart/form-data" class="formLogin row g-3">
-
+                <?php foreach($lista_horarios as $horarios){ ?>
                     <!-- Combo box para elegir el enfermero -->
                     <div class="contenido col-md-5">
                         <br>
                         <label for="nombres" class="form-label">Nombre(s)</label>
                         <select name="nombres" id="nombres" class="form-select">
                             <option value="0">Elige el nombre del enfermero</option>
-                            <?php foreach ($lista_enfermeros as $enfermeros) { ?>
-                                <option value="<?php echo $enfermeros['id_usuarios']; ?>">
+                            <?php foreach ($lista_enfermeros as $enfermeros) {?>
+                                <option value="<?php echo $enfermeros['id_usuarios'];?>" <?php if($enfermeros['id_usuarios']==$horarios['id_usuario']){ echo 'selected'; }?> >
                                     <?php echo $enfermeros['Nombres'] . " " . $enfermeros['Apellidos']; ?>
                                 </option>
                             <?php } ?>
                         </select>
-
                     </div>
 
                     <!-- Combo box para elegir paciente -->
@@ -57,7 +61,7 @@ if (!isset($_SESSION['us'])) {
                         <select id="paciente" name="paciente" class="form-select">
                             <option value="0">Elige un paciente</option>
                             <?php foreach ($lista_pacientes as $pacientes) { ?>
-                                <option value="<?php echo $pacientes['id_pacienteEnfermeria']; ?>">
+                                <option value="<?php echo $pacientes['id_pacienteEnfermeria'];?>" <?php if($pacientes['id_pacienteEnfermeria']==$horarios['id_pacienteEnfermeria']){ echo 'selected'; } ?>>
                                     <?php echo $pacientes['nombre'] . " " . $pacientes['apellidos']; ?>
                                 </option>
                             <?php } ?>
@@ -71,7 +75,7 @@ if (!isset($_SESSION['us'])) {
                         <select name="servicio" id="servicio" class="form-select">
                             <option value="0">Elige el tipo de servicio</option>
                             <?php foreach ($lista_tipos as $servicios) { ?>
-                                <option value="<?php echo $servicios['id_tipoServicio']; ?>">
+                                <option value="<?php echo $servicios['id_tipoServicio'];?>" <?php if($servicios['id_tipoServicio']==$horarios['id_tiposGuardias']){ echo 'selected'; } ?>>
                                     <?php echo $servicios['nombreServicio']; ?>
                                 </option>
                             <?php } ?>
@@ -81,17 +85,17 @@ if (!isset($_SESSION['us'])) {
                     <!-- Ingreso de fecha de la guardia  -->
                     <div class="contenido col-md-3">
                         <label for="fechaGuardia" class="form-label">Fecha</label>
-                        <input type="date" id="fechaServicio" onkeydown="return false" name="fechaServicio" class="form-select">
+                        <input type="date" id="fechaServicio" onkeydown="return false" name="fechaServicio" class="form-select" value="<?php echo $horarios['fecha'];?>">
                     </div>
 
                     <!-- Combo boxes para elegir la hora del horario -->
                     <div class="contenido col-md-3">
                         <label for="horarioEntrada" class="form-label">Hora de entrada</label>
-                        <input type="time" id="horaEntrada">
+                        <input type="time" id="horaEntrada" value="<?php echo $horarios['horarioEntrada'];?>">
                     </div>
                     <div class="contenido col-md-3">
                         <label for="horarioSalida" class="form-label">Hora de salida</label>
-                        <input type="time" id="horaSalida">
+                        <input type="time" id="horaSalida" value="<?php echo $horarios['horarioSalida'];?>">
                     </div>
 
                     <!-- Botones -->
@@ -102,6 +106,7 @@ if (!isset($_SESSION['us'])) {
                             Cancelar
                         </a>
                     </div>
+                <?php } ?>
                 </form>
             </div>
         </div>
@@ -148,7 +153,7 @@ if (!isset($_SESSION['us'])) {
             };
             $.ajax({
                 type: "POST",
-                url: "model/nuevoTServicio.php",
+                url: "model/ATServicio.php",
                 data: formData,
                 success: function() {
                     Swal.fire({
@@ -164,28 +169,6 @@ if (!isset($_SESSION['us'])) {
             });
             event.preventDefault();
 
-        });
-    });
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelector('.formLogin').addEventListener('submit', function(event) {
-            // Evita el envío del formulario por defecto
-            event.preventDefault();
-            // Verifica si los campos obligatorios están vacíos
-            var nombres = document.getElementById('nombres').value;
-            var apellidos = document.getElementById('apellidos').value;
-            var rfc = document.getElementById('rfc').value;
-            var usuario = document.getElementById('usuario').value;
-            var password = document.getElementById('password').value;
-            var email = document.getElementById('email').value;
-            if (!nombres || !apellidos || !rfc || !usuario || !password || !email) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Campos vacíos',
-                    text: 'Por favor, completa todos los campos obligatorios.',
-                });
-            } else {
-                this.submit();
-            }
         });
     });
 </script>
