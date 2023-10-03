@@ -38,11 +38,11 @@ if (!isset($_SESSION['us'])) {
                 <div class="contenido col-md-3">
                     <br>
                     <label for="horasServicio" class="form-label">Horas del Servicio:</label>
-                    <select name="horasServicio" id="horasServicio" class="form-select" value="<?php echo $tipos['horasServicio']; ?>" required>
+                    <select name="horasServicio" id="horasServicio" class="form-select" required>
                         <option value="">Seleccione una duración</option>
-                        <option value="08">8 horas</option>
-                        <option value="12">12 horas</option>
-                        <option value="24">24 horas</option>
+                        <option value="08" <?php if($tipos['horasServicio']==8){ echo 'selected';} ?>>8 horas</option>
+                        <option value="12" <?php if($tipos['horasServicio']==12){ echo 'selected';} ?>>12 horas</option>
+                        <option value="24" <?php if($tipos['horasServicio']==24){ echo 'selected';} ?>>24 horas</option>
                     </select>
                 </div>
                 <div class="contenido col-md-3">

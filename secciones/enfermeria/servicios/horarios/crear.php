@@ -39,8 +39,8 @@ if (!isset($_SESSION['us'])) {
                     <div class="contenido col-md-5">
                         <br>
                         <label for="nombres" class="form-label">Nombre(s)</label>
-                        <select name="nombres" id="nombres" class="form-select">
-                            <option value="0">Elige el nombre del enfermero</option>
+                        <select name="nombres" id="nombres" class="form-select" required>
+                            <option value="">Elige el nombre del enfermero</option>
                             <?php foreach ($lista_enfermeros as $enfermeros) { ?>
                                 <option value="<?php echo $enfermeros['id_usuarios']; ?>">
                                     <?php echo $enfermeros['Nombres'] . " " . $enfermeros['Apellidos']; ?>
@@ -142,13 +142,16 @@ if (!isset($_SESSION['us'])) {
     $(document).ready(function() {
         $("form").submit(function(event) {
             var formData = {
-                nomServ: $("#nombreServicio").val(),
-                horasServ: $("#horasServicio").val(),
-                sueldo: $("#sueldo").val(),
+                nombres: $("#nombres").val(),
+                paciente: $("#paciente").val(),
+                servicio: $("#servicio").val(),
+                fechaServicio: $("#fechaServicio").val(),
+                horaEntrada: $("#horaEntrada").val(),
+                horaSalida: $("#horaSalida").val(),
             };
             $.ajax({
                 type: "POST",
-                url: "model/nuevoTServicio.php",
+                url: "model/nuevoHorario.php",
                 data: formData,
                 success: function() {
                     Swal.fire({

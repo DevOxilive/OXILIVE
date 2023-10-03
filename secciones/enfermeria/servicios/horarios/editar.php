@@ -147,18 +147,22 @@ if (!isset($_SESSION['us'])) {
     $(document).ready(function() {
         $("form").submit(function(event) {
             var formData = {
-                nomServ: $("#nombreServicio").val(),
-                horasServ: $("#horasServicio").val(),
-                sueldo: $("#sueldo").val(),
+                nombres: $("#nombres").val(),
+                paciente: $("#paciente").val(),
+                servicio: $("#servicio").val(),
+                fechaServicio: $("#fechaServicio").val(),
+                horaEntrada: $("#horaEntrada").val(),
+                horaSalida: $("#horaSalida").val(),
+                idHor: <?php echo $id; ?>
             };
             $.ajax({
                 type: "POST",
-                url: "model/ATServicio.php",
+                url: "model/actualizarServicio.php",
                 data: formData,
                 success: function() {
                     Swal.fire({
-                        title: "Registrado",
-                        text: "Registro realizado correctamente",
+                        title: "Actualizado",
+                        text: "Registro actualizado correctamente",
                         icon: "success",
                         showConfirmButton: false,
                         timer: 1500
