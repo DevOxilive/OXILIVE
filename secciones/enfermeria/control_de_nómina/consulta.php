@@ -10,7 +10,7 @@ FROM usuarios S
 JOIN asistencias A ON S.id_usuarios = A.id_empleadoEnfermeria
 JOIN asignacion_horarios H ON S.id_usuarios = H.id_usuario
 JOIN puestos P ON S.id_departamentos = P.id_puestos
-JOIN tipos_servicios T ON T.id_tiposGuardias = H.id_tiposGuardias
+JOIN tipos_servicios T ON T.id_tipoServicio = H.id_tipoServicio
 JOIN checkk C ON C.id_check = A.id_check
 JOIN estado E ON S.Estado = E.id_estado
 WHERE id_puestos = 6

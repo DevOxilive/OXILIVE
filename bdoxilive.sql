@@ -112,7 +112,7 @@ DROP TABLE IF EXISTS `asignacion_horarios`;
 CREATE TABLE IF NOT EXISTS `asignacion_horarios` (
   `id_asignacionHorarios` int unsigned NOT NULL AUTO_INCREMENT,
   `id_usuario` int NOT NULL,
-  `id_tiposGuardias` int NOT NULL,
+  `id_tipoServicio` int NOT NULL,
   `horarioEntrada` time NOT NULL,
   `horarioSalida` time NOT NULL,
   `fecha` date NOT NULL,
@@ -120,14 +120,14 @@ CREATE TABLE IF NOT EXISTS `asignacion_horarios` (
   PRIMARY KEY (`id_asignacionHorarios`) USING BTREE,
   KEY `FK_idUsuario` (`id_usuario`),
   KEY `FK_idPacienteEnfermeria` (`id_pacienteEnfermeria`),
-  KEY `FK_idTiposGuardias` (`id_tiposGuardias`),
+  KEY `FK_idTiposServicios` (`id_tipoServicio`),
   CONSTRAINT `FK_idPacienteEnfermeria` FOREIGN KEY (`id_pacienteEnfermeria`) REFERENCES `pacientes_enfermeria` (`id_pacienteEnfermeria`),
-  CONSTRAINT `FK_idTiposGuardias` FOREIGN KEY (`id_tiposGuardias`) REFERENCES `tipos_servicios` (`id_tiposGuardias`),
+  CONSTRAINT `FK_idTiposServicios` FOREIGN KEY (`id_tipoServicio`) REFERENCES `tipos_servicios` (`id_tipoServicio`),
   CONSTRAINT `FK_idUsuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuarios`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Volcando datos para la tabla bdoxilive.asignacion_horarios: ~5 rows (aproximadamente)
-INSERT IGNORE INTO `asignacion_horarios` (`id_asignacionHorarios`, `id_usuario`, `id_tiposGuardias`, `horarioEntrada`, `horarioSalida`, `fecha`, `id_pacienteEnfermeria`) VALUES
+INSERT IGNORE INTO `asignacion_horarios` (`id_asignacionHorarios`, `id_usuario`, `id_tipoServicio`, `horarioEntrada`, `horarioSalida`, `fecha`, `id_pacienteEnfermeria`) VALUES
 	(3, 8, 1, '08:00:00', '16:00:00', '2023-09-20', 0000000001),
 	(4, 11, 1, '16:00:00', '00:00:00', '2023-09-20', 0000000001),
 	(5, 24, 1, '14:00:00', '22:00:00', '2023-10-18', 0000000001),
@@ -852,15 +852,15 @@ INSERT IGNORE INTO `tanques` (`id_tanques`, `marca`, `estado_tanque`, `tamano`, 
 -- Volcando estructura para tabla bdoxilive.tipos_servicios
 DROP TABLE IF EXISTS `tipos_servicios`;
 CREATE TABLE IF NOT EXISTS `tipos_servicios` (
-  `id_tiposGuardias` int NOT NULL AUTO_INCREMENT,
+  `id_tipoServicio` int NOT NULL AUTO_INCREMENT,
   `nombreServicio` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
   `horasServicio` int(2) unsigned zerofill NOT NULL DEFAULT '00',
   `sueldo` int NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id_tiposGuardias`)
+  PRIMARY KEY (`id_tipoServicio`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Volcando datos para la tabla bdoxilive.tipos_servicios: ~0 rows (aproximadamente)
-INSERT IGNORE INTO `tipos_servicios` (`id_tiposGuardias`, `nombreServicio`, `horasServicio`, `sueldo`) VALUES
+INSERT IGNORE INTO `tipos_servicios` (`id_tipoServicio`, `nombreServicio`, `horasServicio`, `sueldo`) VALUES
 	(1, 'Guardia General', 08, 300);
 
 -- Volcando estructura para tabla bdoxilive.tipo_cpt

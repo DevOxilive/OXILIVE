@@ -37,6 +37,8 @@ if (!isset($_SESSION['us'])) {
                                     <th scope="col">Nombre del Servicio</th>
                                     <th scope="col">Horas</th>
                                     <th scope="col">Paga por unidad</th>
+                                    <th scope="col">Acciones</th>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -50,6 +52,17 @@ if (!isset($_SESSION['us'])) {
                                         </td>
                                         <td style="text-align: center;">
                                             $<?php echo $tipos['sueldo'] ?>
+                                        </td>
+                                        <td>
+                                            <center>
+                                                <a name="" id="" class="btn btn-outline-primary" href="editar.php?id=<?php echo $tipos['id_tipoServicio']; ?>" role="button">
+                                                    <i class="bi bi-pencil-square"></i>
+                                                </a> |
+                                                <a name="" class="btn btn-outline-danger delete" role="button" onclick="del(<?php echo $tipos['id_tipoServicio']; ?>)">
+                                                    <i class="bi bi-trash-fill"></i>
+                                                    <input type="hidden" id="del">
+                                                </a>
+                                            </center>
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -70,15 +83,50 @@ if (!isset($_SESSION['us'])) {
                 "url": "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"
             }
         });
+    });
+
+    function del(id) {
+        var $id = id;
+        Swal.fire({
+            title: '¿Seguro que quieres borrar este servicio?',
+            text: 'Esta acción no se podrá deshacer una vez se realice',
+            showCancelButton: true,
+            width: 700,
+            confirmButtonText: 'Borrar',
+            confirmButtonColor: '#3085d6',
+            cancelButtonText: `Cancelar`,
+            cancelButtonColor: '#d33',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    url: "model/delete.php",
+                    data: {
+                        id: $id
+                    },
+                    success: function() {
+                        Swal.fire({
+                            position: 'top-end',
+                            title: "Servicio borrado correctamente",
+                            icon: "success",
+                            showConfirmButton: false,
+                            timer: 1000
+                        }).then(function() {
+                            window.location.replace('index.php');
+                        });
+                    }
+                })
+            }
+        })
+    }
+    const rows = document.querySelectorAll(".animated-border");
+    rows.forEach(row => {
+        row.addEventListener("mouseover", () => {
+            row.classList.add("border-animation");
         });
-        const rows = document.querySelectorAll(".animated-border");
-        rows.forEach(row => {
-            row.addEventListener("mouseover", () => {
-                row.classList.add("border-animation");
-            });
-            row.addEventListener("mouseout", () => {
-                row.classList.remove("border-animation");
-            });
+        row.addEventListener("mouseout", () => {
+            row.classList.remove("border-animation");
+        });
     });
 </script>
 <?php
