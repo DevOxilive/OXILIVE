@@ -11,6 +11,12 @@ if ($_POST) {
     $telefono = (isset($_POST["telefono"]) ? $_POST["telefono"] : "");
     $email = (isset($_POST["email"]) ? $_POST["email"] : "");
     $Foto_perfil = (isset($_FILES["Foto_perfil"]['name']) ? $_FILES["Foto_perfil"]['name'] : "");
+    //foto binaria en base de datos
+
+    $Foto_perfilX = addslashes(file_get_contents($_FILES['Foto_perfil']['tmp_name']));
+    if (!isset($Foto_perfilX)) {
+        $Foto_perfilX = ""; 
+    } //esto va en usuarios, oxilive, y se pega aqui...
     $departamento = (isset($_POST["departamento"]) ? $_POST["departamento"] : "");
     $rfc = (isset($_POST["rfc"]) ? $_POST["rfc"] : "");
     $alcaldia = (isset($_POST["alcaldia"]) ? $_POST["alcaldia"] : "");
@@ -47,7 +53,7 @@ if ($_POST) {
 
 
     $sentencia = $con->prepare("INSERT INTO `usuarios` (`id_usuarios`, `Usuario`, `paswword`, `Nombres`, `Apellidos`, `Genero`, `Telefono`, `Correo`, `Estado`, `Foto_perfil`, `id_departamentos`, `rfc`, `alcaldia`,`num_interior`,`num_exterior`,`codigo_postal`,`calleUno`,`calleDos`,`referencias`,`credencialFrente`,`credencialAtras`,`comprobante_domicilio`, `token`) 
-                                VALUES (Null, :usuario, :password, :nombres, :apellidos, :genero, :telefono, :email, 1, :Foto_perfil, :departamento , :rfc , :alcaldia, :num_interior, :num_exterior, :codigo_postal, :calleUno, :calleDos, :referencias, :credencialFrente, :credencialAtras, :comprobante_domicilio, :token);");
+                                VALUES (Null, :usuario, :password, :nombres, :apellidos, :genero, :telefono, :email, 1, '$Foto_perfilX', :departamento , :rfc , :alcaldia, :num_interior, :num_exterior, :codigo_postal, :calleUno, :calleDos, :referencias, :credencialFrente, :credencialAtras, :comprobante_domicilio, :token);");
     //insercion del token nuevo para usuario nuevo..
     $sentencia->bindParam(":token", $token);
 
@@ -115,7 +121,6 @@ if ($_POST) {
             move_uploaded_file($tmp_comprobante_domicilio, $carpeta_usuario . "/" . $nombre_comprobante_domicilio_orginal);
         }
         $sentencia->bindParam(":departamento", $departamento);
-        $sentencia->bindParam(":Foto_perfil", $nombre_Foto_perfil_orginal);
         $sentencia->bindParam(":credencialFrente", $nombre_credencialFrente_orginal);
         $sentencia->bindParam(":credencialAtras", $nombre_credencialAtras_orginal);
         $sentencia->bindParam(":comprobante_domicilio", $nombre_comprobante_domicilio_orginal);

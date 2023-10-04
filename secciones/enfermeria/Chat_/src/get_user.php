@@ -9,7 +9,7 @@ try {
     $idus = $_SESSION['idus'];
 
     include '../../../../connection/conexion.php';
-    $sentencia = $con->prepare("SELECT id_usuarios, Usuario, token, estatus FROM usuarios WHERE id_usuarios != $idus AND (id_departamentos = 1 OR id_departamentos =6)");
+    $sentencia = $con->prepare("SELECT id_usuarios, Usuario, token, estatus, Foto_perfil FROM usuarios WHERE id_usuarios != $idus AND (id_departamentos = 1 OR id_departamentos =6)");
     $sentencia->execute();
     $resultado = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
@@ -40,11 +40,9 @@ try {
             } else if ($fila['estatus'] == 0) {
                 $conectado = 'desconectado<img id="conexion" src="img/sinLinea.png" alt="">';
             }
-            echo '<a href="php/chat.php?chat=' . $fila['token'] . '">
-                <li>
-                    <img src="img/usuario.png" alt="img perfil"><b>' . $fila['Usuario'] . '</b>' . $por . $estatusMensaje . '<br> ' . $conectado . '
-                </li>
-              </a>';
+            echo '<a href="php/chat.php?chat=' . $fila['token'] . '"><li>
+                <img src="data:image/jpg/png;base64,' . base64_encode($fila['Foto_perfil']) . '" alt="img perfil"><b>' . $fila['Usuario'] . '</b>' . $por . $estatusMensaje . '<br> ' . $conectado . '</li>
+                </a>'; 
         }
     } else {
         // si no envia el mensaje de comenzar chat
