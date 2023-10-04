@@ -131,7 +131,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
             <span class="d-none d-md-block dropdown-toggle ps-2">
               <?php echo $_SESSION['us'] ?>
             </span>
-          </a><!-- End Profile Iamge Icon -->
+          </a> <!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
