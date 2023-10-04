@@ -1,1 +1,0 @@
-<a href="./registroPDF.php">Registro Clínico PDF</a
