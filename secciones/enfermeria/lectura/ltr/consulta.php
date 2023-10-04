@@ -1,11 +1,12 @@
 <?php 
-include("../../../../connection/conexion.php");        
+include("../../../../connection/conexion.php");
+
        //Consulta para aseguradora SHF
-        // $txtID = $_GET['txtID'];
+        //$txtID = $_GET['txtID'];
         $sentencia = $con->prepare("SELECT id_pacientes, Nombres, Apellidos, Aseguradora, id_aseguradora,  Nombre_aseguradora
         FROM pacientes_oxigeno INNER JOIN aseguradoras
         WHERE Aseguradora = 10 AND Aseguradora = id_aseguradora;");
-        // $sentencia->bindParam(":id_aseguradora", $txtID);
+        //$sentencia->bindParam(":id_aseguradora", $txtID);
         $sentencia->execute();
         $id_lectP = $sentencia->fetchAll(PDO::FETCH_ASSOC); 
 

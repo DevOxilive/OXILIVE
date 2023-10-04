@@ -26,7 +26,7 @@ else {
                             <tr class="table-active table-group-divider" style="text-align: center;">
                                 <th scope="col">No.P</th>
                                 <th scope="col">Paciente</th>
-                                <th scope="col">Operaciones</th>
+                                <th scope="col">Ver</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,7 +41,7 @@ else {
                                     </td>
 
                                     <td style="text-align: center;">
-                                    <a class="btn btn-info" id="mostrarDiv" href="viewCPT.php?txtID=<?php echo $ltrSHF['id_pacientes']; ?>" role="button"><i class="bi bi-link"></i></a>  
+                                    <a class="btn btn-info" id="mostrarDiv" href="../historialPaciente.php?txtID=<?php echo $ltrI['id_pacientes']; ?>" role="button"><i class="bi bi-link"></i></a>  
                                 </tr>
                             <?php } ?>
                         </tbody>
