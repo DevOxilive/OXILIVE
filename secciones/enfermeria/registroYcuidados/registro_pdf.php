@@ -381,7 +381,7 @@ $this->Cell(185, 5, utf8_decode("ALIMENTOS"), 1, 0, 'C', 1);
 
 $this->Ln(5);
 $this->SetFont('arial', '', 8); 
-$this->SetTextColor(0, 0, 0);
+$this->SetTextColor(255, 255, 255);
 $this->SetFillColor(254, 26, 26);
 $this->SetDrawColor(0, 0, 0);
 
@@ -390,14 +390,14 @@ $nombresColumnas = ["DESAYUNO (HORARIO)", "DESAYUNO (HORARIO)", "DESAYUNO (HORAR
 
 // Imprimir nombres de columnas
 foreach ($nombresColumnas as $nombre) {
-    $this->Cell(40, 10, utf8_decode($nombre), 1, 0, 'C', 1);
+    $this->Cell(46.23, 5, utf8_decode($nombre), 1, 0, 'C', 1);
 }
 
 $this->Ln(); // Salto de línea después de la primera fila
 
 // Imprimir fila en blanco
 foreach ($nombresColumnas as $nombre) {
-    $this->Cell(40, 10, utf8_decode(''), 1, 0, 'C');
+    $this->Cell(46.23, 35, utf8_decode(''), 1, 0, 'C');
 }
 
 $this->Ln(); // Salto de línea después de la segunda fila
