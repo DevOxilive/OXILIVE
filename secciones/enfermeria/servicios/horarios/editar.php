@@ -75,7 +75,7 @@ if (!isset($_SESSION['us'])) {
                         <select name="servicio" id="servicio" class="form-select">
                             <option value="0">Elige el tipo de servicio</option>
                             <?php foreach ($lista_tipos as $servicios) { ?>
-                                <option value="<?php echo $servicios['id_tipoServicio'];?>" <?php if($servicios['id_tipoServicio']==$horarios['id_tiposGuardias']){ echo 'selected'; } ?>>
+                                <option value="<?php echo $servicios['id_tipoServicio'];?>" <?php if($servicios['id_tipoServicio']==$horarios['id_tipoServicio']){ echo 'selected'; } ?>>
                                     <?php echo $servicios['nombreServicio']; ?>
                                 </option>
                             <?php } ?>

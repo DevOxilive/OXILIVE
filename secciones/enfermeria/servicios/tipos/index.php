@@ -12,7 +12,7 @@ if (!isset($_SESSION['us'])) {
 
 ?>
 <!DOCTYPE html>
-<html lang="es-MX">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -20,58 +20,57 @@ if (!isset($_SESSION['us'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <main id="main" class="main">
-    <div class="pagetitle">
-        <div class="row">
-            <div class="card">
-                <div class="card-header">
-                    <a class="btn btn-outline-primary" href="crear.php" role="button">
-                        <i class="bi bi-heart-pulse"></i>
-                        Agregar Servicio
-                    </a>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive-sm">
-                        <table class="table table-bordered  border-dark table-hover" id="myTable">
-                            <thead class="table-dark">
-                                <tr class="table-active table-group-divider" style="text-align: center;">
-                                    <th scope="col">Nombre del Servicio</th>
-                                    <th scope="col">Horas</th>
-                                    <th scope="col">Paga por unidad</th>
-                                    <th scope="col">Acciones</th>
-                                    </th>
+    <div class="row">
+        <div class="card">
+            <div class="card-header">
+                <h2>Tipos de Servicios</h2>
+                <hr>
+                <a class="btn btn-outline-primary" href="crear.php" role="button">
+                    <i class="bi bi-heart-pulse"></i>
+                    Agregar Servicio
+                </a>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive-sm">
+                    <table class="table table-bordered  border-dark table-hover" id="myTable">
+                        <thead class="table-dark">
+                            <tr class="table-active table-group-divider" style="text-align: center;">
+                                <th scope="col">Nombre del Servicio</th>
+                                <th scope="col">Horas</th>
+                                <th scope="col">Paga por unidad</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($lista_tipos as $tipos) { ?>
+                                <tr>
+                                    <td>
+                                        <?php echo $tipos['nombreServicio']; ?>
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <?php echo $tipos['horasServicio']; ?>
+                                    </td>
+                                    <td style="text-align: center;">
+                                        $<?php echo $tipos['sueldo'] ?>
+                                    </td>
+                                    <td>
+                                        <center>
+                                            <a name="" id="" class="btn btn-outline-primary" href="editar.php?id=<?php echo $tipos['id_tipoServicio']; ?>" role="button">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </a> |
+                                            <a name="" class="btn btn-outline-danger" role="button" onclick="del(<?php echo $tipos['id_tipoServicio']; ?>)">
+                                                <i class="bi bi-trash-fill"></i>
+                                            </a>
+                                        </center>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($lista_tipos as $tipos) { ?>
-                                    <tr>
-                                        <td>
-                                            <?php echo $tipos['nombreServicio']; ?>
-                                        </td>
-                                        <td style="text-align: center;">
-                                            <?php echo $tipos['horasServicio']; ?>
-                                        </td>
-                                        <td style="text-align: center;">
-                                            $<?php echo $tipos['sueldo'] ?>
-                                        </td>
-                                        <td>
-                                            <center>
-                                                <a name="" id="" class="btn btn-outline-primary" href="editar.php?id=<?php echo $tipos['id_tipoServicio']; ?>" role="button">
-                                                    <i class="bi bi-pencil-square"></i>
-                                                </a> |
-                                                <a name="" class="btn btn-outline-danger delete" role="button" onclick="del(<?php echo $tipos['id_tipoServicio']; ?>)">
-                                                    <i class="bi bi-trash-fill"></i>
-                                                    <input type="hidden" id="del">
-                                                </a>
-                                            </center>
-                                        </td>
-                                    </tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
-                    </div>
+                            <?php } ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
+    </div>
 </main>
 
 </html>
@@ -82,6 +81,15 @@ if (!isset($_SESSION['us'])) {
             "language": {
                 "url": "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"
             }
+        });
+    });
+    const rows = document.querySelectorAll(".animated-border");
+    rows.forEach(row => {
+        row.addEventListener("mouseover", () => {
+            row.classList.add("border-animation");
+        });
+        row.addEventListener("mouseout", () => {
+            row.classList.remove("border-animation");
         });
     });
 
@@ -119,15 +127,6 @@ if (!isset($_SESSION['us'])) {
             }
         })
     }
-    const rows = document.querySelectorAll(".animated-border");
-    rows.forEach(row => {
-        row.addEventListener("mouseover", () => {
-            row.classList.add("border-animation");
-        });
-        row.addEventListener("mouseout", () => {
-            row.classList.remove("border-animation");
-        });
-    });
 </script>
 <?php
 include("../../../../templates/footer.php");

@@ -25,7 +25,7 @@ if (!isset($_SESSION['us'])) {
     <div class="row">
         <div class="card">
             <div class="card-header">
-                <h1>Horario de servicios</h1>
+                <h2>Horario de servicios</h2>
                 <hr>
                 <a class="btn btn-outline-primary" href="crear.php" role="button">
                     <i class="bi bi-calendar-plus"></i>
@@ -39,68 +39,74 @@ if (!isset($_SESSION['us'])) {
                             <tr class="table-active table-group-divider" style="text-align: center;">
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Apellidos</th>
-                                <th scope="col">Hora entrada</th>
-                                <th scope="col">Hora salida</th>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Hora<br>entrada</th>
+                                <th scope="col">Hora<br>salida</th>
                                 <th scope="col">Paciente</th>
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($lista_horarios as $horario) { ?>
-                            <tr>
-                                
-                                <td>
-                                    <?php echo $horario['Nombres']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $horario['Apellidos']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $horario['horarioEntrada']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $horario['horarioSalida']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $horario['Paciente']; ?>
-                                </td>
-                                <td>
-                                    <a name="" id="" class="btn btn-outline-success"
-                                        href="pacientes.php?txtID=<?php echo $horario['id_asignacionHorarios'] ?>"
-                                        role="button" >
-                                        <i class="bi bi-arrow-left-right"></i>
-                                    </a> |
-                                    <a name="" id="" class="btn btn-outline-warning"
-                                        href="editar.php?idHor=<?php echo $horario['id_asignacionHorarios']; ?>"
-                                        role="button">
-                                        <i class="bi bi-pencil-square"></i>
-                                    </a> |
-                                    <a name="" id="" class="btn btn-outline-danger"
-                                        onclick="del(<?php echo $horario['id_asignacionHorarios']; ?>)"
-                                        role="button">
-                                        <i class="bi bi-trash-fill"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                                <tr>
+
+                                    <td>
+                                        <?php echo $horario['Nombres']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $horario['Apellidos']; ?>
+                                    </td>
+                                    <td>
+                                        <center>
+                                            <?php echo $horario['fecha']; ?>
+                                        </center>
+                                    </td>
+                                    <td>
+                                        <center>
+                                            <?php echo $horario['horarioEntrada']; ?>
+                                        </center>
+                                    </td>
+                                    <td>
+                                        <center>
+                                            <?php echo $horario['horarioSalida']; ?>
+                                        </center>
+                                    </td>
+                                    <td>
+                                        <?php echo $horario['Paciente']; ?>
+                                    </td>
+                                    <td>
+                                        <center>
+                                            <a name="" id="" class="btn btn-outline-warning" href="editar.php?idHor=<?php echo $horario['id_asignacionHorarios']; ?>" role="button">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </a> |
+                                            <a name="" class="btn btn-outline-danger" role="button" onclick="delHor(<?php echo $horario['id_asignacionHorarios']; ?>)">
+                                                <i class="bi bi-trash-fill"></i>
+                                            </a>
+                                        </center>
+                                    </td>
+                                </tr>
                             <?php } ?>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
+    </div>
 </main><!-- End #main -->
 <script>
-$(document).ready(function() {
-    $.noConflict();
-    $('#myTable').DataTable({
-        "language": {
-            "url": "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"
-        }
+    $(document).ready(function() {
+        $.noConflict();
+        $('#myTable').DataTable({
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"
+            }
+        });
     });
-    function del(id) {
+
+    function delHor(id) {
         var $id = id;
         Swal.fire({
-            title: '¿Seguro que quieres borrar este servicio?',
+            title: '¿Seguro que quieres borrar este horario?',
             text: 'Esta acción no se podrá deshacer una vez se realice',
             showCancelButton: true,
             width: 700,
@@ -127,11 +133,10 @@ $(document).ready(function() {
                             window.location.replace('index.php');
                         });
                     }
-                })
+                });
             }
-        })
+        });
     }
-});
 </script>
 
 </html>
