@@ -29,6 +29,7 @@ if (count($resultado) > 0) {
                 <div>
                     <div class="chat-header">
                         <h2>
+                           <a href="../index.php"><i class="bi bi-chevron-compact-left" style="color: white;"></i></a> 
                         <?php
                         echo '<img src="data:image/jpg/png;base64,' . base64_encode($img) . '" class="iconoUsuario" alt="">';
                         echo $valorUsuario;

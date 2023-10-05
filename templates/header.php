@@ -36,7 +36,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
   <link href="<?php echo $url_base; ?>assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="<?php echo $url_base; ?>assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="<?php echo $url_base; ?>assets/vendor/simple-datatables/style.css" rel="stylesheet">
-  
+
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
   <link href="<?php echo $url_base; ?>assets/css/style.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -126,12 +126,14 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
         <?php endif; ?>
         <li class="nav-item dropdown pe-3">
 
-          <!-- linea 129 header.php --> <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-         <img src="data:image/jpg/png;base64,<?php echo base64_encode($_SESSION['foto']) ?>" id="fot" alt="Foto de perfil" style="width: 40px; height: 40px;" class="rounded-circle">
+
+         <!-- linea 129 header.php --> <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <img src="data:image/jpg/png;base64,<?php echo base64_encode($_SESSION['foto']) ?>" id="fot" alt="Foto de perfil" style="width: 40px; height: 40px;" class="rounded-circle">
+
             <span class="d-none d-md-block dropdown-toggle ps-2">
               <?php echo $_SESSION['us'] ?>
             </span>
-          </a><!-- End Profile Iamge Icon -->
+          </a> <!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
@@ -385,6 +387,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                 <i class="bi bi-circle"></i><span>Servicios</span>
               </a>
             </li>
+
             <li>
               <a href="<?php echo $url_base;?>secciones/enfermeria/servicios/horarios/index.php">
                 <i class="bi bi-circle"></i><span>Horarios</span>
@@ -546,7 +549,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
     }
     setInterval(actualizarEstatus, 1000);
   </script>
-    
+
   <script>
     function mostrarImagen(event) {
       var input = event.target;

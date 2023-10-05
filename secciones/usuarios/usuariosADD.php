@@ -16,7 +16,9 @@ if ($_POST) {
     $Foto_perfilX = addslashes(file_get_contents($_FILES['Foto_perfil']['tmp_name']));
     if (!isset($Foto_perfilX)) {
         $Foto_perfilX = ""; 
+
     } //esto va en usuarios, oxilive, y se pega aqui...
+
     $departamento = (isset($_POST["departamento"]) ? $_POST["departamento"] : "");
     $rfc = (isset($_POST["rfc"]) ? $_POST["rfc"] : "");
     $alcaldia = (isset($_POST["alcaldia"]) ? $_POST["alcaldia"] : "");
