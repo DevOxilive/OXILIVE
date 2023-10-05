@@ -335,7 +335,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
           <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
               <a href="<?php echo $url_base; ?>secciones/enfermeria/Chat_/index.php">
-                <i class="bi bi-circle"></i><span>Chat General</span>
+                <i class="bi bi-chat-square-dots-fill"></i><span>Chat General</span>
               </a>
             </li>
             <!--Implementación de apartados de enfermeria-->
@@ -383,8 +383,10 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
 
             <!-- Módulo de Servicios -->
             <li>
+
               <a href="#">
                 <i class="bi bi-circle"></i><span>Servicios</span>
+
               </a>
             </li>
 
@@ -401,26 +403,26 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
             <!-- Módulo de Bitacora de asistencias -->
             <li>
               <a href="<?php echo $url_base; ?>secciones/enfermeria/Bitacora_de_asistencias/admin/index.php">
-                <i class="bi bi-circle"></i><span>Bitacora de asistencias</span>
+                <i class="bi bi-record-btn-fill"></i><span>Bitacora de asistencias</span>
               </a>
             </li>
             <!-- Módulo de Enfermeros -->
             <li>
               <a href="<?php echo $url_base; ?>secciones/enfermeria/enfermeros/index.php">
-                <i class="bi bi-circle"></i><span>Enfermeros</span>
+                <i class="bi bi-suit-heart-fill"></i><span>Enfermeros</span>
               </a>
             </li>
             <!-- Módulo de nomina -->
             <li>
               <a href="<?php echo $url_base; ?>secciones/enfermeria/control_de_nómina/index.php">
-                <i class="bi bi-circle"></i><span>Nómina</span>
+                <i class="bi bi-cash-coin"></i><span>Nómina</span>
               </a>
             </li>
             <!--Aquí termina-->
             <!--Implementación de apartado registros clínico y cuidados generales-->
             <li>
               <a href="<?php echo $url_base; ?>secciones/enfermeria/registroYcuidados/index.php">
-                <i class="bi bi-circle"></i><span>Registro Clínico y Cuidados Generales</span>
+                <i class="bi bi-body-text"></i><span>Registro Clínico y Cuidados Generales</span>
               </a>
             </li>
             <!--Aquí termina-->
