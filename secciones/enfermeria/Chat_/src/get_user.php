@@ -14,7 +14,7 @@ try {
     $resultado = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
 
-    echo '<a href="src/chat.php" target="_blank" rel="noopener noreferrer">
+    echo '<a href="src/chat.php" rel="noopener noreferrer">
             <li>
                 <img src="img/grupo.png" alt="img perfil"><b>Chat general</b>
             </li>
@@ -22,27 +22,29 @@ try {
     if (count($resultado) > 0) {
         foreach ($resultado as $fila) {
             $sql2 = "SELECT * FROM mensajes WHERE (id_salida = {$idus} AND id_entrada = {$fila['id_usuarios']}) OR (id_entrada = {$idus} AND id_salida = {$fila['id_usuarios']}) ORDER BY id_msg DESC limit 1";
+
             //  OR (id_entrada = {$idus} AND id_salida = {$fila['id_usuarios']}) por si algo falla aqui esta un posible solucion en la consulta....
             $sent = $con->prepare($sql2);
             $sent->execute();
             $lastMessage = $sent->fetch(PDO::FETCH_ASSOC);
-            $result = ($lastMessage) ? $lastMessage['msg'] : $result = 'No hay mensajes disponibles <i class="bi bi-chat-left-text"></i>';
+            $result = ($lastMessage) ? $lastMessage['msg'] : $result = 'No hay mensajes disponibles';
             $leido = ($lastMessage && $lastMessage['leido'] == '1') ? ' <i class="bi bi-check2-all" style="color:blue"></i>' : '<i class="bi bi-check2"></i>';
-            $por = ($lastMessage && $lastMessage['persona'] == $userP) ? ' <b>tu:</b> ' : ':';
-            if ($result === 'No hay mensajes disponibles <i class="bi bi-chat-left-text"></i>') {
+            $por = ($lastMessage && $lastMessage['persona'] == $userP) ? ' <b>tú:</b> ' : '';
+            if ($result === 'No hay mensajes disponibles') {
                 $estatusMensaje = '<span> ' . $result . '<span>';
             } else {
-                $estatusMensaje = '<span> ' . $result . '<span>' . $leido;
+                $estatusMensaje = $leido . '<span> ' . $result . '<span>';
             }
 
             if ($fila['estatus'] == 1) {
-                $conectado = 'en linea<img id="conexion" src="img/enLinea.png" alt="">';
+                $conectado = '<img id="conexion" src="img/enLinea.png" alt="">';
             } else if ($fila['estatus'] == 0) {
-                $conectado = 'desconectado<img id="conexion" src="img/sinLinea.png" alt="">';
+                $conectado = '<img id="conexion" src="img/sinLinea.png" alt="">';
             }
             echo '<a href="php/chat.php?chat=' . $fila['token'] . '"><li>
-                <img src="data:image/jpg/png;base64,' . base64_encode($fila['Foto_perfil']) . '" alt="img perfil"><b>' . $fila['Usuario'] . '</b>' . $por . $estatusMensaje . '<br> ' . $conectado . '</li>
-                </a>'; 
+                <img src="data:image/jpg/png;base64,' . base64_encode($fila['Foto_perfil']) . '" alt="img perfil"><b>' . $fila['Usuario'] . '</b> ' . $conectado . '<br><div class="mensaje-previo"> ' . $por . $estatusMensaje . '</div></li>
+                </a>';
+
         }
     } else {
         // si no envia el mensaje de comenzar chat

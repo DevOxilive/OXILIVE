@@ -14,6 +14,8 @@ if (!isset($_SESSION['us'])) {
     <div class="row">
         <div class="card">
             <div class="card-header">
+                <h2>Enfermeros</h2>
+                <hr>
                 <a class="btn btn-outline-primary" href="crear.php" role="button"><i class="bi bi-person-fill"></i>
                     Registrar Enfermero
                 </a>
@@ -34,10 +36,12 @@ if (!isset($_SESSION['us'])) {
                                 <tr>
                                     <td><?php echo $enfermeros['Nombres']; ?></td>
                                     <td><?php echo $enfermeros['Apellidos']; ?></td>
-                                    <td><?php echo $enfermeros['estado']; ?></td>
+                                    <td style="text-align: center;"><?php echo $enfermeros['estado']; ?></td>
                                     <td>
-                                        <a name="" id="" class="btn btn-outline-warning" href="editar.php?txtID=<?php echo $enfermeros['id_usuarios']; ?>" role="button"><i class="bi bi-pencil-square"></i></a> |
-                                        <a name="" id="" class="btn btn-outline-danger" onclick="eliminar(<?php echo $enfermeros['id_usuarios']; ?>)" role="button"><i class="bi bi-trash-fill"></i></a>
+                                        <center>
+                                            <a name="" id="" class="btn btn-outline-warning" href="editar.php?txtID=<?php echo $enfermeros['id_usuarios']; ?>" role="button"><i class="bi bi-pencil-square"></i></a> |
+                                            <a name="" id="" class="btn btn-outline-danger" onclick="eliminar(<?php echo $enfermeros['id_usuarios']; ?>)" role="button"><i class="bi bi-trash-fill"></i></a>
+                                        </center>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -87,23 +91,18 @@ if (!isset($_SESSION['us'])) {
             },
 
         });
-
-
-
-        // Agrega la animación a los bordes de las filas
-        const rows = document.querySelectorAll(".animated-border");
-        rows.forEach(row => {
-            row.addEventListener("mouseover", () => {
-                row.classList.add("border-animation");
-            });
-            row.addEventListener("mouseout", () => {
-                row.classList.remove("border-animation");
-            });
-        });
-
-
-
     }
+    // Agrega la animación a los bordes de las filas
+    const rows = document.querySelectorAll(".animated-border");
+    rows.forEach(row => {
+        row.addEventListener("mouseover", () => {
+            row.classList.add("border-animation");
+        });
+        row.addEventListener("mouseout", () => {
+            row.classList.remove("border-animation");
+        });
+    });
+
     $(document).ready(function() {
         $.noConflict();
 

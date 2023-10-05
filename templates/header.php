@@ -36,7 +36,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
   <link href="<?php echo $url_base; ?>assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="<?php echo $url_base; ?>assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="<?php echo $url_base; ?>assets/vendor/simple-datatables/style.css" rel="stylesheet">
-  
+
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
   <link href="<?php echo $url_base; ?>assets/css/style.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -126,12 +126,14 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
         <?php endif; ?>
         <li class="nav-item dropdown pe-3">
 
-          <!-- linea 129 header.php --> <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-         <img src="data:image/jpg/png;base64,<?php echo base64_encode($_SESSION['foto']) ?>" id="fot" alt="Foto de perfil" style="width: 40px; height: 40px;" class="rounded-circle">
+
+         <!-- linea 129 header.php --> <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <img src="data:image/jpg/png;base64,<?php echo base64_encode($_SESSION['foto']) ?>" id="fot" alt="Foto de perfil" style="width: 40px; height: 40px;" class="rounded-circle">
+
             <span class="d-none d-md-block dropdown-toggle ps-2">
               <?php echo $_SESSION['us'] ?>
             </span>
-          </a><!-- End Profile Iamge Icon -->
+          </a> <!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
@@ -379,24 +381,24 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
               <a href="<?php echo $url_base; ?>secciones/enfermeria/procedimientosRealizados/index.php">
                 <i class="bi bi-circle"></i><span>Procedimientos Realizados</span></a>
 
-              <!-- Módulo de horarios -->
+            <!-- Módulo de Servicios -->
             <li>
-              <a href="<?php echo $url_base; ?>secciones/enfermeria/guardias/index.php">
-                <i class="bi bi-bandaid-fill"></i><span>Guardias</span>
+
+              <a href="#">
+                <i class="bi bi-circle"></i><span>Servicios</span>
+
               </a>
             </li>
-            <!-- Módulo de Servicios -->
-            <li class="nav-item">
-              <a href="<?php echo $url_base?>secciones/enfermeria/servicios/tipos/index.php">
-                <i class="bi bi-clipboard-fill"></i><span>Servicios</span><i class="bi bi-chevron-down ms-auto"></i>
+
+            <li>
+              <a href="<?php echo $url_base;?>secciones/enfermeria/servicios/horarios/index.php">
+                <i class="bi bi-circle"></i><span>Horarios</span>
               </a>
-              <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                  <a href="#">
-                    <i class="bi bi-watch"></i><span>Horarios</span>
-                  </a>
-                </li>
-              </ul>
+            </li>
+            <li>
+              <a href="<?php echo $url_base?>secciones/enfermeria/servicios/tipos/index.php">
+                <i class="bi bi-circle"></i><span>Tipos de Servicios</span>
+              </a>
             </li>
             <!-- Módulo de Bitacora de asistencias -->
             <li>
@@ -549,7 +551,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
     }
     setInterval(actualizarEstatus, 1000);
   </script>
-    
+
   <script>
     function mostrarImagen(event) {
       var input = event.target;

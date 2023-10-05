@@ -53,3 +53,11 @@ en la vista principal de seleccion */
     width: 20px;
     height: 20px;
 }
+
+/* Estilo para la vista previa del mensaje */
+.mensaje-previo {
+    max-height: 40px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

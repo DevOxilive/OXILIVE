@@ -1,5 +1,4 @@
 <?php
-include("../../connection/conexion.php");
 $sentencia = $con->prepare("SELECT *,
 (SELECT Nombre_estado FROM estado WHERE estado.id_estado=usuarios.Estado LIMIT 1) as estado
 FROM `usuarios` WHERE Estado = 1");
