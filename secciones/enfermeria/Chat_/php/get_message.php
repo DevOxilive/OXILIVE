@@ -12,7 +12,7 @@ try {
 
     // Consulta para obtener los mensajes
     $salida = $_POST['output'];
-    $sentensia = $con->prepare("SELECT * FROM mensajes WHERE id_salida = {$_SESSION['idus']} AND id_entrada = {$salida} OR id_entrada = {$_SESSION['idus']} AND id_salida = {$salida} ORDER BY id_msg ASC");
+    $sentensia = $con->prepare("SELECT *, DATE_FORMAT(fecha_hora, '%H:%i') AS hora_minuto FROM mensajes WHERE id_salida = {$_SESSION['idus']} AND id_entrada = {$salida} OR id_entrada = {$_SESSION['idus']} AND id_salida = {$salida} ORDER BY id_msg ASC");
     $sentensia->execute();
     $resultado = $sentensia->fetchAll(PDO::FETCH_ASSOC);
     // comprueba que tenga filas la consulta si las tiene carga el chat
@@ -24,11 +24,11 @@ try {
                 $leido = '<i class="bi bi-check2"></i>';
             }
             if ($_SESSION['idus'] === $fila['id_entrada']) {
-                echo '<div class="burbuja-you">' . $fila['msg'] . " " . $leido .  ' ' . $fila['fecha_hora'] .  '</div>';
+                echo '<div class="burbuja-you">' . $fila['msg'] . " " . $leido .  '. ' . $fila['hora_minuto'] .  '</div>';
             } else {
                 $sent = $con->prepare("UPDATE mensajes SET leido = '1' WHERE id_msg={$fila['id_msg']}");
                 $sent->execute();
-                echo '<div class="burbuja">' . $fila['msg'] . ' ' . $fila['fecha_hora'] . '</div>';
+                echo '<div class="burbuja">' . $fila['msg'] . ' .' . $fila['hora_minuto'] . '</div>';
             }
         }
     } else {
