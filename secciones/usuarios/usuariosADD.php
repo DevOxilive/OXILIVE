@@ -57,7 +57,21 @@ if ($_POST) {
     //insercion del token nuevo para usuario nuevo..
     $sentencia->bindParam(":token", $token);
 
-
+    //Se convierten todos estos valores en mayusculas o minusculas (según sea el caso)
+    //para que quede unificada en la base de datos
+    
+    $usuario=strtolower($usuario);
+    $nombres=strtoupper($nombres);
+    $apellidos=strtoupper($apellidos);
+    $email=strtolower($email);
+    $rfc=strtoupper($rfc);
+    $alcaldia=strtoupper($alcaldia);
+    $calle=strtoupper($calle);
+    $num_interior=strtoupper($num_interior);
+    $num_exterior=strtoupper($num_exterior);
+    $calleUno=strtoupper($calleUno);
+    $calleDos=strtoupper($calleDos);
+    $referencias=strtoupper($referencias);
 
     $sentencia->bindParam(":usuario", $usuario);
     $sentencia->bindParam(":password", $hashedPassword);

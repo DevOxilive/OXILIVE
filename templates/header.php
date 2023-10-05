@@ -379,24 +379,21 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
               <a href="<?php echo $url_base; ?>secciones/enfermeria/procedimientosRealizados/index.php">
                 <i class="bi bi-circle"></i><span>Procedimientos Realizados</span></a>
 
-              <!-- Módulo de horarios -->
+            <!-- Módulo de Servicios -->
             <li>
-              <a href="<?php echo $url_base; ?>secciones/enfermeria/guardias/index.php">
-                <i class="bi bi-circle"></i><span>Guardias</span>
+              <a href="#">
+                <i class="bi bi-circle"></i><span>Servicios</span>
               </a>
             </li>
-            <!-- Módulo de Servicios -->
-            <li class="nav-item">
-              <a href="<?php echo $url_base?>secciones/enfermeria/servicios/tipos/index.php">
-                <i class="bi bi-circle"></i><span>Servicios</span><i class="bi bi-chevron-down ms-auto"></i>
+            <li>
+              <a href="<?php echo $url_base;?>secciones/enfermeria/servicios/horarios/index.php">
+                <i class="bi bi-circle"></i><span>Horarios</span>
               </a>
-              <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                  <a href="#">
-                    <i class="bi bi-circle"></i><span>Horarios</span>
-                  </a>
-                </li>
-              </ul>
+            </li>
+            <li>
+              <a href="<?php echo $url_base?>secciones/enfermeria/servicios/tipos/index.php">
+                <i class="bi bi-circle"></i><span>Tipos de Servicios</span>
+              </a>
             </li>
             <!-- Módulo de Bitacora de asistencias -->
             <li>

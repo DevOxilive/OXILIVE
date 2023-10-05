@@ -1,15 +1,16 @@
 <?php
 session_start();
 if (!isset($_SESSION['us'])) {
-    header('Location: ../../../../login.php');
+    header('Location: ../../../../../../login.php');
 } elseif (isset($_SESSION['us'])) {
-    include("../../../../connection/conexion.php");
     include("../../../../templates/header.php");
-    include("model/tipos.php");
+    include('../../../../connection/conexion.php');
+    include("../../../usuarios/consulta.php");
+    include('model/eliminar.php');
+    include('model/consulta.php');
 } else {
     echo "Error en el sistema";
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -18,16 +19,17 @@ if (!isset($_SESSION['us'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 <main id="main" class="main">
     <div class="row">
         <div class="card">
             <div class="card-header">
-                <h2>Tipos de Servicios</h2>
+                <h2>Horario de servicios</h2>
                 <hr>
                 <a class="btn btn-outline-primary" href="crear.php" role="button">
-                    <i class="bi bi-heart-pulse"></i>
-                    Agregar Servicio
+                    <i class="bi bi-calendar-plus"></i>
+                    Nueva Guardia
                 </a>
             </div>
             <div class="card-body">
@@ -35,30 +37,49 @@ if (!isset($_SESSION['us'])) {
                     <table class="table table-bordered  border-dark table-hover" id="myTable">
                         <thead class="table-dark">
                             <tr class="table-active table-group-divider" style="text-align: center;">
-                                <th scope="col">Nombre del Servicio</th>
-                                <th scope="col">Horas</th>
-                                <th scope="col">Paga por unidad</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Apellidos</th>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Hora<br>entrada</th>
+                                <th scope="col">Hora<br>salida</th>
+                                <th scope="col">Paciente</th>
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($lista_tipos as $tipos) { ?>
+                            <?php foreach ($lista_horarios as $horario) { ?>
                                 <tr>
+
                                     <td>
-                                        <?php echo $tipos['nombreServicio']; ?>
+                                        <?php echo $horario['Nombres']; ?>
                                     </td>
-                                    <td style="text-align: center;">
-                                        <?php echo $tipos['horasServicio']; ?>
-                                    </td>
-                                    <td style="text-align: center;">
-                                        $<?php echo $tipos['sueldo'] ?>
+                                    <td>
+                                        <?php echo $horario['Apellidos']; ?>
                                     </td>
                                     <td>
                                         <center>
-                                            <a name="" id="" class="btn btn-outline-primary" href="editar.php?id=<?php echo $tipos['id_tipoServicio']; ?>" role="button">
+                                            <?php echo $horario['fecha']; ?>
+                                        </center>
+                                    </td>
+                                    <td>
+                                        <center>
+                                            <?php echo $horario['horarioEntrada']; ?>
+                                        </center>
+                                    </td>
+                                    <td>
+                                        <center>
+                                            <?php echo $horario['horarioSalida']; ?>
+                                        </center>
+                                    </td>
+                                    <td>
+                                        <?php echo $horario['Paciente']; ?>
+                                    </td>
+                                    <td>
+                                        <center>
+                                            <a name="" id="" class="btn btn-outline-warning" href="editar.php?idHor=<?php echo $horario['id_asignacionHorarios']; ?>" role="button">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a> |
-                                            <a name="" class="btn btn-outline-danger" role="button" onclick="del(<?php echo $tipos['id_tipoServicio']; ?>)">
+                                            <a name="" class="btn btn-outline-danger" role="button" onclick="delHor(<?php echo $horario['id_asignacionHorarios']; ?>)">
                                                 <i class="bi bi-trash-fill"></i>
                                             </a>
                                         </center>
@@ -71,9 +92,7 @@ if (!isset($_SESSION['us'])) {
             </div>
         </div>
     </div>
-</main>
-
-</html>
+</main><!-- End #main -->
 <script>
     $(document).ready(function() {
         $.noConflict();
@@ -83,20 +102,11 @@ if (!isset($_SESSION['us'])) {
             }
         });
     });
-    const rows = document.querySelectorAll(".animated-border");
-    rows.forEach(row => {
-        row.addEventListener("mouseover", () => {
-            row.classList.add("border-animation");
-        });
-        row.addEventListener("mouseout", () => {
-            row.classList.remove("border-animation");
-        });
-    });
 
-    function del(id) {
+    function delHor(id) {
         var $id = id;
         Swal.fire({
-            title: '¿Seguro que quieres borrar este servicio?',
+            title: '¿Seguro que quieres borrar este horario?',
             text: 'Esta acción no se podrá deshacer una vez se realice',
             showCancelButton: true,
             width: 700,
@@ -123,11 +133,13 @@ if (!isset($_SESSION['us'])) {
                             window.location.replace('index.php');
                         });
                     }
-                })
+                });
             }
-        })
+        });
     }
 </script>
+
+</html>
 <?php
 include("../../../../templates/footer.php");
 ?>
