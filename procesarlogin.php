@@ -106,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 showConfirmButton: false,
                                 timer: 1500,
                             }).then(function() {
-                        window.location = 'secciones/enfermeria/index.php';
+                        window.location = 'secciones/enfermeria/user/index.php';
                             });
                     </script>";
                     break;
