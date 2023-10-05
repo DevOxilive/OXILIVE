@@ -7,10 +7,15 @@ if(empty($data['nomFoto']) || $data['nomFoto'] == "") {
     $nomFoto = guardarFoto($data);
     exit ($nomFoto);
 } else {
-    if(registrarAsis($con, $data) && cambiarStatus($con, $data)){
-        exit ('Registro Exitoso');
+    if(cambiarStatus($con, $data)){
+        if(registrarAsis($con, $data)){
+            exit ('Registro Exitoso');
+        }
+        else{
+            exit ('No registra asistencia');
+        }
     } else {
-        exit ('Registro Fallido');
+        exit ('No cambia el status');
     }
 }
 
@@ -38,7 +43,9 @@ function registrarAsis($con, $data){
     $regAsis->bindParam(':lat', $lat);
     $regAsis->bindParam(':lon', $lon);
     $regAsis->bindParam(':foto', $fotoName);
-    $regAsis->execute();
+    if($regAsis->execute()){
+        return (true);
+    }
 }
 function cambiarStatus($con, $data){
     $status = $data['status'];
@@ -46,7 +53,9 @@ function cambiarStatus($con, $data){
     $sentenciaStatus = $con->prepare('
         UPDATE usuarios 
         SET Estado =:estado WHERE id_usuarios=:idUser;
+
     ');
+    $newStatus=0;
     if($status == 1){
         $newStatus = 5;
     }else if($status == 5){
@@ -54,7 +63,9 @@ function cambiarStatus($con, $data){
     }
     $sentenciaStatus->bindParam(':idUser', $idUser);
     $sentenciaStatus->bindParam(':estado', $newStatus);
-    $sentenciaStatus->execute();
+    if($sentenciaStatus->execute()){
+        return(true);
+    }
 }
 function guardarFoto($data){
     $fotoCod = $data['foto'];

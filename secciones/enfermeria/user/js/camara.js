@@ -96,8 +96,7 @@ function newFoto() {
   deleteFoto(nomFoto());
 }
 //Funcion que guarda todos los datos y registra asistencia 2.2
-function tomarAsistencia(event) {
-  event.preventDefault();
+function tomarAsistencia() {
   //Se toman las coordenadas
   let lat = document.getElementById("latitud").value;
   let lon = document.getElementById("longitud").value;
@@ -228,10 +227,10 @@ function setBtnTo1() {
 }
 function setBtnTo2() {
   //Cambia el texto de los botones
-  $boton.textContent = "Continuar";
+  $boton.textContent = "Confirmar";
   $boton2.textContent = "Tomar nueva foto";
   //Cambia las acciones que hace cada botón al presionar
-  $boton.setAttribute("onclick", "tomarAsistencia(event)");
+  $boton.setAttribute("onclick", "tomarAsistencia()");
   $boton2.setAttribute("onclick", "newFoto()");
 }
 //Funciones para la ubicación
