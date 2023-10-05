@@ -1,5 +1,5 @@
 <?php
-try {//code..
+try { //code..
     session_start();
     if (!isset($_SESSION['us'])) {
         header('Location: ../../../../login.php');
@@ -17,7 +17,7 @@ try {//code..
     <script src="../notificaciones/js/push.min.js"></script>
     <main id="main" class="main">
         <div class="chat-header">
-            <h1>chat general</h1>
+            <h1><a href="../index.php"><i class="bi bi-chevron-compact-left" style="color: white;"></i></a>Chat general</h1>
         </div>
         <div id="chat-container">
             <div id="chat-messages">
