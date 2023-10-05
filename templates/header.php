@@ -434,24 +434,17 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
         <!-- Apartado de bloque de departamento de enfermeria -->
 
         <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-capsule"></i><span>Enfermeria</span><i class="bi bi-chevron-down ms-auto"></i>
+          <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/user/index.php">
+            <i class="bi bi-grid"></i>
+            <span>Dashboard</span>
           </a>
-          <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-            <li>
-              <a href="<?php echo $url_base; ?>secciones/enfermeria/user/index.php">
-                <i class="bi bi-circle"></i><span>Dashboard</span>
-              </a>
-            </li>
-            <li>
-              <a href="<?php echo $url_base; ?>secciones/enfermeria/Chat_/index.php">
-                <i class="bi bi-circle"></i><span>Chat General</span>
-              </a>
-            </li>
-          </ul>
         </li>
-
-
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/Chat_/index.php">
+            <i class="bi bi-wechat"></i>
+            <span>Chat General</span>
+          </a>
+        </li>
 
         <!-- End Forms Nav -->
       <?php endif; ?>
@@ -550,6 +543,12 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
       });
     }
     setInterval(actualizarEstatus, 1000);
+
+    $(document).ready(function(){
+      var url = window.location;
+      
+    });
+
   </script>
 
   <script>
