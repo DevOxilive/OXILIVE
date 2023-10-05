@@ -33,7 +33,7 @@ try {
             if ($result === 'No hay mensajes disponibles') {
                 $estatusMensaje = '<span> ' . $result . '<span>';
             } else {
-                $estatusMensaje = $leido. '<span> ' . $result . '<span>';
+                $estatusMensaje = $leido . '<span> ' . $result . '<span>';
             }
 
             if ($fila['estatus'] == 1) {
@@ -42,8 +42,7 @@ try {
                 $conectado = '<img id="conexion" src="img/sinLinea.png" alt="">';
             }
             echo '<a href="php/chat.php?chat=' . $fila['token'] . '"><li>
-
-                <img src="data:image/jpg/png;base64,' . base64_encode($fila['Foto_perfil']) . '" alt="img perfil"><b>' . $fila['Usuario'] . '</b> ' . $conectado . '<br> ' . $por . $estatusMensaje . '</li>
+                <img src="data:image/jpg/png;base64,' . base64_encode($fila['Foto_perfil']) . '" alt="img perfil"><b>' . $fila['Usuario'] . '</b> ' . $conectado . '<br><div class="mensaje-previo"> ' . $por . $estatusMensaje . '</div></li>
                 </a>';
 
         }
