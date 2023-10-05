@@ -14,15 +14,14 @@ if (!isset($_SESSION['us'])) {
 
 <main id="main" class="main">
   <div class="row">
-  <h1 style="text-align: center;">Enfermeria</h1>
+  <h1 style="text-align: center;">Pacientes</h1>
   <div class="card-header" style="text-align: right;">
                     <a class="btn btn-outline-dark" href="genepaci.php" role="button"><i class="bi bi-printer-fill"></i></a>
             </div>
     <div class="card">
       <div class="card-header">
         <a class="btn btn-outline-primary" href="crear.php" role="button"><i class="bi bi-person-fill-add"></i>
-          Registrar
-        paciente</a>
+          Crear Hoja Complementaria</a>
     </div>
     <div class="card-body">
       <div class="table-responsive-sm">
@@ -37,8 +36,8 @@ if (!isset($_SESSION['us'])) {
               <th scope="col">Acciones</th>
             </tr>
           </thead>
+          <tbody>
         <?php foreach($pacientes as $pacien){ ?>
-
           <tr>
             <th scope="row"><?php echo $pacien['id_pacientes']; ?></th>
             <td><?php echo $pacien['Nombres']; ?></td>
@@ -46,8 +45,7 @@ if (!isset($_SESSION['us'])) {
             <td><?php echo $pacien['Nombre_aseguradora']; ?></td>
             <td><?php echo $pacien['Telefono']; ?></td>
             <td>
-                <a name="" id="" class="btn btn-outline-info" href="pacientes.php?txtID=<?php echo $pacien['id_pacientes']; ?>" role="button" style="font-size=10px;"><i
-                    class="bi bi-printer-fill"></i></a> |
+                <a name="" id="" class="btn btn-outline-info" href="pacientes.php?txtID=<?php echo $pacien['id_pacientes']; ?>" role="button" style="font-size=10px;"><i class="bi bi-file-earmark-pdf"></i></a> |
                 <a name="" id="" class="btn btn-outline-warning"
                 href="editar.php?txtID=<?php echo $pacien['id_pacientes']; ?>" role="button"><i
                     class="bi bi-pencil-square"></i></a> |
@@ -57,6 +55,7 @@ if (!isset($_SESSION['us'])) {
               </td>
             </tr>
             <?php }?>
+        </tbody>
         </table>
       </div>
     </div>
