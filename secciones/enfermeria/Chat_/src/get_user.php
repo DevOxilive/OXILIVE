@@ -29,7 +29,7 @@ try {
             $lastMessage = $sent->fetch(PDO::FETCH_ASSOC);
             $result = ($lastMessage) ? $lastMessage['msg'] : $result = 'No hay mensajes disponibles';
             $leido = ($lastMessage && $lastMessage['leido'] == '1') ? ' <i class="bi bi-check2-all" style="color:blue"></i>' : '<i class="bi bi-check2"></i>';
-            $por = ($lastMessage && $lastMessage['persona'] == $userP) ? ' <b>tu:</b> ' : '';
+            $por = ($lastMessage && $lastMessage['persona'] == $userP) ? ' <b>tú:</b> ' : '';
             if ($result === 'No hay mensajes disponibles') {
                 $estatusMensaje = '<span> ' . $result . '<span>';
             } else {
