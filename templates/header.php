@@ -333,7 +333,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
           <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
               <a href="<?php echo $url_base; ?>secciones/enfermeria/Chat_/index.php">
-                <i class="bi bi-circle"></i><span>Chat General</span>
+                <i class="bi bi-chat-square-dots-fill"></i><span>Chat General</span>
               </a>
             </li>
             <!--Implementación de apartados de enfermeria-->
@@ -382,18 +382,18 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
               <!-- Módulo de horarios -->
             <li>
               <a href="<?php echo $url_base; ?>secciones/enfermeria/guardias/index.php">
-                <i class="bi bi-circle"></i><span>Guardias</span>
+                <i class="bi bi-bandaid-fill"></i><span>Guardias</span>
               </a>
             </li>
             <!-- Módulo de Servicios -->
             <li class="nav-item">
               <a href="<?php echo $url_base?>secciones/enfermeria/servicios/tipos/index.php">
-                <i class="bi bi-circle"></i><span>Servicios</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-clipboard-fill"></i><span>Servicios</span><i class="bi bi-chevron-down ms-auto"></i>
               </a>
               <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
                   <a href="#">
-                    <i class="bi bi-circle"></i><span>Horarios</span>
+                    <i class="bi bi-watch"></i><span>Horarios</span>
                   </a>
                 </li>
               </ul>
@@ -401,26 +401,26 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
             <!-- Módulo de Bitacora de asistencias -->
             <li>
               <a href="<?php echo $url_base; ?>secciones/enfermeria/Bitacora_de_asistencias/admin/index.php">
-                <i class="bi bi-circle"></i><span>Bitacora de asistencias</span>
+                <i class="bi bi-record-btn-fill"></i><span>Bitacora de asistencias</span>
               </a>
             </li>
             <!-- Módulo de Enfermeros -->
             <li>
               <a href="<?php echo $url_base; ?>secciones/enfermeria/enfermeros/index.php">
-                <i class="bi bi-circle"></i><span>Enfermeros</span>
+                <i class="bi bi-suit-heart-fill"></i><span>Enfermeros</span>
               </a>
             </li>
             <!-- Módulo de nomina -->
             <li>
               <a href="<?php echo $url_base; ?>secciones/enfermeria/control_de_nómina/index.php">
-                <i class="bi bi-circle"></i><span>Nómina</span>
+                <i class="bi bi-cash-coin"></i><span>Nómina</span>
               </a>
             </li>
             <!--Aquí termina-->
             <!--Implementación de apartado registros clínico y cuidados generales-->
             <li>
               <a href="<?php echo $url_base; ?>secciones/enfermeria/registroYcuidados/index.php">
-                <i class="bi bi-circle"></i><span>Registro Clínico y Cuidados Generales</span>
+                <i class="bi bi-body-text"></i><span>Registro Clínico y Cuidados Generales</span>
               </a>
             </li>
             <!--Aquí termina-->
