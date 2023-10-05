@@ -31,8 +31,8 @@ if (isset($_GET['txtID'])) {
     $Aseguradora = $registro["Aseguradora"];
     $banco = $registro["Banco"];
     $Nomina = $registro["No_nomina"];
-    //$Credencial_front = $registro["Credencial_front"];
-    //$Credencial_post = $registro["Credencial_post"];
+    $Credencial_front = $registro["Credencial_front"];
+    $Credencial_post = $registro["Credencial_post"];
     $Credencial_aseguradora = $registro["Credencial_aseguradora"];
     $Credencial_aseguradoras_post = $registro["Credencial_aseguradoras_post"];
     $comprobante = $registro["comprobante"];
@@ -93,7 +93,7 @@ if ($_POST) {
     $sentencia->execute();
 
     $carpeta_usuario = "./PAPELETA/" . $Apellidos . " " . $Nombres;
-    $otra_ruta = "../../Padministradora/pacientes/PAPELETA/" . $Apellidos . " " . $Nombres; 
+    $otra_ruta = "../hojaComplementaria/PAPELETA" . $Apellidos . " " . $Nombres; 
     
     function guardarArchivo($tmp_file, $nombre_original, $carpeta_usuario) {
         if (!empty($nombre_original) && $tmp_file != '') {
@@ -109,8 +109,8 @@ if ($_POST) {
     }
     
     $campos_archivos = array(
-        //"Credencial_front",
-        //"Credencial_post",
+        "Credencial_front",
+        "Credencial_post",
         "Credencial_aseguradora",
         "Credencial_aseguradoras_post",
         "comprobante",
@@ -142,7 +142,7 @@ if ($_POST) {
             $sentencia->bindParam(":id_pacientes", $txtID);
             $sentencia->execute();
     
-            $ruta_destino_otra = $otra_ruta . "../../enfermeria/hojaComplementaria/PAPELETA/" . $nombre_archivo_original;
+            $ruta_destino_otra = $otra_ruta . "/" . $nombre_archivo_original;
             if (!empty($archivo_guardado)) {
                 if (file_exists($ruta_destino_otra)) {
                     unlink($ruta_destino_otra);
