@@ -55,7 +55,7 @@ if ($_POST) {
     $sentencia->bindParam(":rfc", $rfc);
     $sentencia->bindParam(":responsable", $responsable);
 
-        $extensiones_permitidas = array("JPG", "PNG","JPEG"); // Extensiones permitidas
+        $extensiones_permitidas = array("jpg", "png","jpeg"); // Extensiones permitidas
     
         // Verificar la extensión de las imágenes antes de copiarlas
         $extension_Credencial_front = strtolower(pathinfo($Credencial_front, PATHINFO_EXTENSION));
@@ -63,6 +63,8 @@ if ($_POST) {
         $extension_Credencial_aseguradora = strtolower(pathinfo($Credencial_aseguradora, PATHINFO_EXTENSION));
         $extension_Credencial_aseguradoras_post = strtolower(pathinfo($Credencial_aseguradoras_post, PATHINFO_EXTENSION));
     
+        //No condicionadas fueron removidas de crear.php
+
         if (!in_array($extension_Credencial_front, $extensiones_permitidas) ||
             !in_array($extension_Credencial_post, $extensiones_permitidas) ||
             !in_array($extension_Credencial_aseguradora, $extensiones_permitidas) ||
@@ -80,7 +82,7 @@ if ($_POST) {
             echo '</script>';
         } else {
 
-    $fecha_Credencial_front = new DateTime();
+   $fecha_Credencial_front = new DateTime();
     $nombre_Credencial_front_orginal = ($fecha_Credencial_front != '') ? $fecha_Credencial_front->getTimestamp() . "_" . $_FILES["Credencial_front"]['name'] : "";
     $tmp_Credencial_front = $_FILES["Credencial_front"]['tmp_name'];
 
@@ -110,8 +112,8 @@ if ($_POST) {
         copy($tmp_comprobante, $carpeta_usuario . "/" . $nombre_comprobante_orginal);
     }
 
-    $otra_carpeta_usuario = "../../Padministradora/pacientes/PAPELETA/" . $Apellidos . " " . $Nombres;
-    if (!is_dir($otra_carpeta_usuario)) {
+    $otra_carpeta_usuario = "./PAPELETA" . $Apellidos . " " . $Nombres;
+   if (!is_dir($otra_carpeta_usuario)) {
         mkdir($otra_carpeta_usuario);
 
         copy($tmp_Credencial_front, $otra_carpeta_usuario . "/" . $nombre_Credencial_front_orginal);

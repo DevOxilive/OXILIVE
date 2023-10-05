@@ -44,6 +44,7 @@ try {
             echo '<a href="php/chat.php?chat=' . $fila['token'] . '"><li>
                 <img src="data:image/jpg/png;base64,' . base64_encode($fila['Foto_perfil']) . '" alt="img perfil"><b>' . $fila['Usuario'] . '</b> ' . $conectado . '<br><div class="mensaje-previo"> ' . $por . $estatusMensaje . '</div></li>
                 </a>';
+
         }
     } else {
         // si no envia el mensaje de comenzar chat

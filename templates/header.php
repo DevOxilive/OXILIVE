@@ -126,8 +126,10 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
         <?php endif; ?>
         <li class="nav-item dropdown pe-3">
 
+
          <!-- linea 129 header.php --> <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="data:image/jpg/png;base64,<?php echo base64_encode($_SESSION['foto']) ?>" id="fot" alt="Foto de perfil" style="width: 40px; height: 40px;" class="rounded-circle">
+
             <span class="d-none d-md-block dropdown-toggle ps-2">
               <?php echo $_SESSION['us'] ?>
             </span>
@@ -339,7 +341,38 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
             <!--Implementación de apartados de enfermeria-->
             <li>
               <a href="<?php echo $url_base; ?>secciones/enfermeria/hojaComplementaria/index.php">
-                <i class="bi bi-circle"></i><span>Hoja complementaria</span>
+              <i class="bi bi-person-heart"></i><span>Paciente</span>
+              </a>
+            </li>
+            <!--Implementación de apartado administradora-->
+            <li>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/administradora/index.php">
+              <i class="bi bi-person-workspace"></i><span>Administradoras</span>
+              </a>
+            </li>
+            <!--Implementación de apartado Aseguradora-->
+            <li>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/aseguradora/index.php">
+              <i class="bi bi-hospital-fill"></i><span>Aseguradora</span>
+              </a>
+            </li>
+            <!--Implementación de apartado bancos-->
+            <li>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/bancos/index.php">
+                <i class="bi bi-bank2"></i><span>Bancos</span>
+              </a>
+            </li>
+
+            <!--Implementación de apartado Procedimientos realizados-->
+            <li>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/procedimientos/index.php">
+              <i class="bi bi-award-fill"></i>Procedimientos</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="<?php echo $url_base; ?>secciones/enfermeria/lectura/index.php">
+              <i class="bi bi-book-half"></i>Historial Aseguradoras</span>
               </a>
             </li>
             <!--Aquí va el termino del apartado de enfermeria-->
@@ -348,24 +381,22 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
               <a href="<?php echo $url_base; ?>secciones/enfermeria/procedimientosRealizados/index.php">
                 <i class="bi bi-circle"></i><span>Procedimientos Realizados</span></a>
 
-              <!-- Módulo de horarios -->
+            <!-- Módulo de Servicios -->
             <li>
-              <a href="<?php echo $url_base; ?>secciones/enfermeria/guardias/index.php">
-                <i class="bi bi-circle"></i><span>Guardias</span>
+              <a href="#">
+                <i class="bi bi-circle"></i><span>Servicios</span>
               </a>
             </li>
-            <!-- Módulo de Servicios -->
-            <li class="nav-item">
-              <a href="<?php echo $url_base ?>secciones/enfermeria/servicios/tipos/index.php">
-                <i class="bi bi-circle"></i><span>Servicios</span><i class="bi bi-chevron-down ms-auto"></i>
+
+            <li>
+              <a href="<?php echo $url_base;?>secciones/enfermeria/servicios/horarios/index.php">
+                <i class="bi bi-circle"></i><span>Horarios</span>
               </a>
-              <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                  <a href="#">
-                    <i class="bi bi-circle"></i><span>Horarios</span>
-                  </a>
-                </li>
-              </ul>
+            </li>
+            <li>
+              <a href="<?php echo $url_base?>secciones/enfermeria/servicios/tipos/index.php">
+                <i class="bi bi-circle"></i><span>Tipos de Servicios</span>
+              </a>
             </li>
             <!-- Módulo de Bitacora de asistencias -->
             <li>

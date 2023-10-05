@@ -17,6 +17,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $incre = $con->prepare($incremento);
         $incre->bindParam(":vUsuario", $vUsuario);
         $incre->execute();
+   
+
 
         if ($datos && password_verify($vPassword, $datos["paswword"])) {
             $_SESSION['idus'] = $datos["id_usuarios"];

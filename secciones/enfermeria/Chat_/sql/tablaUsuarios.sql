@@ -77,4 +77,14 @@ CREATE TABLE `usuarios` (
 	CONSTRAINT `FK_departamento` FOREIGN KEY (`id_departamentos`) REFERENCES `puestos` (`id_puestos`) ON UPDATE NO ACTION ON DELETE NO ACTION,
 	CONSTRAINT `FK_estado` FOREIGN KEY (`Estado`) REFERENCES `estado` (`id_estado`) ON UPDATE NO ACTION ON DELETE NO ACTION,
 	CONSTRAINT `FK_genero` FOREIGN KEY (`Genero`) REFERENCES `genero` (`id_genero`) ON UPDATE NO ACTION ON DELETE NO ACTION
+
 )
+
+
+ALTER TABLE usuarios
+ADD COLUMN estatus VARCHAR(50) NULL DEFAULT '0' COLLATE 'utf8mb4_0900_ai_ci',
+ADD COLUMN token VARCHAR(64) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+ADD COLUMN Foto_perfil LONGBLOB NULL DEFAULT NULL;
+
+nota mejor integrar toda la base de datos..... de la tabla 
+
