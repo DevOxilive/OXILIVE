@@ -39,13 +39,12 @@ if (!isset($_SESSION['us'])) {
             <div class="col-lg-8">
                 <div class="row">
                     <!-- Card Proximo Servicio -->
-                    <div class="col-xxl-4 col-md-6">
+                    <div class="col-12">
                         <div class="card info-card next-service-card">
                             <div class="card-body">
                                 <h5 class="card-title">Próximo servicio</h5>
-                                <?php foreach ($lista_servicios as $servicios) {?>
-                                    <h1><?php echo $servicios['id_asignacionHorarios'];?></h1>
-                                    <?php if (!empty($servicios['id_asignacionHorarios'])) { ?>
+                                <?php if (!empty($lista_servicios)) { ?>
+                                    <?php foreach ($lista_servicios as $servicios) { ?>
                                         <div class="d-flex align-items-center">
                                             <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                                 <i class="bi bi-clipboard-pulse"></i>
@@ -55,6 +54,7 @@ if (!isset($_SESSION['us'])) {
                                                 <span class="text-muted small pt-2 ps-1"><?php echo $servicios['nomGuardia']; ?></span>
                                             </div>
                                         </div>
+                                        <br>
                                         <?php if ($_SESSION['estado'] == 1) { ?>
                                             <!-- Botón de Empezar Servicio -->
                                             <div class="ps-4">
@@ -66,32 +66,73 @@ if (!isset($_SESSION['us'])) {
                                             <!-- End Botón de Empezar Servicio -->
                                         <?php } else if ($_SESSION['estado'] == 5) { ?>
                                             <!-- Botón de Terminar Servicio -->
-                                            <div class="ps-4">
-                                                <a class="btn btn-outline-danger" href="crear.php" role="button">
+                                            <div class="ps-6">
+                                                <a class="btn btn-outline-danger text-primary" href="crear.php" role="button">
                                                     <i class="bi bi-clipboard-check-fill"></i>
                                                     Terminar Servicio
                                                 </a>
                                             </div>
                                             <!-- End Botón de Terminar Servicio -->
                                         <?php } ?>
-                                    <?php } else { ?>
-                                        <div class="d-flex align-items-center">
-                                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                                <i class="bi bi-emoji-frown"></i>
-                                            </div>
-                                            <div class="ps-4 ">
-                                                <h6>¡Lo siento!</h6>
-                                                <span class="text-muted small pt-2 ps-1">No tienes servicios próximos</span>
-                                            </div>
+                                    <?php } ?>
+                                <?php } else { ?>
+                                    <div class="d-flex align-items-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-emoji-frown"></i>
                                         </div>
-                                <?php }
-                                } ?>
+                                        <div class="ps-4 ">
+                                            <h6>¡Lo siento!</h6>
+                                            <span class="text-muted small pt-2 ps-1">No tienes próximos servicios</span>
+                                        </div>
+                                    </div>
+                                <?php } ?>
                             </div>
                         </div>
-                    </div>
-                    <!-- End Card Próximo Servicio -->
+                    </div><!-- End Card Próximo Servicio -->
+                    <!-- Card actividad reciente -->
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="filter">
+                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                    <li class="dropdown-header text-start">
+                                        <h6>Filter</h6>
+                                    </li>
+
+                                    <li><a class="dropdown-item">Hoy</a></li>
+                                    <li><a class="dropdown-item">Esta semana</a></li>
+                                    <li><a class="dropdown-item"></a></li>
+                                </ul>
+                            </div>
+
+                            <div class="card-body">
+                                <h5 class="card-title">Actividad Reciente <span>| </span><span id="range-activity">Hoy</span></h5>
+
+                                <div class="activity">
+
+                                    <div class="activity-item d-flex">
+                                        <div class="activite-label">32 min</div>
+                                        <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
+                                        <div class="activity-content">
+                                            Quia quae rerum <a href="#" class="fw-bold text-dark">explicabo officiis</a> beatae
+                                        </div>
+                                    </div><!-- End activity item-->
+
+                                    <div class="activity-item d-flex">
+                                        <div class="activite-label">56 min</div>
+                                        <i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>
+                                        <div class="activity-content">
+                                            Voluptatem blanditiis blanditiis eveniet
+                                        </div>
+                                    </div><!-- End activity item-->
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div><!-- End Actividad reciente -->
                     <!-- Horarios del usuario -->
-                    <div class="col-xxl-4 col-xl-12">
+                    <div class="col-12">
                         <div class="card info-card customers-card">
                             <!-- Filtro -->
                             <div class="filter">
@@ -107,51 +148,11 @@ if (!isset($_SESSION['us'])) {
                             </div>
                             <!-- End Filtro -->
                             <div class="card-body">
-                                <h5 class="card-title">Horarios <span>| This Year</span></h5>
-                                <div class="d-flex align-items-center">
-                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-clock"></i>
-                                    </div>
-                                    <!-- Tabla Horarios (solo muestra 3) -->
-                                    <div class="ps-3">
-                                        <div class="table-responsive-sm">
-                                            <table class="table table-bordered  border-dark table-hover" id="myTable">
-                                                <thead class="table-dark">
-                                                    <tr class="table-active table-group-divider" style="text-align: center;">
-                                                        <th scope="col">Paciente</th>
-                                                        <th scope="col">Horario</th>
-                                                        <th scope="col">Fecha</th>
-                                                        <th scope="col">Tipo de Guardia</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php foreach ($lista_horarios as $horarios) { ?>
-                                                        <tr>
-                                                            <td>
-                                                                <?php echo $horarios['nomPaciente']; ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php echo $horarios['horarioEntrada']; ?> -
-                                                                <?php echo $horarios['horarioSalida']; ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php echo $horarios['fecha']; ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php echo $horarios['nomGuardia']; ?>
-                                                            </td>
-                                                        </tr>
-                                                    <?php } ?>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    <!-- End Tabla Horarios -->
-                                </div>
+                                <h5 class="card-title">Horarios <span>| Últimos tres</span></h5>
+
                             </div>
                         </div>
-                    </div>
-                    <!-- End Horarios del usuario -->
+                    </div><!-- End Horarios del usuario -->
                     <!-- Reports -->
                     <div class="col-12">
                         <div class="card">
@@ -308,7 +309,6 @@ if (!isset($_SESSION['us'])) {
 
                         </div>
                     </div><!-- End Recent Sales -->
-
                     <!-- Top Selling -->
                     <div class="col-12">
                         <div class="card top-selling overflow-auto">

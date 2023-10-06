@@ -44,7 +44,7 @@ if (!isset($_SESSION['us'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Estilos de la cámara -->
     <link rel="stylesheet" href="css/camara.css"> 
-</head>
+</head> 
 <body>
     <center>
         <input type="hidden" id="nomFoto" value="">
