@@ -418,14 +418,6 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                 <i class="bi bi-cash-coin"></i><span>Nómina</span>
               </a>
             </li>
-            <!--Aquí termina-->
-            <!--Implementación de apartado registros clínico y cuidados generales-->
-            <li>
-              <a href="<?php echo $url_base; ?>secciones/enfermeria/registroYcuidados/index.php">
-                <i class="bi bi-body-text"></i><span>Registro Clínico y Cuidados Generales</span>
-              </a>
-            </li>
-            <!--Aquí termina-->
           </ul>
         </li><!-- End Forms Nav -->
       <?php endif; ?>
@@ -443,6 +435,12 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
           <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/Chat_/index.php">
             <i class="bi bi-wechat"></i>
             <span>Chat General</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/registroYcuidados/index.php">
+            <i class="bi bi-wechat"></i>
+            <span>Registros clinicos y cuidados generales</span>
           </a>
         </li>
 
