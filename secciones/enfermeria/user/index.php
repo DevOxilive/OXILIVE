@@ -7,6 +7,7 @@ if (!isset($_SESSION['us'])) {
     include("../../../connection/conexion.php");
     include("model/proxServicio.php");
     include("model/horarios.php");
+    
 } else {
     echo "Error en el sistema";
 }
@@ -99,9 +100,9 @@ if (!isset($_SESSION['us'])) {
                                         <h6>Filter</h6>
                                     </li>
 
-                                    <li><a class="dropdown-item">Hoy</a></li>
-                                    <li><a class="dropdown-item">Esta semana</a></li>
-                                    <li><a class="dropdown-item"></a></li>
+                                    <li><a class="dropdown-item" onclick="range(this)">Hoy</a></li>
+                                    <li><a class="dropdown-item" onclick="range(this)">Esta semana</a></li>
+                                    <li><a class="dropdown-item" onclick="range(this)">Esta quincena</a></li>
                                 </ul>
                             </div>
 
@@ -111,10 +112,12 @@ if (!isset($_SESSION['us'])) {
                                 <div class="activity">
 
                                     <div class="activity-item d-flex">
-                                        <div class="activite-label">32 min</div>
+                                        <div class="activite-label">
+                                            <?php  ?>
+                                        </div>
                                         <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
                                         <div class="activity-content">
-                                            Quia quae rerum <a href="#" class="fw-bold text-dark">explicabo officiis</a> beatae
+                                            
                                         </div>
                                     </div><!-- End activity item-->
 
@@ -682,6 +685,7 @@ if (!isset($_SESSION['us'])) {
 </main>
 
 </html>
+<script src="js/rangeActivity.js"></script>
 <?php
 include("../../../templates/footer.php");
 ?>
