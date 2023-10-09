@@ -97,7 +97,7 @@ if (!isset($_SESSION['us'])) {
                                 <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                                     <li class="dropdown-header text-start">
-                                        <h6>Filter</h6>
+                                        <h6>Filtro</h6>
                                     </li>
 
                                     <li><a class="dropdown-item" onclick="range(this)">Hoy</a></li>
@@ -113,17 +113,15 @@ if (!isset($_SESSION['us'])) {
 
                                     <div class="activity-item d-flex">
                                         <div class="activite-label">
-                                            <?php  ?>
                                         </div>
-                                        <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
+                                        <i class="bi bi-circle-fill activity-badge text-success align-self-start"></i>
                                         <div class="activity-content">
-                                            
                                         </div>
                                     </div><!-- End activity item-->
 
                                     <div class="activity-item d-flex">
                                         <div class="activite-label">56 min</div>
-                                        <i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>
+                                        <i class="bi bi-circle-fill activity-badge text-danger align-self-start"></i>
                                         <div class="activity-content">
                                             Voluptatem blanditiis blanditiis eveniet
                                         </div>

@@ -31,5 +31,8 @@ function setRangeActivity(datos){
     var activity = document.getElementById("activity");
     activity.innerHTML = "";
 
-    
+
 }
+var fechaActual = new Date();
+var formatoFecha = `${fechaActual.getFullYear()}-${fechaActual.getMonth() + 1}-${fechaActual.getDate()}`;
+var formatoHora = `${fechaActual.getHours()}:${fechaActual.getMinutes()}:${fechaActual.getSeconds()}`;

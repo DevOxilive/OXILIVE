@@ -44,4 +44,11 @@
     $secuenciaQuincena -> bindParam(':fecha_fin', $fecha_fin);
     $secuenciaQuincena -> execute();
     $lista_quincena = $secuenciaQuincena->fetchAll(PDO::FETCH_ASSOC);
+    
+    $resultados = array(
+        'hoy' => $lista_hoy,
+        'semana' => $lista_semana,
+        'quincena' => $lista_quincena
+    );
+    echo json_encode($resultados);
 ?>
