@@ -7,23 +7,22 @@ if(empty($data['nomFoto']) || $data['nomFoto'] == "") {
     $nomFoto = guardarFoto($data);
     exit ($nomFoto);
 } else {
-    if(cambiarStatus($con, $data)){
-        if(registrarAsis($con, $data)){
-            exit ('Registro Exitoso');
-        }
-        else{
-            exit ('No registra asistencia');
-        }
-    } else {
-        exit ('No cambia el status');
+    if(registrarAsis($con, $data)){
+        exit ('Registro Exitoso');
+    }
+    else{
+        exit ('No registra asistencia');
     }
 }
 
 function registrarAsis($con, $data){
     $lon = $data['lon'];
     $lat = $data['lat'];
-    $status = $data['status'];
+    $status = cambiarStatus($con, $data);
     $idUser = $data['idUser'];
+    $idHor = $data['idHor'];
+    $statusHor = $data['statusHor'];
+
     
     date_default_timezone_set('America/Mazatlan');
     $fechaActual = date("Y-m-d");
@@ -33,17 +32,26 @@ function registrarAsis($con, $data){
 
     $regAsis = $con->prepare("
         INSERT INTO asistencias
-        VALUES (NULL, :idus, :status, :fecha, :time, :lat, :lon, :foto);
+        VALUES (NULL, :idus, :status, :idHor, :fecha, :time, :lat, :lon, :foto);
     ");
 
     $regAsis->bindParam(':idus', $idUser);
     $regAsis->bindParam(':status', $status);
+    $regAsis->bindParam(':idHor', $idHor);
     $regAsis->bindParam(':fecha', $fechaActual);
     $regAsis->bindParam(':time', $horaActual);
     $regAsis->bindParam(':lat', $lat);
     $regAsis->bindParam(':lon', $lon);
     $regAsis->bindParam(':foto', $fotoName);
-    if($regAsis->execute()){
+
+    $updateHorario = $con->prepare('
+        UPDATE asignacion_horarios SET statusHorario= :statusHor WHERE id_asignacionHorarios = :idHor;
+    ');
+
+    $updateHorario->bindParam(':statusHor', $statusHor);
+    $updateHorario->bindParam(':idHor', $idHor);
+
+    if($regAsis->execute() && $updateHorario->execute()){
         return (true);
     }
 }
@@ -64,7 +72,7 @@ function cambiarStatus($con, $data){
     $sentenciaStatus->bindParam(':idUser', $idUser);
     $sentenciaStatus->bindParam(':estado', $newStatus);
     if($sentenciaStatus->execute()){
-        return(true);
+        return($status);
     }
 }
 function guardarFoto($data){

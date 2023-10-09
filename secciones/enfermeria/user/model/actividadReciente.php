@@ -1,8 +1,16 @@
 <?php
     include('../../../../connection/conexion.php');
+    session_start();
 
+    //Consulta que trae los checks de hoy
     $secuenciaHoy = $con->prepare("
-        SELECT *, HOUR(checkTime) AS 'hora', MINUTE(checkTime) AS 'minuto' FROM asistencias WHERE id_empleadoEnfermeria = :idus AND fechaAsis = :fechaActual
+        SELECT a.*, HOUR(checkTime) AS 'hora', MINUTE(checkTime) AS 'minuto', checkName, CONCAT(p.nombre, ' ', p.apellidos) as 'nomPaciente'
+        FROM asistencias a, checkk c, asignacion_horarios ah, pacientes_enfermeria p
+        WHERE a.id_empleadoEnfermeria = :idus
+        AND a.fechaAsis = :fechaActual
+        AND a.id_check = c.id_check
+        AND ah.id_asignacionHorarios = a.id_horario
+        AND ah.id_pacienteEnfermeria = p.id_pacienteEnfermeria;
     ");
     $idUser = $_SESSION['idus'];
     $fechaActual = date('Y-m-d');
@@ -13,7 +21,7 @@
     $secuenciaHoy -> execute();
     $lista_hoy = $secuenciaHoy->fetchAll(PDO::FETCH_ASSOC);
 
-
+    //Consulta que trae los checks de hace una semana
     $secuenciaSemana = $con->prepare("
         SELECT * FROM asistencias WHERE id_empleadoEnfermeria = :idus AND fechaAsis >= :fechaSemana
     ");
@@ -22,6 +30,8 @@
     $secuenciaSemana -> bindParam(':fechaSemana', $fechaSemana);
     $secuenciaSemana -> execute();
     $lista_semana = $secuenciaSemana->fetchAll(PDO::FETCH_ASSOC);
+
+    //Consulta que trae los checks de esta quicena
 
     // Obtener el día actual del mes
     $dia_actual = date('d');

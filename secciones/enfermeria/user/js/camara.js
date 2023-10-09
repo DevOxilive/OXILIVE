@@ -103,12 +103,17 @@ function tomarAsistencia() {
   //Se setean los datos Estado y ID del usuario
   let status = document.getElementById("status").value;
   let idUser = document.getElementById("idUser").value;
+  //Se setean status de la asistencia y el id del Horario
+  let statusHor = document.getElementById("statusHor").value;
+  let idHor = document.getElementById("idHor").value;
   //Se setean los datos con sintaxis JSON para enviarse
   var data = {
     lat: lat,
     lon: lon,
     status: status,
     idUser: idUser,
+    statusHor: statusHor,
+    idHor: idHor,
     nomFoto: nomFoto(),
   };
   //Se utiliza la función fetch para enviar los datos
