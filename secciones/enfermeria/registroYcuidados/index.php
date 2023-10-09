@@ -24,8 +24,7 @@ if (!isset($_SESSION['us'])) {
                 REGISTRO CLÍNICO Y CUDADOS GENERALES
             </h4>
         </div>
-
-        <div class="card-body" style="border: 2px solid #BFE5FF;">
+       <div class="card-body" style="border: 2px solid #BFE5FF;">
             <form action="#" method="POST" class="formLogin" id="formulario">
                 <div class="row">
                     <div class="col-md-4 ">
@@ -111,144 +110,15 @@ if (!isset($_SESSION['us'])) {
             </form>
         </div>
         <br>
-        <div class="card-body" style="border: 2px solid #BFE5FF;">
-            <form action="#" method="POST" class="formLogin form-inline" id="formulario">
-                <div class="col-md-2">
-                    <div class="formulario__grupo">
-                        <label for="medico" class="formulario__label">Temperatura</label>
-                        <div class="formulario__grupo-input">
-                            <select id="Temperatura" name="Temperatura" class="form-select">
-                                <option value="40.5">40.5</option>
-                                <option value="40">40</option>
-                                <option value="39.5">39.5</option>
-                                <option value="39">39</option>
-                                <option value="38.5">38.5</option>
-                                <option value="38">38</option>
-                                <option value="37.5">37.5</option>
-                                <option value="37">37</option>
-                                <option value="36.5">36.5</option>
-                                <option value="36">36</option>
-                                <option value="35.5">35.5</option>
-                                <option value="35">35</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="formulario__grupo">
-                        <label for="respiracion" class="formulario__label">Respiración:</label>
-                        <div class="formulario__grupo-input">
-                            <input type="text" class="formulario__input" name="respiracion" id="respiracion"
-                                placeholder=" 67 x 1 ">
-                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="formulario__grupo">
-                        <label for="tencionA" class="formulario__label">Tención Arterial:</label>
-                        <div class="formulario__grupo-input">
-                            <input type="text" class="formulario__input" name="tencionA" id="tencionA"
-                                placeholder="Ejemplo Aun nose que va jaja ">
-                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="formulario__grupo">
-                        <label for="spo2" class="formulario__label">SPO2</label>
-                        <div class="formulario__grupo-input">
-                            <input type="text" class="formulario__input" name="spo2" id="spo2"
-                                placeholder="Ejemplo Aun nose que va jaja ">
-                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="formulario__grupo">
-                        <label for="glicemia" class="formulario__label">Glicemia Capilar</label>
-                        <div class="formulario__grupo-input">
-                            <input type="text" class="formulario__input" name="glicemia" id="glicemia"
-                                placeholder="Ejemplo Aun nose que va jaja ">
-                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="formulario__grupo">
-                        <label for="medico" class="formulario__label">Eliga una copcón</label>
-                        <div class="formulario__grupo-input">
-                            <select id="Genero" name="Genero" class="form-select">
-                                <!-- <?php foreach ($lista_genero as $genero) { ?>
-                            <option value="<?php echo $genero['id_genero']; ?>"><?php echo $genero['genero']; ?> -->
-                                </option>
-                                <!-- <?php } ?> -->
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="formulario__grupo">
-                        <label for="medico" class="formulario__label">Estado:</label>
-                        <div class="formulario__grupo-input">
-                            <select id="Genero" name="Genero" class="form-select">
-                                <!-- <?php foreach ($lista_genero as $genero) { ?>
-                            <option value="<?php echo $genero['id_genero']; ?>"><?php echo $genero['genero']; ?> -->
-                                </option>
-                                <!-- <?php } ?> -->
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="formulario__grupo">
-                        <label for="medico" class="formulario__label">Eliga el grado</label>
-                        <div class="formulario__grupo-input">
-                            <select id="Genero" name="Genero" class="form-select">
-                                <!-- <?php foreach ($lista_genero as $genero) { ?>
-                            <option value="<?php echo $genero['id_genero']; ?>"><?php echo $genero['genero']; ?> -->
-                                </option>
-                                <!-- <?php } ?> -->
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="formulario__grupo">
-                        <label for="medico" class="formulario__label">UPP, Heridas o Hematomas</label>
-                        <div class="formulario__grupo-input">
-                            <select id="Genero" name="Genero" class="form-select">
-                                <!-- <?php foreach ($lista_genero as $genero) { ?>
-                            <option value="<?php echo $genero['id_genero']; ?>"><?php echo $genero['genero']; ?> -->
-                                </option>
-                                <!-- <?php } ?> -->
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="formulario__grupo">
-                        <label for="#####" class="formulario__label">Descripción:</label>
-                        <div class="formulario__grupo-input">
-                            <textarea name="#####" id="#####" style="width: 200%; height: 50px;"
-                                placeholder="Escribe tus comentarios aquí..."></textarea>
-                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-footer text-muted">
-                    <div class="formulario__grupo formulario__grupo-btn-enviar d-flex ">
-                        <button type="submit" class="btn btn-outline-success mr-2">Guardar</button>
-                        <a name="registrar" id="" class="btn btn-outline-danger" onclick="confirmCancel(event)"
-                            role="button">Cancelar</a>
-                    </div>
-                </div>
+        <!-- Tu botón en HTML -->
+<button id="btnSiguiente" class="btn btn-primary">Siguiente</button>
             </form>
         </div>
     </div>
 </main>
+
+
+
 <script>
 function confirmCancel(event) {
     event.preventDefault();
@@ -269,31 +139,13 @@ function confirmCancel(event) {
 }
 
 
-
-document.addEventListener("DOMContentLoaded", function() {
-
-    // Obtén el elemento select
-    var select = document.getElementById("Temperatura");
-
-    // Obtén los elementos de opción dentro del select y conviértelos en un array
-    var opciones = Array.from(select.options);
-
-    // Ordena el array de opciones por valor numérico (de menor a mayor)
-    opciones.sort(function(a, b) {
-        return parseFloat(a.value) - parseFloat(b.value);
-    });
-
-    // Elimina todas las opciones del select
-    select.innerHTML = "";
-
-    // Agrega las opciones ordenadas de nuevo al select
-    opciones.forEach(function(opcion) {
-        select.appendChild(opcion);
-    });
-
-
-
+var btnSiguiente = document.getElementById('btnSiguiente');
+btnSiguiente.addEventListener('click', function() {
+    window.location.href = 'form1.php';
 });
+
+
+
 </script>
 <!-- ESTA ALERTA SIRVE PARA NO PERMITIR NINGUN CAMPO VACIO -->
 <!-- <script>
