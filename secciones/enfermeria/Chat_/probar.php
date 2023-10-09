@@ -27,32 +27,26 @@ include '../../../connection/conexion.php';
             <table class="table table-dark table-hover">
                 <thead>
                     <tr>
-                        <th>Token usuble</th>
+                        <th>Token usable</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <?php
-                        do {
-                            $regresar = false;
-                            $token = bin2hex(random_bytes(32));
 
-                            $checkToken = $con->prepare("SELECT token FROM usuarios");
-                            $checkToken->execute();
-                            $existToken = $checkToken->fetchAll(PDO::FETCH_ASSOC);
-                            foreach ($existToken as $tokenCheck) {
-                                if ($tokenCheck == $token) {
-                                    $regresar = true;
-                                    echo "son iguales";
-                                } else {
-                                    $token = bin2hex(random_bytes(32));
-                                    $regresar = false;
-                                }
-                            }
-                            echo "<td>{$token}</td>";
-                        } while ($regresar == true);
-                        ?>
-                    </tr>
+                    <?php
+                    $token = bin2hex(random_bytes(32));
+
+                    $checkToken = $con->prepare("SELECT token FROM usuarios");
+                    $checkToken->execute();
+                    $existToken = $checkToken->fetchAll(PDO::FETCH_ASSOC);
+                    foreach ($existToken as $tokenCheck) {
+                        if ($tokenCheck == $token) {
+                            echo "<td>detecto uno igual perro :V<td>";
+                        } else {
+                            $token = bin2hex(random_bytes(32));
+                            echo "<tr><td>{$token}</td><tr>";
+                        }
+                    }
+                    ?>
                 </tbody>
             </table>
         </div>
