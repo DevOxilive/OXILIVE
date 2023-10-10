@@ -59,12 +59,13 @@ function setRangeActivity(datos){
     activity.innerHTML=" ";
     //Se llena con un foreach con cada dato
     datos.forEach(function(dato){
-        getTime(dato.fechaAsis, dato.checkTime);
+        //La variable tiempo es seteada con la funcion que retorna el tiempo transcurrido desde el check
+        var tiempo = getTime(dato.fechaAsis, dato.checkTime);
         //La variable dot es llenada con las etiquetas que corresponden a la linea del tiempo
         var dot ='<div class="activity-item d-flex">';
         dot += '<div class="activite-label">';
         //Tiempo transcurrido desde el check
-        dot += 'asdfghjkl'
+        dot += tiempo;
         dot += '</div>';
         //Condicional para saber si se pondra verde (check in) o rojo (check out)
         if (dato.id_check == 1) { 
@@ -79,6 +80,7 @@ function setRangeActivity(datos){
         dot += '</div>';
         //Se introduce todo en el div activity
         activity.innerHTML += dot;
+        
 
         console.log(dato);
     });
@@ -86,7 +88,7 @@ function setRangeActivity(datos){
 
 function getTime(fecha, hora){
     var fechaActual = new Date();
-    var fechaDato = new Date(fecha);
+    var fechaDato = new Date(fecha+'T'+hora);
     var dif = fechaActual-fechaDato;
 
     var minutos = Math.floor(dif / (1000*60));
@@ -98,12 +100,15 @@ function getTime(fecha, hora){
     console.log("Dias: "+dias);
     console.log(fechaActual);
     console.log(fechaDato);
+    var tiempo;
+    if(minutos==0){
+        //just now
+    } else if (minutos > 0 && minutos < 60){
+        tiempo = minutos + (minutos === 1 ? ' min' : ' mins');
+    } else if (horas > 0 && horas < 24){
+        tiempo = horas + (horas === 1 ? ' hr' : ' hrs');
+    } else if (dias > 0){
+        tiempo = dias + (dias === 1 ? ' día' : ' días' );
+    }
+    return tiempo;
 }
-/*var divTiempo = document.getElementById('tiempoTranscurrido');
-    if (dias > 0) {
-        divTiempo.textContent = dias + (dias === 1 ? ' día' : ' días');
-    } else if (horas > 0) {
-        divTiempo.textContent = horas + (horas === 1 ? ' hora' : ' horas');
-    } else {
-        divTiempo.textContent = minutos + (minutos === 1 ? ' minuto' : ' minutos');
-    }*/
