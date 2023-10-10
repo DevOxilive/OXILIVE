@@ -98,7 +98,7 @@ function getTime(fecha, hora){
     
     var tiempo;
     if(minutos==0){
-        tiempo = "Justo ahora";
+        tiempo = "<1 min";
     } else if (minutos > 0 && minutos < 60){
         tiempo = minutos + (minutos === 1 ? ' min' : ' mins');
     } else if (horas > 0 && horas < 24){
