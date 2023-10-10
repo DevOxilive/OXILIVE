@@ -10,7 +10,8 @@
         AND a.fechaAsis = :fechaActual
         AND a.id_check = c.id_check
         AND ah.id_asignacionHorarios = a.id_horario
-        AND ah.id_pacienteEnfermeria = p.id_pacienteEnfermeria;
+        AND ah.id_pacienteEnfermeria = p.id_pacienteEnfermeria
+        ORDER BY a.fechaAsis, a.checkTime;
     ");
     $idUser = $_SESSION['idus'];
     $fechaActual = date('Y-m-d');

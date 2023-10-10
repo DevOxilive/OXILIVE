@@ -51,6 +51,7 @@ function obtenerDatos() {
 }
 //Ejecutamos por primera vez para setear en "Hoy"
 obtenerDatos();
+setInterval(obtenerDatos,1000);
 //Funcion para actualizar el apartado de actividad reciente
 function setRangeActivity(datos){
     //Indicamos el div donde contendra este apartado
@@ -95,14 +96,9 @@ function getTime(fecha, hora){
     var horas = Math.floor(dif / (1000*60*60));
     var dias = Math.floor(dif / (1000*60*60*24));
     
-    console.log("Minutos: "+minutos);
-    console.log("Horas: "+horas);
-    console.log("Dias: "+dias);
-    console.log(fechaActual);
-    console.log(fechaDato);
     var tiempo;
     if(minutos==0){
-        //just now
+        tiempo = "Justo ahora";
     } else if (minutos > 0 && minutos < 60){
         tiempo = minutos + (minutos === 1 ? ' min' : ' mins');
     } else if (horas > 0 && horas < 24){
