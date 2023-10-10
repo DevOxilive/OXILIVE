@@ -10,7 +10,6 @@ function nextService(button) {
   })
   .then(response => response.json())
   .then(data => {
-    console.log(data);
     var status = data[0].Estado;
     if (status == 1) {
       button.innerHTML = "";

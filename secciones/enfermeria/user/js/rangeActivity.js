@@ -3,7 +3,6 @@ var spanFilter = document.getElementById("range-activity");
 // Crear una instancia de MutationObserver y pasar una función de retorno de llamada
 var observer = new MutationObserver(function(mutationsList) {
     // Esta función se ejecutará cuando haya cambios en el DOM
-    console.log(mutationsList);
     obtenerDatos();
 });
 // Configurar las opciones para observar cambios en el contenido
@@ -37,10 +36,8 @@ function obtenerDatos() {
         if (filtro === "Hoy") {
             setRangeActivity(data.hoy);
         } else if (filtro === "Semana") {
-            console.log(data.semana);
             setRangeActivity(data.semana);
         } else if (filtro === "Quincena") {
-            console.log(data.quicena);
             setRangeActivity(data.quincena);
         }
     })
@@ -76,14 +73,11 @@ function setRangeActivity(datos){
         }
         dot += '<div class="activity-content">';
         //Datos del check
-        dot += 'Registró un <b>'+dato.checkName+'</b> con el paciente '+dato.nomPaciente;
+        dot += 'Registró un <i>'+dato.checkName+'</i> con el paciente <a class="fw-bold text-dark" href="pages/paciente.php?idPac='+dato.id_pacienteEnfermeria+'">'+dato.nomPaciente+'</a>';
         dot += '</div>';
         dot += '</div>';
         //Se introduce todo en el div activity
         activity.innerHTML += dot;
-        
-
-        console.log(dato);
     });
 }
 
