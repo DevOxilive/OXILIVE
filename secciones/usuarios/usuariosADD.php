@@ -12,12 +12,12 @@ if ($_POST) {
     $email = (isset($_POST["email"]) ? $_POST["email"] : "");
     $Foto_perfil = (isset($_FILES["Foto_perfil"]['name']) ? $_FILES["Foto_perfil"]['name'] : "");
     //foto binaria en base de datos
-
-    $Foto_perfilX = addslashes(file_get_contents($_FILES['Foto_perfil']['tmp_name']));
-    if (!isset($Foto_perfilX)) {
-        $Foto_perfilX = ""; 
-
-    } //esto va en usuarios, oxilive, y se pega aqui...
+    if ($_FILES['Foto_perfil']['error'] !== 4) {
+        $Foto_perfilX = addslashes(file_get_contents($_FILES['Foto_perfil']['tmp_name']));
+    } else {
+        $Foto_perfilX = addslashes(file_get_contents("../enfermeria/Chat_/img/usuario.png"));
+    }
+    //esto va en usuarios, oxilive, y se pega aqui...
 
     $departamento = (isset($_POST["departamento"]) ? $_POST["departamento"] : "");
     $rfc = (isset($_POST["rfc"]) ? $_POST["rfc"] : "");
@@ -31,6 +31,24 @@ if ($_POST) {
     $credencialFrente = (isset($_FILES["credencialFrente"]['name']) ? $_FILES["credencialFrente"]['name'] : "");
     $credencialAtras = (isset($_FILES["credencialAtras"]['name']) ? $_FILES["credencialAtras"]['name'] : "");
     $comprobante_domicilio = (isset($_FILES["comprobante_domicilio"]['name']) ? $_FILES["comprobante_domicilio"]['name'] : "");
+
+    if ($_FILES["credencialFrente"]['error'] !== 4) {
+        $credencialFrenteX = addslashes(file_get_contents($_FILES["credencialFrente"]['tmp_name']));
+    } else {
+        $credencialFrenteX = addslashes(file_get_contents("../../assets/img/sinImagen.jpg"));
+    }
+
+    if ($_FILES["credencialAtras"]['error'] !== 4) {
+        $credencialAtrasX = addslashes(file_get_contents($_FILES["credencialAtras"]['tmp_name']));
+    } else {
+        $credencialAtrasX = addslashes(file_get_contents("../../assets/img/sinImagen.jpg"));
+    }
+
+    if ($_FILES["comprobante_domicilio"]['error'] !== 4) {
+        $comprobante_domicilioX = addslashes(file_get_contents($_FILES["comprobante_domicilio"]['tmp_name']));
+    } else {
+        $comprobante_domicilioX = addslashes(file_get_contents("../../assets/img/sinImagen.jpg"));
+    }
 
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
@@ -55,25 +73,24 @@ if ($_POST) {
 
 
     $sentencia = $con->prepare("INSERT INTO `usuarios` (`id_usuarios`, `Usuario`, `paswword`, `Nombres`, `Apellidos`, `Genero`, `Telefono`, `Correo`, `Estado`, `Foto_perfil`, `id_departamentos`, `rfc`, `alcaldia`,`num_interior`,`num_exterior`,`codigo_postal`,`calleUno`,`calleDos`,`referencias`,`credencialFrente`,`credencialAtras`,`comprobante_domicilio`, `token`) 
-                                VALUES (Null, :usuario, :password, :nombres, :apellidos, :genero, :telefono, :email, 1, '$Foto_perfilX', :departamento , :rfc , :alcaldia, :num_interior, :num_exterior, :codigo_postal, :calleUno, :calleDos, :referencias, :credencialFrente, :credencialAtras, :comprobante_domicilio, :token);");
+                                VALUES (Null, :usuario, :password, :nombres, :apellidos, :genero, :telefono, :email, 1, '$Foto_perfilX', :departamento , :rfc , :alcaldia, :num_interior, :num_exterior, :codigo_postal, :calleUno, :calleDos, :referencias, '$credencialFrenteX', '$credencialAtrasX', '$comprobante_domicilioX', :token);");
     //insercion del token nuevo para usuario nuevo..
     $sentencia->bindParam(":token", $token);
 
     //Se convierten todos estos valores en mayusculas o minusculas (según sea el caso)
     //para que quede unificada en la base de datos
-    
-    $usuario=strtolower($usuario);
-    $nombres=strtoupper($nombres);
-    $apellidos=strtoupper($apellidos);
-    $email=strtolower($email);
-    $rfc=strtoupper($rfc);
-    $alcaldia=strtoupper($alcaldia);
-    $calle=strtoupper($calle);
-    $num_interior=strtoupper($num_interior);
-    $num_exterior=strtoupper($num_exterior);
-    $calleUno=strtoupper($calleUno);
-    $calleDos=strtoupper($calleDos);
-    $referencias=strtoupper($referencias);
+
+    $usuario = strtolower($usuario);
+    $nombres = strtoupper($nombres);
+    $apellidos = strtoupper($apellidos);
+    $email = strtolower($email);
+    $rfc = strtoupper($rfc);
+    $alcaldia = strtoupper($alcaldia);
+    $num_interior = strtoupper($num_interior);
+    $num_exterior = strtoupper($num_exterior);
+    $calleUno = strtoupper($calleUno);
+    $calleDos = strtoupper($calleDos);
+    $referencias = strtoupper($referencias);
 
     $sentencia->bindParam(":usuario", $usuario);
     $sentencia->bindParam(":password", $hashedPassword);
@@ -137,9 +154,6 @@ if ($_POST) {
             move_uploaded_file($tmp_comprobante_domicilio, $carpeta_usuario . "/" . $nombre_comprobante_domicilio_orginal);
         }
         $sentencia->bindParam(":departamento", $departamento);
-        $sentencia->bindParam(":credencialFrente", $nombre_credencialFrente_orginal);
-        $sentencia->bindParam(":credencialAtras", $nombre_credencialAtras_orginal);
-        $sentencia->bindParam(":comprobante_domicilio", $nombre_comprobante_domicilio_orginal);
         $sentencia->execute();
         echo '<script language="javascript"> ';
         echo 'Swal.fire({

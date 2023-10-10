@@ -46,7 +46,7 @@ if (count($resultado) > 0) {
                     </div>
                     <div id="chat-form">
                         <input type="hidden" value="<?php echo $_SESSION['us'] ?>" id="user">
-                        <input type="text" id="message" placeholder="Escribe tu mensaje">
+                        <input type="text" id="message" placeholder="Escribe tu mensaje" maxlength="500">
                         <input type="hidden" value="<?php echo $enviarA; ?>" id='output'>
                         <button id="send"><img src="../img/pngwing.com.png" alt="" width="30px"></button>
                     </div>

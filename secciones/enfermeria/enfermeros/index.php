@@ -46,7 +46,7 @@ if (!isset($_SESSION['us'])) {
                                 </tr>
                             <?php } ?>
                         </tbody>
-                    </table>
+                    </tab   le>
                 </div>
             </div>
         </div>

@@ -38,7 +38,7 @@ if (!isset($_SESSION['us'])) {
                 <?php if (!empty($Foto_perfil)) { ?>
                   <img id="preview" src="<?php echo $Foto_perfil; ?>">
                 <?php } else { ?>
-                  <img id="preview" src="../../img/png.png">
+                  <img id="preview" src="../enfermeria//Chat_/img/usuario.png">
                 <?php } ?>
                 <div class="overlay">
                   <?php if (empty($Foto_perfil)) { ?>
