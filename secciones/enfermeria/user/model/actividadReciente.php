@@ -11,7 +11,7 @@
         AND a.id_check = c.id_check
         AND ah.id_asignacionHorarios = a.id_horario
         AND ah.id_pacienteEnfermeria = p.id_pacienteEnfermeria
-        ORDER BY a.fechaAsis, a.checkTime DESC;
+        ORDER BY a.checkTime DESC;
     ");
     $idUser = $_SESSION['idus'];
     $fechaActual = date('Y-m-d');
@@ -31,7 +31,7 @@
         AND a.id_check = c.id_check
         AND ah.id_asignacionHorarios = a.id_horario
         AND ah.id_pacienteEnfermeria = p.id_pacienteEnfermeria
-        ORDER BY a.fechaAsis, a.checkTime DESC;
+        ORDER BY a.fechaAsis DESC, a.checkTime DESC;
     ");
     $fechaSemana = date('Y-m-d', strtotime('-1 week'));
     $secuenciaSemana -> bindParam(':idus', $idUser);
@@ -62,7 +62,7 @@
         AND a.id_check = c.id_check
         AND ah.id_asignacionHorarios = a.id_horario
         AND ah.id_pacienteEnfermeria = p.id_pacienteEnfermeria
-        ORDER BY a.fechaAsis, a.checkTime DESC;
+        ORDER BY a.fechaAsis DESC, a.checkTime DESC;
     ");
     $secuenciaQuincena -> bindParam(':idus', $idUser);
     $secuenciaQuincena -> bindParam(':fecha_inicio', $fecha_inicio);

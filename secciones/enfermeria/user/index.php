@@ -40,7 +40,7 @@ if (!isset($_SESSION['us'])) {
                 <div class="row">
                     <!-- Card Proximo Servicio -->
                     <div class="col-12">
-                        <div class="card info-card next-service-card">
+                        <div class="card info-card next-service-card" id="service-card">
                             <div class="card-body">
                                 <h5 class="card-title">Próximo servicio</h5>
                                 <?php if (!empty($lista_servicios)) { ?>

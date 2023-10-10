@@ -11,12 +11,15 @@ function nextService(button) {
   .then(response => response.json())
   .then(data => {
     var status = data[0].Estado;
+    let card = document.getElementById('service-card');
     if (status == 1) {
+      card.setAttribute('class', 'card info-card next-service-card');
       button.innerHTML = "";
       button.innerHTML ='<a class="btn btn-outline-success" href="crear.php?status=0&idHor=' +
         idHor +
         '" role="button"><i class="bi bi-clipboard-check-fill"></i>     Comenzar servicio</a>';
     } else if (status == 5) {
+      card.setAttribute('class', 'card info-card finish-service-card');
       button.innerHTML = "";
       button.innerHTML =
         '<a class="btn btn-outline-danger text-danger" href="crear.php?status=1&idHor=' +

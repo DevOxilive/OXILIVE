@@ -799,11 +799,22 @@ h6 {
 }
 
 /* Info Cards */
-.dashboard .info-card {
+.dashboard .next-service-card {
   padding-bottom: 10px;
 }
 
-.dashboard .info-card h6 {
+.dashboard .next-service-card h6 {
+  font-size: 28px;
+  color: #012970;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+}
+.dashboard .finish-service-card {
+  padding-bottom: 10px;
+}
+
+.dashboard .finish-service-card h6 {
   font-size: 28px;
   color: #012970;
   font-weight: 700;
@@ -820,9 +831,25 @@ h6 {
   flex-grow: 0;
 }
 
-.dashboard .sales-card .card-icon {
-  color: #4154f1;
-  background: #f6f6fe;
+.dashboard .next-service-card .card-icon {
+  color: #198754;
+  background: #e1f5e9;
+}
+.dashboard .next-service-card {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #198754;
+}
+
+.dashboard .finish-service-card .card-icon {
+  color: #dc3545;
+  background: #f8dbd7;
+}
+.dashboard .finish-service-card {
+  border-width: 2px;
+  border-style: solid;
+  border-color: #dc3545;
+  box-shadow: 0.2em 0.2em 1em rgba(0, 0, 0, 0.2);
 }
 
 .dashboard .revenue-card .card-icon {
