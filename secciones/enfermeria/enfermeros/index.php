@@ -46,7 +46,7 @@ if (!isset($_SESSION['us'])) {
                                 </tr>
                             <?php } ?>
                         </tbody>
-                    </tab   le>
+                    </table>
                 </div>
             </div>
         </div>
@@ -115,5 +115,5 @@ if (!isset($_SESSION['us'])) {
     });
 </script>
 <?php
-include("../../../templates/footer.php");
+    include("../../../templates/footer.php");
 ?>
