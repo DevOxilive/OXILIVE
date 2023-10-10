@@ -4,71 +4,70 @@ if (!isset($_SESSION['us'])) {
   header('Location: ../../login.php');
 } elseif (isset($_SESSION['us'])) {
   include("../../../templates/header.php");
-    include("./consultaProce.php");
+    include("consulta.php");
 } else {
   echo "Error en el sistema";
 }
 ?>
 <main id="main" class="main">
-<h1 style="text-align:center;">Procedimientos Realizados</h1>
-<div class="card-header" style="text-align: right;">
+    <h1 style="text-align:center;">Procedimientos Realizados</h1>
+    <div class="card-header" style="text-align: right;">
 
-            </div>
+    </div>
     <div class="card">
-    
+
         <div class="card-header">
-            <a name="" id="" class="btn btn-outline-primary" href="./crear.php" role="button"> <i class="bi bi-award"></i> Crear Procedimiento</a>
+            <a name="" id="" class="btn btn-outline-primary" href="./crear.php" role="button"> <i
+                    class="bi bi-award"></i> Crear Procedimiento</a>
         </div>
-       
+
         <div class="card-body">
             <div class="table-responsive-sm">
                 <table class="table table-bordered  border-dark table-hover" id="myTable">
                     <thead class="table-dark">
                         <tr class="table-active table-group-divider" style="text-align: center;">
-                            <th scope="col">Núm</th>
                             <th scope="col">Paciente</th>
-                            <th scope="col">Nomina</th>
                             <th scope="col">Código ICD:</th>
-                            <th scope="col">DX:</th>
-                            <th scope="col">Médico:</th>
+                            <th scope="col">Nomina</th>
+                            <th scope="col">Dx:</th>
+                            <th scope="col">Medico:</th>
+                            <th scope="col">CPT:</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($lista_nomi_paci as $registro) { ?>
+                        <?php foreach($procedimientos as $lista) {?>
                         <tr class="">
-                            <th scope="row">
-                            <?php echo $registro['id_proce']; ?>
-                            </th>
-                            
-                            <td>                                
-                            <?php echo $registro['nomPaciente']; ?>
+                            <td>
+                                <?php  echo $lista["nomPaciente"]; ?>
                             </td>
                             <td>
-                            <?php echo  $registro['No_nomina']; ?>
+                                <?php echo $lista["icd"]; ?>
                             </td>
-                        
-                            <td>                                
-                            <?php echo $registro['codigo_ICD']; ?>
+                            <td>
+                                <?php echo $lista["No_nomina"]; ?>
                             </td>
-
-                            <td>    
-                            <?php echo $registro['dx']; ?>
+                            <td>
+                                <?php echo $lista["dx"]; ?>
                             </td>
-                            
-                            <td>                                
-                            <?php echo $registro['medico']; ?>
+                            <td>
+                            <?php echo $lista["Medico"]; ?>
+                            </td>
+                            <td>
+                                <?php echo $lista['cpt']; ?>
+                            </td>
                             </td>
                             <td style="text-align: center;">
-                            <a class="btn btn-outline-success"
-                                    href="listaProc.php?txtID=<?php echo $registro['id_proce']; ?>" role="button"><i class="bi bi-person-plus-fill"></i></a>    
-                            |
-                            <a class="btn btn-outline-warning"
+                                <a class="btn btn-outline-success"
+                                    href="listaProc.php?txtID=<?php echo $registro['id_proce']; ?>" role="button"><i
+                                        class="bi bi-person-plus-fill"></i></a>
+                                |
+                                <a class="btn btn-outline-warning"
                                     href="editar.php?txtID=<?php echo $registro['id_proce']; ?>" role="button"><i
                                         class="bi bi-pencil-square"></i></a>
                                 |
                                 <a class="btn btn-outline-danger"
-                                    onclick="eliminar(<?php echo $registro['id_proce']; ?>)" role="button"><i
+                                    onclick="eliminar(<?php echo $lista['procedimiento']; ?>)" role="button"><i
                                         class="bi bi-trash-fill"></i></a>
                             </td>
                         </tr>
