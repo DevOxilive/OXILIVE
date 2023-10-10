@@ -44,8 +44,12 @@ if (!isset($_SESSION['us'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Estilos de la cámara -->
     <link rel="stylesheet" href="css/camara.css"> 
-</head>
+</head> 
 <body>
+    <?php
+        $status = $_GET['status'];
+        $idHor = $_GET['idHor'];
+    ?>
     <center>
         <input type="hidden" id="nomFoto" value="">
 	    <video muted id="video"></video>
@@ -71,6 +75,9 @@ if (!isset($_SESSION['us'])) {
     <!-- Etiqueta oculta para mandar la ubicación del usuario -->
     <input type="hidden" id="latitud" name="latitud">
     <input type="hidden" id="longitud" name="longitud">
+
+    <input type="hidden" id="idHor" name="idHor" value="<?php echo $idHor; ?>">
+    <input type="hidden" id="statusHor" name="statusHor" value="<?php echo $status; ?>">
 </body>
 <!-- Función de la cámara -->
 
