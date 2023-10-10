@@ -6,6 +6,7 @@
         AND u.id_usuarios = a.id_usuario
         AND p.id_pacienteEnfermeria = a.id_pacienteEnfermeria
         AND t.id_tipoServicio = a.id_tipoServicio
+        AND a.statusHorario = 0
         ORDER BY a.fecha ASC
         LIMIT 1;"
     );

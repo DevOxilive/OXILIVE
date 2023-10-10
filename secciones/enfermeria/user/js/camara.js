@@ -96,20 +96,24 @@ function newFoto() {
   deleteFoto(nomFoto());
 }
 //Funcion que guarda todos los datos y registra asistencia 2.2
-function tomarAsistencia(event) {
-  event.preventDefault();
+function tomarAsistencia() {
   //Se toman las coordenadas
   let lat = document.getElementById("latitud").value;
   let lon = document.getElementById("longitud").value;
   //Se setean los datos Estado y ID del usuario
   let status = document.getElementById("status").value;
   let idUser = document.getElementById("idUser").value;
+  //Se setean status de la asistencia y el id del Horario
+  let statusHor = document.getElementById("statusHor").value;
+  let idHor = document.getElementById("idHor").value;
   //Se setean los datos con sintaxis JSON para enviarse
   var data = {
     lat: lat,
     lon: lon,
     status: status,
     idUser: idUser,
+    statusHor: statusHor,
+    idHor: idHor,
     nomFoto: nomFoto(),
   };
   //Se utiliza la función fetch para enviar los datos
@@ -228,10 +232,10 @@ function setBtnTo1() {
 }
 function setBtnTo2() {
   //Cambia el texto de los botones
-  $boton.textContent = "Continuar";
+  $boton.textContent = "Confirmar";
   $boton2.textContent = "Tomar nueva foto";
   //Cambia las acciones que hace cada botón al presionar
-  $boton.setAttribute("onclick", "tomarAsistencia(event)");
+  $boton.setAttribute("onclick", "tomarAsistencia()");
   $boton2.setAttribute("onclick", "newFoto()");
 }
 //Funciones para la ubicación

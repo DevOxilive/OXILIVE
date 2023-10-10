@@ -424,14 +424,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                         </a>
                     </li>
                     <!--Aquí termina-->
-                    <!--Implementación de apartado registros clínico y cuidados generales-->
-                    <li>
-                        <a href="<?php echo $url_base; ?>secciones/enfermeria/registroYcuidados/index.php">
-                            <i class="bi bi-circle"></i><span>Registro Clínico y Cuidados Generales</span>
-                        </a>
-                    </li>
-
-                    <!--Aquí termina-->
+                   
                 </ul>
             </li><!-- End Forms Nav -->
             <?php endif; ?>
@@ -451,9 +444,18 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                     <span>Chat General</span>
                 </a>
             </li>
+            <!--Implementación de apartado registros clínico y cuidados generales-->
+            <li>
+                <a href="<?php echo $url_base; ?>secciones/enfermeria/registroYcuidados/index.php">
+                     <i class="bi bi-circle"></i><span>Registro Clínico y Cuidados Generales</span>
+                </a>
+            </li>
+
+                    <!--Aquí termina-->
 
             <!-- End Forms Nav -->
             <?php endif; ?>
+
 
 
             <?php if ($_SESSION['puesto'] === 5 || $_SESSION['puesto'] === 1) : ?>
@@ -504,6 +506,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                         </a>
                     </li>
                 </ul>
+
             </li>
             <?php endif; ?>
             <?php if ($_SESSION['puesto'] === 3 || $_SESSION['puesto'] === 1) : ?>
