@@ -1,5 +1,5 @@
 <?php
-$url_base = "http://localhost:80/OXILIVE/";
+$url_base = "http://localhost:8080/OXILIVE/";
 include_once 'C:\laragon\www\OXILIVE\connection/conexion.php';
 include_once 'C:\laragon\www\OXILIVE\module/puestos.php';
 include_once 'C:\laragon\www\OXILIVE\module/foto.php';
