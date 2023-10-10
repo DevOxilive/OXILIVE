@@ -30,7 +30,7 @@ if (!isset($_SESSION['us'])) {
                     <div class="formulario__grupo">
                         <label for="temperatura" class="formulario__label">Temperatura:</label>
                         <div class="formulario__grupo-input">
-                            <input type="number" class="formulario__input" name="respiracion" id="respiracion"
+                            <input type="number" class="formulario__input" name="temperatura" id="temperatura"
                                 placeholder="Ej. 35.3º" step="any" pattern="^\d+(\.\d{1,2})?$">
                             <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                         </div>
@@ -38,9 +38,9 @@ if (!isset($_SESSION['us'])) {
                 </div>
                 <div class="col-md-3">
                     <div class="formulario__grupo">
-                        <label for="respiracion" class="formulario__label">Pulso:</label>
+                        <label for="pulso" class="formulario__label">Pulso:</label>
                         <div class="formulario__grupo-input">
-                            <input type="number" class="formulario__input" name="respiracion" id="respiracion"
+                            <input type="number" class="formulario__input" name="pulso" id="pulso"
                                 placeholder="Ej. 100.67 ppm" step="any" pattern="^\d+(\.\d{1,2})?$">
                             <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                         </div>
@@ -58,9 +58,9 @@ if (!isset($_SESSION['us'])) {
                 </div>
                 <div class="col-md-3">
                     <div class="formulario__grupo">
-                        <label for="tensionA" class="formulario__label">Tensión Arterial:</label>
+                        <label for="tensionArterial" class="formulario__label">Tensión Arterial:</label>
                         <div class="formulario__grupo-input">
-                            <input type="text" class="formulario__input" name="tensionA" id="tensionA"
+                            <input type="text" class="formulario__input" name="tensionArterial" id="tensionArterial"
                                 placeholder="120/80 mm Hg" oninput="validarTensionArterial(this)"
                                 pattern="\d{1,3}/\d{1,3}">
                             <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
@@ -71,7 +71,7 @@ if (!isset($_SESSION['us'])) {
                     <div class="formulario__grupo">
                         <label for="spo2" class="formulario__label">SPO2:</label>
                         <div class="formulario__grupo-input">
-                            <input type="number" class="formulario__input" name="respiracion" id="respiracion"
+                            <input type="number" class="formulario__input" name="spo2" id="spo2"
                                 placeholder="89%" oninput="validarNumeroEntero(this)">
                             <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                         </div>
@@ -79,9 +79,9 @@ if (!isset($_SESSION['us'])) {
                 </div>
                 <div class="col-md-2">
                     <div class="formulario__grupo">
-                        <label for="glicemia capilar" class="formulario__label">Glicemia Capilar:</label>
+                        <label for="glicemiaCapilar" class="formulario__label">Glicemia Capilar:</label>
                         <div class="formulario__grupo-input">
-                            <input type="number" class="formulario__input" name="respiracion" id="respiracion"
+                            <input type="number" class="formulario__input" name="glicemiaCapilar" id="glicemiaCapilar"
                                 placeholder="Ej. 30.3º" step="any" pattern="^\d+(\.\d{1,2})?$">
                             <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                         </div>
@@ -131,7 +131,7 @@ if (!isset($_SESSION['us'])) {
                 </div>
                 <div class="col-md-3">
                     <div class="formulario__grupo">
-                        <label for="ingestaLiquidos" class="formulario__label">Ingeta de Liquidos:</label>
+                        <label for="ingestaLiquidos" class="formulario__label">Ingesta de Liquidos:</label>
                         <div class="formulario__grupo-input">
                             <select class="formulario__input" name="ingestaLiquidos" id="ingestaLiquidos">
                                 <option value="">Seleccionar</option>
@@ -173,8 +173,7 @@ if (!isset($_SESSION['us'])) {
                 </div>
                 <div class="col-md-3">
                     <div class="formulario__grupo">
-                        <label for="uppHh" class="formulario__label">UPP, Heridas o Hematomas
-                            (tipo y descripción)</label>
+                        <label for="uppHh" class="formulario__label">UPP, Heridas o Hematomas</label>
                         <div class="formulario__grupo-input">
                             <select class="formulario__input" name="uppHh" id="uppHh">
                                 <option value="">Seleccionar</option>
@@ -187,28 +186,27 @@ if (!isset($_SESSION['us'])) {
                         </div>
                     </div>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-12">
                     <div class="formulario__grupo">
-                        <label for="drescripcionUpp" class="formulario__label"></label>
+                        <label for="descripcionUpp" class="formulario__label">Descripción UPP, Heridas o Hematomas</label>
                         <div class="formulario__grupo-input">
-                            <textarea name="drescripcionUpp" id="drescripcionUpp"
-                                style="width: 100%; max-width: 400px; height: 90px;"
+                            <textarea name="descripcionUpp" id="descripcionUpp"
+                                style="width: 100%; max-width: 900px; height: 90px;"
                                 placeholder="(Descripción)"></textarea>
                             <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                         </div>
                     </div>
                 </div>
             </form>
+            <br>
             <button id="btnAnterior" class="btn btn-secondary">Anterior</button>
             <button id="btnSiguiente" class="btn btn-primary">Siguiente</button>
         </div>
-        <br>
         </form>
     </div>
     </div>
 </main>
 <script>
-
 var btnSiguiente = document.getElementById('btnSiguiente');
 btnSiguiente.addEventListener('click', function() {
     window.location.href = 'form2.php';
@@ -287,31 +285,57 @@ window.addEventListener('beforeunload', function(event) {
     return mensaje;
 });
 </script>
-<!-- ESTA ALERTA SIRVE PARA NO PERMITIR NINGUN CAMPO VACIO -->
-<!-- <script>
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelector('.formLogin').addEventListener('submit', function(event) {
-        event.preventDefault();
-        // Verifica si los campos obligatorios están vacíos
-        var Nombre_administradora = document.getElementById('Nombre_administradora').value;
-        var cpt = document.getElementById('cpt').value;
-        if (!Nombre_administradora || !cpt || !cpt2 || !cpt3 || !cpt4 || !cpt5 || !cpt6 ) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Campos vacíos',
-                text: 'Por favor, completa todos los campos obligatorios.',
-            });
-        } else {
-            this.submit();
-        }
-    });
-});
-</script> -->
-
-
-
 
 
 <?php
 include("../../../templates/footer.php");
 ?>
+
+
+<?php
+session_start();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Captura los datos del formulario
+    $temperatura = $_POST["temperatura"];
+    $pulso = $_POST["pulso"];
+    $respiracion = $_POST["respiracion"];
+    $tensionArterial = $_POST["tensionArterial"]; 
+    $spo2 = $_POST["spo2"];
+    $glicemiaCapilar = $_POST["glicemiaCapilar"];
+    $vomito = $_POST["vomito"];
+    $evacuaciones = $_POST["evacuaciones"];
+    $orina = $_POST["orina"];
+    $ingestaLiquidos = $_POST["ingestaLiquidos"];
+    $caidas = $_POST["caidas"];
+    $drenajesVendajes = $_POST["drenajesVendajes"];
+    $uppHh = $_POST["uppHh"];
+    $descripcionUpp = $_POST["descripcionUpp"]; 
+   
+
+    // Almacena los datos en la sesión junto con el ID del usuario
+    $_SESSION["registro_data"] = array(
+        "user_id" => $_SESSION['user_id'],
+        "temperatura" => $temperatura,
+        "pulso" => $pulso,
+        "respiracion" => $respiracion,
+        "tensionArterial" => $tensionArterial,
+        "spo2" => $spo2,
+        "glicemiaCapilar" => $glicemiaCapilar,
+        "vomito" => $vomito,
+        "evacuaciones" => $evacuaciones,
+        "orina" => $orina,
+        "ingestaLiquidos" => $ingestaLiquidos,
+        "caidas" => $caidas,
+        "drenajesVendajes" => $drenajesVendajes,
+        "uppHh" => $uppHh,
+        "descripcionUpp" => $descripcionUpp
+        // ... Almacena otros datos en el array ...
+    );
+
+    // Redirige al siguiente formulario (form2.php en este caso)
+    header("Location: form2.php");
+    exit();
+}
+?>
+

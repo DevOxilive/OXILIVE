@@ -111,7 +111,7 @@ if (!isset($_SESSION['us'])) {
         </div>
         <br>
         <!-- Tu botón en HTML -->
-<button id="btnSiguiente" class="btn btn-primary">Siguiente</button>
+<button id="btnSiguiente" class="btn btn-primary">Iniciar Registro</button>
             </form>
         </div>
     </div>

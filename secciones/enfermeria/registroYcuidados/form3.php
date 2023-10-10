@@ -26,29 +26,40 @@ if (!isset($_SESSION['us'])) {
         </div>
         <div class="card-body" style="border: 2px solid #BFE5FF;">
             <form action="#" method="POST" class="formLogin form-inline" id="formulario">
-                <div class="col-md-6">
+            <div class="col-md-12">
                     <div class="formulario__grupo">
-                        <label for="notaenferdia" class="formulario__label"></label>
+                        <label for="drescripcionCuracion" class="formulario__label">Curación (Descripción de procedimiento)</label>
+                        <div class="formulario__grupo-input">
+                            <textarea name="drescripcionCuracion" id="drescripcionCuracion"
+                                style="width: 100%; max-width: 1000px; height: 90px;"
+                                placeholder="Descripción"></textarea>
+                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
+                        </div>
+                    </div>
+                </div>    
+            <div class="col-md-12">
+                    <div class="formulario__grupo">
+                        <label for="notaenferdia" class="formulario__label">NOTA DE ENFREMERÍA (DÍA)</label>
                         <div class="formulario__grupo-input">
                             <textarea name="notaenferdia" id="notaenferdia"
-                                style="width: 100%; max-width: 400px; height: 90px;"
-                                placeholder="NOTA DE ENFREMERÍA (DÍA)"></textarea>
+                                style="width: 100%; max-width: 1000px; height: 90px;"
+                                placeholder="Descripción"></textarea>
                             <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="formulario__grupo">
-                        <label for="notaenfernoche" class="formulario__label"></label>
+                        <label for="notaenfernoche" class="formulario__label">NOTA DE ENFREMERÍA (NOCHE)</label>
                         <div class="formulario__grupo-input">
                             <textarea name="notaenfernoche" id="notaenfernoche"
-                                style="width: 100%; max-width: 400px; height: 90px;"
-                                placeholder="NOTA DE ENFREMERÍA (NOCHE)"></textarea>
+                                style="width: 100%; max-width: 1000px; height: 90px;"
+                                placeholder="Descripción"></textarea>
                             <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2 ">
+                <div class="col-md-3 ">
                     <div class="formulario__grupo" id="grupo__Nombre_administradora">
                         <label for="dasayunoH" class="formulario__label">DESAYUNO (HORARIO)</label>
                         <div class="formulario__grupo-input">
@@ -56,17 +67,17 @@ if (!isset($_SESSION['us'])) {
                         </div>
                     </div>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-12">
                     <div class="formulario__grupo">
                         <label for="descripDesayuno" class="formulario__label"></label>
                         <div class="formulario__grupo-input">
                             <textarea name="descripDesayuno" id="descripDesayuno"
-                                style="width: 100%; max-width: 400px; height: 90px;" placeholder="Desayuno"></textarea>
+                                style="width: 100%; max-width: 900px; height: 90px;" placeholder="Desayuno"></textarea>
                             <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2 ">
+                <div class="col-md-3 ">
                     <div class="formulario__grupo" id="grupo__Nombre_administradora">
                         <label for="comidaH" class="formulario__label">COMIDA (HORARIO)</label>
                         <div class="formulario__grupo-input">
@@ -74,17 +85,17 @@ if (!isset($_SESSION['us'])) {
                         </div>
                     </div>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-12">
                     <div class="formulario__grupo">
                         <label for="descripComida" class="formulario__label"></label>
                         <div class="formulario__grupo-input">
                             <textarea name="descripComida" id="descripComida"
-                                style="width: 100%; max-width: 400px; height: 90px;" placeholder="Comida"></textarea>
+                                style="width: 100%; max-width: 900px; height: 90px;" placeholder="Comida"></textarea>
                             <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2 ">
+                <div class="col-md-3 ">
                     <div class="formulario__grupo" id="grupo__Nombre_administradora">
                         <label for="cenaH" class="formulario__label">CENA (HORARIO)</label>
                         <div class="formulario__grupo-input">
@@ -92,28 +103,35 @@ if (!isset($_SESSION['us'])) {
                         </div>
                     </div>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-12">
                     <div class="formulario__grupo">
                         <label for="descripCena" class="formulario__label"></label>
                         <div class="formulario__grupo-input">
                             <textarea name="descripCena" id="descripCena"
-                                style="width: 100%; max-width: 400px; height: 90px;" placeholder="Cena"></textarea>
+                                style="width: 100%; max-width: 900px; height: 90px;" placeholder="Cena"></textarea>
                             <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                         </div>
                     </div>
                 </div>
             </form>
+            <br>
+            <button id="btnAnterior" class="btn btn-secondary">Anterior</button>
+            <button id="btnSiguiente" class="btn btn-primary">Siguiente</button>
         </div>
-        <br>
-        <button id="btnSiguiente" class="btn btn-primary">Siguiente</button>
         </form>
     </div>
     </div>
 </main>
 <script>
+
 var btnSiguiente = document.getElementById('btnSiguiente');
 btnSiguiente.addEventListener('click', function() {
-    window.location.href = 'form3.php';
+    window.location.href = 'form4.php';
+});
+
+var btnAnterior = document.getElementById('btnAnterior');
+btnAnterior.addEventListener('click', function() {
+    window.location.href = 'form2.php';
 });
 
 function confirmCancel(event) {
@@ -184,31 +202,43 @@ window.addEventListener('beforeunload', function(event) {
     return mensaje;
 });
 </script>
-<!-- ESTA ALERTA SIRVE PARA NO PERMITIR NINGUN CAMPO VACIO -->
-<!-- <script>
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelector('.formLogin').addEventListener('submit', function(event) {
-        event.preventDefault();
-        // Verifica si los campos obligatorios están vacíos
-        var Nombre_administradora = document.getElementById('Nombre_administradora').value;
-        var cpt = document.getElementById('cpt').value;
-        if (!Nombre_administradora || !cpt || !cpt2 || !cpt3 || !cpt4 || !cpt5 || !cpt6 ) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Campos vacíos',
-                text: 'Por favor, completa todos los campos obligatorios.',
-            });
-        } else {
-            this.submit();
-        }
-    });
-});
-</script> -->
-
-
-
-
 
 <?php
 include("../../../templates/footer.php");
+?>
+
+<?php
+session_start();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Captura los datos del formulario
+    $drescripcionCuracion = $_POST["drescripcionCuracion"];
+    $notaenferdia = $_POST["notaenferdia"];
+    $notaenfernoche = $_POST["notaenfernoche"];
+    $dasayunoH = $_POST["dasayunoH"]; 
+    $descripDesayuno = $_POST["descripDesayuno"];
+    $comidaH = $_POST["comidaH"];
+    $descripComida = $_POST["descripComida"];
+    $cenaH = $_POST["cenaH"];
+    $descripCena = $_POST["descripCena"];
+
+    // Almacena los datos en la sesión junto con el ID del usuario
+    $_SESSION["registro_data"] = array(
+        "user_id" => $_SESSION['user_id'],
+        "drescripcionCuracion" => $drescripcionCuracion,
+        "notaenferdia" => $notaenferdia,
+        "notaenfernoche" => $notaenfernoche,
+        "dasayunoH" => $dasayunoH,
+        "descripDesayuno" => $descripDesayuno,
+        "comidaH" => $comidaH,
+        "descripComida" => $descripComida,
+        "cenaH" => $cenaH,
+        "descripCena" => $descripCena,
+        // ... Almacena otros datos en el array ...
+    );
+
+    // Redirige al siguiente formulario (form2.php en este caso)
+    header("Location: form4.php");
+    exit();
+}
 ?>

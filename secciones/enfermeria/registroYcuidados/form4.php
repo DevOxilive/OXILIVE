@@ -26,94 +26,37 @@ if (!isset($_SESSION['us'])) {
         </div>
         <div class="card-body" style="border: 2px solid #BFE5FF;">
             <form action="#" method="POST" class="formLogin form-inline" id="formulario">
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <div class="formulario__grupo">
-                        <label for="notaenferdia" class="formulario__label"></label>
+                        <label for="medicamentos" class="formulario__label">MEDICAMENTOS</label>
                         <div class="formulario__grupo-input">
-                            <textarea name="notaenferdia" id="notaenferdia"
-                                style="width: 100%; max-width: 400px; height: 90px;"
-                                placeholder="NOTA DE ENFREMERÍA (DÍA)"></textarea>
-                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="formulario__grupo">
-                        <label for="notaenfernoche" class="formulario__label"></label>
-                        <div class="formulario__grupo-input">
-                            <textarea name="notaenfernoche" id="notaenfernoche"
-                                style="width: 100%; max-width: 400px; height: 90px;"
-                                placeholder="NOTA DE ENFREMERÍA (NOCHE)"></textarea>
+                            <input type="text" class="formulario__input" name="medicamentos" id="medicamentos"
+                                value="paracetamol" readonly disabled>
                             <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2 ">
                     <div class="formulario__grupo" id="grupo__Nombre_administradora">
-                        <label for="dasayunoH" class="formulario__label">DESAYUNO (HORARIO)</label>
+                        <label for="horario" class="formulario__label">HORARIO</label>
                         <div class="formulario__grupo-input">
-                            <input type="Time" class="formulario__input" name="dasayunoH" id="dasayunoH">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-5">
-                    <div class="formulario__grupo">
-                        <label for="descripDesayuno" class="formulario__label"></label>
-                        <div class="formulario__grupo-input">
-                            <textarea name="descripDesayuno" id="descripDesayuno"
-                                style="width: 100%; max-width: 400px; height: 90px;" placeholder="Desayuno"></textarea>
-                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2 ">
-                    <div class="formulario__grupo" id="grupo__Nombre_administradora">
-                        <label for="comidaH" class="formulario__label">COMIDA (HORARIO)</label>
-                        <div class="formulario__grupo-input">
-                            <input type="Time" class="formulario__input" name="comidaH" id="comidaH">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-5">
-                    <div class="formulario__grupo">
-                        <label for="descripComida" class="formulario__label"></label>
-                        <div class="formulario__grupo-input">
-                            <textarea name="descripComida" id="descripComida"
-                                style="width: 100%; max-width: 400px; height: 90px;" placeholder="Comida"></textarea>
-                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2 ">
-                    <div class="formulario__grupo" id="grupo__Nombre_administradora">
-                        <label for="cenaH" class="formulario__label">CENA (HORARIO)</label>
-                        <div class="formulario__grupo-input">
-                            <input type="Time" class="formulario__input" name="cenaH" id="cenaH">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-5">
-                    <div class="formulario__grupo">
-                        <label for="descripCena" class="formulario__label"></label>
-                        <div class="formulario__grupo-input">
-                            <textarea name="descripCena" id="descripCena"
-                                style="width: 100%; max-width: 400px; height: 90px;" placeholder="Cena"></textarea>
-                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
+                            <input type="Time" class="formulario__input" name="horario" id="horario">
                         </div>
                     </div>
                 </div>
             </form>
+            <br>
+            <button id="btnAnterior" class="btn btn-secondary">Anterior</button>
+            <button type="button" class="btn btn-success">Guardar</button>
         </div>
-        <br>
-        <button id="btnSiguiente" class="btn btn-primary">Siguiente</button>
         </form>
     </div>
     </div>
 </main>
 <script>
-var btnSiguiente = document.getElementById('btnSiguiente');
-btnSiguiente.addEventListener('click', function() {
-    window.location.href = 'form3.php';
+var btnAnterior = document.getElementById('btnAnterior');
+btnAnterior.addEventListener('click', function() {
+    window.location.href = 'form2.php';
 });
 
 function confirmCancel(event) {
@@ -184,31 +127,140 @@ window.addEventListener('beforeunload', function(event) {
     return mensaje;
 });
 </script>
-<!-- ESTA ALERTA SIRVE PARA NO PERMITIR NINGUN CAMPO VACIO -->
-<!-- <script>
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelector('.formLogin').addEventListener('submit', function(event) {
-        event.preventDefault();
-        // Verifica si los campos obligatorios están vacíos
-        var Nombre_administradora = document.getElementById('Nombre_administradora').value;
-        var cpt = document.getElementById('cpt').value;
-        if (!Nombre_administradora || !cpt || !cpt2 || !cpt3 || !cpt4 || !cpt5 || !cpt6 ) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Campos vacíos',
-                text: 'Por favor, completa todos los campos obligatorios.',
-            });
-        } else {
-            this.submit();
-        }
-    });
-});
-</script> -->
-
-
-
-
 
 <?php
 include("../../../templates/footer.php");
+?>
+
+<?php
+session_start();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Captura los datos del formulario
+    $medicamentos = $_POST["medicamentos"];
+    $horario = $_POST["horario"];
+
+    // Almacena los datos en la sesión junto con el ID del usuario
+    $_SESSION["registro_data"] = array(
+        "user_id" => $_SESSION['user_id'],
+        "medicamentos" => $medicamentos,
+        "horario" => $horario
+        // ... Almacena otros datos en el array ...
+    );
+    
+}
+?>
+
+<?php
+session_start();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Recupera los datos almacenados en la sesión
+    $registroData = $_SESSION["registro_data"];
+    $user_id = $registroData["user_id"];
+    $temperatura = $registroData["temperatura"];
+    $pulso = $registroData["pulso"];
+    $respiracion = $registroData["respiracion"];
+    $tensionArterial = $registroData["tensionArterial"]; 
+    $spo2 = $registroData["spo2"];
+    $glicemiaCapilar = $registroData["glicemiaCapilar"];
+    $vomito = $registroData["vomito"];
+    $evacuaciones = $registroData["evacuaciones"];
+    $orina = $registroData["orina"];
+    $ingestaLiquidos = $registroData["ingestaLiquidos"];
+    $caidas = $registroData["caidas"];
+    $drenajesVendajes = $registroData["drenajesVendajes"];
+    $uppHh = $registroData["uppHh"];
+    $descripcionUpp = $registroData["descripcionUpp"];
+    $solucion = $registroData["solucion"];
+    $fecha = $registroData["fecha"];
+    $cantidad = $registroData["cantidad"];
+    $goteo = $registroData["goteo"]; 
+    $frecuencia = $registroData["frecuencia"];
+    $inicia = $registroData["inicia"];
+    $termina = $registroData["termina"];
+    $drescripcionCuracion = $registroData["drescripcionCuracion"];
+    $notaenferdia = $registroData["notaenferdia"];
+    $notaenfernoche = $registroData["notaenfernoche"];
+    $dasayunoH = $registroData["dasayunoH"]; 
+    $descripDesayuno = $registroData["descripDesayuno"];
+    $comidaH = $registroData["comidaH"];
+    $descripComida = $registroData["descripComida"];
+    $cenaH = $registroData["cenaH"];
+    $descripCena = $registroData["descripCena"];
+    $medicamentos = $registroData["medicamentos"];
+    $horario = $registroData["horario"]; 
+   
+
+   // Configuración de la base de datos
+$servidor = "localhost";
+$usuario = "root";
+$contrasena = "";
+$nombre_base_de_datos = "bdoxilive";
+
+try {
+    // Establece la conexión PDO
+    $conexion = new PDO("mysql:host=$servidor;dbname=$nombre_base_de_datos", $usuario, $contrasena);
+    // Habilita el modo de errores de PDO para manejar excepciones
+    $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Captura los datos del formulario
+    $user_id = $_SESSION['user_id'];
+    $temperatura = $_POST["temperatura"];
+    $pulso = $_POST["pulso"];
+    $respiracion = $_POST["respiracion"];
+    $tensionArterial = $_POST["tensionArterial"]; 
+    $spo2 = $_POST["spo2"];
+    $glicemiaCapilar = $_POST["glicemiaCapilar"];
+    $vomito = $_POST["vomito"];
+    $evacuaciones = $_POST["evacuaciones"];
+    $orina = $_POST["orina"];
+    $ingestaLiquidos = $_POST["ingestaLiquidos"];
+    $caidas = $_POST["caidas"];
+    $drenajesVendajes = $_POST["drenajesVendajes"];
+    $uppHh = $_POST["uppHh"];
+    $descripcionUpp = $_POST["descripcionUpp"]; 
+    $solucion = $_POST["solucion"];
+    $fecha = $_POST["fecha"];
+    $cantidad = $_POST["cantidad"];
+    $goteo = $_POST["goteo"]; 
+    $frecuencia = $_POST["frecuencia"];
+    $inicia = $_POST["inicia"];
+    $termina = $_POST["termina"];
+    $drescripcionCuracion = $_POST["drescripcionCuracion"];
+    $notaenferdia = $_POST["notaenferdia"];
+    $notaenfernoche = $_POST["notaenfernoche"];
+    $dasayunoH = $_POST["dasayunoH"]; 
+    $descripDesayuno = $_POST["descripDesayuno"];
+    $comidaH = $_POST["comidaH"];
+    $descripComida = $_POST["descripComida"];
+    $cenaH = $_POST["cenaH"];
+    $descripCena = $_POST["descripCena"];
+    $medicamentos = $_POST["medicamentos"];
+    $horario = $_POST["horario"];
+    // Captura otros valores del formulario según sea necesario
+
+    // Prepara la consulta SQL
+    $consulta = $conexion->prepare(" INSERT INTO 
+    regisclinicos_cuidagenerales (id_RC, id_usuario, Fecha_hora_servicio, Temperatura, Pulso, Respiracion, Tension_arterial, Spo2, Glicemia_capilar, Vomitos, Evacuaciones, Orina, Ingesta_liquidos,
+    Caidas, Drenajes_vendajes, Upp_hh, Descripcion_upp, Solucion, Fecha_solucion, Cantidad_solucion, Got_solucion, Frec_solucion, Hora_inicio, Hora_termina, Cauracion, Nota_emfermeria_dia, 
+    Nota_emfermeria_noche, Alimentos_desayuno, Descripcion_desayuno, Alimentos_comida, Descripcion_comida, Alimentos_cena, descripcion_cena, Medicamentos, Horario_Medi) 
+    VALUES ( null, :user_id, null, :temperatura, :pulso, :respiracion, :tensionArterial, :spo2, :glicemiaCapilar, :vomito, :evacuaciones, :orina, :ingestaLiquidos, :caidas,
+    :drenajesVendajes, :uppHh, :descripcionUpp, :solucion, :fecha, :cantidad, :goteo, :frecuencia, :inicia, :termina, :drescripcionCuracion, :notaenferdia, :notaenfernoche,
+    :dasayunoH, :descripDesayuno, :comidaH, :descripComida, :cenaH, :descripCena, :medicamentos, :horario )");
+
+    // Vincula los parámetros
+    $consulta->bindParam(':user_id', $user_id); 
+    $consulta->bindParam(':temperatura', $temperatura);
+    $consulta->bindParam(':pulso', $pulso);
+
+    // Ejecuta la consulta
+    $consulta->execute();
+
+    echo "Datos guardados correctamente.";
+} catch(PDOException $e) {
+    echo "Error al guardar datos: " . $e->getMessage();
+}
+
+}
 ?>

@@ -30,7 +30,7 @@ if (!isset($_SESSION['us'])) {
                     <div class="formulario__grupo" id="grupo__Nombre_administradora">
                         <label for="solucion" class="formulario__label">SOLUCION</label>
                         <div class="formulario__grupo-input">
-                            <input type="text" class="formulario__input" name="solucion" id="solucion" value="" readonly
+                            <input type="text" class="formulario__input" name="solucion" id="solucion" value="INTRAVENOSA" readonly
                                 disabled>
                         </div>
                     </div>
@@ -68,7 +68,7 @@ if (!isset($_SESSION['us'])) {
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2 ">
+                <div class="col-md-3 ">
                     <div class="formulario__grupo" id="grupo__Nombre_administradora">
                         <label for="inicia" class="formulario__label">INICIA</label>
                         <div class="formulario__grupo-input">
@@ -76,7 +76,7 @@ if (!isset($_SESSION['us'])) {
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2 ">
+                <div class="col-md-3 ">
                     <div class="formulario__grupo" id="grupo__Nombre_administradora">
                         <label for="termina" class="formulario__label">TERMINA</label>
                         <div class="formulario__grupo-input">
@@ -84,18 +84,8 @@ if (!isset($_SESSION['us'])) {
                         </div>
                     </div>
                 </div>
-                <div class="col-md-5">
-                    <div class="formulario__grupo">
-                        <label for="drescripcionCuracion" class="formulario__label"></label>
-                        <div class="formulario__grupo-input">
-                            <textarea name="drescripcionCuracion" id="drescripcionCuracion"
-                                style="width: 100%; max-width: 400px; height: 90px;"
-                                placeholder="Curación (Descripción de procedimiento):"></textarea>
-                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
-                        </div>
-                    </div>
-                </div>
             </form>
+            <br>
             <button id="btnAnterior" class="btn btn-secondary">Anterior</button>
             <button id="btnSiguiente" class="btn btn-primary">Siguiente</button>
         </div>
@@ -183,31 +173,39 @@ window.addEventListener('beforeunload', function(event) {
     return mensaje;
 });
 </script>
-<!-- ESTA ALERTA SIRVE PARA NO PERMITIR NINGUN CAMPO VACIO -->
-<!-- <script>
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelector('.formLogin').addEventListener('submit', function(event) {
-        event.preventDefault();
-        // Verifica si los campos obligatorios están vacíos
-        var Nombre_administradora = document.getElementById('Nombre_administradora').value;
-        var cpt = document.getElementById('cpt').value;
-        if (!Nombre_administradora || !cpt || !cpt2 || !cpt3 || !cpt4 || !cpt5 || !cpt6 ) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Campos vacíos',
-                text: 'Por favor, completa todos los campos obligatorios.',
-            });
-        } else {
-            this.submit();
-        }
-    });
-});
-</script> -->
-
-
-
-
 
 <?php
 include("../../../templates/footer.php");
+?>
+
+<?php
+session_start();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Captura los datos del formulario
+    $solucion = $_POST["solucion"];
+    $fecha = $_POST["fecha"];
+    $cantidad = $_POST["cantidad"];
+    $goteo = $_POST["goteo"]; 
+    $frecuencia = $_POST["frecuencia"];
+    $inicia = $_POST["inicia"];
+    $termina = $_POST["termina"];
+
+    // Almacena los datos en la sesión junto con el ID del usuario
+    $_SESSION["registro_data"] = array(
+        "user_id" => $_SESSION['user_id'],
+        "solucion" => $solucion,
+        "fecha" => $fecha,
+        "cantidad" => $cantidad,
+        "goteo" => $goteo,
+        "frecuencia" => $frecuencia,
+        "inicia" => $inicia,
+        "termina" => $termina,
+        // ... Almacena otros datos en el array ...
+    );
+
+    // Redirige al siguiente formulario (form2.php en este caso)
+    header("Location: form3.php");
+    exit();
+}
 ?>
