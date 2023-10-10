@@ -61,8 +61,6 @@ if (!isset($_SESSION['us'])) {
                             <?php } ?>
                         </select>
                     </div>
-
-
                     <div class="contenido col-md-3">
                         <br>
                         <div class="formulario__grupo" id="grupo__Nombre_aseguradora">
@@ -73,7 +71,6 @@ if (!isset($_SESSION['us'])) {
                             </div>
                         </div>
                     </div>
-
                     <div class="contenido col-md-3">
                         <br>
                         <label for="medico" class="formulario__label">Médico tratante</label>
@@ -86,7 +83,7 @@ if (!isset($_SESSION['us'])) {
                             <?php } ?>
                         </select>
                     </div>
-                    <!--Aquí voy a recuperar los datos del cpt-->
+
                     <div class="contenido col-md-3">
                         <br>
                         <label for="Nombre_admi" class="formulario__label">Administradora a la que
@@ -101,17 +98,17 @@ if (!isset($_SESSION['us'])) {
 
                         </select>
                     </div>
-                                <!--CPT-->
+
                     <div class="contenido col-md-2">
                         <br>
-                        <label for="cpt" class="formulario__label">cpt uno</label>
+                        <label for="cpt" class="formulario__label">CPT</label>
                         <div id="div">
                             <select id="cpt" name="cpt"  class="form-select"  >
                                 <option value="0" selected disabled>Elija una opción</option>
                             </select>
                         </div>
                     </div>
-                                <!--Descripción-->
+
                     <div class="contenido col-md-4">
                         <br>
                         <label for="descripcion" class="formulario__label">Descripción</label>
@@ -121,14 +118,21 @@ if (!isset($_SESSION['us'])) {
                             </select>
                         </div>
                     </div>
-                                <!--Unidad-->
+
                     <div class="contenido col-md-3">
                         <br>
-                        <label for="unidad" class="formulario__label">unidad</label>
+                        <label for="unidad" class="formulario__label">Unidad</label>
                         <div id="div">
                             <select id="unidad" name="unidad" class="form-select" >
                                 <option value="0" selected disabled>Elija una opción</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="contenido col-md-3">
+                        <br>
+                        <label for="fecha" class="formulario__label">Fecha</label>
+                        <div id="div">
+                        <input type="date" class="formulario__input" name="fecha" id="fecha" >
                         </div>
                     </div>
 
