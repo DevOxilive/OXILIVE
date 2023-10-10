@@ -1,0 +1,8 @@
+.formulario__grupo {
+    display: flex;
+    align-items: center; /* Centrar verticalmente los elementos */
+}
+
+.formulario__label {
+    margin-right: 10px; /* Espacio entre el label y el select */
+}
