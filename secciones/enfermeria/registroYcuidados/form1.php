@@ -199,9 +199,10 @@ if (!isset($_SESSION['us'])) {
                     </div>
                 </div>
             </form>
+            <button id="btnAnterior" class="btn btn-secondary">Anterior</button>
+            <button id="btnSiguiente" class="btn btn-primary">Siguiente</button>
         </div>
         <br>
-        <button id="btnSiguiente" class="btn btn-primary">Siguiente</button>
         </form>
     </div>
     </div>
@@ -211,6 +212,11 @@ if (!isset($_SESSION['us'])) {
 var btnSiguiente = document.getElementById('btnSiguiente');
 btnSiguiente.addEventListener('click', function() {
     window.location.href = 'form2.php';
+});
+
+var btnAnterior = document.getElementById('btnAnterior');
+btnAnterior.addEventListener('click', function() {
+    window.location.href = 'index.php';
 });
 
 function confirmCancel(event) {

@@ -26,93 +26,94 @@ if (!isset($_SESSION['us'])) {
         </div>
         <div class="card-body" style="border: 2px solid #BFE5FF;">
             <form action="#" method="POST" class="formLogin form-inline" id="formulario">
-                <div class="col-md-4 ">
-                    <div class="formulario__grupo" id="grupo__Nombre_administradora">
-                        <label for="solucion" class="formulario__label">SOLUCION</label>
+                <div class="col-md-6">
+                    <div class="formulario__grupo">
+                        <label for="notaenferdia" class="formulario__label"></label>
                         <div class="formulario__grupo-input">
-                            <input type="text" class="formulario__input" name="solucion" id="solucion" value="" readonly
-                                disabled>
+                            <textarea name="notaenferdia" id="notaenferdia"
+                                style="width: 100%; max-width: 400px; height: 90px;"
+                                placeholder="NOTA DE ENFREMERÍA (DÍA)"></textarea>
+                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="formulario__grupo" id="grupo__Nombre_administradora">
-                        <label for="fecha" class="formulario__label">FECHA</label>
+                <div class="col-md-6">
+                    <div class="formulario__grupo">
+                        <label for="notaenfernoche" class="formulario__label"></label>
                         <div class="formulario__grupo-input">
-                            <input type="date" class="formulario__input" name="fecha" id="fecha"
-                                onchange="validarFecha()">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2 ">
-                    <div class="formulario__grupo" id="grupo__Nombre_administradora">
-                        <label for="cantidad" class="formulario__label">CANT.</label>
-                        <div class="formulario__grupo-input">
-                            <input type="text" class="formulario__input" name="cantidad" id="cantidad">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 ">
-                    <div class="formulario__grupo" id="grupo__Nombre_administradora">
-                        <label for="goteo" class="formulario__label">GOT.</label>
-                        <div class="formulario__grupo-input">
-                            <input type="text" class="formulario__input" name="goteo" id="goteo">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 ">
-                    <div class="formulario__grupo" id="grupo__Nombre_administradora">
-                        <label for="frecuencia" class="formulario__label">FREC.</label>
-                        <div class="formulario__grupo-input">
-                            <input type="text" class="formulario__input" name="frecuencia" id="frecuencia">
+                            <textarea name="notaenfernoche" id="notaenfernoche"
+                                style="width: 100%; max-width: 400px; height: 90px;"
+                                placeholder="NOTA DE ENFREMERÍA (NOCHE)"></textarea>
+                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2 ">
                     <div class="formulario__grupo" id="grupo__Nombre_administradora">
-                        <label for="inicia" class="formulario__label">INICIA</label>
+                        <label for="dasayunoH" class="formulario__label">DESAYUNO (HORARIO)</label>
                         <div class="formulario__grupo-input">
-                            <input type="Time" class="formulario__input" name="inicia" id="inicia">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2 ">
-                    <div class="formulario__grupo" id="grupo__Nombre_administradora">
-                        <label for="termina" class="formulario__label">TERMINA</label>
-                        <div class="formulario__grupo-input">
-                            <input type="Time" class="formulario__input" name="termina" id="termina">
+                            <input type="Time" class="formulario__input" name="dasayunoH" id="dasayunoH">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-5">
                     <div class="formulario__grupo">
-                        <label for="drescripcionCuracion" class="formulario__label"></label>
+                        <label for="descripDesayuno" class="formulario__label"></label>
                         <div class="formulario__grupo-input">
-                            <textarea name="drescripcionCuracion" id="drescripcionCuracion"
-                                style="width: 100%; max-width: 400px; height: 90px;"
-                                placeholder="Curación (Descripción de procedimiento):"></textarea>
+                            <textarea name="descripDesayuno" id="descripDesayuno"
+                                style="width: 100%; max-width: 400px; height: 90px;" placeholder="Desayuno"></textarea>
+                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 ">
+                    <div class="formulario__grupo" id="grupo__Nombre_administradora">
+                        <label for="comidaH" class="formulario__label">COMIDA (HORARIO)</label>
+                        <div class="formulario__grupo-input">
+                            <input type="Time" class="formulario__input" name="comidaH" id="comidaH">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="formulario__grupo">
+                        <label for="descripComida" class="formulario__label"></label>
+                        <div class="formulario__grupo-input">
+                            <textarea name="descripComida" id="descripComida"
+                                style="width: 100%; max-width: 400px; height: 90px;" placeholder="Comida"></textarea>
+                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 ">
+                    <div class="formulario__grupo" id="grupo__Nombre_administradora">
+                        <label for="cenaH" class="formulario__label">CENA (HORARIO)</label>
+                        <div class="formulario__grupo-input">
+                            <input type="Time" class="formulario__input" name="cenaH" id="cenaH">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="formulario__grupo">
+                        <label for="descripCena" class="formulario__label"></label>
+                        <div class="formulario__grupo-input">
+                            <textarea name="descripCena" id="descripCena"
+                                style="width: 100%; max-width: 400px; height: 90px;" placeholder="Cena"></textarea>
                             <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                         </div>
                     </div>
                 </div>
             </form>
-            <button id="btnAnterior" class="btn btn-secondary">Anterior</button>
-            <button id="btnSiguiente" class="btn btn-primary">Siguiente</button>
         </div>
+        <br>
+        <button id="btnSiguiente" class="btn btn-primary">Siguiente</button>
         </form>
     </div>
     </div>
 </main>
 <script>
-
 var btnSiguiente = document.getElementById('btnSiguiente');
 btnSiguiente.addEventListener('click', function() {
     window.location.href = 'form3.php';
-});
-
-var btnAnterior = document.getElementById('btnAnterior');
-btnAnterior.addEventListener('click', function() {
-    window.location.href = 'form1.php';
 });
 
 function confirmCancel(event) {
