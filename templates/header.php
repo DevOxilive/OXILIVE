@@ -450,6 +450,12 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                      <span>Pacientes</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/user/pages/indexHorarios.php">
+                     <i class="bi bi-calendar3"></i>
+                     <span>Horarios</span>
+                </a>
+            </li>
             <!--Implementación de apartado registros clínico y cuidados generales-->
             <li>
                 <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/registroYcuidados/index.php">

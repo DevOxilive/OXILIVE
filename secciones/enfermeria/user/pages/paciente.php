@@ -22,8 +22,8 @@ if (!isset($_SESSION['us'])) {
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="<?php echo $url_base; ?>secciones/enfermeria/user/index.php">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="<?php echo $url_base; ?>secciones/enfermeria/user/pages/indexPacientes.php">Lista de Pacientes</a></li>
-                <li class="breadcrumb-item active">Pacientes</li>
+                <li class="breadcrumb-item"><a href="<?php echo $url_base; ?>secciones/enfermeria/user/pages/indexPacientes.php">Pacientes</a></li>
+                <li class="breadcrumb-item active" id="bread"></li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
