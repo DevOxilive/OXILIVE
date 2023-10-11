@@ -38,7 +38,10 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
     <link href="<?php echo $url_base; ?>assets/vendor/quill/quill.bubble.css" rel="stylesheet">
     <link href="<?php echo $url_base; ?>assets/vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="<?php echo $url_base; ?>assets/vendor/simple-datatables/style.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
     <link href="<?php echo $url_base; ?>assets/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -254,7 +257,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                         </a>
                     </li>
                 </ul>
-            </li><!-- End Components Nav -->
+            </li>
             <?php endif; ?>
             <?php if ($_SESSION['puesto'] == 10 || $_SESSION['puesto'] === 1) : ?>
             <li class="nav-item">
@@ -348,6 +351,23 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                     <i class="bi bi-capsule"></i><span>Enfermeria</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="bi bi-circle"></i><span>Alta</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="<?php echo $url_base; ?>secciones/enfermeria/alta/administradora/index.php">Administradora</a>
+                            </li>
+                            <li><a href="<?php echo $url_base; ?>secciones/enfermeria/alta/aseguradoras/index.php">Aseguradora</a>
+                            </li>
+                            <li><a href="<?php echo $url_base; ?>secciones/enfermeria/alta/bancos/index.php">Bancos</a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+
+
                     <li>
                         <a href="<?php echo $url_base; ?>secciones/enfermeria/Chat_/index.php">
                             <i class="bi bi-circle"></i><span>Chat General</span>
@@ -358,13 +378,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                         <a href="<?php echo $url_base; ?>secciones/enfermeria/cpts/index.php">
                             <i class="bi bi-circle"></i><span>CPTS</span>
                         </a>
-                        <ul>
-                            <a href="<?php echo $url_base; ?>secciones/enfermeria/administradora/index.php">
-                                <i class="bi bi-circle"></i><span>Administradoras</span>
-                            </a>
-                        </ul>
                     </li>
-
                     <!--Implementación de apartados de enfermeria-->
                     <li>
                         <a href="<?php echo $url_base; ?>secciones/enfermeria/hojaComplementaria/index.php">
@@ -424,7 +438,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                         </a>
                     </li>
                     <!--Aquí termina-->
-                   
+
                 </ul>
             </li><!-- End Forms Nav -->
             <?php endif; ?>
@@ -447,11 +461,11 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
             <!--Implementación de apartado registros clínico y cuidados generales-->
             <li>
                 <a href="<?php echo $url_base; ?>secciones/enfermeria/registroYcuidados/index.php">
-                     <i class="bi bi-circle"></i><span>Registro Clínico y Cuidados Generales</span>
+                    <i class="bi bi-circle"></i><span>Registro Clínico y Cuidados Generales</span>
                 </a>
             </li>
 
-                    <!--Aquí termina-->
+            <!--Aquí termina-->
 
             <!-- End Forms Nav -->
             <?php endif; ?>

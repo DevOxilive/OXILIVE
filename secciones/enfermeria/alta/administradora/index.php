@@ -3,40 +3,51 @@ session_start();
 if (!isset($_SESSION['us'])) {
   header('Location: ../../login.php');
 } elseif (isset($_SESSION['us'])) {
-  include("../../../templates/header.php");
-  include("consulta.php");
+  include("../../../../templates/header.php");
+  include("./consulta.php");
 } else {
   echo "Error en el sistema";
 }
 ?>
 <main id="main" class="main">
     <div class="row">
-        <div class="card-header" style="text-align: right;">
-            
-        </div>
+    <div class="card-header" style="text-align: right;">
+                    <a class="btn btn-outline-dark" href="administradora.php" role="button"><i class="bi bi-printer-fill"></i></a>
+            </div>
         <div class="card">
+            <div class="card-header">
+                <a class="btn btn-outline-primary" href="crear.php" role="button" ><i class="bi bi-person-workspace"></i>
+                    Registrar Administradora</a>
+            </div>
             <div class="card-body">
                 <div class="table-responsive-sm">
-                    <table class="table table-bordered table-striped border-dark" id="myTable">
+                    <table class="table table-bordered  border-dark table-hover" id="myTable">
                         <thead class="table-dark">
                             <tr class="table-active table-group-divider" style="text-align: center;">
-                                <th scope="col">Nombre de Administradoras</th>
-                                <th scope="col">Nombre de Aseguradoras</th>
-                                <th scope="col">Nombre de Bancos</th>
+                                <th scope="col">Núm</th>
+                                <th scope="col">Nombre de Administradora</th>
+                                <th scope="col">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($lista_administradora as $registro) { ?>
                             <tr class="">
-                               
-                                <td style="text-align:center">
+                                <th scope="row">
+                                    <?php echo $registro['id_administradora']; ?>
+                                </th>
+                                <td>
                                     <?php echo $registro['Nombre_administradora']; ?>
+                               
                                 </td>
-                                <td style="text-align:center">
-                                    <?php echo $registro['aseguradora']; ?>
-                                </td>
-                                <td style="text-align:center">
-                                    <?php echo $registro['banco']; ?>
+
+                                <td style="text-align: center;">
+                                    <a class="btn btn-outline-warning"
+                                        href="editar.php?txtID=<?php echo $registro['id_administradora']; ?>"
+                                        role="button"><i class="bi bi-pencil-square"></i></a>
+                                    |
+                                    <a class="btn btn-outline-danger"
+                                        onclick="eliminar(<?php echo $registro['id_administradora']; ?>)"
+                                        role="button"><i class="bi bi-trash-fill"></i></a>
                                 </td>
                             </tr>
                             <?php } ?>
@@ -44,8 +55,6 @@ if (!isset($_SESSION['us'])) {
                     </table>
                 </div>
             </div>
-
-
         </div>
 </main>
 <!-- ESTO SIRVE PARA ELIMINAR LOS DATOS DESDE LAS ACCIONES DEL INDEX, SE BORRAN UNICAMENTE DESPUES DE CONFIRMAR -->
@@ -111,5 +120,5 @@ $(document).ready(function() {
 });
 </script>
 <?php
-include("../../../templates/footer.php");
+include("../../../../templates/footer.php");
 ?>

@@ -1,12 +1,12 @@
 <?php
-require('../../../fpdf/fpdf.php');
+require('../../../../fpdf/fpdf.php');
 class PDF extends FPDF
 {
     // Cabecera de página
     function Header()
     {
         // Logo
-        $this->Image('../../../img/Logo.png', 15, 15, 60);
+        $this->Image('../../../../img/Logo.png', 15, 15, 60);
         // Arial bold 15
         $this->SetFont('Arial', 'B', 20);
         // Movernos a la derecha
@@ -44,7 +44,7 @@ $pdf = new PDF(); //hacemos una instancia de la clase
 $pdf->AliasNbPages();
 $pdf->AddPage(); //añade l apagina / en blanco
 $pdf->SetX(15);
-require '../../../connection/conexion.php';
+require '../../../../connection/conexion.php';
 $sentencia = $con->prepare("SELECT * FROM administradora");
 $sentencia->execute();
 $pdf->Ln(0.6);

@@ -1,8 +1,5 @@
 <?php
 require('../../../fpdf/fpdf.php');
-
-
-
 class PDF extends FPDF{
 // Cabecera de página
 function Header(){
@@ -41,48 +38,71 @@ function Footer(){
 }
 
 require('../../../connection/conexion.php');
-$txtID = (isset($_GET['txtID'])) ? $_GET['txtID'] : "";
-/*$sentencia2 = $con->prepare("SELECT * FROM admi_enfer WHERE id_admi_enfer=:id_admi_enfer ");*/
-$sentencia2 = $con->prepare("SELECT * , (SELECT Nombres FROM pacientes_oxigeno WHERE
- pacientes_oxigeno.id_pacientes=proce_enfer.pacientes LIMIT 1) as pc, (SELECT No_nomina FROM pacientes_oxigeno WHERE pacientes_oxigeno.id_pacientes = proce_enfer.pacientes LIMIT 1) as nomina
- FROM proce_enfer WHERE id_proce=:id_proce");
 
-$sentencia2->bindParam(":id_proce", $txtID);
-$sentencia2->execute();
+$txtID = (isset($_GET['txtID'])) ? $_GET['txtID'] : "";
+$sentencia = $con->prepare("SELECT p.id_procedi,CONCAT(po.Nombres, ' ', po.Apellidos)AS Paciente,po.No_nomina,
+CONCAT(u.Nombres, ' ', u.Apellidos) AS Medico ,
+ p.icd, p.dx, p.fecha, p.pacienteYnomina 
+FROM procedimientos p, usuarios u, 
+pacientes_oxigeno po 
+WHERE p.medico = u.id_usuarios
+AND p.pacienteYnomina = po.id_pacientes 
+AND p.pacienteYnomina = :paciente LIMIT 1;");
+$sentencia->bindParam(":paciente",$txtID);
+$sentencia->execute();
 
 $pdf = new PDF();
 $pdf-> AliasNbPages();
 $pdf->AddPage();
-while($cpts = $sentencia2->fetch(PDO::FETCH_ASSOC)){
+while($imprime = $sentencia->fetch(PDO::FETCH_ASSOC)){
 $pdf->SetXY(20, 20);
-$pdf->MultiCell(500, 5, ('Nombre del Paciente: ' . $cpts['pc']));
+//$pdf->MultiCell(500, 5, ('Nombre del Paciente: '));
+$pdf->MultiCell(500, 5, ('Nombre del Paciente: '.$imprime['Paciente']));
 $pdf->SetXY(20,29);
-$pdf->MultiCell(70, 5, ('Numero de Nomina: ' . $cpts['nomina']));
+$pdf->MultiCell(70, 5, ('Numero de Nomina: ' .$imprime['No_nomina'] ));
 $pdf->SetXY(20, 30);
-$pdf->MultiCell(70, 20, utf8_decode('Médico Tratante:' .$cpts['medico'])); 
+$pdf->MultiCell(70, 20, utf8_decode('Médico Tratante:' .$imprime['Medico'])); 
 $pdf->SetXY(100, 20);
-$pdf->MultiCell(70, 5, utf8_decode('Código ICD:' .$cpts['codigo_ICD'])); 
+$pdf->MultiCell(70, 5, utf8_decode('Código ICD:' .$imprime['icd'] )); 
 $pdf->SetXY(100, 30);
-$pdf->MultiCell(70, 5,  utf8_decode('Dx:' .$cpts['dx']));
+$pdf->MultiCell(70, 5,  utf8_decode('Dx:' .$imprime['dx'] ));
 }
+//Aquí mando a imprimir La lista de los CPTS , DESCRIPCION, FECHA, UNIDAD
 $txtID = (isset($_GET['txtID'])) ? $_GET['txtID'] : "";
-$sentencia4 = $con->prepare("SELECT * FROM proce_enfer WHERE id_proce=:id_proce");
-$sentencia4->bindParam(":id_proce", $txtID);
-$sentencia4->execute();
+$lista = $con->prepare("SELECT p.id_procedi, p.pacienteYnomina, p.cpt,cp.cpt,p.fecha, cp.descripcion,cp.unidad  
+FROM procedimientos p, cpts_administradora cp WHERE p.cpt = cp.id_cpt AND 
+pacienteYnomina = :paciente;");
+$lista->bindParam(":paciente",$txtID);
+$lista->execute();
 
-    $pdf->SetFont('Arial','B',10);
-    while($res = $sentencia4->fetch(PDO::FETCH_ASSOC)){
-        $pdf->SetXY(10, 55);
-        $pdf->Cell(10,10, '1', 1,0, 'C',0);
-        $pdf->SetXY(20, 55);
-        $pdf->Cell(27,10, $res['cpt'], 1,0, 'C',0);
-        $pdf->Cell(40,10, $res['descripcion'], 1,0, 'C',0);
-        $pdf->SetXY(87, 55);
-        $pdf->Cell(35,10, $res['fecha'], 1,0, 'C',0);
-        $pdf->SetXY(122, 55);
-        $pdf->Cell(40,10, $res['unidad'], 1,0, 'C',0);
-        $pdf->SetXY(162, 55);
-        $pdf->Cell(40,10, '', 1,1, 'C',0);
-    }
-        $pdf->Output();
+$pdf->SetFont('Arial', 'B', 10);
+$y = 55;
+$alturaCelda = 20; // Nueva altura de la celda
+$contador = 1; 
+$pdf->SetFont('Arial', 'B', 10);
+$y = 55;
+$alturaCelda = 20; // Nueva altura de la celda
+$contador = 1; 
+while ($res = $lista->fetch(PDO::FETCH_ASSOC)) {
+    $pdf->SetXY(10, $y);
+    $pdf->Cell(10, $alturaCelda, $contador, 1, 0, 'C', 0); // Muestra el contador en lugar de '1'
+    $pdf->SetXY(20, $y);
+    $pdf->Cell(27, $alturaCelda, $res['cpt'], 1, 0, 'C', 0);
+    $pdf->SetXY(47, $y);
+    $descripcion = $res['descripcion'];
+    $pdf->MultiCell(40, 10, $descripcion, 1, 'C'); // Utiliza MultiCell en lugar de Cell
+    $pdf->SetXY(87, $y);
+    $pdf->Cell(35, $alturaCelda, $res['fecha'], 1, 0, 'C', 0);
+    $pdf->SetXY(122, $y);
+    $pdf->Cell(40, $alturaCelda, $res['unidad'], 1, 0, 'C', 0);
+    $pdf->SetXY(162, $y);
+    $pdf->Cell(40, $alturaCelda, '', 1, 1, 'C', 0);
+    $y += $alturaCelda; // Actualiza la posición vertical para la siguiente fila
+    $contador++;
+}
+$pdf->Output();
+
+
+
+
 ?>

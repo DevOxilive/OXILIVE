@@ -4,6 +4,7 @@ if (!isset($_SESSION['us'])) {
   header('Location: ../../login.php');
 } elseif (isset($_SESSION['us'])) {
   include("../../../templates/header.php");
+  include("../../../connection/conexion.php");
     include("consulta.php");
 } else {
   echo "Error en el sistema";
@@ -12,59 +13,41 @@ if (!isset($_SESSION['us'])) {
 <main id="main" class="main">
     <h1 style="text-align:center;">Procedimientos Realizados</h1>
     <div class="card-header" style="text-align: right;">
-    </div>
+    <?php foreach($imprime as $imprimir){?>
+    <a class="btn btn-outline-dark" href="PDF.php?txtID=<?php echo $imprimir['pacienteYnomina']; ?>" role="button"><i class="bi bi-printer-fill"></i></a>
+    <?php } ?>
+</div>
     <div class="card">
         <div class="card-header">
-            <a name="" id="" class="btn btn-outline-primary" href="./crear.php" role="button"> <i
-                    class="bi bi-award"></i> Crear Procedimiento</a>
+            <a name="" id="" class="btn btn btn-success" href="index.php" role="button"><i class="bi bi-backspace"></i> Regresar</a>
         </div>
         <div class="card-body">
             <div class="table-responsive-sm">
                 <table class="table table-bordered  border-dark table-hover" id="myTable">
                     <thead class="table-dark">
                         <tr class="table-active table-group-divider" style="text-align: center;">
-                            <th scope="col">Medico:</th>
+                            <th scope="col">Medico</th>
                             <th scope="col">Paciente</th>
-                            <th scope="col">Código ICD:</th>
-                            <th scope="col">Nomina</th>
-                            <th scope="col">Dx:</th>
-                            <th scope="col">CPT:</th>
-                            <th scope="col">Acciones</th>
+                            <th scope="col">CPT</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Unidad</th>
+                            <th scope="col">Opcion</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $previousPaciente = null; 
-                                foreach ($listaProce as $lista) {
-                                    if ($lista['Paciente'] != $previousPaciente) {
-                                        $contadorFilas = 1; ?>
+                        <?php foreach($idLista as $lista) {?>
                         <tr class="">
-                            <td><?php echo $lista["Medico"]; ?></td>
-                            <td> <?php echo $lista['Paciente']; ?></td>
-                            <td><?php echo $lista["icd"]; ?></td>
-                            <td><?php echo $lista["No_nomina"]; ?></td>
-                            <td><?php echo $lista["dx"]; ?></td>
-                            <td><?php echo $lista['cpt']; ?></td>
-                            <td style="text-align: center;">
-                                <a class="btn btn-outline-success" href="pacienteP.php?txtID=<?php echo $lista['pacienteYnomina']; ?>" role="button"><i class="bi bi-eye"></i></a>
-                                |
-                                <a class="btn btn-outline-danger" onclick="eliminar(<?php echo $lista['pacienteYnomina']; ?>)" role="button"><i class="bi bi-trash-fill"></i></a>
+                            <td><?php  echo $lista["Medico"]; ?></td>
+                            <td><?php  echo $lista["Paciente"]; ?></td>
+                            <td><?php  echo $lista["cpt"]; ?></td>
+                            <td><?php  echo $lista["descripcion"]; ?></td>
+                            <td><?php  echo $lista["unidad"]; ?></td>
+                            <td>
+                                <a class="btn btn-outline-warning" href="editar.php?txtID=<?php echo $lista['id_procedi']; ?>" role="button"><i class="bi bi-pencil-square"></i></a>
+                                <a class="btn btn-outline-danger" onclick="eliminar(<?php echo $lista['id_procedi']; ?>)" role="button"><i class="bi bi-trash-fill"></i></a>                            
                             </td>
-                        </tr>
-                        <?php $previousPaciente = $lista['Paciente']; } 
-                            elseif ($contadorFilas < 1) {
-                                $contadorFilas++; ?>
-                        <tr class="">
-                            <td></td>
-                            <td><?php echo $lista["icd"]; ?></td>
-                            <td><?php echo $lista["No_nomina"]; ?></td>
-                            <td><?php echo $lista["dx"]; ?></td>
-                            <td><?php echo $lista["Medico"]; ?></td>
-                            <td><?php echo $lista['cpt']; ?></td>
-                        </tr>
-                        <?php
-                            }
-                        }
-                        ?>
+                       </tr>
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>
@@ -129,6 +112,7 @@ $(document).ready(function() {
     });
 });
 </script>
+
 <?php
 include("../../../templates/footer.php");
 ?>
