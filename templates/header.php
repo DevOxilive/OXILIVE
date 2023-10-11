@@ -434,7 +434,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/user/index.php">
-                    <i class="bi bi-grid"></i>
+                    <i class="bi bi-grid-fill"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
@@ -444,10 +444,17 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                     <span>Chat General</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/user/pages/indexPacientes.php">
+                     <i class="bi bi-person-fill"></i>
+                     <span>Pacientes</span>
+                </a>
+            </li>
             <!--Implementación de apartado registros clínico y cuidados generales-->
             <li>
-                <a href="<?php echo $url_base; ?>secciones/enfermeria/registroYcuidados/index.php">
-                     <i class="bi bi-circle"></i><span>Registro Clínico y Cuidados Generales</span>
+                <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/registroYcuidados/index.php">
+                     <i class="bi bi-circle"></i>
+                     <span>Registro Clínico y Cuidados Generales</span>
                 </a>
             </li>
 

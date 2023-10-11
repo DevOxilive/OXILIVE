@@ -16,12 +16,14 @@ if (!isset($_SESSION['us'])) {
     <link rel="stylesheet" href="<?php echo $url_base; ?>assets/css/foto_perfil.css">
     <link rel="stylesheet" href="<?php echo $url_base; ?>assets/css/edit.css">
 </head>
-<main id="main" clas="main">
+<main id="main" class="main">
     <div class="pagetitle">
         <h1>Paciente </h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="<?php echo $url_base; ?>secciones/enfermeria/user/index.php">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="<?php echo $url_base; ?>secciones/enfermeria/user/pages/indexPacientes.php">Lista de Pacientes</a></li>
+                <li class="breadcrumb-item active">Pacientes</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
