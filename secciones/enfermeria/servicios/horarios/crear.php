@@ -57,8 +57,8 @@ if (!isset($_SESSION['us'])) {
                         <select id="paciente" name="paciente" class="form-select">
                             <option value="0">Elige un paciente</option>
                             <?php foreach ($lista_pacientes as $pacientes) { ?>
-                                <option value="<?php echo $pacientes['id_pacienteEnfermeria']; ?>">
-                                    <?php echo $pacientes['nombre'] . " " . $pacientes['apellidos']; ?>
+                                <option value="<?php echo $pacientes['id_pacientes']; ?>">
+                                    <?php echo $pacientes['Nombres'] . " " . $pacientes['Apellidos']; ?>
                                 </option>
                             <?php } ?>
                         </select>

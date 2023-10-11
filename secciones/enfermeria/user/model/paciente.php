@@ -4,7 +4,7 @@
     $datos = json_decode(file_get_contents("php://input"), true);
     $paciente = $datos['idPac'];
     $consultaPaciente=$con->prepare("
-        SELECT * FROM pacientes_enfermeria WHERE id_pacienteEnfermeria = :pac;
+        SELECT * FROM pacientes_oxigeno WHERE id_pacientes = :pac;
     ");
     $consultaPaciente->bindParam(':pac', $paciente);
     $consultaPaciente->execute();

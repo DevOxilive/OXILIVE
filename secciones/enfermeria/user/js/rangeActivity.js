@@ -73,7 +73,7 @@ function setRangeActivity(datos){
         }
         dot += '<div class="activity-content">';
         //Datos del check
-        dot += 'Registró un <i>'+dato.checkName+'</i> con el paciente <a class="fw-bold text-dark" href="pages/paciente.php?idPac='+dato.id_pacienteEnfermeria+'">'+dato.nomPaciente+'</a>';
+        dot += 'Registró un <i>'+dato.checkName+'</i> con el paciente <a class="fw-bold text-dark" href="pages/paciente.php?idPac='+dato.id_pacientes+'">'+dato.nomPaciente+'</a>';
         dot += '</div>';
         dot += '</div>';
         //Se introduce todo en el div activity
