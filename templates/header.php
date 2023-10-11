@@ -353,6 +353,12 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                             <i class="bi bi-circle"></i><span>Chat General</span>
                         </a>
                     </li>
+
+                    <li>
+                        <a href="<?php echo $url_base; ?>secciones/enfermeria/arribo/index.php">
+                            <i class="bi bi-circle"></i><span>Arribo</span>
+                        </a>
+                    </li>
                     <!--Implementación de apartado administradora-->
                     <li>
                         <a href="<?php echo $url_base; ?>secciones/enfermeria/cpts/index.php">

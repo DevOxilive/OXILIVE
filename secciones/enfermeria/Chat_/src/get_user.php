@@ -28,7 +28,7 @@ try {
             $sent->execute();
             $lastMessage = $sent->fetch(PDO::FETCH_ASSOC);
             $result = ($lastMessage) ? $lastMessage['msg'] : $result = 'No hay mensajes disponibles';
-            $leido = ($lastMessage && $lastMessage['leido'] == '1') ? ' <i class="bi bi-check2-all" style="color:blue"></i>' : '<i class="bi bi-check2"></i>';
+            $leido = ($lastMessage && $lastMessage['leido'] == '1') ? '<i class="bi bi-check2-all" style="color:blue"></i>' : '<i class="bi bi-check2"></i>';
             $por = ($lastMessage && $lastMessage['persona'] == $userP) ? ' <b>tú:</b> ' : '';
             if ($result === 'No hay mensajes disponibles') {
                 $estatusMensaje = '<span> ' . $result . '<span>';
@@ -41,10 +41,14 @@ try {
             } else if ($fila['estatus'] == 0) {
                 $conectado = '<img id="conexion" src="img/sinLinea.png" alt="">';
             }
-            echo '<a href="php/chat.php?chat=' . $fila['token'] . '"><li>
+            if ($leido == '<i class="bi bi-check2"></i>' && $result != 'No hay mensajes disponibles' && $por != ' <b>tú:</b> ') {
+                $clase = ' style="font-weight: bold;"';
+            } else {
+                $clase = '';
+            }
+            echo '<a href="php/chat.php?chat=' . $fila['token'] . '" ' . $clase . '><li>
                 <img src="data:image/jpg/png;base64,' . base64_encode($fila['Foto_perfil']) . '" alt="img perfil"><b>' . $fila['Usuario'] . '</b> ' . $conectado . '<br><div class="mensaje-previo"> ' . $por . $estatusMensaje . '</div></li>
                 </a>';
-
         }
     } else {
         // si no envia el mensaje de comenzar chat
