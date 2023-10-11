@@ -49,13 +49,55 @@ if (!isset($_SESSION['us'])) {
                             <dt class="col-lg-3 col-md-4 label">Apellidos:</dt>
                             <dd class="col-lg-9 col-md-8" id="apellidos"></dd>
                             
-                            <dt class="col-lg-3 col-md-4 label">RFC:</dt>
-                            <dd class="col-lg-9 col-md-8" id="rfc"></dd>
-
-                            <dt class="col-lg-3 col-md-4 label">Aseguradora:</dt>
-                            <dd class="col-lg-9 col-md-8" id="rfc"></dd>
-
+                            <dt class="col-lg-3 col-md-4 label">Edad:</dt>
+                            <dd class="col-lg-9 col-md-8" id="edad"></dd>
                             
+                            <dt class="col-lg-3 col-md-4 label">Género:</dt>
+                            <dd class="col-lg-9 col-md-8" id="genero"></dd>
+                            
+                            <dt class="col-lg-3 col-md-4 label">Telefono:</dt>
+                            <dd class="col-lg-9 col-md-8" id="telefono"></dd>
+
+                            <dt class="col-lg-3 col-md-4 label">Expediente N°:</dt>
+                            <dd class="col-lg-9 col-md-8" id="expediente"></dd>
+
+                        </dl>
+                    </div>
+                    <div class="tab-pane fade paciente" id="direccion">
+                        <h5 class="card-title">Dirección del domicilio</h5>
+                        <dl class="row">
+                            <dt class="col-lg-3 col-md-4 label">Calle:</dt>
+                            <dd class="col-lg-9 col-md-8" id="calle"></dd>
+
+                            <dt class="col-lg-3 col-md-4 label">N° Exterior:</dt>
+                            <dd class="col-lg-9 col-md-8" id="noext"></dd>
+                            
+                            <dt class="col-lg-3 col-md-4 label">N° Interior:</dt>
+                            <dd class="col-lg-9 col-md-8" id="noint"></dd>
+                            
+                            <dt class="col-lg-3 col-md-4 label">Colonia:</dt>
+                            <dd class="col-lg-9 col-md-8" id="colonia"></dd>
+                            
+                            <dt class="col-lg-3 col-md-4 label">Código Postal:</dt>
+                            <dd class="col-lg-9 col-md-8" id="cp"></dd>
+
+                            <dt class="col-lg-3 col-md-4 label">Delegación/Municipio:</dt>
+                            <dd class="col-lg-9 col-md-8" id="delMun"></dd>
+
+                            <dt class="col-lg-3 col-md-4 label">Estado:</dt>
+                            <dd class="col-lg-9 col-md-8" id="estadoDir"></dd>
+
+                            <dt class="col-lg-3 col-md-4 label">Referencias:</dt>
+                            <dd class="col-lg-9 col-md-8" id="referencias"></dd>
+
+                        </dl>
+                    </div>
+                    <div class="tab-pane fade paciente" id="diagnostico">
+                        <h5 class="card-title">Diagnóstico</h5>
+                        <dl class="row">
+                            <dt class="col-lg-3 col-md-4 label">Por definir datos</dt>
+                            <dd class="col-lg-9 col-md-8" id=""></dd>
+
                         </dl>
                     </div>
                 </div>
