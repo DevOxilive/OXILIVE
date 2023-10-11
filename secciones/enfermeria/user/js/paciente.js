@@ -14,8 +14,8 @@ function getPaciente(){
     .then(response => response.json())
     .then(datos => {
         datos.forEach(dato => {
-            var bread = document.getElementById("bread");
-            bread.textContent=dato.Nombres;
+            let bread = document.getElementById("bread"); 
+            bread.textContent = dato.Nombres;
             setGeneral(dato);
             setDireccion(dato);
         });

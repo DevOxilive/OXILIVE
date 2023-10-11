@@ -23,7 +23,7 @@ if (!isset($_SESSION['us'])) {
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="<?php echo $url_base; ?>secciones/enfermeria/user/index.php">Dashboard</a></li>
                 <li class="breadcrumb-item"><a href="<?php echo $url_base; ?>secciones/enfermeria/user/pages/indexPacientes.php">Pacientes</a></li>
-                <li class="breadcrumb-item active" id="bread"></li>
+                <li class="breadcrumb-item active" id="bread">asdfghjkl</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->

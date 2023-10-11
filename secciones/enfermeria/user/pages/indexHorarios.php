@@ -5,7 +5,7 @@ if (!isset($_SESSION['us'])) {
 } elseif (isset($_SESSION['us'])) {
     include("../../../../templates/header.php");
     include("../../../../connection/conexion.php");
-    include("../model/paciente.php");
+    include("../model/horario.php");
 } else {
     echo "Error en el sistema";
 }
@@ -18,13 +18,20 @@ if (!isset($_SESSION['us'])) {
 </head>
 <main id="main" class="main">
     <div class="pagetitle">
-        <h1>Lista de Pacientes</h1>
+        <h1>Lista de Horarios</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="<?php echo $url_base; ?>secciones/enfermeria/user/index.php">Dashboard</a></li>
                 <li class="breadcrumb-item active">Horario</li>
             </ol>
         </nav>
+    </div>
+    <div class="row">
+        <div class="card">
+            <div class="card-body">
+
+            </div>
+        </div>
     </div>
 </main>
 
