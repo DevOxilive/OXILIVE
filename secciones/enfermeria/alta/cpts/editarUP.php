@@ -1,6 +1,6 @@
 <?php
-include("../../../connection/conexion.php");
-include_once '../../../templates/hea.php';
+include("../../../../connection/conexion.php");
+include_once '../../../../templates/hea.php';
 
 // Verifica si se proporciona un ID para editar
 if (isset($_GET['txtID'])) {

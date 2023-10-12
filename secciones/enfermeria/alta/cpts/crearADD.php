@@ -1,6 +1,6 @@
 <?php
-include("../../../connection/conexion.php");
-include_once '../../../templates/hea.php';
+include("../../../../connection/conexion.php");
+include_once '../../../../templates/hea.php';
 if ($_POST) {
     $cpt = (isset($_POST["cpt"]) ? $_POST["cpt"] : []);
     $descripcion = (isset($_POST["descripcion"]) ? $_POST["descripcion"] : []);

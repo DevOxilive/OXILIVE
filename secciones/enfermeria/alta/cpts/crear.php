@@ -3,8 +3,8 @@ session_start();
 if (!isset($_SESSION['us'])) {
     header('Location: ../../login.php');
 } elseif (isset($_SESSION['us'])) {
-    include("../../../templates/header.php");
-    include("../../../connection/conexion.php");
+    include("../../../../templates/header.php");
+    include("../../../../connection/conexion.php");
     include("consulta.php");
     include("./crearADD.php");
 } else {
@@ -12,8 +12,8 @@ if (!isset($_SESSION['us'])) {
 }
 ?>
 <html>
-<link rel="stylesheet" href="../../../assets/css/vali.css">
-<link rel="stylesheet" href="../../../assets/css/edit.css">
+<link rel="stylesheet" href="../../../../assets/css/vali.css">
+<link rel="stylesheet" href="../../../../assets/css/edit.css">
 
 </html>
 <main id="main" class="main">
@@ -207,7 +207,7 @@ function confirmCancel(event) {
         cancelButtonText: 'No, continuar'
     }).then((result) => {
         if (result.isConfirmed) {
-            window.location.href = "<?php echo $url_base; ?>secciones/enfermeria/cpts/index.php";
+            window.location.href = "<?php echo $url_base; ?>secciones/enfermeria/alta/cpts/index.php";
         }
     });
 }
@@ -217,5 +217,5 @@ function confirmCancel(event) {
 
 
 <?php
-include("../../../templates/footer.php");
+include("../../../../templates/footer.php");
 ?>

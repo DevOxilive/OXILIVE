@@ -349,57 +349,30 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-capsule"></i><span>Enfermeria</span><i class="bi bi-chevron-down ms-auto"></i>
+                    
                 </a>
                 <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="bi bi-circle"></i><span>Alta</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="<?php echo $url_base; ?>secciones/enfermeria/alta/administradora/index.php">Administradora</a>
-                            </li>
-                            <li><a href="<?php echo $url_base; ?>secciones/enfermeria/alta/aseguradoras/index.php">Aseguradora</a>
-                            </li>
-                            <li><a href="<?php echo $url_base; ?>secciones/enfermeria/alta/bancos/index.php">Bancos</a>
-                            </li>
-                        </ul>
-                    </li>
-
-
-
-
                     <li>
-                        <a href="<?php echo $url_base; ?>secciones/enfermeria/Chat_/index.php">
-                            <i class="bi bi-circle"></i><span>Chat General</span>
-                        </a>
+                        <a class="nav-link"data-bs-toggle="collapse" data-bs-target="#alta" href="#"><i class="bi bi-circle"></i><span>Dar de Alta</span><i class="bi bi-chevron-down ms-auto fs-6"></i></a>
+                                <ul id="alta" class="collapse">
+                                    <li><a href="<?php echo $url_base; ?>secciones/enfermeria/alta/cpts/index.php"><i class="bi bi-circle"></i><span>Cpts</span></a></li>
+                                    <li><a href="<?php echo $url_base; ?>secciones/enfermeria/alta/bancos/index.php"><i class="bi bi-circle"></i><span>Bancos</a></li>
+                                    <li><a href="<?php echo $url_base; ?>secciones/enfermeria/alta/aseguradoras/index.php"><i class="bi bi-circle"></i><span>Aseguradora</a></li>
+                                    <li><a href="<?php echo $url_base; ?>secciones/enfermeria/alta/administradora/index.php"><i class="bi bi-circle"></i><span>Administradora</a></li>
+                                </ul>
                     </li>
-                    <!--Implementación de apartado administradora-->
+                    <!--Aquí vamos a crear los procesos a realizar-->
+                    <li><a class="nav-link"data-bs-toggle="collapse" data-bs-target="#crear" href="#"><i class="bi bi-circle"></i><span>Crear proceso</span><i class="bi bi-chevron-down ms-auto fs-6"></i></a>
+                        <ul id="crear" class="collapse">
+                            <li><a href="<?php echo $url_base; ?>secciones/enfermeria/hojaComplementaria/index.php"><i class="bi bi-circle"></i><span>Pacientes</span></a></li>
+                            <li><a href="<?php echo $url_base; ?>secciones/enfermeria/procedimientos/index.php"><i class="bi bi-circle"></i>Procedimientos</span></a></li>
+                            <li><a href="<?php echo $url_base; ?>secciones/enfermeria/lectura/index.php"><i class="bi bi-circle"></i>Historial Aseguradoras</span></a></li></li>
+                        </ul>    
+                    <!--Chat-->
                     <li>
-                        <a href="<?php echo $url_base; ?>secciones/enfermeria/cpts/index.php">
-                            <i class="bi bi-circle"></i><span>CPTS</span>
-                        </a>
+                        <a href="<?php echo $url_base; ?>secciones/enfermeria/Chat_/index.php"><i class="bi bi-circle"></i><span>Chat General</span></a>
                     </li>
-                    <!--Implementación de apartados de enfermeria-->
-                    <li>
-                        <a href="<?php echo $url_base; ?>secciones/enfermeria/hojaComplementaria/index.php">
-                            <i class="bi bi-circle"></i><span>Pacientes</span>
-                        </a>
-                    </li>
-
-
-
-                    <!--Implementación de apartado Procedimientos realizados-->
-                    <li>
-                        <a href="<?php echo $url_base; ?>secciones/enfermeria/procedimientos/index.php">
-                            <i class="bi bi-circle"></i>Procedimientos</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="<?php echo $url_base; ?>secciones/enfermeria/lectura/index.php">
-                            <i class="bi bi-circle"></i>Historial Aseguradoras</span>
-                        </a>
-                    </li>
+                   
                     <!-- Módulo de Servicios -->
                     <li>
 
