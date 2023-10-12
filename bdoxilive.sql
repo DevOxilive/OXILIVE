@@ -17,17 +17,17 @@
 
 -- Volcando estructura de base de datos para bdoxilive
 DROP DATABASE IF EXISTS `bdoxilive`;
-CREATE DATABASE IF NOT EXISTS `bdoxilive` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE IF NOT EXISTS `bdoxilive` /*!40100 DEFAULT CHARACTER SET utf8mb4   */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `bdoxilive`;
 
 -- Volcando estructura para tabla bdoxilive.administradora
 DROP TABLE IF EXISTS `administradora`;
 CREATE TABLE IF NOT EXISTS `administradora` (
   `id_administradora` int NOT NULL AUTO_INCREMENT,
-  `Nombre_administradora` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `Nombre_administradora` varchar(50) CHARACTER SET utf8mb4   DEFAULT NULL,
   `Fecha_registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_administradora`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.administradora: ~6 rows (aproximadamente)
 DELETE FROM `administradora`;
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `almacen` (
   `recibe` int NOT NULL,
   `fecha_entrada` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `cantidad` int NOT NULL,
-  `observaciones` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `observaciones` varchar(250) CHARACTER SET utf8mb4   DEFAULT NULL,
   `estado` int NOT NULL,
   `cantidad_adecuada` int DEFAULT NULL,
   PRIMARY KEY (`id_almacen`),
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `almacen` (
   CONSTRAINT `FK_almacen_empleados_2` FOREIGN KEY (`recibe`) REFERENCES `empleados` (`id_empleados`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_almacen_estado_material` FOREIGN KEY (`estado`) REFERENCES `estado_material` (`id_estado`),
   CONSTRAINT `FK_almacen_tipo_material` FOREIGN KEY (`tipo_material`) REFERENCES `tipo_material` (`id_material`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.almacen: ~5 rows (aproximadamente)
 DELETE FROM `almacen`;
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `aseguradoras` (
   PRIMARY KEY (`id_aseguradora`,`administradora`) USING BTREE,
   KEY `administradora` (`administradora`),
   CONSTRAINT `FK_aseguradoras_administradora` FOREIGN KEY (`administradora`) REFERENCES `administradora` (`id_administradora`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.aseguradoras: ~11 rows (aproximadamente)
 DELETE FROM `aseguradoras`;
@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `asignacion_equipo` (
   `nombreAsignado` int NOT NULL,
   `equipo` int NOT NULL,
   PRIMARY KEY (`id_asignacion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.asignacion_equipo: ~0 rows (aproximadamente)
 DELETE FROM `asignacion_equipo`;
@@ -129,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `asignacion_horarios` (
   CONSTRAINT `FK_idPaciente` FOREIGN KEY (`id_pacienteEnfermeria`) REFERENCES `pacientes_oxigeno` (`id_pacientes`),
   CONSTRAINT `FK_idTiposServicios` FOREIGN KEY (`id_tipoServicio`) REFERENCES `tipos_servicios` (`id_tipoServicio`),
   CONSTRAINT `FK_idUsuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuarios`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.asignacion_horarios: ~3 rows (aproximadamente)
 DELETE FROM `asignacion_horarios`;
@@ -157,7 +157,7 @@ CREATE TABLE IF NOT EXISTS `asistencias` (
   CONSTRAINT `FK_check` FOREIGN KEY (`id_check`) REFERENCES `checkk` (`id_check`),
   CONSTRAINT `FK_empleadoEnfermeria` FOREIGN KEY (`id_empleadoEnfermeria`) REFERENCES `usuarios` (`id_usuarios`),
   CONSTRAINT `FK_horario` FOREIGN KEY (`id_horario`) REFERENCES `asignacion_horarios` (`id_asignacionHorarios`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.asistencias: ~2 rows (aproximadamente)
 DELETE FROM `asistencias`;
@@ -172,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `bancos` (
   `Nombre_banco` varchar(50) NOT NULL,
   `Fecha_registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_bancos`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.bancos: ~4 rows (aproximadamente)
 DELETE FROM `bancos`;
@@ -197,7 +197,7 @@ CREATE TABLE IF NOT EXISTS `carrito` (
   KEY `id_producto` (`id_producto`),
   CONSTRAINT `carrito_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuarios`) ON DELETE CASCADE,
   CONSTRAINT `carrito_ibfk_2` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id_productos`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.carrito: ~0 rows (aproximadamente)
 DELETE FROM `carrito`;
@@ -207,15 +207,15 @@ DROP TABLE IF EXISTS `carros`;
 CREATE TABLE IF NOT EXISTS `carros` (
   `id_carro` int NOT NULL AUTO_INCREMENT,
   `Nombre_carro` varchar(50) NOT NULL,
-  `modelo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `marca` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `placa` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `modelo` varchar(50) CHARACTER SET utf8mb4   NOT NULL,
+  `marca` varchar(50) CHARACTER SET utf8mb4   NOT NULL,
+  `placa` varchar(50) CHARACTER SET utf8mb4   NOT NULL,
   `Fecha_registro` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `estado` int NOT NULL,
   PRIMARY KEY (`id_carro`,`estado`) USING BTREE,
   KEY `FK6_estadoCar_idx` (`estado`),
   CONSTRAINT `FK6_estadoCar` FOREIGN KEY (`estado`) REFERENCES `estado_carro` (`id_estado`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.carros: ~4 rows (aproximadamente)
 DELETE FROM `carros`;
@@ -229,9 +229,9 @@ INSERT INTO `carros` (`id_carro`, `Nombre_carro`, `modelo`, `marca`, `placa`, `F
 DROP TABLE IF EXISTS `checkk`;
 CREATE TABLE IF NOT EXISTS `checkk` (
   `id_check` int unsigned NOT NULL AUTO_INCREMENT,
-  `checkName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `checkName` varchar(50) CHARACTER SET utf8mb4   NOT NULL,
   PRIMARY KEY (`id_check`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.checkk: ~2 rows (aproximadamente)
 DELETE FROM `checkk`;
@@ -250,7 +250,7 @@ CREATE TABLE IF NOT EXISTS `choferes` (
   PRIMARY KEY (`id_choferes`,`estado`),
   KEY `FK7_estadoChof_idx` (`estado`),
   CONSTRAINT `FK7_estadoChof` FOREIGN KEY (`estado`) REFERENCES `estado` (`id_estado`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.choferes: ~6 rows (aproximadamente)
 DELETE FROM `choferes`;
@@ -274,7 +274,7 @@ CREATE TABLE IF NOT EXISTS `cpts_administradora` (
   PRIMARY KEY (`id_cpt`),
   KEY `administradora` (`admi`) USING BTREE,
   CONSTRAINT `FK1_admi_cpt` FOREIGN KEY (`admi`) REFERENCES `administradora` (`id_administradora`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.cpts_administradora: ~9 rows (aproximadamente)
 DELETE FROM `cpts_administradora`;
@@ -349,7 +349,7 @@ CREATE TABLE IF NOT EXISTS `entrada_almacen` (
   CONSTRAINT `FK_entrada_almacen_empleados_2` FOREIGN KEY (`pide_entrada`) REFERENCES `empleados` (`id_empleados`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_entrada_almacen_salida_almacen` FOREIGN KEY (`tipo_mateentra`) REFERENCES `salida_almacen` (`tipo_matesali`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_entrada_almacen_salida_almacen_3` FOREIGN KEY (`estado_entrada`) REFERENCES `salida_almacen` (`estado_salida`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.entrada_almacen: ~10 rows (aproximadamente)
 DELETE FROM `entrada_almacen`;
@@ -375,8 +375,8 @@ CREATE TABLE IF NOT EXISTS `equipo` (
   `recibio` int NOT NULL,
   `fecha` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `estado` int NOT NULL,
-  `no_serie` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `IMEI` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `no_serie` varchar(50) CHARACTER SET utf8mb4   NOT NULL,
+  `IMEI` varchar(50) CHARACTER SET utf8mb4   NOT NULL,
   `autorizo` int NOT NULL,
   `observaciones` varchar(250) NOT NULL,
   PRIMARY KEY (`id_equipo`) USING BTREE,
@@ -390,7 +390,7 @@ CREATE TABLE IF NOT EXISTS `equipo` (
   CONSTRAINT `FK_equipo_empleados_3` FOREIGN KEY (`autorizo`) REFERENCES `empleados` (`id_empleados`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_equipo_estado_equipo` FOREIGN KEY (`estado`) REFERENCES `estado_equipo` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_equipo_tipo_equipo` FOREIGN KEY (`tipo_equipo`) REFERENCES `tipo_equipo` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.equipo: ~0 rows (aproximadamente)
 DELETE FROM `equipo`;
@@ -399,9 +399,9 @@ DELETE FROM `equipo`;
 DROP TABLE IF EXISTS `estado`;
 CREATE TABLE IF NOT EXISTS `estado` (
   `id_estado` int NOT NULL AUTO_INCREMENT,
-  `Nombre_estado` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `Nombre_estado` varchar(50) CHARACTER SET utf8mb4   NOT NULL,
   PRIMARY KEY (`id_estado`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.estado: ~5 rows (aproximadamente)
 DELETE FROM `estado`;
@@ -418,7 +418,7 @@ CREATE TABLE IF NOT EXISTS `estado_carro` (
   `id_estado` int NOT NULL AUTO_INCREMENT,
   `Nombre_estado` varchar(50) NOT NULL,
   PRIMARY KEY (`id_estado`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.estado_carro: ~4 rows (aproximadamente)
 DELETE FROM `estado_carro`;
@@ -434,7 +434,7 @@ CREATE TABLE IF NOT EXISTS `estado_equipo` (
   `id` int NOT NULL AUTO_INCREMENT,
   `Nombre_estado` varchar(250) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.estado_equipo: ~1 rows (aproximadamente)
 DELETE FROM `estado_equipo`;
@@ -447,7 +447,7 @@ CREATE TABLE IF NOT EXISTS `estado_insumo` (
   `id_estado` int NOT NULL AUTO_INCREMENT,
   `estado_insumo` varchar(150) NOT NULL,
   PRIMARY KEY (`id_estado`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.estado_insumo: ~1 rows (aproximadamente)
 DELETE FROM `estado_insumo`;
@@ -461,7 +461,7 @@ CREATE TABLE IF NOT EXISTS `estado_material` (
   `nombre_estado` varchar(250) NOT NULL,
   PRIMARY KEY (`id_estado`),
   KEY `id_estado` (`id_estado`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.estado_material: ~8 rows (aproximadamente)
 DELETE FROM `estado_material`;
@@ -481,7 +481,7 @@ CREATE TABLE IF NOT EXISTS `estado_paciente` (
   `id_estadop` int NOT NULL AUTO_INCREMENT,
   `estado` varchar(50) NOT NULL,
   PRIMARY KEY (`id_estadop`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.estado_paciente: ~5 rows (aproximadamente)
 DELETE FROM `estado_paciente`;
@@ -496,9 +496,9 @@ INSERT INTO `estado_paciente` (`id_estadop`, `estado`) VALUES
 DROP TABLE IF EXISTS `estado_ruta`;
 CREATE TABLE IF NOT EXISTS `estado_ruta` (
   `id_estado` int NOT NULL AUTO_INCREMENT,
-  `estado` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `estado` varchar(50) CHARACTER SET utf8mb4   NOT NULL,
   PRIMARY KEY (`id_estado`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.estado_ruta: ~3 rows (aproximadamente)
 DELETE FROM `estado_ruta`;
@@ -515,7 +515,7 @@ CREATE TABLE IF NOT EXISTS `estado_tanque` (
   PRIMARY KEY (`id_estado`),
   KEY `estado` (`estado`),
   KEY `id_estado` (`id_estado`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.estado_tanque: ~7 rows (aproximadamente)
 DELETE FROM `estado_tanque`;
@@ -534,7 +534,7 @@ CREATE TABLE IF NOT EXISTS `genero` (
   `id_genero` int NOT NULL AUTO_INCREMENT,
   `genero` varchar(50) NOT NULL,
   PRIMARY KEY (`id_genero`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.genero: ~2 rows (aproximadamente)
 DELETE FROM `genero`;
@@ -558,7 +558,7 @@ CREATE TABLE IF NOT EXISTS `insumos` (
   CONSTRAINT `FK_insumos_estado_insumo` FOREIGN KEY (`estado_insumo`) REFERENCES `estado_insumo` (`id_estado`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_insumos_marca_insumo` FOREIGN KEY (`marca_insumo`) REFERENCES `marca_insumo` (`id_marca`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_insumos_tamano_insumo` FOREIGN KEY (`tamano_insumo`) REFERENCES `tamano_insumo` (`id_tamano`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.insumos: ~1 rows (aproximadamente)
 DELETE FROM `insumos`;
@@ -571,7 +571,7 @@ CREATE TABLE IF NOT EXISTS `marca_insumo` (
   `id_marca` int NOT NULL AUTO_INCREMENT,
   `marca_insumo` varchar(150) NOT NULL,
   PRIMARY KEY (`id_marca`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.marca_insumo: ~5 rows (aproximadamente)
 DELETE FROM `marca_insumo`;
@@ -590,7 +590,7 @@ CREATE TABLE IF NOT EXISTS `marca_tanque` (
   PRIMARY KEY (`id_marca`),
   KEY `nombre_marca` (`nombre_marca`),
   KEY `id_marca` (`id_marca`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.marca_tanque: ~7 rows (aproximadamente)
 DELETE FROM `marca_tanque`;
@@ -609,12 +609,12 @@ CREATE TABLE IF NOT EXISTS `mensajes` (
   `id_msg` int NOT NULL AUTO_INCREMENT,
   `id_entrada` int DEFAULT NULL,
   `id_salida` int DEFAULT NULL,
-  `msg` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  `msg` text CHARACTER SET utf8mb4  ,
   `fecha_hora` datetime DEFAULT NULL,
-  `persona` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `leido` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '0',
+  `persona` varchar(255) CHARACTER SET utf8mb4   DEFAULT NULL,
+  `leido` varchar(50) CHARACTER SET utf8mb4   DEFAULT '0',
   PRIMARY KEY (`id_msg`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.mensajes: ~7 rows (aproximadamente)
 DELETE FROM `mensajes`;
@@ -640,7 +640,7 @@ CREATE TABLE IF NOT EXISTS `notificaciones` (
   PRIMARY KEY (`id`),
   KEY `FK_notificaciones_usuarios` (`usuario_destino`),
   CONSTRAINT `FK_notificaciones_puestos` FOREIGN KEY (`usuario_destino`) REFERENCES `puestos` (`id_puestos`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.notificaciones: ~7 rows (aproximadamente)
 DELETE FROM `notificaciones`;
@@ -661,7 +661,7 @@ CREATE TABLE IF NOT EXISTS `pacientes_enfermeria` (
   `apellidos` varchar(100) NOT NULL DEFAULT '',
   `fechaNacimiento` date NOT NULL,
   PRIMARY KEY (`id_pacienteEnfermeria`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.pacientes_enfermeria: ~3 rows (aproximadamente)
 DELETE FROM `pacientes_enfermeria`;
@@ -744,7 +744,7 @@ CREATE TABLE IF NOT EXISTS `procedimientos` (
   CONSTRAINT `FK1_medico` FOREIGN KEY (`medico`) REFERENCES `usuarios` (`id_usuarios`),
   CONSTRAINT `FK2_pacienteYnomina` FOREIGN KEY (`pacienteYnomina`) REFERENCES `pacientes_oxigeno` (`id_pacientes`),
   CONSTRAINT `FK3_cpt` FOREIGN KEY (`cpts`) REFERENCES `cpts_administradora` (`id_cpt`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.procedimientos: ~3 rows (aproximadamente)
 DELETE FROM `procedimientos`;
@@ -757,8 +757,8 @@ INSERT INTO `procedimientos` (`id_procedi`, `icd`, `dx`, `medico`, `pacienteYnom
 DROP TABLE IF EXISTS `productos`;
 CREATE TABLE IF NOT EXISTS `productos` (
   `id_productos` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `descripcion` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `nombre` varchar(100) CHARACTER SET utf8mb4   DEFAULT NULL,
+  `descripcion` varchar(300) CHARACTER SET utf8mb4   DEFAULT NULL,
   `precio` double DEFAULT NULL,
   `imagen` longblob,
   `fecha_registro` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
@@ -766,7 +766,7 @@ CREATE TABLE IF NOT EXISTS `productos` (
   `cantidad` int DEFAULT NULL,
   `disponible` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_productos`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.productos: ~1 rows (aproximadamente)
 DELETE FROM `productos`;
@@ -777,10 +777,10 @@ INSERT INTO `productos` (`id_productos`, `nombre`, `descripcion`, `precio`, `ima
 DROP TABLE IF EXISTS `puestos`;
 CREATE TABLE IF NOT EXISTS `puestos` (
   `id_puestos` int NOT NULL AUTO_INCREMENT,
-  `Nombre_puestos` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `Nombre_puestos` varchar(50) CHARACTER SET utf8mb4   DEFAULT NULL,
   `Fecha_registro` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_puestos`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.puestos: ~10 rows (aproximadamente)
 DELETE FROM `puestos`;
@@ -813,7 +813,7 @@ CREATE TABLE IF NOT EXISTS `registro_bitacora` (
   CONSTRAINT `FK_checkIn` FOREIGN KEY (`id_checkIn`) REFERENCES `asistencias` (`id_asistencias`),
   CONSTRAINT `FK_checkOut` FOREIGN KEY (`id_checkOut`) REFERENCES `asistencias` (`id_asistencias`),
   CONSTRAINT `FK_idUser` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuarios`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.registro_bitacora: ~2 rows (aproximadamente)
 DELETE FROM `registro_bitacora`;
@@ -878,7 +878,7 @@ CREATE TABLE IF NOT EXISTS `salida_almacen` (
   `cantidad_salida` int NOT NULL,
   `fecha_salida` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `tipo_matesali` int DEFAULT NULL,
-  `nombre_matesali` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `nombre_matesali` varchar(150) CHARACTER SET utf8mb4   NOT NULL,
   `observacionessali` varchar(200) NOT NULL,
   `estado_salida` int DEFAULT NULL,
   PRIMARY KEY (`id_salida`),
@@ -892,7 +892,7 @@ CREATE TABLE IF NOT EXISTS `salida_almacen` (
   CONSTRAINT `FK_salida_almacen_almacen_4` FOREIGN KEY (`estado_salida`) REFERENCES `almacen` (`id_almacen`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_salida_almacen_empleados` FOREIGN KEY (`entrega_salida`) REFERENCES `empleados` (`id_empleados`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_salida_almacen_empleados_2` FOREIGN KEY (`pide_salida`) REFERENCES `empleados` (`id_empleados`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.salida_almacen: ~5 rows (aproximadamente)
 DELETE FROM `salida_almacen`;
@@ -911,7 +911,7 @@ CREATE TABLE IF NOT EXISTS `tamano` (
   PRIMARY KEY (`id_tamano`),
   KEY `id_tamano` (`id_tamano`),
   KEY `tamano` (`tamano`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.tamano: ~3 rows (aproximadamente)
 DELETE FROM `tamano`;
@@ -926,7 +926,7 @@ CREATE TABLE IF NOT EXISTS `tamano_insumo` (
   `id_tamano` int NOT NULL AUTO_INCREMENT,
   `tamano_insumo` varchar(150) NOT NULL,
   PRIMARY KEY (`id_tamano`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.tamano_insumo: ~1 rows (aproximadamente)
 DELETE FROM `tamano_insumo`;
@@ -950,7 +950,7 @@ CREATE TABLE IF NOT EXISTS `tanques` (
   CONSTRAINT `FK_tanques_estado_tanque` FOREIGN KEY (`estado_tanque`) REFERENCES `estado_tanque` (`id_estado`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_tanques_marca_tanque` FOREIGN KEY (`marca`) REFERENCES `marca_tanque` (`id_marca`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_tanques_tamano` FOREIGN KEY (`tamano`) REFERENCES `tamano` (`id_tamano`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.tanques: ~7 rows (aproximadamente)
 DELETE FROM `tanques`;
@@ -967,11 +967,11 @@ INSERT INTO `tanques` (`id_tanques`, `marca`, `estado_tanque`, `tamano`, `cantid
 DROP TABLE IF EXISTS `tipos_servicios`;
 CREATE TABLE IF NOT EXISTS `tipos_servicios` (
   `id_tipoServicio` int NOT NULL AUTO_INCREMENT,
-  `nombreServicio` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
+  `nombreServicio` varchar(50) CHARACTER SET utf8mb4   NOT NULL DEFAULT '',
   `horasServicio` int(2) unsigned zerofill NOT NULL DEFAULT '00',
   `sueldo` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_tipoServicio`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.tipos_servicios: ~1 rows (aproximadamente)
 DELETE FROM `tipos_servicios`;
@@ -984,7 +984,7 @@ CREATE TABLE IF NOT EXISTS `tipo_equipo` (
   `id` int NOT NULL AUTO_INCREMENT,
   `tipo` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.tipo_equipo: ~14 rows (aproximadamente)
 DELETE FROM `tipo_equipo`;
@@ -1010,7 +1010,7 @@ CREATE TABLE IF NOT EXISTS `tipo_material` (
   `id_material` int NOT NULL AUTO_INCREMENT,
   `nombre_material` varchar(250) NOT NULL,
   PRIMARY KEY (`id_material`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.tipo_material: ~4 rows (aproximadamente)
 DELETE FROM `tipo_material`;
@@ -1024,31 +1024,31 @@ INSERT INTO `tipo_material` (`id_material`, `nombre_material`) VALUES
 DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE IF NOT EXISTS `usuarios` (
   `id_usuarios` int NOT NULL AUTO_INCREMENT,
-  `Usuario` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `paswword` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `Nombres` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `Apellidos` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `Usuario` varchar(50) CHARACTER SET utf8mb4   NOT NULL,
+  `paswword` varchar(250) CHARACTER SET utf8mb4   NOT NULL,
+  `Nombres` varchar(50) CHARACTER SET utf8mb4   NOT NULL,
+  `Apellidos` varchar(50) CHARACTER SET utf8mb4   NOT NULL,
   `Genero` int NOT NULL,
-  `Telefono` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `Correo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `Telefono` varchar(50) CHARACTER SET utf8mb4   NOT NULL,
+  `Correo` varchar(50) CHARACTER SET utf8mb4   NOT NULL,
   `Estado` int NOT NULL,
   `id_departamentos` int NOT NULL,
   `Fecha_registro` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `rfc` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `alcaldia` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `num_interior` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `num_exterior` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `rfc` varchar(50) CHARACTER SET utf8mb4   NOT NULL,
+  `alcaldia` varchar(50) CHARACTER SET utf8mb4   DEFAULT NULL,
+  `num_interior` varchar(50) CHARACTER SET utf8mb4   DEFAULT NULL,
+  `num_exterior` varchar(50) CHARACTER SET utf8mb4   DEFAULT NULL,
   `codigo_postal` int DEFAULT NULL,
-  `calleUno` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `calleDos` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `referencias` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `calleUno` varchar(50) CHARACTER SET utf8mb4   DEFAULT NULL,
+  `calleDos` varchar(50) CHARACTER SET utf8mb4   DEFAULT NULL,
+  `referencias` varchar(100) CHARACTER SET utf8mb4   DEFAULT NULL,
   `credencialFrente` longblob,
   `credencialAtras` longblob,
   `comprobante_domicilio` longblob,
   `inicios_sesion` int DEFAULT '0',
   `fecha_sesion` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `estatus` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '0',
-  `token` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `estatus` varchar(50) CHARACTER SET utf8mb4   DEFAULT '0',
+  `token` varchar(64) CHARACTER SET utf8mb4   DEFAULT NULL,
   `Foto_perfil` longblob,
   PRIMARY KEY (`id_usuarios`,`Estado`,`Genero`,`id_departamentos`) USING BTREE,
   KEY `FK_estado_idx` (`Estado`) USING BTREE,
@@ -1057,7 +1057,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   CONSTRAINT `FK_departamento` FOREIGN KEY (`id_departamentos`) REFERENCES `puestos` (`id_puestos`),
   CONSTRAINT `FK_estado` FOREIGN KEY (`Estado`) REFERENCES `estado` (`id_estado`),
   CONSTRAINT `FK_genero` FOREIGN KEY (`Genero`) REFERENCES `genero` (`id_genero`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 
 -- Volcando datos para la tabla bdoxilive.usuarios: ~12 rows (aproximadamente)
 DELETE FROM `usuarios`;
