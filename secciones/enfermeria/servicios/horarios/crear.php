@@ -169,28 +169,6 @@ if (!isset($_SESSION['us'])) {
 
         });
     });
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelector('.formLogin').addEventListener('submit', function(event) {
-            // Evita el envío del formulario por defecto
-            event.preventDefault();
-            // Verifica si los campos obligatorios están vacíos
-            var nombres = document.getElementById('nombres').value;
-            var apellidos = document.getElementById('apellidos').value;
-            var rfc = document.getElementById('rfc').value;
-            var usuario = document.getElementById('usuario').value;
-            var password = document.getElementById('password').value;
-            var email = document.getElementById('email').value;
-            if (!nombres || !apellidos || !rfc || !usuario || !password || !email) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Campos vacíos',
-                    text: 'Por favor, completa todos los campos obligatorios.',
-                });
-            } else {
-                this.submit();
-            }
-        });
-    });
 </script>
 <?php
 include("../../../../templates/footer.php");
