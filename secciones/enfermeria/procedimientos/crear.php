@@ -12,6 +12,7 @@ if (!isset($_SESSION['us'])) {
 <html>
 <link rel="stylesheet" href="../../../assets/css/vali.css">
 <link rel="stylesheet" href="../../../assets/css/edit.css">
+
 </html>
 <main id="main" class="main">
     <section class="section dashboard">
@@ -129,6 +130,24 @@ if (!isset($_SESSION['us'])) {
             </div>
         </div>
 </main>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#fecha').on('change', function() {
+        var fechaInput = $('#fecha').val();
+        var fechaSeleccionada = new Date(fechaInput);
+        var anioMinimo = 2023;
+        var anioIngresado = fechaSeleccionada.getFullYear();
+
+        if (anioIngresado < anioMinimo) {
+            alert('La fecha debe ser del año 2023 en adelante.');
+            // Puedes añadir más acciones aquí si la fecha no es válida, como limpiar el campo de fecha.
+            $('#fecha').val(''); // Limpia el campo de fecha
+        }
+    });
+});
+</script>
+
 <script>
 function actualizarCPT(Nombre_admi) {
     console.log("Llamado a losCPT con Nombre_admi:", Nombre_admi);
@@ -239,7 +258,7 @@ function confirmCancel(event) {
 }
 </script>
 <script>
-document.getElementById("formulario").addEventListener("submit", function (event) {
+document.getElementById("formulario").addEventListener("submit", function(event) {
     const paciente = document.getElementById("paciente").value;
     const medico = document.getElementById("medico").value;
     const codigo_ICD = document.getElementById("codigo_ICD").value;
@@ -250,7 +269,8 @@ document.getElementById("formulario").addEventListener("submit", function (event
     const unidad = document.getElementById("unidad").value;
     const fecha = document.getElementById("fecha").value;
 
-    if (!paciente || !medico || !codigo_ICD || !dx || !Nombre_admi || !cpt || !descripcion || !unidad || !fecha) {
+    if (!paciente || !medico || !codigo_ICD || !dx || !Nombre_admi || !cpt || !descripcion || !unidad || !
+        fecha) {
         // Al menos un campo está vacío, muestra una alerta y evita el envío del formulario
         event.preventDefault();
         Swal.fire({

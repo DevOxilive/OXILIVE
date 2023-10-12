@@ -9,7 +9,8 @@ if ($_POST) {
     $paciente = (isset($_POST["paciente"]) ? $_POST["paciente"] : "");
     $cpt = (isset($_POST["cpt"]) ? $_POST["cpt"] : "");
 
-    $consulta = $con->prepare("SELECT * FROM procedimientos  WHERE icd = '$codigo_ICD'");
+    $consulta = $con->prepare("SELECT * FROM procedimientos  WHERE dx = '$dx' AND icd = '$codigo_ICD' AND 
+    pacienteYnomina = '$paciente'");
     $consulta->execute();
     $resul = $consulta->rowCount();
     if ($resul > 0) {
