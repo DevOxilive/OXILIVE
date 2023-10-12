@@ -8,6 +8,8 @@ if (!isset($_SESSION['us'])) {
 } else {
     echo "Error en el sistema";
 }
+
+
 ?>
 
 <html>
@@ -25,13 +27,13 @@ if (!isset($_SESSION['us'])) {
             </h4>
         </div>
         <div class="card-body" style="border: 2px solid #BFE5FF;">
-            <form action="#" method="POST" class="formLogin form-inline" id="formulario">
+            <form action="guardar.php" method="POST" class="formLogin form-inline" id="formulario">
                 <div class="col-md-5">
                     <div class="formulario__grupo">
                         <label for="medicamentos" class="formulario__label">MEDICAMENTOS</label>
                         <div class="formulario__grupo-input">
                             <input type="text" class="formulario__input" name="medicamentos" id="medicamentos"
-                                value="paracetamol" readonly disabled>
+                                value="paracetamol">
                             <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                         </div>
                     </div>
@@ -47,17 +49,12 @@ if (!isset($_SESSION['us'])) {
             </form>
             <br>
             <button id="btnAnterior" class="btn btn-secondary">Anterior</button>
-            <button type="button" class="btn btn-success">Guardar</button>
+            <button id="btnGuardar" class="btn btn-success" type="submit" form="formulario">Guardar</button>
         </div>
-        </form>
     </div>
     </div>
 </main>
 <script>
-var btnAnterior = document.getElementById('btnAnterior');
-btnAnterior.addEventListener('click', function() {
-    window.location.href = 'form2.php';
-});
 
 function confirmCancel(event) {
     event.preventDefault();
@@ -115,152 +112,10 @@ function validarFecha() {
     }
 }
 
-// Agrega un manejador de eventos al evento beforeunload
-window.addEventListener('beforeunload', function(event) {
-    // Cancela el evento para evitar que el navegador lo maneje por defecto
-    event.preventDefault();
-    // Crea un mensaje personalizado para la alerta
-    var mensaje = 'Si abandonas esta página, perderás todos los datos ingresados.';
-    // Asigna el mensaje a la propiedad returnValue del evento
-    event.returnValue = mensaje;
-    // Devuelve el mensaje para que sea mostrado al usuario (esto es opcional y depende del navegador)
-    return mensaje;
-});
+
 </script>
 
 <?php
 include("../../../templates/footer.php");
 ?>
 
-<?php
-session_start();
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Captura los datos del formulario
-    $medicamentos = $_POST["medicamentos"];
-    $horario = $_POST["horario"];
-
-    // Almacena los datos en la sesión junto con el ID del usuario
-    $_SESSION["registro_data"] = array(
-        "user_id" => $_SESSION['user_id'],
-        "medicamentos" => $medicamentos,
-        "horario" => $horario
-        // ... Almacena otros datos en el array ...
-    );
-    
-}
-?>
-
-<?php
-session_start();
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Recupera los datos almacenados en la sesión
-    $registroData = $_SESSION["registro_data"];
-    $user_id = $registroData["user_id"];
-    $temperatura = $registroData["temperatura"];
-    $pulso = $registroData["pulso"];
-    $respiracion = $registroData["respiracion"];
-    $tensionArterial = $registroData["tensionArterial"]; 
-    $spo2 = $registroData["spo2"];
-    $glicemiaCapilar = $registroData["glicemiaCapilar"];
-    $vomito = $registroData["vomito"];
-    $evacuaciones = $registroData["evacuaciones"];
-    $orina = $registroData["orina"];
-    $ingestaLiquidos = $registroData["ingestaLiquidos"];
-    $caidas = $registroData["caidas"];
-    $drenajesVendajes = $registroData["drenajesVendajes"];
-    $uppHh = $registroData["uppHh"];
-    $descripcionUpp = $registroData["descripcionUpp"];
-    $solucion = $registroData["solucion"];
-    $fecha = $registroData["fecha"];
-    $cantidad = $registroData["cantidad"];
-    $goteo = $registroData["goteo"]; 
-    $frecuencia = $registroData["frecuencia"];
-    $inicia = $registroData["inicia"];
-    $termina = $registroData["termina"];
-    $drescripcionCuracion = $registroData["drescripcionCuracion"];
-    $notaenferdia = $registroData["notaenferdia"];
-    $notaenfernoche = $registroData["notaenfernoche"];
-    $dasayunoH = $registroData["dasayunoH"]; 
-    $descripDesayuno = $registroData["descripDesayuno"];
-    $comidaH = $registroData["comidaH"];
-    $descripComida = $registroData["descripComida"];
-    $cenaH = $registroData["cenaH"];
-    $descripCena = $registroData["descripCena"];
-    $medicamentos = $registroData["medicamentos"];
-    $horario = $registroData["horario"]; 
-   
-
-   // Configuración de la base de datos
-$servidor = "localhost";
-$usuario = "root";
-$contrasena = "";
-$nombre_base_de_datos = "bdoxilive";
-
-try {
-    // Establece la conexión PDO
-    $conexion = new PDO("mysql:host=$servidor;dbname=$nombre_base_de_datos", $usuario, $contrasena);
-    // Habilita el modo de errores de PDO para manejar excepciones
-    $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    // Captura los datos del formulario
-    $user_id = $_SESSION['user_id'];
-    $temperatura = $_POST["temperatura"];
-    $pulso = $_POST["pulso"];
-    $respiracion = $_POST["respiracion"];
-    $tensionArterial = $_POST["tensionArterial"]; 
-    $spo2 = $_POST["spo2"];
-    $glicemiaCapilar = $_POST["glicemiaCapilar"];
-    $vomito = $_POST["vomito"];
-    $evacuaciones = $_POST["evacuaciones"];
-    $orina = $_POST["orina"];
-    $ingestaLiquidos = $_POST["ingestaLiquidos"];
-    $caidas = $_POST["caidas"];
-    $drenajesVendajes = $_POST["drenajesVendajes"];
-    $uppHh = $_POST["uppHh"];
-    $descripcionUpp = $_POST["descripcionUpp"]; 
-    $solucion = $_POST["solucion"];
-    $fecha = $_POST["fecha"];
-    $cantidad = $_POST["cantidad"];
-    $goteo = $_POST["goteo"]; 
-    $frecuencia = $_POST["frecuencia"];
-    $inicia = $_POST["inicia"];
-    $termina = $_POST["termina"];
-    $drescripcionCuracion = $_POST["drescripcionCuracion"];
-    $notaenferdia = $_POST["notaenferdia"];
-    $notaenfernoche = $_POST["notaenfernoche"];
-    $dasayunoH = $_POST["dasayunoH"]; 
-    $descripDesayuno = $_POST["descripDesayuno"];
-    $comidaH = $_POST["comidaH"];
-    $descripComida = $_POST["descripComida"];
-    $cenaH = $_POST["cenaH"];
-    $descripCena = $_POST["descripCena"];
-    $medicamentos = $_POST["medicamentos"];
-    $horario = $_POST["horario"];
-    // Captura otros valores del formulario según sea necesario
-
-    // Prepara la consulta SQL
-    $consulta = $conexion->prepare(" INSERT INTO 
-    regisclinicos_cuidagenerales (id_RC, id_usuario, Fecha_hora_servicio, Temperatura, Pulso, Respiracion, Tension_arterial, Spo2, Glicemia_capilar, Vomitos, Evacuaciones, Orina, Ingesta_liquidos,
-    Caidas, Drenajes_vendajes, Upp_hh, Descripcion_upp, Solucion, Fecha_solucion, Cantidad_solucion, Got_solucion, Frec_solucion, Hora_inicio, Hora_termina, Cauracion, Nota_emfermeria_dia, 
-    Nota_emfermeria_noche, Alimentos_desayuno, Descripcion_desayuno, Alimentos_comida, Descripcion_comida, Alimentos_cena, descripcion_cena, Medicamentos, Horario_Medi) 
-    VALUES ( null, :user_id, null, :temperatura, :pulso, :respiracion, :tensionArterial, :spo2, :glicemiaCapilar, :vomito, :evacuaciones, :orina, :ingestaLiquidos, :caidas,
-    :drenajesVendajes, :uppHh, :descripcionUpp, :solucion, :fecha, :cantidad, :goteo, :frecuencia, :inicia, :termina, :drescripcionCuracion, :notaenferdia, :notaenfernoche,
-    :dasayunoH, :descripDesayuno, :comidaH, :descripComida, :cenaH, :descripCena, :medicamentos, :horario )");
-
-    // Vincula los parámetros
-    $consulta->bindParam(':user_id', $user_id); 
-    $consulta->bindParam(':temperatura', $temperatura);
-    $consulta->bindParam(':pulso', $pulso);
-
-    // Ejecuta la consulta
-    $consulta->execute();
-
-    echo "Datos guardados correctamente.";
-} catch(PDOException $e) {
-    echo "Error al guardar datos: " . $e->getMessage();
-}
-
-}
-?>

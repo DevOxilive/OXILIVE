@@ -8,6 +8,9 @@ if (!isset($_SESSION['us'])) {
 } else {
     echo "Error en el sistema";
 }
+
+
+
 ?>
 
 <html>
@@ -25,13 +28,12 @@ if (!isset($_SESSION['us'])) {
             </h4>
         </div>
         <div class="card-body" style="border: 2px solid #BFE5FF;">
-            <form action="#" method="POST" class="formLogin form-inline" id="formulario">
+            <form action="procesarf2.php" method="POST" class="formLogin form-inline" id="formulario">
                 <div class="col-md-4 ">
                     <div class="formulario__grupo" id="grupo__Nombre_administradora">
                         <label for="solucion" class="formulario__label">SOLUCION</label>
                         <div class="formulario__grupo-input">
-                            <input type="text" class="formulario__input" name="solucion" id="solucion" value="INTRAVENOSA" readonly
-                                disabled>
+                            <input type="text" class="formulario__input" name="solucion" id="solucion" value="INTRAVENOSA" >
                         </div>
                     </div>
                 </div>
@@ -87,18 +89,13 @@ if (!isset($_SESSION['us'])) {
             </form>
             <br>
             <button id="btnAnterior" class="btn btn-secondary">Anterior</button>
-            <button id="btnSiguiente" class="btn btn-primary">Siguiente</button>
+            <button id="btnSiguiente" class="btn btn-primary" type="submit" form="formulario">Siguiente</button>
         </div>
         </form>
     </div>
     </div>
 </main>
 <script>
-
-var btnSiguiente = document.getElementById('btnSiguiente');
-btnSiguiente.addEventListener('click', function() {
-    window.location.href = 'form3.php';
-});
 
 var btnAnterior = document.getElementById('btnAnterior');
 btnAnterior.addEventListener('click', function() {
@@ -161,51 +158,9 @@ function validarFecha() {
     }
 }
 
-// Agrega un manejador de eventos al evento beforeunload
-window.addEventListener('beforeunload', function(event) {
-    // Cancela el evento para evitar que el navegador lo maneje por defecto
-    event.preventDefault();
-    // Crea un mensaje personalizado para la alerta
-    var mensaje = 'Si abandonas esta página, perderás todos los datos ingresados.';
-    // Asigna el mensaje a la propiedad returnValue del evento
-    event.returnValue = mensaje;
-    // Devuelve el mensaje para que sea mostrado al usuario (esto es opcional y depende del navegador)
-    return mensaje;
-});
+
 </script>
 
 <?php
 include("../../../templates/footer.php");
-?>
-
-<?php
-session_start();
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Captura los datos del formulario
-    $solucion = $_POST["solucion"];
-    $fecha = $_POST["fecha"];
-    $cantidad = $_POST["cantidad"];
-    $goteo = $_POST["goteo"]; 
-    $frecuencia = $_POST["frecuencia"];
-    $inicia = $_POST["inicia"];
-    $termina = $_POST["termina"];
-
-    // Almacena los datos en la sesión junto con el ID del usuario
-    $_SESSION["registro_data"] = array(
-        "user_id" => $_SESSION['user_id'],
-        "solucion" => $solucion,
-        "fecha" => $fecha,
-        "cantidad" => $cantidad,
-        "goteo" => $goteo,
-        "frecuencia" => $frecuencia,
-        "inicia" => $inicia,
-        "termina" => $termina,
-        // ... Almacena otros datos en el array ...
-    );
-
-    // Redirige al siguiente formulario (form2.php en este caso)
-    header("Location: form3.php");
-    exit();
-}
 ?>
