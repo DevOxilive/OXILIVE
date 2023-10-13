@@ -4,116 +4,62 @@ if (!isset($_SESSION['us'])) {
   header('Location: ../../login.php');
 } elseif (isset($_SESSION['us'])) {
   include("../../../templates/header.php");
-  include("./consultaGen.php");
+    include("consulta.php");
 } else {
   echo "Error en el sistema";
 }
 ?>
 <main id="main" class="main">
-        <div class="card-header" style="text-align: right;">
-            <h1 style="text-align:center;">Historial Pacientes Aseguradora</h1>
+    <h1 style="text-align:center;">Historial de pacientes</h1>
+    <div class="card-header" style="text-align: right;">
+    </div>
+    <div class="card">
+        <div class="card-header">
         </div>
-        <div class="card">
-            <div class="card-header">
-            <button id="mostrarOcultar" class="btn btn-success"><i class="bi bi-people"></i>  Ver pacientes</button>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-hover" id="myTable">
-                        <thead class="table-dark">
-                            <tr style="text-align: center;">
-                                <th scope="col">SHF</th>
-                                <th scope="col">BANCO DEL BIENESTAR</th>
-                                <th scope="col">NAFIN</th>
-                                <th scope="col">INDEP</th>
-                                <th scope="col">JCLYFC</th>
-                                <th scope="col">FONATUR</th>
-                                <th scope="col">CONDUSEF</th>
-                                <th scope="col">HSBC</th>
-                                <th scope="col">SANTANDER</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="text-center">            
-                            <td>
-                                <a class="btn btn-outline-success" href="./ltr/shf.php" role="button">SHF</a>
-                            </td>
-                            <td>
-                                <a class="btn btn-outline-primary" href="./ltr/bienestar.php" role="button">BANCO DEL
-                                    BIENESTAR</a>
-                            </td>
-                            <td>
-                                <a class="btn btn-outline-danger" href="./ltr/nafin.php" role="button">NAFIN</a>
-                            </td>
-                            <td>
-                                <a class="btn btn-outline-warning" href="./ltr/indep.php" role="button">INDEP</a>
-                            </td>
-                            <td>
-                                <a class="btn btn-outline-secondary" href="./ltr/jclyfc.php" role="button">JCLYFC</a>
-                            </td>
-                            <td>
-                                <a class="btn btn-outline-success" href="./ltr/fonatur.php" role="button">FONATUR</a>
-                            </td>
-                            <td>
-                                <a class="btn btn-outline-danger" href="./ltr/condusef.php" role="button">CONDUSEF</a>
-                            </td>
-                            <td>
-                                <a class="btn btn-outline-warning" href="./ltr/hsbc.php" role="button">HSBC ACTIVOS</a>
-                            </td>
-                            <td>
-                                <a class="btn btn-outline-success" href="./ltr/santander.php" role="button">SANTANDER</a>
+        <div class="card-body">
+            <div class="table-responsive-sm">
+                <table class="table table-bordered  border-dark table-hover" id="myTable">
+                    <thead class="table-dark">
+                        <tr class="table-active table-group-divider" style="text-align: center;">
+                            <th scope="col">Paciente</th>
+                            <th scope="col">Lo atendio el medico:</th>
+                            <th scope="col">Administradora</th>
+                            <th scope="col">Accion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $previousPaciente = null; 
+                                foreach ($listaProce as $lista) {
+                                    if ($lista['Paciente'] != $previousPaciente) {
+                                        $contadorFilas = 1; ?>
+                        <tr class="">
+                            <td> <?php echo $lista['Paciente']; ?></td>
+                            <td><?php echo $lista["Medico"]; ?></td>
+                            <td> <?php echo $lista['Nombre_administradora']; ?></td>
+                            <td style="text-align: center;">
+                                <a class="btn btn-outline-success" href="pacienteP.php?txtID=<?php echo $lista['pacienteYnomina']; ?>" role="button"><i class="bi bi-eye"></i></a>
+                                |
                             </td>
                         </tr>
-
-                        </tbody>
-                    </table>
-                </div>
+                        <?php $previousPaciente = $lista['Paciente']; } 
+                            elseif ($contadorFilas < 1) {
+                                $contadorFilas++; ?>
+                        <tr class="">
+                            <td></td>
+                            <td><?php echo $lista['Paciente']; ?></td>
+                            <td><?php echo $lista["Medico"]; ?></td>   
+                            <td> <?php echo $lista['Nombre_administradora']; ?></td>                      
+                        </tr>
+                        <?php
+                            }
+                        }
+                        ?>
+                    </tbody>
+                </table>
             </div>
-<br>
- <!--Aqui va ir una lista general con todos-->
-
-
-<script>
-    $(document).ready(function() {
-    $('#mostrarOcultar').click(function() {
-        $('#miDiv').toggle();
-    });
-});
-
-</script>
-<div id="miDiv" style="display: none;">
- <div class="table-responsive-sm">
-                    <table class="table table-bordered table-striped table-hover" id="myTable">
-                        <thead class="table-dark">
-                            <tr class="table-active table-group-divider" style="text-align: center;">
-                                <th scope="col">No.P</th>
-                                <th scope="col">Paciente</th>
-                                <th scope="col">Aseguradora</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                           <?php foreach($vistaLectura as $vista) {?>
-                                <tr class="">
-                                     <td>
-                                        <?php echo $vista['id_pacientes']; ?>
-                                    </td>
-                                        
-                                    <td>
-                                    <?php echo $vista['Nombre']; ?>
-                                    </td>
-            
-                                    <td>
-                                    <?php echo $vista['Nombre_aseguradora']; ?>
-                                    </td>
-                                </tr>
-                           <?php }?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-                <!--Aquí termina-->
         </div>
-    </main>
+    </div>
+</main>
 <script>
 function eliminar(codigo) {
     Swal.fire({
