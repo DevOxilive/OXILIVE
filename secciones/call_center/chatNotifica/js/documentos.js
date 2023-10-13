@@ -1,9 +1,10 @@
 $(document).ready(function () {
-
-    function loadUsers() {
+    var output = $('#output').val();
+    function documents() {
         $.ajax({
             url: 'listPdf.php',
             type: 'POST',
+            data: {output, output},
             success: function (data) {
                 $('#list-documentos').html(data);
             }
@@ -11,7 +12,7 @@ $(document).ready(function () {
     }
 
     setInterval(() => {
-        loadUsers();
+        documents();
     }, 1000);
     // Made by Dazz
 

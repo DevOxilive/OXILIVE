@@ -155,6 +155,7 @@ button[type="submit"] {
 table {
     width: auto;
     border-collapse:separate;
+    text-align: center;
 }
 
 .encabezadoT {
@@ -164,4 +165,12 @@ table {
 
 .encabezadoT td{
     padding: 10px;
+}
+
+tr:hover {
+    background-color: #888;
+    color: white;
+}
+a {
+    text-decoration: none;
 }

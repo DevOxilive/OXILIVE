@@ -22,6 +22,7 @@ if (count($resultado) > 0) {
     }
 ?>
     <link rel="stylesheet" href="../css/chat.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- estilos del chat -->
     <main id="main" class="main">
         <div class="row">
@@ -46,21 +47,20 @@ if (count($resultado) > 0) {
                     </div>
                     <div id="chat-form">
                         <input type="hidden" value="<?php echo $_SESSION['us'] ?>" id="user">
+                        <label for="fileInput" class="custom-file-upload">
+                            <i class="bi bi-paperclip"></i>
+                        </label>
+                        <input type="file" id="fileInput" name="file">
                         <input type="text" id="message" placeholder="Escribe tu mensaje" maxlength="500">
                         <input type="hidden" value="<?php echo $enviarA; ?>" id='output'>
                         <button id="send"><img src="../img/pngwing.com.png" alt="" width="30px"></button>
-                        <label for="fileInput" class="custom-file-upload">
-                            Subir archivo
-                        </label>
-                        <input type="file" id="fileInput" name="file">
-                        <button class="envioArchi" id="sendFile">Enviar Archivo</button>
                     </div>
                 </div>
             </div>
         </div>
         <div class="contenedor-documentos">
             <div id="list-documentos">
-                    
+
             </div>
         </div>
     </main>
@@ -76,6 +76,7 @@ if (count($resultado) > 0) {
             }
         });
     </script>
+    <script src="../js/eliminar_documento.js"></script>
     <!-- controlador de los estilos del chat -->
     <script src="../js/chatPriv.js"></script>
     <?php
