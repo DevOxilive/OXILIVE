@@ -250,7 +250,7 @@ if (!isset($_SESSION['us'])) {
                             <div class="profile-picture-cre">
                             <div class="picture-container-cre">
                                 <?php if (!empty($Credencial_front)) : ?>
-                                    <img src="./PAPELETA/<?php echo $Apellidos . " " . $Nombres ?>/<?php echo $Credencial_front; ?>" alt="" id="imagenActual" class="img-thumbnail-ine" style="width: 350px ; height: 210px;">
+                                    <img src="../../PAPELETA/<?php echo $Apellidos . " " . $Nombres ?>/<?php echo $Credencial_front; ?>" alt="" id="imagenActual" class="img-thumbnail-ine" style="width: 350px ; height: 210px;">
                                 <?php else : ?>
                                     <img src="../../img/OXILIVE.ico" alt="foto de perfil" id="imagenActual" class="img-thumbnail-ine">
                                 <?php endif; ?>
@@ -269,7 +269,7 @@ if (!isset($_SESSION['us'])) {
                             <div class="profile-picture-cre">
                             <div class="picture-container-cre">
                                 <?php if (!empty($Credencial_post)) : ?>
-                                    <img src="./PAPELETA/<?php echo $Apellidos . " " . $Nombres ?>/<?php echo $Credencial_post; ?>" alt="" id="imagenActual1" class="img-thumbnail-ine" style="width: 350px ; height: 210px;">
+                                    <img src="../../PAPELETA/<?php echo $Apellidos . " " . $Nombres ?>/<?php echo $Credencial_post; ?>" alt="" id="imagenActual1" class="img-thumbnail-ine" style="width: 350px ; height: 210px;">
                                 <?php else : ?>
                                     <img src="../../img/OXILIVE.ico" alt="foto de perfil" id="imagenActual1" class="img-thumbnail-ine">
                                 <?php endif; ?>
@@ -290,7 +290,7 @@ if (!isset($_SESSION['us'])) {
                         <div class="profile-picture-cre">
                         <div class="picture-container-cre">
                                 <?php if (!empty($Credencial_aseguradora)) : ?>
-                                    <img src="./PAPELETA/<?php echo $Apellidos . " " . $Nombres ?>/<?php echo $Credencial_aseguradora; ?>" alt="" id="imagenActual2" class="img-thumbnail-ine" style="width: 350px ; height: 210px;">
+                                    <img src="../PAPELETA/<?php echo $Apellidos . " " . $Nombres ?>/<?php echo $Credencial_aseguradora; ?>" alt="" id="imagenActual2" class="img-thumbnail-ine" style="width: 350px ; height: 210px;">
                                 <?php else : ?>
                                     <img src="../../../img/OXILIVE.ico" alt="SIN ASEGURADORA" id="imagenActual2" class="img-thumbnail-ine" style="width: 350px ; height: 210px;">
                                 <?php endif; ?>
@@ -313,7 +313,7 @@ if (!isset($_SESSION['us'])) {
                         <div class="profile-picture-cre">
                         <div class="picture-container-cre">
                                 <?php if (!empty($Credencial_aseguradoras_post)) : ?>
-                                    <img src="./PAPELETA/<?php echo $Apellidos . " " . $Nombres ?>/<?php echo $Credencial_aseguradoras_post; ?>" alt="" id="imagenActual3" class="img-thumbnail-ine" style="width: 350px ; height: 210px;">
+                                    <img src="../PAPELETA/<?php echo $Apellidos . " " . $Nombres ?>/<?php echo $Credencial_aseguradoras_post; ?>" alt="" id="imagenActual3" class="img-thumbnail-ine" style="width: 350px ; height: 210px;">
                                 <?php else : ?>
                                     <img src="../../../img/OXILIVE.ico" alt="SIN ASEGURADORA" id="imagenActual3" class="img-thumbnail-ine" style="width: 350px ; height: 210px;">
                                 <?php endif; ?>
@@ -345,160 +345,19 @@ if (!isset($_SESSION['us'])) {
                                     class="btn btn-outline-danger">Cancelar</a>
                             </div>
                             <div class="col-md-auto ">
-                                <button class="formulario__btn btn  btn-outline-success" id="mostrarDiv"><i
-                                        class="fa fa-camera"></i> </button>
-
-                            </div>
+                                    <a href="camara.php" target="_blank" class="btn btn-outline-success">
+                                        <i class="fa fa-camera"></i></a>
+                                </div>
                         </div>
-                        <!--Fin del row-->
-                        <!--Div para pantalla de la web cam-->
-                        <div id="miDiv" class="oculto">
-                            <div>
-                                <button class="btn btn-danger" id="cerrarDiv">Cerrar <i
-                                        class="fa-regular fa-rectangle-xmark"></i></button>
-                                <!-- Botón para recortar la imagen -->
-                                <br><br>
-                                <div class="col-14 ">
-                                    <div class="row justify-content-center ">
-                                        <div class="col-md-auto ">
-                                            <button id="cropButton" class="btn btn-warning btn-block"
-                                                style="display: none;">Recortar Imagen</button>
-                                        </div><br>
-                                        <div class="col-md-auto ">
-                                            <button id="captureButton"
-                                                class="btn btn-success btn-block">Captura</button>
-                                        </div><br>
-                                        <div class="col-md-auto ">
-                                            <button id="downloadButton"
-                                                class="btn btn-info btn-block">Descargar</button>
-                                        </div>
-                                    </div>
-                                    <div><br>
-
-                                        <div class="row justify-content-center">
-                                            <div class="col-md-auto border border-danger">
-                                                <div id="cropperPreview" style="display: none;">
-                                                    <img id="croppedImage" src="#" alt="Imagen Recortada" width="250" height="250"><br>
-                                                    <h3 style="color:#ffff">Imagen Recortada</h3>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-auto border border-success">
-                                                <!-- Elemento de video para mostrar la vista previa de la cámara web -->
-                                                <video id="video" width="250" height="250" autoplay></video>
-                                                <h3 style="color:#ffff">Captura la imagen</h3>
-                                            </div>
-                                            <div class="col-md-auto border border-warning">
-                                                <!-- Canvas para mostrar la imagen capturada -->
-                                                <canvas id="canvas" width="250" height="250"
-                                                    style="display: none;"></canvas>
-                                                    <h3 style="color:#ffff">Recorta lo necesario</h3>
-                                            </div>
-                                        </div>
-
-
-                                        <!--Este div es del miDiv-->
-                                        <!--fin de la pantalla de la web cam-->
-                </form>
+                        </form>
             </div>
         </div>
 </main>
 </div>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const mostrarDiv = document.getElementById("mostrarDiv");
-    const miDiv = document.getElementById("miDiv");
-    const cerrarDiv = document.getElementById("cerrarDiv");
-
-    mostrarDiv.addEventListener("click", function() {
-        miDiv.style.display = "block";
-    });
-
-    cerrarDiv.addEventListener("click", function() {
-        miDiv.style.display = "none";
-    });
-});
-
-//Este es el script para la web cam
-const video = document.getElementById('video');
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
-const captureButton = document.getElementById('captureButton');
-const cropButton = document.getElementById('cropButton');
-const downloadButton = document.getElementById('downloadButton');
-
-let cropper;
-
-// Obtener acceso a la cámara web
-navigator.mediaDevices.getUserMedia({
-        video: true
-    })
-    .then(function(stream) {
-        video.srcObject = stream;
-    })
-    .catch(function(error) {
-        console.error('Error al acceder a la cámara web:', error);
-    });
-
-// Capturar una imagen desde la cámara web
-captureButton.addEventListener('click', function() {
-    canvas.style.display = 'block';
-    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-    // Mostrar el botón de recorte
-    captureButton.style.display = 'none';
-    cropButton.style.display = 'inline-block';
-
-    // Inicializar Cropper.js con el canvas
-    cropper = new Cropper(canvas, {
-        aspectRatio: 1, // Proporción de recorte
-        viewMode: 1, // Vista previa del recorte
-        guides: true, // Muestra guías de recorte
-    });
-});
-
-// Recortar la imagen capturada
-cropButton.addEventListener('click', function() {
-    if (cropper) {
-        // Obtener la imagen recortada como un objeto Blob
-        cropper.getCroppedCanvas().toBlob(function(blob) {
-            const croppedImage = document.getElementById('croppedImage');
-            croppedImage.src = URL.createObjectURL(blob);
-
-            // Mostrar la vista previa del recorte y el botón de descarga
-            document.getElementById('cropperPreview').style.display = 'block';
-            downloadButton.style.display = 'inline-block';
-        });
-    } else {
-        console.error('Primero debes capturar una imagen.');
-    }
-});
-
-// Descargar la imagen recortada
-downloadButton.addEventListener('click', function() {
-    const croppedImage = document.getElementById('croppedImage').src;
-    const a = document.createElement('a');
-    a.href = croppedImage;
-    a.download = 'imagen_recortada.png'; // Cambia el nombre del archivo según tus necesidades
-    a.click();
-});
-</script>
-
 <script src="../../../assets/js/scriptCamaWeb.js"></script>
 <script src="../../../assets/js/archivosPacientes.js"></script>
 <script src="../../../assets/js/nomina.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.min.js"></script>
-<!--Aqui empieza mi escript de la ventana emergente-->
-<script>
-function myFunction() {
-    var x = document.getElementById("myDIV");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-}
-</script>
 <!--Aqui termina mi escript de la ventana emergente-->
 <script>
 function confirmCancel(event) {
