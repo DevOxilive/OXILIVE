@@ -150,13 +150,13 @@ if (!isset($_SESSION['us'])) {
                     </div>
                     <div class="contenido col-md-3">
                         <label for="Administradora" class="formulario__label">Administradora</label>
-                        <select id="Administradora" name="Administradora" class="form-select" onchange="actualizarAseguradoras(this.value)" >
+                        <select id="Administradora" name="Administradora" class="form-select" onchange="actualizarAseguradoras(this.value)">
                             <option value="0" selected disabled>Elija una opción</option>
                             <?php foreach ($lista_administradora as $admin) { ?>
-                                    <option value="<?php echo $admin['id_administradora']; ?>">
-                                        <?php echo $admin['Nombre_administradora']; ?>
-                                    </option>
-                            <?php 
+                                <option value="<?php echo $admin['id_administradora']; ?>">
+                                    <?php echo $admin['Nombre_administradora']; ?>
+                                </option>
+                            <?php
                             } ?>
                         </select>
                     </div>
@@ -243,7 +243,7 @@ if (!isset($_SESSION['us'])) {
                                 </div>
                             </div>
                         </div>
-                        <input type="file" class="form-control" name="Credencial_post" id="Credencial_post" onchange="previewImage1(this);" style="display: none;" accept="application/jpg" >
+                        <input type="file" class="form-control" name="Credencial_post" id="Credencial_post" onchange="previewImage1(this);" style="display: none;" accept="application/jpg">
                     </div>
 
                     <div class="contenido col-md-9">
