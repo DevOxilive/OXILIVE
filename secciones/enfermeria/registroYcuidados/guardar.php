@@ -76,41 +76,20 @@ if (
 
 
     // Prepara y ejecuta la consulta
-    $consulta = $con->prepare("INSERT INTO regisclinicos_cuidagenerales  
-        VALUES
-        (null,
-        :temperatura,
-        :pulso,
-        :respiracion,
-        :tensionArterial,
-        :spo2,
-        :glicemiaCapilar,
-        :vomito,
-        :evacuaciones,
-        :orina,
-        :ingestaLiquidos,
-        :caidas,
-        :drenajesVendajes,
-        :uppHh,
-        :descripcionUpp,
-        :solucion,
-        :fecha,
-        :cantidad,
-        :goteo,
-        :frecuencia,
-        :inicia,
-        :termina,
-        :drescripcionCuracion,
-        :notaenferdia,
-        :notaenfernoche,
-        :dasayunoH,
-        :descripDesayuno,
-        :comidaH,
-        :descripComida,
-        :cenaH,
-        :descripCena,
-        :medicamentos,
-        :horario)");
+    $consulta = $con->prepare("INSERT INTO regisclinicos_cuidagenerales 
+    (Temperatura, Pulso, Respiracion, Tension_arterial, Spo2, Glicemia_capilar,
+    Vomitos, Evacuaciones, Orina, Ingesta_liquidos, Caidas, Drenajes_vendajes,
+    Upp_hh, Descripcion_upp, Solucion, Fecha_solucion, Cantidad_solucion,
+    Got_solucion, Frec_solucion, Hora_inicio, Hora_termina, Cauracion,
+    Nota_emfermeria_dia, Nota_emfermeria_noche, Alimentos_desayuno,
+    Descripcion_desayuno, Alimentos_comida, Descripcion_comida,
+    Alimentos_cena, Descripcion_cena, Medicamentos, Horario_Medi) 
+        VALUES (:temperatura, :pulso, :respiracion, :tensionArterial, :spo2, :glicemiaCapilar,
+        :vomito, :evacuaciones, :orina, :ingestaLiquidos, :caidas, :drenajesVendajes, :uppHh,
+        :descripcionUpp, :solucion, :fecha, :cantidad, :goteo, :frecuencia, :inicia, :termina,
+        :drescripcionCuracion, :notaenferdia, :notaenfernoche, :dasayunoH, :descripDesayuno,
+        :comidaH, :descripComida, :cenaH, :descripCena, :medicamentos, :horario)");
+
 
     // Vincula los parámetros
     $consulta->bindParam(':temperatura', $temperatura);
@@ -121,6 +100,7 @@ if (
     $consulta->bindParam(':glicemiaCapilar', $glicemiaCapilar);
     $consulta->bindParam(':vomito', $vomito);
     $consulta->bindParam(':evacuaciones', $evacuaciones);
+    $consulta->bindParam(':orina', $orina);
     $consulta->bindParam(':ingestaLiquidos', $ingestaLiquidos);
     $consulta->bindParam(':caidas', $caidas);
     $consulta->bindParam(':drenajesVendajes', $drenajesVendajes);
@@ -145,10 +125,48 @@ if (
     $consulta->bindParam(':medicamentos', $medicamentos);
     $consulta->bindParam(':horario', $horario);
 
-    
-    //$consulta->execute();
+    $consulta->execute();
 
-    //$con->commit();
+    //elimina las variables de la sesion para porder realizar otro registro
+    unset($_SESSION["temperatura"]);
+    unset($_SESSION["pulso"]);
+    unset($_SESSION["respiracion"]);
+    unset($_SESSION["tensionArterial"]);
+    unset($_SESSION["spo2"]);
+    unset($_SESSION["glicemiaCapilar"]);
+    unset($_SESSION["vomito"]);
+    unset($_SESSION["evacuaciones"]);
+    unset($_SESSION["orina"]);
+    unset($_SESSION["ingestaLiquidos"]);
+    unset($_SESSION["caidas"]);
+    unset($_SESSION["drenajesVendajes"]);
+    unset($_SESSION["uppHh"]);
+    unset($_SESSION["descripcionUpp"]);
+    unset($_SESSION["solucion"]);
+    unset($_SESSION["fecha"]);
+    unset($_SESSION["cantidad"]);
+    unset($_SESSION["goteo"]);
+    unset($_SESSION["frecuencia"]);
+    unset($_SESSION["inicia"]);
+    unset($_SESSION["termina"]);
+    unset($_SESSION["drescripcionCuracion"]);
+    unset($_SESSION["notaenferdia"]);
+    unset($_SESSION["notaenfernoche"]);
+    unset($_SESSION["dasayunoH"]);
+    unset($_SESSION["descripDesayuno"]);
+    unset($_SESSION["comidaH"]);
+    unset($_SESSION["descripComida"]);
+    unset($_SESSION["cenaH"]);
+    unset($_SESSION["descripCena"]);
+
+    $_SESSION['datos_guardados'] = true;
+    header('Location: ../registroYcuidados/index.php');
+   
+    exit();
 } else {
     echo "error en el envio de post";
 }
+?>
+<?php
+   echo '<script>window.location.href = "../registroYcuidados/index.php";</script>';
+   ?>

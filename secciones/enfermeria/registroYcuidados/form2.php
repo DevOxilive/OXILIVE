@@ -33,7 +33,8 @@ if (!isset($_SESSION['us'])) {
                     <div class="formulario__grupo" id="grupo__Nombre_administradora">
                         <label for="solucion" class="formulario__label">SOLUCION</label>
                         <div class="formulario__grupo-input">
-                            <input type="text" class="formulario__input" name="solucion" id="solucion" value="INTRAVENOSA" >
+                            <input type="text" class="formulario__input" name="solucion" id="solucion"
+                                value="INTRAVENOSA">
                         </div>
                     </div>
                 </div>
@@ -41,8 +42,7 @@ if (!isset($_SESSION['us'])) {
                     <div class="formulario__grupo" id="grupo__Nombre_administradora">
                         <label for="fecha" class="formulario__label">FECHA</label>
                         <div class="formulario__grupo-input">
-                            <input type="date" class="formulario__input" name="fecha" id="fecha"
-                                onchange="validarFecha()">
+                            <input type="date" class="formulario__input" name="fecha" id="fecha">
                         </div>
                     </div>
                 </div>
@@ -88,7 +88,7 @@ if (!isset($_SESSION['us'])) {
                 </div>
             </form>
             <br>
-            <button id="btnAnterior" class="btn btn-secondary">Anterior</button>
+            <button id="btnAnterior" class="btn btn-secondary" onclick="mostrarAlerta()">Anterior</button>
             <button id="btnSiguiente" class="btn btn-primary" type="submit" form="formulario">Siguiente</button>
         </div>
         </form>
@@ -97,70 +97,26 @@ if (!isset($_SESSION['us'])) {
 </main>
 <script>
 
-var btnAnterior = document.getElementById('btnAnterior');
-btnAnterior.addEventListener('click', function() {
-    window.location.href = 'form1.php';
-});
 
-function confirmCancel(event) {
-    event.preventDefault();
-    Swal.fire({
-        title: '¿Estás seguro?',
-        text: "Si cancelas, se perderán los datos ingresados.",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Sí, cancelar',
-        cancelButtonText: 'No, continuar'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.location.href = "<?php echo $url_base; ?>secciones/enfermeria/registroYcuidados/index.php";
-        }
-    });
-}
-
-//esta funcion es para que no acepte valores que no sean enteros
-function validarNumeroEntero(input) {
-    // Remueve cualquier punto decimal ingresado por el usuario
-    input.value = input.value.replace(/[.,]/g, '');
-
-    // Valida que el valor sea un número entero
-    if (input.value !== '') {
-        input.value = parseInt(input.value, 10);
-    }
-}
-
-//esta funcion es para que la tencion arterial valode el tipo de formato
-function validarTensionArterial(input) {
-    // Expresión regular para el formato XXX/XXX
-    var regex = /^\d{1,3}\/\d{1,3}$/;
-
-    // Valida el formato usando la expresión regular
-    if (!regex.test(input.value)) {
-        // Si el formato no es válido, muestra un mensaje de error
-        input.setCustomValidity("Formato incorrecto. Debe ser XXX/XXX.");
-    } else {
-        // Si el formato es válido, limpia el mensaje de error
-        input.setCustomValidity("");
-    }
-}
-
-//funcion asignada a la fecha para que no te deje colorcar fecha anteriores
-function validarFecha() {
-    var fechaInput = document.getElementById("fecha").value;
-    var fechaSeleccionada = new Date(fechaInput);
-    var fechaActual = new Date();
-
-    if (fechaSeleccionada <= fechaActual) {
-        alert("No puedes seleccionar una fecha anterior a la actual.");
-        document.getElementById("fecha").value = ""; // Limpiar el campo de fecha
-    }
-}
-
-
+// Obtener fecha actual
+let fecha = new Date();
+// Obtener cadena en formato yyyy-mm-dd, eliminando zona y hora
+let fechaMin = fecha.toISOString().split('T')[0];
+// Asignar valor mínimo
+document.querySelector('#fecha').min = fechaMin;
 </script>
 
 <?php
 include("../../../templates/footer.php");
 ?>
+
+<script type="text/javascript">
+function mostrarAlerta() {
+    var confirmacion = confirm("¿Estás seguro de que deseas ir atrás? Los datos no se guardarán.");
+    if (confirmacion) {
+        window.history.back();
+    } else {
+        window.location.href = 'form2.php';
+    }
+}
+</script>

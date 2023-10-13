@@ -72,8 +72,8 @@ if (!isset($_SESSION['us'])) {
                     <div class="formulario__grupo">
                         <label for="spo2" class="formulario__label">SPO2:</label>
                         <div class="formulario__grupo-input">
-                            <input type="number" class="formulario__input" name="spo2" id="spo2"
-                                placeholder="89%" oninput="validarNumeroEntero(this)">
+                            <input type="number" class="formulario__input" name="spo2" id="spo2" placeholder="89%"
+                                oninput="validarNumeroEntero(this)">
                             <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                         </div>
                     </div>
@@ -93,7 +93,7 @@ if (!isset($_SESSION['us'])) {
                         <label for="vomito" class="formulario__label">Vómito:</label>
                         <div class="formulario__grupo-input">
                             <select class="formulario__input" name="vomito" id="vomito">
-                                <option value="">Seleccionar</option>
+                                <option value="0">Seleccionar</option>
                                 <option value="1">1°</option>
                                 <option value="2">2°</option>
                                 <option value="3">3°</option>
@@ -107,7 +107,7 @@ if (!isset($_SESSION['us'])) {
                         <label for="evacuaciones" class="formulario__label">Evacuaciones:</label>
                         <div class="formulario__grupo-input">
                             <select class="formulario__input" name="evacuaciones" id="evacuaciones">
-                                <option value="">Seleccionar</option>
+                                <option value="0">Seleccionar</option>
                                 <option value="1">1°</option>
                                 <option value="2">2°</option>
                                 <option value="3">3°</option>
@@ -121,7 +121,7 @@ if (!isset($_SESSION['us'])) {
                         <label for="orina" class="formulario__label">orina:</label>
                         <div class="formulario__grupo-input">
                             <select class="formulario__input" name="orina" id="orina">
-                                <option value="">Seleccionar</option>
+                                <option value="0">Seleccionar</option>
                                 <option value="1">1°</option>
                                 <option value="2">2°</option>
                                 <option value="3">3°</option>
@@ -135,7 +135,7 @@ if (!isset($_SESSION['us'])) {
                         <label for="ingestaLiquidos" class="formulario__label">Ingesta de Liquidos:</label>
                         <div class="formulario__grupo-input">
                             <select class="formulario__input" name="ingestaLiquidos" id="ingestaLiquidos">
-                                <option value="">Seleccionar</option>
+                                <option value="0">Seleccionar</option>
                                 <option value="1">1°</option>
                                 <option value="2">2°</option>
                                 <option value="3">3°</option>
@@ -149,7 +149,7 @@ if (!isset($_SESSION['us'])) {
                         <label for="caidas" class="formulario__label">Caidas:</label>
                         <div class="formulario__grupo-input">
                             <select class="formulario__input" name="caidas" id="caidas">
-                                <option value="">Seleccionar</option>
+                                <option value="0">Seleccionar</option>
                                 <option value="1">1°</option>
                                 <option value="2">2°</option>
                                 <option value="3">3°</option>
@@ -163,7 +163,7 @@ if (!isset($_SESSION['us'])) {
                         <label for="drenajesVendajes" class="formulario__label">Drenajes y/o Vendajes:</label>
                         <div class="formulario__grupo-input">
                             <select class="formulario__input" name="drenajesVendajes" id="drenajesVendajes">
-                                <option value="">Seleccionar</option>
+                                <option value="0">Seleccionar</option>
                                 <option value="1">1°</option>
                                 <option value="2">2°</option>
                                 <option value="3">3°</option>
@@ -177,7 +177,7 @@ if (!isset($_SESSION['us'])) {
                         <label for="uppHh" class="formulario__label">UPP, Heridas o Hematomas</label>
                         <div class="formulario__grupo-input">
                             <select class="formulario__input" name="uppHh" id="uppHh">
-                                <option value="">Seleccionar</option>
+                                <option value="0">Seleccionar</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -189,7 +189,8 @@ if (!isset($_SESSION['us'])) {
                 </div>
                 <div class="col-md-12">
                     <div class="formulario__grupo">
-                        <label for="descripcionUpp" class="formulario__label">Descripción UPP, Heridas o Hematomas</label>
+                        <label for="descripcionUpp" class="formulario__label">Descripción UPP, Heridas o
+                            Hematomas</label>
                         <div class="formulario__grupo-input">
                             <textarea name="descripcionUpp" id="descripcionUpp"
                                 style="width: 100%; max-width: 900px; height: 90px;"
@@ -200,7 +201,7 @@ if (!isset($_SESSION['us'])) {
                 </div>
             </form>
             <br>
-            <button id="btnAnterior" class="btn btn-secondary">Anterior</button>
+            <button id="btnAnterior" class="btn btn-secondary" onclick="mostrarAlerta()">Anterior</button>
             <button id="btnSiguiente" class="btn btn-primary" type="submit" form="formulario">Siguiente</button>
         </div>
         </form>
@@ -208,28 +209,6 @@ if (!isset($_SESSION['us'])) {
     </div>
 </main>
 <script>
-var btnAnterior = document.getElementById('btnAnterior');
-btnAnterior.addEventListener('click', function() {
-    window.location.href = 'index.php';
-});
-
-function confirmCancel(event) {
-    event.preventDefault();
-    Swal.fire({
-        title: '¿Estás seguro?',
-        text: "Si cancelas, se perderán los datos ingresados.",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Sí, cancelar',
-        cancelButtonText: 'No, continuar'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.location.href = "<?php echo $url_base; ?>secciones/enfermeria/registroYcuidados/index.php";
-        }
-    });
-}
 
 //esta funcion es para que no acepte valores que no sean enteros
 function validarNumeroEntero(input) {
@@ -256,19 +235,6 @@ function validarTensionArterial(input) {
         input.setCustomValidity("");
     }
 }
-
-//funcion asignada a la fecha para que no te deje colorcar fecha anteriores
-function validarFecha() {
-    var fechaInput = document.getElementById("fecha").value;
-    var fechaSeleccionada = new Date(fechaInput);
-    var fechaActual = new Date();
-
-    if (fechaSeleccionada <= fechaActual) {
-        alert("No puedes seleccionar una fecha anterior a la actual.");
-        document.getElementById("fecha").value = ""; // Limpiar el campo de fecha
-    }
-}
-
 </script>
 
 
@@ -277,5 +243,13 @@ include("../../../templates/footer.php");
 ?>
 
 
-
-
+<script type="text/javascript">
+function mostrarAlerta() {
+    var confirmacion = confirm("¿Estás seguro de que deseas ir atrás? Los datos no se guardarán.");
+    if (confirmacion) {
+        window.history.back();
+    } else {
+        window.location.href = 'form1.php';
+    }
+}
+</script>
