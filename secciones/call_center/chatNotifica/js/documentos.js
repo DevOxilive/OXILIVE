@@ -4,7 +4,7 @@ $(document).ready(function () {
         $.ajax({
             url: 'listPdf.php',
             type: 'POST',
-            data: {output, output},
+            data: { output, output },
             success: function (data) {
                 $('#list-documentos').html(data);
             }
@@ -13,7 +13,7 @@ $(document).ready(function () {
 
     setInterval(() => {
         documents();
-    }, 1000);
+    }, 2000);
     // Made by Dazz
 
     /**
