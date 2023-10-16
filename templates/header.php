@@ -71,7 +71,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
     <header id="header" class="header fixed-top d-flex align-items-center">
 
         <div class="d-flex align-items-center justify-content-between">
-            <a href="<?php echo $url_base; ?>index.php" class="logo d-flex align-items-center">
+            <a href="<?php echo $url_base?>index.php" class="logo d-flex align-items-center">
                 <img src="<?php echo $url_base; ?>img/LOGO_OXILIVE.jpg" alt="">
                 <span class="d-none d-lg-block">OXILIVE</span>
             </a>
@@ -259,16 +259,21 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                 </ul>
             </li>
             <?php endif; ?>
-            <?php if ($_SESSION['puesto'] == 10 || $_SESSION['puesto'] === 1) : ?>
+            <?php if ($_SESSION['puesto'] == 12 || $_SESSION['puesto'] === 1) : ?>
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#cata-nav" data-bs-toggle="collapse"
-                    href="<?php echo $url_base; ?>secciones/catalogo/index.php">
-                    <i class="bi bi-book-half"></i><span>Catálogo</span><i class="bi bi-chevron-down ms-auto"></i>
+                    href="<?php echo $url_base; ?>secciones/call_center/index.php">
+                    <i class="bi bi-book-half"></i><span>Call Center</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="cata-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="<?php echo $url_base; ?>secciones/catalogo/index.php">
-                            <i class="bi bi-circle"></i><span>Comprar</span>
+                        <a href="<?php echo $url_base; ?>secciones/call_center/medicos/index.php">
+                            <i class="bi bi-circle"></i><span>Asistencias</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo $url_base; ?>secciones/call_center/camara/camara.php">
+                            <i class="bi bi-circle"></i><span>Scanner</span>
                         </a>
                     </li>
                 </ul>
@@ -453,13 +458,13 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                 </a>
                 <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="<?php echo $url_base; ?>secciones/oxigeno/pacientes/index.php">
-                            <i class="bi bi-circle"></i><span>Pacientes</span>
+                        <a href="<?php echo $url_base; ?>secciones/call_center/servicios/index.php">
+                            <i class="bi bi-circle"></i><span>Servicios</span>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo $url_base; ?>secciones/aseguradoras/index.php">
-                            <i class="bi bi-circle"></i><span>Aseguradoras</span>
+                        <a href="<?php echo $url_base; ?>secciones/call_center/servicios/index.php">
+                            <i class="bi bi-circle"></i><span>Asistencia Médcia</span>
                         </a>
                     </li>
                 </ul>
@@ -495,6 +500,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                 </ul>
 
             </li>
+            
             <?php endif; ?>
             <?php if ($_SESSION['puesto'] === 3 || $_SESSION['puesto'] === 1) : ?>
             <li class="nav-item">

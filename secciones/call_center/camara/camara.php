@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Captura INE</title>
+    <title>Scanner</title>
     <style>
         /* Estilos para centrar el contenido y hacerlo responsivo */
         body {
@@ -66,19 +66,19 @@
         <button type="button" class="btn btn-success" id="startCamera">Iniciar Cámara</button>
         <button type="button" class="btn btn-danger" id="stopDetection" disabled>Detener Detección</button>
         <button type="button" class="btn btn-info" id="capture" disabled>Capturar</button>
-        <button type="button" class="btn btn-primary" id="downloadImage" disabled>Descargar Imagen</button>
+        <button type="button" class="btn btn-primary" id="showImage" disabled>Descargar PDF</button>
     </div>
     
-
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.7.0/fabric.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.9.0/dist/pdf-lib.js"></script>
+
 
     <script>
         let video, canvas, context, model, stream, intervalId, closestPrediction;
+
         async function setupCamera() {
             video = document.getElementById('video');
             canvas = document.getElementById('canvas');
@@ -88,7 +88,7 @@
             video.onloadedmetadata = () => {
                 canvas.width = video.videoWidth;
                 canvas.height = video.videoHeight;
-                runObjectDetection();
+                runObjectDetection(); // Mueve esta llamada aquí
             };
         }
 
@@ -109,7 +109,7 @@
                     context.globalAlpha = 0.5;
                     context.stroke();
                     document.getElementById('capture').disabled = false;
-                    document.getElementById('downloadImage').disabled = false;
+                    document.getElementById('showImage').disabled = false;
                 }
             }, 100);
         }
@@ -119,7 +119,7 @@
         const stopDetectionButton = document.getElementById('stopDetection');
         const captureButton = document.getElementById('capture');
         const capturedImage = document.getElementById('capturedImage');
-        const downloadButton = document.getElementById('downloadImage'); // Botón de descarga
+        const showImageButton = document.getElementById('showImage'); // Botón para mostrar la imagen
 
         startCameraButton.addEventListener('click', async () => {
             if (!stream) {
@@ -138,39 +138,84 @@
                 stopDetectionButton.disabled = true;
                 captureButton.disabled = true;
                 capturedImage.style.display = 'none';
+                showImageButton.disabled = false;
                 location.reload();
             }
         });
 
         captureButton.addEventListener('click', () => {
-            // Tomar una captura de la detección
-            if (closestPrediction) {
-                const x = Math.max(0, closestPrediction.bbox[0]);
-                const y = Math.max(0, closestPrediction.bbox[1]);
-                const width = Math.min(canvas.width - x, closestPrediction.bbox[2]);
-                const height = Math.min(canvas.height - y, closestPrediction.bbox[3]);
+        // Tomar una captura de la detección
+        if (closestPrediction) {
+            const x = Math.max(0, closestPrediction.bbox[0]);
+            const y = Math.max(0, closestPrediction.bbox[1]);
+            const width = Math.min(canvas.width - x, closestPrediction.bbox[2]);
+            const height = Math.min(canvas.height - y, closestPrediction.bbox[3]);
 
-                const captureCanvas = document.createElement('canvas');
-                captureCanvas.width = width;
-                captureCanvas.height = height;
-                const captureContext = captureCanvas.getContext('2d');
-                captureContext.drawImage(video, x, y, width, height, 0, 0, width, height);
+            const captureCanvas = document.createElement('canvas');
+            captureCanvas.width = width;
+            captureCanvas.height = height;
+            const captureContext = captureCanvas.getContext('2d');
+            captureContext.drawImage(video, x, y, width, height, 0, 0, width, height);
 
-                // Mostrar la captura al lado
-                capturedImage.src = captureCanvas.toDataURL('image/png');
-                capturedImage.style.display = 'block';
-            }
-        });
+            // Mostrar la captura al lado
+            capturedImage.src = captureCanvas.toDataURL('image/png');
+            capturedImage.style.display = 'block';
+        }
+    });
 
-        // Agregar funcionalidad al botón de descarga
-        downloadButton.addEventListener('click', () => {
+    showImageButton.addEventListener('click', async () => {
+            // Verificar si la imagen capturada existe
             if (capturedImage.src) {
-                const a = document.createElement('a');
-                a.href = capturedImage.src;
-                a.download = 'captured_image.png';
-                a.click();
+                const imgData = capturedImage.src;
+
+                // Crear un nuevo PDF
+                const { PDFDocument, rgb } = PDFLib;
+
+                const pdfDoc = await PDFDocument.create();
+                const page = pdfDoc.addPage([100, 100]);
+                const { width, height } = page.getSize();
+
+                // Cargar la imagen y agregarla a la página
+                const jpgImage = await pdfDoc.embedJpg(imgData);
+                const jpgDims = jpgImage.scale(1);
+
+                const imgWidth = jpgDims.width;
+                const imgHeight = jpgDims.height;
+
+                const x = (width - imgWidth) / 2;
+                const y = (height - imgHeight) / 2;
+
+                page.drawImage(jpgImage, {
+                    x,
+                    y,
+                    width: imgWidth,
+                    height: imgHeight,
+                    color: rgb(0, 0, 0),
+                });
+
+                // Generar el archivo PDF
+                const pdfBytes = await pdfDoc.save();
+
+                // Crear un objeto Blob para el archivo PDF
+                const pdfBlob = new Blob([pdfBytes], { type: 'application/pdf' });
+
+                // Crear un enlace para descargar el PDF
+                const pdfUrl = URL.createObjectURL(pdfBlob);
+                const link = document.createElement('a');
+                link.href = pdfUrl;
+                link.download = 'captura.pdf';
+                link.style.display = 'none';
+
+                // Agregar el enlace al cuerpo del documento y hacer clic para descargar
+                document.body.appendChild(link);
+                link.click();
+
+                // Limpiar después de la descarga
+                document.body.removeChild(link);
+                URL.revokeObjectURL(pdfUrl);
             }
         });
+
     </script>
 </body>
 </html>
