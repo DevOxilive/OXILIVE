@@ -18,6 +18,7 @@ if (!isset($_SESSION['us'])) {
 <head>
     <link rel="stylesheet" href="../../../../assets/css/foto_perfil.css">
     <link rel="stylesheet" href="../../../../assets/css/edit.css">
+    <link rel="stylesheet" href="../css/botones.css">
 </head>
 <main id="main" class="main">
     <section class="section dashboard">
@@ -58,9 +59,13 @@ if (!isset($_SESSION['us'])) {
                         <label for="telUno" class="form-label">Teléfono:</label>
                         <input type="text" maxlength="10" class="form-control" name="telUno" id="telUno" placeholder="Ingresa un número de teléfono">
                     </div>
-                    <div class="contenido col-md-3">
+                    <div class="contenido col-md-1" style="display: flex;" id="add">
+                        <a role="button" class="btn btn-outline-info" id=addBoton><i class="bi bi-plus"></i></a>
+                    </div>
+                    <div class="contenido col-md-3" style="display: none;" id="telDos">
                         <label for="telDos" class="form-label">Teléfono 2:</label>
                         <input type="text" maxlength="10" class="form-control" name="telDos" id="telDos" placeholder="Ingresa un número de teléfono">
+                        <span class="badge bg-danger border border-light rounded-circle" id="delBoton">X</span>
                     </div>
                     
                     <!-- Apartado del registro para domicilio -->
@@ -153,6 +158,7 @@ if (!isset($_SESSION['us'])) {
 </main>
 <script src="../js/domicilio.js"></script>
 <script src="../js/validacion.js"></script>
+<script src="../js/botonAdd.js"></script>
 
 </html>
 <?php
