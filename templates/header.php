@@ -475,7 +475,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo $url_base; ?>secciones/oxigeno/pacientes/index.php">
+                            <a href="<?php echo $url_base; ?>secciones/call_center/pacientes/index.php">
                                 <i class="bi bi-circle"></i><span>Pacientes</span>
                             </a>
                         </li>
