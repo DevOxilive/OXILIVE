@@ -470,6 +470,11 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                     </a>
                     <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                         <li>
+                            <a href="<?php echo $url_base; ?>secciones/call_center/chatNotifica/index.php">
+                                <i class="bi bi-circle"></i><span>Chat call center</span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="<?php echo $url_base; ?>secciones/oxigeno/pacientes/index.php">
                                 <i class="bi bi-circle"></i><span>Pacientes</span>
                             </a>
@@ -477,6 +482,11 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                         <li>
                             <a href="<?php echo $url_base; ?>secciones/aseguradoras/index.php">
                                 <i class="bi bi-circle"></i><span>Aseguradoras</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo $url_base; ?>secciones/call_center/arribo/index.php">
+                                <i class="bi bi-circle"></i><span>Arribo</span>
                             </a>
                         </li>
                     </ul>

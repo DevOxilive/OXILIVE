@@ -9981,7 +9981,26 @@ INSERT INTO `cpts_administradora` (`id_cpt`, `cpt`, `descripcion`, `unidad`, `fe
 	(25, 'HJ-GG-66', 'Apoyo General 8 Horas', 'Unidad 8 Horas', '2023-10-10', 3),
 	(26, 'HJ-GG-66', 'Apoyo General 8 Horas', 'Unidad 8 Horas', '2023-10-10', 3),
 	(27, 'HJ-GG-66', 'Apoyo General 8 Horas', 'Unidad 8 Horas', '2023-10-10', 3),
-	(28, 'HJ-GG-66', 'Apoyo General 8 Horas', 'Unidad 8 Horas', '2023-10-10', 3);
+	(28, 'HJ-GG-66', 'Apoyo General 8 Horas', 'Unidad 8 Horas', '2023-10-10', 3),
+	(29, 'MÁS RICO DE LO NORMAL', 'esta muy rico', '8 horas de ricura XD', NULL, 1);
+
+-- Volcando estructura para tabla bdoxilive.documentos
+DROP TABLE IF EXISTS `documentos`;
+CREATE TABLE IF NOT EXISTS `documentos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nombreArchi` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `id_envia` int DEFAULT NULL,
+  `id_recibe` int DEFAULT NULL,
+  `persona` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Volcando datos para la tabla bdoxilive.documentos: ~1 rows (aproximadamente)
+DELETE FROM `documentos`;
+INSERT INTO `documentos` (`id`, `nombreArchi`, `id_envia`, `id_recibe`, `persona`) VALUES
+	(8, 'Proyecto Oscar (2).pdf', 18, 10, 'eldazz'),
+	(9, 'Proyecto Oscar (2).pdf', 10, 18, 'dazz'),
+	(10, 'Proyecto Oscar (2).pdf', 1, 10, 'Yani24_');
 
 -- Volcando estructura para tabla bdoxilive.empleados
 DROP TABLE IF EXISTS `empleados`;
@@ -10014,7 +10033,7 @@ CREATE TABLE IF NOT EXISTS `empleados` (
   CONSTRAINT `FK_empleados_bancos` FOREIGN KEY (`Banco`) REFERENCES `bancos` (`id_bancos`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_empleados_genero` FOREIGN KEY (`Genero`) REFERENCES `genero` (`id_genero`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_empleados_puestos` FOREIGN KEY (`Puesto`) REFERENCES `puestos` (`id_puestos`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.empleados: ~2 rows (aproximadamente)
 DELETE FROM `empleados`;
@@ -10625,11 +10644,14 @@ CREATE TABLE IF NOT EXISTS `pacientes_oxigeno` (
   CONSTRAINT `FK4_banco` FOREIGN KEY (`Banco`) REFERENCES `bancos` (`id_bancos`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_pacientes_oxigeno_aseguradoras` FOREIGN KEY (`Aseguradora`) REFERENCES `aseguradoras` (`id_aseguradora`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_pacientes_oxigeno_estado_paciente` FOREIGN KEY (`estado`) REFERENCES `estado_paciente` (`id_estadop`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.pacientes_oxigeno: ~10 rows (aproximadamente)
 DELETE FROM `pacientes_oxigeno`;
 INSERT INTO `pacientes_oxigeno` (`id_pacientes`, `Nombres`, `Apellidos`, `Genero`, `Edad`, `calle`, `num_in`, `num_ext`, `colonia`, `cp`, `municipio`, `estado_direccion`, `Alcaldia`, `Telefono`, `Administradora`, `Aseguradora`, `Banco`, `No_nomina`, `Credencial_front`, `Credencial_post`, `Fecha_registro`, `Credencial_aseguradora`, `comprobante`, `Credencial_aseguradoras_post`, `referencias`, `estado`, `rfc`, `responsable`) VALUES
+	(1, 'MAURICIO', 'BELTRAN', 1, '89', 'ACONITO', '1', '1', 'TLAIXCO', 56337, 'CHIMALHUACAN', 'ESTADO DE MEXICO', 'KOKO', '87965132', 5, 11, 3, 'KOLO123459', _binary 0x313639323139373732315f646573636172676172202835292e6a7067, _binary 0x313639323139373732315f747265652d3733363838355f313238302e6a7067, '2023-08-16 14:55:21', _binary 0x313639323139373732315f313336365f323030302e6a706567, _binary 0x313639323139373732315f62646f78696c697665202d44442e706466, _binary 0x313639323139373732315f64657363617267612e6a7067, 'HHUGUI', 1, 'BEPM111216', 'YO'),
+	(4, 'NOIN', 'NNKJ', 1, '21', 'KJKJN', 'KJNKJNKJK', 'JNKJNKJNJ', 'KJNKJNKJ', 12345, 'JNJ', 'JNJ', 'JNJN', 'JBHJB', 4, 7, 3, 'LO09', _binary 0x313639323733313236355f343837303038332e6a7067, _binary 0x313639323733313430345f313639323234303236315f576861747341707020496d61676520323032332d30382d313620617420332e30392e313620504d2e6a706567, '2023-08-22 19:07:45', _binary 0x313639323733313236355f4e61747572655f3130372e6a7067, _binary 0x313639323733313236355f616e65786f5f6d5f3030313133362e706466, _binary 0x313639323733313236355f3230313331302e6a7067, 'JHB', 1, 'KJNJ', 'JNJINJKK'),
+	(24, 'oscar alan', 'perea', 1, '15', 'meneses', '3', '2', 'israel', 56345, 'chimalhuacan', 'méxico', 'CMDX', '5584454683', 6, 9, 1, '3', _binary 0x313639353035363531325f7072756562612e6a7067, _binary 0x313639353035363531325f7072756562612e6a7067, '2023-09-18 17:01:35', _binary 0x313639353035363531325f7072756562612e6a7067, _binary 0x313639353035363439355f313639323139373732315f62646f78696c697665202d44442e706466, _binary 0x313639353035363531325f7072756562612e6a7067, 'ruben y levy', 1, 'X0X0X0X0X0X0X0', 'Pedro'),
 	(25, 'Margarita', 'Mora Castro', 2, '15', 'meneses', '3', '2', 'israel', 56345, 'chimalhuacan', 'méxico', 'CMDX', '5584454683', 6, 10, 1, '5', _binary 0x313639353036323035315f7072756562612e6a7067, _binary 0x313639353036323035315f7072756562612e6a7067, '2023-09-18 18:34:12', _binary 0x313639353036323035315f7072756562612e6a7067, _binary 0x313639353036323035315f313639323139373732315f62646f78696c697665202d44442e706466, _binary 0x313639353036323035315f7072756562612e6a7067, 'ruben y levy', 1, 'X0X0X0X0X0X033', 'Pedro'),
 	(26, 'kevin', 'vargas', 1, '22', 'meneses', '3', '2', 'israel', 56345, 'chimalhuacan', 'méxico', 'CMDX', '5584454683', 5, 10, 1, '3', _binary 0x313639353932313534315f707275656261322e6a7067, _binary 0x313639353932313534325f707275656261322e6a7067, '2023-09-28 17:18:39', _binary 0x313639353932313534325f707275656261322e6a7067, _binary 0x313639353932313531395f313639323139373732315f62646f78696c697665202d44442e706466, _binary 0x313639353932313534325f707275656261322e6a7067, 'ruben y levy', 1, 'X0X0X0X0X0X221', 'Pedro'),
 	(27, 'maria', 'nelva', 2, '18', 'meneses', '3', '2', 'israel', 56345, 'chimalhuacan', 'méxico', 'CMDX', '5584454683', 4, 9, 1, '1', _binary 0x313639353932343633315f7072756562612e6a7067, _binary 0x313639353932343633315f707275656261322e6a7067, '2023-09-28 18:10:31', _binary 0x313639353932343633315f707275656261322e6a7067, _binary 0x313639353932343633315f313639323139373732315f62646f78696c697665202d44442e706466, _binary 0x313639353932343633315f707275656261322e6a7067, 'ruben y levy', 1, 'X0X0X0X0X0X099', 'Pedro'),
@@ -10790,7 +10812,7 @@ CREATE TABLE IF NOT EXISTS `ruta_diaria_oxigeno` (
   CONSTRAINT `FK12_choferRut` FOREIGN KEY (`Chofer`) REFERENCES `choferes` (`id_choferes`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK8_estadoEnt` FOREIGN KEY (`estado`) REFERENCES `estado_ruta` (`id_estado`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_ruta_diaria_oxigeno_aseguradoras` FOREIGN KEY (`Aseguradora`) REFERENCES `aseguradoras` (`id_aseguradora`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.ruta_diaria_oxigeno: ~1 rows (aproximadamente)
 DELETE FROM `ruta_diaria_oxigeno`;
