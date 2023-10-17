@@ -40,9 +40,9 @@ if (!isset($_SESSION['us'])) {
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Apellidos</th>
                                 <th scope="col">Fecha</th>
-                                <th scope="col">Hora<br>entrada</th>
-                                <th scope="col">Hora<br>salida</th>
+                                <th scope="col">Horario</th>
                                 <th scope="col">Paciente</th>
+                                <th scope="col">Estado</th>
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>
@@ -63,11 +63,7 @@ if (!isset($_SESSION['us'])) {
                                     </td>
                                     <td>
                                         <center>
-                                            <?php echo $horario['horarioEntrada']; ?>
-                                        </center>
-                                    </td>
-                                    <td>
-                                        <center>
+                                            <?php echo $horario['horarioEntrada']; ?> /<br>
                                             <?php echo $horario['horarioSalida']; ?>
                                         </center>
                                     </td>
@@ -75,12 +71,31 @@ if (!isset($_SESSION['us'])) {
                                         <?php echo $horario['Paciente']; ?>
                                     </td>
                                     <td>
+                                        <?php
+                                        if ($horario['statusHorario'] == 1) {
+                                            $badgeColor = 'class="badge bg-warning fs-6"';
+                                            $text = $horario['estado'];
+                                        } else if ($horario['statusHorario'] == 2) {
+                                            $badgeColor = 'class="badge bg-success fs-6"';
+                                            $text = $horario['estado'];
+                                        } else if ($horario['statusHorario'] == 3 ){
+                                            $badgeColor = 'class="badge bg-info fs-6"';
+                                            $text = $horario['estado'];
+                                        }
+                                        ?>
+                                        <center>
+                                            <span <?php echo $badgeColor; ?>>
+                                                <?php echo $text; ?>
+                                            </span>
+                                        </center>
+                                    </td>
+                                    <td>
                                         <center>
                                             <a name="" id="" class="btn btn-outline-warning" href="editar.php?idHor=<?php echo $horario['id_asignacionHorarios']; ?>" role="button">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a> |
-                                            <a name="" class="btn btn-outline-danger" role="button" onclick="delHor(<?php echo $horario['id_asignacionHorarios']; ?>)">
-                                                <i class="bi bi-trash-fill"></i>
+                                            <a name="" class="btn btn-outline-danger" role="button" onclick="cancelHor(<?php echo $horario['id_asignacionHorarios']; ?>)">
+                                                <i class="bi bi-x-lg text-danger"></i>
                                             </a>
                                         </center>
                                     </td>
@@ -103,14 +118,14 @@ if (!isset($_SESSION['us'])) {
         });
     });
 
-    function delHor(id) {
+    function cancelHor(id) {
         var $id = id;
         Swal.fire({
-            title: '¿Seguro que quieres borrar este horario?',
-            text: 'Esta acción no se podrá deshacer una vez se realice',
+            title: '¿Seguro que quieres cancelar este horario?',
+            text: 'Esta acción no se podrá deshacer una vez se realice, pero podrás seguir viendo el horario en la seccion de Cancelados',
             showCancelButton: true,
             width: 700,
-            confirmButtonText: 'Borrar',
+            confirmButtonText: 'Confirmar',
             confirmButtonColor: '#3085d6',
             cancelButtonText: `Cancelar`,
             cancelButtonColor: '#d33',

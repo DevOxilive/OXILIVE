@@ -373,23 +373,24 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                         </li>
                         <!-- Módulo de Servicios -->
                         <li>
-
-                            <a href="#">
-                                <i class="bi bi-circle"></i><span>Servicios</span>
-
+                            <a class="nav-link"data-bs-toggle="collapse" data-bs-target="#services" href="#">
+                                <i class="bi bi-circle"></i><span>Servicios</span><i class="bi bi-chevron-down ms-auto fs-6"></i>
                             </a>
+                            <ul id="services" class="collapse">
+                                <li>
+                                    <a href="<?php echo $url_base; ?>secciones/enfermeria/servicios/horarios/index.php">
+                                        <i class="bi bi-circle"></i><span>Horarios</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo $url_base ?>secciones/enfermeria/servicios/tipos/index.php">
+                                        <i class="bi bi-circle"></i><span>Tipos de Servicios</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
 
-                        <li>
-                            <a href="<?php echo $url_base; ?>secciones/enfermeria/servicios/horarios/index.php">
-                                <i class="bi bi-circle"></i><span>Horarios</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo $url_base ?>secciones/enfermeria/servicios/tipos/index.php">
-                                <i class="bi bi-circle"></i><span>Tipos de Servicios</span>
-                            </a>
-                        </li>
+
                         <!-- Módulo de Bitacora de asistencias -->
                         <li>
                             <a href="<?php echo $url_base; ?>secciones/enfermeria/Bitacora_de_asistencias/admin/index.php">
@@ -419,7 +420,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
 
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/user/index.php">
-                        <i class="bi bi-grid"></i>
+                        <i class="bi bi-grid-fill"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
@@ -429,10 +430,29 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                         <span>Chat General</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/user/pages/indexPacientes.php">
+                        <i class="bi bi-person-fill"></i>
+                        <span>Pacientes</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/user/pages/indexHorarios.php">
+                        <i class="bi bi-calendar3"></i>
+                        <span>Horarios</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/user/pages/indexAsistencia.php">
+                        <i class="bi bi-calendar2-check"></i>
+                        <span>Asistencias</span>
+                    </a>
+                </li>
                 <!--Implementación de apartado registros clínico y cuidados generales-->
                 <li>
-                    <a href="<?php echo $url_base; ?>secciones/enfermeria/registroYcuidados/index.php">
-                        <i class="bi bi-circle"></i><span>Registro Clínico y Cuidados Generales</span>
+                    <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/registroYcuidados/index.php">
+                        <i class="bi bi-circle"></i>
+                        <span>Registro Clínico y Cuidados Generales</span>
                     </a>
                 </li>
 
