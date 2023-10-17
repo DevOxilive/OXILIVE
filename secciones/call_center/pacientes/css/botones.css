@@ -1,7 +1,10 @@
 #add{
-    justify-content: center;
+    justify-content:left;
     align-items: center;
     padding-top: 1.8rem;
+}
+#addBoton{
+    cursor: pointer;
 }
 #delBoton{
     position:absolute;

@@ -7,6 +7,7 @@ if (!isset($_SESSION['us'])) {
     include("../../../../connection/conexion.php");
     include("../../../../module/genero.php");
     include("../../../../module/administradora.php");
+    include("../../../../module/tipoPaciente.php");
     include("../../../../module/banco.php"); //Por modificar por la base de datos
 } else {
     echo "Error en el sistema";
@@ -34,11 +35,11 @@ if (!isset($_SESSION['us'])) {
                         <br>
                         <h2>Datos Generales</h2>
                     </div>
-                    <div class="contenido col-md-5">
+                    <div class="contenido col-md-4">
                         <label for="nombre" class="form-label">Nombre(s):</label>
                         <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingresa el/los nombre(s)">
                     </div>
-                    <div class="contenido col-md-5">
+                    <div class="contenido col-md-4">
                         <label for="nombre" class="form-label">Apellidos:</label>
                         <input type="text" class="form-control" name="apellidos" id="apellidos" placeholder="Ingresa los apellidos">
                     </div>
@@ -51,23 +52,33 @@ if (!isset($_SESSION['us'])) {
                             <?php } ?>
                         </select>
                     </div>
+                    <div class="contenido col-md-2"></div>
                     <div class="contenido col-md-2">
                         <label for="edad" class="form-label">Edad:</label>
                         <input type="text" maxlength="3" class="form-control" name="edad" id="edad" placeholder="Ingresa la edad">
+                    </div>
+                    <div class="contenido col-md-2">
+                        <label for="tipoPaciente" class="form-label">Tipo de Paciente:</label>
+                        <select name="tipoPaciente" id="tipoPaciente" class="form-select">
+                            <option value="">Seleccione tipo de paciente</option>
+                            <?php foreach ($lista_tiposPac as $tipos) { ?>
+                                <option value="<?php echo $tipos['id_tipoPaciente']; ?>"><?php echo $tipos['tipoNombre']; ?></option>
+                            <?php } ?>
+                        </select>
                     </div>
                     <div class="contenido col-md-3">
                         <label for="telUno" class="form-label">Teléfono:</label>
                         <input type="text" maxlength="10" class="form-control" name="telUno" id="telUno" placeholder="Ingresa un número de teléfono">
                     </div>
                     <div class="contenido col-md-1" style="display: flex;" id="add">
-                        <a role="button" class="btn btn-outline-info" id=addBoton><i class="bi bi-plus"></i></a>
+                        <span class="badge bg-primary fs-4" id="addBoton">+</span>
                     </div>
-                    <div class="contenido col-md-3" style="display: none;" id="telDos">
+                    <div class="contenido col-md-3" style="display: none;" id="tel">
                         <label for="telDos" class="form-label">Teléfono 2:</label>
                         <input type="text" maxlength="10" class="form-control" name="telDos" id="telDos" placeholder="Ingresa un número de teléfono">
                         <span class="badge bg-danger border border-light rounded-circle" id="delBoton">X</span>
                     </div>
-                    
+
                     <!-- Apartado del registro para domicilio -->
                     <div class="contenido col-md-12">
                         <hr>
@@ -101,11 +112,11 @@ if (!isset($_SESSION['us'])) {
                     </div>
                     <div class="contenido col-md-1">
                         <label for="numExt" class="form-label">N° Ext.:</label>
-                        <input type="text" class="form-control" name="numExt" id="numExt" placeholder="123">
+                        <input type="text" maxlength="15" class="form-control" name="numExt" id="numExt" placeholder="123">
                     </div>
                     <div class="contenido col-md-1">
                         <label for="numInt" class="form-label">N° Int.:</label>
-                        <input type="text" class="form-control" name="numInt" id="numInt" placeholder="456">
+                        <input type="text" maxlength="15" class="form-control" name="numInt" id="numInt" placeholder="456">
                     </div>
                     <div class="contenido col-md-3">
                         <label for="calleUno" class="form-label">Entre la calle:</label>
@@ -137,10 +148,27 @@ if (!isset($_SESSION['us'])) {
                         <label for="banco" class="form-label">Banco:</label>
                         <select name="banco" id="banco" class="form-select">
                             <option value="" selected>Selecciona el banco</option>
-                            <?php foreach ($lista_bancos as $bancos){ ?>
+                            <?php foreach ($lista_bancos as $bancos) { ?>
                                 <option value="<?php echo $bancos['id_bancos']; ?>"><?php echo $bancos['Nombre_banco']; ?></option>
                             <?php } ?>
                         </select>
+                    </div>
+                    <div class="contenido col-md-3">
+                        <label for="expediente" class="form-label">N° de Expediente:</label>
+                        <input type="text" class="form-control" name="expediente" id="expediente" placeholder="Ingresa el N° de expediente">
+                    </div>
+                    <div class="contenido col-md-3"></div>
+                    <div class="contenido col-md-3">
+                        <label for="autorizacionGen" class="form-label">N° de Autorización General:</label>
+                        <input type="text" class="form-control" name="autorizacionGen" id="autorizacionGen" placeholder="Ingresa el N° de autorización">
+                    </div>
+                    <div class="contenido col-md-3">
+                        <label for="autorizacionEsp" class="form-label">N° de Autorización Especial:</label>
+                        <input type="text" class="form-control" name="autorizacionEsp" id="autorizacionEsp" placeholder="Ingresa el N° de autorización">
+                    </div>
+                    <div class="contenido col-md-3">
+                        <label for="deducible" class="form-label">Deducible:</label>
+                        <input type="text" class="form-control" name="deducible" id="deducible" placeholder="Ingresa el deducible">
                     </div>
                     <!-- Botones para el formulario -->
                     <div class="col-12">
@@ -156,9 +184,11 @@ if (!isset($_SESSION['us'])) {
         </div>
     </section>
 </main>
+<script src="../js/formButtons.js"></script>
 <script src="../js/domicilio.js"></script>
-<script src="../js/validacion.js"></script>
 <script src="../js/botonAdd.js"></script>
+<script src="../js/validacion.js"></script>
+
 
 </html>
 <?php
