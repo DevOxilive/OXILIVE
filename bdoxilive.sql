@@ -10177,7 +10177,7 @@ CREATE TABLE IF NOT EXISTS `estado_equipo` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla bdoxilive.estado_equipo: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.estado_equipo: ~1 rows (aproximadamente)
 DELETE FROM `estado_equipo`;
 INSERT INTO `estado_equipo` (`id`, `Nombre_estado`) VALUES
 	(1, 'FUNCIONAL');
@@ -10206,7 +10206,7 @@ CREATE TABLE IF NOT EXISTS `estado_insumo` (
   PRIMARY KEY (`id_estado`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla bdoxilive.estado_insumo: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.estado_insumo: ~1 rows (aproximadamente)
 DELETE FROM `estado_insumo`;
 INSERT INTO `estado_insumo` (`id_estado`, `estado_insumo`) VALUES
 	(1, 'UTIL');
@@ -10317,7 +10317,7 @@ CREATE TABLE IF NOT EXISTS `insumos` (
   CONSTRAINT `FK_insumos_tamano_insumo` FOREIGN KEY (`tamano_insumo`) REFERENCES `tamano_insumo` (`id_tamano`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla bdoxilive.insumos: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.insumos: ~1 rows (aproximadamente)
 DELETE FROM `insumos`;
 INSERT INTO `insumos` (`id_insumo`, `cantidad_insumo`, `marca_insumo`, `tamano_insumo`, `estado_insumo`) VALUES
 	(1, 4, 1, 1, 1);
@@ -10649,7 +10649,7 @@ CREATE TABLE IF NOT EXISTS `paises` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla bdoxilive.paises: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.paises: ~1 rows (aproximadamente)
 DELETE FROM `paises`;
 INSERT INTO `paises` (`id`, `nombre`) VALUES
 	(1, 'México');
@@ -10694,7 +10694,7 @@ CREATE TABLE IF NOT EXISTS `productos` (
   PRIMARY KEY (`id_productos`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla bdoxilive.productos: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.productos: ~1 rows (aproximadamente)
 DELETE FROM `productos`;
 INSERT INTO `productos` (`id_productos`, `nombre`, `descripcion`, `precio`, `imagen`, `fecha_registro`, `categoria`, `cantidad`, `disponible`) VALUES
 	(1, 'PRUEBA DE PRODUCTO', 'PRUEBA DE PRODUCTOP', 1250, _binary 0x313639323230313339395f747265652d3733363838355f313238302e6a7067, '2023-08-16 15:56:39', NULL, 25, 'DISPONIBLE');
@@ -10708,7 +10708,7 @@ CREATE TABLE IF NOT EXISTS `puestos` (
   PRIMARY KEY (`id_puestos`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla bdoxilive.puestos: ~10 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.puestos: ~12 rows (aproximadamente)
 DELETE FROM `puestos`;
 INSERT INTO `puestos` (`id_puestos`, `Nombre_puestos`, `Fecha_registro`) VALUES
 	(1, 'Administrador', '2023-05-30 19:31:17'),
@@ -10792,7 +10792,7 @@ CREATE TABLE IF NOT EXISTS `ruta_diaria_oxigeno` (
   CONSTRAINT `FK_ruta_diaria_oxigeno_aseguradoras` FOREIGN KEY (`Aseguradora`) REFERENCES `aseguradoras` (`id_aseguradora`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla bdoxilive.ruta_diaria_oxigeno: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.ruta_diaria_oxigeno: ~1 rows (aproximadamente)
 DELETE FROM `ruta_diaria_oxigeno`;
 INSERT INTO `ruta_diaria_oxigeno` (`id_ruta`, `Fecha_agenda`, `Paciente`, `Direccion`, `Alcaldia`, `Aseguradora`, `Telefono`, `Carro`, `Chofer`, `Tanque`, `Regulador`, `Portatil`, `Concentrador`, `Aspirador`, `Cpac`, `Bipac`, `Agua`, `Puntas_n`, `Puntas_neon`, `Vaso_borb`, `Mascarilla`, `Canula`, `Recoleccion_tanque`, `Recoleccion_aspi`, `Recoleccion_concentrador`, `Nota`, `Fecha_hora_entrega`, `estado`, `Fecha_registro`) VALUES
 	(17, '2023-09-02', 'BELTRAN MAURICIO', 'CHIMALHUACAN', 'KOKO', 11, '87965132', 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ' SSSSSS', NULL, 1, '2023-09-02 20:49:33');
@@ -10856,7 +10856,7 @@ CREATE TABLE IF NOT EXISTS `tamano_insumo` (
   PRIMARY KEY (`id_tamano`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla bdoxilive.tamano_insumo: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.tamano_insumo: ~1 rows (aproximadamente)
 DELETE FROM `tamano_insumo`;
 INSERT INTO `tamano_insumo` (`id_tamano`, `tamano_insumo`) VALUES
 	(1, 'EJEMPLO');
@@ -10901,7 +10901,7 @@ CREATE TABLE IF NOT EXISTS `tipos_servicios` (
   PRIMARY KEY (`id_tipoServicio`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla bdoxilive.tipos_servicios: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.tipos_servicios: ~1 rows (aproximadamente)
 DELETE FROM `tipos_servicios`;
 INSERT INTO `tipos_servicios` (`id_tipoServicio`, `nombreServicio`, `horasServicio`, `sueldo`) VALUES
 	(1, 'Guardia General', 08, 300);
