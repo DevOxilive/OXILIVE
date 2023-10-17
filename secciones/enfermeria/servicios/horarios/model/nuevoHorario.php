@@ -10,7 +10,7 @@ $horSal = $_POST['horaSalida'];
 
 $sentenciaHorario = $con->prepare(
     'INSERT INTO asignacion_horarios 
-    VALUES (NULL, :nom, :serv, :horEntr, :horSal, :fechaServ, :paci);'
+    VALUES (NULL, :nom, :serv, :horEntr, :horSal, :fechaServ, :paci, 1);'
 );
 
 $sentenciaHorario->bindParam(':nom', $nom);

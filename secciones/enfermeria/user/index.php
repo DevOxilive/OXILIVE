@@ -40,7 +40,7 @@ if (!isset($_SESSION['us'])) {
                 <div class="row">
                     <!-- Card Proximo Servicio -->
                     <div class="col-12">
-                        <div class="card info-card next-service-card">
+                        <div class="card info-card next-service-card" id="service-card">
                             <div class="card-body">
                                 <h5 class="card-title">Próximo servicio</h5>
                                 <?php if (!empty($lista_servicios)) { ?>
@@ -50,7 +50,7 @@ if (!isset($_SESSION['us'])) {
                                                 <i class="bi bi-clipboard-pulse"></i>
                                             </div>
                                             <div class="ps-4 ">
-                                                <h6><?php echo $servicios['nomPaciente']; ?></h6>
+                                                <h6><a class="text-black" href="pages/paciente.php?idPac=<?php echo $servicios['id_pacientes']?>"><?php echo $servicios['nomPaciente']; ?></a></h6>
                                                 <span class="text-muted small pt-2 ps-1"><?php echo $servicios['nomGuardia']; ?></span>
                                             </div>
                                         </div>

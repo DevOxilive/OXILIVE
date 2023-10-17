@@ -38,8 +38,8 @@ CREATE TABLE `usuarios` (
 
 
 ALTER TABLE usuarios
-ADD COLUMN estatus VARCHAR(50) NULL DEFAULT '0' COLLATE utf8mb4_0900_ai_ci,
-ADD COLUMN token VARCHAR(64) NULL DEFAULT NULL COLLATE utf8mb4_0900_ai_ci;
+ADD COLUMN estatus VARCHAR(50) NULL DEFAULT '0'  ,
+ADD COLUMN token VARCHAR(64) NULL DEFAULT NULL  ;
 
 nuevos datos de la tabla :
 CREATE TABLE `usuarios` (

@@ -4,6 +4,7 @@ form .contenido input {
     border: 1px solid #005880;
     padding: 10px 10px;
     font-size: 18px;
+    height: max-content;
 }
 
 form .contenido select {
@@ -20,4 +21,5 @@ form .contenido label {
     color: black;
     top: 0;
     left: 10px;
+    font-weight: bold;
 }
