@@ -76,9 +76,8 @@ if (count($resultado) > 0) {
             }
         });
     </script>
-    <script src="../js/eliminar_documento.js"></script>
     <!-- controlador de los estilos del chat -->
     <script src="../js/chatPriv.js"></script>
     <?php
     include("../../../../templates/footer.php");
-    ?>
+    ?>Z
