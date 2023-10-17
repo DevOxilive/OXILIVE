@@ -9968,7 +9968,7 @@ CREATE TABLE IF NOT EXISTS `cpts_administradora` (
   PRIMARY KEY (`id_cpt`),
   KEY `administradora` (`admi`) USING BTREE,
   CONSTRAINT `FK1_admi_cpt` FOREIGN KEY (`admi`) REFERENCES `administradora` (`id_administradora`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.cpts_administradora: ~9 rows (aproximadamente)
 DELETE FROM `cpts_administradora`;
@@ -9988,12 +9988,12 @@ INSERT INTO `cpts_administradora` (`id_cpt`, `cpt`, `descripcion`, `unidad`, `fe
 DROP TABLE IF EXISTS `documentos`;
 CREATE TABLE IF NOT EXISTS `documentos` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nombreArchi` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `nombreArchi` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `id_envia` int DEFAULT NULL,
   `id_recibe` int DEFAULT NULL,
   `persona` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.documentos: ~1 rows (aproximadamente)
 DELETE FROM `documentos`;
@@ -10753,7 +10753,7 @@ CREATE TABLE IF NOT EXISTS `regisclinicos_cuidagenerales` (
   `Temperatura` decimal(20,6) NOT NULL,
   `Pulso` decimal(20,6) NOT NULL,
   `Respiracion` int NOT NULL,
-  `Tension_arterial` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `Tension_arterial` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `Spo2` int NOT NULL,
   `Glicemia_capilar` decimal(20,6) NOT NULL,
   `Vomitos` int DEFAULT '0',
@@ -10763,27 +10763,27 @@ CREATE TABLE IF NOT EXISTS `regisclinicos_cuidagenerales` (
   `Caidas` int DEFAULT '0',
   `Drenajes_vendajes` int DEFAULT '0',
   `Upp_hh` int DEFAULT '0',
-  `Descripcion_upp` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Solucion` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
+  `Descripcion_upp` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Solucion` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
   `Fecha_solucion` date DEFAULT NULL,
   `Cantidad_solucion` varchar(50) DEFAULT '',
   `Got_solucion` varchar(50) DEFAULT '',
   `Frec_solucion` varchar(50) DEFAULT '',
   `Hora_inicio` time DEFAULT NULL,
   `Hora_termina` time DEFAULT NULL,
-  `Cauracion` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Nota_emfermeria_dia` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `Nota_emfermeria_noche` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
+  `Cauracion` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Nota_emfermeria_dia` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Nota_emfermeria_noche` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
   `Alimentos_desayuno` time DEFAULT NULL,
   `Descripcion_desayuno` varchar(255) DEFAULT NULL,
   `Alimentos_comida` time DEFAULT NULL,
   `Descripcion_comida` varchar(255) DEFAULT NULL,
   `Alimentos_cena` time DEFAULT NULL,
   `descripcion_cena` varchar(255) DEFAULT NULL,
-  `Medicamentos` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
+  `Medicamentos` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
   `Horario_Medi` time DEFAULT NULL,
   PRIMARY KEY (`id_RC`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.regisclinicos_cuidagenerales: ~1 rows (aproximadamente)
 DELETE FROM `regisclinicos_cuidagenerales`;
