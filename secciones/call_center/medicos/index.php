@@ -1,132 +1,139 @@
 <?php
 session_start();
 if (!isset($_SESSION['us'])) {
-    header('Location: ../../../../login.php');
-}elseif (isset($_SESSION['us'])) {
+    header('Location: ../../../login.php');
+} elseif (isset($_SESSION['us'])) {
     include("../../../templates/header.php");
-    include("../../../connection/conexion.php");
+    
     include("consulta.php");
-}else{
+} else {
     echo "Error en el sistema";
 }
 ?>
 <!DOCTYPE html>
-
+<html>
 <head>
     <link rel="stylesheet" href="<?php echo $url_base; ?>assets/css/foto_perfil.css">
     <link rel="stylesheet" href="<?php echo $url_base; ?>assets/css/edit.css">
 </head>
 <main id="main" class="main">
-    <input type="hidden" id="statusUs" name="statusUs" value="<?php echo $_SESSION['estado']; ?>">
-    <div class="pagetitle">
-        <!-- Encabezado dinámico dependiendo el género y el nombre del usuario -->
-        <h1>
-            <!-- Bienvenid<?php if ($_SESSION['genero'] == 1) { ?>o<?php } else { ?>a<?php } ?>
-            <?php echo ucfirst(strtolower($_SESSION['no'])); ?> -->
-        </h1>
-    </div><!-- End Page Title -->
-    <section class="section dashboard">
-        <div class="row">
-            <!-- Left side columns -->
-            <div class="col-12">
-                <div class="card info-card next-service-card">
-                    <div class="card-body">
-                        <!--Aquí empiezo mis pruebas xD-->
-                        <?php foreach ($ltServicio as $servicio) : ?>
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Solicitado por: <?php echo $servicio['nom_solicitante']; ?></h5>
-                                <p class="card-text">Motivo de consulta: <?php echo $servicio['moti_consulta']; ?></p>
-                                <div class="map-container">
-                                    <!-- <iframe
-                                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1dLATITUD!2dLONGITUD!3d15!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTXCsDQzJzQ1LjEiTiAxNcKwMzUnMTkuMCJX!5e0!3m2!1sen!2sus!4v1622145678145!5m2!1sen!2sus"
-                                                width="600" height="450" style="border:0;" allowfullscreen=""
-                                                loading="lazy"></iframe> -->
-                                </div>
-                                <!-- Botón "Iniciar Servicio" -->
-                                <?php
-                                    $asignacion = $servicio['asignacion'];
-                                    if ($asignacion == 1) {
-                                    $mensaje = "Servicio Iniciado";
-                                    } else {
-                                    $mensaje = "Iniciar Servicio";
-                                    }
-                                ?>
-                                <a href="#" class="btn btn-primary" onclick="mostrarAlerta('<?php echo $mensaje; ?>')"><?php echo $mensaje; ?></a>
-                            </div>
-                        </div>
-                        <?php endforeach; ?>
-                        <!--Aquí termina mi card de iniciar el servicio-->
-                    </div>
-                </div>
+    <div class="row">
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-success" href="crear.php" role="button">Ir a scannerar <i class="bi bi-fullscreen"></i></a>
             </div>
-            <!--Este es su modelo de alex End Card Próximo Servicio -->
-            <!-- Card Actividad reciente -->
-            <div class="col-12">
-                <div class="card">
-                    <div class="filter">
-                        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                            <li class="dropdown-header text-start">
-                                <h6>Filtro</h6>
-                            </li>
 
-                            <li><a class="dropdown-item" onclick="range(this)">Hoy</a></li>
-                            <li><a class="dropdown-item" onclick="range(this)">Esta semana</a></li>
-                            <li><a class="dropdown-item" onclick="range(this)">Esta quincena</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="card-body">
-                        <h5 class="card-title">Actividad Reciente <span>| </span><span id="range-activity">Hoy</span>
-                        </h5>
-
-                        <div class="activity" id="activity">
-
+            <!-- Aquí empiezo mis pruebas xD -->
+            <?php foreach ($ltServicio as $servicio) { ?>
+                <div class="card-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Solicitado por: <?php echo $servicio['nom_solicitante']; ?></h5>
+                            <p class="card-text">Motivo de consulta: <?php echo $servicio['moti_consulta']; ?></p>
+                            <div class="map-container">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15052.618110601145!2d-98.97974744999998!3d19.405728200000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2smx!4v1697645003873!5m2!1ses-419!2smx"
+                                        width="300" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                            <!-- Botón "Iniciar Servicio" -->
+                            <?php
+                            $estado = $servicio['estado'];
+                            if ($estado == 1) {
+                                $mensaje = "Servicio Iniciado";
+                            } else {
+                                $mensaje = "Iniciar Servicio";
+                            }
+                            ?>
+                            <button id="btn-iniciar-servicio" class="btn btn-primary" data-id="<?php echo $servicio['id_sv']; ?>" data-estado="<?php echo $estado; ?>"><?php echo $mensaje; ?></button>
+                            <button id="btn-finalizar-servicio" class="btn btn-danger" style="display: none;" disabled>Finalizar Servicio</button>
+                            <!-- Cronómetro -->
+                            <div id="cronometro_<?php echo $servicio['id_sv']; ?>"></div>
                         </div>
-
                     </div>
                 </div>
-            </div><!-- End Actividad reciente -->
-            <!-- Horarios del usuario -->
-            <div class="col-12">
-                <div class="card info-card customers-card">
-                    <!-- Filtro -->
-                    <div class="filter">
-                        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                            <li class="dropdown-header text-start">
-                                <h6>Filter</h6>
-                            </li>
-                            <li><a class="dropdown-item" href="#">Today</a></li>
-                            <li><a class="dropdown-item" href="#">This Month</a></li>
-                            <li><a class="dropdown-item" href="#">This Year</a></li>
-                        </ul>
-                    </div>
-                    <!-- End Filtro -->
-                    <div class="card-body">
-                        <h5 class="card-title">Horarios <span>| Últimos tres</span></h5>
-
-                    </div>
-                </div>
-            </div><!-- End Horarios del usuario -->
-
+                <?php }?>
+            </div>
         </div>
-        </div>
-        <!-- End Left side columns -->
-        </div>
-    </section>
+    </div>
 </main>
-
-</html>
-
 <script>
+    const btnIniciarServicio = document.querySelectorAll("#btn-iniciar-servicio");
+    const btnFinalizarServicio = document.querySelectorAll("#btn-finalizar-servicio");
+
+    btnIniciarServicio.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+            const servicioId = this.getAttribute("data-id");
+            const estado = this.getAttribute("data-estado");
+            if (estado == 1) {
+                // Cambiar el estado a 2 (Servicio Iniciado)
+                cambiarEstadoServicio(servicioId, 2);
+                // Mostrar alerta
+                mostrarAlerta("Servicio Iniciado");
+                // Deshabilitar el botón "Iniciar Servicio"
+                btn.disabled = true;
+                // Mostrar el botón "Finalizar Servicio" después de 20 segundos
+                setTimeout(function () {
+                    btnFinalizarServicio.forEach(function (finalizarBtn) {
+                        if (finalizarBtn.getAttribute("data-id") === servicioId) {
+                            finalizarBtn.style.display = "block";
+                            finalizarBtn.disabled = false;
+                        }
+                    });
+                }, 20000);
+                // Iniciar el cronómetro
+                iniciarCronometro(servicioId, 20);
+            }
+        });
+    });
+
+    // Botón "Finalizar Servicio"
+    btnFinalizarServicio.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+            const servicioId = this.getAttribute("data-id");
+            // Cambiar el estado a 3 (Servicio Finalizado)
+            cambiarEstadoServicio(servicioId, 3);
+        });
+    });
+
+    // Simular cambio de estado en la base de datos
+    function cambiarEstadoServicio(servicioId, nuevoEstado) {
+        // Aquí puedes realizar una solicitud AJAX para actualizar el estado en la base de datos.
+        // Simulación en este caso:
+        const btnIniciar = document.querySelector(`#btn-iniciar-servicio[data-id="${servicioId}"]`);
+        btnIniciar.setAttribute("data-estado", nuevoEstado);
+    }
+
+    function iniciarCronometro(servicioId, tiempoSegundos) {
+        const cronometro = document.getElementById("cronometro_" + servicioId);
+        let segundos = tiempoSegundos;
+
+        function actualizarCronometro() {
+            const minutos = Math.floor(segundos / 60);
+            const segundosRestantes = segundos % 60;
+
+            const minutosTexto = minutos < 10 ? "0" + minutos : minutos;
+            const segundosTexto = segundosRestantes < 10 ? "0" + segundosRestantes : segundosRestantes;
+
+            cronometro.textContent = minutosTexto + ":" + segundosTexto;
+
+            if (segundos <= 0) {
+                // Cuando el tiempo se agota, oculta el cronómetro
+                cronometro.style.display = "none";
+            } else {
+                setTimeout(actualizarCronometro, 1000);
+            }
+
+            segundos--;
+        }
+
+        actualizarCronometro();
+    }
     function mostrarAlerta(mensaje) {
+        // Aquí puedes personalizar la alerta con un estilo adecuado
         alert(mensaje);
     }
 </script>
-<script src="js/nextService.js"></script>
-<script src="js/rangeActivity.js"></script>
+
 <?php
 include("../../../templates/footer.php");
 ?>
+</html>
