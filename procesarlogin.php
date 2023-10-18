@@ -164,6 +164,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 });
                         </script>";
                     break;
+
+                    case '11':
+                        echo "<script> 
+                                     Swal.fire({
+                                         icon: 'success',
+                                        title: 'BIENVENIDO',
+                                        showConfirmButton: false,
+                                        timer: 1500,
+                                    }).then(function() {
+                                window.location = 'secciones/catalogo/index.php';
+                                    });
+                            </script>";
+                        break;
+
+                        case '12':
+                            echo "<script> 
+                                         Swal.fire({
+                                             icon: 'success',
+                                            title: 'BIENVENIDO',
+                                            showConfirmButton: false,
+                                            timer: 1500,
+                                        }).then(function() {
+                                    window.location = 'secciones/call_center/index.php';
+                                        });
+                                </script>";
+                            break;
                 default:
                     redirectTo('index.php');
                     break;
