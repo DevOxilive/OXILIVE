@@ -6,6 +6,7 @@ $(document).ready(function () {
             type: 'POST',
             success: function (data) {
                 $('#users-list').html(data);
+                
             }
         });
     }

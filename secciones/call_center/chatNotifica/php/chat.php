@@ -47,7 +47,7 @@ if (count($resultado) > 0) {
                     </div>
                     <div id="chat-form">
                         <input type="hidden" value="<?php echo $_SESSION['us'] ?>" id="user">
-                        <label for="fileInput" class="custom-file-upload">
+                        <label for="fileInput" class="custom-file-upload" id="fileLabel">
                             <i class="bi bi-paperclip"></i>
                         </label>
                         <input type="file" id="fileInput" name="file">
@@ -65,19 +65,8 @@ if (count($resultado) > 0) {
         </div>
     </main>
     <script src="../js/documentos.js"></script>
-    <script>
-        const fileInput = document.getElementById('fileInput');
-
-        fileInput.addEventListener('change', (event) => {
-            const selectedFile = event.target.files[0];
-            if (selectedFile) {
-                console.log('Archivo seleccionado:', selectedFile.name);
-                // Aquí puedes realizar otras acciones, como cargar el archivo o mostrar información adicional.
-            }
-        });
-    </script>
     <!-- controlador de los estilos del chat -->
     <script src="../js/chatPriv.js"></script>
     <?php
     include("../../../../templates/footer.php");
-    ?>Z
+    ?>
