@@ -4,14 +4,14 @@
 
     //Consulta que trae los checks de hoy
     $secuenciaHoy = $con->prepare("
-        SELECT a.*, HOUR(checkTime) AS 'hora', MINUTE(checkTime) AS 'minuto', checkName, CONCAT(p.nombre, ' ', p.apellidos) as 'nomPaciente'
-        FROM asistencias a, checkk c, asignacion_horarios ah, pacientes_enfermeria p
+        SELECT a.*, checkName, CONCAT(p.Nombres, ' ', p.Apellidos) as 'nomPaciente', p.id_pacientes
+        FROM asistencias a, checkk c, asignacion_horarios ah, pacientes_oxigeno p
         WHERE a.id_empleadoEnfermeria = :idus
         AND a.fechaAsis = :fechaActual
         AND a.id_check = c.id_check
         AND ah.id_asignacionHorarios = a.id_horario
-        AND ah.id_pacienteEnfermeria = p.id_pacienteEnfermeria
-        ORDER BY a.fechaAsis, a.checkTime;
+        AND ah.id_pacienteEnfermeria = p.id_pacientes
+        ORDER BY a.checkTime DESC;
     ");
     $idUser = $_SESSION['idus'];
     $fechaActual = date('Y-m-d');
@@ -24,7 +24,14 @@
 
     //Consulta que trae los checks de hace una semana
     $secuenciaSemana = $con->prepare("
-        SELECT * FROM asistencias WHERE id_empleadoEnfermeria = :idus AND fechaAsis >= :fechaSemana
+        SELECT a.*, checkName, CONCAT(p.Nombres, ' ', p.Apellidos) as 'nomPaciente', p.id_pacientes
+        FROM asistencias a, checkk c, asignacion_horarios ah, pacientes_oxigeno p
+        WHERE id_empleadoEnfermeria = :idus
+        AND fechaAsis >= :fechaSemana
+        AND a.id_check = c.id_check
+        AND ah.id_asignacionHorarios = a.id_horario
+        AND ah.id_pacienteEnfermeria = p.id_pacientes
+        ORDER BY a.fechaAsis DESC, a.checkTime DESC;
     ");
     $fechaSemana = date('Y-m-d', strtotime('-1 week'));
     $secuenciaSemana -> bindParam(':idus', $idUser);
@@ -48,7 +55,14 @@
         $fecha_fin = date('Y-m-t');
     }
     $secuenciaQuincena = $con->prepare("
-        SELECT * FROM asistencias WHERE id_empleadoEnfermeria = :idus AND fechaAsis BETWEEN :fecha_inicio AND :fecha_fin
+        SELECT a.*,checkName, CONCAT(p.Nombres, ' ', p.Apellidos) as 'nomPaciente', p.id_pacientes
+        FROM asistencias a, checkk c, asignacion_horarios ah, pacientes_oxigeno p
+        WHERE id_empleadoEnfermeria = :idus
+        AND fechaAsis BETWEEN :fecha_inicio AND :fecha_fin
+        AND a.id_check = c.id_check
+        AND ah.id_asignacionHorarios = a.id_horario
+        AND ah.id_pacienteEnfermeria = p.id_pacientes
+        ORDER BY a.fechaAsis DESC, a.checkTime DESC;
     ");
     $secuenciaQuincena -> bindParam(':idus', $idUser);
     $secuenciaQuincena -> bindParam(':fecha_inicio', $fecha_inicio);

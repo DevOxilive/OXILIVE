@@ -6,10 +6,13 @@
                 ah.horarioSalida,
                 ah.fecha, u.Nombres AS "Nombres",
                 u.Apellidos AS "Apellidos",
-                CONCAT(pe.nombre, " ", pe.apellidos) AS "Paciente"
-        FROM usuarios u, asignacion_horarios ah, pacientes_enfermeria pe
-        WHERE ah.id_pacienteEnfermeria = pe.id_pacienteEnfermeria AND
+                CONCAT(pe.Nombres, " ", pe.Apellidos) AS "Paciente",
+                ah.statusHorario,
+                e.estado
+        FROM usuarios u, asignacion_horarios ah, pacientes_oxigeno pe, estado_horarios e
+        WHERE ah.id_pacienteEnfermeria = pe.id_pacientes AND
         u.id_usuarios = ah.id_usuario AND
+        ah.statusHorario = e.id_estadoHorarios AND
         u.id_departamentos = 6;'
     );
     $sentenciaHor->execute();

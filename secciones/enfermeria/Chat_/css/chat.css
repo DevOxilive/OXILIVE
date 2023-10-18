@@ -1,3 +1,7 @@
+body {
+    background-color: rgb(59, 59, 59);
+}
+
 /* Estilo para el contenedor principal del chat */
 #chat-container {
     /* pociocionamiento del chat a lo ancho de forma automatica */
@@ -40,11 +44,13 @@
 }
 
 #send {
-    background-color: transparent;
+    background-color: white;
+    border-radius: 50px;
     border: none;
     cursor: pointer;
     padding: 0;
     margin-left: 5px;
+    width: 50px;
 }
 
 /* texto de usuario*/
