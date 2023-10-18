@@ -29,21 +29,15 @@ numeroInput.addEventListener("input", function () {
             data.forEach((dato) => {
               console.log(dato);
               colonia.innerHTML +=
-                "<option value='" +
-                dato.nombre +
-                "'>" +
+                "<option value='" + dato.id + "'>" +
                 dato.nombre +
                 "</option>";
               delMun.innerHTML =
-                "<option value='" +
-                dato.municipioName +
-                "'>" +
+                "<option value=''>" +
                 dato.municipioName +
                 "</option>";
               estadoDir.innerHTML =
-                "<option value='" +
-                dato.estadoName +
-                "'>" +
+                "<option value=''>" +
                 dato.estadoName +
                 "</option>";
             });
