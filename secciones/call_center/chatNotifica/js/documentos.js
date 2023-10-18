@@ -4,7 +4,7 @@ $(document).ready(function () {
         $.ajax({
             url: 'listPdf.php',
             type: 'POST',
-            data: { output, output },
+            data: { output, output},
             success: function (data) {
                 $('#list-documentos').html(data);
             }

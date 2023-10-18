@@ -37,5 +37,5 @@ if (isset($_POST['documento_id'])) {
     // Después de eliminar el documento, puedes responder con "success" si se eliminó con éxito
 } else {
     // Responde con un mensaje de error si no se proporcionó un ID válido
-    echo "no se resivio id perro";
+    echo "no se resivio id";
 }
