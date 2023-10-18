@@ -36,7 +36,10 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
     <link href="<?php echo $url_base; ?>assets/vendor/quill/quill.bubble.css" rel="stylesheet">
     <link href="<?php echo $url_base; ?>assets/vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="<?php echo $url_base; ?>assets/vendor/simple-datatables/style.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
     <link href="<?php echo $url_base; ?>assets/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -66,7 +69,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
     <header id="header" class="header fixed-top d-flex align-items-center">
 
         <div class="d-flex align-items-center justify-content-between">
-            <a href="<?php echo $url_base; ?>index.php" class="logo d-flex align-items-center">
+            <a href="<?php echo $url_base?>index.php" class="logo d-flex align-items-center">
                 <img src="<?php echo $url_base; ?>img/LOGO_OXILIVE.jpg" alt="">
                 <span class="d-none d-lg-block">OXILIVE</span>
             </a>
@@ -194,73 +197,82 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                 </li><!-- End Dashboard Nav -->
             <?php endif; ?>
             <?php if ($_SESSION['puesto'] === 4 || $_SESSION['puesto'] === 1) : ?>
-                <li class="nav-item">
-                    <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="<?php echo $url_base; ?>secciones/oxigeno/index.php">
-                        <i class="bi bi-clipboard2-pulse"></i><span>Oxigeno</span><i class="bi bi-chevron-down ms-auto"></i>
-                    </a>
-                    <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-                        <li>
-                            <!--class="active"-->
-                            <a href="<?php echo $url_base; ?>secciones/oxigeno/rutas/index.php">
-                                <i class="bi bi-pin-map-fill"></i><span>Rutas</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo $url_base; ?>secciones/oxigeno/pacientes/index.php">
-                                <i class="bi bi-person-rolodex"></i></i><span>Pacientes</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo $url_base; ?>secciones/administradora/index.php">
-                                <i class="bi bi-person-workspace"></i><span>Administradora</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo $url_base; ?>secciones/aseguradoras/index.php">
-                                <i class="bi bi-hospital-fill"></i><span>Aseguradora</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo $url_base; ?>secciones/bancos/index.php">
-                                <i class="bi bi-bank2"></i><span>Bancos</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo $url_base; ?>secciones/oxigeno/choferes/index.php">
-                                <i class="bi bi-truck-front-fill"></i><span>Choferes</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo $url_base; ?>secciones/oxigeno/carros/index.php">
-                                <i class="bi bi-truck-front-fill"></i><span>Carros</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo $url_base; ?>secciones/oxigeno/equipo/index.php">
-                                <i class="bi bi-usb-drive-fill"></i><span>Equipo de oxigeno</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo $url_base; ?>secciones/oxigeno/insumos/index.php">
-                                <i class="bi bi-usb-drive-fill"></i><span>Insumos</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li><!-- End Components Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse"
+                    href="<?php echo $url_base; ?>secciones/oxigeno/index.php">
+                    <i class="bi bi-clipboard2-pulse"></i><span>Oxigeno</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                    <li>
+                        <!--class="active"-->
+                        <a href="<?php echo $url_base; ?>secciones/oxigeno/rutas/index.php">
+                            <i class="bi bi-pin-map-fill"></i><span>Rutas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo $url_base; ?>secciones/oxigeno/pacientes/index.php">
+                            <i class="bi bi-person-rolodex"></i></i><span>Pacientes</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo $url_base; ?>secciones/administradora/index.php">
+                            <i class="bi bi-person-workspace"></i><span>Administradora</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo $url_base; ?>secciones/aseguradoras/index.php">
+                            <i class="bi bi-hospital-fill"></i><span>Aseguradora</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo $url_base; ?>secciones/bancos/index.php">
+                            <i class="bi bi-bank2"></i><span>Bancos</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo $url_base; ?>secciones/oxigeno/choferes/index.php">
+                            <i class="bi bi-truck-front-fill"></i><span>Choferes</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo $url_base; ?>secciones/oxigeno/carros/index.php">
+                            <i class="bi bi-truck-front-fill"></i><span>Carros</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo $url_base; ?>secciones/oxigeno/equipo/index.php">
+                            <i class="bi bi-usb-drive-fill"></i><span>Equipo de oxigeno</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo $url_base; ?>secciones/oxigeno/insumos/index.php">
+                            <i class="bi bi-usb-drive-fill"></i><span>Insumos</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <?php endif; ?>
-            <?php if ($_SESSION['puesto'] == 10 || $_SESSION['puesto'] === 1) : ?>
-                <li class="nav-item">
-                    <a class="nav-link collapsed" data-bs-target="#cata-nav" data-bs-toggle="collapse" href="<?php echo $url_base; ?>secciones/catalogo/index.php">
-                        <i class="bi bi-book-half"></i><span>Catálogo</span><i class="bi bi-chevron-down ms-auto"></i>
-                    </a>
-                    <ul id="cata-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-                        <li>
-                            <a href="<?php echo $url_base; ?>secciones/catalogo/index.php">
-                                <i class="bi bi-circle"></i><span>Comprar</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+            <?php if ($_SESSION['puesto'] == 12 || $_SESSION['puesto'] === 1) : ?>
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#cata-nav" data-bs-toggle="collapse"
+                    href="<?php echo $url_base; ?>secciones/call_center/index.php">
+                    <i class="bi bi-book-half"></i><span>Call Center</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="cata-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="<?php echo $url_base; ?>secciones/call_center/medicos/index.php">
+                            <i class="bi bi-circle"></i><span>Asistencias</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo $url_base; ?>secciones/call_center/camara/camara.php">
+                            <i class="bi bi-circle"></i><span>Scanner</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
             <?php endif; ?>
             <?php if ($_SESSION['puesto'] == 9) : ?>
                 <li class="nav-item">
@@ -328,142 +340,109 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
             <?php endif; ?>
             <!-- Inicio apartado enfermeria -->
             <?php if ($_SESSION['puesto'] === 1) : ?>
-                <li class="nav-item">
-                    <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-                        <i class="bi bi-capsule"></i><span>Enfermeria</span><i class="bi bi-chevron-down ms-auto"></i>
-                    </a>
-                    <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                        <li>
-                            <a href="<?php echo $url_base; ?>secciones/enfermeria/Chat_/index.php">
-                                <i class="bi bi-circle"></i><span>Chat General</span>
-                            </a>
-                        </li>
-                        <!--Implementación de apartado administradora-->
-                        <li>
-                            <a href="<?php echo $url_base; ?>secciones/enfermeria/cpts/index.php">
-                                <i class="bi bi-circle"></i><span>CPTS</span>
-                            </a>
-                            <ul>
-                                <a href="<?php echo $url_base; ?>secciones/enfermeria/administradora/index.php">
-                                    <i class="bi bi-circle"></i><span>Administradoras</span>
-                                </a>
-                            </ul>
-                        </li>
 
-                        <!--Implementación de apartados de enfermeria-->
-                        <li>
-                            <a href="<?php echo $url_base; ?>secciones/enfermeria/hojaComplementaria/index.php">
-                                <i class="bi bi-circle"></i><span>Pacientes</span>
-                            </a>
-                        </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-capsule"></i><span>Enfermeria</span><i class="bi bi-chevron-down ms-auto"></i>
+                    
+                </a>
+                <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a class="nav-link"data-bs-toggle="collapse" data-bs-target="#alta" href="#"><i class="bi bi-circle"></i><span>Dar de Alta</span><i class="bi bi-chevron-down ms-auto fs-6"></i></a>
+                                <ul id="alta" class="collapse">
+                                    <li><a href="<?php echo $url_base; ?>secciones/enfermeria/alta/cpts/index.php"><i class="bi bi-circle"></i><span>Cpts</span></a></li>
+                                    <li><a href="<?php echo $url_base; ?>secciones/enfermeria/alta/bancos/index.php"><i class="bi bi-circle"></i><span>Bancos</a></li>
+                                    <li><a href="<?php echo $url_base; ?>secciones/enfermeria/alta/aseguradoras/index.php"><i class="bi bi-circle"></i><span>Aseguradora</a></li>
+                                    <li><a href="<?php echo $url_base; ?>secciones/enfermeria/alta/administradora/index.php"><i class="bi bi-circle"></i><span>Administradora</a></li>
+                                </ul>
+                    </li>
+                    <!--Aquí vamos a crear los procesos a realizar-->
+                    <li><a class="nav-link"data-bs-toggle="collapse" data-bs-target="#crear" href="#"><i class="bi bi-circle"></i><span>Crear proceso</span><i class="bi bi-chevron-down ms-auto fs-6"></i></a>
+                        <ul id="crear" class="collapse">
+                            <li><a href="<?php echo $url_base; ?>secciones/enfermeria/hojaComplementaria/index.php"><i class="bi bi-circle"></i><span>Pacientes</span></a></li>
+                            <li><a href="<?php echo $url_base; ?>secciones/enfermeria/procedimientos/index.php"><i class="bi bi-circle"></i>Procedimientos</span></a></li>
+                            <li><a href="<?php echo $url_base; ?>secciones/enfermeria/lectura/index.php"><i class="bi bi-circle"></i>Historial Aseguradoras</span></a></li></li>
+                        </ul>    
+                    <!--Chat-->
+                    <li>
+                        <a href="<?php echo $url_base; ?>secciones/enfermeria/Chat_/index.php"><i class="bi bi-circle"></i><span>Chat General</span></a>
+                    </li>
+                   
+                    <!-- Módulo de Servicios -->
+                    <li>
 
+                        <a href="#">
+                            <i class="bi bi-circle"></i><span>Servicios</span>
 
+                        </a>
+                    </li>
 
-                        <!--Implementación de apartado Procedimientos realizados-->
-                        <li>
-                            <a href="<?php echo $url_base; ?>secciones/enfermeria/procedimientos/index.php">
-                                <i class="bi bi-circle"></i>Procedimientos</span>
-                            </a>
-                        </li>
+                    <li>
+                        <a href="<?php echo $url_base;?>secciones/enfermeria/servicios/horarios/index.php">
+                            <i class="bi bi-circle"></i><span>Horarios</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo $url_base?>secciones/enfermeria/servicios/tipos/index.php">
+                            <i class="bi bi-circle"></i><span>Tipos de Servicios</span>
+                        </a>
+                    </li>
+                    <!-- Módulo de Bitacora de asistencias -->
+                    <li>
+                        <a href="<?php echo $url_base; ?>secciones/enfermeria/Bitacora_de_asistencias/admin/index.php">
+                            <i class="bi bi-circle"></i><span>Bitacora de asistencias</span>
+                        </a>
+                    </li>
+                    <!-- Módulo de Enfermeros -->
+                    <li>
+                        <a href="<?php echo $url_base; ?>secciones/enfermeria/enfermeros/index.php">
+                            <i class="bi bi-circle"></i><span>Enfermeros</span>
+                        </a>
+                    </li>
+                    <!-- Módulo de nomina -->
+                    <li>
+                        <a href="<?php echo $url_base; ?>secciones/enfermeria/control_de_nómina/index.php">
+                            <i class="bi bi-circle"></i><span>Nómina</span>
+                        </a>
+                    </li>
+                    <!--Aquí termina-->
 
-                        <li>
-                            <a href="<?php echo $url_base; ?>secciones/enfermeria/lectura/index.php">
-                                <i class="bi bi-circle"></i>Historial Aseguradoras</span>
-                            </a>
-                        </li>
-                        <!-- Módulo de Servicios -->
-                        <li>
-                            <a class="nav-link"data-bs-toggle="collapse" data-bs-target="#services" href="#">
-                                <i class="bi bi-circle"></i><span>Servicios</span><i class="bi bi-chevron-down ms-auto fs-6"></i>
-                            </a>
-                            <ul id="services" class="collapse">
-                                <li>
-                                    <a href="<?php echo $url_base; ?>secciones/enfermeria/servicios/horarios/index.php">
-                                        <i class="bi bi-circle"></i><span>Horarios</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="<?php echo $url_base ?>secciones/enfermeria/servicios/tipos/index.php">
-                                        <i class="bi bi-circle"></i><span>Tipos de Servicios</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-
-                        <!-- Módulo de Bitacora de asistencias -->
-                        <li>
-                            <a href="<?php echo $url_base; ?>secciones/enfermeria/Bitacora_de_asistencias/admin/index.php">
-                                <i class="bi bi-circle"></i><span>Bitacora de asistencias</span>
-                            </a>
-                        </li>
-                        <!-- Módulo de Enfermeros -->
-                        <li>
-                            <a href="<?php echo $url_base; ?>secciones/enfermeria/enfermeros/index.php">
-                                <i class="bi bi-circle"></i><span>Enfermeros</span>
-                            </a>
-                        </li>
-                        <!-- Módulo de nomina -->
-                        <li>
-                            <a href="<?php echo $url_base; ?>secciones/enfermeria/control_de_nómina/index.php">
-                                <i class="bi bi-circle"></i><span>Nómina</span>
-                            </a>
-                        </li>
-                        <!--Aquí termina-->
-
-                    </ul>
-                </li><!-- End Forms Nav -->
+                </ul>
+            </li><!-- End Forms Nav -->
             <?php endif; ?>
 
             <?php if ($_SESSION['puesto'] === 6) : ?>
-                <!-- Apartado de bloque de departamento de enfermeria -->
+            <!-- Apartado de bloque de departamento de enfermeria -->
 
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/user/index.php">
-                        <i class="bi bi-grid-fill"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/Chat_/index.php">
-                        <i class="bi bi-wechat"></i>
-                        <span>Chat General</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/user/pages/indexPacientes.php">
-                        <i class="bi bi-person-fill"></i>
-                        <span>Pacientes</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/user/pages/indexHorarios.php">
-                        <i class="bi bi-calendar3"></i>
-                        <span>Horarios</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/user/pages/indexAsistencia.php">
-                        <i class="bi bi-calendar2-check"></i>
-                        <span>Asistencias</span>
-                    </a>
-                </li>
-                <!--Implementación de apartado registros clínico y cuidados generales-->
-                <li>
-                    <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/registroYcuidados/index.php">
-                        <i class="bi bi-circle"></i>
-                        <span>Registro Clínico y Cuidados Generales</span>
-                    </a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/user/index.php">
+                    <i class="bi bi-grid"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/Chat_/index.php">
+                    <i class="bi bi-wechat"></i>
+                    <span>Chat General</span>
+                </a>
+            </li>
+            <!--Implementación de apartado registros clínico y cuidados generales-->
+            <li>
+                <a href="<?php echo $url_base; ?>secciones/enfermeria/registroYcuidados/index.php">
+                    <i class="bi bi-circle"></i><span>Registro Clínico y Cuidados Generales</span>
+                </a>
+            </li>
 
-                <!--Aquí termina-->
+            <!--Aquí termina-->
 
-                <!-- End Forms Nav -->
+            <!-- End Forms Nav -->
+
             <?php endif; ?>
 
 
 
             <?php if ($_SESSION['puesto'] === 5 || $_SESSION['puesto'] === 1) : ?>
+
                 <li class="nav-item">
                     <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
                         <i class="bi bi-telephone-fill"></i><span> Call Center</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -489,6 +468,16 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                                 <i class="bi bi-circle"></i><span>Arribo</span>
                             </a>
                         </li>
+                      <li>
+                        <a href="<?php echo $url_base; ?>secciones/call_center/servicios/index.php">
+                            <i class="bi bi-circle"></i><span>Servicios</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo $url_base; ?>secciones/call_center/servicios/index.php">
+                            <i class="bi bi-circle"></i><span>Asistencia Médcia</span>
+                        </a>
+                    </li>
                     </ul>
                 </li><!-- End Tables Nav -->
             <?php endif; ?>
@@ -521,6 +510,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                     </ul>
 
                 </li>
+
             <?php endif; ?>
             <?php if ($_SESSION['puesto'] === 3 || $_SESSION['puesto'] === 1) : ?>
                 <li class="nav-item">

@@ -695,6 +695,13 @@ if (isset($_SESSION['us']) && $_SESSION['puesto'] == 1) {
     header('Location: secciones/almacen/index.php');
 }elseif ($_SESSION['puesto'] === 9) {
     header('Location: secciones/Pchofer/index.php');
+}elseif ($_SESSION['puesto'] === 10) {
+    header('Location: secciones/enfermeria/index.php');
+}elseif ($_SESSION['puesto'] === 11) {
+    header('Location: secciones/enfermeria/user/index.php');
+}elseif ($_SESSION['puesto'] === 12) {
+    header('Location: secciones/call_center/index.php');   
+
 } else {
     header('Location: secciones/catalogo/index.php');
 }
