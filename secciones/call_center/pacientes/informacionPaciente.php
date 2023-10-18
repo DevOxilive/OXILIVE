@@ -35,21 +35,22 @@ if (!isset($_SESSION['us'])) {
             <h4
                 style="text-align: center; color: #fff; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
                 Datos del paciente</h4>
+                <div class="card">
+    <?php foreach($datos_paciente as $paciente) {?>
+        <div class="card-body">
+            <h5 class="card-title">Numero de expediente: <?php echo $paciente['No_nomina']; ?></h5>
+            <h5 class="card-title">Nombre completo: <?php echo $paciente['Nombres'] . ' ' . $paciente['Apellidos']; ?></h5>
+            <h5 class="card-title">Género: <?php echo $paciente['Genero']; ?></h5>
+            <h5 class="card-title">Edad: <?php echo $paciente['Edad']; ?></h5>
+            <h5 class="card-title">Domicilio: <?php echo $paciente['calle'] . ' ' . $paciente['num_in'] . ' ' . $paciente['num_ext'] . ' ' . $paciente['colonia'] . ' ' . $paciente['cp'] . ' ' . $paciente['municipio'] . ' ' . $paciente['estado_direccion'] . ' ' . $paciente['Alcaldia']; ?></h5>
+            <h5 class="card-title">Administradora: <?php echo $paciente['Nombre_administradora']; ?></h5>
+            <h5 class="card-title">Aseguradora: <?php echo $paciente['Nombre_aseguradora']; ?></h5>
+            <h5 class="card-title">Banco: <?php echo $paciente['Nombre_banco']; ?></h5>
+            <h5 class="card-title">Responsable: <?php echo $paciente['responsable']; ?></h5>
         </div>
-        <?php foreach($datos_paciente as $paciente){?>
-        <h5 class="card-title">Numero de expediente: <?php echo $paciente['No_nomina']; ?></h5>
-        <h5 class="card-title">Nombre completo: <?php echo $paciente['Nombres']. $paciente['Apellidos']; ?></h5>
-        <h5 class="card-title">Genero: <?php echo $paciente['Genero']; ?></h5>
-        <h5 class="card-title">Edad: <?php echo $paciente['Edad']; ?></h5>
-        <h5 class="card-title">Domicilo:
-            <?php echo $paciente['calle']. $paciente['num_in']. $paciente['num_ext'].$paciente['colonia'].$paciente['cp'].$paciente['municipio'].$paciente['estado_direccion'].$paciente['Alcaldia'];?>
-        </h5>
-        <h5 class="card-title">Administradora: <?php echo $paciente['Nombre_administradora']; ?></h5>
-        <h5 class="card-title">Aseguradora: <?php echo $paciente['Nombre_aseguradora']; ?></h5>
-        <h5 class="card-title">Banco: <?php echo $paciente['Nombre_banco']; ?></h5>
-        <h5 class="card-title">Responsable: <?php echo $paciente['responsable']; ?></h5>
-        <?php } ?>
-    </div>
+    <?php } ?>
+</div>
+
 </main>
 
 <?php

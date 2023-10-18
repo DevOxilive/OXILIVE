@@ -1,5 +1,5 @@
 <?php
-include ("../../../connection/conexion.php");
+include("../../../connection/conexion.php");
 
 if (isset($_POST['query'])) {
     $inpText = $_POST['query'];
@@ -9,14 +9,11 @@ if (isset($_POST['query'])) {
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     if ($result) {
-        // Devolver los datos como un objeto JSON
-        echo json_encode($result);
+        foreach ($result as $filas) {
+
+            echo '<a href="informacionPaciente.php?idPac=' . $filas['id_pacientes'] . '"class="list-group-item list-group-item-action border-1">' . $filas['Nombres'] . ' ' . $filas['Apellidos'] . '</a>';
+        }
     } else {
-        // Devolver un mensaje de error si el paciente no fue encontrado
-        echo json_encode(array("error" => "Paciente no encontrado o no registrado"));
+        echo "Paciente no encontrado o no registrado";
     }
 }
-
-
-
-?>
