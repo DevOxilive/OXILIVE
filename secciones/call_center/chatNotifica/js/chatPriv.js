@@ -41,6 +41,17 @@ $(document).ready(function () {
 
     // });
 
+    const fileInput = document.getElementById('fileInput');
+    const fileLabel = document.getElementById('fileLabel');
+    fileInput.addEventListener('change', (event) => {
+        const selectedFile = event.target.files[0];
+        if (selectedFile) {
+            fileLabel.classList.add('file-selected');
+            console.log('Archivo seleccionado:', selectedFile.name);
+            // Aquí puedes realizar otras acciones, como cargar el archivo o mostrar información adicional.
+        }
+    });
+
     function uploadFile(file) {
         const formData = new FormData();
         formData.append('file', file);
@@ -55,6 +66,7 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function () {
+                fileLabel.classList.remove('file-selected');
                 console.log("Archivo enviado correctamente.");
                 // Realiza cualquier acción adicional después de cargar el archivo
             }

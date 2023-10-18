@@ -38,7 +38,10 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
     <link href="<?php echo $url_base; ?>assets/vendor/quill/quill.bubble.css" rel="stylesheet">
     <link href="<?php echo $url_base; ?>assets/vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="<?php echo $url_base; ?>assets/vendor/simple-datatables/style.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
     <link href="<?php echo $url_base; ?>assets/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -68,7 +71,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
     <header id="header" class="header fixed-top d-flex align-items-center">
 
         <div class="d-flex align-items-center justify-content-between">
-            <a href="<?php echo $url_base; ?>index.php" class="logo d-flex align-items-center">
+            <a href="<?php echo $url_base ?>index.php" class="logo d-flex align-items-center">
                 <img src="<?php echo $url_base; ?>img/LOGO_OXILIVE.jpg" alt="">
                 <span class="d-none d-lg-block">OXILIVE</span>
             </a>
@@ -270,7 +273,29 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                     </li>
                 </ul>
             </li>
+
             <?php endif; ?>
+            <!-- <?php if ($_SESSION['puesto'] === 1) : ?>
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#cata-nav" data-bs-toggle="collapse"
+                    href="<?php echo $url_base; ?>secciones/call_center/index.php">
+                    <i class="bi bi-book-half"></i><span>Call Center</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="cata-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="<?php echo $url_base; ?>secciones/call_center/medicos/index.php">
+                            <i class="bi bi-circle"></i><span>Asistencias</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo $url_base; ?>secciones/call_center/camara/camara.php">
+                            <i class="bi bi-circle"></i><span>Scanner</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <?php endif; ?> -->
             <?php if ($_SESSION['puesto'] == 9) : ?>
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#cata-nav" data-bs-toggle="collapse"
@@ -567,6 +592,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                         </a>
                     </li>
                     <!-- <li>
+
               <a href="<?php echo $url_base; ?>secciones/sistemas/equipos/index.php">
                 <i class="bi bi-circle"></i><span>Equipos</span>
               </a>
@@ -585,6 +611,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
             </li>
             <?php endif; ?>
         </ul>
+
     </aside><!-- End Sidebar-->
     <script>
     // Función para actualizar el estatus

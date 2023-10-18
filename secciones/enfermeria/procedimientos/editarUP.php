@@ -1,70 +1,39 @@
 <?php
 include("../../../connection/conexion.php");
 include_once '../../../templates/hea.php';
-if (isset($_GET['txtID'])) {
-
-  $txtID = (isset($_GET['txtID'])) ? $_GET['txtID'] : "";
-  $codigo_ICD = (isset($_GET["codigo_ICD"]) ? $_GET["codigo_ICD"] : "");
-  $dx = (isset($_GET["dx"]) ? $_GET["dx"] : "");
-  $medico = (isset($_GET['medico']) ? $_GET['medico'] : "");
-  $sentencia = $con->prepare("SELECT * FROM proce_enfer WHERE id_proce=:id_proce");
-  $sentencia->bindParam(":id_proce", $txtID);
-  $sentencia->execute();
-
-  $registro = $sentencia->fetch(PDO::FETCH_LAZY);
-  $codigo_ICD = $registro["codigo_ICD"];
-  $dx = $registro["dx"];
-  $medico = $registro["medico"];
-
-}
 
 if ($_POST) {
-
   $txtID = (isset($_POST['txtID'])) ? $_POST['txtID'] : "";
-  $codigo_ICD = (isset($_POST["codigo_ICD"])) ? $_POST["codigo_ICD"] : "";
-  $dx = (isset($_POST["dx"])) ? $_POST["dx"] : "";
-  $medico = (isset($_POST['medico'])) ? $_POST['medico'] : "";
-  
-  // Preparar la consulta SQL con sentencias preparadas
-  $consulta = $con->prepare("SELECT * FROM proce_enfer WHERE  codigo_ICD = :codigo_ICD AND dx = :dx AND medico = :medico");
-  
+  $paciente =  (isset($_POST['paciente'])) ? $_POST['paciente'] : "";
+  $medico =  (isset($_POST['medico'])) ? $_POST['medico'] : "";
+  $selectet_cpt =  (isset($_POST['cpt'])) ? $_POST['cpt'] : "";
+  $select_icd = (isset($_POST['icd'])) ? $_POST['icd'] : "";
+  $select_dx = (isset($_POST["dx"]) ? $_POST["dx"] : "");
+  $select_fecha =  (isset($_POST['fecha'])) ? $_POST['fecha'] : "";  
+  //Preparar la consulta SQL con sentencias preparadas
+  $consulta = $con->prepare("SELECT * FROM procedimientos WHERE icd = :icd AND dx = :dx AND fecha = :fecha AND medico = :medico AND pacienteYnomina = :paciente
+   AND cpt = :cpt");
+
   // Vincular los valores a los parámetros de la consulta
-  $consulta->bindParam(":codigo_ICD", $codigo_ICD);
-  $consulta->bindParam(":dx", $dx);
+  $consulta->bindParam(":icd" , $select_icd);
+  $consulta->bindParam(":dx", $select_dx);
+  $consulta->bindParam(":fecha", $select_fecha);
   $consulta->bindParam(":medico", $medico);
-  
-  // Ejecutar la consulta
+  $consulta->bindParam(":paciente", $paciente);
+  $consulta->bindParam(":cpt" , $selectet_cpt);
   $consulta->execute();
-  
-
-  $resul = $consulta->rowCount();
-  
-  if ($resul > 0) {
-    echo '<script language="javascript"> ';
-    echo 'Swal.fire({
-          icon: "warning",
-          title: "DUPLICADO",
-          text: "El dato ingresado ya existe",
-          showConfirmButton: false,
-          timer: 2000,
-       }).then(function() {
-          window.location = "index.php";
-          });';
-    echo '</script>';
-  } else {
-    $sentencia = $con->prepare("UPDATE proce_enfer 
-    SET codigo_ICD=:codigo_ICD , dx=:dx , medico=:medico
-                WHERE id_proce=:id_proce");
-
-
-  
-    $sentencia->bindParam(":codigo_ICD", $codigo_ICD);
-    $sentencia->bindParam(":dx", $dx);
+  $procedimiento = $consulta->rowCount();
+  //Aquí mandamos la salida
+  $sentencia = $con->prepare("UPDATE procedimientos SET icd = :icd, dx = :dx, fecha = :fecha, medico = :medico, pacienteYnomina = :paciente, cpt = :cpt WHERE id_procedi = :id_procedi");
+    $sentencia->bindParam(":icd" , $select_icd);
+    $sentencia->bindParam(":dx", $select_dx);
+    $sentencia->bindParam(":fecha", $select_fecha);
     $sentencia->bindParam(":medico", $medico);
-
-
-    $sentencia->bindParam(":id_proce",$txtID);
+    $sentencia->bindParam(":paciente", $paciente);
+    $sentencia->bindParam(":cpt" , $selectet_cpt);
+    $sentencia->bindParam(":id_procedi",$txtID);
     $sentencia->execute();
+
     echo '<script language="javascript"> ';
     echo 'Swal.fire({
           icon: "success",
@@ -77,6 +46,4 @@ if ($_POST) {
           });';
     echo '</script>';
   }
-}
-
 ?>
