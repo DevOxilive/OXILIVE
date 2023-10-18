@@ -1,5 +1,5 @@
 <!-- ======= Footer ======= -->
-<footer id="footer" class="footer">
+<footer id="footer" class="footer" style="background-color: white;">
   <div class="copyright">
     &copy; Copyright <strong><span>OXILIVE</span></strong>. Todos los derechos reservados
   </div>

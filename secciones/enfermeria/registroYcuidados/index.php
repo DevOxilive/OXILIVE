@@ -5,6 +5,8 @@ if (!isset($_SESSION['us'])) {
 } elseif (isset($_SESSION['us'])) {
     include("../../../templates/header.php");
 
+    $datosGuardados = isset($_SESSION['datos_guardados']) && $_SESSION['datos_guardados'] === true;
+
 } else {
     echo "Error en el sistema";
 }
@@ -24,7 +26,7 @@ if (!isset($_SESSION['us'])) {
                 REGISTRO CLÍNICO Y CUDADOS GENERALES
             </h4>
         </div>
-       <div class="card-body" style="border: 2px solid #BFE5FF;">
+        <div class="card-body" style="border: 2px solid #BFE5FF;">
             <form action="#" method="POST" class="formLogin" id="formulario">
                 <div class="row">
                     <div class="col-md-4 ">
@@ -111,64 +113,38 @@ if (!isset($_SESSION['us'])) {
         </div>
         <br>
         <!-- Tu botón en HTML -->
-<button id="btnSiguiente" class="btn btn-primary">Siguiente</button>
-            </form>
-        </div>
+        <button id="btnSiguiente" class="btn btn-primary">Iniciar Registro</button>
+
+        <?php if ($datosGuardados) { ?>
+        <button type="button" class="btn btn-outline-success" id="generar-pdf-btn">
+            <span class="bi bi-file-earmark-pdf-fill"></span> Generar Registro
+        </button>
+        <?php } ?>
+
+        </form>
+    </div>
     </div>
 </main>
 
 
 
 <script>
-function confirmCancel(event) {
-    event.preventDefault();
-    Swal.fire({
-        title: '¿Estás seguro?',
-        text: "Si cancelas, se perderán los datos ingresados.",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Sí, cancelar',
-        cancelButtonText: 'No, continuar'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.location.href = "<?php echo $url_base; ?>secciones/enfermeria/registroYcuidados/index.php";
-        }
-    });
-}
-
-
 var btnSiguiente = document.getElementById('btnSiguiente');
 btnSiguiente.addEventListener('click', function() {
     window.location.href = 'form1.php';
 });
-
-
-
 </script>
-<!-- ESTA ALERTA SIRVE PARA NO PERMITIR NINGUN CAMPO VACIO -->
-<!-- <script>
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelector('.formLogin').addEventListener('submit', function(event) {
-        event.preventDefault();
-        // Verifica si los campos obligatorios están vacíos
-        var Nombre_administradora = document.getElementById('Nombre_administradora').value;
-        var cpt = document.getElementById('cpt').value;
-        if (!Nombre_administradora || !cpt || !cpt2 || !cpt3 || !cpt4 || !cpt5 || !cpt6 ) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Campos vacíos',
-                text: 'Por favor, completa todos los campos obligatorios.',
-            });
-        } else {
-            this.submit();
-        }
+
+<script type="text/javascript">
+    // Obtener el botón por su ID
+    var botonGenerarPDF = document.getElementById("generar-pdf-btn");
+
+    // Agregar un manejador de eventos al botón
+    botonGenerarPDF.addEventListener("click", function() {
+        // Redirigir a registro_pdf.php
+        window.location.href = "registro_pdf.php";
     });
-});
-</script> -->
-
-
+</script>
 
 
 

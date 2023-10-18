@@ -32,11 +32,19 @@ if (!isset($_SESSION['us'])) {
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($lista_enfermeros as $enfermeros) { ?>
+                            <?php foreach ($lista_enfermeros as $enfermeros) {
+                                if($enfermeros['id_estado']==1){
+                                    $badgeColor = "badge bg-success fs-6";
+                                } else if ($enfermeros['id_estado']==5){
+                                    $badgeColor = "badge bg-info fs-6";
+                                }
+                                ?>
                                 <tr>
                                     <td><?php echo $enfermeros['Nombres']; ?></td>
                                     <td><?php echo $enfermeros['Apellidos']; ?></td>
-                                    <td style="text-align: center;"><?php echo $enfermeros['estado']; ?></td>
+                                    <td><center><span class="<?php echo $badgeColor; ?>">
+                                        <?php echo $enfermeros['estado']; ?>
+                                    </span></center></td>
                                     <td>
                                         <center>
                                             <a name="" id="" class="btn btn-outline-warning" href="editar.php?txtID=<?php echo $enfermeros['id_usuarios']; ?>" role="button"><i class="bi bi-pencil-square"></i></a> |
@@ -46,7 +54,7 @@ if (!isset($_SESSION['us'])) {
                                 </tr>
                             <?php } ?>
                         </tbody>
-                    </tab   le>
+                    </table>
                 </div>
             </div>
         </div>
@@ -115,5 +123,5 @@ if (!isset($_SESSION['us'])) {
     });
 </script>
 <?php
-include("../../../templates/footer.php");
+    include("../../../templates/footer.php");
 ?>

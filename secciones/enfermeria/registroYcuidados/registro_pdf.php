@@ -1,10 +1,12 @@
 <?php
 require('../../../fpdf/fpdf.php');
+require('../../../connection/conexion.php');
 
 
 
 class PDF extends FPDF{
 
+    
    // se establece que si el headre tiene contenido solo se colocara en la primera pagina 
     private $isFirstPage = true;
 // Cabecera de página
@@ -54,8 +56,6 @@ function Header(){
        
     }
 
- 
-
 
 // Pie de página
 function Footer(){
@@ -69,59 +69,54 @@ function Footer(){
 }
 
 
-function CreateTable($header, $data) {
-     //Leyenda
-     $this->SetFont('arial', '', 8);
-     // Imprime la celda con la fuente configurada
-    $this->SetFont('','B'); // Configura la fuente como negrita
-    $this->Cell(18, 10, 'Realiza tu registro por horas, punteando en los recuadros. Recuerda utilizar tinta roja para temperatura y azul para el pulso.', 'C');
-    $this->Ln(8);
+
+function CreateTable($header, $data) {   
     
+ 
 //--------------------------------------- Empieza tabla Temperatura ---------------------------------------------------
-    $this->SetFont('arial', 'B', 8); 
-    $this->SetTextColor(255, 255, 255);
-    $this->SetFillColor(0, 12, 255);
-    $this->Cell(50, 5, utf8_decode("Temperarura (Rojo), Pulso (Azul)"), 1, 0, 'C', 1);
-    
+$this->Ln(5);  
+$this->SetFont('arial', 'B', 9);
 
-// Combinar cabeceras
-$this->Ln();
+// Espacio en blanco para la esquina superior izquierda
+$this->Cell(30, 5, utf8_decode("Datos"), 1, 0, 'C');
 
-$nombresColumnas = [
-    "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", 
-    "22", "23", "24", "01", "02", "03", "04", "05", "06", "07", "08"
-];
+// Encabezados de las columnas
+$encabezados = ['De 9:00 AM a 14:00 PM', 'De 15:00 PM a 20:00 PM', 'De 21:00 PM a 02:00 AM', 'De 03:00 AM a 08:00 AM']; 
 
-$this->SetFont('arial', 'B', ); 
+foreach ($encabezados as $encabezado) {
+    $this->Cell(40, 5, utf8_decode($encabezado), 1, 0, 'C');
+}
+
+$this->Ln(5);  
+$this->SetFont('arial', 'B', 9);
 $this->SetTextColor(255, 255, 255);
-$this->SetFillColor(255, 0, 0);
-$this->Cell(9, 5, utf8_decode("Temp"), 1, 0, 'C', 1);
-$this->SetFont('arial', 'B', ); 
+$this->SetFillColor(254, 26, 26);
+// Espacio en blanco para la esquina superior izquierda
+$this->Cell(30, 5, utf8_decode("Temperatura"), 1, 0, 'C', 1);
+
+// Encabezados de las columnas
+$encabezados2 = [' ', ' ', '', ''];
+
+foreach ($encabezados2 as $encabezado2) {
+    $this->Cell(40, 5, utf8_decode($encabezado2), 1, 0, 'C');
+}
+
+$this->Ln(5);  
+$this->SetFont('arial', 'B', 9);
 $this->SetTextColor(255, 255, 255);
 $this->SetFillColor(0, 12, 255);
-$this->Cell(9, 5, utf8_decode("Pulso"), 1, 0, 'C', 1);
-$this->SetFillColor(255, 255, 255);
-$this->SetTextColor(0, 0, 0);
-foreach ($nombresColumnas as $nombre) {
-    $this->Cell(7.2, 5, utf8_decode($nombre), 1, 0, 'C', true);
+// Espacio en blanco para la esquina superior izquierda
+$this->Cell(30, 5, utf8_decode("Pulso"), 1, 0, 'C', 1);
+
+// Encabezados de las columnas
+$encabezados2 = [' ', ' ', '', ''];
+
+foreach ($encabezados2 as $encabezado2) {
+    $this->Cell(40, 5, utf8_decode($encabezado2), 1, 0, 'C');
 }
+
 $this->Ln();
 
-// Combinar datos de filas
-$temperaturas = ["40.5", "40", "39.5", "39", "38.5", "38", "37.5", "37", "36.5", "36", "35.5", "35"];
-$pulsos = ["140", "130", "120", "110", "100", "90", "80", "70", "60", "50", "40", "30"];
-
-// Rellenar la tabla con datos combinados
-foreach ($temperaturas as $index => $temperatura) {
-    $this->Cell(9, 5, utf8_decode($temperatura), 1, 0, 'C', 1);
-    $this->Cell(9, 5, utf8_decode($pulsos[$index]), 1, 0, 'C', 1);
-    foreach ($nombresColumnas as $nombre) {
-        $this->Cell(7.2, 5, utf8_decode(""), 1, 0, 'C', 0);
-    }
-    $this->Ln();
-}
-
- 
 //-------------------------------- Empieza tabla Respiracion, Tensión Arteria, Etc. -------------------------------
     
 $this->Ln(4);
@@ -133,8 +128,7 @@ $this->Ln(4);
      
      // Datos de las columnas
      $nombresColumnas = [
-        'De 9:00 AM a 14:00 PM', 'De 15:00 PM a 20:00 PM', 'De 21:00 PM a 02:00 AM', 'De 03:00 AM a 08:00 AM'
-     ];
+        ' ', ' ', '', ''];
      
      // Imprimir nombres de las columnas con espacios en blanco
      foreach ($nombresColumnas as $nombre) {
@@ -386,25 +380,21 @@ $this->SetFillColor(254, 26, 26);
 $this->SetDrawColor(0, 0, 0);
 
 // Nombres de las columnas
-$nombresColumnas = ["DESAYUNO (HORARIO)", "DESAYUNO (HORARIO)", "DESAYUNO (HORARIO)", "OTROS:"];
+$nombresColumnas = ["DESAYUNO (HORARIO)", "DESAYUNO (HORARIO)", "DESAYUNO (HORARIO)"];
 
 // Imprimir nombres de columnas
 foreach ($nombresColumnas as $nombre) {
-    $this->Cell(46.23, 5, utf8_decode($nombre), 1, 0, 'C', 1);
+    $this->Cell(61.64, 5, utf8_decode($nombre), 1, 0, 'C', 1);
 }
 
 $this->Ln(); // Salto de línea después de la primera fila
 
 // Imprimir fila en blanco
 foreach ($nombresColumnas as $nombre) {
-    $this->Cell(46.23, 35, utf8_decode(''), 1, 0, 'C');
+    $this->Cell(61.64, 35, utf8_decode(''), 1, 0, 'C');
 }
 
 $this->Ln(); // Salto de línea después de la segunda fila
-
-
-
-
 
 
 
@@ -430,4 +420,6 @@ $this->Ln(); // Salto de línea después de la segunda fila
 
 
     $pdf->Output();
+    
+
 ?>

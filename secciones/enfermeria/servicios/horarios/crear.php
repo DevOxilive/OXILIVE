@@ -57,8 +57,8 @@ if (!isset($_SESSION['us'])) {
                         <select id="paciente" name="paciente" class="form-select">
                             <option value="0">Elige un paciente</option>
                             <?php foreach ($lista_pacientes as $pacientes) { ?>
-                                <option value="<?php echo $pacientes['id_pacienteEnfermeria']; ?>">
-                                    <?php echo $pacientes['nombre'] . " " . $pacientes['apellidos']; ?>
+                                <option value="<?php echo $pacientes['id_pacientes']; ?>">
+                                    <?php echo $pacientes['Nombres'] . " " . $pacientes['Apellidos']; ?>
                                 </option>
                             <?php } ?>
                         </select>
@@ -167,28 +167,6 @@ if (!isset($_SESSION['us'])) {
             });
             event.preventDefault();
 
-        });
-    });
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelector('.formLogin').addEventListener('submit', function(event) {
-            // Evita el envío del formulario por defecto
-            event.preventDefault();
-            // Verifica si los campos obligatorios están vacíos
-            var nombres = document.getElementById('nombres').value;
-            var apellidos = document.getElementById('apellidos').value;
-            var rfc = document.getElementById('rfc').value;
-            var usuario = document.getElementById('usuario').value;
-            var password = document.getElementById('password').value;
-            var email = document.getElementById('email').value;
-            if (!nombres || !apellidos || !rfc || !usuario || !password || !email) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Campos vacíos',
-                    text: 'Por favor, completa todos los campos obligatorios.',
-                });
-            } else {
-                this.submit();
-            }
         });
     });
 </script>
