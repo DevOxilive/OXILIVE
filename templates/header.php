@@ -252,7 +252,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                     </ul>
                 </li>
             <?php endif; ?>
-            <!-- <?php if ($_SESSION['puesto'] === 1) : ?>
+            <!-- <?php if ($_SESSION['puesto'] === 1) : ?> 
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#cata-nav" data-bs-toggle="collapse"
                     href="<?php echo $url_base; ?>secciones/call_center/index.php">
