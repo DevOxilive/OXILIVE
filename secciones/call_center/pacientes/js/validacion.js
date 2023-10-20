@@ -1,18 +1,26 @@
 var nombre = document.getElementById("nombre"),
     apellidos = document.getElementById("apellidos"),
     edad = document.getElementById("edad"),
-    
+    genero = document.getElementById("genero");
+    tipoPac = document.getElementById("tipoPaciente");
     telUno = document.getElementById("telUno"),
     telDos = document.getElementById("telDos"),
+
+    cp = document.getElementById("cp");
     calle = document.getElementById("calle"),
     numExt = document.getElementById("numExt"),
     numInt = document.getElementById("numInt"),
     calleUno = document.getElementById("calleUno"),
     calleDos = document.getElementById("calleDos"),
+    ref = document.getElementById("referencias");
+
 
     exp = document.getElementById("expediente"),
     autGen = document.getElementById("autorizacionGen"),
     autEsp = document.getElementById("autorizacionEsp");
+    var formArray = [nombre, apellidos, edad, genero, tipoPac, telUno, cp, calle, numExt];
+
+
 
 nombre.addEventListener("input", function () {
     var regex = /^[a-zA-Z\s]+$/;
@@ -109,3 +117,61 @@ autEsp.addEventListener("input", function () {
         autEsp.value = string.slice(0, -1);
     }
 });
+
+var form = document.getElementById("formulario");
+
+form.addEventListener("submit", function(event){
+    event.preventDefault();
+    /*function reload (){
+        formArray.forEach(campo => {
+            if(campo.value == ""){
+                campo.style.borderColor = "red";
+                campo.style.borderWidth = "2px";
+            }
+            else if(campo.value != ""){
+                campo.style.borderColor = "";
+                campo.style.borderWidth = "";
+            }
+        });
+    }
+    reload();
+    setInterval(reload, 1000);*/
+    var formData = {
+        nombres: nombre.value,
+        apellidos: apellidos.value,
+        genero: genero.value,
+        edad: edad.value,
+        tipo: tipoPac.value,
+        telUno: telUno.value,
+        telDos: telDos.value,
+  
+        colonia: colonia.value,
+        calle: calle.value,
+        numExt: numExt.value,
+        numInt: numInt.value,
+        calleUno: calleUno.value,
+        calleDos: calleDos.value,
+        referencias: ref.value,
+    };
+    fetch("../model/nuevoPaciente.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      })
+        .then((response) => response.json())
+        .then((resultado) => {
+  
+          console.log(resultado);
+          /*Swal.fire({
+            title: "Registrado",
+            text: "Registro realizado correctamente",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 1500,
+          }).then(function () {
+            window.location.replace("../index.php");
+          });*/
+        });
+    
+    
+})

@@ -29,7 +29,7 @@ if (!isset($_SESSION['us'])) {
                     Datos del nuevo Paciente</h4>
             </div>
             <div class="card-body" style="border: 2px solid #BFE5FF">
-                <form action="" method="POST" enctype="multipart/form-data" class="formLogin row g-3" id="formulario">
+                <form method="POST" enctype="multipart/form-data" class="formLogin row g-3" id="formulario">
                     <!-- Apartado del registro para datos generales -->
                     <div class="contenido col-md-12">
                         <br>
@@ -62,7 +62,7 @@ if (!isset($_SESSION['us'])) {
                         <select name="tipoPaciente" id="tipoPaciente" class="form-select">
                             <option value="">Seleccione tipo de paciente</option>
                             <?php foreach ($lista_tiposPac as $tipos) { ?>
-                                <option value="<?php echo $tipos['id_tipoPaciente']; ?>"><?php echo $tipos['tipoNombre']; ?></option>
+                                <option value="<?php echo $tipos['id_tipoPaciente']; ?>"><?php echo $tipos['tipoPaciente']; ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -184,11 +184,13 @@ if (!isset($_SESSION['us'])) {
         </div>
     </section>
 </main>
+<script>
+    
+</script>
+<script src="../js/validacion.js"></script>
 <script src="../js/formButtons.js"></script>
 <script src="../js/domicilio.js"></script>
 <script src="../js/botonAdd.js"></script>
-<script src="../js/validacion.js"></script>
-
 
 </html>
 <?php
