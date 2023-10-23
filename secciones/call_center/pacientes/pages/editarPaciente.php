@@ -9,6 +9,13 @@ if (!isset($_SESSION['us'])) {
     include("../../../../module/administradora.php");
     include("../../../../module/tipoPaciente.php");
     include("../../../../module/banco.php"); //Por modificar por la base de datos
+    $idPac = $_GET['idPac'];
+    $sentenciaEdit = $con->prepare('
+        SELECT p.*, c.codigo_postal
+        FROM pacientes_call_center p, colonias c
+        WHERE id_pacientes=:idPac
+        AND c.id=p.colonia;
+    ');
 } else {
     echo "Error en el sistema";
 }
@@ -178,7 +185,7 @@ if (!isset($_SESSION['us'])) {
                         <a role="button" onclick="confirmCancel(event)" name="cancelar" class="btn btn-outline-danger">
                             Cancelar
                         </a>
-                        <button type="submit" class="btn btn-outline-primary">Registrar</button>
+                        <button type="submit" class="btn btn-outline-primary">Actualizar</button>
                     </div>
 
                 </form>
@@ -190,6 +197,7 @@ if (!isset($_SESSION['us'])) {
 <script src="../js/validacion.js"></script>
 <script src="../js/formButtons.js"></script>
 <script src="../js/domicilio.js"></script>
+
 </html>
 <?php
 include("../../../../templates/footer.php");
