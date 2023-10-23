@@ -54,7 +54,6 @@ if (count($result) > 0) {
                                     </p>
                                     </h5>
                                     <!--Aqui voy agregar mi cronometro-->
-                                    <div class="cronometro">Tiempo restante: <span id="tiempo">15</span> segundos</div>
                                     <button type="button" class="btn btn-danger start-service" id="start" disabled
                                         data-caso="<?php echo $_SESSION['idus']; ?>"
                                         data-sv="<?php echo $value['id_sv'] ?>">terminar</button>
@@ -63,6 +62,7 @@ if (count($result) > 0) {
                         </div>
                     </div>
                 </div>
+                    <div class="cronometro" style="text-align:center">Tiempo restante: <span id="tiempo">10</span> segundos</div>
             <?php
         } else if ($value['estado'] == 3) {
             // echo "servicio terminado";
@@ -73,12 +73,13 @@ if (count($result) > 0) {
                                 <div class="card">
                                     <div class="card-body" style="text-align: center;"><br>
                                         <h1 style="color:red">Incidencia Terminada <i class="bi bi-emoji-laughing"></i> </h1>
+                                        <a class="btn btn-success" href="../camara/camara.php"><i class="bi bi-camera"></i></a>
                                     </div>
-                                </div>
                             </div>
                         </div>
                     </div>
-            <?php
+                </div>
+            <?php  
         }
     }
 } else {
@@ -86,5 +87,5 @@ if (count($result) > 0) {
 }
 ?>
 <script src="js/validacionBoton.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 

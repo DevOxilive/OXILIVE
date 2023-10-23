@@ -4,7 +4,7 @@ if (!isset($_SESSION['us'])) {
     header('Location: ../../login.php');
 } elseif (isset($_SESSION['us'])) {
     include("../../../templates/header.php");
-
+    include("consulta.php");
     $datosGuardados = isset($_SESSION['datos_guardados']) && $_SESSION['datos_guardados'] === true;
 
 } else {
@@ -115,13 +115,15 @@ if (!isset($_SESSION['us'])) {
         <!-- Tu botón en HTML -->
         <button id="btnSiguiente" class="btn btn-primary">Iniciar Registro</button>
 
-        <?php if ($datosGuardados) { ?>
-        <button type="button" class="btn btn-outline-success" id="generar-pdf-btn">
+         <?php if ($datosGuardados) { ?>
+        <button type="button" class="btn btn-outline-success" id="generar-pdf-btn"  data-id="<?php echo $btnId; ?>">
             <span class="bi bi-file-earmark-pdf-fill"></span> Generar Registro
         </button>
         <?php } ?>
-
-        </form>
+            
+        
+        
+    </form>
     </div>
     </div>
 </main>
@@ -134,17 +136,31 @@ btnSiguiente.addEventListener('click', function() {
     window.location.href = 'form1.php';
 });
 </script>
-
 <script type="text/javascript">
     // Obtener el botón por su ID
     var botonGenerarPDF = document.getElementById("generar-pdf-btn");
+    // Obtener el ID real del registro desde el atributo data
+    var btnId = botonGenerarPDF.getAttribute("data-id");
 
     // Agregar un manejador de eventos al botón
     botonGenerarPDF.addEventListener("click", function() {
-        // Redirigir a registro_pdf.php
-        window.location.href = "registro_pdf.php";
+        // Realizar la redirección con el ID real del registro
+        var xhr = new XMLHttpRequest();
+        var url = "consulta.php?btnId=" + btnId;
+        xhr.open("GET", url, true);
+
+        xhr.onload = function() {
+            // Verificar que la solicitud AJAX se haya completado correctamente
+            if (xhr.status === 200) {
+                // Realizar la redirección después de que la solicitud AJAX esté completa
+                window.location.href = "registro_pdf.php?btnId=" + btnId;
+            }
+        };
+
+        xhr.send();
     });
 </script>
+
 
 
 
