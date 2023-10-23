@@ -162,7 +162,7 @@ form.addEventListener("submit", function (event) {
               showConfirmButton: false,
               timer: 1500,
             }).then(function () {
-              window.location.replace("../index.php");
+              window.location.replace("../indexCool.php");
             });
           }
         });
