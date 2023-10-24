@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Versión del servidor:         10.4.28-MariaDB - mariadb.org binary distribution
+-- Versión del servidor:         8.0.30 - MySQL Community Server - GPL
 -- SO del servidor:              Win64
 -- HeidiSQL Versión:             12.1.0.6537
 -- --------------------------------------------------------
@@ -17,45 +17,41 @@
 
 -- Volcando estructura de base de datos para bdoxilive
 DROP DATABASE IF EXISTS `bdoxilive`;
-CREATE DATABASE IF NOT EXISTS `bdoxilive` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+CREATE DATABASE IF NOT EXISTS `bdoxilive` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `bdoxilive`;
 
 -- Volcando estructura para tabla bdoxilive.administradora
 DROP TABLE IF EXISTS `administradora`;
 CREATE TABLE IF NOT EXISTS `administradora` (
-  `id_administradora` int(11) NOT NULL AUTO_INCREMENT,
-  `Nombre_administradora` varchar(50) DEFAULT NULL,
-  `Fecha_registro` timestamp NOT NULL DEFAULT current_timestamp(),
-  `banco` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_administradora`),
-  KEY `bancos` (`banco`) USING BTREE,
-  CONSTRAINT `FK1_bancos` FOREIGN KEY (`banco`) REFERENCES `bancos` (`id_bancos`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id_administradora` int NOT NULL AUTO_INCREMENT,
+  `Nombre_administradora` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Fecha_registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_administradora`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla bdoxilive.administradora: ~7 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.administradora: ~6 rows (aproximadamente)
 DELETE FROM `administradora`;
-INSERT INTO `administradora` (`id_administradora`, `Nombre_administradora`, `Fecha_registro`, `banco`) VALUES
-	(1, 'AXA', '2023-08-16 04:35:42', 4),
-	(2, 'ASISMED2', '2023-08-16 04:35:59', 1),
-	(3, 'PUNTO PEN', '2023-08-16 04:36:09', 2),
-	(4, 'PROCESOS', '2023-08-16 04:36:15', 3),
-	(5, 'PARTICULAR', '2023-08-16 04:36:21', 1),
-	(6, 'PARTICULAR', '2023-08-16 04:39:34', 2),
-	(7, 'RICOPOLLO2', '2023-10-10 23:22:47', 4);
+INSERT INTO `administradora` (`id_administradora`, `Nombre_administradora`, `Fecha_registro`) VALUES
+	(1, 'AXA', '2023-08-15 16:35:42'),
+	(2, 'ASISMED', '2023-08-15 16:35:59'),
+	(3, 'PUNTO PEN', '2023-08-15 16:36:09'),
+	(4, 'PROCESOS', '2023-08-15 16:36:15'),
+	(5, 'PARTICULAR', '2023-08-15 16:36:21'),
+	(6, 'PARTICULAR', '2023-08-15 16:39:34');
 
 -- Volcando estructura para tabla bdoxilive.almacen
 DROP TABLE IF EXISTS `almacen`;
 CREATE TABLE IF NOT EXISTS `almacen` (
-  `id_almacen` int(11) NOT NULL AUTO_INCREMENT,
-  `tipo_material` int(11) NOT NULL,
-  `nombre` varchar(250) NOT NULL,
-  `entrega` int(11) NOT NULL,
-  `recibe` int(11) NOT NULL,
-  `fecha_entrada` timestamp NOT NULL DEFAULT current_timestamp(),
-  `cantidad` int(11) NOT NULL,
-  `observaciones` varchar(250) DEFAULT NULL,
-  `estado` int(11) NOT NULL,
-  `cantidad_adecuada` int(11) DEFAULT NULL,
+  `id_almacen` int NOT NULL AUTO_INCREMENT,
+  `tipo_material` int NOT NULL,
+  `nombre` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
+  `entrega` int NOT NULL,
+  `recibe` int NOT NULL,
+  `fecha_entrada` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `cantidad` int NOT NULL,
+  `observaciones` varchar(250) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `estado` int NOT NULL,
+  `cantidad_adecuada` int DEFAULT NULL,
   PRIMARY KEY (`id_almacen`),
   KEY `tipo_material` (`tipo_material`),
   KEY `FK_almacen_empleados` (`entrega`),
@@ -65,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `almacen` (
   CONSTRAINT `FK_almacen_empleados_2` FOREIGN KEY (`recibe`) REFERENCES `empleados` (`id_empleados`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_almacen_estado_material` FOREIGN KEY (`estado`) REFERENCES `estado_material` (`id_estado`),
   CONSTRAINT `FK_almacen_tipo_material` FOREIGN KEY (`tipo_material`) REFERENCES `tipo_material` (`id_material`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.almacen: ~5 rows (aproximadamente)
 DELETE FROM `almacen`;
@@ -79,14 +75,14 @@ INSERT INTO `almacen` (`id_almacen`, `tipo_material`, `nombre`, `entrega`, `reci
 -- Volcando estructura para tabla bdoxilive.aseguradoras
 DROP TABLE IF EXISTS `aseguradoras`;
 CREATE TABLE IF NOT EXISTS `aseguradoras` (
-  `id_aseguradora` int(11) NOT NULL AUTO_INCREMENT,
-  `Nombre_aseguradora` varchar(50) NOT NULL,
-  `Fecha_registro` timestamp NOT NULL DEFAULT current_timestamp(),
-  `administradora` int(11) NOT NULL,
+  `id_aseguradora` int NOT NULL AUTO_INCREMENT,
+  `Nombre_aseguradora` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `Fecha_registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `administradora` int NOT NULL,
   PRIMARY KEY (`id_aseguradora`,`administradora`) USING BTREE,
   KEY `administradora` (`administradora`),
   CONSTRAINT `FK_aseguradoras_administradora` FOREIGN KEY (`administradora`) REFERENCES `administradora` (`id_administradora`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.aseguradoras: ~11 rows (aproximadamente)
 DELETE FROM `aseguradoras`;
@@ -106,9 +102,9 @@ INSERT INTO `aseguradoras` (`id_aseguradora`, `Nombre_aseguradora`, `Fecha_regis
 -- Volcando estructura para tabla bdoxilive.asignacion_equipo
 DROP TABLE IF EXISTS `asignacion_equipo`;
 CREATE TABLE IF NOT EXISTS `asignacion_equipo` (
-  `id_asignacion` int(11) NOT NULL AUTO_INCREMENT,
-  `nombreAsignado` int(11) NOT NULL,
-  `equipo` int(11) NOT NULL,
+  `id_asignacion` int NOT NULL AUTO_INCREMENT,
+  `nombreAsignado` int NOT NULL,
+  `equipo` int NOT NULL,
   PRIMARY KEY (`id_asignacion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -118,24 +114,24 @@ DELETE FROM `asignacion_equipo`;
 -- Volcando estructura para tabla bdoxilive.asignacion_horarios
 DROP TABLE IF EXISTS `asignacion_horarios`;
 CREATE TABLE IF NOT EXISTS `asignacion_horarios` (
-  `id_asignacionHorarios` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `id_usuario` int(11) NOT NULL,
-  `id_tipoServicio` int(11) NOT NULL,
+  `id_asignacionHorarios` int unsigned NOT NULL AUTO_INCREMENT,
+  `id_usuario` int NOT NULL,
+  `id_tipoServicio` int NOT NULL,
   `horarioEntrada` time NOT NULL,
   `horarioSalida` time NOT NULL,
   `fecha` date NOT NULL,
-  `id_pacienteEnfermeria` int(11) NOT NULL,
-  `statusHorario` int(10) NOT NULL DEFAULT 0,
+  `id_pacienteEnfermeria` int NOT NULL,
+  `statusHorario` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_asignacionHorarios`) USING BTREE,
   KEY `FK_idUsuario` (`id_usuario`),
   KEY `FK_idTiposServicios` (`id_tipoServicio`),
   KEY `FK_idPaciente` (`id_pacienteEnfermeria`),
   KEY `FK_estadoHorarios` (`statusHorario`),
-  CONSTRAINT `FK_estadoHorarios` FOREIGN KEY (`statusHorario`) REFERENCES `estado_horarios` (`id_estadoHorarios`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_estadoHorarios` FOREIGN KEY (`statusHorario`) REFERENCES `estado_horarios` (`id_estadoHorarios`),
   CONSTRAINT `FK_idPaciente` FOREIGN KEY (`id_pacienteEnfermeria`) REFERENCES `pacientes_oxigeno` (`id_pacientes`),
   CONSTRAINT `FK_idTiposServicios` FOREIGN KEY (`id_tipoServicio`) REFERENCES `tipos_servicios` (`id_tipoServicio`),
   CONSTRAINT `FK_idUsuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuarios`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.asignacion_horarios: ~3 rows (aproximadamente)
 DELETE FROM `asignacion_horarios`;
@@ -144,17 +140,43 @@ INSERT INTO `asignacion_horarios` (`id_asignacionHorarios`, `id_usuario`, `id_ti
 	(20, 18, 1, '13:20:00', '01:20:00', '2023-10-15', 30, 2),
 	(21, 18, 1, '13:20:00', '01:20:00', '2023-10-16', 32, 2);
 
+-- Volcando estructura para tabla bdoxilive.asignacion_servicio
+DROP TABLE IF EXISTS `asignacion_servicio`;
+CREATE TABLE IF NOT EXISTS `asignacion_servicio` (
+  `id_sv` int NOT NULL AUTO_INCREMENT,
+  `num_paciente` int DEFAULT '0',
+  `nom_solicitante` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `fecha` date NOT NULL,
+  `hora` time NOT NULL,
+  `moti_consulta` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `num_medico` int NOT NULL,
+  `asignacion` int NOT NULL,
+  PRIMARY KEY (`id_sv`),
+  KEY `num_paciente` (`num_paciente`),
+  KEY `num_medico` (`num_medico`),
+  KEY `asignacion` (`asignacion`),
+  CONSTRAINT `FK1_num_paciente` FOREIGN KEY (`num_paciente`) REFERENCES `pacientes_oxigeno` (`id_pacientes`),
+  CONSTRAINT `FK2_num_medico` FOREIGN KEY (`num_medico`) REFERENCES `usuarios` (`id_departamentos`),
+  CONSTRAINT `FK3_asignacion` FOREIGN KEY (`asignacion`) REFERENCES `estatus_callcenter` (`id_ets`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Volcando datos para la tabla bdoxilive.asignacion_servicio: ~2 rows (aproximadamente)
+DELETE FROM `asignacion_servicio`;
+INSERT INTO `asignacion_servicio` (`id_sv`, `num_paciente`, `nom_solicitante`, `fecha`, `hora`, `moti_consulta`, `num_medico`, `asignacion`) VALUES
+	(1, 25, 'call_center', '2023-10-16', '00:00:00', 'Colillo Chino', 3, 1),
+	(2, 27, 'axa', '2023-10-16', '00:00:00', 'Cholillo Europeo', 3, 1);
+
 -- Volcando estructura para tabla bdoxilive.asistencias
 DROP TABLE IF EXISTS `asistencias`;
 CREATE TABLE IF NOT EXISTS `asistencias` (
-  `id_asistencias` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `id_empleadoEnfermeria` int(11) NOT NULL DEFAULT 0,
-  `id_check` int(10) unsigned NOT NULL DEFAULT 0,
-  `id_horario` int(10) unsigned NOT NULL DEFAULT 0,
+  `id_asistencias` int unsigned NOT NULL AUTO_INCREMENT,
+  `id_empleadoEnfermeria` int NOT NULL DEFAULT '0',
+  `id_check` int unsigned NOT NULL DEFAULT '0',
+  `id_horario` int unsigned NOT NULL DEFAULT '0',
   `fechaAsis` date NOT NULL,
   `checkTime` time NOT NULL DEFAULT '00:00:00',
-  `checkLatitud` decimal(10,6) NOT NULL DEFAULT 0.000000,
-  `checkLongitud` decimal(10,6) NOT NULL DEFAULT 0.000000,
+  `checkLatitud` decimal(10,6) NOT NULL DEFAULT '0.000000',
+  `checkLongitud` decimal(10,6) NOT NULL DEFAULT '0.000000',
   `checkFotografia` longblob NOT NULL,
   PRIMARY KEY (`id_asistencias`),
   KEY `id_empleadoEnfermeria` (`id_empleadoEnfermeria`),
@@ -163,7 +185,7 @@ CREATE TABLE IF NOT EXISTS `asistencias` (
   CONSTRAINT `FK_check` FOREIGN KEY (`id_check`) REFERENCES `checkk` (`id_check`),
   CONSTRAINT `FK_empleadoEnfermeria` FOREIGN KEY (`id_empleadoEnfermeria`) REFERENCES `usuarios` (`id_usuarios`),
   CONSTRAINT `FK_horario` FOREIGN KEY (`id_horario`) REFERENCES `asignacion_horarios` (`id_asignacionHorarios`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.asistencias: ~11 rows (aproximadamente)
 DELETE FROM `asistencias`;
@@ -183,11 +205,11 @@ INSERT INTO `asistencias` (`id_asistencias`, `id_empleadoEnfermeria`, `id_check`
 -- Volcando estructura para tabla bdoxilive.bancos
 DROP TABLE IF EXISTS `bancos`;
 CREATE TABLE IF NOT EXISTS `bancos` (
-  `id_bancos` int(11) NOT NULL AUTO_INCREMENT,
-  `Nombre_banco` varchar(50) NOT NULL,
-  `Fecha_registro` timestamp NOT NULL DEFAULT current_timestamp(),
+  `id_bancos` int NOT NULL AUTO_INCREMENT,
+  `Nombre_banco` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `Fecha_registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_bancos`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.bancos: ~4 rows (aproximadamente)
 DELETE FROM `bancos`;
@@ -200,13 +222,13 @@ INSERT INTO `bancos` (`id_bancos`, `Nombre_banco`, `Fecha_registro`) VALUES
 -- Volcando estructura para tabla bdoxilive.carrito
 DROP TABLE IF EXISTS `carrito`;
 CREATE TABLE IF NOT EXISTS `carrito` (
-  `id_carrito` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `id_usuario` int(11) NOT NULL,
-  `id_producto` int(11) NOT NULL,
-  `nombre_producto` varchar(100) NOT NULL,
+  `id_carrito` int unsigned NOT NULL AUTO_INCREMENT,
+  `id_usuario` int NOT NULL,
+  `id_producto` int NOT NULL,
+  `nombre_producto` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
   `precio_producto` double NOT NULL,
-  `cantidad` int(11) NOT NULL,
-  `fecha_agregado` timestamp NULL DEFAULT current_timestamp(),
+  `cantidad` int NOT NULL,
+  `fecha_agregado` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_carrito`),
   KEY `id_usuario` (`id_usuario`),
   KEY `id_producto` (`id_producto`),
@@ -220,17 +242,17 @@ DELETE FROM `carrito`;
 -- Volcando estructura para tabla bdoxilive.carros
 DROP TABLE IF EXISTS `carros`;
 CREATE TABLE IF NOT EXISTS `carros` (
-  `id_carro` int(11) NOT NULL AUTO_INCREMENT,
-  `Nombre_carro` varchar(50) NOT NULL,
-  `modelo` varchar(50) NOT NULL,
-  `marca` varchar(50) NOT NULL,
-  `placa` varchar(50) NOT NULL,
-  `Fecha_registro` timestamp NULL DEFAULT current_timestamp(),
-  `estado` int(11) NOT NULL,
+  `id_carro` int NOT NULL AUTO_INCREMENT,
+  `Nombre_carro` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `modelo` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `marca` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `placa` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `Fecha_registro` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `estado` int NOT NULL,
   PRIMARY KEY (`id_carro`,`estado`) USING BTREE,
   KEY `FK6_estadoCar_idx` (`estado`),
   CONSTRAINT `FK6_estadoCar` FOREIGN KEY (`estado`) REFERENCES `estado_carro` (`id_estado`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.carros: ~4 rows (aproximadamente)
 DELETE FROM `carros`;
@@ -238,15 +260,16 @@ INSERT INTO `carros` (`id_carro`, `Nombre_carro`, `modelo`, `marca`, `placa`, `F
 	(1, 'TRANSPORTER 1', 'NISSAN ', 'X', 'XS', '2023-06-02 09:46:25', 1),
 	(2, 'TRANSPORTER 2', 'NISSAN', 'NISSAN', '79854', '2023-06-14 01:43:35', 1),
 	(3, 'TRANSPORTER 3', 'NISSAN', 'CHEVROLET', '78965', '2023-07-27 00:53:07', 1),
-	(4, 'SIN CARRO', 'SN', 'SN', 'SN', '2023-08-14 22:54:11', 1);
+	(4, 'SIN CARRO', 'SN', 'SN', 'SN', '2023-08-14 22:54:11', 1),
+	(5, 'spark', 'spark', 'chevrolet', 'sol-150-12', '2023-10-19 13:38:59', 1);
 
 -- Volcando estructura para tabla bdoxilive.checkk
 DROP TABLE IF EXISTS `checkk`;
 CREATE TABLE IF NOT EXISTS `checkk` (
-  `id_check` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `checkName` varchar(50) NOT NULL,
+  `id_check` int unsigned NOT NULL AUTO_INCREMENT,
+  `checkName` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id_check`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.checkk: ~2 rows (aproximadamente)
 DELETE FROM `checkk`;
@@ -257,15 +280,15 @@ INSERT INTO `checkk` (`id_check`, `checkName`) VALUES
 -- Volcando estructura para tabla bdoxilive.choferes
 DROP TABLE IF EXISTS `choferes`;
 CREATE TABLE IF NOT EXISTS `choferes` (
-  `id_choferes` int(11) NOT NULL AUTO_INCREMENT,
-  `Nombre_completo` varchar(50) NOT NULL,
-  `Fecha_registro` timestamp NOT NULL DEFAULT current_timestamp(),
-  `estado` int(11) NOT NULL,
-  `contador_seleccion` int(11) NOT NULL,
+  `id_choferes` int NOT NULL AUTO_INCREMENT,
+  `Nombre_completo` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `Fecha_registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `estado` int NOT NULL,
+  `contador_seleccion` int NOT NULL,
   PRIMARY KEY (`id_choferes`,`estado`),
   KEY `FK7_estadoChof_idx` (`estado`),
   CONSTRAINT `FK7_estadoChof` FOREIGN KEY (`estado`) REFERENCES `estado` (`id_estado`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.choferes: ~6 rows (aproximadamente)
 DELETE FROM `choferes`;
@@ -280,11 +303,11 @@ INSERT INTO `choferes` (`id_choferes`, `Nombre_completo`, `Fecha_registro`, `est
 -- Volcando estructura para tabla bdoxilive.colonias
 DROP TABLE IF EXISTS `colonias`;
 CREATE TABLE IF NOT EXISTS `colonias` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(100) NOT NULL DEFAULT '',
-  `ciudad` varchar(50) DEFAULT NULL,
-  `municipio` int(6) DEFAULT NULL,
-  `asentamiento` varchar(25) DEFAULT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) COLLATE utf8mb3_unicode_ci NOT NULL DEFAULT '',
+  `ciudad` varchar(50) COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `municipio` int DEFAULT NULL,
+  `asentamiento` varchar(25) COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `codigo_postal` int(5) unsigned zerofill DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_municipio` (`municipio`) USING BTREE,
@@ -293,9 +316,9 @@ CREATE TABLE IF NOT EXISTS `colonias` (
   KEY `index_codigo_postal` (`codigo_postal`) USING BTREE,
   KEY `index_ciudad` (`ciudad`) USING BTREE,
   CONSTRAINT `fk_municipio` FOREIGN KEY (`municipio`) REFERENCES `municipios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=151256686 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Volcando datos para la tabla bdoxilive.colonias: ~9,672 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.colonias: ~9,247 rows (aproximadamente)
 DELETE FROM `colonias`;
 INSERT INTO `colonias` (`id`, `nombre`, `ciudad`, `municipio`, `asentamiento`, `codigo_postal`) VALUES
 	(90101, 'San Ángel', 'Ciudad de México', 9010, 'Colonia', 01000),
@@ -9963,16 +9986,16 @@ INSERT INTO `colonias` (`id`, `nombre`, `ciudad`, `municipio`, `asentamiento`, `
 -- Volcando estructura para tabla bdoxilive.cpts_administradora
 DROP TABLE IF EXISTS `cpts_administradora`;
 CREATE TABLE IF NOT EXISTS `cpts_administradora` (
-  `id_cpt` int(11) NOT NULL AUTO_INCREMENT,
-  `cpt` varchar(50) DEFAULT NULL,
-  `descripcion` varchar(50) DEFAULT NULL,
-  `unidad` varchar(50) DEFAULT NULL,
+  `id_cpt` int NOT NULL AUTO_INCREMENT,
+  `cpt` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `descripcion` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `unidad` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `fecha` date DEFAULT NULL,
-  `admi` int(11) DEFAULT NULL,
+  `admi` int DEFAULT NULL,
   PRIMARY KEY (`id_cpt`),
   KEY `administradora` (`admi`) USING BTREE,
   CONSTRAINT `FK1_admi_cpt` FOREIGN KEY (`admi`) REFERENCES `administradora` (`id_administradora`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.cpts_administradora: ~10 rows (aproximadamente)
 DELETE FROM `cpts_administradora`;
@@ -9991,45 +10014,46 @@ INSERT INTO `cpts_administradora` (`id_cpt`, `cpt`, `descripcion`, `unidad`, `fe
 -- Volcando estructura para tabla bdoxilive.documentos
 DROP TABLE IF EXISTS `documentos`;
 CREATE TABLE IF NOT EXISTS `documentos` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombreArchi` varchar(255) DEFAULT NULL,
-  `id_envia` int(11) DEFAULT NULL,
-  `id_recibe` int(11) DEFAULT NULL,
-  `persona` varchar(50) DEFAULT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nombreArchi` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `id_envia` int DEFAULT NULL,
+  `id_recibe` int DEFAULT NULL,
+  `persona` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.documentos: ~3 rows (aproximadamente)
 DELETE FROM `documentos`;
 INSERT INTO `documentos` (`id`, `nombreArchi`, `id_envia`, `id_recibe`, `persona`) VALUES
 	(8, 'Proyecto Oscar (2).pdf', 18, 10, 'eldazz'),
 	(9, 'Proyecto Oscar (2).pdf', 10, 18, 'dazz'),
-	(10, 'Proyecto Oscar (2).pdf', 1, 10, 'Yani24_');
+	(10, 'Proyecto Oscar (2).pdf', 1, 10, 'Yani24_'),
+	(11, 'Cronograma.pdf', 1, 9, 'Yani24_');
 
 -- Volcando estructura para tabla bdoxilive.empleados
 DROP TABLE IF EXISTS `empleados`;
 CREATE TABLE IF NOT EXISTS `empleados` (
-  `id_empleados` int(11) NOT NULL AUTO_INCREMENT,
-  `Nombres` varchar(50) NOT NULL,
-  `Apellidos` varchar(50) NOT NULL,
-  `Edad` varchar(50) NOT NULL,
+  `id_empleados` int NOT NULL AUTO_INCREMENT,
+  `Nombres` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `Apellidos` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `Edad` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `Fecha_nacimiento` date NOT NULL,
-  `Genero` int(11) NOT NULL,
-  `Telefono` varchar(50) NOT NULL,
-  `Seguro_social` varchar(200) DEFAULT NULL,
-  `rfc` varchar(50) NOT NULL,
-  `Acta_nacimiento` varchar(200) DEFAULT NULL,
-  `Comprobante_domicilio` varchar(200) DEFAULT NULL,
-  `Curp` varchar(200) DEFAULT NULL,
-  `Titulo` varchar(200) DEFAULT NULL,
-  `Cedula` varchar(200) DEFAULT NULL,
-  `Carta_recomendacion1` varchar(200) DEFAULT NULL,
-  `Carta_recomendacion2` varchar(200) DEFAULT NULL,
-  `ine` varchar(200) DEFAULT NULL,
-  `Banco` int(11) DEFAULT NULL,
-  `No_cuenta` varchar(50) DEFAULT NULL,
-  `Fecha_registro` timestamp NOT NULL DEFAULT current_timestamp(),
-  `Puesto` int(11) NOT NULL,
+  `Genero` int NOT NULL,
+  `Telefono` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `Seguro_social` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `rfc` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `Acta_nacimiento` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Comprobante_domicilio` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Curp` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Titulo` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Cedula` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Carta_recomendacion1` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Carta_recomendacion2` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `ine` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Banco` int DEFAULT NULL,
+  `No_cuenta` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Fecha_registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Puesto` int NOT NULL,
   PRIMARY KEY (`id_empleados`,`Puesto`) USING BTREE,
   KEY `FK_empleados_puestos` (`Puesto`),
   KEY `FK_empleados_genero` (`Genero`),
@@ -10037,7 +10061,7 @@ CREATE TABLE IF NOT EXISTS `empleados` (
   CONSTRAINT `FK_empleados_bancos` FOREIGN KEY (`Banco`) REFERENCES `bancos` (`id_bancos`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_empleados_genero` FOREIGN KEY (`Genero`) REFERENCES `genero` (`id_genero`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_empleados_puestos` FOREIGN KEY (`Puesto`) REFERENCES `puestos` (`id_puestos`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.empleados: ~2 rows (aproximadamente)
 DELETE FROM `empleados`;
@@ -10048,15 +10072,15 @@ INSERT INTO `empleados` (`id_empleados`, `Nombres`, `Apellidos`, `Edad`, `Fecha_
 -- Volcando estructura para tabla bdoxilive.entrada_almacen
 DROP TABLE IF EXISTS `entrada_almacen`;
 CREATE TABLE IF NOT EXISTS `entrada_almacen` (
-  `id_entrada` int(11) NOT NULL AUTO_INCREMENT,
-  `recibe_entrada` int(11) NOT NULL,
-  `pide_entrada` int(11) NOT NULL,
-  `cantidad_entrada` int(11) NOT NULL,
-  `fecha_entrada` timestamp NOT NULL DEFAULT current_timestamp(),
-  `tipo_mateentra` int(11) DEFAULT NULL,
-  `nombre_mateentra` varchar(150) NOT NULL,
-  `observacionesentra` varchar(200) NOT NULL,
-  `estado_entrada` int(11) DEFAULT NULL,
+  `id_entrada` int NOT NULL AUTO_INCREMENT,
+  `recibe_entrada` int NOT NULL,
+  `pide_entrada` int NOT NULL,
+  `cantidad_entrada` int NOT NULL,
+  `fecha_entrada` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `tipo_mateentra` int DEFAULT NULL,
+  `nombre_mateentra` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
+  `observacionesentra` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `estado_entrada` int DEFAULT NULL,
   PRIMARY KEY (`id_entrada`) USING BTREE,
   KEY `FK_entrada_almacen_empleados` (`recibe_entrada`),
   KEY `FK_entrada_almacen_empleados_2` (`pide_entrada`),
@@ -10066,7 +10090,7 @@ CREATE TABLE IF NOT EXISTS `entrada_almacen` (
   CONSTRAINT `FK_entrada_almacen_empleados_2` FOREIGN KEY (`pide_entrada`) REFERENCES `empleados` (`id_empleados`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_entrada_almacen_salida_almacen` FOREIGN KEY (`tipo_mateentra`) REFERENCES `salida_almacen` (`tipo_matesali`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_entrada_almacen_salida_almacen_3` FOREIGN KEY (`estado_entrada`) REFERENCES `salida_almacen` (`estado_salida`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.entrada_almacen: ~10 rows (aproximadamente)
 DELETE FROM `entrada_almacen`;
@@ -10085,17 +10109,17 @@ INSERT INTO `entrada_almacen` (`id_entrada`, `recibe_entrada`, `pide_entrada`, `
 -- Volcando estructura para tabla bdoxilive.equipo
 DROP TABLE IF EXISTS `equipo`;
 CREATE TABLE IF NOT EXISTS `equipo` (
-  `id_equipo` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(250) NOT NULL,
-  `tipo_equipo` int(11) NOT NULL,
-  `entrego` int(11) NOT NULL,
-  `recibio` int(11) NOT NULL,
-  `fecha` timestamp NULL DEFAULT current_timestamp(),
-  `estado` int(11) NOT NULL,
-  `no_serie` varchar(50) NOT NULL,
-  `IMEI` varchar(50) NOT NULL,
-  `autorizo` int(11) NOT NULL,
-  `observaciones` varchar(250) NOT NULL,
+  `id_equipo` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
+  `tipo_equipo` int NOT NULL,
+  `entrego` int NOT NULL,
+  `recibio` int NOT NULL,
+  `fecha` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `estado` int NOT NULL,
+  `no_serie` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `IMEI` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `autorizo` int NOT NULL,
+  `observaciones` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id_equipo`) USING BTREE,
   KEY `FK_equipo_empleados` (`entrego`),
   KEY `FK_equipo_empleados_2` (`recibio`),
@@ -10115,10 +10139,10 @@ DELETE FROM `equipo`;
 -- Volcando estructura para tabla bdoxilive.estado
 DROP TABLE IF EXISTS `estado`;
 CREATE TABLE IF NOT EXISTS `estado` (
-  `id_estado` int(11) NOT NULL AUTO_INCREMENT,
-  `Nombre_estado` varchar(50) NOT NULL,
+  `id_estado` int NOT NULL AUTO_INCREMENT,
+  `Nombre_estado` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id_estado`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.estado: ~5 rows (aproximadamente)
 DELETE FROM `estado`;
@@ -10132,13 +10156,13 @@ INSERT INTO `estado` (`id_estado`, `Nombre_estado`) VALUES
 -- Volcando estructura para tabla bdoxilive.estados
 DROP TABLE IF EXISTS `estados`;
 CREATE TABLE IF NOT EXISTS `estados` (
-  `id` int(4) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `pais` int(3) NOT NULL DEFAULT 0,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL DEFAULT '',
+  `pais` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `index_pais` (`pais`) USING BTREE,
   CONSTRAINT `fk_pais` FOREIGN KEY (`pais`) REFERENCES `paises` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Volcando datos para la tabla bdoxilive.estados: ~32 rows (aproximadamente)
 DELETE FROM `estados`;
@@ -10179,10 +10203,10 @@ INSERT INTO `estados` (`id`, `nombre`, `pais`) VALUES
 -- Volcando estructura para tabla bdoxilive.estado_carro
 DROP TABLE IF EXISTS `estado_carro`;
 CREATE TABLE IF NOT EXISTS `estado_carro` (
-  `id_estado` int(11) NOT NULL AUTO_INCREMENT,
-  `Nombre_estado` varchar(50) NOT NULL,
+  `id_estado` int NOT NULL AUTO_INCREMENT,
+  `Nombre_estado` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id_estado`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.estado_carro: ~4 rows (aproximadamente)
 DELETE FROM `estado_carro`;
@@ -10195,12 +10219,12 @@ INSERT INTO `estado_carro` (`id_estado`, `Nombre_estado`) VALUES
 -- Volcando estructura para tabla bdoxilive.estado_equipo
 DROP TABLE IF EXISTS `estado_equipo`;
 CREATE TABLE IF NOT EXISTS `estado_equipo` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `Nombre_estado` varchar(250) NOT NULL DEFAULT '',
+  `id` int NOT NULL AUTO_INCREMENT,
+  `Nombre_estado` varchar(250) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla bdoxilive.estado_equipo: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.estado_equipo: ~0 rows (aproximadamente)
 DELETE FROM `estado_equipo`;
 INSERT INTO `estado_equipo` (`id`, `Nombre_estado`) VALUES
 	(1, 'FUNCIONAL');
@@ -10208,10 +10232,10 @@ INSERT INTO `estado_equipo` (`id`, `Nombre_estado`) VALUES
 -- Volcando estructura para tabla bdoxilive.estado_horarios
 DROP TABLE IF EXISTS `estado_horarios`;
 CREATE TABLE IF NOT EXISTS `estado_horarios` (
-  `id_estadoHorarios` int(10) NOT NULL AUTO_INCREMENT,
-  `estado` varchar(50) NOT NULL DEFAULT '0',
+  `id_estadoHorarios` int NOT NULL AUTO_INCREMENT,
+  `estado` varchar(50) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_estadoHorarios`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.estado_horarios: ~4 rows (aproximadamente)
 DELETE FROM `estado_horarios`;
@@ -10224,12 +10248,12 @@ INSERT INTO `estado_horarios` (`id_estadoHorarios`, `estado`) VALUES
 -- Volcando estructura para tabla bdoxilive.estado_insumo
 DROP TABLE IF EXISTS `estado_insumo`;
 CREATE TABLE IF NOT EXISTS `estado_insumo` (
-  `id_estado` int(11) NOT NULL AUTO_INCREMENT,
-  `estado_insumo` varchar(150) NOT NULL,
+  `id_estado` int NOT NULL AUTO_INCREMENT,
+  `estado_insumo` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id_estado`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla bdoxilive.estado_insumo: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.estado_insumo: ~0 rows (aproximadamente)
 DELETE FROM `estado_insumo`;
 INSERT INTO `estado_insumo` (`id_estado`, `estado_insumo`) VALUES
 	(1, 'UTIL');
@@ -10237,11 +10261,11 @@ INSERT INTO `estado_insumo` (`id_estado`, `estado_insumo`) VALUES
 -- Volcando estructura para tabla bdoxilive.estado_material
 DROP TABLE IF EXISTS `estado_material`;
 CREATE TABLE IF NOT EXISTS `estado_material` (
-  `id_estado` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre_estado` varchar(250) NOT NULL,
+  `id_estado` int NOT NULL AUTO_INCREMENT,
+  `nombre_estado` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id_estado`),
   KEY `id_estado` (`id_estado`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.estado_material: ~8 rows (aproximadamente)
 DELETE FROM `estado_material`;
@@ -10258,10 +10282,10 @@ INSERT INTO `estado_material` (`id_estado`, `nombre_estado`) VALUES
 -- Volcando estructura para tabla bdoxilive.estado_paciente
 DROP TABLE IF EXISTS `estado_paciente`;
 CREATE TABLE IF NOT EXISTS `estado_paciente` (
-  `id_estadop` int(11) NOT NULL AUTO_INCREMENT,
-  `estado` varchar(50) NOT NULL,
+  `id_estadop` int NOT NULL AUTO_INCREMENT,
+  `estado` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id_estadop`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.estado_paciente: ~5 rows (aproximadamente)
 DELETE FROM `estado_paciente`;
@@ -10275,10 +10299,10 @@ INSERT INTO `estado_paciente` (`id_estadop`, `estado`) VALUES
 -- Volcando estructura para tabla bdoxilive.estado_ruta
 DROP TABLE IF EXISTS `estado_ruta`;
 CREATE TABLE IF NOT EXISTS `estado_ruta` (
-  `id_estado` int(11) NOT NULL AUTO_INCREMENT,
-  `estado` varchar(50) NOT NULL,
+  `id_estado` int NOT NULL AUTO_INCREMENT,
+  `estado` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id_estado`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.estado_ruta: ~3 rows (aproximadamente)
 DELETE FROM `estado_ruta`;
@@ -10290,12 +10314,12 @@ INSERT INTO `estado_ruta` (`id_estado`, `estado`) VALUES
 -- Volcando estructura para tabla bdoxilive.estado_tanque
 DROP TABLE IF EXISTS `estado_tanque`;
 CREATE TABLE IF NOT EXISTS `estado_tanque` (
-  `id_estado` int(11) NOT NULL AUTO_INCREMENT,
-  `estado` varchar(50) NOT NULL,
+  `id_estado` int NOT NULL AUTO_INCREMENT,
+  `estado` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id_estado`),
   KEY `estado` (`estado`),
   KEY `id_estado` (`id_estado`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.estado_tanque: ~7 rows (aproximadamente)
 DELETE FROM `estado_tanque`;
@@ -10308,13 +10332,28 @@ INSERT INTO `estado_tanque` (`id_estado`, `estado`) VALUES
 	(6, 'POR DEFINIR'),
 	(7, 'VACIO');
 
+-- Volcando estructura para tabla bdoxilive.estatus_callcenter
+DROP TABLE IF EXISTS `estatus_callcenter`;
+CREATE TABLE IF NOT EXISTS `estatus_callcenter` (
+  `id_ets` int NOT NULL AUTO_INCREMENT,
+  `estatus` int DEFAULT NULL,
+  PRIMARY KEY (`id_ets`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Volcando datos para la tabla bdoxilive.estatus_callcenter: ~3 rows (aproximadamente)
+DELETE FROM `estatus_callcenter`;
+INSERT INTO `estatus_callcenter` (`id_ets`, `estatus`) VALUES
+	(1, 1),
+	(2, 2),
+	(3, 3);
+
 -- Volcando estructura para tabla bdoxilive.genero
 DROP TABLE IF EXISTS `genero`;
 CREATE TABLE IF NOT EXISTS `genero` (
-  `id_genero` int(11) NOT NULL AUTO_INCREMENT,
-  `genero` varchar(50) NOT NULL,
+  `id_genero` int NOT NULL AUTO_INCREMENT,
+  `genero` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id_genero`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.genero: ~2 rows (aproximadamente)
 DELETE FROM `genero`;
@@ -10325,11 +10364,11 @@ INSERT INTO `genero` (`id_genero`, `genero`) VALUES
 -- Volcando estructura para tabla bdoxilive.insumos
 DROP TABLE IF EXISTS `insumos`;
 CREATE TABLE IF NOT EXISTS `insumos` (
-  `id_insumo` int(11) NOT NULL AUTO_INCREMENT,
-  `cantidad_insumo` int(11) NOT NULL,
-  `marca_insumo` int(11) NOT NULL,
-  `tamano_insumo` int(11) NOT NULL,
-  `estado_insumo` int(11) NOT NULL,
+  `id_insumo` int NOT NULL AUTO_INCREMENT,
+  `cantidad_insumo` int NOT NULL,
+  `marca_insumo` int NOT NULL,
+  `tamano_insumo` int NOT NULL,
+  `estado_insumo` int NOT NULL,
   PRIMARY KEY (`id_insumo`),
   KEY `id_insumo` (`id_insumo`),
   KEY `FK_insumos_marca_insumo` (`marca_insumo`),
@@ -10338,9 +10377,9 @@ CREATE TABLE IF NOT EXISTS `insumos` (
   CONSTRAINT `FK_insumos_estado_insumo` FOREIGN KEY (`estado_insumo`) REFERENCES `estado_insumo` (`id_estado`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_insumos_marca_insumo` FOREIGN KEY (`marca_insumo`) REFERENCES `marca_insumo` (`id_marca`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_insumos_tamano_insumo` FOREIGN KEY (`tamano_insumo`) REFERENCES `tamano_insumo` (`id_tamano`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla bdoxilive.insumos: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.insumos: ~0 rows (aproximadamente)
 DELETE FROM `insumos`;
 INSERT INTO `insumos` (`id_insumo`, `cantidad_insumo`, `marca_insumo`, `tamano_insumo`, `estado_insumo`) VALUES
 	(1, 4, 1, 1, 1);
@@ -10348,10 +10387,10 @@ INSERT INTO `insumos` (`id_insumo`, `cantidad_insumo`, `marca_insumo`, `tamano_i
 -- Volcando estructura para tabla bdoxilive.marca_insumo
 DROP TABLE IF EXISTS `marca_insumo`;
 CREATE TABLE IF NOT EXISTS `marca_insumo` (
-  `id_marca` int(11) NOT NULL AUTO_INCREMENT,
-  `marca_insumo` varchar(150) NOT NULL,
+  `id_marca` int NOT NULL AUTO_INCREMENT,
+  `marca_insumo` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id_marca`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.marca_insumo: ~5 rows (aproximadamente)
 DELETE FROM `marca_insumo`;
@@ -10365,12 +10404,12 @@ INSERT INTO `marca_insumo` (`id_marca`, `marca_insumo`) VALUES
 -- Volcando estructura para tabla bdoxilive.marca_tanque
 DROP TABLE IF EXISTS `marca_tanque`;
 CREATE TABLE IF NOT EXISTS `marca_tanque` (
-  `id_marca` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre_marca` varchar(50) NOT NULL,
+  `id_marca` int NOT NULL AUTO_INCREMENT,
+  `nombre_marca` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id_marca`),
   KEY `nombre_marca` (`nombre_marca`),
   KEY `id_marca` (`id_marca`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.marca_tanque: ~7 rows (aproximadamente)
 DELETE FROM `marca_tanque`;
@@ -10386,17 +10425,17 @@ INSERT INTO `marca_tanque` (`id_marca`, `nombre_marca`) VALUES
 -- Volcando estructura para tabla bdoxilive.mensajes
 DROP TABLE IF EXISTS `mensajes`;
 CREATE TABLE IF NOT EXISTS `mensajes` (
-  `id_msg` int(11) NOT NULL AUTO_INCREMENT,
-  `id_entrada` int(11) DEFAULT NULL,
-  `id_salida` int(11) DEFAULT NULL,
-  `msg` text DEFAULT NULL,
+  `id_msg` int NOT NULL AUTO_INCREMENT,
+  `id_entrada` int DEFAULT NULL,
+  `id_salida` int DEFAULT NULL,
+  `msg` text COLLATE utf8mb4_general_ci,
   `fecha_hora` datetime DEFAULT NULL,
-  `persona` varchar(255) DEFAULT NULL,
-  `leido` varchar(50) DEFAULT '0',
+  `persona` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `leido` varchar(50) COLLATE utf8mb4_general_ci DEFAULT '0',
   PRIMARY KEY (`id_msg`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla bdoxilive.mensajes: ~7 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.mensajes: ~9 rows (aproximadamente)
 DELETE FROM `mensajes`;
 INSERT INTO `mensajes` (`id_msg`, `id_entrada`, `id_salida`, `msg`, `fecha_hora`, `persona`, `leido`) VALUES
 	(1, 1, 25, 'Rico', '2023-09-29 10:56:49', 'admin', '1'),
@@ -10405,18 +10444,20 @@ INSERT INTO `mensajes` (`id_msg`, `id_entrada`, `id_salida`, `msg`, `fecha_hora`
 	(4, 18, 1, 'bkbhvhkvhk', '2023-10-10 09:48:36', 'proof', '1'),
 	(5, 1, 18, 'liugjhgj', '2023-10-10 09:48:54', 'Yani24_', '1'),
 	(6, 1, 18, 'kjbkjhkb', '2023-10-10 09:49:03', 'Yani24_', '1'),
-	(7, 1, 18, 'asdfghjklñ', '2023-10-10 10:10:40', 'Yani24_', '0');
+	(7, 1, 18, 'asdfghjklñ', '2023-10-10 10:10:40', 'Yani24_', '0'),
+	(8, 1, 9, 'lol', '2023-10-18 12:56:18', 'Yani24_', '0'),
+	(9, 1, 9, 'Cronograma.pdf', '2023-10-18 18:56:51', 'Yani24_', '0');
 
 -- Volcando estructura para tabla bdoxilive.municipios
 DROP TABLE IF EXISTS `municipios`;
 CREATE TABLE IF NOT EXISTS `municipios` (
-  `id` int(6) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `estado` int(4) NOT NULL DEFAULT 0,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL DEFAULT '',
+  `estado` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `index_estado` (`estado`) USING BTREE,
   CONSTRAINT `fk_estadoMun` FOREIGN KEY (`estado`) REFERENCES `estados` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15126 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Volcando datos para la tabla bdoxilive.municipios: ~141 rows (aproximadamente)
 DELETE FROM `municipios`;
@@ -10566,17 +10607,17 @@ INSERT INTO `municipios` (`id`, `nombre`, `estado`) VALUES
 -- Volcando estructura para tabla bdoxilive.notificaciones
 DROP TABLE IF EXISTS `notificaciones`;
 CREATE TABLE IF NOT EXISTS `notificaciones` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `usuario_destino` int(11) NOT NULL,
-  `mensaje` text NOT NULL,
-  `fecha` timestamp NULL DEFAULT current_timestamp(),
-  `asunto` varchar(100) NOT NULL,
-  `leida` tinyint(1) DEFAULT 0,
-  `ruta_asociada` int(11) DEFAULT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `usuario_destino` int NOT NULL,
+  `mensaje` text COLLATE utf8mb4_general_ci NOT NULL,
+  `fecha` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `asunto` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `leida` tinyint(1) DEFAULT '0',
+  `ruta_asociada` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_notificaciones_usuarios` (`usuario_destino`),
   CONSTRAINT `FK_notificaciones_puestos` FOREIGN KEY (`usuario_destino`) REFERENCES `puestos` (`id_puestos`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.notificaciones: ~7 rows (aproximadamente)
 DELETE FROM `notificaciones`;
@@ -10618,9 +10659,9 @@ CREATE TABLE IF NOT EXISTS `pacientes_call_center` (
   KEY `FK_genero_pacientes` (`genero`),
   KEY `FK_colonia` (`colonia`),
   KEY `FK_tipo_paciente` (`tipoPaciente`),
-  CONSTRAINT `FK_colonia` FOREIGN KEY (`colonia`) REFERENCES `colonias` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_genero_pacientes` FOREIGN KEY (`genero`) REFERENCES `genero` (`id_genero`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_tipo_paciente` FOREIGN KEY (`tipoPaciente`) REFERENCES `tipo_paciente` (`id_tipoPaciente`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `FK_colonia` FOREIGN KEY (`colonia`) REFERENCES `colonias` (`id`),
+  CONSTRAINT `FK_genero_pacientes` FOREIGN KEY (`genero`) REFERENCES `genero` (`id_genero`),
+  CONSTRAINT `FK_tipo_paciente` FOREIGN KEY (`tipoPaciente`) REFERENCES `tipo_paciente` (`id_tipoPaciente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.pacientes_call_center: ~6 rows (aproximadamente)
@@ -10637,11 +10678,11 @@ INSERT INTO `pacientes_call_center` (`id_pacientes`, `nombres`, `apellidos`, `ge
 DROP TABLE IF EXISTS `pacientes_enfermeria`;
 CREATE TABLE IF NOT EXISTS `pacientes_enfermeria` (
   `id_pacienteEnfermeria` int(10) unsigned zerofill NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(100) NOT NULL DEFAULT '',
-  `apellidos` varchar(100) NOT NULL DEFAULT '',
+  `nombre` varchar(100) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
+  `apellidos` varchar(100) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
   `fechaNacimiento` date NOT NULL,
   PRIMARY KEY (`id_pacienteEnfermeria`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.pacientes_enfermeria: ~3 rows (aproximadamente)
 DELETE FROM `pacientes_enfermeria`;
@@ -10653,34 +10694,34 @@ INSERT INTO `pacientes_enfermeria` (`id_pacienteEnfermeria`, `nombre`, `apellido
 -- Volcando estructura para tabla bdoxilive.pacientes_oxigeno
 DROP TABLE IF EXISTS `pacientes_oxigeno`;
 CREATE TABLE IF NOT EXISTS `pacientes_oxigeno` (
-  `id_pacientes` int(11) NOT NULL AUTO_INCREMENT,
-  `Nombres` varchar(50) NOT NULL,
-  `Apellidos` varchar(50) NOT NULL,
-  `Genero` int(11) NOT NULL,
-  `Edad` varchar(5) NOT NULL,
-  `calle` varchar(100) NOT NULL,
-  `num_in` varchar(50) NOT NULL,
-  `num_ext` varchar(50) NOT NULL,
-  `colonia` varchar(50) NOT NULL,
-  `cp` int(11) NOT NULL,
-  `municipio` varchar(50) NOT NULL,
-  `estado_direccion` varchar(50) NOT NULL,
-  `Alcaldia` varchar(50) NOT NULL,
-  `Telefono` varchar(30) NOT NULL,
-  `Administradora` int(11) NOT NULL,
-  `Aseguradora` int(11) NOT NULL,
-  `Banco` int(11) NOT NULL,
-  `No_nomina` varchar(50) NOT NULL,
-  `Credencial_front` longblob DEFAULT NULL,
-  `Credencial_post` longblob DEFAULT NULL,
-  `Fecha_registro` timestamp NOT NULL DEFAULT current_timestamp(),
-  `Credencial_aseguradora` longblob DEFAULT NULL,
-  `comprobante` longblob DEFAULT NULL,
-  `Credencial_aseguradoras_post` longblob DEFAULT NULL,
-  `referencias` varchar(250) NOT NULL,
-  `estado` int(11) DEFAULT NULL,
-  `rfc` varchar(50) DEFAULT NULL,
-  `responsable` varchar(100) DEFAULT NULL,
+  `id_pacientes` int NOT NULL AUTO_INCREMENT,
+  `Nombres` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `Apellidos` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `Genero` int NOT NULL,
+  `Edad` varchar(5) COLLATE utf8mb4_general_ci NOT NULL,
+  `calle` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `num_in` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `num_ext` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `colonia` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `cp` int NOT NULL,
+  `municipio` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `estado_direccion` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `Alcaldia` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `Telefono` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
+  `Administradora` int NOT NULL,
+  `Aseguradora` int NOT NULL,
+  `Banco` int NOT NULL,
+  `No_nomina` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `Credencial_front` longblob,
+  `Credencial_post` longblob,
+  `Fecha_registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Credencial_aseguradora` longblob,
+  `comprobante` longblob,
+  `Credencial_aseguradoras_post` longblob,
+  `referencias` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
+  `estado` int DEFAULT NULL,
+  `rfc` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `responsable` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id_pacientes`,`Genero`,`Administradora`,`Banco`,`Aseguradora`) USING BTREE,
   KEY `FK1_genero_idx` (`Genero`) USING BTREE,
   KEY `FK2_administradora_idx` (`Administradora`) USING BTREE,
@@ -10692,7 +10733,7 @@ CREATE TABLE IF NOT EXISTS `pacientes_oxigeno` (
   CONSTRAINT `FK4_banco` FOREIGN KEY (`Banco`) REFERENCES `bancos` (`id_bancos`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_pacientes_oxigeno_aseguradoras` FOREIGN KEY (`Aseguradora`) REFERENCES `aseguradoras` (`id_aseguradora`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_pacientes_oxigeno_estado_paciente` FOREIGN KEY (`estado`) REFERENCES `estado_paciente` (`id_estadop`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.pacientes_oxigeno: ~13 rows (aproximadamente)
 DELETE FROM `pacientes_oxigeno`;
@@ -10714,12 +10755,12 @@ INSERT INTO `pacientes_oxigeno` (`id_pacientes`, `Nombres`, `Apellidos`, `Genero
 -- Volcando estructura para tabla bdoxilive.paises
 DROP TABLE IF EXISTS `paises`;
 CREATE TABLE IF NOT EXISTS `paises` (
-  `id` int(3) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla bdoxilive.paises: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.paises: ~0 rows (aproximadamente)
 DELETE FROM `paises`;
 INSERT INTO `paises` (`id`, `nombre`) VALUES
 	(1, 'México');
@@ -10727,43 +10768,44 @@ INSERT INTO `paises` (`id`, `nombre`) VALUES
 -- Volcando estructura para tabla bdoxilive.procedimientos
 DROP TABLE IF EXISTS `procedimientos`;
 CREATE TABLE IF NOT EXISTS `procedimientos` (
-  `id_procedi` int(11) NOT NULL AUTO_INCREMENT,
-  `icd` varchar(50) DEFAULT NULL,
-  `dx` varchar(50) DEFAULT NULL,
-  `fecha` date DEFAULT NULL,
-  `medico` int(11) DEFAULT NULL,
-  `pacienteYnomina` int(11) DEFAULT NULL,
-  `cpt` int(11) DEFAULT NULL,
+  `id_procedi` int NOT NULL AUTO_INCREMENT,
+  `icd` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `dx` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `medico` int DEFAULT NULL,
+  `pacienteYnomina` int DEFAULT NULL,
+  `cpts` int DEFAULT NULL,
   PRIMARY KEY (`id_procedi`),
   KEY `medico` (`medico`),
   KEY `pacienteYnomina` (`pacienteYnomina`),
-  KEY `cpts` (`cpt`) USING BTREE,
+  KEY `cpts` (`cpts`),
   CONSTRAINT `FK1_medico` FOREIGN KEY (`medico`) REFERENCES `usuarios` (`id_usuarios`),
   CONSTRAINT `FK2_pacienteYnomina` FOREIGN KEY (`pacienteYnomina`) REFERENCES `pacientes_oxigeno` (`id_pacientes`),
-  CONSTRAINT `FK_procedimientos_cpts_administradora` FOREIGN KEY (`cpt`) REFERENCES `cpts_administradora` (`id_cpt`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  CONSTRAINT `FK3_cpt` FOREIGN KEY (`cpts`) REFERENCES `cpts_administradora` (`id_cpt`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla bdoxilive.procedimientos: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.procedimientos: ~3 rows (aproximadamente)
 DELETE FROM `procedimientos`;
-INSERT INTO `procedimientos` (`id_procedi`, `icd`, `dx`, `fecha`, `medico`, `pacienteYnomina`, `cpt`) VALUES
-	(51, '187 / 88', 'Colillo', '2023-10-13', 9, 27, 20);
+INSERT INTO `procedimientos` (`id_procedi`, `icd`, `dx`, `medico`, `pacienteYnomina`, `cpts`) VALUES
+	(5, '188.3/164', 'Cancer Rico / CR', 7, 29, 21),
+	(6, '189.4/165', 'Pulmonia / PLMA', 9, 32, 25),
+	(7, '199.6/130', 'Rico_Pollo / RP', 6, 33, 27);
 
 -- Volcando estructura para tabla bdoxilive.productos
 DROP TABLE IF EXISTS `productos`;
 CREATE TABLE IF NOT EXISTS `productos` (
-  `id_productos` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(100) DEFAULT NULL,
-  `descripcion` varchar(300) DEFAULT NULL,
+  `id_productos` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `descripcion` varchar(300) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `precio` double DEFAULT NULL,
-  `imagen` longblob DEFAULT NULL,
-  `fecha_registro` timestamp NULL DEFAULT current_timestamp(),
-  `categoria` varchar(50) DEFAULT NULL,
-  `cantidad` int(11) DEFAULT NULL,
-  `disponible` varchar(50) DEFAULT NULL,
+  `imagen` longblob,
+  `fecha_registro` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `categoria` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `cantidad` int DEFAULT NULL,
+  `disponible` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id_productos`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla bdoxilive.productos: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.productos: ~0 rows (aproximadamente)
 DELETE FROM `productos`;
 INSERT INTO `productos` (`id_productos`, `nombre`, `descripcion`, `precio`, `imagen`, `fecha_registro`, `categoria`, `cantidad`, `disponible`) VALUES
 	(1, 'PRUEBA DE PRODUCTO', 'PRUEBA DE PRODUCTOP', 1250, _binary 0x313639323230313339395f747265652d3733363838355f313238302e6a7067, '2023-08-16 15:56:39', NULL, 25, 'DISPONIBLE');
@@ -10771,11 +10813,11 @@ INSERT INTO `productos` (`id_productos`, `nombre`, `descripcion`, `precio`, `ima
 -- Volcando estructura para tabla bdoxilive.puestos
 DROP TABLE IF EXISTS `puestos`;
 CREATE TABLE IF NOT EXISTS `puestos` (
-  `id_puestos` int(11) NOT NULL AUTO_INCREMENT,
-  `Nombre_puestos` varchar(50) DEFAULT NULL,
-  `Fecha_registro` timestamp NULL DEFAULT current_timestamp(),
+  `id_puestos` int NOT NULL AUTO_INCREMENT,
+  `Nombre_puestos` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Fecha_registro` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_puestos`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.puestos: ~12 rows (aproximadamente)
 DELETE FROM `puestos`;
@@ -10799,40 +10841,40 @@ CREATE TABLE IF NOT EXISTS `regisclinicos_cuidagenerales` (
   `id_RC` int(10) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `Temperatura` decimal(20,6) NOT NULL,
   `Pulso` decimal(20,6) NOT NULL,
-  `Respiracion` int(11) NOT NULL,
-  `Tension_arterial` varchar(50) NOT NULL,
-  `Spo2` int(11) NOT NULL,
+  `Respiracion` int NOT NULL,
+  `Tension_arterial` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `Spo2` int NOT NULL,
   `Glicemia_capilar` decimal(20,6) NOT NULL,
-  `Vomitos` int(11) DEFAULT 0,
-  `Evacuaciones` int(11) DEFAULT 0,
-  `Orina` int(11) DEFAULT 0,
-  `Ingesta_liquidos` int(11) DEFAULT 0,
-  `Caidas` int(11) DEFAULT 0,
-  `Drenajes_vendajes` int(11) DEFAULT 0,
-  `Upp_hh` int(11) DEFAULT 0,
-  `Descripcion_upp` varchar(255) DEFAULT NULL,
-  `Solucion` varchar(50) NOT NULL DEFAULT '',
+  `Vomitos` int DEFAULT '0',
+  `Evacuaciones` int DEFAULT '0',
+  `Orina` int DEFAULT '0',
+  `Ingesta_liquidos` int DEFAULT '0',
+  `Caidas` int DEFAULT '0',
+  `Drenajes_vendajes` int DEFAULT '0',
+  `Upp_hh` int DEFAULT '0',
+  `Descripcion_upp` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Solucion` varchar(50) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
   `Fecha_solucion` date DEFAULT NULL,
-  `Cantidad_solucion` varchar(50) DEFAULT '',
-  `Got_solucion` varchar(50) DEFAULT '',
-  `Frec_solucion` varchar(50) DEFAULT '',
+  `Cantidad_solucion` varchar(50) COLLATE utf8mb4_general_ci DEFAULT '',
+  `Got_solucion` varchar(50) COLLATE utf8mb4_general_ci DEFAULT '',
+  `Frec_solucion` varchar(50) COLLATE utf8mb4_general_ci DEFAULT '',
   `Hora_inicio` time DEFAULT NULL,
   `Hora_termina` time DEFAULT NULL,
-  `Cauracion` varchar(255) DEFAULT NULL,
-  `Nota_emfermeria_dia` varchar(255) NOT NULL,
-  `Nota_emfermeria_noche` varchar(255) NOT NULL DEFAULT '',
+  `Cauracion` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Nota_emfermeria_dia` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `Nota_emfermeria_noche` varchar(255) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
   `Alimentos_desayuno` time DEFAULT NULL,
-  `Descripcion_desayuno` varchar(255) DEFAULT NULL,
+  `Descripcion_desayuno` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `Alimentos_comida` time DEFAULT NULL,
-  `Descripcion_comida` varchar(255) DEFAULT NULL,
+  `Descripcion_comida` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `Alimentos_cena` time DEFAULT NULL,
-  `descripcion_cena` varchar(255) DEFAULT NULL,
-  `Medicamentos` varchar(50) NOT NULL DEFAULT '',
+  `descripcion_cena` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Medicamentos` varchar(50) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
   `Horario_Medi` time DEFAULT NULL,
   PRIMARY KEY (`id_RC`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla bdoxilive.regisclinicos_cuidagenerales: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.regisclinicos_cuidagenerales: ~0 rows (aproximadamente)
 DELETE FROM `regisclinicos_cuidagenerales`;
 INSERT INTO `regisclinicos_cuidagenerales` (`id_RC`, `Temperatura`, `Pulso`, `Respiracion`, `Tension_arterial`, `Spo2`, `Glicemia_capilar`, `Vomitos`, `Evacuaciones`, `Orina`, `Ingesta_liquidos`, `Caidas`, `Drenajes_vendajes`, `Upp_hh`, `Descripcion_upp`, `Solucion`, `Fecha_solucion`, `Cantidad_solucion`, `Got_solucion`, `Frec_solucion`, `Hora_inicio`, `Hora_termina`, `Cauracion`, `Nota_emfermeria_dia`, `Nota_emfermeria_noche`, `Alimentos_desayuno`, `Descripcion_desayuno`, `Alimentos_comida`, `Descripcion_comida`, `Alimentos_cena`, `descripcion_cena`, `Medicamentos`, `Horario_Medi`) VALUES
 	(0000000012, 39.900000, 188.880000, 25, '135/78', 45, 20.200000, 1, 1, 1, 1, 1, 1, 1, 'lalalalalal', 'INTRAVENOSA', '2023-10-14', '150', '150', '154', '06:00:00', '07:00:00', 'lalalalalalalala', 'lalalalallalala', 'lalalalalala', '09:00:00', 'lalalalalala', '15:00:00', 'lallalalal', '21:00:00', 'lalalalalala', 'paracetamol', '09:00:00');
@@ -10840,13 +10882,13 @@ INSERT INTO `regisclinicos_cuidagenerales` (`id_RC`, `Temperatura`, `Pulso`, `Re
 -- Volcando estructura para tabla bdoxilive.registro_bitacora
 DROP TABLE IF EXISTS `registro_bitacora`;
 CREATE TABLE IF NOT EXISTS `registro_bitacora` (
-  `id_Rbitacora` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `id_usuario` int(11) NOT NULL,
+  `id_Rbitacora` int unsigned NOT NULL AUTO_INCREMENT,
+  `id_usuario` int NOT NULL,
   `Registro_fecha` date NOT NULL,
   `hora_entrada` time DEFAULT NULL,
   `hora_salida` time DEFAULT NULL,
-  `id_checkIn` int(10) unsigned NOT NULL,
-  `id_checkOut` int(10) unsigned DEFAULT NULL,
+  `id_checkIn` int unsigned NOT NULL,
+  `id_checkOut` int unsigned DEFAULT NULL,
   PRIMARY KEY (`id_Rbitacora`),
   KEY `FK_checkIn` (`id_checkIn`),
   KEY `FK_checkOut` (`id_checkOut`),
@@ -10854,7 +10896,7 @@ CREATE TABLE IF NOT EXISTS `registro_bitacora` (
   CONSTRAINT `FK_checkIn` FOREIGN KEY (`id_checkIn`) REFERENCES `asistencias` (`id_asistencias`),
   CONSTRAINT `FK_checkOut` FOREIGN KEY (`id_checkOut`) REFERENCES `asistencias` (`id_asistencias`),
   CONSTRAINT `FK_idUser` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuarios`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.registro_bitacora: ~2 rows (aproximadamente)
 DELETE FROM `registro_bitacora`;
@@ -10865,35 +10907,35 @@ INSERT INTO `registro_bitacora` (`id_Rbitacora`, `id_usuario`, `Registro_fecha`,
 -- Volcando estructura para tabla bdoxilive.ruta_diaria_oxigeno
 DROP TABLE IF EXISTS `ruta_diaria_oxigeno`;
 CREATE TABLE IF NOT EXISTS `ruta_diaria_oxigeno` (
-  `id_ruta` int(11) NOT NULL AUTO_INCREMENT,
+  `id_ruta` int NOT NULL AUTO_INCREMENT,
   `Fecha_agenda` date NOT NULL,
-  `Paciente` varchar(50) NOT NULL DEFAULT '0',
-  `Direccion` varchar(500) DEFAULT NULL,
-  `Alcaldia` varchar(100) DEFAULT NULL,
-  `Aseguradora` int(11) NOT NULL,
-  `Telefono` varchar(30) DEFAULT NULL,
-  `Carro` int(11) NOT NULL,
-  `Chofer` int(11) NOT NULL,
-  `Tanque` int(11) DEFAULT NULL,
-  `Regulador` int(11) DEFAULT NULL,
-  `Portatil` int(11) DEFAULT NULL,
-  `Concentrador` int(11) DEFAULT NULL,
-  `Aspirador` int(11) DEFAULT NULL,
-  `Cpac` int(11) DEFAULT NULL,
-  `Bipac` int(11) DEFAULT NULL,
-  `Agua` int(11) DEFAULT NULL,
-  `Puntas_n` int(11) DEFAULT NULL,
-  `Puntas_neon` int(11) DEFAULT NULL,
-  `Vaso_borb` int(11) DEFAULT NULL,
-  `Mascarilla` int(11) DEFAULT NULL,
-  `Canula` int(11) DEFAULT NULL,
-  `Recoleccion_tanque` int(11) DEFAULT NULL,
-  `Recoleccion_aspi` int(11) DEFAULT NULL,
-  `Recoleccion_concentrador` int(11) DEFAULT NULL,
-  `Nota` varchar(100) DEFAULT NULL,
+  `Paciente` varchar(50) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '0',
+  `Direccion` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Alcaldia` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Aseguradora` int NOT NULL,
+  `Telefono` varchar(30) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Carro` int NOT NULL,
+  `Chofer` int NOT NULL,
+  `Tanque` int DEFAULT NULL,
+  `Regulador` int DEFAULT NULL,
+  `Portatil` int DEFAULT NULL,
+  `Concentrador` int DEFAULT NULL,
+  `Aspirador` int DEFAULT NULL,
+  `Cpac` int DEFAULT NULL,
+  `Bipac` int DEFAULT NULL,
+  `Agua` int DEFAULT NULL,
+  `Puntas_n` int DEFAULT NULL,
+  `Puntas_neon` int DEFAULT NULL,
+  `Vaso_borb` int DEFAULT NULL,
+  `Mascarilla` int DEFAULT NULL,
+  `Canula` int DEFAULT NULL,
+  `Recoleccion_tanque` int DEFAULT NULL,
+  `Recoleccion_aspi` int DEFAULT NULL,
+  `Recoleccion_concentrador` int DEFAULT NULL,
+  `Nota` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `Fecha_hora_entrega` datetime DEFAULT NULL,
-  `estado` int(11) NOT NULL,
-  `Fecha_registro` timestamp NOT NULL DEFAULT current_timestamp(),
+  `estado` int NOT NULL,
+  `Fecha_registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_ruta`,`Carro`,`Chofer`,`estado`) USING BTREE,
   KEY `FK8_estadoEnt_idx` (`estado`),
   KEY `FK11_carroRut_idx` (`Carro`),
@@ -10903,9 +10945,9 @@ CREATE TABLE IF NOT EXISTS `ruta_diaria_oxigeno` (
   CONSTRAINT `FK12_choferRut` FOREIGN KEY (`Chofer`) REFERENCES `choferes` (`id_choferes`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK8_estadoEnt` FOREIGN KEY (`estado`) REFERENCES `estado_ruta` (`id_estado`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_ruta_diaria_oxigeno_aseguradoras` FOREIGN KEY (`Aseguradora`) REFERENCES `aseguradoras` (`id_aseguradora`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla bdoxilive.ruta_diaria_oxigeno: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.ruta_diaria_oxigeno: ~0 rows (aproximadamente)
 DELETE FROM `ruta_diaria_oxigeno`;
 INSERT INTO `ruta_diaria_oxigeno` (`id_ruta`, `Fecha_agenda`, `Paciente`, `Direccion`, `Alcaldia`, `Aseguradora`, `Telefono`, `Carro`, `Chofer`, `Tanque`, `Regulador`, `Portatil`, `Concentrador`, `Aspirador`, `Cpac`, `Bipac`, `Agua`, `Puntas_n`, `Puntas_neon`, `Vaso_borb`, `Mascarilla`, `Canula`, `Recoleccion_tanque`, `Recoleccion_aspi`, `Recoleccion_concentrador`, `Nota`, `Fecha_hora_entrega`, `estado`, `Fecha_registro`) VALUES
 	(17, '2023-09-02', 'BELTRAN MAURICIO', 'CHIMALHUACAN', 'KOKO', 11, '87965132', 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ' SSSSSS', NULL, 1, '2023-09-02 20:49:33');
@@ -10913,15 +10955,15 @@ INSERT INTO `ruta_diaria_oxigeno` (`id_ruta`, `Fecha_agenda`, `Paciente`, `Direc
 -- Volcando estructura para tabla bdoxilive.salida_almacen
 DROP TABLE IF EXISTS `salida_almacen`;
 CREATE TABLE IF NOT EXISTS `salida_almacen` (
-  `id_salida` int(11) NOT NULL AUTO_INCREMENT,
-  `entrega_salida` int(11) NOT NULL,
-  `pide_salida` int(11) NOT NULL,
-  `cantidad_salida` int(11) NOT NULL,
-  `fecha_salida` timestamp NOT NULL DEFAULT current_timestamp(),
-  `tipo_matesali` int(11) DEFAULT NULL,
-  `nombre_matesali` varchar(150) NOT NULL,
-  `observacionessali` varchar(200) NOT NULL,
-  `estado_salida` int(11) DEFAULT NULL,
+  `id_salida` int NOT NULL AUTO_INCREMENT,
+  `entrega_salida` int NOT NULL,
+  `pide_salida` int NOT NULL,
+  `cantidad_salida` int NOT NULL,
+  `fecha_salida` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `tipo_matesali` int DEFAULT NULL,
+  `nombre_matesali` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
+  `observacionessali` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `estado_salida` int DEFAULT NULL,
   PRIMARY KEY (`id_salida`),
   KEY `FK_salida_almacen_empleados` (`entrega_salida`),
   KEY `FK_salida_almacen_empleados_2` (`pide_salida`),
@@ -10933,7 +10975,7 @@ CREATE TABLE IF NOT EXISTS `salida_almacen` (
   CONSTRAINT `FK_salida_almacen_almacen_4` FOREIGN KEY (`estado_salida`) REFERENCES `almacen` (`id_almacen`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_salida_almacen_empleados` FOREIGN KEY (`entrega_salida`) REFERENCES `empleados` (`id_empleados`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_salida_almacen_empleados_2` FOREIGN KEY (`pide_salida`) REFERENCES `empleados` (`id_empleados`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.salida_almacen: ~5 rows (aproximadamente)
 DELETE FROM `salida_almacen`;
@@ -10947,12 +10989,12 @@ INSERT INTO `salida_almacen` (`id_salida`, `entrega_salida`, `pide_salida`, `can
 -- Volcando estructura para tabla bdoxilive.tamano
 DROP TABLE IF EXISTS `tamano`;
 CREATE TABLE IF NOT EXISTS `tamano` (
-  `id_tamano` int(11) NOT NULL AUTO_INCREMENT,
-  `tamano` varchar(50) NOT NULL,
+  `id_tamano` int NOT NULL AUTO_INCREMENT,
+  `tamano` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id_tamano`),
   KEY `id_tamano` (`id_tamano`),
   KEY `tamano` (`tamano`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.tamano: ~3 rows (aproximadamente)
 DELETE FROM `tamano`;
@@ -10964,12 +11006,12 @@ INSERT INTO `tamano` (`id_tamano`, `tamano`) VALUES
 -- Volcando estructura para tabla bdoxilive.tamano_insumo
 DROP TABLE IF EXISTS `tamano_insumo`;
 CREATE TABLE IF NOT EXISTS `tamano_insumo` (
-  `id_tamano` int(11) NOT NULL AUTO_INCREMENT,
-  `tamano_insumo` varchar(150) NOT NULL,
+  `id_tamano` int NOT NULL AUTO_INCREMENT,
+  `tamano_insumo` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id_tamano`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla bdoxilive.tamano_insumo: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.tamano_insumo: ~0 rows (aproximadamente)
 DELETE FROM `tamano_insumo`;
 INSERT INTO `tamano_insumo` (`id_tamano`, `tamano_insumo`) VALUES
 	(1, 'EJEMPLO');
@@ -10977,11 +11019,11 @@ INSERT INTO `tamano_insumo` (`id_tamano`, `tamano_insumo`) VALUES
 -- Volcando estructura para tabla bdoxilive.tanques
 DROP TABLE IF EXISTS `tanques`;
 CREATE TABLE IF NOT EXISTS `tanques` (
-  `id_tanques` int(11) NOT NULL AUTO_INCREMENT,
-  `marca` int(11) NOT NULL,
-  `estado_tanque` int(11) NOT NULL,
-  `tamano` int(11) NOT NULL,
-  `cantidad` int(11) NOT NULL,
+  `id_tanques` int NOT NULL AUTO_INCREMENT,
+  `marca` int NOT NULL,
+  `estado_tanque` int NOT NULL,
+  `tamano` int NOT NULL,
+  `cantidad` int NOT NULL,
   PRIMARY KEY (`id_tanques`),
   KEY `marca` (`marca`),
   KEY `estado_tanque` (`estado_tanque`),
@@ -10991,7 +11033,7 @@ CREATE TABLE IF NOT EXISTS `tanques` (
   CONSTRAINT `FK_tanques_estado_tanque` FOREIGN KEY (`estado_tanque`) REFERENCES `estado_tanque` (`id_estado`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_tanques_marca_tanque` FOREIGN KEY (`marca`) REFERENCES `marca_tanque` (`id_marca`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_tanques_tamano` FOREIGN KEY (`tamano`) REFERENCES `tamano` (`id_tamano`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.tanques: ~7 rows (aproximadamente)
 DELETE FROM `tanques`;
@@ -11007,25 +11049,56 @@ INSERT INTO `tanques` (`id_tanques`, `marca`, `estado_tanque`, `tamano`, `cantid
 -- Volcando estructura para tabla bdoxilive.tipos_servicios
 DROP TABLE IF EXISTS `tipos_servicios`;
 CREATE TABLE IF NOT EXISTS `tipos_servicios` (
-  `id_tipoServicio` int(11) NOT NULL AUTO_INCREMENT,
-  `nombreServicio` varchar(50) NOT NULL DEFAULT '',
-  `horasServicio` int(2) unsigned zerofill NOT NULL DEFAULT 00,
-  `sueldo` int(11) NOT NULL DEFAULT 0,
+  `id_tipoServicio` int NOT NULL AUTO_INCREMENT,
+  `nombreServicio` varchar(50) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
+  `horasServicio` int(2) unsigned zerofill NOT NULL DEFAULT '00',
+  `sueldo` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_tipoServicio`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla bdoxilive.tipos_servicios: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.tipos_servicios: ~0 rows (aproximadamente)
 DELETE FROM `tipos_servicios`;
 INSERT INTO `tipos_servicios` (`id_tipoServicio`, `nombreServicio`, `horasServicio`, `sueldo`) VALUES
 	(1, 'Guardia General', 08, 300);
 
+-- Volcando estructura para tabla bdoxilive.tipos_servicios_callcenter
+DROP TABLE IF EXISTS `tipos_servicios_callcenter`;
+CREATE TABLE IF NOT EXISTS `tipos_servicios_callcenter` (
+  `idServicio` int NOT NULL AUTO_INCREMENT,
+  `nombreServicio` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `descripcionServicio` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  PRIMARY KEY (`idServicio`),
+  KEY `idServicio` (`idServicio`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Volcando datos para la tabla bdoxilive.tipos_servicios_callcenter: ~18 rows (aproximadamente)
+DELETE FROM `tipos_servicios_callcenter`;
+INSERT INTO `tipos_servicios_callcenter` (`idServicio`, `nombreServicio`, `descripcionServicio`) VALUES
+	(1, 'visita medica domiciliaria', 'horario de 07:00 a las 20:00 hrs'),
+	(3, 'consulta de especialidad', 'medico internista'),
+	(4, 'consulta de especialidad', 'medico geriatra'),
+	(6, 'visita medica domiciliaria', 'horario de 07:00 a las 20:00 hrs foraneos'),
+	(7, 'visita medica domiciliaria', 'horario de 07:00 a las 20:00 hrs posible COVID'),
+	(9, 'diagnostico integral', 'socio-cl'),
+	(10, 'encuestas socio económicas', ''),
+	(11, 'valoraciones para seguro de vida', 'cdmx-zona conurbada'),
+	(12, 'curaciones', 'no incluye material'),
+	(13, 'cambio de sonda foley ', 'no incluye sonda y materiales'),
+	(14, 'cambio de sonda de gastrotom', ''),
+	(15, 'introducion', ''),
+	(16, 'cambio de bolsa colostom', ''),
+	(17, 'enema evacuante', 'no incluye material'),
+	(18, 'consulta de especialidad medica', ''),
+	(19, 'visita medica domiciliaria', 'horario nocturno de 20:00 a las 07:00 hrs. y sábados, domingos y festivos foráneos'),
+	(20, 'visita medica domiciliaria', 'horario nocturno de 20:00 a las 07:00 hrs. y sábados, domingos y festivos ');
+
 -- Volcando estructura para tabla bdoxilive.tipo_equipo
 DROP TABLE IF EXISTS `tipo_equipo`;
 CREATE TABLE IF NOT EXISTS `tipo_equipo` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `tipo` varchar(250) DEFAULT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `tipo` varchar(250) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.tipo_equipo: ~14 rows (aproximadamente)
 DELETE FROM `tipo_equipo`;
@@ -11048,10 +11121,10 @@ INSERT INTO `tipo_equipo` (`id`, `tipo`) VALUES
 -- Volcando estructura para tabla bdoxilive.tipo_material
 DROP TABLE IF EXISTS `tipo_material`;
 CREATE TABLE IF NOT EXISTS `tipo_material` (
-  `id_material` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre_material` varchar(250) NOT NULL,
+  `id_material` int NOT NULL AUTO_INCREMENT,
+  `nombre_material` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id_material`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.tipo_material: ~4 rows (aproximadamente)
 DELETE FROM `tipo_material`;
@@ -11064,47 +11137,47 @@ INSERT INTO `tipo_material` (`id_material`, `nombre_material`) VALUES
 -- Volcando estructura para tabla bdoxilive.tipo_paciente
 DROP TABLE IF EXISTS `tipo_paciente`;
 CREATE TABLE IF NOT EXISTS `tipo_paciente` (
-  `id_tipoPaciente` int(10) NOT NULL AUTO_INCREMENT,
-  `tipoPaciente` varchar(50) NOT NULL,
+  `id_tipoPaciente` int NOT NULL AUTO_INCREMENT,
+  `tipoPaciente` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id_tipoPaciente`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla bdoxilive.tipo_paciente: ~2 rows (aproximadamente)
 DELETE FROM `tipo_paciente`;
 INSERT INTO `tipo_paciente` (`id_tipoPaciente`, `tipoPaciente`) VALUES
-	(1, 'ACTIVO'),
-	(2, 'JUBILADO');
+	(1, 'JUBILADO'),
+	(2, 'ACTIVO');
 
 -- Volcando estructura para tabla bdoxilive.usuarios
 DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE IF NOT EXISTS `usuarios` (
-  `id_usuarios` int(11) NOT NULL AUTO_INCREMENT,
-  `Usuario` varchar(50) NOT NULL,
-  `paswword` varchar(250) NOT NULL,
-  `Nombres` varchar(50) NOT NULL,
-  `Apellidos` varchar(50) NOT NULL,
-  `Genero` int(11) NOT NULL,
-  `Telefono` varchar(50) NOT NULL,
-  `Correo` varchar(50) NOT NULL,
-  `Estado` int(11) NOT NULL,
-  `id_departamentos` int(11) NOT NULL,
-  `Fecha_registro` timestamp NULL DEFAULT current_timestamp(),
-  `rfc` varchar(50) NOT NULL,
-  `alcaldia` varchar(50) DEFAULT NULL,
-  `num_interior` varchar(50) DEFAULT NULL,
-  `num_exterior` varchar(50) DEFAULT NULL,
-  `codigo_postal` int(11) DEFAULT NULL,
-  `calleUno` varchar(50) DEFAULT NULL,
-  `calleDos` varchar(50) DEFAULT NULL,
-  `referencias` varchar(100) DEFAULT NULL,
-  `credencialFrente` longblob DEFAULT NULL,
-  `credencialAtras` longblob DEFAULT NULL,
-  `comprobante_domicilio` longblob DEFAULT NULL,
-  `inicios_sesion` int(11) DEFAULT 0,
-  `fecha_sesion` timestamp NULL DEFAULT current_timestamp(),
-  `estatus` varchar(50) DEFAULT '0',
-  `token` varchar(64) DEFAULT NULL,
-  `Foto_perfil` longblob DEFAULT NULL,
+  `id_usuarios` int NOT NULL AUTO_INCREMENT,
+  `Usuario` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `paswword` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
+  `Nombres` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `Apellidos` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `Genero` int NOT NULL,
+  `Telefono` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `Correo` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `Estado` int NOT NULL,
+  `id_departamentos` int NOT NULL,
+  `Fecha_registro` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `rfc` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `alcaldia` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `num_interior` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `num_exterior` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `codigo_postal` int DEFAULT NULL,
+  `calleUno` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `calleDos` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `referencias` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `credencialFrente` longblob,
+  `credencialAtras` longblob,
+  `comprobante_domicilio` longblob,
+  `inicios_sesion` int DEFAULT '0',
+  `fecha_sesion` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `estatus` varchar(50) COLLATE utf8mb4_general_ci DEFAULT '0',
+  `token` varchar(64) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Foto_perfil` longblob,
   PRIMARY KEY (`id_usuarios`,`Estado`,`Genero`,`id_departamentos`) USING BTREE,
   KEY `FK_estado_idx` (`Estado`) USING BTREE,
   KEY `FK_genero_idx` (`Genero`) USING BTREE,
@@ -11112,9 +11185,9 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   CONSTRAINT `FK_departamento` FOREIGN KEY (`id_departamentos`) REFERENCES `puestos` (`id_puestos`),
   CONSTRAINT `FK_estado` FOREIGN KEY (`Estado`) REFERENCES `estado` (`id_estado`),
   CONSTRAINT `FK_genero` FOREIGN KEY (`Genero`) REFERENCES `genero` (`id_genero`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla bdoxilive.usuarios: ~13 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.usuarios: ~12 rows (aproximadamente)
 DELETE FROM `usuarios`;
 INSERT INTO `usuarios` (`id_usuarios`, `Usuario`, `paswword`, `Nombres`, `Apellidos`, `Genero`, `Telefono`, `Correo`, `Estado`, `id_departamentos`, `Fecha_registro`, `rfc`, `alcaldia`, `num_interior`, `num_exterior`, `codigo_postal`, `calleUno`, `calleDos`, `referencias`, `credencialFrente`, `credencialAtras`, `comprobante_domicilio`, `inicios_sesion`, `fecha_sesion`, `estatus`, `token`, `Foto_perfil`) VALUES
 	(1, 'Yani24_', '$2y$10$grLCbK0VC5.v93cck.YVd.idrRZSBFk/8/IEVTpBKiEQmbZKyArAO', 'YANITZIN', 'MARTINEZ BASILIO', 2, '5511794905', 'yanimtzbsl24@gmail.com', 1, 1, '2023-08-16 00:21:21', 'MABY030624', 'CHIMALHUACAN', '1', '23', 56337, 'SAN FRANCISCO', 'OYAMEL', 'ENTRANDO POR BARRANCA LADO DERECHO, A UNA DISTANCIA DE 9 CASAS ', _binary 0x313639323132333638315f496d6167656e312e706e67, _binary 0x313639323132333638315f44422e706e67, _binary 0x313639323132333638315f4746442e706466, 220, '2023-08-16 00:21:21', '1', '14635cb6febff3f240984ffa671f8dd14508bca826a6dc7e385ce7318838cf99', _binary 0xffd8ffe000104a46494600010101004800480000ffdb00430006040506050406060506070706080a100a0a09090a140e0f0c1017141818171416161a1d251f1a1b231c1616202c20232627292a29191f2d302d283025282928ffdb0043010707070a080a130a0a13281a161a2828282828282828282828282828282828282828282828282828282828282828282828282828282828282828282828282828ffc2001108012c012c03012200021101031101ffc4001b00010002030101000000000000000000000006070304050201ffc400190101000301010000000000000000000000000102030405ffda000c03010002100310000001b5000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003947578982094e99422d63d3a303bcdbce8a7736a344a957cb62f23134000000000000000004662736fc2ac68d15f583e085cdfc7b405b344a535265db8f8f22eee1eb736cc80f53a7c3960be00000000000000018223d19244d5d6891a85b1000f1c3efa27cfa26386e94422fdfed4366334fa00000000000001a246e654b4e72ee980d784000001cce9f262d5ec7ad3e473faf5fde9029069c7261af1000000000000235258c1b797ae8b18e3d35929f0fae7ef1eb99d18992e0008f4863d13d18f48388b4b04d00000000000011893c78ef7ba76c4cfafbdcde934e463c8306700004564f5967d5b3ced5e2f3fb36be0abadfdfc9ef0d788000000000001adb22beb02b1d1b45baa73574cedee2563d9c7b26ba3a516a6d6d79a8bef5f976daa416e2a313d8dc6be65d3d8b720762e57f42d90000000000000153f0767b1d18709e7d7462eef095b5cb4d4ba239681be2030e5d1adbd7cdfede3a4fbb1199373ec090000000000000297b72b2b274a42e1d79f1caa3e49633d18bee25ab95ad8e5bbe352459da39219bf779f6d08e4f6a794a263199352c11200000000000004439b3caea2d6531e49af9a82e1a535ce67d6d795657a1f16791746516b2be7acaf3214bf16bc95f1133edfc7910000000000000000f1ec00a62e7abb4ce4b2c844de97a46c788c834a4cfce465a01e71670000000000000000000020b3aa8a2fb768c127528746bde499b43ee3c91980000000000000000000000d6d91873069fcdd0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001ffc4003010000104010107020503050000000000000201030405001206101113152040142122303234352324503133417080ffda0008010100010502ff0079c9b4891c8ef5318b890f3dea27e2cb9429d76281c7991e479d2e60305e91f9586d8b5211088abe10436b738d8383229da5ceaa50ca0db4794be54a96e1bf0e2371472ed8e4caa16359f65d4c5042012075be5e55dc1c7545e29e3dccf58add02f266ee3113114414dee12360a64e132d3afab34ae3891eae303d1496be478cf382cb435c5318e4ca8d27bc91085aaa88d922704cb41d2dca642547ab904f31e2cffdcccf9b20db6d9adb18c30c5d06ed53c5a790d3d37e64e96111a90f3925c5f67957944c16b6fc39cef221b0df08f4f3888fe5ce84dcbc1a68f9d3229ce7e8908767dc572b7c3da12d355d2a16315f19877bfd746e7f687e4b287e11f0effedb7196906e5c841c5f6c2991871150917dd3d349e9fdacfbcfcaafef787b43ed044909370428e0f618898832db7df26e1b023b3985912d5d65d893e3c9ca5f89af0efc75d434ba329df76445f9449a85f82fc4c421546fe873e8ab6b951bc390df358a2af6de8bbe64848b1dbba6154aee32635726b2ba843cea50b3a942cea50b3a8c3c4b184b974701c8dd2c8d1b86efaf8e9c07c49cf49adb05b29cb8b325ae1b8e3984d8a8c369c9f8154ae8bfab9bddc109e24417682396814e09e26d238af4e6cd1c0df4b23d3cf75d469be2abdce9e8111e023faad4041567c57bf5a559d79b7824843be4597a8a6ed254144e2451229cc3b38a31f284f540f17e89ed8f16ece9fe355503ddc138f61120a2aeb38958e3cb163200ed2126ad9efb4f16e9a566ca13a8f4754e392e0b5205ea5505922ec678094909c41ce70ae73f8e293a595d520fb316bdb651b650775c3fceb0a56f444f176823a18524c069fdca88b9645aed6919d5066578c88eda72c21465929fe766d51606eb797e8a01c14e4c51e03e2b80860cd2f26787d3ba4fde6cff00e3b1cf7ca48ce352ed2a864e50c6762b7bb68e13f319a484e8902701f1b4a764d1d161b3df8ec921a2552f072070f64144dea9c705b445f2f681bd167b367fb7cbc6b9569b34e718bfc0ed4a272e81d56e766d2b5c62d1c8e558a7f033599efcaa982ac927f4bbb1592ed643327c3e9fe00da42c06d0773adebc6d941ff877ffc40026110001030303040301010000000000000001000203041112213031101320223241601440ffda0008010301013f01fc052d3ff43f1baaca7869c585cbba98de1b95b4dd00b8d829a230bb07282630bc3c29a532bcbcf4a1a7ef49edc0551530b3ef553f6dceca3161b8d7169b853cee9ce4ee7c0388e3a37727a1744ccfc998e5edc26d7c2cb3636e8aba564ae0f66de6ee2fe6de53b6ea68dd00b9371e5491c523ed29b234501b00156d3881c003b724d73ec57742a510cad7770dac9c295b1b883afd2eeaeeaeea86b1f0fc54d3ba7764edb232bf469b1ba94dfa80b1d2fb8dfb4e60723190b12b129acba0c014874436da1badfa49c7468d4a0db1e98b4b75e77a4f8a09bf23fe163438fb709f8e5e9c2ed3437371d7f2dfffc40026110002010303030403000000000000000001020003111210303113216120224060043241ffda0008010201013f01fa03b622f29b33eb71c6f2b642f1972168a3116d2ab6222a318b7feee731571e3d47716a8636f51f13a4c7994c15163b76f869532f5542c0769d4694db2db4a448ed3a0d2aab25ad143b3013a1e6743cce8798df8e1a2a85ec36d5b0b0d1972169456d7d58cc85f1dc7e018950ac5aa0cc96642355b4672652176879db24e947f6d1cfb4466c8680907b6f523ee87b18fdd01f837b4e7999f6c7eadfffc40046100002000304050609080905000000000001020003110412213113224151711020324052612334428191a1b1c1d114303362728292e105244350537393a2f0637080c2f1ffda0008010100063f02ff007ceebcd05fb29ac63c15926b7da21604b9760ab1c7e9bf28f105febfe5157fd1f33ee4c53176d0b3e436e992cc7809c8fdc0e3d784b5066cf6e8cb4cff0028adba6d13f8128d079ce6627a228502630a080a82aec6804506b4c6e93efe5bb3155d771158ac8ba0f61c557e23cd1a397a46606971daf27dd6ce021f053bb0db7875b364b0d0cff2dce5287c7ba0ddab3b62eedd263c9a6f226e7dcd0d69390d54f79e6fc9a49d761ae7b222e102eee8bafad2ce4604ab6316939098735e31875812e4f8ccce8fd51be0a56ba55c49ccb0ff000f29570194ec3145141b87319db251530d35fa4e6f18f012d9fbf67a63f5a75553e4a63eb899679eaceebaca4b9d6585b331ad9a67d0b1f24f67e1d5de64c34541530d699c6e5ae6eb2fd45d8b128992f7d5c52e8a83e7f982ad883818adc2d4c83b5408a0cb916d4bd2906f1ef5f2bfcee8696d9364c366e3149bf4d2cdc7e3d5a4588743e966f0190f4fcf319ec165edac4b97367a874d5d6c32896f2dd5a5da56e9ba6bac3f2ead6d9a662e91e65c55af9232f9dbcd8b1c1546d31a49ed56d8362f089a3eb42ce51ad2d83402323d527cdec21312d48d91f269e4b352a8dbfbbe712fb3295c8ac6b34e6fbd4f645a92e30bb729463ba08933ce3b1c562457302e9f361d5260ed909e931e2eb0264b4a30cb589f98d0e945fad3babbab973ad9c13dfc9684eccf71ebea9206fb44bf6f2b3509a0ae11679d374264cf20055ade5ae5c7968d68920fdb11519722d8742a2945d286c38d37f3ada7eb28fedfcf92d7fcf6ea8afd89a8deb8aa9046f1cba549403eceee1c975d4329d863525a2f01cf2b674d291e564b183cb4fb2913b4aa26867c4e4777ba289328dd96c0c17edbb37f7754b50fab5f440794c659de86917a7634340d4a5e1bfe6ca9c8c50a17963274158a820d238e30625a76540ea93259c9948849b6837caeae8f60237efe634e60582ec11e192649ef22a3d5182ce63b353389627aca95258d2a5b2c37c78d48fea08f1a93f8e3c6a4fe28f1a93f8e3c6a4fe38f1a91f8c41d793a46216fa9c4576c56c76893685ee3431264ce96c98df35dc3ab4d9767997254ef0a356b8ed8f1a6f32afc231b54ef4d23c24d9adc5cc100468e48c69aec72582d22d4931a51294bb415dd1a375a19671c6b8f3f0c97db197031a672c4be553e4f562a87e8061c76fba030e6257a13750fba2739521658bd5df156e91c4f1e761d239452086d62a7d308cbd1230ead36bfb49c47f7520da6ceb51fb441ed1155351cc646fa7a896c37f7f3aa728bede61ba3575656d7f8459f46b75685625f7557d1d5883b2d1ff6e4336c944739aec68b9354cb99b9b96bcdc60573d8831806d1a89d8199e300014036459e58ef68fbcdedead3481d3a4c1c611d72615e4a4c40c3be3f579a40ecbe2234731031a5750c544a9b4cba11ac1c715318073c163565b1f5461753d7093a6bcc72c37d23c1cb0bc39669f265ea0f344a073a54f569539890b29b5c8ec9ce3e4b5175b14a35e15da2bebe65a8ec0420f30897df53eb8696db76ee8209c549f6c054e9aa5f5e30411461983b21076491ebe59937cbc938c59a8c7c3352e937af0dad5eae5585418d21987468d596a3dfccb57f35fdb123ecf24ffb4fed300b0acb32b07f4469259b93bb5bf8c3acea54b570e595f2765f066f5d3b634b68043e417b3d72d6a7f884fa71893c392d69feab7ae2cedf507ee20db2627ac43cbec39f8f2336c9aa1bd187c21a5ff0d88f7fee2b3114d269283853186463d35f67fef224fdb29bd462ef933453ce3f7116b44a7333217585d03ba349375a7114a8d9c864a1bb211a943fb422127ce052ef453de7fe21ff00ffc4002c10010001030106050501010100000000000111002131415161718191a11040b1c1d12030e1f0f1507080ffda0008010100013f21ff00b9b62bd2ec18a9d6adbf3141984e0b1b5a25afc0d25e81b47a49488c5a27a4d66db8172cf9e13b5aa5bdd8ded109d9a57ea9b0a294f02209b768ae3ae8cb4c13298baf6361e2cd6362558f15ce827d55326a066b59feaa7614c7aa6bebe6e243437ccd5dbb140399494ed4be110488c7a05bb9e9509e67dffe91d7e9b604816eba1bdf4e552c6c288cb821f23b1f9adb0c4dee8df404a91bcf9889e6525cc7c3d68a7d2dba526579f8b2810091a1241b0101f459219c02915e989d3910546b76add6b52333d5e4715bb563b5822e183530f5d69872a112edafeb4a2fe5a7e8adb8a7d4c91b9a89b233beaf4a849a76cdcb98fb0680281d4a19b741ca340000343c22a698d5b0e97e22942b5390b21ce95c634f775e0e79f96796777773d1f7a39d21e3c2824e2c9284837dc14bda680338db6a4e54a4f2b767b283861dfee9b35bab7c5be8288b1f69ef9aeb2750a8e8b84dcd0a79093ca5e4843e21412b406fb7341a482720cadfbf5fb92a92e41ac497e0507befc4a1c8b22324af8a3338441ee22bdd2f17c3ca3879e940f6ad5bbc5a43e384c0eafd81a2dc57dc1ba7ea73b8f4e864ab03056e3ca268b41e3cd82864c54131723794c6f58f040958296dc4325197144894242624cd01095a7b0476d84f1d7eadc23a30f80c3110bfa1e52ec2cb74d177bc249e248025b984e51839782aca8191aed539f5a0c4429b9b9d7914bb09b24eeb4f13bc3381c1d949825fe7ebcabf87f57b794daa1efbdaaf1a93f034b065b965f85ad6fb673c8218a2234c40237991ed4e02650e2a505cfab7ab5e250b1bebf9d81e50b384f322a7131b50cc763850458f18ac86d1963de9e01063752556f605a23bf1ce984995c5e49b0d3bd5b9b7fa6b5fc357f3f5fc3527137772ac04d527ae746cc86cbc04b52fa4a7ca141819804781be2a17ca38a280a451b0cfaf3acc8f05437b63e828e81f7af7a12029676562cc0172fab9b523b792a1ca658ad6b92d0b22dd6a0d874fa62b060b36355101049236698b5439818cedbb5027953416b9b7eca6005d367d10adb3d8fe56e74eed29445b36a357bbc732fafd5b4160efac8d76bb69912eccf9c5469c1783cb4c974a707daa6177c2cfb945889af8a49146b61ecc1663b907ea52f032d5ae4521b47cd45262c6db77ca8941629bae7bd281f8893cab418fce7ef9d0909492f727fd86bba7ab83af8c8104987e99f3ce0d5a429596bdd3568d376b751a50c93400b144ce03763e6a70d8c1d5e5b112f02b3dc3ad3572514621a43b3f18a9e6c39dec9560529c96e7c2b2f95c27d28010560852f4a3bcd28467489529866fb2a9b4992c70db5002f585de3e0c118abcff00da775e948623922dfdfcb6afcc14b4b959e558845980bb0af8ea4f1ca15107a307bad1252fdea6a680c8195a252cb80aed854f443760c8cd0b226c672ad46b7d5f8a08f030dc22daf1f3caa50463810de360731bea07cb1781423ad31224619377eaf4d44f8b95d6a5cfbb4e29372074a8c3a4ac32a8e350912220586ca5c3ac8e42c1ede37882ad5e90f5ab2d3bf906af16a38f2ea331411e2b957a57bab1f623bb4d4aba746ef7a1a82e7222a165292789986a5c79cb5b0378a47a254ec6e0e4fe5e169ac4e373b50351e4ad9ebfe14aeb807697c288e6683457c50b94600e42709f67955e326588d63b4d293fc111d2e839e63bd4d0241806c28c0a9a512c8ad9b27159f684ccfe4a9c27fc142f580f055579a2dff873ffda000c03010002000300000010f3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cb6e320f7cf3cf3cf3cf3cf3cf3e9b97fc9d9db4f3cf3cf3cf3cf3cff00df3cf3ff000057cf3cf3cf3cf3ce11f3cf3cf2c193f3cf3cf3cf3cf38fb8e38b3cf3b63cf3cf3cf3cf3cb39f3c73cf23abef3cf3cf3cf3cf38ff005c703ffedacfcf3cf3cf3cf3cf0bdea33fff0023d7f3cf3cf3cf3cf2ca3863af371e877cf3cf3cf3cf3cf0670e2d879c374f3cf3cf3cf3cf3cf1cfedcacf0cf3cf3cf3cf3cf3cf3cf26facf3cf3cf3cf3cf3cf3cf3cf3cb1c71cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3cf3ffc400291100020103040102060300000000000000011100213141305161711020d140608191a1b1c1e1f1ffda0008010301013f10f9004da001febde00188e42037b7dbcb44b96354606c985b702fc872a76b1b897313f8d87813b7079d846ec08510abe0e177684c2260e3ae35008e888021081319efd00c82201bf3e04906948422b4c7c4b083dc7f5eaa0af72bc2860075b77fb9438a558d3a0588f3a05ba604212dbfdbd9fa8d13630feb88513846a09e398c48ebc8d32b8c4c312194ecb56f8cc2dd202834ad38ddfd2759d67587ab4f1feccd34b4cee1832d1340500f2ea984819def0161e9d2439950ccad43b338216f3e2107010034d1276a8bf9f06a40a28eeef78e95bc16a575b8ddeb03284c032807c08a8259752b91610144301bf27e56ffc4002511010002020103040203000000000000000100112131301041512040617160f0b1d1f1ffda0008010201013f10fc035cb8a5b41d73659e5502d81421228203a6976ced389594ede440530cd69e841d9d30f650dabca36179638e329baf5ba87183aaa7d56a3703b563954e3b41c43b891fa2c655dc779fb54aff0089fb5422d60bc605cee660de49730c93f5d69c1b8311a71129ae3cfe17f130fb261f4c3cc47cf08e0e8b43f11da78f0435d05da2e6e57f47f5042f674f0c73547e61b09f42c7b15e66e2b96d06a1afc5bfffc4002b100100010303030304030003000000000001110021314151614071811091a12030b1c150d1f07080f1ffda0008010100013f10ff009cec0345c2eccbee8a90d9c1df95ee540a94200e531260ee852c10b7fd9349336bdac91a7ddd0497f2140b03c83c98bc9d7271d2207bcdb7623bd3ab860166c50bb8761a27741c92041a7f654074a5468a5d0cabb0b5228a460580d9bec66eaafa65ca064f0daa72e5048f706e40e1c5490a1f6b89296ec9048822886cc2425b61edb703ab1201017440ea5f732dabbfc98d1f8416343d27581850e1368230377992774c2b429b5bdc0bc6ff00a4436d7e9204317e1d02eeab0cb84200d2230ed4843b81ab29876b299f3441bab0fe5dcd64c14434032271d439660448161eda0d7ca9c0e42c81ac2a3bdbd418c41e0d91b343ff004100d80b07d0b6aaad825f829d82875d88ec0f053e226632ef91da5a09cf055d68881ecb868681c00ba2204925bc6029645110375d74ca9bd9b90a40931d319cdb1c25f31a5405492c0666f61c19a972f9a82211800804b62d7ec2d91e090847c528a78622304d0c722d163480200ede8edca004bec8e3a0a660e31b27b8067c626a208c768b28e043c74c77b80b73cda41926cfef4bd2d88422774e20bb4807d842da042b73ad08761a065360ee053502efd293a9c129cc5c8ab626f9fbad9b8c44258e0175583760651030524c9b9babb82002158047bba31c060850a49d489a3f80b1a8927490b4847253e62aff003ac2e3b91c8cb9c8eb4f695c78853a92e680cdc57edc8d6910c5e0089c136ef308dd2e40ed650e015c9097967b86a491a0e246301e51a506e4d994a7a478833dbf2855c0102041fdd2c180aa6428203124f3f606a7a3f6d78724da27ea10190f7bff00ba709d9abac467dcfee8e8ca24481a2433f1eb348602981301ab6aee60f947a52d6c174b11e8a04175580a8f90c454bb4cd10972922371a8dd3421939a3e0c210dd9115821be6cbfd52d067dd5f40d8ed470fe428e8d010b82c404cce99ac380053c9eafc290267059dd502cdf3e96fe21baeb8d9a7a6d91fd69f5b9bf1531672b1770e69c91884c1cca97c14efa51f7de413205a355ea154c3102e82b7748ac5b05acaa33e14746e212b36d51524207392106e5897c226f52f6d3d80442c656404c88fb77e13990c2459d2864f0710d84e6144d9961db2afa9365efb35365f570b7f6a62858629bf11cca54586779405f727a48ff00f0932fcd3de785325c26eb1bc0db5a00000603d63f715c904650c89e2699d91f9cc4790292936660116186a9981cd3e5e30b4825990447735637cb0d24d4643fce6bfc5fee87604ff3bd168461ff00ad3b2f28843f2d0c741320a5aa4c2231cd4000c0086062e46e956ac07204845223166a7c993a4128a015b575800e0c840d29357cd3fb97cd46923fe8068e04110747c29769059549916f33ad4b61710ca2a66d405ad742f4e2a885409a1045c1078b516e0f55116119094c8436cd078f61f4a1c83e06983004a04e488d883bad20b666b85d26ccebdaa018e17e640548272c425101d289d06bac9c4be2efe69e361baca323f448a0211dd7f2f1ed51ff00909137633a43217de8856406eaf917d5790239af7e0ccd095e0416e99966827ba998cc8ce6c949acd1620dc22e2483688a3a46d520657be6c83e2513011b900888d064d4277a15c5207f5a3b9ea4e9492c964d6477d677a2fc5531700783e113429baf3f484b3ca69fedb5a9cfca4166ed7da8d3459178b77d5d1c0ef6a828505684722ddae559734cfb30380bf01d2e0d311933d9b7c4068305ca53d84d87ccfec2df2d3634d28eec436469e7d14644905c1d27c7d24a1b60129b0175ab9cd892bba2ff0001cd4f5849e0618705f78a0ef61401a0168a8b8ed696bde7d95132425c8cdefd2b8a8ab0b703004f754299727a24c3cfeea0c0d3148cc365b9a8f6869b876b48d8901e5a6a47ac2a82808bab5e92a41a0626490d073024a03626e6068050a605531f1350b72a04493ce94744f5a4a5dac1401565813991713c854837c84ee32bcb3448a13da8000b50e8493892fdad10a2108dc8f7474d6fb8008010c930d4b2a2b7f55e3810b8d121d20508927a19628a03932c1228394b8f3787dca590468ad9e50c78b344089b204158bc165a832b85855be08a799d28a9fa5403227e1c45e98019ab08c7c2a8058f4065a5671cc6b1970a824f26878a9212485124e849a22dd332e19d204844e4a287e250332390b106198b8dc04fa34964f950a3e00f14e49bdff6a32868c4602980e971404cc83040226484f0849a9450104922c06a4eb93e29219f480e720dee8d277a3d1f4b6d26105804356e5e953527845180b0a4db48dda280e9e7213da80405bd1c340e20276209eea60066538424f72b0692453027723f0290a61f70af91a5a504a5a00beac7035088999a2dd5c170118c92f34c9421e3bf1fccf1e8e101c8b0fccc179a5036a1da4ed113b7f04c8d0c8df436845fda922a694458a0c8299bdb4c5385a75a1449bb7ccc4d4212efccad3726398260280535fe01c314f951940ac2ec4a8a7341430133c5349c92b657b45309cd1e3258da090bc459756ee940ee9b97a136061419d5d8e491fc0372a7740ecad2b3462a3904d00418ff00a39fffd9),

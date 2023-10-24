@@ -74,7 +74,6 @@ if (!isset($_SESSION['us'])) {
                         </div>
                     </div>
                     <div class="col-md-2 align-self-center">
-                        <br>
                         <div class="formulario__grupo" id="grupo__Nombre_aseguradora">
                             <label for="code" class="text-left"></label>
                             <div class="formulario__grupo-input">

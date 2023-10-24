@@ -22,7 +22,6 @@ if (!isset($_SESSION['us'])) {
                 </div>
                 <div class="card list-group" id="show-list"></div>
             </form>
-
         </div>
     </div>
 </main>
