@@ -25,23 +25,20 @@ $idUrl = $_GET['idPac'];
 
                         <div class="row">
                             <div class="col-md-6">
-                                <h5 class="card-title">Numero de expediente: <?php echo $paciente['No_nomina']; ?>
+                                <h5 class="card-title">ID PACIENTE: <?php echo $paciente['id_pacientes']; ?>
                                 </h5>
                                 <h5 class="card-title">Nombre completo:
-                                    <?php echo $paciente['Nombres'] . ' ' . $paciente['Apellidos']; ?></h5>
-                                <h5 class="card-title">Género: <?php echo $paciente['Genero']; ?></h5>
-                                <h5 class="card-title">Edad: <?php echo $paciente['Edad']; ?></h5>
-                                <h5 class="card-title">Domicilio:
-                                    <?php echo $paciente['calle'] . ' ' . $paciente['num_in'] . ' ' . $paciente['num_ext'] . ' ' . $paciente['colonia'] . ' ' . $paciente['cp'] . ' ' . $paciente['municipio'] . ' ' . $paciente['estado_direccion'] . ' ' . $paciente['Alcaldia']; ?>
-                                </h5>
+                                    <?php echo $paciente['nombres'] . ' ' . $paciente['apellidos']; ?></h5>
+                                <h5 class="card-title">Género: <?php echo $paciente['genero']; ?></h5>
+                                <h5 class="card-title">Edad: <?php echo $paciente['edad']; ?></h5>
                             </div>
                             <div class="col-md-6">
-                                <h5 class="card-title">Administradora:
-                                    <?php echo $paciente['Nombre_administradora']; ?></h5>
-                                <h5 class="card-title">Aseguradora: <?php echo $paciente['Nombre_aseguradora']; ?>
+                                <br>
+                                <br>
+                                <br>
+                            <h5 class="card-title">Domicilio:
+                                    <?php echo $paciente['calle'] . ' ' . $paciente['num_int'] . ' ' . $paciente['num_ext'] . ' ' . $paciente['nombre_colonia'] . ' ' . $paciente['codigo_postal'] . ' ' . $paciente['nombre_municipio'] . ' ' . $paciente['nombre_estado'] . ' ' . $paciente['nombre_municipio']; ?>
                                 </h5>
-                                <h5 class="card-title">Banco: <?php echo $paciente['Nombre_banco']; ?></h5>
-                                <h5 class="card-title">Responsable: <?php echo $paciente['responsable']; ?></h5>
                             </div>
                         </div>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">

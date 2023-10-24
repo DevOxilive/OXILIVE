@@ -15,7 +15,7 @@ if($_POST){
     echo '<script language="javascript"> ';
         echo 'Swal.fire({
                 icon: "success",
-                title: "CARRO AGREGADO",
+                title: "Servicio agregado correctamente ",
                 showConfirmButton: false,
                 timer: 1500,
             }).then(function() {
