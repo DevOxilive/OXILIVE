@@ -17,6 +17,7 @@ if (!isset($_SESSION['us'])) {
     </div>
 </main>
 <script src="js/arribo.js"></script>
+
 <?php
 include("../../../templates/footer.php");
 ?>
