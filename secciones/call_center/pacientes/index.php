@@ -24,7 +24,7 @@ if (!isset($_SESSION['us'])) {
                 <h2>Pacientes</h2>
                 <a class="btn btn-outline-primary" href="pages/crearPaciente.php" role="button">
                     <i class="bi bi-calendar-plus"></i>
-                    Nueva Guardia
+                    Nuevo Paciente
                 </a>
             </div>
             <div class="card-body">

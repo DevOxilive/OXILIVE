@@ -180,7 +180,7 @@ if (!isset($_SESSION['us'])) {
                         </a>
                         <button type="submit" class="btn btn-outline-primary">Registrar</button>
                     </div>
-
+                    <input type="hidden" id="idPac" value="0">
                 </form>
             </div>
         </div>
@@ -190,6 +190,7 @@ if (!isset($_SESSION['us'])) {
 <script src="../js/validacion.js"></script>
 <script src="../js/formButtons.js"></script>
 <script src="../js/domicilio.js"></script>
+
 </html>
 <?php
 include("../../../../templates/footer.php");

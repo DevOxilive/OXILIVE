@@ -126,6 +126,7 @@ autEsp.addEventListener("input", function () {
 });
 
 form.addEventListener("submit", function (event) {
+  var idPac = document.getElementById("idPac");
   event.preventDefault();
   if (valNum(telUno) & valNum(telDos)) {
     if (validar(formArray)) {
@@ -145,7 +146,11 @@ form.addEventListener("submit", function (event) {
         calleUno: calleUno.value,
         calleDos: calleDos.value,
         referencias: ref.value,
+
+        idPac: idPac.value,
       };
+      
+      if(idPac.value == 0){
       fetch("../model/nuevoPaciente.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -162,10 +167,32 @@ form.addEventListener("submit", function (event) {
               showConfirmButton: false,
               timer: 1500,
             }).then(function () {
-              window.location.replace("../indexCool.php");
+              window.location.replace("../index.php");
             });
           }
         });
+      } else {
+        fetch("../model/editarPaciente.php", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        })
+          .then((response) => response.json())
+          .then((resultado) => {
+  
+            if (resultado == true) {
+              Swal.fire({
+                title: "Actualizado",
+                text: "Paciente actualizado correctamente",
+                icon: "success",
+                showConfirmButton: false,
+                timer: 1500,
+              }).then(function () {
+                window.location.replace("../index.php");
+              });
+            }
+          });
+      }
     } else {
       Swal.fire({
         title: "Faltan datos",
