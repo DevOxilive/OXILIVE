@@ -1,19 +1,8 @@
-<?php 
-include("../../../connection/conexion.php");
-$servicio = $con->prepare("SELECT * FROM asignacion_servicio LIMIT 1");
-$servicio->execute();
-$ltServicio = $servicio->fetchAll(PDO::FETCH_ASSOC); 
-
-// if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//     // Obtiene los parámetros
-//     $servicioId = $_POST["servicioId"];
-//     $nuevoEstado = $_POST["nuevoEstado"];
-//     // Actualiza el estado del servicio en la base de datos
-//     $sql = "UPDATE asignacion_servicio SET estado = $nuevoEstado WHERE id_sv = $servicioId";
-//     if ($conn->query($sql) === TRUE) {
-//         echo "success";
-//     } else {
-//         echo "error: " . $conn->error;
-//     }
-// }
+<?php
+    include ('../../../connection/conexion.php');
+    $sentencia = $con->prepare('SELECT a.id_sv, a.num_medico, u.Usuario, a.num_paciente,
+    a.fecha,a.moti_consulta,
+    p.Nombres FROM asignacion_servicio a inner JOIN  usuarios u, pacientes_oxigeno p WHERE u.id_departamentos = 12 AND a.num_medico = u.id_usuarios AND a.num_paciente = p.id_pacientes;');
+    $sentencia->execute();
+    $lista = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 ?>

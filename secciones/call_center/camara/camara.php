@@ -162,12 +162,15 @@ if (!isset($_SESSION['us'])) {
 
                 (async () => {
                     const pdfDoc = await PDFDocument.create();
-                    const page = pdfDoc.addPage([width, height]);
+                    const page = pdfDoc.addPage([512, 992]);
                     const jpgImage = await pdfDoc.embedJpg(imgData);
                     const imgDims = jpgImage.scale(1);
+                    const centerX = (page.getWidth() - imgDims.width) / 2;
+                    const centerY = (page.getHeight() - imgDims.height) / 4;
+
                     page.drawImage(jpgImage, {
-                        x: 0,
-                        y: 0,
+                        x: centerX,
+                        y: centerY,
                         width: imgDims.width,
                         height: imgDims.height,
                         color: rgb(0, 0, 0),

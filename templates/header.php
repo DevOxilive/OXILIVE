@@ -480,11 +480,6 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                 </li>
                 <li>
                     <a href="<?php echo $url_base; ?>secciones/call_center/medicos/index.php">
-                        <i class="bi bi-circle"></i><span>Asistencias</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?php echo $url_base; ?>secciones/call_center/servicios/index.php">
                         <i class="bi bi-circle"></i><span>Asistencia Médcia</span>
                     </a>
                 </li>
