@@ -46,12 +46,12 @@ if (!isset($_SESSION['us'])) {
                         <tbody>
                             <?php foreach ($pacientes as $datos) { ?>
                                 <tr>
-                                    <td>
+                                    <td class="clickeable-row" data-url="paciente.php?idPac=<?php echo $datos['id_pacientes']; ?>">
                                         <center><?php echo $datos['id_pacientes'] ?></center>
                                     </td><!-- Por definir numero de expediente -->
-                                    <td><?php echo $datos['nombres']; ?></td>
-                                    <td><?php echo $datos['apellidos']; ?></td>
-                                    <td>
+                                    <td class="clickeable-row" data-url="paciente.php?idPac=<?php echo $datos['id_pacientes']; ?>"><?php echo $datos['nombres']; ?></td>
+                                    <td class="clickeable-row" data-url="paciente.php?idPac=<?php echo $datos['id_pacientes']; ?>"><?php echo $datos['apellidos']; ?></td>
+                                    <td class="clickeable-row" data-url="paciente.php?idPac=<?php echo $datos['id_pacientes']; ?>">
                                         <center>
                                             <?php if ($datos['idTipoPac'] == 1) { ?>
                                                 <span class="badge text-bg-primary fs-6">
