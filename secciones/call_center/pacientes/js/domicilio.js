@@ -24,10 +24,8 @@ numeroInput.addEventListener("input", function () {
       })
         .then((data) => data.json())
         .then((data) => {
-          console.log(data);
           if (data != "") {
             data.forEach((dato) => {
-              console.log(dato);
               colonia.innerHTML +=
                 "<option value='" + dato.id + "'>" +
                 dato.nombre +

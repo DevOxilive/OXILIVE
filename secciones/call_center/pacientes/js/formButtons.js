@@ -12,7 +12,7 @@ function confirmCancel(event) {
   }).then((result) => {
     if (result.isConfirmed) {
       // Aquí puedes redirigir al usuario a otra página o realizar alguna otra acción
-      window.location.href = "../index.php";
+      window.location.replace("../index.php");
     }
   });
 }

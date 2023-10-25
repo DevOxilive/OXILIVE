@@ -686,7 +686,7 @@ if (isset($_SESSION['us']) && $_SESSION['puesto'] == 1) {
 } elseif ($_SESSION['puesto'] === 4) {
     header('Location: secciones/oxigeno/index.php');
 } elseif ($_SESSION['puesto'] === 5) {
-    header('Location: secciones/call_center/indexCool.php');
+    header('Location: secciones/call_center/index.php');
 } elseif ($_SESSION['puesto'] === 6) {
     header('Location: secciones/enfermeria/user/index.php');
 } elseif ($_SESSION['puesto'] === 7) {

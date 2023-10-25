@@ -94,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 showConfirmButton: false,
                                 timer: 1500,
                             }).then(function() {
-                        window.location = 'secciones/call_center/indexCool.php';
+                        window.location = 'secciones/call_center/index.php';
                             });
                     </script>";
                     break;
