@@ -126,6 +126,8 @@ if (
     $consulta->bindParam(':horario', $horario);
 
     $consulta->execute();
+    $id = $con->lastInsertId();
+
 
     //elimina las variables de la sesion para porder realizar otro registro
     unset($_SESSION["temperatura"]);
@@ -160,13 +162,11 @@ if (
     unset($_SESSION["descripCena"]);
 
     $_SESSION['datos_guardados'] = true;
-    header('Location: ../registroYcuidados/index.php');
+    header('Location: ../registroYcuidados/index.php?id='. $id);
    
     exit();
 } else {
     echo "error en el envio de post";
 }
+echo '<script>window.location.href = "../registroYcuidados/index.php";</script>';
 ?>
-<?php
-   echo '<script>window.location.href = "../registroYcuidados/index.php";</script>';
-   ?>

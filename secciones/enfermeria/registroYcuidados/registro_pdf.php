@@ -393,33 +393,31 @@ $this->Ln(); // Salto de línea después de la primera fila
 foreach ($nombresColumnas as $nombre) {
     $this->Cell(61.64, 35, utf8_decode(''), 1, 0, 'C');
 }
-
 $this->Ln(); // Salto de línea después de la segunda fila
-
-
-
-
+ }
 }
-
-}
-
-
-
+/*require('../../../connection/conexion.php');
+    $btnI = (isset($_GET['data-id'])) ? $_GET['data-id'] : "";
+    $sentencia = $con->prepare("SELECT * FROM regisclinicos_cuidagenerales WHERE id_RC = :id_rc");
+    $sentencia->bindParam(":id_rc",$datosGuardados);
+    $sentencia->execute();*/
 //Instanciar funcionaes 
     $pdf = new PDF();
     $pdf-> AliasNbPages();
     $pdf->AddPage();
     $pdf->SetFont('Arial','B',10);
-    
-        // Cabecera de la tabla
+    /*while($resultado = $sentencia->fetch(PDO::FETCH_ASSOC)){
+       echo($resultado);
+        $pdf->SetXY(20, 20);
+        //$pdf->MultiCell(500, 5, ('Nombre del Paciente: '));
+        $pdf->MultiCell(100, 5, '' . $resultado['Respiracion']);
+    }*/
         $header = [];
-
         // Datos de la tabla (5 columnas)
         $data = [];    
         $pdf->CreateTable($header, $data);
-
-
-    $pdf->Output();
+        // Cabecera de la tabla
+        $pdf->Output();
     
 
 ?>

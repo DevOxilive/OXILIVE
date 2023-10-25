@@ -92,9 +92,7 @@ $y = 55;
 $contador = 1;
 $altoPagina = 278; // Alto de página estándar (por ejemplo, A4)
 $limiteFilas = ($altoPagina - $y) / $alturaCelda; // Calcular cuántas filas caben en la página
-
 $pdf->SetFont('Arial', 'B', 8);
-
 while ($res = $lista->fetch(PDO::FETCH_ASSOC)) {
     $fechaSeleccionada = $res['fecha'];
     $ultimoDiaDelMes = date("Y-m-t", strtotime($fechaSeleccionada));
