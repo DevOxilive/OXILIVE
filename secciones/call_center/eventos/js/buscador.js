@@ -18,10 +18,11 @@ let select = 0;
 function showPacientes(datos){
     lista.innerHTML="";
     datos.forEach((pac, i) => {
-        const item = document.createElement('li');
+        const item = document.createElement('div');
+        
         item.textContent = pac.nomComp;
         if(select === i ){
-            item.classList.add("seleccionado");
+            item.setAttribute("selected");
         }
         lista.appendChild(item);
     })

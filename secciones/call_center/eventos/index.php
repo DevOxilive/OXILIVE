@@ -28,7 +28,7 @@ if (!isset($_SESSION['us'])) {
                         <input type="text" class="form-control" id="search_cliente" name="Buscar_pacientes" placeholder="Nombre del paciente" required autocomplete="off">
                     </div>
                     <div class="contenido col-md-12">
-                        <ul id="show-list"></ul>
+                        <ul class="dropdown-list" id="show-list"></ul>
                     </div>
                 </form>
             </div>
