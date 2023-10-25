@@ -49,7 +49,6 @@ if (!isset($_SESSION['us'])) {
                         <tbody>
                             <?php foreach ($lista_horarios as $horario) { ?>
                                 <tr>
-
                                     <td>
                                         <?php echo $horario['Nombres']; ?>
                                     </td>

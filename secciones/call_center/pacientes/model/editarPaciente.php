@@ -1,5 +1,4 @@
 <?php
-try {
     include("../../../../connection/conexion.php");
     $data = json_decode(file_get_contents('php://input'), true);
 
@@ -19,6 +18,8 @@ try {
     $calleDos = $data['calleDos'] != "" ? $data["calleDos"] : NULL;
     $ref = $data['referencias'] != "" ? $data["referencias"] : NULL;
 
+    $idPac = $data['idPac'];
+    
     $nom = strtoupper($nom);
     $ape = strtoupper($ape);
     $calle = strtoupper($calle);
@@ -31,10 +32,24 @@ try {
     if ($ref != NULL) {
         $ref = strtoupper($ref);
     }
-    $sentencia = $con->prepare("
-        INSERT INTO pacientes_call_center VALUES
-        (NULL, :nom, :ape, :gen, :edad, :tipo, :telUno, :telDos, :col, :calle, :numExt, :numInt, :calleUno, :calleDos, :ref, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-    ");
+    $sentencia=$con->prepare('
+    UPDATE pacientes_call_center SET
+    nombres = :nom,
+    apellidos = :ape,
+    genero = :gen,
+    edad = :edad,
+    tipoPaciente = :tipo,
+    telefono = :telUno,
+    telefonoDos = :telDos,
+    colonia = :col,
+    calle = :calle,
+    num_ext = :numExt,
+    num_int = :numInt,
+    calleUno = :calleUno,
+    calleDos = :calleDos,
+    referencias = :ref
+    WHERE id_pacientes = :idPac;
+    ');
     $sentencia->bindparam(':nom', $nom);
     $sentencia->bindparam(':ape', $ape);
     $sentencia->bindparam(':gen', $gen);
@@ -49,9 +64,8 @@ try {
     $sentencia->bindparam(':calleUno', $calleUno);
     $sentencia->bindparam(':calleDos', $calleDos);
     $sentencia->bindparam(':ref', $ref);
+    $sentencia->bindparam(':idPac', $idPac);
     if ($sentencia->execute()) {
         echo json_encode(true);
     }
-} catch (PDOException $e) {
-    echo json_encode($e);
-}
+?>

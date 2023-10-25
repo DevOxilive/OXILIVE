@@ -29,7 +29,7 @@ if (!isset($_SESSION['us'])) {
                     Datos del nuevo Paciente</h4>
             </div>
             <div class="card-body" style="border: 2px solid #BFE5FF">
-                <form action="" method="POST" enctype="multipart/form-data" class="formLogin row g-3" id="formulario">
+                <form method="POST" enctype="multipart/form-data" class="formLogin row g-3" id="formulario">
                     <!-- Apartado del registro para datos generales -->
                     <div class="contenido col-md-12">
                         <br>
@@ -40,11 +40,11 @@ if (!isset($_SESSION['us'])) {
                         <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingresa el/los nombre(s)">
                     </div>
                     <div class="contenido col-md-4">
-                        <label for="nombre" class="form-label">Apellidos:</label>
+                        <label for="apellidos" class="form-label">Apellidos:</label>
                         <input type="text" class="form-control" name="apellidos" id="apellidos" placeholder="Ingresa los apellidos">
                     </div>
                     <div class="contenido col-md-2">
-                        <label for="nombre" class="form-label">Género:</label>
+                        <label for="genero" class="form-label">Género:</label>
                         <select name="genero" id="genero" class="form-select">
                             <option value="" selected>Selecciona el género</option>
                             <?php foreach ($lista_genero as $genero) { ?>
@@ -62,13 +62,14 @@ if (!isset($_SESSION['us'])) {
                         <select name="tipoPaciente" id="tipoPaciente" class="form-select">
                             <option value="">Seleccione tipo de paciente</option>
                             <?php foreach ($lista_tiposPac as $tipos) { ?>
-                                <option value="<?php echo $tipos['id_tipoPaciente']; ?>"><?php echo $tipos['tipoNombre']; ?></option>
+                                <option value="<?php echo $tipos['id_tipoPaciente']; ?>"><?php echo $tipos['tipoPaciente']; ?></option>
                             <?php } ?>
                         </select>
                     </div>
                     <div class="contenido col-md-3">
                         <label for="telUno" class="form-label">Teléfono:</label>
                         <input type="text" maxlength="10" class="form-control" name="telUno" id="telUno" placeholder="Ingresa un número de teléfono">
+                        <p id="errTelUno" style="color:red; font-weight:bold;"></p>
                     </div>
                     <div class="contenido col-md-1" style="display: flex;" id="add">
                         <span class="badge bg-primary fs-4" id="addBoton">+</span>
@@ -77,6 +78,7 @@ if (!isset($_SESSION['us'])) {
                         <label for="telDos" class="form-label">Teléfono 2:</label>
                         <input type="text" maxlength="10" class="form-control" name="telDos" id="telDos" placeholder="Ingresa un número de teléfono">
                         <span class="badge bg-danger border border-light rounded-circle" id="delBoton">X</span>
+                        <p id="errTelDos" style="color:red; font-weight:bold;"></p>
                     </div>
 
                     <!-- Apartado del registro para domicilio -->
@@ -176,19 +178,18 @@ if (!isset($_SESSION['us'])) {
                         <a role="button" onclick="confirmCancel(event)" name="cancelar" class="btn btn-outline-danger">
                             Cancelar
                         </a>
-                        <button type="submit" class="btn btn-outline-primary">Guardar</button>
+                        <button type="submit" class="btn btn-outline-primary">Registrar</button>
                     </div>
-
+                    <input type="hidden" id="idPac" value="0">
                 </form>
             </div>
         </div>
     </section>
 </main>
-<script src="../js/formButtons.js"></script>
-<script src="../js/domicilio.js"></script>
 <script src="../js/botonAdd.js"></script>
 <script src="../js/validacion.js"></script>
-
+<script src="../js/formButtons.js"></script>
+<script src="../js/domicilio.js"></script>
 
 </html>
 <?php
