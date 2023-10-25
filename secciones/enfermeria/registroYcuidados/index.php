@@ -6,6 +6,7 @@ if (!isset($_SESSION['us'])) {
     include("../../../templates/header.php");
     include("consulta.php");
     $datosGuardados = isset($_SESSION['datos_guardados']) && $_SESSION['datos_guardados'] === true;
+    $idReg=$_GET['id'];
 
 } else {
     echo "Error en el sistema";
@@ -14,9 +15,6 @@ if (!isset($_SESSION['us'])) {
 
 <html>
 <link rel="stylesheet" href="../../../assets/css/vali.css">
-
-</html>
-
 <main id="main" class="main">
     <div class="card">
         <div class="card-header" style="border: 2px solid #012970; background: #005880;">
@@ -114,22 +112,16 @@ if (!isset($_SESSION['us'])) {
         <br>
         <!-- Tu botón en HTML -->
         <button id="btnSiguiente" class="btn btn-primary">Iniciar Registro</button>
-
          <?php if ($datosGuardados) { ?>
-        <button type="button" class="btn btn-outline-success" id="generar-pdf-btn"  data-id="<?php echo $btnId; ?>">
+        <button type="button" class="btn btn-outline-success" id="generar-pdf-btn"  data-id="<?php echo $idReg; ?>">
             <span class="bi bi-file-earmark-pdf-fill"></span> Generar Registro
         </button>
-        <?php } ?>
-            
-        
-        
+        <?php } ?>      
     </form>
     </div>
     </div>
 </main>
-
-
-
+</html>
 <script>
 var btnSiguiente = document.getElementById('btnSiguiente');
 btnSiguiente.addEventListener('click', function() {
@@ -140,20 +132,20 @@ btnSiguiente.addEventListener('click', function() {
     // Obtener el botón por su ID
     var botonGenerarPDF = document.getElementById("generar-pdf-btn");
     // Obtener el ID real del registro desde el atributo data
-    var btnId = botonGenerarPDF.getAttribute("data-id");
+    var datosGuardados = botonGenerarPDF.getAttribute("data-id");
 
     // Agregar un manejador de eventos al botón
     botonGenerarPDF.addEventListener("click", function() {
         // Realizar la redirección con el ID real del registro
         var xhr = new XMLHttpRequest();
-        var url = "consulta.php?btnId=" + btnId;
+        var url = "consulta.php?btnId=" + datosGuardados;
         xhr.open("GET", url, true);
 
         xhr.onload = function() {
             // Verificar que la solicitud AJAX se haya completado correctamente
             if (xhr.status === 200) {
                 // Realizar la redirección después de que la solicitud AJAX esté completa
-                window.location.href = "registro_pdf.php?btnId=" + btnId;
+                window.location.href = "registro_pdf.php?btnId=" + datosGuardados;
             }
         };
 

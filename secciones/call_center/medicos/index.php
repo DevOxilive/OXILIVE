@@ -18,16 +18,27 @@ if (!isset($_SESSION['us'])) {
 </head>
 <body>
     <main id="main" class="main">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                 <div class="mostrarServicios"  >
-                    <!-- aqui se imprime el servicio -->
-                 </div>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card-header">
+                        <a class="btn btn-outline-primary" href="../pacientes/index.php" role="button"><i
+                                class="bi bi-person-fill"></i>Ver</a>
+                    </div>
+                </div>
             </div>
         </div>
-       
-    </div>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="mostrarServicios">
+                        <!-- aqui se imprime el servicio -->
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
     <?php
     include("../../../templates/footer.php");
