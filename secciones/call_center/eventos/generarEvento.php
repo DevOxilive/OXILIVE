@@ -7,6 +7,7 @@ if (!isset($_SESSION['us'])) {
     include("../../../templates/header.php");
     include_once '../../../connection/conexion.php';
     include("./buscarServicio.php");
+    include("./buscarMedicos.php");
 } else {
     echo "Error en el sistema";
 }
@@ -28,7 +29,7 @@ $pacienteData = $_GET['pacienteData'];
                     style="text-align: center; color: #fff; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
                     Asignacion de evento</h4>
             </div>
-            <input type="hidden" id="idPac" value="<?php echo $pacienteData;?>">
+            <input type="hidden" id="idPac" value="<?php echo $pacienteData; ?>">
             <div class="card-body" style="border: 2px solid #BFE5FF;">
                 <form action="guardarevento.php" method="POST" class="formLogin row g-3" id="formulario">
                     <div class="contenido col-md-1">
@@ -48,27 +49,28 @@ $pacienteData = $_GET['pacienteData'];
                         </div>
                     </div>
                     <div class="contenido col-md-3">
-                        <label for="fechaGuardia" class="form-label">Fecha:</label>
+                        <label for="fechaServicio" class="form-label">Fecha:</label>
                         <input type="date" id="fechaServicio" onkeydown="return false" name="fechaServicio"
-                            class="form-select">
+                            class="form-select" required>
                     </div>
                     <div class="contenido col-md-3">
-                        <label for="horarioEntrada" class="form-label">Hora:</label>
-                        <input type="time" id="horaEntrada">
+                        <label for="horaEntrada" class="form-label">Hora:</label>
+                        <input type="time" id="horaEntrada" name="horaEntrada" required>
                     </div>
                     <div class="contenido col-md-12">
                         <label for="motivoConsulta" class="formulario-label">Motivo de consulta:</label>
                         <div class="formulario__grupo-input">
                             <input type="text" class="formulario__input" name="motivoConsulta" id="motivoConsulta"
-                                placeholder="eje: caida con fractura cervical" ;>
-                            <i class=" formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
+                                placeholder="Ejemplo: caída con fractura cervical" required>
+                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                         </div>
                     </div>
+
                     <div class="contenido col-md-3">
                         <label for="nAutorizacion" class="formulario-label">No. Autorizacion:</label>
                         <div class="formulario__grupo-input">
                             <input type="text" class="formulario__input" name="nAutorizacion" id="nAutorizacion"
-                                placeholder="Eje: 452k01" ;>
+                                placeholder="Eje: 452k01" required>
                             <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                         </div>
                     </div>
@@ -76,30 +78,37 @@ $pacienteData = $_GET['pacienteData'];
                         <label for="auEspecial" class="formulario-label">No. Autorizacion especial:</label>
                         <div class="formulario__grupo-input">
                             <input type="text" class="formulario__input" name="auEspecial" id="auEspecial"
-                                placeholder="Eje: MDF12421" ;>
+                                placeholder="Eje: MDF12421" required>
                             <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                         </div>
                     </div>
-                    <div class="contenido col-md-3">
+                    <div class="contenido col-md-6">
                         <label for="asignarMedico" class="formulario-label">Asignar medico</label>
                         <div class="formulario__grupo-input">
-                            <input type="text" class="formulario__input" name="asignarMedico" id="asignarMedico"
-                                placeholder="Eje: MDF12421" ;>
-                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
+                            <select class="form-select" name="asignarMedico" id="asignarMedico" >
+                                <option value="" selected>Selecciona un medico</option>
+                                <?php foreach ($datos_medicos as $medicos) {
+                                    $id_usuarios = $medicos['id_usuarios'];
+                                    $Nombres = $medicos['Nombres'];
+                                    $Apellidos = $medicos['Apellidos'];
+                                    echo "<option value='" . $id_usuarios . "'>" . $Nombres . "   " . $Apellidos . "</option>";
+                                }
+                                ?>
+                            </select>
                         </div>
                     </div>
                     <div class="contenido col-md-10" id="serviciosContainer">
                         <label for="tipoServicio" class="form-label">Servicio</label>
                         <div class="input-group mb-3">
-                            <select class="form-select" name="tipoServicio[]" required>
-                                <option value="" selected>Selecciona un servicio</option>
+                            <select id="selector" class="form-select" name="tipoServicio[]" required>
+                                <option id="opciones" value="" selected>Selecciona un servicio</option>
                                 <?php foreach ($datos_servicios as $servicio) {
-                $idServicio = $servicio['idServicio'];
-                $nombreServicio = $servicio['nombreServicio'];
-                $descripcionServicio = $servicio['descripcionServicio'];
-                echo "<option value='".$idServicio."'>".$nombreServicio." - ".$descripcionServicio."</option>";
-            }
-            ?>
+                                    $idServicio = $servicio['idServicio'];
+                                    $nombreServicio = $servicio['nombreServicio'];
+                                    $descripcionServicio = $servicio['descripcionServicio'];
+                                    echo "<option id='opciones' value='" . $idServicio . "'>" . $nombreServicio . " - " . $descripcionServicio . "</option>";
+                                }
+                                ?>
                             </select>
                         </div>
                     </div>
@@ -125,9 +134,29 @@ $pacienteData = $_GET['pacienteData'];
         </div>
 </main>
 
+
+
 <script type="text/javascript">
 $(document).ready(function() {
-    var maxDivs = 10; // Cambiar el límite a 10
+    var maxDivs = 10;
+    $('.add-btn').prop('disabled', true);
+    // Deshabilita el botón de agregar al cargar la página
+    var select = document.querySelector('#selector');
+
+    select.addEventListener("change", function() {
+        if (select.value !== "") {
+
+            $('.add-btn').prop('disabled', false);
+        } else {
+            $('.add-btn').prop('disabled', true);
+
+        }
+    });
+
+    // Llama a la función cuando el valor del campo de selección de servicio cambia
+    $(document).on('change', '.newData .form-row select', function() {
+        selectField();
+    });
 
     $('.add-btn').click(function(e) {
         e.preventDefault();
@@ -137,17 +166,16 @@ $(document).ready(function() {
             var i = $('.newData .form-row').length + 1;
             var opcionesServicios = '';
             <?php foreach ($datos_servicios as $servicio) { ?>
-                opcionesServicios += '<option value="<?= $servicio["idServicio"] ?>"><?= $servicio["nombreServicio"] ?> - <?= $servicio["descripcionServicio"] ?></option>';
+            opcionesServicios +=
+                '<option value="<?= $servicio["idServicio"] ?>"><?= $servicio["nombreServicio"] ?> - <?= $servicio["descripcionServicio"] ?></option>';
             <?php } ?>
             var newDiv = $("<div class='form-row' id='tipoServicio" + i + "'>" +
                 "<div class='contenido col-md-10' id='serviciosContainer'>" +
                 "<label for='tipoServicio' class='form-label'>Servicio</label>" +
-                "<div class='input-group mb-3'>" +
                 "<select class='form-select' name='tipoServicio[]' required>" +
                 "<option value='' disabled selected>Selecciona un servicio</option>" +
                 opcionesServicios +
-               "</select>"+ 
-                '</div>' +
+                "</select>" +
                 '</div>' +
                 '<div class="input-group-append">' +
                 '<a href="#" class="btn btn-info remove-lnk"  data-id="' + i +
@@ -155,10 +183,13 @@ $(document).ready(function() {
                 '</div>' +
                 '</div>');
 
-
             $('.newData').append(newDiv);
+
+            // Habilita el botón de agregar después de agregar un nuevo campo
+            $('.add-btn').prop('disabled', false);
+            checkServicioField();
         } else {
-            alert("No se pueden agregar mas");
+            alert("No se pueden agregar más");
         }
     });
 
@@ -166,6 +197,8 @@ $(document).ready(function() {
         e.preventDefault();
         var id = $(this).data("id");
         $('#tipoServicio' + id).remove();
+
+
     });
 });
 </script>
@@ -208,7 +241,7 @@ function setDatos() {
             datos.forEach((dato) => {
                 console.log(dato);
                 idPaciente.value = dato.id_pacientes;
-                nomPaciente.value = dato.Nombres + " " + dato.Apellidos;
+                nomPaciente.value = dato.nombres + " " + dato.apellidos;
             });
         })
 }
