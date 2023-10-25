@@ -7,45 +7,37 @@ if (!isset($_SESSION['us'])) {
     include("../../../templates/header.php");
 }
 ?>
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+    <link rel="stylesheet" href="../../../assets/css/foto_perfil.css">
+    <link rel="stylesheet" href="../../../assets/css/edit.css">
+</head>
 <main class="main" id="main">
-    <div class="card">
-        <div class="card-header" style="border: 2px solid #012970; background: #005880;">
-            <h4 style="text-align: center; color: #fff; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
-                Consultar Paciente</h4>
+    <section class="section">
+        <div class="card">
+            <div class="card-header" style="border: 2px solid #012970; background: #005880;">
+                <h4 style="text-align: center; color: #fff; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                    Consultar Paciente</h4>
+            </div>
+            <div class="card-body" style="border: 2px solid #BFE5FF;"> <br>
+                <form class="formLogin row g-3">
+                    <div class="contenido col-md-12">
+                        <label for="Buscar_pacientes" class="form-label fs-5">Buscar paciente:</label>
+                        <input type="text" class="form-control" id="search_cliente" name="Buscar_pacientes" placeholder="Nombre del paciente" required autocomplete="off">
+                    </div>
+                    <div class="contenido col-md-12">
+                        <ul id="show-list"></ul>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="card-body" style="border: 2px solid #BFE5FF;"> <br>
-            <form class="row g-3">
-                <label for="Buscar_pacientes" class="form-label">Buscar paciente</label>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="search_cliente" name="Buscar_pacientes" placeholder="Nombre del paciente" required autocomplete="off">
-                </div>
-                <div class="card list-group" id="show-list"></div>
-            </form>
-        </div>
-    </div>
+    </section>
 </main>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-<script>
-    $(document).ready(function() {
 
-        $("#search_cliente").on("input", function() {
-            // Obtén el texto de búsqueda
-            let searchText = $(this).val();
-
-            $.ajax({
-                url: "buscarPaciente.php",
-                type: "post",
-                data: {
-                    query: searchText
-                },
-                success: function(data) {
-                    $("#show-list").html(data);
-                }
-            });
-        });
-    });
-</script>
+</html>
+<script src="js/buscador.js"></script>
 <?php
 include("../../../templates/footer.php");
 ?>
