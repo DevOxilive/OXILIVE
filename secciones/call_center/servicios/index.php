@@ -14,6 +14,7 @@ if (!isset($_SESSION['us'])) {
     <div class="row">
         <div class="card">
             <div class="card-header">
+                <!--botón en caso de que se desee agregar un servicio nuevo-->
                 <a class="btn btn-outline-primary" href="crearServicio.php" role="button"><i
                         class="bi bi-bag-heart-fill"></i>
                     Registrar Servicio</a>
@@ -22,6 +23,7 @@ if (!isset($_SESSION['us'])) {
                 <div class="table-responsive-sm">
                     <table class="table table-bordered  border-dark table-hover" id="myTable">
                         <thead class="table-dark">
+                            <!--títulos de las columnas-->
                             <tr class="table-active table-group-divider" style="text-align: center;">
                                 <th scope="col">N°</th>
                                 <th scope="col">Nombre</th>
@@ -30,8 +32,9 @@ if (!isset($_SESSION['us'])) {
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($listacarros as $registro) { ?>
-
+                            <!--$servicioCallcenter trae los datos a través de consultaServicio.php-->
+                            <?php foreach ($serviciosCallcenter as $registro) { ?>
+                            <!-- El foreach asigna cada valor a la tabla-->
                             <tr class="">
                                 <th scope="row">
                                     <?php echo $registro['idServicio']; ?>
@@ -44,10 +47,11 @@ if (!isset($_SESSION['us'])) {
                                 </th>
 
                                 <td style="text-align: center;">
+                                    <!--a través del idServicio se realiza la acción de editar-->
                                     <a class="btn btn-outline-warning"
-                                        href="editarServicio.php?txtID=<?php echo $registro['idServicio']; ?>" role="button"><i
-                                            class="bi bi-pencil-square"></i></a>
-                                    
+                                        href="editarServicio.php?txtID=<?php echo $registro['idServicio']; ?>"
+                                        role="button"><i class="bi bi-pencil-square"></i></a>
+                                    <!--a través del idServicio se realiza la acción de eliminar-->
                                     <a class="btn btn-outline-danger"
                                         onclick="eliminar(<?php echo $registro['idServicio']; ?>)" role="button"><i
                                             class="bi bi-trash-fill"></i></a>
