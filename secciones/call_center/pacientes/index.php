@@ -46,12 +46,12 @@ if (!isset($_SESSION['us'])) {
                         <tbody>
                             <?php foreach ($pacientes as $datos) { ?>
                                 <tr>
-                                    <td class="clickeable-row" data-url="paciente.php?idPac=<?php echo $datos['id_pacientes']; ?>">
+                                    <td class="clickeable-row" data-url="pages/paciente.php?idPac=<?php echo $datos['id_pacientes']; ?>">
                                         <center><?php echo $datos['id_pacientes'] ?></center>
                                     </td><!-- Por definir numero de expediente -->
-                                    <td class="clickeable-row" data-url="paciente.php?idPac=<?php echo $datos['id_pacientes']; ?>"><?php echo $datos['nombres']; ?></td>
-                                    <td class="clickeable-row" data-url="paciente.php?idPac=<?php echo $datos['id_pacientes']; ?>"><?php echo $datos['apellidos']; ?></td>
-                                    <td class="clickeable-row" data-url="paciente.php?idPac=<?php echo $datos['id_pacientes']; ?>">
+                                    <td class="clickeable-row" data-url="pages/paciente.php?idPac=<?php echo $datos['id_pacientes']; ?>"><?php echo $datos['nombres']; ?></td>
+                                    <td class="clickeable-row" data-url="pages/paciente.php?idPac=<?php echo $datos['id_pacientes']; ?>"><?php echo $datos['apellidos']; ?></td>
+                                    <td class="clickeable-row" data-url="pages/paciente.php?idPac=<?php echo $datos['id_pacientes']; ?>">
                                         <center>
                                             <?php if ($datos['idTipoPac'] == 1) { ?>
                                                 <span class="badge text-bg-primary fs-6">
@@ -97,30 +97,43 @@ if (!isset($_SESSION['us'])) {
     });
 
     function deletePac(idPac) {
-        
-        fetch("../model/borrarPaciente.php", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                idPac: idPac
-            })
-        })
-            .then(response => response.text())
-            .then(respuesta => {
-                if (respuesta == true) {
-                    Swal.fire({
-                        title: "Eliminado",
-                        text: "Paciente eliminado correctamente",
-                        icon: "success",
-                        showConfirmButton: false,
-                        timer: 1500,
-                    }).then(function() {
-                        window.location.href;
+        Swal.fire({
+            title: "¿Estás seguro?",
+            html: "Se eliminará permanentemente todos los datos de este paciente<br><b>No podrás recuperar la infromación</b>",
+            icon: "warning",
+            showCancelButton: true,
+            width: 700,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Continuar",
+            cancelButtonText: "Cancelar",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch("model/borrarPaciente.php", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            idPac: idPac
+                        })
+                    })
+                    .then(response => response.text())
+                    .then(respuesta => {
+                        if (respuesta == 1) {
+                            Swal.fire({
+                                title: "Eliminado",
+                                text: "Paciente eliminado correctamente",
+                                icon: "success",
+                                showConfirmButton: false,
+                                timer: 1500,
+                            }).then(function() {
+                                window.location.reload();
+                            });
+                        }
                     });
-                }
-            });
+            }
+        });
     }
 </script>
 <script src="js/tableClick.js"></script>
