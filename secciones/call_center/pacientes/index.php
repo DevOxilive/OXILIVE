@@ -97,16 +97,16 @@ if (!isset($_SESSION['us'])) {
     });
 
     function deletePac(idPac) {
-        console.log(idPac);
         Swal.fire({
             title: "¿Estás seguro?",
-            text: "Si cancelas, se perderán los datos ingresados.",
+            html: "Se eliminará permanentemente todos los datos de este paciente<br><b>No podrás recuperar la infromación</b>",
             icon: "warning",
             showCancelButton: true,
+            width: 700,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Sí, cancelar",
-            cancelButtonText: "No, continuar",
+            confirmButtonText: "Continuar",
+            cancelButtonText: "Cancelar",
         }).then((result) => {
             if (result.isConfirmed) {
                 fetch("model/borrarPaciente.php", {
@@ -118,9 +118,9 @@ if (!isset($_SESSION['us'])) {
                             idPac: idPac
                         })
                     })
-                    .then(response => console.log(response.text()))
+                    .then(response => response.text())
                     .then(respuesta => {
-                        if (respuesta == true) {
+                        if (respuesta == 1) {
                             Swal.fire({
                                 title: "Eliminado",
                                 text: "Paciente eliminado correctamente",
@@ -128,7 +128,7 @@ if (!isset($_SESSION['us'])) {
                                 showConfirmButton: false,
                                 timer: 1500,
                             }).then(function() {
-                                window.location.href;
+                                window.location.reload();
                             });
                         }
                     });

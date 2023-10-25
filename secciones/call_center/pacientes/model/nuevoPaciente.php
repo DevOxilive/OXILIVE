@@ -22,6 +22,7 @@ try {
     $nom = strtoupper($nom);
     $ape = strtoupper($ape);
     $calle = strtoupper($calle);
+    $numExt = strtoupper($numExt);
     if ($calleUno != NULL) {
         $calleUno = strtoupper($calleUno);
     }
