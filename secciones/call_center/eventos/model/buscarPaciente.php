@@ -8,5 +8,7 @@ if(!empty($data['text'])){
     $stmt->execute(['search' => '%' . $inpText . '%']);
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode($result);
-}
+} else {
+    echo json_encode('');
+} 
 ?>
