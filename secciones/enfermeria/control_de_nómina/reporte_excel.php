@@ -78,7 +78,7 @@ foreach ($trabajador as $row) {
     $fila++;
 }
 
-// Columnas 'ANCHO DE COLUMNAS'
+// Columnas 'ANCHO DE COLUMNAS' // setAuroSize es para que las columnas acomoden automaticamente
 $hojaActiva->getColumnDimension('A')->setAutoSize(true);
 $hojaActiva->getColumnDimension('B')->setAutoSize(true);
 $hojaActiva->getColumnDimension('C')->setAutoSize(true);
