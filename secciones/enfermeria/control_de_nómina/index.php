@@ -6,6 +6,7 @@ if (!isset($_SESSION['us'])) {
   include("../../../templates/header.php");
   include("../../../connection/conexion.php");
   include("./consulta.php");
+
 } else {
   echo "Error en el sistema";
 }
@@ -23,8 +24,8 @@ if (!isset($_SESSION['us'])) {
             <a class="btn btn-outline-info" href="#" onclick="generarReportePDF();" role="button">
                 <i class="bi bi-printer-fill"></i>
             </a>
-             <!-- Boton para el reporte en Excel -->
-             <a class="btn btn-outline-success" href="#" onclick="generarReporteExcel();" role="button">
+            <!-- Boton para el reporte en Excel -->
+            <a class="btn btn-outline-success" href="#" onclick="generarReporteExcel();" role="button">
                 <i class="bi bi-filetype-xlsx"></i>
             </a>
         </div>
@@ -38,41 +39,80 @@ if (!isset($_SESSION['us'])) {
         </div>
         <div class="card-body">
             <div class="table-responsive-sm">
+                <!-- Mostrar los datos en la tabla -->
                 <table class="table table-bordered border-dark table-hover" id="myTable">
                     <thead class="table-dark">
                         <tr class="table-active table-group-divider" style="text-align: center;">
                             <th scope="col">Asistencias</th>
                             <th scope="col">Nombre completo</th>
                             <th scope="col">Tipo de guardia</th>
-                            <th scope="col">Dias laborados</th>
+                            <th scope="col">Retardos</th>
                             <th scope="col">Sueldo Total</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($trabajador as $trab) { ?>
+                        <?php 
+
+// Inicializar un array para almacenar la información única de cada usuario   
+                        $usuariosUnicos = [];
+                        
+                        foreach ($trabajador as $trab) {
+                            // Si el usuario aún no está en el array, agregarlo
+                            if (!isset($usuariosUnicos[$trab['id_empleadoEnfermeria']])) {
+                                $hora_registrado = strtotime($trab['hora_entrada']);
+                                $horario_entrada = strtotime($trab['horarioEntrada']);
+                        
+                                // Calcular la diferencia en minutos entre la hora actual y el horario de entrada
+                                $diferencia_minutos = ($hora_registrado - $horario_entrada) / 60;
+                        
+                                // Validar el retardo y contar los retardos acumulados
+                                $retardos = 0;
+                                if ($diferencia_minutos > 15) {
+                                    $retardos = floor($diferencia_minutos / 15);
+                                }
+                        
+                                // Deducción de sueldo por 3 retardos acumulados
+                                if ($retardos >= 3) {
+                                    $sueldo_total = $trab['numero_de_registros'] * ($trab['sueldo'] - $trab['sueldo']);
+                                } else {
+                                    $sueldo_total = $trab['numero_de_registros'] * $trab['sueldo'];
+                                }
+                        
+                                // Almacenar la información única del usuario en el array
+                                $usuariosUnicos[$trab['id_empleadoEnfermeria']] = [
+                                    'numero_de_registros' => $trab['numero_de_registros'],
+                                    'NombreCompleto' => $trab['NombreCompleto'],
+                                    'nombreServicio' => $trab['nombreServicio'],
+                                    'retardos' => $retardos,
+                                    'sueldo_total' => $sueldo_total,
+                                ];
+                            }
+                        }
+
+                        // Mostrar los datos únicos en la tabla
+        foreach ($usuariosUnicos as $usuario) {
+    ?>
+
                         <tr>
                             <th scope="row">
-                                <?php echo $trab['asistencia']; ?>
+                                <?php echo $usuario['numero_de_registros']; ?>
                             </th>
                             <td>
-                                <?php echo $trab['Nombre completo']; ?>
+                                <?php echo $usuario['NombreCompleto']; ?>
                             </td>
                             <td>
-                                <?php echo $trab['Tipo de guardia']; ?>
+                                <?php echo $usuario['nombreServicio']; ?>
                             </td>
                             <td>
-                                <?php echo $trab['Dias laborados']; ?>
+                                <?php echo $usuario['retardos']; ?>
                             </td>
                             <td>
-
-                                <?php echo $trab['Sueldo Total']; ?>
-
+                                <?php echo $usuario['sueldo_total']; ?>
                             </td>
                         </tr>
                         <?php } ?>
                     </tbody>
                 </table>
-
 
                 <!-- fin de la tabla -->
             </div>
@@ -81,7 +121,6 @@ if (!isset($_SESSION['us'])) {
 </main>
 <!-- End #main -->
 <script>
-
 function generarReportePDF() {
     // Obtener los valores de fecha1 y fecha2
     var fecha1 = document.getElementById("fecha1").value;
@@ -95,16 +134,16 @@ function generarReportePDF() {
 }
 
 function generarReporteExcel() {
-        // Obtener los valores de fecha1 y fecha2
-        var fecha1 = document.getElementById("fecha1").value;
-        var fecha2 = document.getElementById("fecha2").value;
+    // Obtener los valores de fecha1 y fecha2
+    var fecha1 = document.getElementById("fecha1").value;
+    var fecha2 = document.getElementById("fecha2").value;
 
-        // Construir la URL con los parámetros
-        var url = "reporte_excel.php?fecha1=" + fecha1 + "&fecha2=" + fecha2;
+    // Construir la URL con los parámetros
+    var url = "reporte_excel.php?fecha1=" + fecha1 + "&fecha2=" + fecha2;
 
-        // Redirigir al usuario a la página con los parámetros
-        window.location.href = url;
-    }
+    // Redirigir al usuario a la página con los parámetros
+    window.location.href = url;
+}
 
 
 function eliminar(codigo) {
@@ -145,15 +184,6 @@ function mandar(codigo) {
         },
 
     });
-
-    // Obtener fecha actual
-    let fecha = new Date();
-    // Obtener cadena en formato yyyy-mm-dd, eliminando zona y hora
-    let fechaMax = fecha.toISOString().split('T')[0];
-    // Asignar valor mínimo
-    document.querySelector('#fecha1').max = fechaMax;
-
-
 
 
     // Agrega la animación a los bordes de las filas
