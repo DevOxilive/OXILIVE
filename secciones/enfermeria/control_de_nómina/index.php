@@ -15,21 +15,25 @@ if (!isset($_SESSION['us'])) {
 
 <!-- Empieza main -->
 <main id="main" class="main">
-    <div class="row">
-        <div class="card-header" style="text-align: right;">
-            <input type="date" id="fecha1">
-            |
-            <input type="date" id="fecha2">
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <input type="date" class="form-control" id="fecha1">
+        </div>
+        <div class="col-md-3">
+            <input type="date" class="form-control" id="fecha2">
+        </div>
+        <div class="col-md-2">
             <!-- Boton para el reporte en PDF -->
-            <a class="btn btn-outline-info" href="#" onclick="generarReportePDF();" role="button">
-                <i class="bi bi-printer-fill"></i>
-            </a>
-            <!-- Boton para el reporte en Excel -->
-            <a class="btn btn-outline-success" href="#" onclick="generarReporteExcel();" role="button">
-                <i class="bi bi-filetype-xlsx"></i>
+            <a class="btn btn-info" href="#" onclick="generarReportePDF();" role="button">
+            <i class="bi bi-file-earmark-pdf-fill"></i> Generar PDF
             </a>
         </div>
-
+        <div class="col-md-2">
+            <!-- Boton para el reporte en Excel -->
+            <a class="btn btn-success" href="#" onclick="generarReporteExcel();" role="button">
+            <i class="bi bi-file-earmark-spreadsheet-fill"></i> Generar Excel
+            </a>
+        </div>
     </div>
     <div class="card">
         <div class="card-header">
