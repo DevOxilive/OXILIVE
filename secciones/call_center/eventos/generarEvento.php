@@ -96,9 +96,9 @@ $pacienteData = $_GET['pacienteData'];
                         </select>
                     </div>
                     <div class="col-md-2 align-self-center" style="padding-top:1.8rem;">
-                        <a class="btn btn-info add-btn" role="button">
+                        <button class="btn btn-info" role="button" id="add-btn">
                             <i class="bi bi-plus-lg text-white"></i>
-                        </a>
+                        </button>
                     </div>
                     <div class="card-footer text-muted" id="btns-form">
                         <div class="formulario__grupo formulario__grupo-btn-enviar">
@@ -117,19 +117,20 @@ $pacienteData = $_GET['pacienteData'];
     $(document).ready(function() {
         var maxDivs = 10;
 
-        $('.add-btn').prop('disabled', true);
+        $('#add-btn').prop('disabled', true);
         // Deshabilita el botón de agregar al cargar la página
 
         var select = document.querySelector('#selector');
         select.addEventListener("change", function() {
+            console.log(select.value);
             if (select.value !== "") {
-                $('.add-btn').prop('disabled', false);
+                $('#add-btn').prop('disabled', false);
             } else {
-                $('.add-btn').prop('disabled', true);
+                $('#add-btn').prop('disabled', true);
             }
         });
         var newData = 1;
-        $('.add-btn').click(function(e) {
+        $('#add-btn').click(function(e) {
             e.preventDefault();
 
             // Verifica si se ha alcanzado el límite
@@ -213,7 +214,7 @@ $pacienteData = $_GET['pacienteData'];
             cancelButtonText: 'No, continuar'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = "<?php echo $url_base; ?>secciones/oxigeno/equipo/index.php";
+                window.location.replace("<?php echo $url_base; ?>secciones/call_center/eventos/index.php");
             }
         });
     }
