@@ -138,7 +138,7 @@ $pacienteData = $_GET['pacienteData'];
                     opcionesServicios +=
                         '<option value="<?= $servicio["idServicio"] ?>"><?= $servicio["nombreServicio"] ?> - <?= $servicio["descripcionServicio"] ?></option>';
                 <?php } ?>
-                var newDiv = $("<div class='newData contenido col-md-10' id='tipoServicio" + i + "'>" +
+                /*var newDiv = $("<div class='newData contenido col-md-10' id='tipoServicio" + i + "'>" +
                     "<label for='tipoServicio' class='form-label'>Servicio "+ i + "</label>" +
                     "<select class='form-select' required>" +
                     "<option value='' selected>Selecciona un servicio</option>" +
@@ -149,8 +149,10 @@ $pacienteData = $_GET['pacienteData'];
                     '<a href="#" class="btn btn-info remove-lnk"  data-id="' + i +
                     '"><i class="bi bi-trash-fill"></i></a>' +
                     '</div>' +
-                    '</div>');
-
+                    '</div>');*/
+                const newDiv = document.createElement("div");
+                newDiv.classList.add("newData", "contenido", "col-md-10");
+                newDiv.setAttribute("id", ("tipoServicio"+i));
                 var form = document.getElementById("formulario");
                 var btns = document.getElementById("btns-form");
 
