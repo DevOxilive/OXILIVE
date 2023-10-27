@@ -27,6 +27,11 @@ if (count($result) > 0) {
                                         <?php echo $value['moti_consulta'] ?>
                                     </p>
                                 </h5>
+                                <h5 class="card-title">Paciente:
+                                    <p class="card-text" style="color:red"><i class="bi bi-emoji-frown"></i>
+                                        <?php echo $value['Nombres'] ?>
+                                    </p>
+                                </h5>
                                 <p class="card-text">Hora
                                     <?php echo $value['hora'] ?>
                                 </p>

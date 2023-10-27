@@ -91,11 +91,9 @@ $(document).ready(function () {
             }
         });
     }
-
     consultarServicio();
     setInterval(consultarServicio, 2000);
 });
-
 </script>
 <script src="js/nextService.js"></script>
 <script src="js/rangeActivity.js"></script>
