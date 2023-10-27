@@ -95,8 +95,10 @@ $pacienteData = $_GET['pacienteData'];
                             ?>
                         </select>
                     </div>
-                    <div class="col-md-2 align-self-center" id="btnAdd">
-                        <button class="btn add-btn btn-info">+</button>
+                    <div class="col-md-2 align-self-center" style="padding-top:1.8rem;">
+                        <a class="btn btn-info add-btn" role="button">
+                            <i class="bi bi-plus-lg text-white"></i>
+                        </a>
                     </div>
                     <div class="card-footer text-muted" id="btns-form">
                         <div class="formulario__grupo formulario__grupo-btn-enviar">
@@ -113,11 +115,11 @@ $pacienteData = $_GET['pacienteData'];
 
 <script type="text/javascript">
     $(document).ready(function() {
-        var maxDivs = 9;
-        
+        var maxDivs = 10;
+
         $('.add-btn').prop('disabled', true);
         // Deshabilita el botón de agregar al cargar la página
-        
+
         var select = document.querySelector('#selector');
         select.addEventListener("change", function() {
             if (select.value !== "") {
@@ -126,52 +128,72 @@ $pacienteData = $_GET['pacienteData'];
                 $('.add-btn').prop('disabled', true);
             }
         });
-
+        var newData = 1;
         $('.add-btn').click(function(e) {
             e.preventDefault();
 
             // Verifica si se ha alcanzado el límite
-            if ($('.newData').length < maxDivs) {
-                var i = $('.newData').length + 1;
+            if (newData < maxDivs) {
+                var i = newData + 1;
                 var opcionesServicios = '';
                 <?php foreach ($datos_servicios as $servicio) { ?>
                     opcionesServicios +=
                         '<option value="<?= $servicio["idServicio"] ?>"><?= $servicio["nombreServicio"] ?> - <?= $servicio["descripcionServicio"] ?></option>';
                 <?php } ?>
-                /*var newDiv = $("<div class='newData contenido col-md-10' id='tipoServicio" + i + "'>" +
-                    "<label for='tipoServicio' class='form-label'>Servicio "+ i + "</label>" +
+                //Se definen los nuevos elementos que se aagregarán al DOM
+                const newDiv = document.createElement("div");
+                const btn = document.createElement("div");
+                // Se asignan clases y atributos para los div de Servicio
+                newDiv.classList.add("newData", "contenido", "col-md-10");
+                newDiv.setAttribute("id", ("tipoServicio" + i));
+
+                //Se asignan clases y atributos para los botones
+                btn.classList.add("col-md-2", "align-self-center");
+                btn.setAttribute("id", ("del"+i));
+                btn.setAttribute("style", "padding-top:1.8rem;");
+
+                //Se declaran variables de elementos que irán dentro de los divs
+                var select = "<label for='tipoServicio' class='form-label'>Servicio " + i + "</label>" +
                     "<select class='form-select' required>" +
                     "<option value='' selected>Selecciona un servicio</option>" +
                     opcionesServicios +
-                    "</select>" +
-                    '</div>' +
-                    '<div class="contenido col-md-2">' +
-                    '<a href="#" class="btn btn-info remove-lnk"  data-id="' + i +
-                    '"><i class="bi bi-trash-fill"></i></a>' +
-                    '</div>' +
-                    '</div>');*/
-                const newDiv = document.createElement("div");
-                newDiv.classList.add("newData", "contenido", "col-md-10");
-                newDiv.setAttribute("id", ("tipoServicio"+i));
+                    "</select>";
+                var btnDel = '<a class="btn btn-info remove-lnk"' +
+                    ' role="button"><i class="bi bi-trash-fill text-white"></i></a>';
+
+                //Se asignan cada conjunto de elementos al div corresponiente
+                newDiv.innerHTML = select;
+                btn.innerHTML = btnDel;
+
+                //Se crean los apuntadores al DOM
                 var form = document.getElementById("formulario");
                 var btns = document.getElementById("btns-form");
 
+                //Se insertan los divs indicando que van siempre antes del apuntador
+                //btns-form y van dentro del apuntador formulario.
                 form.insertBefore(newDiv, btns);
+                form.insertBefore(btn, btns);
 
                 // Habilita el botón de agregar después de agregar un nuevo campo
                 $('.add-btn').prop('disabled', false);
-                checkServicioField();
+                newData++;
             } else {
-                alert("No se pueden agregar más");
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'warning',
+                    title: 'No puedes agregar más servicios',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             }
         });
 
         $(document).on('click', '.remove-lnk', function(e) {
             e.preventDefault();
             var id = $(this).data("id");
-            $('#tipoServicio' + id).remove();
-
-
+            $('#tipoServicio' + newData).remove();
+            $("#del" + newData).remove();
+            newData--;
         });
     });
 </script>
