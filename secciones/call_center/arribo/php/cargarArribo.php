@@ -1,9 +1,9 @@
 <?php
 include '../../../../connection/conexion.php';
 
-$sql = "SELECT a.id_sv, a.num_paciente, p.nombres, p.apellidos, a.fecha, a.hora, a.moti_consulta, a.num_medico, u.Nombres, a.asignacion 
-      FROM asignacion_servicio a INNER JOIN usuarios u, pacientes_call_center p 
-      WHERE p.id_pacientes = a.num_paciente AND a.num_medico = U.id_usuarios;";
+$sql = "SELECT a.id_sv, a.num_paciente, p.nombres, p.apellidos, a.fecha, a.hora, a.moti_consulta, a.num_medico, u.Nombres, a.estado, e.estatus
+        FROM asignacion_servicio a INNER JOIN usuarios u, pacientes_call_center p , estatus_callcenter e
+        WHERE p.id_pacientes = a.num_paciente AND a.num_medico = U.id_usuarios AND a.estado = e.id_ets;";
 
 $stat = $con->prepare("$sql");
 $stat->execute();
@@ -26,14 +26,16 @@ $resultados = $stat->fetchAll(PDO::FETCH_ASSOC);
             </tr>
         </thead>
         <tbody>
+
+
             <?php
             foreach ($resultados as $filas) {
-                if ($filas['asignacion'] == 1 || $filas['asignacion'] == 2) {
+                if ($filas['estado'] == 1 || $filas['estado'] == 2) {
                     echo '<tr>
                             <td><b>' . $filas['id_sv'] . '</b></td>
                             <td>' . $filas['Nombres'] . '</td>
                             <td>' . $filas['nombres'] . ' ' . $filas['apellidos'] . '</td>
-                            <td>' . $filas['asignacion'] . '</td>
+                            <td>' . $filas['estatus'] . '</td>
                             <td>' . $filas['hora'] . '</td>
                           <tr/>';
                 }
@@ -43,10 +45,6 @@ $resultados = $stat->fetchAll(PDO::FETCH_ASSOC);
     </table>
     <br>
     <?php
-    $sql = "SELECT a.id_sv, a.num_paciente, p.nombres, p.apellidos, a.fecha, a.hora, a.moti_consulta, a.num_medico, u.Nombres, a.asignacion 
-FROM asignacion_servicio a INNER JOIN usuarios u, pacientes_call_center p 
-WHERE p.id_pacientes = a.num_paciente AND a.num_medico = U.id_usuarios;";
-
     $stat = $con->prepare("$sql");
     $stat->execute();
     $resultados = $stat->fetchAll(PDO::FETCH_ASSOC);
@@ -68,12 +66,12 @@ WHERE p.id_pacientes = a.num_paciente AND a.num_medico = U.id_usuarios;";
         <tbody>
             <?php
             foreach ($resultados as $filas) {
-                if ($filas['asignacion'] == 3) {
+                if ($filas['estado'] == 3 || $filas['estado'] == 0) {
                     echo '<tr>
                     <td><b>' . $filas['id_sv'] . '</b></td>
                     <td>' . $filas['Nombres'] . '</td>
                     <td>' . $filas['nombres'] . ' ' . $filas['apellidos'] . '</td>
-                    <td>' . $filas['asignacion'] . '</td>
+                    <td>' . $filas['estatus'] . '</td>
                     <td>' . $filas['hora'] . '</td>
                   <tr/>';
                 }
