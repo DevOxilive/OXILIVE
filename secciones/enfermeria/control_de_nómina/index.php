@@ -24,17 +24,20 @@ if (!isset($_SESSION['us'])) {
         </div>
         <div class="col-md-2">
             <!-- Boton para el reporte en PDF -->
-            <a class="btn btn-info" href="#" onclick="generarReportePDF();" role="button">
-            <i class="bi bi-file-earmark-pdf-fill"></i> Generar PDF
+            <a class="btn btn-info" href="#" onclick="generarReportePDF();" role="button"
+                onclick="return validarFechas();">
+                <i class="bi bi-file-earmark-pdf-fill"></i> Generar PDF
             </a>
         </div>
         <div class="col-md-2">
             <!-- Boton para el reporte en Excel -->
-            <a class="btn btn-success" href="#" onclick="generarReporteExcel();" role="button">
-            <i class="bi bi-file-earmark-spreadsheet-fill"></i> Generar Excel
+            <a class="btn btn-success" href="#" onclick="generarReporteExcel();" role="button"
+                onclick="return validarFechas();">
+                <i class="bi bi-file-earmark-spreadsheet-fill"></i> Generar Excel
             </a>
         </div>
     </div>
+
     <div class="card">
         <div class="card-header">
             Registro de nóminas
@@ -125,7 +128,34 @@ if (!isset($_SESSION['us'])) {
 </main>
 <!-- End #main -->
 <script>
+//este ecrip es para validar las fechas, si no an sido seleccionadas
+//no se puede generar los reportes
+function validarFechas() {
+    var fecha1 = document.getElementById("fecha1").value;
+    var fecha2 = document.getElementById("fecha2").value;
+
+    if (fecha1 === "" || fecha2 === "") {
+        Swal.fire({
+            title: "Por favor, selecciona ambas fechas antes de generar el reporte.",
+            width: "600px",
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            }
+        });
+        return false; // Detiene la ejecución si las fechas no están seleccionadas
+    }
+    return true; // Continúa la ejecución si las fechas están seleccionadas
+}
+//Funcion que genera los reportes PDF
 function generarReportePDF() {
+    // Validar las fechas
+    if (!validarFechas()) {
+        return; // Detener la ejecución si las fechas no son válidas
+    }
+
     // Obtener los valores de fecha1 y fecha2
     var fecha1 = document.getElementById("fecha1").value;
     var fecha2 = document.getElementById("fecha2").value;
@@ -136,8 +166,13 @@ function generarReportePDF() {
     // Redirigir al usuario a la página con los parámetros
     window.open(url, "_blank");
 }
-
+//Funcion que genera los reportes en Excel
 function generarReporteExcel() {
+    // Validar las fechas
+    if (!validarFechas()) {
+        return; // Detener la ejecución si las fechas no son válidas
+    }
+
     // Obtener los valores de fecha1 y fecha2
     var fecha1 = document.getElementById("fecha1").value;
     var fecha2 = document.getElementById("fecha2").value;
@@ -149,61 +184,18 @@ function generarReporteExcel() {
     window.location.href = url;
 }
 
-
-function eliminar(codigo) {
-    Swal.fire({
-        title: '¿Estas seguro?',
-        text: "No podrás recuperar los datos",
-        cancelButtonText: 'Cancelar',
-        icon: 'warning',
-        buttons: true,
-        showCancelButton: true,
-        dangerMode: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, Eliminar',
-        cancelButtonText: 'Cancelar'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            mandar(codigo)
-        }
-    })
-}
-
-function mandar(codigo) {
-    parametros = {
-        id: codigo
-    };
-    $.ajax({
-        data: parametros,
-        url: "./eliminar.php",
-        type: "POST",
-        beforeSend: function() {},
-        success: function() {
-            Swal.fire("Eliminado:", "Ha sido eliminado", "success").then((result) => {
-                window.location.href = "index.php";
-
-
-            });
-        },
-
+// Agrega la animación a los bordes de las filas
+const rows = document.querySelectorAll(".animated-border");
+rows.forEach(row => {
+    row.addEventListener("mouseover", () => {
+        row.classList.add("border-animation");
     });
-
-
-    // Agrega la animación a los bordes de las filas
-    const rows = document.querySelectorAll(".animated-border");
-    rows.forEach(row => {
-        row.addEventListener("mouseover", () => {
-            row.classList.add("border-animation");
-        });
-        row.addEventListener("mouseout", () => {
-            row.classList.remove("border-animation");
-        });
+    row.addEventListener("mouseout", () => {
+        row.classList.remove("border-animation");
     });
+});
 
 
-
-}
 $(document).ready(function() {
     $.noConflict();
 
