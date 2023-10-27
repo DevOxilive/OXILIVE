@@ -84,8 +84,8 @@ $pacienteData = $_GET['pacienteData'];
                     </div>
                     <div class="contenido col-md-10" id="serviciosContainer">
                         <label for="tipoServicio" class="form-label">Servicio</label>
-                        <select id="selector" class="form-select" required>
-                            <option id="opciones" value="" selected>Selecciona un servicio</option>
+                        <select id="tipoServicio" name="tipoServicio[]" class="form-select">
+                            <option value="" selected>Selecciona un servicio</option>
                             <?php foreach ($datos_servicios as $servicio) {
                                 $idServicio = $servicio['idServicio'];
                                 $nombreServicio = $servicio['nombreServicio'];
@@ -111,8 +111,6 @@ $pacienteData = $_GET['pacienteData'];
         </div>
 </main>
 
-
-
 <script type="text/javascript">
     $(document).ready(function() {
         var maxDivs = 10;
@@ -120,7 +118,7 @@ $pacienteData = $_GET['pacienteData'];
         $('#add-btn').prop('disabled', true);
         // Deshabilita el botón de agregar al cargar la página
 
-        var select = document.querySelector('#selector');
+        var select = document.querySelector('#tipoServicio');
         select.addEventListener("change", function() {
             console.log(select.value);
             if (select.value !== "") {
@@ -155,7 +153,7 @@ $pacienteData = $_GET['pacienteData'];
 
                 //Se declaran variables de elementos que irán dentro de los divs
                 var select = "<label for='tipoServicio' class='form-label'>Servicio " + i + "</label>" +
-                    "<select class='form-select' required>" +
+                    "<select class='form-select' name='tipoServicio' required>" +
                     "<option value='' selected>Selecciona un servicio</option>" +
                     opcionesServicios +
                     "</select>";
@@ -198,7 +196,6 @@ $pacienteData = $_GET['pacienteData'];
         });
     });
 </script>
-
 
 <script>
     function confirmCancel(event) {
@@ -244,8 +241,6 @@ $pacienteData = $_GET['pacienteData'];
     setDatos();
 </script>
 
-
-
 <script>
     //Script fecha para evitar registros previos a la fecha actual
 
@@ -256,9 +251,6 @@ $pacienteData = $_GET['pacienteData'];
     // Asignar valor mínimo
     document.querySelector('#fechaServicio').min = fechaMin;
 </script>
-
-
-
 
 <?php
 include("../../../templates/footer.php");
