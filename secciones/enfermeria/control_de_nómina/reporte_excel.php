@@ -13,21 +13,18 @@ $fecha1 = $_GET['fecha1'];
 $fecha2 = $_GET['fecha2'];
 
 
-$consulta = "SELECT A.id_empleadoEnfermeria, COUNT(*) AS asistencia, CONCAT(S.Nombres, ' ', S.Apellidos) AS 'Nombre completo', T.nombreServicio AS 'Tipo de guardia',
-H.fecha AS 'Dias laborados', SUM(T.sueldo) * COUNT(A.id_asistencias)  AS 'Sueldo Total'
-FROM usuarios S
-JOIN asistencias A ON S.id_usuarios = A.id_empleadoEnfermeria
-JOIN asignacion_horarios H ON S.id_usuarios = H.id_usuario
-JOIN puestos P ON S.id_departamentos = P.id_puestos
-JOIN tipos_servicios T ON T.id_tipoServicio = H.id_tipoServicio
-JOIN checkk C ON C.id_check = A.id_check
-JOIN estado E ON S.Estado = E.id_estado
-WHERE id_puestos = 6
-AND E.id_estado = 1
+$consulta = "SELECT A.id_empleadoEnfermeria, CONCAT(U.Nombres, ' ', U.Apellidos) AS NombreCompleto, T.nombreServicio, A.fechaAsis, R.hora_entrada, H.horarioEntrada,
+(SELECT COUNT(id_Rbitacora) FROM registro_bitacora R2 WHERE R2.id_usuario = U.id_usuarios) AS numero_de_registros, T.sueldo
+FROM asistencias A,  registro_bitacora R, tipos_servicios T, asignacion_horarios H, usuarios U
+WHERE A.id_horario = H.id_asignacionHorarios
+AND A.id_empleadoEnfermeria = U.id_usuarios
+AND A.id_asistencias = R.id_checkIn
+AND H.id_tipoServicio = T.id_tipoServicio
+AND H.id_usuario = U.id_usuarios
+AND A.fechaAsis = R.Registro_fecha
+AND U.id_departamentos = 11
 AND H.fecha >= :fecha1
-AND H.fecha <= :fecha2 
-GROUP BY A.id_empleadoEnfermeria, CONCAT(S.Nombres, ' ', S.Apellidos), T.nombreServicio, H.fecha, T.sueldo; 
-";
+AND H.fecha <= :fecha2;";
 
 $sentencia = $con->prepare($consulta);
 $sentencia->bindParam(':fecha1', $fecha1);
@@ -65,20 +62,59 @@ $hojaActiva->getStyle('A1:E1')->applyFromArray($headerStyle);
 $hojaActiva->setCellValue('A1', 'Asistencia');
 $hojaActiva->setCellValue('B1', 'Nombre completo');
 $hojaActiva->setCellValue('C1', 'Tipo de guardia');
-$hojaActiva->setCellValue('D1', 'Dias laborados');
+$hojaActiva->setCellValue('D1', 'Retardos');
 $hojaActiva->setCellValue('E1', 'Sueldo Total');
 
 $fila = 2;
-foreach ($trabajador as $row) {
-    $hojaActiva->setCellValue('A' . $fila, $row['asistencia']);
-    $hojaActiva->setCellValue('B' . $fila, $row['Nombre completo']);
-    $hojaActiva->setCellValue('C' . $fila, $row['Tipo de guardia']);
-    $hojaActiva->setCellValue('D' . $fila, $row['Dias laborados']);
-    $hojaActiva->setCellValue('E' . $fila, $row['Sueldo Total']);
+
+
+// Inicializar un array para almacenar la información única de cada usuario   
+$usuariosUnicos = [];
+                        
+foreach ($trabajador as $trab) {
+    // Si el usuario aún no está en el array, agregarlo
+    if (!isset($usuariosUnicos[$trab['id_empleadoEnfermeria']])) {
+        $hora_registrado = strtotime($trab['hora_entrada']);
+        $horario_entrada = strtotime($trab['horarioEntrada']);
+
+        // Calcular la diferencia en minutos entre la hora actual y el horario de entrada
+        $diferencia_minutos = ($hora_registrado - $horario_entrada) / 60;
+
+        // Validar el retardo y contar los retardos acumulados
+        $retardos = 0;
+        if ($diferencia_minutos > 15) {
+            $retardos = floor($diferencia_minutos / 15);
+        }
+
+        // Deducción de sueldo por 3 retardos acumulados
+        if ($retardos >= 3) {
+            $sueldo_total = $trab['numero_de_registros'] * ($trab['sueldo'] - $trab['sueldo']);
+        } else {
+            $sueldo_total = $trab['numero_de_registros'] * $trab['sueldo'];
+        }
+
+        // Almacenar la información única del usuario en el array
+        $usuariosUnicos[$trab['id_empleadoEnfermeria']] = [
+            'numero_de_registros' => $trab['numero_de_registros'],
+            'NombreCompleto' => $trab['NombreCompleto'],
+            'nombreServicio' => $trab['nombreServicio'],
+            'retardos' => $retardos,
+            'sueldo_total' => $sueldo_total,
+        ];
+    }
+}
+
+// Mostrar los datos únicos en la tabla
+foreach ($usuariosUnicos as $usuario) {
+    $hojaActiva->setCellValue('A' . $fila, $usuario['numero_de_registros']);
+    $hojaActiva->setCellValue('B' . $fila, $usuario['NombreCompleto']);
+    $hojaActiva->setCellValue('C' . $fila, $usuario['nombreServicio']);
+    $hojaActiva->setCellValue('D' . $fila, $usuario['retardos']);
+    $hojaActiva->setCellValue('E' . $fila, $usuario['sueldo_total']);
     $fila++;
 }
 
-// Columnas 'ANCHO DE COLUMNAS'
+// Columnas 'ANCHO DE COLUMNAS' // setAuroSize es para que las columnas acomoden automaticamente
 $hojaActiva->getColumnDimension('A')->setAutoSize(true);
 $hojaActiva->getColumnDimension('B')->setAutoSize(true);
 $hojaActiva->getColumnDimension('C')->setAutoSize(true);
