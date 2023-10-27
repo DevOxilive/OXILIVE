@@ -13,6 +13,7 @@ if (!isset($_SESSION['us'])) {
 <head>
     <link rel="stylesheet" href="../../../assets/css/foto_perfil.css">
     <link rel="stylesheet" href="../../../assets/css/edit.css">
+    <link rel="stylesheet" href="css/buscador.css">
 </head>
 <main class="main" id="main">
     <section class="section">
@@ -22,13 +23,14 @@ if (!isset($_SESSION['us'])) {
                     Consultar Paciente</h4>
             </div>
             <div class="card-body" style="border: 2px solid #BFE5FF;"> <br>
+                
                 <form class="formLogin row g-3">
                     <div class="contenido col-md-12">
-                        <label for="Buscar_pacientes" class="form-label fs-5">Buscar paciente:</label>
-                        <input type="text" class="form-control" id="search_cliente" name="Buscar_pacientes" placeholder="Nombre del paciente" required autocomplete="off">
+                        <label class="form-label fs-5">Buscar paciente:</label>
+                        <input type="text" class="form-control" id="search_cliente" placeholder="Nombre del paciente" autocomplete="off">
                     </div>
                     <div class="contenido col-md-12">
-                        <ul id="show-list"></ul>
+                        <div class="dropdown-list" id="show-list"></div>
                     </div>
                 </form>
             </div>

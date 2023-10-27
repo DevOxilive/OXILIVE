@@ -13,7 +13,7 @@
         WHERE ah.id_pacienteEnfermeria = pe.id_pacientes AND
         u.id_usuarios = ah.id_usuario AND
         ah.statusHorario = e.id_estadoHorarios AND
-        u.id_departamentos = 6;'
+        u.id_departamentos = 11;'
     );
     $sentenciaHor->execute();
     $lista_horarios = $sentenciaHor->fetchAll(PDO::FETCH_ASSOC);
