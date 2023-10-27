@@ -3,7 +3,7 @@ include("../../../connection/conexion.php");
 include_once '../../../templates/hea.php';
 if ($_POST) {
     // $idPaciente=(isset($_POST["idPaciente"])?$_POST["idPaciente"]:"");
-    $idPaciente = (isset($_POST["idPaciente"])) ? intval($_POST["idPaciente"]) : 0;
+    $idPaciente = (isset($_POST["idPaciente"]) ? $_POST["idPaciente"] : NULL);
     $nomSolicitante = (isset($_POST["nomSolicitante"]) ? $_POST["nomSolicitante"] : "");
     $fechaServicio = (isset($_POST["fechaServicio"]) ? $_POST["fechaServicio"] : "");
     $horaEntrada = (isset($_POST["horaEntrada"]) ? $_POST["horaEntrada"] : "");
@@ -13,6 +13,8 @@ if ($_POST) {
     $id_usuarios = (isset($_POST["asignarMedico"]) ? $_POST["asignarMedico"] : "");
     // $id_usuarios = (isset($_POST["id_usuarios"])) ? intval($_POST["id_usuarios"]) : 0;
     $idServicio = (isset($_POST["tipoServicio"]) ? $_POST["tipoServicio"] : []);
+
+    //echo $idPaciente." ".$nomSolicitante." ".$fechaServicio." ".$motivoConsulta." ".$nAutorizacion." ".$auEspecial." ".$idServicio;
 
 
     $sentencia = $con->prepare("INSERT INTO asignacion_servicio
@@ -47,7 +49,7 @@ if ($_POST) {
                 showConfirmButton: false,
                 timer: 1500,
             }).then(function() {
-                window.location = "index.php";
+                //window.location = "index.php";
                 });';
             echo '</script>';
         } else {
