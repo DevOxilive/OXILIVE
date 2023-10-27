@@ -29,7 +29,7 @@ if (!isset($_SESSION['us'])) {
                 <table class="table table-bordered border-dark table-hover" id="myTable">
                     <thead class="table-dark">
                         <tr class="table-active table-group-divider" style="text-align: center;">
-                            <th scope="col">Id asistencia</th>
+                            <th scope="col">Usuario</th>
                             <th scope="col">Fecha</th>
                             <th scope="col">Hora de entrada</th>
                             <th scope="col">Hora de salida</th>
@@ -42,7 +42,7 @@ if (!isset($_SESSION['us'])) {
                         <?php foreach ($lista_bitacora as $Lsb) { ?>
                         <tr>
                             <th scope="row">
-                                <?php echo $Lsb['id_Rbitacora']; ?>
+                                <?php echo $Lsb['id_usuario']; ?>
                             </th>
                             <td>
                                 <?php echo $Lsb['Registro_fecha']; ?>
@@ -59,10 +59,10 @@ if (!isset($_SESSION['us'])) {
                                 <?php
                                  if ($Lsb['id_checkOut']) {
                                  // Si existe id_checkOut, muestra "Servicio completo" en verde
-                                 echo '<span style="color: green;">Servicio completo</span>';
+                                 echo '<span class="badge bg-success fs-6">Servicio completo</span>';
                                  } elseif ($Lsb['id_checkIn']) {
                                  // Si solo existe id_checkIn, muestra "En proceso" en naranja
-                                 echo '<span style="color: orange;">En proceso</span>';
+                                 echo '<span class="badge bg-warning fs-6">En proceso</span>';
                                  } else {
                                  // Si no existe ninguna de las dos, puedes mostrar un valor 
                                  // predeterminado o un mensaje de error
@@ -75,7 +75,7 @@ if (!isset($_SESSION['us'])) {
 
                            <!-- El boton te muestra la salida de la informacion del empleado -->
                                 <a name="" id="" class="btn btn-outline-warning"
-                                    href="prueba2.php?checkIn=<?php echo $Lsb['id_checkIn'];?>&checkOut=<?php echo $Lsb['id_checkOut'];?>" role="button"><i
+                                    href="info.php?checkIn=<?php echo $Lsb['id_checkIn'];?>&checkOut=<?php echo $Lsb['id_checkOut'];?>" role="button"><i
                                         class="bi bi-info-square"></i></a>
 
 
