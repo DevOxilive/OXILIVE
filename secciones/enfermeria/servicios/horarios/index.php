@@ -29,16 +29,16 @@ if (!isset($_SESSION['us'])) {
                 <hr>
                 <div class="btn-group">
                     <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        Action
+                        Filtro
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li><a class="dropdown-item" href="" onclick="getTabla(event)">Sin Completar</a></li>
+                        <li><a class="dropdown-item" href="" onclick="getTabla(event)">En Proceso</a></li>
+                        <li><a class="dropdown-item" href="" onclick="getTabla(event)">Cancelados</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">Separated link</a></li>
+                        <li><a class="dropdown-item" href="#">Cancelados</a></li>
                     </ul>
                 </div>
                 <a class="btn btn-outline-primary" href="crear.php" role="button">
@@ -105,7 +105,7 @@ if (!isset($_SESSION['us'])) {
             "language": {
                 "url": "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"
             },
-            "order": [], 
+            "order": [],
         });
     });
 
@@ -143,6 +143,10 @@ if (!isset($_SESSION['us'])) {
                 });
             }
         });
+        function getTabla(e){
+            e.preventDefault();
+            
+        }
     }
 </script>
 <script src="js/statusHorario.js"></script>
