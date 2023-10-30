@@ -153,7 +153,7 @@ $pacienteData = $_GET['pacienteData'];
 
                 //Se declaran variables de elementos que irán dentro de los divs
                 var select = "<label for='tipoServicio' class='form-label'>Servicio " + i + "</label>" +
-                    "<select class='form-select' name='tipoServicio' required>" +
+                    "<select class='form-select' name='tipoServicio[]' required>" +
                     "<option value='' selected>Selecciona un servicio</option>" +
                     opcionesServicios +
                     "</select>";
