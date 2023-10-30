@@ -88,4 +88,4 @@ if (empty($errores)) {
                 confirmButtonText: "OK",
             });';
     echo '</script>';
-}
+}   
