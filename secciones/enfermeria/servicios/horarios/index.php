@@ -7,7 +7,7 @@ if (!isset($_SESSION['us'])) {
     include('../../../../connection/conexion.php');
     include("../../../usuarios/consulta.php");
     include('model/eliminar.php');
-    include('model/consulta.php');
+    include("model/consulta.php");
 } else {
     echo "Error en el sistema";
 }
@@ -37,8 +37,7 @@ if (!isset($_SESSION['us'])) {
                     <table class="table table-bordered  border-dark table-hover" id="myTable">
                         <thead class="table-dark">
                             <tr class="table-active table-group-divider" style="text-align: center;">
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Apellidos</th>
+                                <th scope="col">Enfermero(a)</th>
                                 <th scope="col">Fecha</th>
                                 <th scope="col">Horario</th>
                                 <th scope="col">Paciente</th>
@@ -50,10 +49,7 @@ if (!isset($_SESSION['us'])) {
                             <?php foreach ($lista_horarios as $horario) { ?>
                                 <tr>
                                     <td>
-                                        <?php echo $horario['Nombres']; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $horario['Apellidos']; ?>
+                                        <?php echo $horario['enfermero']; ?>
                                     </td>
                                     <td>
                                         <center>
@@ -67,29 +63,16 @@ if (!isset($_SESSION['us'])) {
                                         </center>
                                     </td>
                                     <td>
-                                        <?php echo $horario['Paciente']; ?>
+                                        <?php echo $horario['paciente']; ?>
                                     </td>
                                     <td>
-                                        <?php
-                                        if ($horario['statusHorario'] == 1) {
-                                            $badgeColor = 'class="badge bg-warning fs-6"';
-                                            $text = $horario['estado'];
-                                        } else if ($horario['statusHorario'] == 2) {
-                                            $badgeColor = 'class="badge bg-success fs-6"';
-                                            $text = $horario['estado'];
-                                        } else if ($horario['statusHorario'] == 3 ){
-                                            $badgeColor = 'class="badge bg-info fs-6"';
-                                            $text = $horario['estado'];
-                                        }
-                                        ?>
                                         <center>
-                                            <span <?php echo $badgeColor; ?>>
-                                                <?php echo $text; ?>
+                                            <span id="status<?php echo $horario['id_asignacionHorarios']?>">
                                             </span>
                                         </center>
                                     </td>
                                     <td>
-                                        <center>
+                                        <center id="acciones<?php echo $horario['id_asignacionHorarios']?>">
                                             <a name="" id="" class="btn btn-outline-warning" href="editar.php?idHor=<?php echo $horario['id_asignacionHorarios']; ?>" role="button">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a> |

@@ -4,9 +4,9 @@
         'SELECT ah.id_asignacionHorarios,
                 ah.horarioEntrada,
                 ah.horarioSalida,
-                ah.fecha, u.Nombres AS "Nombres",
-                u.Apellidos AS "Apellidos",
-                CONCAT(pe.Nombres, " ", pe.Apellidos) AS "Paciente",
+                ah.fecha,
+                CONCAT(U.Nombres, " ", u.Apellidos) AS "enfermero",
+                CONCAT(pe.Nombres, " ", pe.Apellidos) AS "paciente",
                 ah.statusHorario,
                 e.estado
         FROM usuarios u, asignacion_horarios ah, pacientes_oxigeno pe, estado_horarios e
