@@ -6,6 +6,7 @@ function getStatus() {
     .then((datos) => {
       datos.forEach((dato) => {
         let status = document.getElementById("status" + dato.id);
+        let btns = document.getElementById("acciones" + dato.id);
         status.classList = "";
         switch (dato.id_est) {
           case 1:
@@ -25,6 +26,12 @@ function getStatus() {
             break;
         }
         status.textContent=dato.estado;
+        if(dato.id_est === 1){
+          btns.innerHTML = "<a class='btn btn-outline-warning' href='editar.php?idHor="+ dato.id +"' role='button'><i class='i bi-pencil-square'></i></a> | <a class='btn btn-outline-danger' role='button' onclick='cancelHor("+ dato.id +")'><i class='bi bi-x-lg text-danger'></i></a>"
+        }
+        else {
+          btns.textContent = "N / A";
+        }
       });
     });
 }
