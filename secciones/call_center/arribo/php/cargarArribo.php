@@ -12,6 +12,7 @@ $resultados = $stat->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 <center>
+
     <table>
         <thead>
             <tr class="historial">

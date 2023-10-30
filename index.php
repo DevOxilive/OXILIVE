@@ -703,7 +703,7 @@ if (isset($_SESSION['us']) && $_SESSION['puesto'] == 1) {
     header('Location: secciones/call_center/index.php');   
 
 } else {
-    header('Location: secciones/catalogo/index.php');
+    header('Location: login.php');
 }
 include("templates/footer.php");
 ?>
