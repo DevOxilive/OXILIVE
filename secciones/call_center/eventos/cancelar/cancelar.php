@@ -94,7 +94,7 @@ if (!isset($_SESSION['us'])) {
                             var valorid = this.getAttribute("data-valor");
                             console.log(valorid);
                             if (confirm("Estas seguro que quieres cancelar el servicio?")) {
-                                alert("Cancelado tacuache cleee")
+                                alert("Servicio cancelado")
                                 $.ajax({
                                     url: 'eliminar.php',
                                     type: 'POST',
