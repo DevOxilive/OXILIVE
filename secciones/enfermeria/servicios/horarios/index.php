@@ -27,6 +27,20 @@ if (!isset($_SESSION['us'])) {
             <div class="card-header">
                 <h2>Horario de servicios</h2>
                 <hr>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Action
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Separated link</a></li>
+                    </ul>
+                </div>
                 <a class="btn btn-outline-primary" href="crear.php" role="button">
                     <i class="bi bi-calendar-plus"></i>
                     Nueva Guardia
@@ -34,7 +48,7 @@ if (!isset($_SESSION['us'])) {
             </div>
             <div class="card-body">
                 <div class="table-responsive-sm">
-                    <table class="table table-bordered  border-dark table-hover" id="myTable">
+                    <table class="table table-bordered border-dark table-hover" id="myTable">
                         <thead class="table-dark">
                             <tr class="table-active table-group-divider" style="text-align: center;">
                                 <th scope="col">Enfermero(a)</th>
@@ -47,8 +61,8 @@ if (!isset($_SESSION['us'])) {
                         </thead>
                         <tbody>
                             <?php foreach ($lista_horarios as $horario) { ?>
-                                <tr>
-                                    <td>
+                                <tr id="fila<?php echo $horario['id_asignacionHorarios']; ?>">
+                                    <td id="fila<?php echo $horario['id_asignacionHorarios']; ?>">
                                         <?php echo $horario['enfermero']; ?>
                                     </td>
                                     <td>
@@ -67,18 +81,12 @@ if (!isset($_SESSION['us'])) {
                                     </td>
                                     <td>
                                         <center>
-                                            <span id="status<?php echo $horario['id_asignacionHorarios']?>">
+                                            <span id="status<?php echo $horario['id_asignacionHorarios'] ?>">
                                             </span>
                                         </center>
                                     </td>
                                     <td>
-                                        <center id="acciones<?php echo $horario['id_asignacionHorarios']?>">
-                                            <a name="" id="" class="btn btn-outline-warning" href="editar.php?idHor=<?php echo $horario['id_asignacionHorarios']; ?>" role="button">
-                                                <i class="bi bi-pencil-square"></i>
-                                            </a> |
-                                            <a name="" class="btn btn-outline-danger" role="button" onclick="cancelHor(<?php echo $horario['id_asignacionHorarios']; ?>)">
-                                                <i class="bi bi-x-lg text-danger"></i>
-                                            </a>
+                                        <center id="acciones<?php echo $horario['id_asignacionHorarios'] ?>">
                                         </center>
                                     </td>
                                 </tr>
@@ -96,12 +104,13 @@ if (!isset($_SESSION['us'])) {
         $('#myTable').DataTable({
             "language": {
                 "url": "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"
-            }
+            },
+            "order": [], 
         });
     });
 
-    function cancelHor(id) {
-        var $id = id;
+    function cancelHor(e, id) {
+        e.preventDefault();
         Swal.fire({
             title: '¿Seguro que quieres cancelar este horario?',
             text: 'Esta acción no se podrá deshacer una vez se realice, pero podrás seguir viendo el horario en la seccion de Cancelados',
@@ -115,19 +124,20 @@ if (!isset($_SESSION['us'])) {
             if (result.isConfirmed) {
                 $.ajax({
                     type: "POST",
-                    url: "model/delete.php",
+                    url: "model/cancel.php",
                     data: {
-                        id: $id
+                        id: id
                     },
                     success: function() {
                         Swal.fire({
                             position: 'top-end',
-                            title: "Servicio borrado correctamente",
+                            title: "Servicio cancelado correctamente",
                             icon: "success",
                             showConfirmButton: false,
                             timer: 1000
                         }).then(function() {
-                            window.location.replace('index.php');
+                            let fila = document.getElementById("fila" + id);
+                            fila.remove();
                         });
                     }
                 });
@@ -136,6 +146,8 @@ if (!isset($_SESSION['us'])) {
     }
 </script>
 <script src="js/statusHorario.js"></script>
+<script src="js/cancelados.js"></script>
+
 </html>
 <?php
 include("../../../../templates/footer.php");
