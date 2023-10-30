@@ -152,7 +152,7 @@ if (!isset($_SESSION['us'])) {
         });
     }
 </script>
-
+<script src="js/statusHorario.js"></script>
 </html>
 <?php
 include("../../../../templates/footer.php");

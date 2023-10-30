@@ -1,5 +1,4 @@
 <?php
-    session_start();
     $datos = json_decode(file_get_contents("php://input"), true);
     $paciente = isset($datos['idPac']) ? $datos['idPac'] : "";
     if($paciente != "" || $paciente != null){

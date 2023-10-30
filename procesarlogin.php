@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $incre = $con->prepare($incremento);
         $incre->bindParam(":vUsuario", $vUsuario);
         $incre->execute();
-   
+
 
 
         if ($datos && password_verify($vPassword, $datos["paswword"])) {
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $sentensia2 = $con->prepare("UPDATE usuarios SET estatus = '1' WHERE id_usuarios = '{$_SESSION['idus']}' ");
             $sentensia2->execute();
-        
+
             switch ($datos["id_departamentos"]) {
                 case '1':
                     echo "<script> 
@@ -165,31 +165,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </script>";
                     break;
 
-                    case '11':
-                        echo "<script> 
-                                     Swal.fire({
-                                         icon: 'success',
-                                        title: 'BIENVENIDO',
-                                        showConfirmButton: false,
-                                        timer: 1500,
-                                    }).then(function() {
-                                window.location = 'secciones/catalogo/index.php';
-                                    });
-                            </script>";
-                        break;
+                case '11':
+                    echo "<script> 
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'BIENVENIDO',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        }).then(function() {
+                            window.location = 'secciones/enfermeria/user/index.php';
+                        });
+                    </script>";
+                    break;
 
-                        case '12':
-                            echo "<script> 
-                                         Swal.fire({
-                                             icon: 'success',
-                                            title: 'BIENVENIDO',
-                                            showConfirmButton: false,
-                                            timer: 1500,
-                                        }).then(function() {
-                                    window.location = 'secciones/call_center/index.php';
-                                        });
-                                </script>";
-                            break;
+                case '12':
+                    echo "<script> 
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'BIENVENIDO',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        }).then(function() {
+                            window.location = 'secciones/call_center/index.php';
+                        });
+                    </script>";
+                    break;
                 default:
                     redirectTo('index.php');
                     break;

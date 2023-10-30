@@ -24,7 +24,7 @@ function registrarAsis($con, $data){
     $statusHor = $data['statusHor'];
 
     
-    date_default_timezone_set('America/Mazatlan');
+    date_default_timezone_set('America/Mexico_City');
     $fechaActual = date("Y-m-d");
     $horaActual = date("h:i:s");
     
