@@ -98,7 +98,7 @@ if (!isset($_SESSION['us'])) {
                     <div class="col-12">
                         <br>
                         <button type="submit" class="btn btn-outline-primary">Guardar</button>
-                        <a role="button" onclick="confirmCancel(event)" name="cancelar" class="btn btn-outline-danger">
+                        <a role="button" href="" onclick="confirmCancel(event)" name="cancelar" class="btn btn-outline-danger">
                             Cancelar
                         </a>
                     </div>

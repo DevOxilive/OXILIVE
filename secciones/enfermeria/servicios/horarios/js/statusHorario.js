@@ -1,6 +1,8 @@
-function getStatus() {
+function getStatus(n) {
   fetch("model/status.php", {
     headers: { "Content-Type": "application/json" },
+    method: "POST",
+    body: JSON.stringify({estado: n}),
   })
     .then((response) => response.json())
     .then((datos) => {
