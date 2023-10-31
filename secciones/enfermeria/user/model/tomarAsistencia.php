@@ -61,7 +61,6 @@ function cambiarStatus($con, $data){
     $sentenciaStatus = $con->prepare('
         UPDATE usuarios 
         SET Estado =:estado WHERE id_usuarios=:idUser;
-
     ');
     $newStatus=0;
     if($status == 1){
