@@ -141,10 +141,10 @@ CREATE TABLE IF NOT EXISTS `asignacion_horarios` (
 DELETE FROM `asignacion_horarios`;
 INSERT INTO `asignacion_horarios` (`id_asignacionHorarios`, `id_usuario`, `id_tipoServicio`, `horarioEntrada`, `horarioSalida`, `fecha`, `id_pacienteEnfermeria`, `statusHorario`) VALUES
 	(19, 19, 1, '13:17:00', '01:17:00', '2023-10-13', 31, 2),
-	(20, 18, 1, '13:20:00', '01:20:00', '2023-10-15', 30, 2),
-	(21, 18, 1, '13:20:00', '01:20:00', '2023-10-16', 32, 3),
-	(22, 19, 1, '10:21:00', '09:21:00', '2023-10-31', 1, 1),
-	(23, 19, 1, '10:21:00', '11:21:00', '2023-11-01', 30, 3);
+	(20, 18, 1, '13:20:00', '01:20:00', '2023-10-15', 30, 1),
+	(21, 18, 1, '13:20:00', '01:20:00', '2023-10-16', 32, 4),
+	(22, 19, 1, '10:21:00', '09:21:00', '2023-10-31', 1, 2),
+	(23, 19, 1, '10:21:00', '11:21:00', '2023-11-01', 30, 2);
 
 -- Volcando estructura para tabla bdoxilive.asignacion_servicio
 DROP TABLE IF EXISTS `asignacion_servicio`;
@@ -203,6 +203,13 @@ CREATE TABLE IF NOT EXISTS `asistencias` (
 
 -- Volcando datos para la tabla bdoxilive.asistencias: ~0 rows (aproximadamente)
 DELETE FROM `asistencias`;
+INSERT INTO `asistencias` (`id_asistencias`, `id_empleadoEnfermeria`, `id_check`, `id_horario`, `fechaAsis`, `checkTime`, `checkLatitud`, `checkLongitud`, `checkFotografia`) VALUES
+	(82, 19, 1, 19, '2023-10-30', '03:47:34', 19.426019, -99.046063, _binary 0x2e2e2f696d672f6173697374656e636961732f31392f666f746f5f363534303234356464663733642e706e67),
+	(83, 19, 5, 19, '2023-10-30', '03:48:56', 19.426019, -99.046063, _binary 0x2e2e2f696d672f6173697374656e636961732f31392f666f746f5f363534303234633630626365392e706e67),
+	(84, 19, 1, 22, '2023-10-30', '03:49:14', 19.426019, -99.046063, _binary 0x2e2e2f696d672f6173697374656e636961732f31392f666f746f5f363534303234643933353961652e706e67),
+	(85, 19, 5, 22, '2023-10-30', '03:49:58', 19.426019, -99.046063, _binary 0x2e2e2f696d672f6173697374656e636961732f31392f666f746f5f363534303235303537353435632e706e67),
+	(86, 19, 1, 23, '2023-10-30', '03:50:12', 19.426019, -99.046063, _binary 0x2e2e2f696d672f6173697374656e636961732f31392f666f746f5f363534303235313430346165622e706e67),
+	(87, 19, 5, 23, '2023-10-30', '03:50:28', 19.426019, -99.046063, _binary 0x2e2e2f696d672f6173697374656e636961732f31392f666f746f5f363534303235323435343164362e706e67);
 
 -- Volcando estructura para tabla bdoxilive.bancos
 DROP TABLE IF EXISTS `bancos`;
@@ -10224,7 +10231,7 @@ CREATE TABLE IF NOT EXISTS `estado_equipo` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla bdoxilive.estado_equipo: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.estado_equipo: ~1 rows (aproximadamente)
 DELETE FROM `estado_equipo`;
 INSERT INTO `estado_equipo` (`id`, `Nombre_estado`) VALUES
 	(1, 'FUNCIONAL');
@@ -10253,7 +10260,7 @@ CREATE TABLE IF NOT EXISTS `estado_insumo` (
   PRIMARY KEY (`id_estado`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla bdoxilive.estado_insumo: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.estado_insumo: ~1 rows (aproximadamente)
 DELETE FROM `estado_insumo`;
 INSERT INTO `estado_insumo` (`id_estado`, `estado_insumo`) VALUES
 	(1, 'UTIL');
@@ -10379,7 +10386,7 @@ CREATE TABLE IF NOT EXISTS `insumos` (
   CONSTRAINT `FK_insumos_tamano_insumo` FOREIGN KEY (`tamano_insumo`) REFERENCES `tamano_insumo` (`id_tamano`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla bdoxilive.insumos: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.insumos: ~1 rows (aproximadamente)
 DELETE FROM `insumos`;
 INSERT INTO `insumos` (`id_insumo`, `cantidad_insumo`, `marca_insumo`, `tamano_insumo`, `estado_insumo`) VALUES
 	(1, 4, 1, 1, 1);
@@ -10444,7 +10451,11 @@ INSERT INTO `mensajes` (`id_msg`, `id_entrada`, `id_salida`, `msg`, `fecha_hora`
 	(4, 18, 1, 'bkbhvhkvhk', '2023-10-10 09:48:36', 'proof', '1'),
 	(5, 1, 18, 'liugjhgj', '2023-10-10 09:48:54', 'Yani24_', '1'),
 	(6, 1, 18, 'kjbkjhkb', '2023-10-10 09:49:03', 'Yani24_', '1'),
-	(7, 1, 18, 'asdfghjklñ', '2023-10-10 10:10:40', 'Yani24_', '0');
+	(7, 1, 18, 'asdfghjklñ', '2023-10-10 10:10:40', 'Yani24_', '0'),
+	(8, 1, 9, 'jhjhfhjfj', '2023-10-30 15:53:17', 'Yani24_', '0'),
+	(9, 1, 10, 'CED.pdf', '2023-10-30 21:57:22', 'Yani24_', '0'),
+	(10, 1, 10, 'jgfjf', '2023-10-30 15:57:41', 'Yani24_', '0'),
+	(11, 1, 10, 'CED.pdf', '2023-10-30 21:57:41', 'Yani24_', '0');
 
 -- Volcando estructura para tabla bdoxilive.municipios
 DROP TABLE IF EXISTS `municipios`;
@@ -10747,7 +10758,8 @@ INSERT INTO `pacientes_oxigeno` (`id_pacientes`, `Nombres`, `Apellidos`, `Genero
 	(31, 'Diego', 'Montalbo', 1, '15', 'meneses', '3', '2', 'israel', 56344, 'chimalhuacan', 'méxico', 'CMDX', '5584454683', 1, 1, 1, '8', _binary 0x313639353932383737315f7072756562612e6a7067, _binary 0x313639353932383737315f7072756562612e6a7067, '2023-09-28 19:19:31', _binary 0x313639353932383737315f707275656261322e6a7067, _binary 0x313639353932383737315f313639323139373732315f62646f78696c697665202d44442e706466, _binary 0x313639353932383737315f707275656261322e6a7067, 'ruben y levy', 1, 'X0X0X0X0X0X066', 'Don paquis'),
 	(32, 'Alexander', 'Malva', 1, '22', 'meneses', '4', '5', 'israele', 56345, 'chimalhuacan', 'méxico', 'CMDX', '5584454683', 2, 3, 1, '3', _binary 0x313639353932393132375f7072756562612e6a7067, _binary 0x313639353932393132375f7072756562612e6a7067, '2023-09-28 19:25:27', _binary 0x313639353932393132375f707275656261322e6a7067, _binary 0x313639353932393132375f313639323139373732315f62646f78696c697665202d44442e706466, _binary 0x313639353932393132375f707275656261322e6a7067, 'ruben y levy', 1, 'X0X0X088X0X0X0', 'Pedro'),
 	(33, 'Brenda', 'Nuñes', 2, '30', 'meneses', '6', '4', 'israels', 56345, 'chimalhuacan', 'méxico', 'CMDX', '5584454683', 1, 2, 1, '3', _binary 0x313639353932393334375f7072756562612e6a7067, _binary 0x313639353932393334375f7072756562612e6a7067, '2023-09-28 19:29:07', _binary 0x313639353932393334375f7072756562612e6a7067, _binary 0x313639353932393334375f313639323139373732315f62646f78696c697665202d44442e706466, _binary 0x313639353932393334375f7072756562612e6a7067, 'ruben y levy', 1, 'X033X0X0X0X0X0', 'Pedro'),
-	(34, 'Loqsea', 'Loqseaporfo', 2, '78', 'Kakaka', '42', '', 'La perla', 12345, 'Nezaaaaa', 'dE ERBIEDAD', 'Cuau', '5611494439', 1, 1, 2, '3132', _binary 0x313639363935343632305f696d6167656e5f7265636f72746164612e706e67, _binary 0x313639363935343632305f696d6167656e5f7265636f72746164612e706e67, '2023-10-10 16:17:01', _binary 0x313639363935343632305f696d6167656e5f7265636f72746164612e706e67, _binary 0x313639363935343632305f444f432d32303233303931352d5741303030302e2e706466, _binary 0x313639363935343632305f696d6167656e5f7265636f72746164612e706e67, 'Ningunasr', 1, '1234567890', 'Io');
+	(34, 'Loqsea', 'Loqseaporfo', 2, '78', 'Kakaka', '42', '', 'La perla', 12345, 'Nezaaaaa', 'dE ERBIEDAD', 'Cuau', '5611494439', 1, 1, 2, '3132', _binary 0x313639363935343632305f696d6167656e5f7265636f72746164612e706e67, _binary 0x313639363935343632305f696d6167656e5f7265636f72746164612e706e67, '2023-10-10 16:17:01', _binary 0x313639363935343632305f696d6167656e5f7265636f72746164612e706e67, _binary 0x313639363935343632305f444f432d32303233303931352d5741303030302e2e706466, _binary 0x313639363935343632305f696d6167656e5f7265636f72746164612e706e67, 'Ningunasr', 1, '1234567890', 'Io'),
+	(35, 'Loqsea', 'LoqseaporfoS', 1, '78', 'Jabillos', '2', '3', 'La perla', 1234, 'Neza', 'dE ERBIEDAD', 'Cuau', '5611494439', 1, 1, 1, '3132', _binary 0x313639383730313732315f63617074757265645f696d6167652e706e67, _binary 0x313639383730313732315f63617074757265645f696d6167652e706e67, '2023-10-30 21:35:21', _binary 0x313639383730313732315f63617074757265645f696d6167652e706e67, _binary 0x313639383730313732315f4345442e706466, _binary 0x313639383730313732315f63617074757265645f696d6167652e706e67, 'Ningunasr', 1, 'X2', 'diego');
 
 -- Volcando estructura para tabla bdoxilive.paises
 DROP TABLE IF EXISTS `paises`;
@@ -10757,7 +10769,7 @@ CREATE TABLE IF NOT EXISTS `paises` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla bdoxilive.paises: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.paises: ~1 rows (aproximadamente)
 DELETE FROM `paises`;
 INSERT INTO `paises` (`id`, `nombre`) VALUES
 	(1, 'México');
@@ -10781,7 +10793,7 @@ CREATE TABLE IF NOT EXISTS `procedimientos` (
   CONSTRAINT `FK_procedimientos_cpts_administradora` FOREIGN KEY (`cpt`) REFERENCES `cpts_administradora` (`id_cpt`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla bdoxilive.procedimientos: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.procedimientos: ~1 rows (aproximadamente)
 DELETE FROM `procedimientos`;
 INSERT INTO `procedimientos` (`id_procedi`, `icd`, `dx`, `fecha`, `medico`, `pacienteYnomina`, `cpt`) VALUES
 	(51, '187 / 88', 'Colillo', '2023-10-13', 9, 27, 20);
@@ -10801,7 +10813,7 @@ CREATE TABLE IF NOT EXISTS `productos` (
   PRIMARY KEY (`id_productos`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla bdoxilive.productos: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.productos: ~1 rows (aproximadamente)
 DELETE FROM `productos`;
 INSERT INTO `productos` (`id_productos`, `nombre`, `descripcion`, `precio`, `imagen`, `fecha_registro`, `categoria`, `cantidad`, `disponible`) VALUES
 	(1, 'PRUEBA DE PRODUCTO', 'PRUEBA DE PRODUCTOP', 1250, _binary 0x313639323230313339395f747265652d3733363838355f313238302e6a7067, '2023-08-16 15:56:39', NULL, 25, 'DISPONIBLE');
@@ -10870,7 +10882,7 @@ CREATE TABLE IF NOT EXISTS `regisclinicos_cuidagenerales` (
   PRIMARY KEY (`id_RC`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla bdoxilive.regisclinicos_cuidagenerales: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.regisclinicos_cuidagenerales: ~2 rows (aproximadamente)
 DELETE FROM `regisclinicos_cuidagenerales`;
 INSERT INTO `regisclinicos_cuidagenerales` (`id_RC`, `Temperatura`, `Pulso`, `Respiracion`, `Tension_arterial`, `Spo2`, `Glicemia_capilar`, `Vomitos`, `Evacuaciones`, `Orina`, `Ingesta_liquidos`, `Caidas`, `Drenajes_vendajes`, `Upp_hh`, `Descripcion_upp`, `Solucion`, `Fecha_solucion`, `Cantidad_solucion`, `Got_solucion`, `Frec_solucion`, `Hora_inicio`, `Hora_termina`, `Cauracion`, `Nota_emfermeria_dia`, `Nota_emfermeria_noche`, `Alimentos_desayuno`, `Descripcion_desayuno`, `Alimentos_comida`, `Descripcion_comida`, `Alimentos_cena`, `descripcion_cena`, `Medicamentos`, `Horario_Medi`) VALUES
 	(0000000012, 39.900000, 188.880000, 25, '135/78', 45, 20.200000, 1, 1, 1, 1, 1, 1, 1, 'lalalalalal', 'INTRAVENOSA', '2023-10-14', '150', '150', '154', '06:00:00', '07:00:00', 'lalalalalalalala', 'lalalalallalala', 'lalalalalala', '09:00:00', 'lalalalalala', '15:00:00', 'lallalalal', '21:00:00', 'lalalalalala', 'paracetamol', '09:00:00'),
@@ -10944,7 +10956,7 @@ CREATE TABLE IF NOT EXISTS `ruta_diaria_oxigeno` (
   CONSTRAINT `FK_ruta_diaria_oxigeno_aseguradoras` FOREIGN KEY (`Aseguradora`) REFERENCES `aseguradoras` (`id_aseguradora`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla bdoxilive.ruta_diaria_oxigeno: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.ruta_diaria_oxigeno: ~1 rows (aproximadamente)
 DELETE FROM `ruta_diaria_oxigeno`;
 INSERT INTO `ruta_diaria_oxigeno` (`id_ruta`, `Fecha_agenda`, `Paciente`, `Direccion`, `Alcaldia`, `Aseguradora`, `Telefono`, `Carro`, `Chofer`, `Tanque`, `Regulador`, `Portatil`, `Concentrador`, `Aspirador`, `Cpac`, `Bipac`, `Agua`, `Puntas_n`, `Puntas_neon`, `Vaso_borb`, `Mascarilla`, `Canula`, `Recoleccion_tanque`, `Recoleccion_aspi`, `Recoleccion_concentrador`, `Nota`, `Fecha_hora_entrega`, `estado`, `Fecha_registro`) VALUES
 	(17, '2023-09-02', 'BELTRAN MAURICIO', 'CHIMALHUACAN', 'KOKO', 11, '87965132', 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ' SSSSSS', NULL, 1, '2023-09-02 20:49:33');
@@ -11008,7 +11020,7 @@ CREATE TABLE IF NOT EXISTS `tamano_insumo` (
   PRIMARY KEY (`id_tamano`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla bdoxilive.tamano_insumo: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.tamano_insumo: ~1 rows (aproximadamente)
 DELETE FROM `tamano_insumo`;
 INSERT INTO `tamano_insumo` (`id_tamano`, `tamano_insumo`) VALUES
 	(1, 'EJEMPLO');
@@ -11139,7 +11151,7 @@ CREATE TABLE IF NOT EXISTS `tipo_paciente` (
   PRIMARY KEY (`id_tipoPaciente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla bdoxilive.tipo_paciente: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla bdoxilive.tipo_paciente: ~2 rows (aproximadamente)
 DELETE FROM `tipo_paciente`;
 INSERT INTO `tipo_paciente` (`id_tipoPaciente`, `tipoPaciente`) VALUES
 	(1, 'ACTIVO'),
