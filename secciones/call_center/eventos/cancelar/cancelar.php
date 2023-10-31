@@ -25,7 +25,7 @@ if (!isset($_SESSION['us'])) {
                             <th scope="col">Fecha Consulta</th>
                             <th scope="col">Estado</th>
                             <th scope="col">Hora</th>
-                            <th scope="col">Cancelar Servicios</th>
+                            <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody id="tabla" style="text-align: :center;">
@@ -83,6 +83,8 @@ if (!isset($_SESSION['us'])) {
                     hora.textContent = dato.hora;
 
                     if (dato.estado === 1) {
+
+                        
                         const btnCancelar = document.createElement("button");
                         btnCancelar.id = "botnCancelar";
                         btnCancelar.setAttribute("data-valor", id_sv.textContent);
@@ -115,14 +117,13 @@ if (!isset($_SESSION['us'])) {
 
                     var estado = dato.estado;
                     if (estado === 1) {
-                        estadoT.style = verde;
-
+                        estadoT.style = azul;
                     } else if (estado === 3) {
-                        estadoT.style = rojo;
+                        estadoT.style = verde;
                     }else if(estado === 2){
-                        estadoT.style =azul;
+                        estadoT.style = amarillo;
                     } else if (estado === 0) {
-                        estadoT.style =amarillo ;
+                        estadoT.style = rojo ;
                     } else {
                         alert("Hay algun problema")
                     }

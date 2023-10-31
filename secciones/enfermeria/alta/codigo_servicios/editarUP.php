@@ -9,8 +9,8 @@ if (isset($_GET['txtID'])) {
     $setID = $_GET['setID']; // Identificador único del conjunto de campos
 
     // Obtener los datos del registro a editar
-    $sentencia = $con->prepare("SELECT * FROM cpts_administradora WHERE id_cpt = :id_cpt");
-    $sentencia->bindParam(":id_cpt", $txtID);
+    $sentencia = $con->prepare("SELECT * FROM codigo_administradora WHERE id_codigo = :id_codigo");
+    $sentencia->bindParam(":id_codigo", $txtID);
     $sentencia->execute();
     $registro = $sentencia->fetch(PDO::FETCH_ASSOC);
 
@@ -21,7 +21,7 @@ if (isset($_GET['txtID'])) {
     }
 
     // Asignar valores a las variables para el formulario de edición
-    $cpt = $registro["cpt"];
+    $codigo = $registro["codigo"];
     $descripcion = $registro["descripcion"];
     $unidad = $registro["unidad"];
     $administradora = $registro["admi"];
@@ -29,7 +29,7 @@ if (isset($_GET['txtID'])) {
     // Aquí debes poner el formulario HTML con los campos prellenados con los valores actuales.
 } else if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $txtID = isset($_POST["txtID"]) ? $_POST["txtID"] : '';
-    $cpt = (isset($_POST["cpt"]) ? $_POST["cpt"] : []);
+    $codigo = (isset($_POST["codigo"]) ? $_POST["codigo"] : []);
     $descripcion = (isset($_POST["descripcion"]) ? $_POST["descripcion"] : []);
     $unidad = (isset($_POST["unidad"]) ? $_POST["unidad"] : []);
     $administradora = (isset($_POST["administradora"]) ? $_POST["administradora"] : "");
@@ -37,12 +37,12 @@ if (isset($_GET['txtID'])) {
     // Validación para asegurarse de que todos los campos estén llenos
     $camposVacios = false;
 
-    foreach ($cpt as $key => $cptValue) {
-        $cptValue = trim($cptValue);
+    foreach ($codigo as $key => $codigoValue) {
+        $codigoValue = trim($codigoValue);
         $descripcionValue = trim($descripcion[$key]);
         $unidadValue = trim($unidad[$key]);
 
-        if (empty($cptValue) || empty($descripcionValue) || empty($unidadValue)) {
+        if (empty($codigoValue) || empty($descripcionValue) || empty($unidadValue)) {
             $camposVacios = true;
             break;
         }
@@ -53,7 +53,7 @@ if (isset($_GET['txtID'])) {
         echo 'Swal.fire({
                 icon: "error",
                 title: "Campos requeridos",
-                text: "Por favor, complete todos los campos CPT, Descripción y Unidad en cada conjunto.",
+                text: "Por favor, complete todos los campos Código, Descripción y Unidad en cada conjunto.",
                 confirmButtonColor: "#d33",
                 confirmButtonText: "OK",
             });';
@@ -62,25 +62,25 @@ if (isset($_GET['txtID'])) {
         try {
             $con->beginTransaction();
 
-            $sentencia = $con->prepare("UPDATE cpts_administradora 
-                                        SET cpt = :cpt, descripcion = :descripcion, unidad = :unidad, admi = :administradora
-                                        WHERE id_cpt = :id_cpt");
+            $sentencia = $con->prepare("UPDATE codigo_administradora 
+                                        SET codigo = :codigo, descripcion = :descripcion, unidad = :unidad, admi = :administradora
+                                        WHERE id_codigo = :id_codigo");
 
-            foreach ($cpt as $key => $cptValue) {
+            foreach ($codigo as $key => $codigoValue) {
                 $txtIDValue = isset($txtID[$key]) ? $txtID[$key] : '';
                 $descripcionValue = isset($descripcion[$key]) ? $descripcion[$key] : '';
                 $unidadValue = isset($unidad[$key]) ? $unidad[$key] : '';
 
                 $registro = [
-                    ":id_cpt" => $txtIDValue,
-                    ":cpt" => $cptValue,
+                    ":id_codigo" => $txtIDValue,
+                    ":codigo" => $codigoValue,
                     ":descripcion" => $descripcionValue,
                     ":unidad" => $unidadValue,
                     ":administradora" => $administradora
                 ];
 
                 if (!$sentencia->execute($registro)) {
-                    throw new Exception("Error al actualizar CPT.");
+                    throw new Exception("Error al actualizar los códigos.");
                 }
             }
 
@@ -89,7 +89,7 @@ if (isset($_GET['txtID'])) {
             echo '<script language="javascript"> ';
             echo 'Swal.fire({
                     icon: "success",
-                    title: "CPTS ACTUALIZADOS",
+                    title: "CÓDIGOS ACTUALIZADOS",
                     showConfirmButton: false,
                     timer: 1500,
                 }).then(function() {
@@ -102,7 +102,7 @@ if (isset($_GET['txtID'])) {
             echo '<script language="javascript"> ';
             echo 'Swal.fire({
                     icon: "error",
-                    title: "Error al actualizar CPTS",
+                    title: "Error al actualizar los códigos",
                     text: "'.$e->getMessage().'",
                     confirmButtonColor: "#d33",
                     confirmButtonText: "OK",

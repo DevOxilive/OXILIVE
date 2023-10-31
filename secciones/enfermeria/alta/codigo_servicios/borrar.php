@@ -10,11 +10,10 @@ if (!isset($_SESSION['us'])) {
 }
 ?>
 <main id="main" class="main">
-<h1 style="text-align:center;">CPTS</h1>
+<h1 style="text-align:center;">Códigos</h1>
 <div class="card">
     <div class="card-header">
-        <a name="" id="" class="btn btn-outline-primary" href="crear.php" role="button"> <i class="bi bi-award"></i> Registrar CPTS</a>
-        <a name="" id="" class="btn btn-outline-warning ml-auto" href="borrar.php" role="button"> <i class="bi bi-bookmark-x"></i> Borrar Todos CPTS Administradora </a>
+        <a name="" id="" class="btn btn-outline-warning ml-auto" href="index.php" role="button"> <i class="bi bi-bookmark-x"></i> Regresar</a>
     </div>
 </div>
         <div class="card-body">
@@ -22,39 +21,25 @@ if (!isset($_SESSION['us'])) {
                 <table class="table table-bordered  border-dark table-hover" id="myTable">
                     <thead class="table-dark">
                         <tr class="table-active table-group-divider" style="text-align: center;">
-                            <th scope="col">CPT</th>
+                            <th scope="col">Código</th>
                             <th scope="col">Administradora</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach($lista_cpts_admi as $listAdmi){ 
-                         $X = $listAdmi['admi'];
-                        ?> 
+                    <?php foreach($lista_delate as $borrar){ ?> 
                         
                         <tr class="">
                              <td>     
-                                <?php echo $listAdmi['cpt'] ?> 
+                                <?php echo $borrar['codigo'] ?> 
                             </td> 
                             <td>
-                                <?php echo $listAdmi['Nombre_administradora'] ?>
+                                <?php echo $borrar['Nombre_administradora'] ?>
                             </td>    
 
                             <td style="text-align: center;">
-                              <!-- <a class="btn btn-outline-success"
-                                    href="listaCPTS.php?txtID=<?php echo $listAdmi['id_cpt']; ?>" role="button"><i class="bi bi-person-plus-fill"></i></a> -->
-                            |
-                             <a class="btn btn-outline-warning"
-                                    href="editar.php?txtID=<?php echo $listAdmi['id_cpt']; ?>&setcpt=<?php echo $X; ?>" role="button"><i
-                                        class="bi bi-pencil-square"></i></a>
-
-                                       
-
-                                |
-                                 <a class="btn btn-outline-danger"
-                                    onclick="eliminar(<?php echo $listAdmi['id_cpt']; ?>)" role="button"><i
-                                        class="bi bi-trash-fill"></i></a>
-                                 </td>
+                                <a class="btn btn-outline-danger" onclick="deleteList(<?php echo $borrar['admi']; ?>)" role="button"><i class="bi bi-trash-fill"></i></a>
+                            </td>
                             </tr>
                          <?php } ?> 
                     </tbody>
@@ -64,7 +49,7 @@ if (!isset($_SESSION['us'])) {
     </div>
 </main>
 <script>
-function eliminar(codigo) {
+function deleteList(codigo) {
     Swal.fire({
         title: '¿Estas seguro?',
         text: "No podrás recuperar los datos",
@@ -105,7 +90,7 @@ function mandar(codigo) {
         beforeSend: function() {},
         success: function() {
             Swal.fire("Eliminado:", "Ha sido eliminado", "success").then((result) => {
-                window.location.href = "index.php";
+                window.location.href = "borrar.php";
             });
         },
     });

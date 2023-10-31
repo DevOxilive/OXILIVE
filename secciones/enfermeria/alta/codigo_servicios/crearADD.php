@@ -2,25 +2,25 @@
 include("../../../../connection/conexion.php");
 include_once '../../../../templates/hea.php';
 if ($_POST) {
-    $cpt = (isset($_POST["cpt"]) ? $_POST["cpt"] : []);
+    $codigo = (isset($_POST["codigo"]) ? $_POST["codigo"] : []);
     $descripcion = (isset($_POST["descripcion"]) ? $_POST["descripcion"] : []);
     $unidad = (isset($_POST["unidad"]) ? $_POST["unidad"] : []);
     $administradora = (isset($_POST["administradora"]) ? $_POST["administradora"] : "");
 
-    function insertaCPT($cpt, $descripcion,$unidad ,$administradora, $con){
-        $sentencia = $con->prepare("INSERT INTO cpts_administradora(id_cpt, cpt,descripcion,unidad ,admi) VALUES (null, :cpt, :descripcion,:unidad ,:admi)");
+    function insertacodigo($codigo, $descripcion,$unidad ,$administradora, $con){
+        $sentencia = $con->prepare("INSERT INTO codigo_administradora(id_codigo, codigo,descripcion,unidad ,admi) VALUES (null, :codigo, :descripcion,:unidad ,:admi)");
 
         // Inicializa un array de errores dentro de la función
         $errores = [];
 
-        foreach ($cpt as $key => $cptValue) {
+        foreach ($codigo as $key => $codigoValue) {
             // Verifica si el índice existe en $descripcion y obtén el valor correspondiente
             $descripcionValue = isset($descripcion[$key]) ? $descripcion[$key] : '';
             $unidadValue = isset($unidad[$key]) ? $unidad[$key] : '';
 
             // Crea un arreglo asociativo con ambos valores
             $registro = [
-                ":cpt" => $cptValue,
+                ":codigo" => $codigoValue,
                 ":descripcion" => $descripcionValue,
                 ":unidad" => $unidadValue,
                 ":admi" => $administradora
@@ -36,15 +36,15 @@ if ($_POST) {
         return $errores;
     }
 
-    // Llama a la función insertaCPT y almacena los errores resultantes
-    $errores = insertaCPT($cpt, $descripcion,$unidad ,$administradora, $con);
+    // Llama a la función insertaCódigos y almacena los errores resultantes
+    $errores = insertacodigo($codigo, $descripcion,$unidad ,$administradora, $con);
 
     // Comprueba si hubo errores en la inserción
     if (empty($errores)) {
         echo '<script language="javascript"> ';
         echo 'Swal.fire({
                 icon: "success",
-                title: "CPTS AGREGADO",
+                title: "Código AGREGADO",
                 showConfirmButton: false,
                 timer: 1500,
             }).then(function() {
@@ -56,7 +56,7 @@ if ($_POST) {
         echo '<script language="javascript"> ';
         echo 'Swal.fire({
                 icon: "error",
-                title: "Error al agregar CPTS",
+                title: "Error al agregar Código",
                 text: "Hubo errores en la inserción",
                 confirmButtonColor: "#d33",
                 confirmButtonText: "OK",

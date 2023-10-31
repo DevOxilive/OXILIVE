@@ -43,9 +43,9 @@ if (!isset($_SESSION['us'])) {
                     <!-- Repite estos campos según sea necesario -->
                     <div class="col-md-2 align-self-center">
                         <div class="formulario__grupo" id="grupo__Nombre_aseguradora">
-                            <label for="cpt" class="formulario__label text-left">CPT</label>
+                            <label for="codigo" class="formulario__label text-left">Código</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" value="<?php echo $cpt; ?>" name="cpt[]" class="form-control cptInput" placeholder="Ejemplo E20B-21-ND" required>
+                                <input type="text" value="<?php echo $codigo; ?>" name="codigo[]" class="form-control codigoInput" placeholder="Ejemplo E20B-21-ND" required>
                                 <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                             </div>
                         </div>
@@ -93,11 +93,11 @@ document.addEventListener('DOMContentLoaded', function() {
         var campos = document.querySelectorAll('.form-row');
 
         for (var i = 0; i < campos.length; i++) {
-            var cptInput = campos[i].querySelector('.cptInput').value.trim();
+            var codigoInput = campos[i].querySelector('.codigoInput').value.trim();
             var descripcionInput = campos[i].querySelector('.descripcionInput').value.trim();
             var unidadInput = campos[i].querySelector('.unidadInput').value.trim();
 
-            if (cptInput === "" || descripcionInput === "" || unidadInput === "") {
+            if (codigoInput === "" || descripcionInput === "" || unidadInput === "") {
                 camposIncompletos = true;
                 break;
             }
@@ -112,8 +112,8 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (camposIncompletos) {
             Swal.fire({
                 icon: 'error',
-                title: 'Campos CPT, Descripción y Unidad requeridos',
-                text: 'Por favor, complete todos los campos CPT, Descripción y Unidad en cada conjunto.',
+                title: 'Campos Código, Descripción y Unidad requeridos',
+                text: 'Por favor, complete todos los campos Código, Descripción y Unidad en cada conjunto.',
             });
         } else {
             this.submit();
@@ -136,7 +136,7 @@ function confirmCancel(event) {
         cancelButtonText: 'No, continuar'
     }).then((result) => {
         if (result.isConfirmed) {
-            window.location.href = "<?php echo $url_base; ?>secciones/enfermeria/alta/cpts/index.php";
+            window.location.href = "<?php echo $url_base; ?>secciones/enfermeria/alta/codigo_servicios/index.php";
         }
     });
 }

@@ -18,8 +18,8 @@ $procedimientos = $con->prepare("SELECT * FROM procedimientos");
 $procedimientos->execute();
 $procedimientos = $procedimientos->fetchAll(PDO::FETCH_ASSOC);
 
-//Esta consulta seria para medico
-$usuarios = $con->prepare("SELECT *, CONCAT (u.Nombres ,' ' ,u.Apellidos ) AS medico FROM usuarios u WHERE u.id_departamentos = 5");
+//Esta consulta seria para ENFERMERO
+$usuarios = $con->prepare("SELECT *, CONCAT (u.Nombres ,' ' ,u.Apellidos ) AS medico FROM usuarios u WHERE u.id_departamentos = 11");
 $usuarios->execute();
 $medico = $usuarios->fetchAll(PDO::FETCH_ASSOC);
 

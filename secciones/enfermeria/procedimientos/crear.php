@@ -40,7 +40,7 @@ if (!isset($_SESSION['us'])) {
 
                     <div class="contenido col-md-3">
                         <br>
-                        <label for="medico" class="formulario__label">Nombre del medico</label>
+                        <label for="medico" class="formulario__label">Nombre del enfermero</label>
                         <select id="medico" name="medico" class="form-select">
                             <option value="0" selected disabled>Elija una opción</option>
                             <?php foreach ($medico as $medicoT) { ?>
@@ -87,9 +87,9 @@ if (!isset($_SESSION['us'])) {
                             <?php } ?>
                         </select>
                     </div>
-                    <div class="contenido col-md-2">
+                    <div class="contenido col-md-3">
                         <br>
-                        <label for="cpt" class="formulario__label">CPT</label>
+                        <label for="cpt" class="formulario__label">codigo de facturación</label>
                         <div id="div">
                             <select id="cpt" name="cpt" class="form-select">
                                 <option value="0" selected disabled>Elija una opción</option>

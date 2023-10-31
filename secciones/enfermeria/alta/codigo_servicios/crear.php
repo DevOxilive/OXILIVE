@@ -22,7 +22,7 @@ if (!isset($_SESSION['us'])) {
             <div class="card-header" style="border: 2px solid #012970; background: #005880;">
                 <h4
                     style="text-align: center; color: #fff; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
-                    Captura del CPT Segun la administradora</h4>
+                    Captura del Código Segun la administradora</h4>
             </div>
 
             <div class="card-body" style="border: 2px solid #BFE5FF;">
@@ -45,9 +45,9 @@ if (!isset($_SESSION['us'])) {
                     <!---->
                     <div class="col-md-2 align-self-center">
                         <div class="formulario__grupo" id="grupo__Nombre_aseguradora">
-                            <label for="cpt" class="formulario__label text-left">CPT</label>
+                            <label for="codigo" class="formulario__label text-left">Código</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" name="cpt[]" class="form-control " placeholder="Ejemplo E20B-21-ND"
+                                <input type="text" name="codigo[]" class="form-control " placeholder="Ejemplo E20B-21-ND"
                                    required >
                                 <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                             </div>
@@ -73,7 +73,10 @@ if (!isset($_SESSION['us'])) {
                             </div>
                         </div>
                     </div>
+
+
                     <div class="col-md-2 align-self-center">
+                        <br>
                         <div class="formulario__grupo" id="grupo__Nombre_aseguradora">
                             <label for="code" class="text-left"></label>
                             <div class="formulario__grupo-input">
@@ -107,11 +110,11 @@ document.addEventListener('DOMContentLoaded', function() {
         var campos = document.querySelectorAll('.form-row');
 
         for (var i = 0; i < campos.length; i++) {
-            var cptInput = campos[i].querySelector('input[name="cpt[]"]').value.trim();
+            var codigoInput = campos[i].querySelector('input[name="codigo[]"]').value.trim();
             var descripcionInput = campos[i].querySelector('input[name="descripcion[]"]').value.trim();
             var unidadInput = campos[i].querySelector('input[name="unidad[]"]').value.trim();
 
-            if (cptInput === "" || descripcionInput === "" || unidadInput === "") {
+            if (codigoInput === "" || descripcionInput === "" || unidadInput === "") {
                 camposIncompletos = true;
                 break;
             }
@@ -126,8 +129,8 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (camposIncompletos) {
             Swal.fire({
                 icon: 'error',
-                title: 'Campos CPT, Descripción y Unidad requeridos',
-                text: 'Por favor, complete todos los campos CPT, Descripción y Unidad en cada conjunto.',
+                title: 'Campos Código, Descripción y Unidad requeridos',
+                text: 'Por favor, complete todos los campos Códigos, Descripción y Unidad en cada conjunto.',
             });
         } else {
             this.submit();
@@ -141,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script type="text/javascript">
 $(function() {
-    var maxDivs = 5; // Cambiar el límite a 6
+    var maxDivs = 20; // Cambiar el límite a 6
     $('.add-btn').click(function(e) {
         e.preventDefault();
         
@@ -149,13 +152,13 @@ $(function() {
         if ($('.newData .form-row').length < maxDivs) {
             var i = $('.newData .form-row').length + 2;
             
-            var newDiv = $('<div class="form-row" id="cpt' + i + '">');
+            var newDiv = $('<div class="form-row" id="codigo' + i + '">');
             newDiv.html(
                 '<div class="col-md-6">' +
                 '<div class="row">' +
                 '<div class="col-md-6">' +
-                '<label class="mb-0">CPT</label> ' + i +
-                '<input type="text" name="cpt[]" value="" class="form-control required">' +
+                '<label class="mb-0">codigo</label> ' + i +
+                '<input type="text" name="codigo[]" value="" class="form-control required">' +
                 '</div>' +
                 '<div class="col-md-6">' +
                 '<label class="mb-0">Descripción</label>' +
@@ -176,7 +179,7 @@ $(function() {
             
             $('.newData').append(newDiv);
         } else {
-            alert("No se pueden agregar más CPTS.");
+            alert("No se pueden agregar más Código.");
         }
     });
     
@@ -184,7 +187,7 @@ $(function() {
         e.preventDefault();
 
         var id = $(this).data("id");
-        $('#cpt' + id).remove();
+        $('#codigo' + id).remove();
     });
 
 });
@@ -206,7 +209,7 @@ function confirmCancel(event) {
         cancelButtonText: 'No, continuar'
     }).then((result) => {
         if (result.isConfirmed) {
-            window.location.href = "<?php echo $url_base; ?>secciones/enfermeria/alta/cpts/index.php";
+            window.location.href = "<?php echo $url_base; ?>secciones/enfermeria/alta/codigo_servicios/index.php";
         }
     });
 }
