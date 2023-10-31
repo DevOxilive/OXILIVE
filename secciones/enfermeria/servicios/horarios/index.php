@@ -34,7 +34,7 @@ if (!isset($_SESSION['us'])) {
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="" onclick="getTabla(event)">Sin Completar</a></li>
                         <li><a class="dropdown-item" href="" onclick="getTabla(event)">En Proceso</a></li>
-                        <li><a class="dropdown-item" href="" onclick="getTabla(event)">Cancelados</a></li>
+                        <li><a class="dropdown-item" href="" onclick="getTabla(event)">Completados</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
