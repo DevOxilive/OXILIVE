@@ -42,7 +42,7 @@ if (!isset($_SESSION['us'])) {
                                 <tr>
                                     <td><?php echo $enfermeros['Nombres']; ?></td>
                                     <td><?php echo $enfermeros['Apellidos']; ?></td>
-                                    <td><center><span id="estado"<?php echo $enfermeros['id_usuarios']; ?>>
+                                    <td><center><span id="status<?php echo $enfermeros['id_usuarios']; ?>">
                                     </span></center></td>
                                     <td>
                                         <center>
@@ -128,15 +128,19 @@ if (!isset($_SESSION['us'])) {
             datos.forEach(dato => {
                 let status = document.getElementById("status"+dato.id_usuarios);
                 status.classList = "";
-                if(dato.estado == 1){
+                status.textContent = "";
+                if(dato.Estado == 1){
                     status.classList.add("badge", "bg-success", "fs-6");
-                } else if (dato.estado == 5){
-                    status.classList.ass("badge", "bg-info", "fs-6");
+                } else if (dato.Estado == 5){
+                    status.classList.add("badge", "bg-info", "fs-6");
                 }
+                status.textContent = dato.Nombre_estado;
                 
             })
         });
     }
+    getStatus();
+    setInterval(getStatus, 2000);
 </script>
 <?php
     include("../../../templates/footer.php");
