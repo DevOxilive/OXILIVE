@@ -17,6 +17,7 @@ if (!isset($_SESSION['us'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<?php echo $url_base ?>assets/css/edit.css">
 </head>
 <main id="main" class="main">
     <div class="card">
@@ -30,13 +31,13 @@ if (!isset($_SESSION['us'])) {
         <div class="card-body" style="border: 2px solid #BFE5FF;">
             <form action="<?php echo $url_base ?>secciones/enfermeria/servicios/tipos/model/nuevoTServicio.php" method="POST" enctype="multipart/form-data" class="formLogin row g-3">
                 <?php foreach($lista_tipos as $tipos){ ?>
-                <div class="contenido col-md-6">
+                <div class="contenido col-md-8">
                     <br>
                     <label for="nombreServicio" class="form-label">Nombre del Servicio:</label>
                     <input type="text" class="form-control" name="nombreServicio" id="nombreServicio" placeholder="Ingresa el nombre del servicio" value="<?php echo $tipos['nombreServicio']; ?>" required>
                 </div>
-                <div class="contenido col-md-3">
-                    <br>
+                <div class="col-md-4"></div>
+                <div class="contenido col-md-4">
                     <label for="horasServicio" class="form-label">Horas del Servicio:</label>
                     <select name="horasServicio" id="horasServicio" class="form-select" required>
                         <option value="">Seleccione una duración</option>
@@ -45,12 +46,13 @@ if (!isset($_SESSION['us'])) {
                         <option value="24" <?php if($tipos['horasServicio']==24){ echo 'selected';} ?>>24 horas</option>
                     </select>
                 </div>
-                <div class="contenido col-md-3">
-                    <br>
+                <div class="contenido col-md-2">
                     <label for="sueldo" class="form-label">Sueldo:</label>
-                    <input type="number" class="form-control" name="sueldo" id="sueldo" placeholder="$300" value="<?php echo $tipos['sueldo']; ?>" required>
+                    <div class="input-group">
+                        <span class="input-group-text span-comp">$</span>
+                        <input type="text" class="form-control" name="sueldo" id="sueldo" placeholder="Ingresa el monto" value="<?php echo $tipos['sueldo']; ?>" required>
+                    </div>
                 </div>
-                <br><br>
                 <div class="col-12">
                 <?php } ?>
                     <button type="submit" class="btn btn-outline-primary">Guardar</button>
