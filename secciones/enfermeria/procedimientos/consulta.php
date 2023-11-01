@@ -4,12 +4,12 @@ include("../../../connection/conexion.php");
 $sentencia = $con->prepare("SELECT p.id_procedi, p.icd, p.dx, p.fecha, p.pacienteYnomina, 
 CONCAT(u.Nombres, ' ', u.Apellidos) AS Medico,
 CONCAT(po.Nombres, ' ', po.Apellidos) AS Paciente,po.No_nomina,
-cp.cpt , cp.descripcion, cp.unidad
+cg.codigo , cg.descripcion, cg.unidad
 FROM procedimientos p, usuarios u, 
-pacientes_oxigeno po , cpts_administradora cp
+pacientes_oxigeno po , codigo_administradora cg
 WHERE p.medico = u.id_usuarios
 AND p.pacienteYnomina = po.id_pacientes
-AND p.cpt = cp.id_cpt");
+AND p.codigo = cg.id_codigo");
 $sentencia->execute();
 $listaProce = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
@@ -31,13 +31,16 @@ $datosPacientes = $oxigeno->fetchAll(PDO::FETCH_ASSOC);
 //Esta consulta es para la administradora
 $administradora = $con->prepare("SELECT Nombre_administradora, id_administradora FROM administradora;");
 $administradora->execute();
-$listaCPTS = $administradora->fetchAll(PDO::FETCH_ASSOC);
+$listaCodigo = $administradora->fetchAll(PDO::FETCH_ASSOC);
 
-//Esta consulta es para traer los cpts
-$cpts_admi = $con->prepare("SELECT * FROM cpts_administradora");
-$cpts_admi->execute();
-$cptLista = $cpts_admi->fetchAll(PDO::FETCH_ASSOC);
+//Esta consulta es para traer los codigo
+$codigo_admi = $con->prepare("SELECT * FROM codigo_administradora");
+$codigo_admi->execute();
+$codigoLista = $codigo_admi->fetchAll(PDO::FETCH_ASSOC);
 
-
+//Esta consulta es para traer los cpts 
+$cpt = $con->prepare("SELECT * FROM cpts");
+$cpt->execute();
+$cpt_list = $cpt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>

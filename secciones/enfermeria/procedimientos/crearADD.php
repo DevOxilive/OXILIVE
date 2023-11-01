@@ -7,6 +7,7 @@ if ($_POST) {
     $dx = (isset($_POST["dx"]) ? $_POST["dx"] : "");
     $fecha = (isset($_POST["fecha"]) ? $_POST["fecha"] : "");
     $paciente = (isset($_POST["paciente"]) ? $_POST["paciente"] : "");
+    $codigo = (isset($_POST["codigo"]) ? $_POST["codigo"] : "");
     $cpt = (isset($_POST["cpt"]) ? $_POST["cpt"] : "");
 
     $consulta = $con->prepare("SELECT * FROM procedimientos  WHERE dx = '$dx' AND icd = '$codigo_ICD' AND 
@@ -26,13 +27,14 @@ if ($_POST) {
                 });';
         echo '</script>';
     } else {
-        $sentencia = $con->prepare("INSERT INTO procedimientos (icd, dx, fecha, medico,pacienteYnomina, cpt) VALUES (:icd, :dx, :fecha, :medico,:paciente, :cpt)");
+        $sentencia = $con->prepare("INSERT INTO procedimientos (icd, dx, fecha, medico,pacienteYnomina, codigo, cptA) VALUES (:icd, :dx, :fecha, :medico,:paciente, :codigo, :cpt)");
         $sentencia->bindParam(":icd", $codigo_ICD);
         $sentencia->bindParam(":dx", $dx);
         $sentencia->bindParam(":fecha", $fecha);
         $sentencia->bindParam(":medico", $medico);
         $sentencia->bindParam(":paciente", $paciente);
-        $sentencia->bindParam(":cpt", $cpt);
+        $sentencia->bindParam(":codigo", $codigo);
+        $sentencia->bindParam(":cpt",$cpt);
         $sentencia->execute();
 
 

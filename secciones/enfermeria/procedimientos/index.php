@@ -28,7 +28,7 @@ if (!isset($_SESSION['us'])) {
                             <th scope="col">Nomina</th>
                             <th scope="col">Código ICD:</th>
                             <th scope="col">Dx:</th>
-                            <th scope="col">CPT:</th>
+                            <th scope="col">Código:</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
@@ -40,7 +40,7 @@ if (!isset($_SESSION['us'])) {
                             <td><?php echo $lista["No_nomina"]; ?></td>
                             <td><?php echo $lista["icd"]; ?></td>
                             <td><?php echo $lista["dx"]; ?></td>
-                            <td><?php echo $lista['cpt']; ?></td>
+                            <td><?php echo $lista['codigo']; ?></td>
                             <td style="text-align: center;">
                                 <a class="btn btn-outline-dark" href="PDF.php?txtID=<?php echo $lista['pacienteYnomina']; ?>" role="button"><i class="bi bi-printer-fill"></i></a>    
                                 |

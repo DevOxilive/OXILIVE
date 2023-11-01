@@ -51,12 +51,12 @@ $sentencia = $con->prepare("SELECT p.id_procedi, p.icd, p.dx, p.pacienteYnomina,
 u.id_usuarios, CONCAT(u.Nombres, ' ', u.Apellidos) AS Medico,
 po.id_pacientes, CONCAT(po.Nombres, ' ', po.Apellidos) AS Paciente,po.No_nomina,
 po.Fecha_registro, po.Edad,po.municipio,po.colonia,po.rfc,
-cp.id_cpt, cp.cpt , cp.descripcion, cp.unidad
+cg.id_codigo, cg.codigo , cg.descripcion, cg.unidad
 FROM procedimientos p, usuarios u, 
-pacientes_oxigeno po , cpts_administradora cp
+pacientes_oxigeno po , codigo_administradora cg
 WHERE p.medico = u.id_usuarios
 AND p.pacienteYnomina = po.id_pacientes
-AND p.cpt = cp.id_cpt AND p.pacienteYnomina = :paciente;");
+AND p.codigo = cg.id_codigo AND p.pacienteYnomina = :paciente;");
 
 $sentencia->bindParam(":paciente", $txtID);
 $sentencia->execute();

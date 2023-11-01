@@ -2,9 +2,9 @@
 include("../../../../connection/conexion.php");
 include_once '../../../../templates/hea.php';
 if ($_POST) {
-    $Nombre_aseguradora = (isset($_POST["Nombre_aseguradora"]) ? $_POST["Nombre_aseguradora"] : "");
+    $cpt = (isset($_POST["cpt"]) ? $_POST["cpt"] : "");
     $administradora = (isset($_POST["administradora"]) ? $_POST["administradora"] : "");
-    $consulta = $con->prepare("SELECT * FROM aseguradoras WHERE Nombre_aseguradora = '$Nombre_aseguradora' and administradora = '$administradora'");
+    $consulta = $con->prepare("SELECT * FROM cpts WHERE cpt = '$cpt' and admi = '$administradora'");
     $consulta->execute();
     $resul = $consulta->rowCount();
     if ($resul > 0) {
@@ -20,15 +20,15 @@ if ($_POST) {
                 });';
         echo '</script>';
     } else {
-        $sentencia = $con->prepare("INSERT INTO aseguradoras(id_aseguradora,Nombre_aseguradora,administradora)
-        VALUES (null, :Nombre_aseguradora, :administradora)");
-        $sentencia->bindParam(":Nombre_aseguradora", $Nombre_aseguradora);
-        $sentencia->bindParam(":administradora", $administradora);
+        $sentencia = $con->prepare("INSERT INTO cpts(id_cpt,cpt,admi)
+        VALUES (null, :cpt, :admi)");
+        $sentencia->bindParam(":cpt", $cpt);
+        $sentencia->bindParam(":admi", $administradora);
         $sentencia->execute();
         echo '<script language="javascript"> ';
         echo 'Swal.fire({
                 icon: "success",
-                title: "ADMINISTRADORA AGREGADO",
+                title: "CPT AGREGADO",
                 showConfirmButton: false,
                 timer: 1500,
             }).then(function() {

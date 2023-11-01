@@ -4,21 +4,21 @@ include_once '../../../../templates/hea.php';
 if (isset($_GET['txtID'])) {
 
   $txtID = (isset($_GET['txtID'])) ? $_GET['txtID'] : "";
-  $sentencia = $con->prepare("SELECT * FROM aseguradoras WHERE id_aseguradora=:id_aseguradora");
-  $sentencia->bindParam(":id_aseguradora", $txtID);
+  $sentencia = $con->prepare("SELECT * FROM cpts WHERE id_cpt=:id_cpt");
+  $sentencia->bindParam(":id_cpt", $txtID);
   $sentencia->execute();
   $registro = $sentencia->fetch(PDO::FETCH_LAZY);
-  $Nombre_aseguradora = $registro["Nombre_aseguradora"];
+  $cpt = $registro["cpt"];
   $administradora = $registro["administradora"];
 }
 
 if ($_POST) {
 
   $txtID = (isset($_POST['txtID'])) ? $_POST['txtID'] : "";
-  $Nombre_aseguradora = (isset($_POST["Nombre_aseguradora"]) ? $_POST["Nombre_aseguradora"] : "");
+  $cpt = (isset($_POST["cpt"]) ? $_POST["cpt"] : "");
   $administradora = (isset($_POST["administradora"]) ? $_POST["administradora"] : "");
 
-  $consulta = $con->prepare("SELECT * FROM aseguradoras WHERE Nombre_aseguradora = '$Nombre_aseguradora' and administradora = '$administradora' ");
+  $consulta = $con->prepare("SELECT * FROM cpts WHERE cpt = '$cpt' and admi = '$administradora' ");
   $consulta->execute();
   $resul = $consulta->rowCount();
   if ($resul > 0) {
@@ -34,12 +34,12 @@ if ($_POST) {
           });';
     echo '</script>';
   } else {
-    $sentencia = $con->prepare("UPDATE aseguradoras 
-    SET Nombre_aseguradora=:Nombre_aseguradora, administradora=:administradora
-                WHERE id_aseguradora=:id_aseguradora");
-    $sentencia->bindParam(":Nombre_aseguradora", $Nombre_aseguradora);
-    $sentencia->bindParam(":administradora", $administradora);
-    $sentencia->bindParam(":id_aseguradora", $txtID);
+    $sentencia = $con->prepare("UPDATE cpts 
+    SET cpt=:cpt, admi=:admi
+                WHERE id_cpt=:id_cpt");
+    $sentencia->bindParam(":cpt", $Nombre_aseguradora);
+    $sentencia->bindParam(":admi", $administradora);
+    $sentencia->bindParam(":id_cpt", $txtID);
     $sentencia->execute();
     echo '<script language="javascript"> ';
     echo 'Swal.fire({

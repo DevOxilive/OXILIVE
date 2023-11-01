@@ -11,46 +11,38 @@ if (!isset($_SESSION['us'])) {
 ?>
 <main id="main" class="main">
 <div class="card-header" style="text-align: right;">
-                    <a class="btn btn-outline-dark" href="aseguradora.php" role="button"><i class="bi bi-printer-fill"></i></a>
             </div>
     <div class="card">
         <div class="card-header">
-            <a name="" id="" class="btn btn-outline-primary" href="crear.php" role="button"> <i
-                    class="bi bi-hospital-fill"></i> Registrar aseguradora</a>
+            <a name="" id="" class="btn btn-outline-primary" href="crear.php" role="button">
+            <i class="bi bi-c-square"></i> Registrar cpts</a>
         </div>
         <div class="card-body">
             <div class="table-responsive-sm">
                 <table class="table table-bordered  border-dark table-hover" id="myTable">
                     <thead class="table-dark">
                         <tr class="table-active table-group-divider" style="text-align: center;">
-                            <th scope="col">Núm</th>
-                            <th scope="col">Nombre de Aseguradora</th>
+                            <th scope="col">Administradora</th>
+                            <th scope="col">CPTS</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <?php foreach ($lista_aseguradoras as $registro) { ?>
-                        <tr class="">
-                            <th scope="row">
-                                <?php echo $registro['id_aseguradora']; ?>
-                            </th>
-                            <td>
-                                <?php echo $registro['Nombre_aseguradora']; ?>
-                            </td>
-
+                    <?php foreach($cpts as $lista){ ?>
+                        <tr class="" style="text-align: center;">
+                            <td><?php echo $lista['Nombre_administradora'] ?></td>
+                            <td><?php echo $lista['cpt'] ?></td>
                             <td style="text-align: center;">
                                 <a class="btn btn-outline-warning"
-                                    href="editar.php?txtID=<?php echo $registro['id_aseguradora']; ?>" role="button"><i
+                                    href="editar.php?txtID=<?php echo $lista['id_cpt']; ?>" role="button"><i
                                         class="bi bi-pencil-square"></i></a>
                                 |
                                 <a class="btn btn-outline-danger"
-                                    onclick="eliminar(<?php echo $registro['id_aseguradora']; ?>)" role="button"><i
+                                    onclick="eliminar(<?php echo $lista['id_cpt']; ?>)" role="button"><i
                                         class="bi bi-trash-fill"></i></a>
                             </td>
                         </tr>
-
-                        <?php } ?>
                     </tbody>
+                    <?php } ?>
                 </table>
             </div>
         </div>

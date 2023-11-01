@@ -4,7 +4,7 @@ if (!isset($_SESSION['us'])) {
     header('Location: ../../login.php');
 } elseif (isset($_SESSION['us'])) {
     include("../../../../templates/header.php");
-    include("aseguradoraUP.php");
+    include("editarUP.php");
     include("../administradora/consulta.php");
 } else {
     echo "Error en el sistema";
@@ -20,18 +20,18 @@ if (!isset($_SESSION['us'])) {
         <div class="card">
             <div class="card-header" style="border: 2px solid #012970; background: #005880;">
                 <h4 style="text-align: center; color: #fff; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
-                    Editar aseguradora</H4>
+                    Editar Cpt</H4>
             </div>
             <div class="card-body" style="border: 2px solid #BFE5FF;">
-                <form action="./aseguradoraUP.php" method="POST" class="row g-3 formEdit">
+                <form action="editarUP.php" method="POST" class="row g-3 formEdit">
                     <div class="contenido col-md-1"> <br>
                         <label for="txtID" class="form-label">Num</label>
                         <input type="text" value="<?php echo $txtID; ?>" class="form-control" readonly name="txtID" id="txtID" aria-describedby="helpId">
                     </div>
 
                     <div class="contenido col-md-6"> <br>
-                        <label for="Nombre_aseguradora" class="form-label">Nombre</label>
-                        <input type="text" value="<?php echo $Nombre_aseguradora; ?>" class="form-control" name="Nombre_aseguradora" id="Nombre_aseguradora" placeholder="Nombre aseguradora" required>
+                        <label for="cpt" class="form-label">Cpt</label>
+                        <input type="text" value="<?php echo $cpt; ?>" class="form-control" name="cpt" id="cpt" placeholder="Nombre cpt" maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 5);">
                     </div>
                     <div class="contenido col-md-3"> <br>
                         <label for="administradora" class="form-label">Administradora</label>
@@ -65,7 +65,7 @@ if (!isset($_SESSION['us'])) {
             cancelButtonText: 'No, continuar'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = '<?php echo $url_base; ?>secciones/aseguradoras/index.php';
+                window.location.href = '<?php echo $url_base; ?>secciones/enfermeria/alta/cpts/index.php';
             }
         })
     }

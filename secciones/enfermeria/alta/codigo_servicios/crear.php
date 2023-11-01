@@ -84,6 +84,7 @@ if (!isset($_SESSION['us'])) {
                             </div>
                         </div>
                     </div>
+                    
                     <div class="newData"></div>
                     <!--aquí terminan las pruebas-->
                     <div class="col-12">

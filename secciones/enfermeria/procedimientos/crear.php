@@ -78,9 +78,9 @@ if (!isset($_SESSION['us'])) {
                             que
                             pertenece</label>
                         <select id="Nombre_admi" name="Nombre_admi" class="form-select"
-                            onchange="actualizarCPT(this.value), actualizarDES(this.value),actualizarUnidad(this.value)">
+                            onchange="actualizarcodigo(this.value), actualizarDES(this.value),actualizarUnidad(this.value)">
                             <option value="0" selected disabled>Elija una administradora</option>
-                            <?php foreach ($listaCPTS as $admin) { ?>
+                            <?php foreach ($listaCodigo as $admin) { ?>
                             <option value="<?php echo $admin['id_administradora']; ?>">
                                 <?php echo $admin['Nombre_administradora']; ?>
                             </option>
@@ -89,9 +89,9 @@ if (!isset($_SESSION['us'])) {
                     </div>
                     <div class="contenido col-md-3">
                         <br>
-                        <label for="cpt" class="formulario__label">codigo de facturación</label>
+                        <label for="codigo" class="formulario__label">codigo de facturación</label>
                         <div id="div">
-                            <select id="cpt" name="cpt" class="form-select">
+                            <select id="codigo" name="codigo" class="form-select">
                                 <option value="0" selected disabled>Elija una opción</option>
                             </select>
                         </div>
@@ -121,6 +121,20 @@ if (!isset($_SESSION['us'])) {
                             <input type="date" class="formulario__input" name="fecha" id="fecha">
                         </div>
                     </div>
+
+                    <div class="contenido col-md-3">
+                        <br>
+                        <label for="cpt" class="formulario__label">CPT</label>
+                        <select id="cpt" name="cpt" class="form-select">
+                            <option value="0" selected disabled>Elija una opción</option>
+                            <?php foreach ($cpt_list as $cptA) { ?>
+                            <option value="<?php echo $cptA['id_cpt']; ?>">
+                                <?php echo $cptA['cpt']; ?>
+                            </option>
+                            <?php } ?>
+                        </select>
+                    </div>
+
                     <div class="col-12">
                         <button type="submit" class="btn btn-outline-success">Guardar</button>
                         <a role="button" onclick="confirmCancel(event)" name="cancelar" class="btn btn-outline-danger">
@@ -149,28 +163,28 @@ $(document).ready(function() {
 </script>
 
 <script>
-function actualizarCPT(Nombre_admi) {
-    console.log("Llamado a losCPT con Nombre_admi:", Nombre_admi);
-    const cptselect = document.getElementById("cpt");
-    cptselect.innerHTML = '<option value="0" selected disabled>Cargando...</option>';
+function actualizarcodigo(Nombre_admi) {
+    console.log("Llamado a loscodigo con Nombre_admi:", Nombre_admi);
+    const codigoselect = document.getElementById("codigo");
+    codigoselect.innerHTML = '<option value="0" selected disabled>Cargando...</option>';
 
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "./obtener_cpt.php", true);
+    xhr.open("POST", "./obtener_codigo.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            cptselect.innerHTML = '<option value="0" selected disabled>Elija una opción</option>';
+            codigoselect.innerHTML = '<option value="0" selected disabled>Elija una opción</option>';
             const data = JSON.parse(xhr.responseText);
 
-            data.forEach(function(cpt_admi) {
+            data.forEach(function(codigo_admi) {
                 const option = document.createElement("option");
-                option.value = cpt_admi.id_cpt;
-                option.textContent = cpt_admi.cpt;
-                cptselect.appendChild(option);
+                option.value = codigo_admi.id_codigo;
+                option.textContent = codigo_admi.codigo;
+                codigoselect.appendChild(option);
             });
         } else if (xhr.readyState === 4) {
-            cptselect.innerHTML = '<option value="0" selected disabled>Error al cargar las aseguradoras</option>';
+            codigoselect.innerHTML = '<option value="0" selected disabled>Error al cargar las aseguradoras</option>';
         }
     };
     console.log("Nombre_admi antes de enviar:", Nombre_admi);
@@ -184,7 +198,7 @@ function actualizarDES(Nombre_admi) {
     descripcionSelect.innerHTML = '<option value="0" selected disabled>Cargando...</option>';
 
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "./obtener_cpt.php", true);
+    xhr.open("POST", "./obtener_codigo.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.onreadystatechange = function() {
@@ -214,7 +228,7 @@ function actualizarUnidad(Nombre_admi) {
     unidad_select.innerHTML = '<option value="0" selected disabled>Cargando...</option>';
 
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "./obtener_cpt.php", true);
+    xhr.open("POST", "./obtener_codigo.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.onreadystatechange = function() {
@@ -264,12 +278,12 @@ document.getElementById("formulario").addEventListener("submit", function(event)
     const codigo_ICD = document.getElementById("codigo_ICD").value;
     const dx = document.getElementById("dx").value;
     const Nombre_admi = document.getElementById("Nombre_admi").value;
-    const cpt = document.getElementById("cpt").value;
+    const codigo = document.getElementById("codigo").value;
     const descripcion = document.getElementById("descripcion").value;
     const unidad = document.getElementById("unidad").value;
     const fecha = document.getElementById("fecha").value;
 
-    if (!paciente || !medico || !codigo_ICD || !dx || !Nombre_admi || !cpt || !descripcion || !unidad || !
+    if (!paciente || !medico || !codigo_ICD || !dx || !Nombre_admi || !codigo || !descripcion || !unidad || !
         fecha) {
         // Al menos un campo está vacío, muestra una alerta y evita el envío del formulario
         event.preventDefault();

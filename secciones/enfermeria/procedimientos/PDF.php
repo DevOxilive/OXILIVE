@@ -22,7 +22,7 @@ $this->Ln(10);
  
  // Continuar con el contenido
  $this->Cell(10, 10, 'No.', 1, 0, 'C', 0);
- $this->Cell(27, 10, 'CPT.', 1, 0, 'C', 0);
+ $this->Cell(27, 10, utf8_decode('Código.'), 1, 0, 'C', 0);
  $this->Cell(40, 10, utf8_decode('Descripción'), 1, 0, 'C', 0);
  $this->Cell(35, 10, ('Fecha'), 1, 0, 'C', 0);
  $this->Cell(40, 10, 'Unidades', 1, 0, 'C', 0);
@@ -50,14 +50,15 @@ function Footer(){
 require('../../../connection/conexion.php');
 
 $txtID = (isset($_GET['txtID'])) ? $_GET['txtID'] : "";
-$sentencia = $con->prepare("SELECT p.id_procedi,CONCAT(po.Nombres, ' ', po.Apellidos)AS Paciente,po.No_nomina,
+$sentencia = $con->prepare("SELECT id_procedi,CONCAT(po.Nombres, ' ', po.Apellidos)AS Paciente,No_nomina,
 CONCAT(u.Nombres, ' ', u.Apellidos) AS Medico ,
- p.icd, p.dx, p.fecha, p.pacienteYnomina 
+icd, dx, fecha, pacienteYnomina , cpt 
 FROM procedimientos p, usuarios u, 
-pacientes_oxigeno po 
+pacientes_oxigeno po , cpts cpt
 WHERE p.medico = u.id_usuarios
 AND p.pacienteYnomina = po.id_pacientes 
-AND p.pacienteYnomina = :paciente LIMIT 1;");
+AND cpt.id_cpt = p.cptA
+AND p.pacienteYnomina = :paciente;");
 $sentencia->bindParam(":paciente",$txtID);
 $sentencia->execute();
 
@@ -76,12 +77,15 @@ $pdf->SetXY(100, 20);
 $pdf->MultiCell(70, 5, utf8_decode('Código ICD:' .$imprime['icd'] )); 
 $pdf->SetXY(100, 30);
 $pdf->MultiCell(70, 5,  utf8_decode('Dx:' .$imprime['dx'] ));
+$pdf->SetXY(100, 37);
+$pdf->MultiCell(70, 5,  utf8_decode('CPT:' .$imprime['cpt']));
 }
-//Aquí mando a imprimir La lista de los CPTS , DESCRIPCION, FECHA, UNIDAD
+//Aquí mando a imprimir La lista de los Código , DESCRIPCION, FECHA, UNIDAD
 $txtID = (isset($_GET['txtID'])) ? $_GET['txtID'] : "";
 $fecha = (isset($_GET['fecha'])) ? $_GET['fecha'] : "";
-$lista = $con->prepare("SELECT p.id_procedi, p.pacienteYnomina, p.cpt,cp.cpt,p.fecha, cp.descripcion,cp.unidad  
-FROM procedimientos p, cpts_administradora cp WHERE p.cpt = cp.id_cpt AND 
+$lista = $con->prepare("SELECT p.id_procedi, p.pacienteYnomina, p.codigo,codigo.codigo,p.fecha, codigo.descripcion,codigo.unidad  
+FROM procedimientos p, codigo_administradora codigo
+WHERE p.codigo = codigo.id_codigo  AND 
 pacienteYnomina = :paciente; AND fecha = :fecha");
 $lista->bindParam(":paciente",$txtID);
 $lista->bindParam(":fecha",$fecha);
@@ -107,7 +111,7 @@ while ($res = $lista->fetch(PDO::FETCH_ASSOC)) {
         $pdf->SetXY(10, $y);
         $pdf->Cell(10, $alturaCelda, $contador, 1, 0, 'C', 0);
         $pdf->SetXY(20, $y);
-        $pdf->Cell(27, $alturaCelda, $res['cpt'], 1, 0, 'C', 0);
+        $pdf->Cell(27, $alturaCelda, $res['codigo'], 1, 0, 'C', 0);
         $pdf->SetXY(47, $y);
         $descripcion = $res['descripcion'];
         $pdf->MultiCell(40, 7, $descripcion, 1, 'C'); // Utiliza MultiCell en lugar de Cell
