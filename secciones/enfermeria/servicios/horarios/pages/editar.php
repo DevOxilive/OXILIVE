@@ -40,12 +40,17 @@ if (!isset($_SESSION['us'])) {
             <div class="card-body" style="border: 2px solid #BFE5FF;">
                 <form method="POST" enctype="multipart/form-data" class="formLogin row g-3">
                 <?php foreach($lista_horarios as $horarios){ ?>
+
+                    <div class="contenido col-md-12">
+                        <br>
+                        <h2>Asignación de servicio</h2>
+                    </div>
+
                     <!-- Combo box para elegir el enfermero -->
                     <div class="contenido col-md-5">
-                        <br>
                         <label for="nombres" class="form-label">Nombre(s)</label>
                         <select name="nombres" id="nombres" class="form-select">
-                            <option value="0">Elige el nombre del enfermero</option>
+                            <option value="">Elige el nombre del enfermero</option>
                             <?php foreach ($lista_enfermeros as $enfermeros) {?>
                                 <option value="<?php echo $enfermeros['id_usuarios'];?>" <?php if($enfermeros['id_usuarios']==$horarios['id_usuario']){ echo 'selected'; }?> >
                                     <?php echo $enfermeros['Nombres'] . " " . $enfermeros['Apellidos']; ?>
@@ -56,10 +61,9 @@ if (!isset($_SESSION['us'])) {
 
                     <!-- Combo box para elegir paciente -->
                     <div class="contenido col-md-4">
-                        <br>
                         <label for="paciente" class="form-label">Paciente</label>
                         <select id="paciente" name="paciente" class="form-select">
-                            <option value="0">Elige un paciente</option>
+                            <option value="">Elige un paciente</option>
                             <?php foreach ($lista_pacientes as $pacientes) { ?>
                                 <option value="<?php echo $pacientes['id_pacientes'];?>" <?php if($pacientes['id_pacientes']==$horarios['id_pacienteEnfermeria']){ echo 'selected'; } ?>>
                                     <?php echo $pacientes['Nombres'] . " " . $pacientes['Apellidos']; ?>
@@ -67,19 +71,24 @@ if (!isset($_SESSION['us'])) {
                             <?php } ?>
                         </select>
                     </div>
+                    <div class="col-md-3"></div>
 
                     <!-- Combo box para elegir el tipo de guardia -->
-                    <div class="contenido col-md-3">
-                        <br>
+                    <div class="contenido col-md-5">
                         <label for="servicio" class="form-label">Tipo de servicio</label>
                         <select name="servicio" id="servicio" class="form-select">
-                            <option value="0">Elige el tipo de servicio</option>
+                            <option value="">Elige el tipo de servicio</option>
                             <?php foreach ($lista_tipos as $servicios) { ?>
                                 <option value="<?php echo $servicios['id_tipoServicio'];?>" <?php if($servicios['id_tipoServicio']==$horarios['id_tipoServicio']){ echo 'selected'; } ?>>
                                     <?php echo $servicios['nombreServicio']; ?>
                                 </option>
                             <?php } ?>
                         </select>
+                    </div>
+
+                    <div class="contenido col-md-12">
+                        <hr>
+                        <h2>Asignación de horario</h2>
                     </div>
 
                     <!-- Ingreso de fecha de la guardia  -->
@@ -106,6 +115,7 @@ if (!isset($_SESSION['us'])) {
                             Cancelar
                         </a>
                     </div>
+                    <input type="hidden" id="id" value="<?php echo $id;?>">
                 <?php } ?>
                 </form>
             </div>
@@ -115,15 +125,6 @@ if (!isset($_SESSION['us'])) {
 
 </html>
 <script>
-    //Script fecha para evitar registros previos a la fecha actual
-
-    // Obtener fecha actual
-    let fecha = new Date();
-    // Obtener cadena en formato yyyy-mm-dd, eliminando zona y hora
-    let fechaMin = fecha.toISOString().split('T')[0];
-    // Asignar valor mínimo
-    document.querySelector('#fechaServicio').min = fechaMin;
-
     function confirmCancel(event) {
         event.preventDefault();
         Swal.fire({
@@ -143,39 +144,8 @@ if (!isset($_SESSION['us'])) {
         });
     }
 </script>
-<script>
-    $(document).ready(function() {
-        $("form").submit(function(event) {
-            var formData = {
-                nombres: $("#nombres").val(),
-                paciente: $("#paciente").val(),
-                servicio: $("#servicio").val(),
-                fechaServicio: $("#fechaServicio").val(),
-                horaEntrada: $("#horaEntrada").val(),
-                horaSalida: $("#horaSalida").val(),
-                idHor: <?php echo $id; ?>
-            };
-            $.ajax({
-                type: "POST",
-                url: "../model/actualizarServicio.php",
-                data: formData,
-                success: function() {
-                    Swal.fire({
-                        title: "Actualizado",
-                        text: "Registro actualizado correctamente",
-                        icon: "success",
-                        showConfirmButton: false,
-                        timer: 1500
-                    }).then(function() {
-                        window.location.replace('../index.php');
-                    });
-                }
-            });
-            event.preventDefault();
-
-        });
-    });
-</script>
+<script src="../js/validacion.js" ></script>
+<script src="../js/formBtns.js"></script>
 <?php
 include("../../../../../templates/footer.php");
 ?>

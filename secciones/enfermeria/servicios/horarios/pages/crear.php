@@ -35,11 +35,15 @@ if (!isset($_SESSION['us'])) {
             <div class="card-body" style="border: 2px solid #BFE5FF;">
                 <form method="POST" enctype="multipart/form-data" class="formLogin row g-3">
 
+                    <div class="contenido col-md-12">
+                        <br>
+                        <h2>Asignación de servicio</h2>
+                    </div>
+
                     <!-- Combo box para elegir el enfermero -->
                     <div class="contenido col-md-5">
-                        <br>
                         <label for="nombres" class="form-label">Nombre(s)</label>
-                        <select name="nombres" id="nombres" class="form-select" required>
+                        <select name="nombres" id="nombres" class="form-select">
                             <option value="">Elige el nombre del enfermero</option>
                             <?php foreach ($lista_enfermeros as $enfermeros) { ?>
                                 <option value="<?php echo $enfermeros['id_usuarios']; ?>">
@@ -52,10 +56,9 @@ if (!isset($_SESSION['us'])) {
 
                     <!-- Combo box para elegir paciente -->
                     <div class="contenido col-md-4">
-                        <br>
                         <label for="paciente" class="form-label">Paciente</label>
                         <select id="paciente" name="paciente" class="form-select">
-                            <option value="0">Elige un paciente</option>
+                            <option value="">Elige un paciente</option>
                             <?php foreach ($lista_pacientes as $pacientes) { ?>
                                 <option value="<?php echo $pacientes['id_pacientes']; ?>">
                                     <?php echo $pacientes['Nombres'] . " " . $pacientes['Apellidos']; ?>
@@ -63,13 +66,13 @@ if (!isset($_SESSION['us'])) {
                             <?php } ?>
                         </select>
                     </div>
+                    <div class="col-md-3"></div>
 
                     <!-- Combo box para elegir el tipo de guardia -->
-                    <div class="contenido col-md-3">
-                        <br>
+                    <div class="contenido col-md-5">
                         <label for="servicio" class="form-label">Tipo de servicio</label>
                         <select name="servicio" id="servicio" class="form-select">
-                            <option value="0">Elige el tipo de servicio</option>
+                            <option value="">Elige el tipo de servicio</option>
                             <?php foreach ($lista_tipos as $servicios) { ?>
                                 <option value="<?php echo $servicios['id_tipoServicio']; ?>">
                                     <?php echo $servicios['nombreServicio']; ?>
@@ -78,19 +81,24 @@ if (!isset($_SESSION['us'])) {
                         </select>
                     </div>
 
+                    <div class="contenido col-md-12">
+                        <hr>
+                        <h2>Asignación de horario</h2>
+                    </div>
+
                     <!-- Ingreso de fecha de la guardia  -->
                     <div class="contenido col-md-3">
-                        <label for="fechaGuardia" class="form-label">Fecha</label>
+                        <label for="fechaServicio" class="form-label">Fecha</label>
                         <input type="date" id="fechaServicio" onkeydown="return false" name="fechaServicio" class="form-select">
                     </div>
 
                     <!-- Combo boxes para elegir la hora del horario -->
                     <div class="contenido col-md-3">
-                        <label for="horarioEntrada" class="form-label">Hora de entrada</label>
+                        <label for="horaEntrada" class="form-label">Hora de entrada</label>
                         <input type="time" id="horaEntrada">
                     </div>
                     <div class="contenido col-md-3">
-                        <label for="horarioSalida" class="form-label">Hora de salida</label>
+                        <label for="horaSalida" class="form-label">Hora de salida</label>
                         <input type="time" id="horaSalida">
                     </div>
 
@@ -110,15 +118,6 @@ if (!isset($_SESSION['us'])) {
 
 </html>
 <script>
-    //Script fecha para evitar registros previos a la fecha actual
-
-    // Obtener fecha actual
-    let fecha = new Date();
-    // Obtener cadena en formato yyyy-mm-dd, eliminando zona y hora
-    let fechaMin = fecha.toISOString().split('T')[0];
-    // Asignar valor mínimo
-    document.querySelector('#fechaServicio').min = fechaMin;
-
     function confirmCancel(event) {
         event.preventDefault();
         Swal.fire({
@@ -138,38 +137,8 @@ if (!isset($_SESSION['us'])) {
         });
     }
 </script>
-<script>
-    $(document).ready(function() {
-        $("form").submit(function(event) {
-            var formData = {
-                nombres: $("#nombres").val(),
-                paciente: $("#paciente").val(),
-                servicio: $("#servicio").val(),
-                fechaServicio: $("#fechaServicio").val(),
-                horaEntrada: $("#horaEntrada").val(),
-                horaSalida: $("#horaSalida").val(),
-            };
-            $.ajax({
-                type: "POST",
-                url: "../model/nuevoHorario.php",
-                data: formData,
-                success: function() {
-                    Swal.fire({
-                        title: "Registrado",
-                        text: "Registro realizado correctamente",
-                        icon: "success",
-                        showConfirmButton: false,
-                        timer: 1500
-                    }).then(function() {
-                        window.location.replace('../index.php');
-                    });
-                }
-            });
-            event.preventDefault();
-
-        });
-    });
-</script>
+<script src="../js/validacion.js" ></script>
+<script src="../js/formBtns.js"></script>
 <?php
 include("../../../../../templates/footer.php");
 ?>

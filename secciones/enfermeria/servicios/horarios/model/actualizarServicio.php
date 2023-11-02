@@ -13,7 +13,7 @@ $sentenciaHorario = $con->prepare(
     "UPDATE asignacion_horarios
     SET
     id_usuario=:nom,
-    id_tiposGuardias=:serv,
+    id_tipoServicio=:serv,
     horarioEntrada=:horEntr,
     horarioSalida=:horSal,
     fecha=:fechaServ,
