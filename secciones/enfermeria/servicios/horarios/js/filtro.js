@@ -80,8 +80,8 @@ function setTabla(datos) {
       "</center>";
     paciente.textContent = dato.paciente;
     estado.innerHTML =
-      "<center><span id='status" + dato.id + "'></span></center>";
-    acciones.innerHTML = "<center id='acciones" + dato.id + "'></center>";
+      "<center class='placeholder-glow'><span id='status" + dato.id + "' class='placeholder placeholder-lg col-md-8 bg-secondary'></span></center>";
+    acciones.innerHTML = "<center id='acciones" + dato.id + "' class='placeholder-glow'><a class='btn btn-secondary disabled placeholder col-2' aria-disabled='true'></a>  |  <a class='btn btn-secondary disabled placeholder col-2' aria-disabled='true'></a></center>";
 
     fila.appendChild(enfermero);
     fila.appendChild(fecha);
