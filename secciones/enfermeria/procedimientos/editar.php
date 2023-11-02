@@ -150,10 +150,10 @@ if (!isset($_SESSION['us'])) {
 
                   
                     <div class="contenido col-md-3">
-                    <label for="medico" class="formulario__label">CPT</label>
-                        <select id="medico" name="medico" class="form-select">
+                    <label for="cpt" class="formulario__label">CPT</label>
+                        <select id="cpt" name="cpt" class="form-select">
                             <?php foreach ($cpt_list as $cpt) { ?>
-                            <?php $select_cpt = ($proce['medico'] == $cpt['id_cpt']) ? "selected" : ""; ?>
+                            <?php $select_cpt = ($proce['cpt'] == $cpt['id_cpt']) ? "selected" : ""; ?>
                             <option <?php echo $select_cpt; ?> value="<?php echo $cpt['id_cpt']; ?>">
                                 <?php echo $cpt['cpt']; ?>
                             </option>

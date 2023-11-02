@@ -27,7 +27,7 @@ if ($_POST) {
                 });';
         echo '</script>';
     } else {
-        $sentencia = $con->prepare("INSERT INTO procedimientos (icd, dx, fecha, medico,pacienteYnomina, codigo, cptA) VALUES (:icd, :dx, :fecha, :medico,:paciente, :codigo, :cpt)");
+        $sentencia = $con->prepare("INSERT INTO procedimientos (icd, dx, fecha, medico,pacienteYnomina, codigo, cpt) VALUES (:icd, :dx, :fecha, :medico,:paciente, :codigo, :cpt)");
         $sentencia->bindParam(":icd", $codigo_ICD);
         $sentencia->bindParam(":dx", $dx);
         $sentencia->bindParam(":fecha", $fecha);

@@ -25,7 +25,7 @@ if (!isset($_SESSION['us'])) {
                         <tr class="table-active table-group-divider" style="text-align: center;">
                             <th scope="col">Medico:</th>
                             <th scope="col">Paciente</th>
-                            <th scope="col">Nomina</th>
+                            <th scope="col">CPT</th>
                             <th scope="col">Código ICD:</th>
                             <th scope="col">Dx:</th>
                             <th scope="col">Código:</th>
@@ -37,7 +37,7 @@ if (!isset($_SESSION['us'])) {
                         <tr class="">
                             <td><?php echo $lista["Medico"]; ?></td>
                             <td> <?php echo $lista['Paciente']; ?></td>
-                            <td><?php echo $lista["No_nomina"]; ?></td>
+                            <td><?php echo $lista["cpt"]; ?></td>
                             <td><?php echo $lista["icd"]; ?></td>
                             <td><?php echo $lista["dx"]; ?></td>
                             <td><?php echo $lista['codigo']; ?></td>

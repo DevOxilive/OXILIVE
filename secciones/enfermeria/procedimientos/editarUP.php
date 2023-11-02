@@ -12,8 +12,8 @@ if ($_POST) {
   $select_fecha =  (isset($_POST['fecha'])) ? $_POST['fecha'] : "";  
   $cpt =  (isset($_POST['cpt'])) ? $_POST['cpt'] : "";  
   //Preparar la consulta SQL con sentencias preparadas
-  $consulta = $con->prepare("SELECT * FROM procedimientos WHERE icd = :icd AND dx = :dx AND fecha = :fecha AND medico = :medico AND pacienteYnomina = :paciente
-   AND codigo = :codigo AND cptA = :cpt");
+  $consulta = $con->prepare("SELECT * FROM procedimientos p WHERE icd = :icd AND dx = :dx AND fecha = :fecha AND medico = :medico AND pacienteYnomina = :paciente
+   AND codigo = :codigo AND p.cpt = :cpt");
 
   // Vincular los valores a los parámetros de la consulta
   $consulta->bindParam(":icd" , $select_icd);
@@ -26,7 +26,7 @@ if ($_POST) {
   $consulta->execute();
   $procedimiento = $consulta->rowCount();
   //Aquí mandamos la salida
-  $sentencia = $con->prepare("UPDATE procedimientos SET icd = :icd, dx = :dx, fecha = :fecha, medico = :medico, pacienteYnomina = :paciente, codigo = :codigo, cptA = :cpt WHERE id_procedi = :id_procedi");
+  $sentencia = $con->prepare("UPDATE procedimientos SET icd = :icd, dx = :dx, fecha = :fecha, medico = :medico, pacienteYnomina = :paciente, codigo = :codigo, cpt = :cpt WHERE id_procedi = :id_procedi");
     $sentencia->bindParam(":icd" , $select_icd);
     $sentencia->bindParam(":dx", $select_dx);
     $sentencia->bindParam(":fecha", $select_fecha);
@@ -34,7 +34,7 @@ if ($_POST) {
     $sentencia->bindParam(":paciente", $paciente);
     $sentencia->bindParam(":codigo" , $selectet_codigo);
     $sentencia->bindParam(":id_procedi",$txtID);
-    $sentencia->bindParam(":cpt",$txtID);
+    $sentencia->bindParam(":cpt",$cpt);
     $sentencia->execute();
 
     echo '<script language="javascript"> ';

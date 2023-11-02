@@ -52,12 +52,12 @@ require('../../../connection/conexion.php');
 $txtID = (isset($_GET['txtID'])) ? $_GET['txtID'] : "";
 $sentencia = $con->prepare("SELECT id_procedi,CONCAT(po.Nombres, ' ', po.Apellidos)AS Paciente,No_nomina,
 CONCAT(u.Nombres, ' ', u.Apellidos) AS Medico ,
-icd, dx, fecha, pacienteYnomina , cpt 
+icd, dx, fecha, pacienteYnomina , c.cpt 
 FROM procedimientos p, usuarios u, 
-pacientes_oxigeno po , cpts cpt
+pacientes_oxigeno po , cpts c
 WHERE p.medico = u.id_usuarios
 AND p.pacienteYnomina = po.id_pacientes 
-AND cpt.id_cpt = p.cptA
+AND c.id_cpt = p.cpt
 AND p.pacienteYnomina = :paciente;");
 $sentencia->bindParam(":paciente",$txtID);
 $sentencia->execute();

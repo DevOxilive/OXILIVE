@@ -1,15 +1,15 @@
 <?php
 include("../../../connection/conexion.php");
 //Esta consulta es para traer solo los datos en tabla 
-$sentencia = $con->prepare("SELECT p.id_procedi, p.icd, p.dx, p.fecha, p.pacienteYnomina, 
+$sentencia = $con->prepare("SELECT p.id_procedi,c.cpt , p.icd, p.dx, p.fecha, p.pacienteYnomina, 
 CONCAT(u.Nombres, ' ', u.Apellidos) AS Medico,
 CONCAT(po.Nombres, ' ', po.Apellidos) AS Paciente,po.No_nomina,
 cg.codigo , cg.descripcion, cg.unidad
 FROM procedimientos p, usuarios u, 
-pacientes_oxigeno po , codigo_administradora cg
+pacientes_oxigeno po , codigo_administradora cg , cpts c
 WHERE p.medico = u.id_usuarios
 AND p.pacienteYnomina = po.id_pacientes
-AND p.codigo = cg.id_codigo");
+AND p.codigo = cg.id_codigo AND p.cpt = c.id_cpt");
 $sentencia->execute();
 $listaProce = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
