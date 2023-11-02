@@ -5,7 +5,7 @@ if (!isset($_SESSION['us'])) {
 } elseif (isset($_SESSION['us'])) {
     include("../../../templates/header.php");
     include("../../../connection/conexion.php");
-    include("consulta.php");
+    include("../../../module/enfermeros.php");
 } else {
     echo "Error en el sistema";
 }
@@ -32,13 +32,7 @@ if (!isset($_SESSION['us'])) {
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($lista_enfermeros as $enfermeros) {
-                                if($enfermeros['id_estado']==1){
-                                    $badgeColor = "badge bg-success fs-6";
-                                } else if ($enfermeros['id_estado']==5){
-                                    $badgeColor = "badge bg-info fs-6";
-                                }
-                                ?>
+                            <?php foreach ($lista_enfermeros as $enfermeros) { ?>
                                 <tr>
                                     <td><?php echo $enfermeros['Nombres']; ?></td>
                                     <td><?php echo $enfermeros['Apellidos']; ?></td>

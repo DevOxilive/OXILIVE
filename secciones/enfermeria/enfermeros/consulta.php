@@ -1,5 +1,4 @@
 <?php
-
     include("../../../connection/conexion.php");
     $sentencia = $con->prepare(
         "SELECT u.Nombres, u.Apellidos, u.id_usuarios, e.Nombre_estado as estado, e.id_estado
