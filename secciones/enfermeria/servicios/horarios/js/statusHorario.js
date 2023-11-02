@@ -29,7 +29,7 @@ function getStatus(n) {
         }
         status.textContent=dato.estado;
         if(dato.id_est === 1){
-          btns.innerHTML = "<a class='btn btn-outline-warning' href='editar.php?idHor="+ dato.id +"' role='button'><i class='i bi-pencil-square'></i></a> | <a class='btn btn-outline-danger' role='button' href='#' onclick='cancelHor(event, "+ dato.id +")'><i class='bi bi-x-lg'></i></a>"
+          btns.innerHTML = "<a class='btn btn-outline-warning' href='pages/editar.php?idHor="+ dato.id +"' role='button'><i class='i bi-pencil-square'></i></a> | <a class='btn btn-outline-danger' role='button' href='#' onclick='cancelHor(event, "+ dato.id +")'><i class='bi bi-x-lg'></i></a>"
         }
         else if(dato.id_est === 2 || dato.id_est === 3) {
           btns.innerHTML = "<a class='btn btn-outline-primary' href='pages/servicio.php?idSer="+ dato.id +"' role='button'><i class='bi bi-eye-fill'></i></a>";

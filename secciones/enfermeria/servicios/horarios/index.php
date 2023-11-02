@@ -46,7 +46,7 @@ if (!isset($_SESSION['us'])) {
                         </li>
                     </ul>
                 </div>
-                <a class="btn btn-outline-primary" href="crear.php" role="button">
+                <a class="btn btn-outline-primary" href="pages/crear.php" role="button">
                     <i class="bi bi-calendar-plus"></i>
                     Nueva Guardia
                 </a>
