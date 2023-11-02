@@ -2,7 +2,7 @@
 include("../../../connection/conexion.php");
 include_once '../../../templates/hea.php';
 if ($_POST) {
-    // $idPaciente=(isset($_POST["idPaciente"])?$_POST["idPaciente"]:"");
+ 
     $idPaciente = (isset($_POST["idPaciente"]) ? $_POST["idPaciente"] : NULL);
     $nomSolicitante = (isset($_POST["nomSolicitante"]) ? $_POST["nomSolicitante"] : "");
     $fechaServicio = (isset($_POST["fechaServicio"]) ? $_POST["fechaServicio"] : "");
@@ -11,11 +11,13 @@ if ($_POST) {
     $nAutorizacion = (isset($_POST["nAutorizacion"]) ? $_POST["nAutorizacion"] : "");
     $auEspecial = (isset($_POST["auEspecial"]) ? $_POST["auEspecial"] : "");
     $id_usuarios = (isset($_POST["asignarMedico"]) ? $_POST["asignarMedico"] : "");
-    // $id_usuarios = (isset($_POST["id_usuarios"])) ? intval($_POST["id_usuarios"]) : 0;
     $idServicio = (isset($_POST["tipoServicio"]) ? $_POST["tipoServicio"] : []);
 
-    //echo $idPaciente." ".$nomSolicitante." ".$fechaServicio." ".$motivoConsulta." ".$nAutorizacion." ".$auEspecial." ".$idServicio;
-
+//es para que los datos se vean en mayusculas  
+    
+    $nomSolicitante = strtoupper($nomSolicitante);
+    $motivoConsulta = strtoupper($motivoConsulta);
+    
 
     $sentencia = $con->prepare("INSERT INTO asignacion_servicio
         VALUES (
@@ -70,11 +72,11 @@ if (empty($errores)) {
     echo '<script language="javascript"> ';
     echo 'Swal.fire({
                 icon: "success",
-                title: "Servico Agregado",
+                title: "Evento guardado",
                 showConfirmButton: false,
                 timer: 1500,
             }).then(function() {
-                window.location = "index.php";
+                window.location = "./cancelar/cancelar.php";
                 });';
     echo '</script>';
 } else {
