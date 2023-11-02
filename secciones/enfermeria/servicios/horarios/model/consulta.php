@@ -9,11 +9,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 ah.horarioEntrada,
                 ah.horarioSalida,
                 ah.fecha,
-                CONCAT(U.Nombres, " ", u.Apellidos) AS "enfermero",
-                CONCAT(pe.Nombres, " ", pe.Apellidos) AS "paciente",
+                CONCAT(u.Nombres, " ", u.Apellidos) AS "enfermero",
+                CONCAT(pe.nombres, " ", pe.apellidos) AS "paciente",
                 ah.statusHorario,
                 e.estado
-        FROM usuarios u, asignacion_horarios ah, pacientes_oxigeno pe, estado_horarios e
+        FROM usuarios u, asignacion_horarios ah, pacientes_call_center pe, estado_horarios e
         WHERE ah.id_pacienteEnfermeria = pe.id_pacientes AND
         u.id_usuarios = ah.id_usuario AND
         ah.statusHorario = e.id_estadoHorarios AND
@@ -33,10 +33,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 ah.horarioSalida,
                 ah.fecha,
                 CONCAT(U.Nombres, " ", u.Apellidos) AS "enfermero",
-                CONCAT(pe.Nombres, " ", pe.Apellidos) AS "paciente",
+                CONCAT(pe.nombres, " ", pe.apellidos) AS "paciente",
                 ah.statusHorario,
                 e.estado
-        FROM usuarios u, asignacion_horarios ah, pacientes_oxigeno pe, estado_horarios e
+        FROM usuarios u, asignacion_horarios ah, pacientes_call_center pe, estado_horarios e
         WHERE ah.id_pacienteEnfermeria = pe.id_pacientes AND
         u.id_usuarios = ah.id_usuario AND
         ah.statusHorario = e.id_estadoHorarios AND
@@ -55,10 +55,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 ah.horarioSalida,
                 ah.fecha,
                 CONCAT(U.Nombres, " ", u.Apellidos) AS "enfermero",
-                CONCAT(pe.Nombres, " ", pe.Apellidos) AS "paciente",
+                CONCAT(pe.nombres, " ", pe.apellidos) AS "paciente",
                 ah.statusHorario,
                 e.estado
-        FROM usuarios u, asignacion_horarios ah, pacientes_oxigeno pe, estado_horarios e
+        FROM usuarios u, asignacion_horarios ah, pacientes_call_center pe, estado_horarios e
         WHERE ah.id_pacienteEnfermeria = pe.id_pacientes AND
         u.id_usuarios = ah.id_usuario AND
         ah.statusHorario = e.id_estadoHorarios AND
