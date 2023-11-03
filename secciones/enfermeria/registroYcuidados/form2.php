@@ -15,7 +15,6 @@ if (!isset($_SESSION['us'])) {
 
 <html>
 <link rel="stylesheet" href="../../../assets/css/vali.css">
-
 </html>
 
 <main id="main" class="main">
@@ -28,13 +27,12 @@ if (!isset($_SESSION['us'])) {
             </h4>
         </div>
         <div class="card-body" style="border: 2px solid #BFE5FF;">
-            <form action="procesarf2.php" method="POST" class="formLogin form-inline" id="formulario">
+            <form class="formLogin form-inline" id="formulario">
                 <div class="col-md-4 ">
                     <div class="formulario__grupo" id="grupo__Nombre_administradora">
                         <label for="solucion" class="formulario__label">SOLUCION</label>
                         <div class="formulario__grupo-input">
-                            <input type="text" class="formulario__input" name="solucion" id="solucion"
-                                value="INTRAVENOSA">
+                            <input type="text" class="formulario__input" name="solucion" id="solucion">
                         </div>
                     </div>
                 </div>
@@ -95,28 +93,27 @@ if (!isset($_SESSION['us'])) {
     </div>
     </div>
 </main>
-<script>
-
-
-// Obtener fecha actual
-let fecha = new Date();
-// Obtener cadena en formato yyyy-mm-dd, eliminando zona y hora
-let fechaMin = fecha.toISOString().split('T')[0];
-// Asignar valor mínimo
-document.querySelector('#fecha').min = fechaMin;
+<script type="text/javascript">
+function mostrarAlerta() {
+    Swal.fire({
+        icon: 'question',
+        title: '¿Estás seguro de que deseas ir atrás?',
+        text: 'Los datos no se guardarán',
+        showCancelButton: true,
+        confirmButtonText: 'Sí',
+        cancelButtonText: 'No',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.history.back();
+        } else {
+            window.location.href = 'form2.php';
+        }
+    });
+}
 </script>
+<script src="js/valiform2.js"></script>
 
 <?php
 include("../../../templates/footer.php");
 ?>
 
-<script type="text/javascript">
-function mostrarAlerta() {
-    var confirmacion = confirm("¿Estás seguro de que deseas ir atrás? Los datos no se guardarán.");
-    if (confirmacion) {
-        window.history.back();
-    } else {
-        window.location.href = 'form2.php';
-    }
-}
-</script>

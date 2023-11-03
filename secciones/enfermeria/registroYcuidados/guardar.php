@@ -162,7 +162,7 @@ if (
     unset($_SESSION["descripCena"]);
 
     $_SESSION['datos_guardados'] = true;
-    header('Location: ../registroYcuidados/index.php?id='. $id);
+    
    
     exit();
 } else {
