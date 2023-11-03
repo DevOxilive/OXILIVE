@@ -4,8 +4,8 @@ if (!isset($_SESSION['us'])) {
     header('Location: ../../../../login.php');
 } elseif (isset($_SESSION['us'])) {
     $paciente = $_GET['idPac'];
-    include("../../../../templates/header.php");
-    include("../../../../connection/conexion.php");
+    include("../../templates/header.php");
+    include("../../connection/conexion.php");
 } else {
     echo "Error en el sistema";
 }
@@ -19,13 +19,17 @@ if (!isset($_SESSION['us'])) {
 <main id="main" class="main">
     <div class="pagetitle">
         <h1>Paciente </h1>
-        <!--<nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="<?php //echo $url_base; ?>secciones/enfermeria/user/index.php">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="<?php //echo $url_base; ?>secciones/enfermeria/user/pages/indexPacientes.php">Pacientes</a></li>
-                <li class="breadcrumb-item active" id="bread">asdfghjkl</li>
-            </ol>
-        </nav>-->
+        <?php if ($_SESSION['puesto'] == 11) { ?>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="<?php echo $url_base; 
+                                                            ?>secciones/enfermeria/user/index.php">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="<?php echo $url_base; 
+                                                            ?>secciones/enfermeria/user/pages/indexPacientes.php">Pacientes</a></li>
+                    <li class="breadcrumb-item active" id="bread"></li>
+                </ol>
+            </nav>
+        <?php } ?>
     </div><!-- End Page Title -->
     <div>
         <div class="card">
@@ -50,16 +54,16 @@ if (!isset($_SESSION['us'])) {
 
                             <dt class="col-lg-3 col-md-4 label">Apellidos:</dt>
                             <dd class="col-lg-9 col-md-8" id="apellidos"></dd>
-                            
+
                             <dt class="col-lg-3 col-md-4 label">Género:</dt>
                             <dd class="col-lg-9 col-md-8" id="genero"></dd>
-                            
+
                             <dt class="col-lg-3 col-md-4 label">Edad:</dt>
                             <dd class="col-lg-9 col-md-8" id="edad"></dd>
 
                             <dt class="col-lg-3 col-md-4 label">Tipo de Paciente:</dt>
                             <dd class="col-lg-9 col-md-8" id="tipoPac"></dd>
-                            
+
                             <dt class="col-lg-3 col-md-4 label">Telefono:</dt>
                             <dd class="col-lg-9 col-md-8" id="telefono"></dd>
 
@@ -79,13 +83,13 @@ if (!isset($_SESSION['us'])) {
 
                             <dt class="col-lg-3 col-md-4 label">N° Exterior:</dt>
                             <dd class="col-lg-9 col-md-8" id="noext"></dd>
-                            
+
                             <dt class="col-lg-3 col-md-4 label" id="noint-label">N° Interior:</dt>
                             <dd class="col-lg-9 col-md-8" id="noint"></dd>
-                            
+
                             <dt class="col-lg-3 col-md-4 label">Colonia:</dt>
                             <dd class="col-lg-9 col-md-8" id="colonia"></dd>
-                            
+
                             <dt class="col-lg-3 col-md-4 label">Código Postal:</dt>
                             <dd class="col-lg-9 col-md-8" id="cp"></dd>
 
@@ -100,7 +104,7 @@ if (!isset($_SESSION['us'])) {
 
                             <dt class="col-lg-3 col-md-4 label" id="calleDos-label">Y calle:</dt>
                             <dd class="col-lg-9 col-md-8" id="calleDos"></dd>
-                            
+
                             <dt class="col-lg-3 col-md-4 label" id="referencias-label">Referencias:</dt>
                             <dd class="col-lg-9 col-md-8" id="referencias"></dd>
 
@@ -118,10 +122,11 @@ if (!isset($_SESSION['us'])) {
             </div>
         </div>
         <input type="hidden" id="idPaciente" value="<?php echo $paciente; ?>">
+        <input type="hidden" id="puesto" value="<?php echo $_SESSION['puesto']; ?>">
 </main>
 
 </html>
-<script src="../js/paciente.js"></script>
+<script src="js/paciente.js"></script>
 <?php
-include('../../../../templates/footer.php');
+include('../../templates/footer.php');
 ?>

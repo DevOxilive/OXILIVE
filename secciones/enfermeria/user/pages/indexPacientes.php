@@ -38,12 +38,12 @@ if (!isset($_SESSION['us'])) {
                     </thead>
                     <tbody>
                         <?php foreach ($datosPaciente as $paciente) { ?>
-                            <tr class="clickeable-row" data-url="paciente.php?idPac=<?php echo $paciente['id_pacientes']; ?>">
+                            <tr class="clickeable-row" data-url="../../../pacientes/paciente.php?idPac=<?php echo $paciente['id_pacientes']; ?>">
                                 <td>
-                                    <?php echo $paciente['Nombres']; ?>
+                                    <?php echo $paciente['nombres']; ?>
                                 </td>
                                 <td>
-                                    <?php echo $paciente['Apellidos']; ?>
+                                    <?php echo $paciente['apellidos']; ?>
                                 </td>
                             </tr>
                         <?php } ?>
