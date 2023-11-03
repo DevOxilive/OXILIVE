@@ -58,7 +58,7 @@ if (!isset($_SESSION['us'])) {
             cancelButtonText: 'No, continuar'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = "<?php echo $url_base; ?>secciones/enfermeria/alta/index.php";
+                window.location.href = "<?php echo $url_base; ?>secciones/enfermeria/alta/administradora/index.php";
             }
         });
     }
@@ -73,8 +73,8 @@ if (!isset($_SESSION['us'])) {
             if (!Nombre_administradora) {
                 Swal.fire({
                     icon: 'error',
-                    title: 'Campos vacíos',
-                    text: 'Por favor, completa todos los campos obligatorios.',
+                    title: 'Administradora Vacia',
+                    text: 'Por favor, complete el campo.',
                 });
             } else {
                 this.submit();

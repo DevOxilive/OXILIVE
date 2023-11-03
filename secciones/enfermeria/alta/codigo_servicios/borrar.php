@@ -10,7 +10,7 @@ if (!isset($_SESSION['us'])) {
 }
 ?>
 <main id="main" class="main">
-<h1 style="text-align:center;">CPTS</h1>
+<h1 style="text-align:center;">Códigos</h1>
 <div class="card">
     <div class="card-header">
         <a name="" id="" class="btn btn-outline-warning ml-auto" href="index.php" role="button"> <i class="bi bi-bookmark-x"></i> Regresar</a>
@@ -21,7 +21,7 @@ if (!isset($_SESSION['us'])) {
                 <table class="table table-bordered  border-dark table-hover" id="myTable">
                     <thead class="table-dark">
                         <tr class="table-active table-group-divider" style="text-align: center;">
-                            <th scope="col">CPT</th>
+                            <th scope="col">Código</th>
                             <th scope="col">Administradora</th>
                             <th scope="col">Acciones</th>
                         </tr>
@@ -31,7 +31,7 @@ if (!isset($_SESSION['us'])) {
                         
                         <tr class="">
                              <td>     
-                                <?php echo $borrar['cpt'] ?> 
+                                <?php echo $borrar['codigo'] ?> 
                             </td> 
                             <td>
                                 <?php echo $borrar['Nombre_administradora'] ?>

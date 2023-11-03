@@ -349,9 +349,8 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                         <li>
                             <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#alta" href="#"><i class="bi bi-circle"></i><span>Dar de Alta</span><i class="bi bi-chevron-down ms-auto fs-6"></i></a>
                             <ul id="alta" class="collapse">
-                                <li><a href="<?php echo $url_base; ?>secciones/enfermeria/alta/cpts/index.php"><i class="bi bi-circle"></i><span>Cpts</span></a></li>
-                                <li><a href="<?php echo $url_base; ?>secciones/enfermeria/alta/bancos/index.php"><i class="bi bi-circle"></i><span>Bancos</a></li>
-                                <li><a href="<?php echo $url_base; ?>secciones/enfermeria/alta/aseguradoras/index.php"><i class="bi bi-circle"></i><span>Aseguradora</a></li>
+                                <li><a href="<?php echo $url_base; ?>secciones/enfermeria/alta/codigo_servicios/index.php"><i class="bi bi-circle"></i><span>Código</span></a></li>
+                                <li><a href="<?php echo $url_base; ?>secciones/enfermeria/alta/cpts/index.php"><i class="bi bi-circle"></i><span>Cpts</a></li>
                                 <li><a href="<?php echo $url_base; ?>secciones/enfermeria/alta/administradora/index.php"><i class="bi bi-circle"></i><span>Administradora</a></li>
                             </ul>
                         </li>

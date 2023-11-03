@@ -4,57 +4,62 @@ if (!isset($_SESSION['us'])) {
   header('Location: ../../login.php');
 } elseif (isset($_SESSION['us'])) {
   include("../../../../templates/header.php");
-  include("consulta.php");
+    include("consulta.php");
 } else {
   echo "Error en el sistema";
 }
 ?>
 <main id="main" class="main">
-<div class="card-header" style="text-align: right;">
-                    <a class="btn btn-outline-dark" href="aseguradora.php" role="button"><i class="bi bi-printer-fill"></i></a>
-            </div>
+<div class="row">
+    <h1 style="text-align:center;">Código Servicio / Producto</h1>
     <div class="card">
         <div class="card-header">
-            <a name="" id="" class="btn btn-outline-primary" href="crear.php" role="button"> <i
-                    class="bi bi-hospital-fill"></i> Registrar aseguradora</a>
+            <a name="" id="" class="btn btn-outline-primary" href="crear.php" role="button"> <i class="bi bi-award"></i> Registrar Código</a>
+            <a name="" id="" class="btn btn-outline-warning ml-auto" href="borrar.php" role="button"> <i class="bi bi-bookmark-x"></i> Borrar Códigos </a>
         </div>
         <div class="card-body">
             <div class="table-responsive-sm">
                 <table class="table table-bordered  border-dark table-hover" id="myTable">
                     <thead class="table-dark">
                         <tr class="table-active table-group-divider" style="text-align: center;">
-                            <th scope="col">Núm</th>
-                            <th scope="col">Nombre de Aseguradora</th>
+                            <th scope="col">Codigo</th>
+                            <th scope="col">Administradora</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($lista_aseguradoras as $registro) { ?>
+                    <?php foreach($lista_codigo_admi as $listAdmi){ 
+                         $X = $listAdmi['admi'];
+                        ?> 
+                        
                         <tr class="">
-                            <th scope="row">
-                                <?php echo $registro['id_aseguradora']; ?>
-                            </th>
+                             <td>     
+                                <?php echo $listAdmi['codigo'] ?> 
+                            </td> 
                             <td>
-                                <?php echo $registro['Nombre_aseguradora']; ?>
-                            </td>
+                                <?php echo $listAdmi['Nombre_administradora'] ?>
+                            </td>    
 
                             <td style="text-align: center;">
-                                <a class="btn btn-outline-warning"
-                                    href="editar.php?txtID=<?php echo $registro['id_aseguradora']; ?>" role="button"><i
+                              <!-- <a class="btn btn-outline-success"
+                                    href="listacodigo.php?txtID=<?php echo $listAdmi['id_codigo']; ?>" role="button"><i class="bi bi-person-plus-fill"></i></a> -->
+
+                             <a class="btn btn-outline-warning"
+                                    href="editar.php?txtID=<?php echo $listAdmi['id_codigo']; ?>&setcodigo=<?php echo $X; ?>" role="button"><i
                                         class="bi bi-pencil-square"></i></a>
                                 |
-                                <a class="btn btn-outline-danger"
-                                    onclick="eliminar(<?php echo $registro['id_aseguradora']; ?>)" role="button"><i
+                                 <a class="btn btn-outline-danger"
+                                    onclick="eliminar(<?php echo $listAdmi['id_codigo']; ?>)" role="button"><i
                                         class="bi bi-trash-fill"></i></a>
-                            </td>
-                        </tr>
-
-                        <?php } ?>
+                                 </td>
+                            </tr>
+                         <?php } ?> 
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+</div>
 </main>
 <script>
 function eliminar(codigo) {
