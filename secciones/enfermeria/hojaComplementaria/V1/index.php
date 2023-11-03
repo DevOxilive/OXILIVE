@@ -19,7 +19,7 @@ if (!isset($_SESSION['us'])) {
             </div>
     <div class="card">
       <div class="card-header">
-        <a class="btn btn-outline-primary" href="crear/crearPaciente.php" role="button"><i class="bi bi-person-fill-add"></i>
+        <a class="btn btn-outline-primary" href="crear.php" role="button"><i class="bi bi-person-fill-add"></i>
           Crear Hoja Complementaria</a>
     </div>
     <div class="card-body">
@@ -28,7 +28,7 @@ if (!isset($_SESSION['us'])) {
           <thead class="table-dark">
             <tr class="table-active table-group-divider" style="text-align: center;">
               <th scope="col">Num</th>
-              <th scope="col">Nombre(s)</th>
+              <th scope="col">Nombre</th>
               <th scope="col">Apellidos</th>
               <th scope="col">Aseguradora</th>
               <th scope="col">Telefono</th>
@@ -44,9 +44,9 @@ if (!isset($_SESSION['us'])) {
             <td><?php echo $pacien['Nombre_banco']; ?></td>
             <td><?php echo $pacien['telefono']; ?></td>
             <td>
-                <a name="" id="" class="btn btn-outline-info" href="crear/editarPaciente.php?txtID=<?php echo $pacien['id_pacientes']; ?>" role="button" style="font-size=10px;"><i class="bi bi-file-earmark-pdf"></i></a> |
+                <a name="" id="" class="btn btn-outline-info" href="pacientes.php?txtID=<?php echo $pacien['id_pacientes']; ?>" role="button" style="font-size=10px;"><i class="bi bi-file-earmark-pdf"></i></a> |
                 <a name="" id="" class="btn btn-outline-warning"
-                href="crear/editarPaciente.php?txtID=<?php echo $pacien['id_pacientes']; ?>" role="button"><i
+                href="editar.php?txtID=<?php echo $pacien['id_pacientes']; ?>" role="button"><i
                     class="bi bi-pencil-square"></i></a> |
                 <a name="" id="" class="btn btn-outline-danger"
                   onclick="eliminar(<?php echo $pacien['id_pacientes']; ?>)" role="button" style="font-size=10px;"><i

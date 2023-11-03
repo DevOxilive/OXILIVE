@@ -6,7 +6,4 @@ pc.bancosAdmi = bc.id_bancos AND bc.admi = ad.id_administradora";
 $sentencia = $con->prepare($consulta);
 $sentencia->execute();
 $pacientes = $sentencia->fetchAll(PDO::FETCH_ASSOC);
-//Esta consulta es para traer los medicos
-
-
 ?>

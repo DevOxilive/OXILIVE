@@ -6,7 +6,7 @@ CONCAT(u.Nombres, ' ', u.Apellidos) AS Medico,
 CONCAT(po.Nombres, ' ', po.Apellidos) AS Paciente,po.No_nomina,
 cg.codigo , cg.descripcion, cg.unidad
 FROM procedimientos p, usuarios u, 
-pacientes_oxigeno po , codigo_administradora cg , cpts c
+pacientes_call_center po , codigo_administradora cg , cpts c
 WHERE p.medico = u.id_usuarios
 AND p.pacienteYnomina = po.id_pacientes
 AND p.codigo = cg.id_codigo AND p.cpt = c.id_cpt");
@@ -24,7 +24,7 @@ $usuarios->execute();
 $medico = $usuarios->fetchAll(PDO::FETCH_ASSOC);
 
 //Esta consulta seria para pacientes
-$oxigeno = $con->prepare("SELECT id_pacientes, CONCAT(Nombres, ' ', Apellidos) AS paciente,No_nomina FROM pacientes_oxigeno ");
+$oxigeno = $con->prepare("SELECT id_pacientes, CONCAT(Nombres, ' ', Apellidos) AS paciente,No_nomina FROM pacientes_call_center");
 $oxigeno->execute();
 $datosPacientes = $oxigeno->fetchAll(PDO::FETCH_ASSOC);
 
