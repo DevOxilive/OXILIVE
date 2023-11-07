@@ -9,7 +9,7 @@ if(isset($data['id']) && $data['id'] != '' && $data['id'] != NULL) {
         AND u.id_usuarios = a.id_usuario
         AND p.id_pacientes = a.id_pacienteEnfermeria
         AND t.id_tipoServicio = a.id_tipoServicio
-        ORDER BY a.fecha ASC;"
+        ORDER BY a.fecha ASC, a.horarioEntrada ASC, a.horarioSalida ASC"
     );
     $iduser=$data['id'];
     $sentenciaHora->bindParam(':idUser', $iduser);
