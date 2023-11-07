@@ -3,10 +3,10 @@ session_start();
 if (!isset($_SESSION['us'])) {
     header('Location: ../../../../login.php');
 } elseif (isset($_SESSION['us'])){
-    include("../../../connection/conexion.php");
-    include("../../../templates/hea.php");
-    include("../../../module/genero.php");
-    include("../../../module/estado.php");
+    include("../../../../connection/conexion.php");
+    include("../../../../templates/hea.php");
+    include("../../../../module/genero.php");
+    include("../../../../module/estado.php");
     
 } else {
     echo "Error en el sistema";
@@ -14,8 +14,6 @@ if (!isset($_SESSION['us'])) {
 ?>
 <!DOCTYPE html>
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Toma de asistencia</title>
     <!-- Google Fonts -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -43,7 +41,7 @@ if (!isset($_SESSION['us'])) {
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Estilos de la cámara -->
-    <link rel="stylesheet" href="css/camara.css"> 
+    <link rel="stylesheet" href="../css/camara.css"> 
 </head> 
 <body>
     <?php
@@ -51,7 +49,6 @@ if (!isset($_SESSION['us'])) {
         $idHor = $_GET['idHor'];
     ?>
     <center>
-        <input type="hidden" id="nomFoto" value="">
 	    <video muted id="video"></video>
 	    <canvas id="canvas"></canvas>
         <div class="row btn-bar">        
@@ -61,7 +58,7 @@ if (!isset($_SESSION['us'])) {
                 </a>
             </div>
             <div class="ps-4" >
-                <a class="btn btn-primary" id="boton" onclick="guardarFoto(event)" role="button">
+                <a class="btn btn-primary" id="boton" onclick="tomarFoto(event)" role="button">
                     Tomar foto
                 </a>
             </div>
@@ -71,14 +68,10 @@ if (!isset($_SESSION['us'])) {
     <input type="hidden" id="idUser" name="idUser" value="<?php echo $_SESSION['idus']; ?>">
 
     <input type="hidden" id="status" name="status" value="<?php echo $_SESSION['estado']; ?>">
-    
-    <!-- Etiqueta oculta para mandar la ubicación del usuario -->
-    <input type="hidden" id="latitud" name="latitud">
-    <input type="hidden" id="longitud" name="longitud">
 
     <input type="hidden" id="idHor" name="idHor" value="<?php echo $idHor; ?>">
     <input type="hidden" id="statusHor" name="statusHor" value="<?php echo $status; ?>">
 </body>
 <!-- Función de la cámara -->
-
-<script src="js/camara.js"></script>
+<script src="../js/geocoding.js"></script>
+<script src="../js/camara.js"></script>

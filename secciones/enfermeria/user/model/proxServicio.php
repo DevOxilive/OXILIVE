@@ -6,7 +6,7 @@
         AND u.id_usuarios = a.id_usuario
         AND p.id_pacientes = a.id_pacienteEnfermeria
         AND t.id_tipoServicio = a.id_tipoServicio
-        AND (a.statusHorario = 1 OR a.statusHorario = 3)
+        AND (a.statusHorario = 1 OR a.statusHorario = 2)
         ORDER BY a.fecha ASC
         LIMIT 1;"
     );
