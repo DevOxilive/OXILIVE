@@ -6,9 +6,9 @@ if (!isset($_SESSION['us'])) {
     include("../../../../templates/header.php");
     include("../../../../connection/conexion.php");
     include("../../../../module/genero.php");
-    include("../../../../module/administradora.php");
     include("../../../../module/tipoPaciente.php");
     include("../../../../module/banco.php"); //Listo ya quedo..:3
+    include("../model/editarPacienteUp.php");
 } else {
     echo "Error en el sistema";
 }
@@ -30,31 +30,37 @@ if (!isset($_SESSION['us'])) {
                     Datos del nuevo Paciente</h4>
             </div>
             <div class="card-body" style="border: 2px solid #BFE5FF">
-                <form action="../model/nuevoPaciente.php" method="POST" enctype="multipart/form-data"
+                <form action="../model/editarPacienteUp.php" method="POST" enctype="multipart/form-data"
                     class="formLogin row g-3" id="formulario">
+
                     <!-- Apartado del registro para datos generales -->
                     <div class="contenido col-md-12">
                         <br>
                         <h2 style="text-align: center;">Información del Paciente</h2>
                     </div>
+                    <div class="contenido col-md-1">
+                        <label for="txtID" class="form-label">Num</label>
+                        <input type="text" value="<?php echo $txtID; ?>" class="form-control" readonly name="txtID"
+                            id="txtID" aria-describedby="helpId">
+                    </div>
                     <div class="contenido col-md-4">
                         <label for="nombre" class="form-label">Nombre(s):</label>
                         <input type="text" class="form-control" name="nombre" id="nombre"
-                            placeholder="Ingresa el/los nombre(s)">
+                            value="<?php echo $nombres; ?>" placeholder="Ingresa el/los nombre(s)">
                     </div>
                     <div class="contenido col-md-4">
                         <label for="apellidos" class="form-label">Apellidos:</label>
                         <input type="text" class="form-control" name="apellidos" id="apellidos"
-                            placeholder="Ingresa los apellidos">
+                            value="<?php echo $apellidos?>" placeholder="Ingresa los apellidos">
                     </div>
 
                     <!--Implemente lo que es rfc-->
-                    <div class="contenido col-md-4">
+                    <div class="contenido col-md-3">
                         <div class="formulario__grupo" id="grupo__rfc">
                             <label for="rfc" class="formulario__label">RFC</label>
                             <div class="formulario__grupo-input">
                                 <input type="text" maxlength="13" class="formulario__input" name="rfc" id="rfc"
-                                    placeholder="Ejem: EJEM123456">
+                                    value="<?php echo $rfc?>" placeholder="Ejem: EJEM123456">
                             </div>
                         </div>
                     </div>
@@ -62,9 +68,10 @@ if (!isset($_SESSION['us'])) {
                     <div class="contenido col-md-3">
                         <label for="genero" class="form-label">Género:</label>
                         <select name="genero" id="genero" class="form-select">
-                            <option value="" selected>Selecciona el género</option>
-                            <?php foreach ($lista_genero as $genero) { ?>
-                            <option value="<?php echo $genero['id_genero']; ?>"><?php echo $genero['genero']; ?>
+                            <?php foreach ($lista_genero as $registro) { ?>
+                            <option <?php echo ($genero == $registro['id_genero']) ? "selected" : ""; ?>
+                                value="<?php echo $registro['id_genero']; ?>">
+                                <?php echo $registro['genero']; ?>
                             </option>
                             <?php } ?>
                         </select>
@@ -72,12 +79,12 @@ if (!isset($_SESSION['us'])) {
                     <div class="contenido col-md-2">
                         <label for="edad" class="form-label">Edad:</label>
                         <input type="text" maxlength="3" class="form-control" name="edad" id="edad"
-                            placeholder="Ingresa la edad">
+                            value="<?php echo $edad; ?>" placeholder="Ingresa la edad">
                     </div>
                     <div class="contenido col-md-3 ">
                         <label for="telUno" class="form-label">Teléfono:</label>
                         <input type="text" maxlength="10" class="form-control" name="telUno" id="telUno"
-                            placeholder="Ingresa un número de teléfono">
+                            value="<?php echo $telUno; ?>" placeholder="Ingresa un número de teléfono">
                         <p id="errTelUno" style="color:red; font-weight:bold;"></p>
                     </div>
                     <div class="contenido col-md-2 d-flex align-items-center cursor-pointer" style="display: flex;"
@@ -88,7 +95,7 @@ if (!isset($_SESSION['us'])) {
                         <label for="telDos" class="form-label">Teléfono 2:</label>
                         <div class="input-group">
                             <input type="text" maxlength="10" class="form-control" name="telDos" id="telDos"
-                                placeholder="Ingresa un número de teléfono">
+                                value="<?php echo $telDos; ?>" placeholder="Ingresa un número de teléfono">
                             <div class="input-group-append">
                                 <a href="#" class="btn btn-info remove-lnk d-flex align-items-center" id="delBoton"
                                     style="border-radius: 1px; height: 100%;">
@@ -106,45 +113,48 @@ if (!isset($_SESSION['us'])) {
                     </div>
                     <div class="contenido col-md-4">
                         <label for="calle" class="form-label">Calle:</label>
-                        <input type="text" class="form-control" name="calle" id="calle" placeholder="Ingresa la calle">
+                        <input type="text" value="<?php echo $calle; ?>" class="form-control" name="calle" id="calle"
+                            placeholder="Ingresa la calle">
                     </div>
                     <div class="contenido col-md-2">
                         <label for="numInt" class="form-label">Núm.Int</label>
                         <input type="text" maxlength="15" class="form-control" name="numInt" id="numInt"
-                            placeholder="456">
+                            value="<?php echo $num_int; ?>" placeholder="456">
                     </div>
                     <div class="contenido col-md-2">
                         <label for="numExt" class="form-label">Nún.Ext</label>
-                        <input type="text" maxlength="15" class="form-control" name="numExt" id="numExt"
-                            placeholder="123">
+                        <input type="text" value="<?php echo $num_ext; ?>" maxlength="15" class="form-control"
+                            name="numExt" id="numExt" placeholder="123">
                     </div>
                     <div class="contenido col-md-4">
                         <label for="cp" class="form-label">Código Postal:</label>
-                        <input type="text" maxlength="5" class="form-control" id="cp"
-                            placeholder="Ingresa un Código Postal">
+                        <input type="text" value="<?php echo $codigo_postal; ?>" maxlength="5" class="form-control"
+                            id="cp" placehold
+                            er="Ingresa un Código Postal">
                     </div>
                     <div class="contenido col-md-4">
                         <label for="colonia" class="form-label">Colonia:</label>
                         <select name="colonia" id="colonia" class="form-select">
-                            <option value="">Selecciona un Código Postal</option>
+                            <option value="<?php echo $coloniaId; ?>"><?php echo $colonia; ?></option>
                         </select>
-                    </div>
+                    </div> 
+
                     <div class="contenido col-md-4">
                         <label for="delMun" class="form-label">Delegación/Municipio:</label>
                         <select name="delMun" id="delMun" class="form-select" disabled>
-                            <option value="">Selecciona un Código Postal</option>
+                            <option value=""><?php echo $municipio; ?></option>
                         </select>
                     </div>
                     <div class="contenido col-md-4">
                         <label for="estadoDir" class="form-label">Estado:</label>
                         <select name="estadoDir" id="estadoDir" class="form-select" disabled>
-                            <option value="">Selecciona un Código Postal</option>
+                            <option value=""><?php echo $estado; ?></option>
                         </select>
                     </div>
                     <div class="contenido col-md-11">
                         <label for="referencias" class="form-label">Referencias:</label>
-                        <input type="text" class="form-control" name="referencias" id="referencias"
-                            placeholder="Ingresa mayores referencias del domicilio">
+                        <input type="text" value="<?php echo $referencias; ?>" class="form-control" name="referencias"
+                            id="referencias" placeholder="Ingresa mayores referencias del domicilio">
                     </div>
                     <!-- Datos de la aseguradora -->
                     <div class="contenido col-md-12">
@@ -154,9 +164,10 @@ if (!isset($_SESSION['us'])) {
                     <div class="contenido col-md-3">
                         <label for="banco" class="form-label">Banco:</label>
                         <select name="banco" id="banco" class="form-select">
-                            <option value="" selected>Selecciona el banco</option>
-                            <?php foreach ($lista_bancos as $bancos) { ?>
-                            <option value="<?php echo $bancos['id_bancos']; ?>"><?php echo $bancos['Nombre_banco']; ?>
+                            <?php foreach ($lista_bancos as $registro) { ?>
+                            <option <?php echo ($banco == $registro['id_bancos']) ? "selected" : ""; ?>
+                                value="<?php echo $registro['id_bancos']; ?>">
+                                <?php echo $registro['Nombre_banco']; ?>
                             </option>
                             <?php } ?>
                         </select>
@@ -164,42 +175,36 @@ if (!isset($_SESSION['us'])) {
 
                     <div class="contenido col-md-3">
                         <label for="administradora" class="form-label">Administradora</label>
-                        <input type="text" id="administradora" name="administradora" class="form-control"
-                            placeholder="Eliga el banco" readonly>
+                        <input type="text" value="<?php echo $admin; ?>" id="administradora" name="administradora" class="form-control" placeholder="Eliga el banco" readonly>
                     </div>
-
 
                     <div class="contenido col-md-2">
                         <div class="formulario__grupo" id="grupo__No_nomina">
                             <label for="No_nomina" class="formulario__label">No. nomina</label>
                             <div class="formulario__grupo-input">
                                 <input type="text" class="formulario__input" name="No_nomina" id="No_nomina"
-                                    placeholder="No_nomina" maxlength="7">
+                                    value="<?php echo $No_nomina; ?>" placeholder="No_nomina" maxlength="7">
                                 <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"><small
                                         class="formulario__input-error"> Nomina no valida.
                                     </small></i>
                             </div>
                         </div>
                     </div>
-                   
+
                     <div class="contenido col-md-3">
                         <label for="responsable" class="form-label">Familiar Responsable</label>
                         <input type="text" id="responsable" name="responsable" class="form-control"
-                            placeholder="Ejem-Maria Gutierrez">
+                            value="<?php echo $responsable; ?>" placeholder="Ejem-Maria Gutierrez">
                     </div>
-                    
-                    <div class="col-md-5">
-                        <p style="color:black;"><strong>Comprobante de domicilio</strong></p>
-                        <div class="input-group">
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input formulario__input-file" name="comprobante"
-                                    id="comprobante" accept="application/pdf" >
-                                <label class="custom-file-label" for="comprobante">Selecciona un archivo</label>
-                            </div>
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
-                            </div>
-                        </div>
+
+                    <div class="col-md-6">
+                        <label for="comprobante" class="form-label">Ver comprobante: <a
+                                href="../directorio_comprobante/<?php echo $comprobante; ?>">
+                                <i class="bi bi-eye-fill"></i></a></label>
+                        <label for="comprobante" class="form-label">Selecionar Uno nuevo</label>
+                        <?php echo $comprobante; ?>
+                        <input type="file" value="<?php echo $comprobante; ?>" class="form-control" name="comprobante"
+                            id="comprobante">
                     </div>
                     <!--Credencial INE Frontal-->
                     <br><br><br><br><br>
@@ -207,80 +212,78 @@ if (!isset($_SESSION['us'])) {
                         <div class="col-md-5">
                             <label for="Credencial_front" class="formulario__label">Credencial INE Frontal</label>
                             <div class="profile-picture-cre">
-                                <div class="picture-container-cre">
-                                    <?php if (!empty($Credencial_front)) { ?>
-                                    <img id="preview" src="<?php echo $Credencial_front; ?>">
-                                    <?php } else { ?>
-                                    <img id="preview" src="../../../../img/post.jpg"
-                                        style="width: 350px ; height: 210px;">
-                                    <?php } ?>
-                                    <div class="overlay-cre">
-                                        <?php if (empty($Credencial_front)) { ?>
-                                        <a href="#" class="change-link" onclick="openFilePicker(event)">
-                                            <i class="fa-solid fa-image"></i>
-                                        </a>
-
-                                        <?php } else { ?>
-                                        <a href="#" class="delete-link" onclick="deletePhoto(event)">Eliminar
-                                            foto</a>
-                                        <?php } ?>
-                                    </div>
+                            <div class="picture-container-cre">
+                                <?php if (!empty($Credencial_front)) : ?>
+                                    
+                                <img src="../directorio_INES/<?php echo $Credencial_front; ?>"
+                                    alt="" id="imagenActual" class="img-thumbnail-ine"
+                                    style="width: 350px ; height: 210px;">
+                                <?php else : ?>
+                                <img src="../../../../img/OXILIVE.ico" alt="foto de perfil" id="imagenActual"
+                                    class="img-thumbnail-ine">
+                                <?php endif; ?>
+                                <div class="overlay-cre">
+                                    <label for="Credencial_front" class="change-link"><i class="fas fa-camera"></i>
+                                    </label>
+                                    <?php if (!empty($Credencial_front)) : ?>
+                                    <?php endif; ?>
                                 </div>
                             </div>
-                            <input type="file" class="form-control" name="Credencial_front" id="Credencial_front"
-                                onchange="previewImage(this);" style="display: none;" accept="application/jpg">
                         </div>
+                        <input type="file" class="form-control" name="Credencial_front" id="Credencial_front"
+                            onchange="cambiarImagen(event)" style="display: none;">
+                    </div>
+                        
                         <div class="col-md-4">
                             <label for="Credencial_post" class="formulario__label">Credencial INE Posterior</label>
                             <div class="profile-picture-cre">
-                                <div class="picture-container-cre">
-                                    <?php if (!empty($Credencial_post)) { ?>
-                                    <img id="preview1" src="<?php echo $Credencial_post; ?>">
-                                    <?php } else { ?>
-                                    <img id="preview1" src="../../../../img/reverso.jpg"
-                                        style="width: 350px ; height: 210px;">
-                                    <?php } ?>
-                                    <div class="overlay-cre">
-                                        <?php if (empty($Credencial_post)) { ?>
-                                        <a href="#" class="change-link" onclick="openFilePicker1(event)">
-                                            <i class="fa-solid fa-image"></i>
-                                        </a>
-                                        <?php } else { ?>
-                                        <a href="#" class="delete-link" onclick="deletePhoto1(event)">Eliminar
-                                            foto</a>
-                                        <?php } ?>
-                                    </div>
+                            <div class="picture-container-cre">
+                                <?php if (!empty($Credencial_post)) : ?>
+                                <img src="../directorio_INES/<?php echo $Credencial_post; ?>"
+                                    alt="" id="imagenActual1" class="img-thumbnail-ine"
+                                    style="width: 350px ; height: 210px;">
+                                <?php else : ?>
+                                <img src="../../../../img/OXILIVE.ico" alt="foto de perfil" id="imagenActual1"
+                                    class="img-thumbnail-ine">
+                                <?php endif; ?>
+                                <div class="overlay-cre">
+                                    <label for="Credencial_post" class="change-link"><i class="fas fa-camera"></i>
+                                    </label>
+                                    <?php if (!empty($Credencial_post)) : ?>
+                                    <?php endif; ?>
                                 </div>
                             </div>
-                            <input type="file" class="form-control" name="Credencial_post" id="Credencial_post"
-                                onchange="previewImage1(this);" style="display: none;" accept="application/jpg">
                         </div>
+                        <input type="file" class="form-control" name="Credencial_post" id="Credencial_post"
+                            onchange="cambiarImagen1(event)" style="display: none;">
                     </div>
+
                     <div class="col-md-4">
                         <label for="Credencial_aseguradora" class="formulario__label">Credencial Aseguradora
                             Frontal</label>
                         <div class="profile-picture-cre">
                             <div class="picture-container-cre">
-                                <?php if (!empty($Credencial_aseguradora)) { ?>
-                                <img id="preview2" src="<?php echo $Credencial_aseguradora; ?>">
-                                <?php } else { ?>
-                                <img id="preview2" src="../../../../img/post.jpg" style="width: 350px ; height: 210px;">
-                                <?php } ?>
+                                <?php if (!empty($Credencial_aseguradora)) : ?>
+                                <img src="../directorio_INES/<?php  echo $Credencial_aseguradora; ?>"
+                                    alt="" id="imagenActual2" class="img-thumbnail-ine"
+                                    style="width: 350px ; height: 210px;">
+                                <?php else : ?>
+                                <img src="../../../../img/OXILIVE.ico" alt="SIN ASEGURADORA" id="imagenActual2"
+                                    class="img-thumbnail-ine" style="width: 350px ; height: 210px;">
+                                <?php endif; ?>
                                 <div class="overlay-cre">
-                                    <?php if (empty($Credencial_aseguradora)) { ?>
-                                    <a href="#" class="change-link" onclick="openFilePicker2(event)">
-                                        <i class="fa-solid fa-image"></i>
-                                    </a>
-                                    <?php } else { ?>
-                                    <a href="#" class="delete-link" onclick="deletePhoto2(event)">Eliminar foto</a>
-                                    <?php } ?>
+                                    <label for="Credencial_aseguradora" class="change-link"><i
+                                            class="fas fa-camera"></i>
+                                    </label>
+                                    <?php if (!empty($Credencial_aseguradora)) : ?>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
                         <input type="file" class="form-control" name="Credencial_aseguradora"
-                            id="Credencial_aseguradora" onchange="previewImage2(this);" style="display: none;"
-                            accept="application/jpg">
+                            id="Credencial_aseguradora" onchange="cambiarImagen2(event)" style="display: none;">
                     </div>
+
                     <div class="contenido col-md-1">
                         <label></label>
                     </div>
@@ -288,27 +291,26 @@ if (!isset($_SESSION['us'])) {
                         <label for="Credencial_aseguradoras_post" class="formulario__label">Credencial Aseguradora
                             Posterior</label>
                         <div class="profile-picture-cre">
-                            <div class="picture-container-cre">
-                                <?php if (!empty($Credencial_aseguradoras_post)) { ?>
-                                <img id="preview3" src="<?php echo $Credencial_aseguradoras_post; ?>">
-                                <?php } else { ?>
-                                <img id="preview3" src="../../../../img/reverso.jpg"
+                             <div class="picture-container-cre">
+                                <?php if (!empty($Credencial_aseguradoras_post)) : ?>
+                                <img src="../directorio_INES/<?php  echo $Credencial_aseguradoras_post; ?>"
+                                    alt="" id="imagenActual3" class="img-thumbnail-ine"
                                     style="width: 350px ; height: 210px;">
-                                <?php } ?>
+                                <?php else : ?>
+                                <img src="../../../../img/OXILIVE.ico" alt="SIN ASEGURADORA" id="imagenActual3"
+                                    class="img-thumbnail-ine" style="width: 350px ; height: 210px;">
+                                <?php endif; ?>
                                 <div class="overlay-cre">
-                                    <?php if (empty($Credencial_aseguradoras_post)) { ?>
-                                    <a href="#" class="change-link" onclick="openFilePicker3(event)">
-                                        <i class="fa-solid fa-image"></i>
-                                    </a>
-                                    <?php } else { ?>
-                                    <a href="#" class="delete-link" onclick="deletePhoto3(event)">Eliminar foto</a>
-                                    <?php } ?>
+                                    <label for="Credencial_aseguradoras_post" class="change-link"><i
+                                            class="fas fa-camera"></i>
+                                    </label>
+                                    <?php if (!empty($Credencial_aseguradoras_post)) : ?>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
                         <input type="file" class="form-control" name="Credencial_aseguradoras_post"
-                            id="Credencial_aseguradoras_post" onchange="previewImage3(this);" style="display: none;"
-                            accept="application/jpg">
+                            id="Credencial_aseguradoras_post" onchange="cambiarImagen3(event)" style="display: none;">
                     </div>
                     <div class="contenido col-md-9" style="text-align: center;">
                         <div class="formulario__mensaj" id="formulario__mensaj">
@@ -335,40 +337,13 @@ if (!isset($_SESSION['us'])) {
         </div>
     </section>
 </main>
-<script>
-const banco = document.querySelector('#banco');
-const administradoraInput = document.querySelector('#administradora');
-banco.addEventListener('change', () => {
-    const selectedOption = banco.options[banco.selectedIndex];
-    const bancoId = selectedOption.value;
-
-    const op = new XMLHttpRequest();
-
-    //Configuro la colicitud
-    op.open('GET', `consultaAdmi.php?banco_id=${bancoId}`, true);
-    //Mi prueba de manejo de respuesta
-    op.onload = () => {
-        if (op.status === 200) {
-            const data = JSON.parse(op.responseText);
-            administradoraInput.value = data.Nombre_administradora;
-        } else {
-            console.error('Error al obtener la administradora..:( ', op.statusText);
-        }
-    };
-    //Errores de conexion
-    op.onerror = () => {
-        console.error('Error de conexion al servidor..:(');
-    }
-    op.send();
-});
-
-</script>
 <script src="../js/nomina.js"></script>
 <script src="../js/botonAdd.js"></script>
 <script src="../js/validacion.js"></script>
 <script src="../js/formButtons.js"></script>
 <script src="../js/domicilio.js"></script>
-<script src="../../../../assets/js/archivosPacientes.js"></script>
+<script src="../js/credenciales.js"></script>
+<script src="../js/paciente.js"></script>
 </html>
 <?php
 include("../../../../templates/footer.php");

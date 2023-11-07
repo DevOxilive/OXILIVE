@@ -1,95 +1,299 @@
-function getPaciente(){
-    //Apuntador al valor del input hidden que contiene el id del Paciente
-    let paciente = document.getElementById("idPaciente").value;
-    //Se setea el dato en JSON
-    var data={ idPac: paciente };
-    //Se manda por fetch API
-    fetch("../model/paciente.php", {
-        body: JSON.stringify(data),
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    })
-    .then(response => response.json())
-    .then(datos => {
-        datos.forEach(dato => {
-            setGeneral(dato);
-            setDireccion(dato);
-            eraseEmpty();
-        });
-    })
-}
-//Función para setear los datos de la seccion General
-function setGeneral(dato){
-    //Apuntadores al DOM para setear los divs
-    let nombre = document.getElementById("nombre"),
-    apellidos = document.getElementById("apellidos"),
-    genero = document.getElementById("genero"),
-    edad = document.getElementById("edad"),
-    tipo = document.getElementById("tipoPac"),
-    telUno = document.getElementById("telefono"),
-    telDos = document.getElementById("telefonoDos"),
-    expediente = document.getElementById("expediente");
-    //Datos que se les introducirá al div
-    nombre.textContent = dato.nombres;
-    apellidos.textContent = dato.apellidos;
-    edad.textContent = dato.edad;
-    genero.textContent = dato.genName;
-    tipo.textContent = dato.tipoName;
-    telUno.textContent = dato.telefono;
-    telDos.textContent = dato.telefonoDos;
-    expediente.textContent = "";
-}
-function setDireccion(dato){
-    let calle = document.getElementById("calle"),
-    noext = document.getElementById("noext"),
-    noint = document.getElementById("noint"),
-    colonia = document.getElementById("colonia"),
-    cp = document.getElementById("cp"),
-    delMun = document.getElementById("delMun"),
-    estado = document.getElementById("estadoDir"),
-    calleUno = document.getElementById("calleUno"),
-    calleDos = document.getElementById("calleDos"),
-    referencias = document.getElementById("referencias");
-
-    calle.textContent = dato.calle;
-    noext.textContent = dato.num_ext;
-    noint.textContent = dato.num_in;
-    colonia.textContent = (dato.colName).toUpperCase();
-    cp.textContent = dato.codigo_postal;
-    delMun.textContent = (dato.munName).toUpperCase();
-    estado.textContent = (dato.estName).toUpperCase();
-    calleUno.textContent = dato.calleUno;
-    calleDos.textContent = dato.calleDos;
-    referencias.textContent = dato.referencias;
-}
-function eraseEmpty(){
-    var numInt = document.getElementById("noint"),
-    numInt_label = document.getElementById("noint-label"),
-    calleUno = document.getElementById("calleUno"),
-    calleUno_label = document.getElementById("calleUno-label"),
-    calleDos = document.getElementById("calleDos"),
-    calleDos_label = document.getElementById("calleDos-label"),
-    referencias = document.getElementById("referencias"),
-    referencias_label = document.getElementById("referencias-label"),
-    telDos = document.getElementById("telefonoDos"),
-    telDos_label = document.getElementById("telefonoDos-label");
-    var inputs = [numInt, calleUno, calleDos, referencias, telDos];
-    var labels = [numInt_label, calleUno_label, calleDos_label, referencias_label, telDos_label];
-    for (let i = 0; i < inputs.length; i++) {
-        var input = inputs[i];
-        var label = labels[i];
-        if (input.textContent == ""){
-            input.style.display = "none";
-            label.style.display = "none";
-        } else {
-            input.style.display = "block";
-            label.style.display = "block";
+function previewImage(input) {
+    var preview = document.getElementById('preview');
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            preview.setAttribute('src', e.target.result);
+            preview.style.display = 'block';
         }
-        
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        preview.style.display = 'none';
     }
 }
-//Se ejecuta una vez cada que se refresca la página
-getPaciente();
 
+function openFilePicker(event) {
+    event.preventDefault();
+    document.getElementById('Credencial_front').click();
+}
+
+function deletePhoto(event) {
+    event.preventDefault();
+    document.getElementById('preview').src = '../../../img/Logo.png';
+    document.getElementById('preview').style.display = 'none';
+    document.getElementById('Credencial_front').value = '';
+    var deleteLink = document.querySelector('.delete-link');
+    deleteLink.style.display = 'none';
+}
+
+
+// 
+function previewImage2(input) {
+    var preview2 = document.getElementById('preview2');
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            preview2.setAttribute('src', e.target.result);
+            preview2.style.display = 'block';
+        }
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        preview2.style.display = 'none';
+    }
+}
+
+function openFilePicker2(event) {
+    event.preventDefault();
+    document.getElementById('Credencial_aseguradora').click();
+}
+
+function deletePhoto2(event) {
+    event.preventDefault();
+    document.getElementById('preview2').src = '../../../img/Logo.png';
+    document.getElementById('preview2').style.display = 'none';
+    document.getElementById('Credencial_aseguradora').value = '';
+    var deleteLink = document.querySelector('.delete-link');
+    deleteLink.style.display = 'none';
+}
+
+//
+function previewImage3(input) {
+    var preview3 = document.getElementById('preview3');
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            preview3.setAttribute('src', e.target.result);
+            preview3.style.display = 'block';
+        }
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        preview3.style.display = 'none';
+    }
+}
+
+function openFilePicker3(event) {
+    event.preventDefault();
+    document.getElementById('Credencial_aseguradoras_post').click();
+}
+
+function deletePhoto3(event) {
+    event.preventDefault();
+    document.getElementById('preview3').src = '../../../img/Logo.png';
+    document.getElementById('preview3').style.display = 'none';
+    document.getElementById('Credencial_aseguradoras_post').value = '';
+    var deleteLink = document.querySelector('.delete-link');
+    deleteLink.style.display = 'none';
+}
+
+// 
+
+function previewImage1(input) {
+    var preview1 = document.getElementById('preview1');
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            preview1.setAttribute('src', e.target.result);
+            preview1.style.display = 'block';
+        }
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        preview1.style.display = 'none';
+    }
+}
+
+function openFilePicker1(event) {
+    event.preventDefault();
+    document.getElementById('Credencial_post').click();
+}
+
+function deletePhoto1(event) {
+    event.preventDefault();
+    document.getElementById('preview1').src = '../../../img/Logo.png';
+    document.getElementById('preview1').style.display = 'none';
+    document.getElementById('Credencial_post').value = '';
+    var deleteLink = document.querySelector('.delete-link');
+    deleteLink.style.display = 'none';
+}
+
+//PARA EDITAR PACIENTES 
+function mostrarImagen(event) {
+    var input = event.target;
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var imagenActual = document.getElementById("imagenActual");
+            imagenActual.src = e.target.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function abrirSelectorArchivo(event) {
+    event.preventDefault();
+    var selectorArchivo = document.getElementById("Credencial_front");
+    selectorArchivo.click();
+}
+
+function cambiarImagen(event) {
+    var input = event.target;
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var imagenActual = document.getElementById("imagenActual");
+            imagenActual.src = e.target.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function eliminarImagen(event) {
+    event.preventDefault();
+    var imagenActual = document.getElementById("imagenActual");
+    imagenActual.src = "./img/error.png";
+    var selectorArchivo = document.getElementById("Credencial_front");
+    selectorArchivo.value = null;
+}
+
+function mostrarImagen1(event) {
+    var input = event.target;
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var imagenActual1 = document.getElementById("imagenActual1");
+            imagenActual1.src = e.target.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function abrirSelectorArchivo1(event) {
+    event.preventDefault();
+    var selectorArchivo1 = document.getElementById("Credencial_post");
+    selectorArchivo1.click();
+}
+
+function cambiarImagen1(event) {
+    var input = event.target;
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var imagenActual1 = document.getElementById("imagenActual1");
+            imagenActual1.src = e.target.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function eliminarImagen1(event) {
+    event.preventDefault();
+    var imagenActual1 = document.getElementById("imagenActual1");
+    imagenActual1.src = "../../../assets/img/not-found.svg";
+    var selectorArchivo1 = document.getElementById("Credencial_post");
+    selectorArchivo1.value = null;
+}
+
+// 
+function mostrarImagen2(event) {
+    var input = event.target;
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var imagenActual2 = document.getElementById("imagenActual2");
+            imagenActual2.src = e.target.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function abrirSelectorArchivo2(event) {
+    event.preventDefault();
+    var selectorArchivo2 = document.getElementById("Credencial_aseguradora");
+    selectorArchivo2.click();
+}
+
+function cambiarImagen2(event) {
+    var input = event.target;
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var imagenActual2 = document.getElementById("imagenActual2");
+            imagenActual2.src = e.target.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function eliminarImagen2(event) {
+    event.preventDefault();
+    var imagenActual2 = document.getElementById("imagenActual2");
+    imagenActual2.src = "../../img/OXILIVE.ico";
+    var selectorArchivo2 = document.getElementById("Credencial_aseguradora");
+    selectorArchivo2.value = null;
+}
+
+// 
+function mostrarImagen3(event) {
+    var input = event.target;
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var imagenActual3 = document.getElementById("imagenActual3");
+            imagenActual3.src = e.target.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function abrirSelectorArchivo3(event) {
+    event.preventDefault();
+    var selectorArchivo3 = document.getElementById("Credencial_aseguradoras_post");
+    selectorArchivo3.click();
+}
+
+function cambiarImagen3(event) {
+    var input = event.target;
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var imagenActual3 = document.getElementById("imagenActual3");
+            imagenActual3.src = e.target.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function eliminarImagen3(event) {
+    event.preventDefault();
+    var imagenActual3 = document.getElementById("imagenActual3");
+    imagenActual3.src = "../../img/OXILIVE.ico";
+    var selectorArchivo3 = document.getElementById("Credencial_aseguradoras_post");
+    selectorArchivo3.value = null;
+}
+//PARA LAS ASEGURADORAS 
+function actualizarAseguradoras(administradoraId) {
+    // console.log("Llamado a actualizarAseguradoras con administradoraId:", administradoraId);
+    const aseguradoraSelect = document.getElementById("Aseguradora");
+    aseguradoraSelect.innerHTML = '<option value="0" selected disabled>Cargando...</option>';
+
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "../../../module/obtener_aseguradora.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            aseguradoraSelect.innerHTML = '<option value="0" selected disabled>Elija una opción</option>';
+            const data = JSON.parse(xhr.responseText);
+
+            data.forEach(function(aseguradora) {
+                const option = document.createElement("option");
+                option.value = aseguradora.id_aseguradora;
+                option.textContent = aseguradora.Nombre_aseguradora;
+                aseguradoraSelect.appendChild(option);
+            });
+        } else if (xhr.readyState === 4) {
+            aseguradoraSelect.innerHTML = '<option value="0" selected disabled>Error al cargar las aseguradoras</option>';
+        }
+    };
+    // console.log("administradoraId antes de enviar:", administradoraId);
+    xhr.send("administradoraId=" + encodeURIComponent(administradoraId));
+}

@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                             echo '<script language="javascript"> ';
                                             echo 'Swal.fire({
                                                     icon: "success",
-                                                    title: "PROCEDIMIENTO CREADO",
+                                                    title: "PACIENTE CREADO CORRECTAMENTE",
                                                     showConfirmButton: false,
                                                     timer: 1500,
                                                 }).then(function() {

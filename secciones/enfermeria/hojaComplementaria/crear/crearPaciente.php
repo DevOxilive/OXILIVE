@@ -188,19 +188,11 @@ if (!isset($_SESSION['us'])) {
                             placeholder="Ejem-Maria Gutierrez">
                     </div>
                     
-                    <div class="col-md-5">
-                        <p style="color:black;"><strong>Comprobante de domicilio</strong></p>
-                        <div class="input-group">
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input formulario__input-file" name="comprobante"
-                                    id="comprobante" accept="application/pdf" >
-                                <label class="custom-file-label" for="comprobante">Selecciona un archivo</label>
-                            </div>
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
-                            </div>
-                        </div>
+                    <div class="contenido col-md-5">
+                        <label for="comprobante" class="formulario__label">Comprobante de domicilio</label>
+                        <input type="file" class="formulario__input-file" name="comprobante" id="comprobante" accept="application/pdf">
                     </div>
+                    
                     <!--Credencial INE Frontal-->
                     <br><br><br><br><br>
                     <div class="row text-center">
@@ -368,7 +360,7 @@ banco.addEventListener('change', () => {
 <script src="../js/validacion.js"></script>
 <script src="../js/formButtons.js"></script>
 <script src="../js/domicilio.js"></script>
-<script src="../../../../assets/js/archivosPacientes.js"></script>
+<script src="../js/paciente.js"></script>
 </html>
 <?php
 include("../../../../templates/footer.php");
