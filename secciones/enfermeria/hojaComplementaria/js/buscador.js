@@ -64,24 +64,24 @@ function showPacientes(datos) {
       resetList();
       select = 0;
     });
-    // Verifica si el registro contiene 'Comprobante_post'
-    if (pac.Comprobante_post) {
+    
+    // Verifica si el registro actual contiene 'Credencial_front'
+    if (pac.Credencial_front) {
       pacienteEncontrado = true;
+
+      // Redirige a la página de creación para este paciente
+      const crearPacienteItem = document.createElement("div");
+      crearPacienteItem.setAttribute("data-url", "pacientes.php?txtID=" + pac.id_pacientes);
+      crearPacienteItem.setAttribute("id", i + 1);
+      crearPacienteItem.classList.add("contenido", "col-md-12", "item-search");
+      crearPacienteItem.style.fontWeight = "bold";
+      crearPacienteItem.addEventListener("click", function () {
+        window.location.href = crearPacienteItem.getAttribute("data-url");
+      });
+      crearPacienteItem.textContent ="ESTE PACIENTE EXISTE  VER AQUI";
+      lista.appendChild(crearPacienteItem);
     }
   });
-  // Si existe un paciente con 'Comprobante_post', redirige a la página de creación
-  if (pacienteEncontrado) {
-    const crearPacienteItem = document.createElement("div");
-    crearPacienteItem.setAttribute("data-url", "./crear/pacientes.php?txtID=" + pac.id_pacientes);
-    crearPacienteItem.setAttribute("id", datos.length + 1);
-    crearPacienteItem.classList.add("contenido", "col-md-12", "item-search");
-    crearPacienteItem.style.fontWeight = "bold";
-    crearPacienteItem.addEventListener("click", function () {
-      window.location.href = crearPacienteItem.getAttribute("data-url");
-    });
-    crearPacienteItem.textContent = "¿No existe el paciente? Regístralo aquí";
-    lista.appendChild(crearPacienteItem);
-  }
 }
 
 input.addEventListener("keydown", function (event) {
