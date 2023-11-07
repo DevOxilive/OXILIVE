@@ -19,6 +19,7 @@ if (!isset($_SESSION['us'])) {
 <main id="main" class="main">
     <div class="pagetitle">
         <h1>Lista de Pacientes</h1>
+        <br>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="<?php echo $url_base; ?>secciones/enfermeria/user/index.php">Dashboard</a></li>
