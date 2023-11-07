@@ -25,6 +25,7 @@ if (!isset($_SESSION['us'])) {
             Bienvenid<?php if ($_SESSION['genero'] == 1) { ?>o<?php } else { ?>a<?php } ?>
             <?php echo ucfirst(strtolower($_SESSION['no'])); ?>
         </h1>
+        <br>
 
         <!-- breadcrumb del dashboard pasado -->
         <nav>

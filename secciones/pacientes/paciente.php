@@ -21,6 +21,7 @@ if (!isset($_SESSION['us'])) {
         <h1>Paciente </h1>
         <?php if ($_SESSION['puesto'] == 11) { ?>
             <nav>
+                <br>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="<?php echo $url_base; 
                                                             ?>secciones/enfermeria/user/index.php">Dashboard</a></li>
