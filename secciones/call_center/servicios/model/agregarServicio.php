@@ -7,6 +7,11 @@ if($_POST){
 // cacha los datos antes de realizar la inserción   
     $nomServicio=(isset($_POST["nomServicio"])?$_POST["nomServicio"]:"");
     $descripServicio=(isset($_POST["descripServicio"])?$_POST["descripServicio"]:"");
+
+//es para que los datos se vean en mayusculas     
+    $nomServicio = strtoupper($nomServicio);
+    $descripServicio = strtoupper($descripServicio);
+   
 // realiza la inserción a la base de datos
     $sentencia=$con->prepare("INSERT INTO 
                             `tipos_servicios_callcenter` (`idServicio`, `nombreServicio`, `descripcionServicio`) 

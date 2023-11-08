@@ -1,19 +1,18 @@
 <?php
 session_start();
 
+$data = json_decode(file_get_contents('php://input'), true);
 
-    $_SESSION['solucion'] = $_POST['solucion'];
-    $_SESSION['fecha'] = $_POST['fecha'];
-    $_SESSION['cantidad'] = $_POST['cantidad'];
-    $_SESSION['goteo'] = $_POST['goteo']; 
-    $_SESSION['frecuencia'] = $_POST['frecuencia'];
-    $_SESSION['inicia'] = $_POST['inicia'];
-    $_SESSION['termina'] = $_POST['termina'];
-
-    // Redirige al siguiente formulario (form2.php en este caso)
-    header("Location: form3.php");
-    exit();
+    $_SESSION['solucion'] = $data['solucion'] != '' ? $data['solucion'] : NULL; 
+    $_SESSION['fecha'] = $data['fecha'] != '' ? $data['fecha'] : NULL;
+    $_SESSION['cantidad'] = $data['cantidad'] != '' ? $data['cantidad'] : NULL; 
+    $_SESSION['goteo'] = $data['goteo']  != '' ? $data['goteo'] : NULL; 
+    $_SESSION['frecuencia'] = $data['frecuencia'] != ''? $data['frecuencia'] : NULL; 
+    $_SESSION['inicia'] = $data['inicia'] != '' ? $data['inicia'] : NULL; 
+    $_SESSION['termina'] = $data['termina'] != '' ? $data['termina'] : NULL; 
 
 
+    echo true;
+    
 
 ?>
