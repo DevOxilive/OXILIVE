@@ -437,7 +437,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/user/pages/indexAsistencia.php">
+            <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/user/pages/indexAsistencias.php">
                 <i class="bi bi-calendar2-check"></i>
                 <span>Asistencias</span>
             </a>

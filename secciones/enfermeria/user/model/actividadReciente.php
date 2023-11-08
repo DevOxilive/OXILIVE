@@ -4,8 +4,8 @@
 
     //Consulta que trae los checks de hoy
     $secuenciaHoy = $con->prepare("
-        SELECT a.*, checkName, CONCAT(p.Nombres, ' ', p.Apellidos) as 'nomPaciente', p.id_pacientes
-        FROM asistencias a, checkk c, asignacion_horarios ah, pacientes_oxigeno p
+        SELECT a.*, checkName, CONCAT(p.nombres, ' ', p.apellidos) as 'nomPaciente', p.id_pacientes
+        FROM asistencias a, checkk c, asignacion_horarios ah, pacientes_call_center p
         WHERE a.id_empleadoEnfermeria = :idus
         AND a.fechaAsis = :fechaActual
         AND a.id_check = c.id_check
@@ -24,8 +24,8 @@
 
     //Consulta que trae los checks de hace una semana
     $secuenciaSemana = $con->prepare("
-        SELECT a.*, checkName, CONCAT(p.Nombres, ' ', p.Apellidos) as 'nomPaciente', p.id_pacientes
-        FROM asistencias a, checkk c, asignacion_horarios ah, pacientes_oxigeno p
+        SELECT a.*, checkName, CONCAT(p.nombres, ' ', p.apellidos) as 'nomPaciente', p.id_pacientes
+        FROM asistencias a, checkk c, asignacion_horarios ah, pacientes_call_center p
         WHERE id_empleadoEnfermeria = :idus
         AND fechaAsis >= :fechaSemana
         AND a.id_check = c.id_check
@@ -55,8 +55,8 @@
         $fecha_fin = date('Y-m-t');
     }
     $secuenciaQuincena = $con->prepare("
-        SELECT a.*,checkName, CONCAT(p.Nombres, ' ', p.Apellidos) as 'nomPaciente', p.id_pacientes
-        FROM asistencias a, checkk c, asignacion_horarios ah, pacientes_oxigeno p
+        SELECT a.*,checkName, CONCAT(p.nombres, ' ', p.apellidos) as 'nomPaciente', p.id_pacientes
+        FROM asistencias a, checkk c, asignacion_horarios ah, pacientes_call_center p
         WHERE id_empleadoEnfermeria = :idus
         AND fechaAsis BETWEEN :fecha_inicio AND :fecha_fin
         AND a.id_check = c.id_check

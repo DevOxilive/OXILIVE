@@ -4,7 +4,7 @@ function getPaciente(){
     //Se setea el dato en JSON
     var data={ idPac: paciente };
     //Se manda por fetch API
-    fetch("../model/paciente.php", {
+    fetch("model/paciente.php", {
         body: JSON.stringify(data),
         method: "POST",
         headers: {
@@ -14,6 +14,10 @@ function getPaciente(){
     .then(response => response.json())
     .then(datos => {
         datos.forEach(dato => {
+            if(document.getElementById("puesto").value == 11){
+                let bread = document.getElementById("bread"); 
+                bread.textContent = dato.nombres;
+            }
             setGeneral(dato);
             setDireccion(dato);
             eraseEmpty();
@@ -92,4 +96,3 @@ function eraseEmpty(){
 }
 //Se ejecuta una vez cada que se refresca la página
 getPaciente();
-
