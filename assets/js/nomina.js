@@ -2,7 +2,7 @@ const formulario = document.getElementById('formulario');
 const inputs = document.querySelectorAll('#formulario input');
 
 const expresiones = {
-	No_nomina: /^[0-9a-zA-Z]{1,11}$/, // Letras y espacios, pueden llevar acentos.
+	No_nomina: /^\d+$/, // Letras y espacios, pueden llevar acentos.
 }
 
 const campos = {

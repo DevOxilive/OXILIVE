@@ -50,11 +50,11 @@ function Footer(){
 require('../../../connection/conexion.php');
 
 $txtID = (isset($_GET['txtID'])) ? $_GET['txtID'] : "";
-$sentencia = $con->prepare("SELECT id_procedi,CONCAT(po.Nombres, ' ', po.Apellidos)AS Paciente,No_nomina,
+$sentencia = $con->prepare("SELECT id_procedi,CONCAT(po.nombres, ' ', po.apellidos)AS Paciente,No_nomina,
 CONCAT(u.Nombres, ' ', u.Apellidos) AS Medico ,
 icd, dx, fecha, pacienteYnomina , c.cpt 
 FROM procedimientos p, usuarios u, 
-pacientes_oxigeno po , cpts c
+pacientes_call_center po , cpts c
 WHERE p.medico = u.id_usuarios
 AND p.pacienteYnomina = po.id_pacientes 
 AND c.id_cpt = p.cpt
@@ -73,11 +73,11 @@ $pdf->SetXY(20,29);
 $pdf->MultiCell(70, 5, ('Numero de Nomina: ' .$imprime['No_nomina'] ));
 $pdf->SetXY(20, 30);
 $pdf->MultiCell(70, 20, utf8_decode('Médico Tratante:' .$imprime['Medico'])); 
-$pdf->SetXY(100, 20);
+$pdf->SetXY(112, 20);
 $pdf->MultiCell(70, 5, utf8_decode('Código ICD:' .$imprime['icd'] )); 
-$pdf->SetXY(100, 30);
+$pdf->SetXY(112, 29);
 $pdf->MultiCell(70, 5,  utf8_decode('Dx:' .$imprime['dx'] ));
-$pdf->SetXY(100, 37);
+$pdf->SetXY(112, 37);
 $pdf->MultiCell(70, 5,  utf8_decode('CPT:' .$imprime['cpt']));
 }
 //Aquí mando a imprimir La lista de los Código , DESCRIPCION, FECHA, UNIDAD

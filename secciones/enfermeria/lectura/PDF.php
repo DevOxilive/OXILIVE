@@ -50,10 +50,10 @@ $txtID = (isset($_GET['txtID'])) ? $_GET['txtID'] : "";
 $sentencia = $con->prepare("SELECT p.id_procedi, p.icd, p.dx, p.pacienteYnomina, 
 u.id_usuarios, CONCAT(u.Nombres, ' ', u.Apellidos) AS Medico,
 po.id_pacientes, CONCAT(po.Nombres, ' ', po.Apellidos) AS Paciente,po.No_nomina,
-po.Fecha_registro, po.Edad,po.municipio,po.colonia,po.rfc,
+po.Fecha_registro, po.Edad,po.colonia,po.rfc,
 cg.id_codigo, cg.codigo , cg.descripcion, cg.unidad
 FROM procedimientos p, usuarios u, 
-pacientes_oxigeno po , codigo_administradora cg
+pacientes_call_center po , codigo_administradora cg
 WHERE p.medico = u.id_usuarios
 AND p.pacienteYnomina = po.id_pacientes
 AND p.codigo = cg.id_codigo AND p.pacienteYnomina = :paciente;");
@@ -77,7 +77,7 @@ while ($histrial = $sentencia->fetch(PDO::FETCH_ASSOC)) {
         $pdf->SetFont('Arial', '', 8);
         $pdf->SetXY(132, 23.2);
          $pdf->SetTextColor(255, 0, 0); // Establecer el color a rojo (R, G, B)
-        $pdf->MultiCell(90, 10, utf8_decode($histrial['rfc']));
+        $pdf->MultiCell(90, 10, ($histrial['rfc']));
          $pdf->SetTextColor(0, 0, 0);
         $pdf->SetFont('Arial', '', 10);
         $pdf->SetXY(170, 23.2);
