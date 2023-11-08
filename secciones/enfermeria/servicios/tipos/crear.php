@@ -17,6 +17,7 @@ if (!isset($_SESSION['us'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<?php echo $url_base ?>assets/css/edit.css">
 </head>
 <main id="main" class="main">
     <div class="card">
@@ -29,25 +30,27 @@ if (!isset($_SESSION['us'])) {
         </div>
         <div class="card-body" style="border: 2px solid #BFE5FF;">
             <form action="<?php echo $url_base ?>secciones/enfermeria/servicios/tipos/model/nuevoTServicio.php" method="POST" enctype="multipart/form-data" class="formLogin row g-3">
-                <div class="contenido col-md-6">
+                <div class="contenido col-md-8">
                     <br>
                     <label for="nombreServicio" class="form-label">Nombre del Servicio:</label>
-                    <input type="text" class="form-control" name="nombreServicio" id="nombreServicio" placeholder="Ingresa el nombre del servicio" required>
+                    <input type="text" class="form-control" name="nombreServicio" id="nombreServicio" placeholder="Ingresa el nombre del servicio">
                 </div>
-                <div class="contenido col-md-3">
-                    <br>
+                <div class="col-md-4"></div>
+                <div class="contenido col-md-4">
                     <label for="horasServicio" class="form-label">Horas del Servicio:</label>
-                    <select name="horasServicio" id="horasServicio" class="form-select" required>
+                    <select name="horasServicio" id="horasServicio" class="form-select">
                         <option value="">Seleccione una duración</option>
                         <option value="08">8 horas</option>
                         <option value="12">12 horas</option>
                         <option value="24">24 horas</option>
                     </select>
                 </div>
-                <div class="contenido col-md-3">
-                    <br>
+                <div class="contenido col-md-2">
                     <label for="sueldo" class="form-label">Sueldo:</label>
-                    <input type="number" class="form-control" name="sueldo" id="sueldo" placeholder="$300" required>
+                    <div class="input-group">
+                        <span class="input-group-text span-comp" id="spanSueldo">$</span>
+                        <input type="text" class="form-control" name="sueldo" id="sueldo" placeholder="Ingresa el monto">
+                    </div>
                 </div>
                 <br><br>
                 <div class="col-12">
@@ -61,70 +64,26 @@ if (!isset($_SESSION['us'])) {
 
 </html>
 <script>
-$(document).ready(function () {
-  $("form").submit(function (event) {
-    var formData = {
-      nomServ: $("#nombreServicio").val(),
-      horasServ: $("#horasServicio").val(),
-      sueldo: $("#sueldo").val(),
-    };
-    $.ajax({
-      type: "POST",
-      url: "model/nuevoTServicio.php",
-      data: formData,
-      success: function() {
+    function confirmCancel(event) {
+        event.preventDefault();
         Swal.fire({
-            title: "Registrado",
-            text: "Registro realizado correctamente",
-            icon: "success",
-            showConfirmButton: false,
-            timer: 1500
-        }).then( function(){
-            window.location.replace('index.php');
-        });
-      }
-    });
-    event.preventDefault();
-
-  });
-});
-    function send(data) {
-        parametros = {
-            id: codigo
-        };
-        $.ajax({
-            data: parametros,
-            url: "./eliminar.php",
-            type: "POST",
-            beforeSend: function() {},
-            success: function() {
-                Swal.fire("Eliminado:", "Ha sido eliminado", "success").then((result) => {
-                    window.location.href = "index.php"
-                });
-            },
-
+            title: '¿Estás seguro?',
+            text: "Si cancelas, se perderán los datos ingresados.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, cancelar',
+            cancelButtonText: 'No, continuar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Aquí puedes redirigir al usuario a otra página o realizar alguna otra acción
+                window.location.href = "<?php echo $url_base; ?>secciones/enfermeria/servicios/tipos/index.php";
+            }
         });
     }
-
-        function confirmCancel(event) {
-            event.preventDefault();
-            Swal.fire({
-                title: '¿Estás seguro?',
-                text: "Si cancelas, se perderán los datos ingresados.",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Sí, cancelar',
-                cancelButtonText: 'No, continuar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Aquí puedes redirigir al usuario a otra página o realizar alguna otra acción
-                    window.location.href = "<?php echo $url_base; ?>secciones/enfermeria/servicios/tipos/index.php";
-                }
-            });
-        }
 </script>
+<script src="js/validacion.js"></script>
 <?php
 include('../../../../templates/footer.php');
 ?>

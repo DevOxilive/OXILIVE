@@ -6,7 +6,6 @@ if (!isset($_SESSION['us'])) {
     include("../../templates/header.php");
     include("../../connection/conexion.php");
     include("../../secciones/puestos/consulta.php");
-    include("../../secciones/usuarios/consulta.php");
     include("../../module/genero.php");
     include("../../module/estado.php");
     include("../../secciones/usuarios/usuariosUP.php");
@@ -201,9 +200,6 @@ if (!isset($_SESSION['us'])) {
                         <input type="file" class="form-control" name="credencialFrente" id="credencialFrente"
                             onchange="cambiarImagen1(event)" style="display: none;">
                     </div>
-
-
-
                     <div class="col-md-4">
                         <label for="credencialAtras" class="form-label">(INE) Credencial parte inferior </label>
                         <br>
@@ -290,8 +286,6 @@ if (!isset($_SESSION['us'])) {
             });
         });
     });
-//
-
     //    INE1
     function mostrarImagen1(event) {
         var input = event.target;
@@ -322,7 +316,6 @@ if (!isset($_SESSION['us'])) {
             reader.readAsDataURL(input.files[0]);
         }
     }
-
     function eliminarImagen1(event) {
         event.preventDefault();
         var imagenActual1 = document.getElementById("imagenActual1");
@@ -368,24 +361,6 @@ if (!isset($_SESSION['us'])) {
         imagenActual2.src = "./img/error.png";
         var selectorArchivo2 = document.getElementById("credencialAtras");
         selectorArchivo2.value = null;
-    }
-
-    function mostrarAlertaCancelar() {
-        Swal.fire({
-            title: '¿Estás seguro?',
-            text: 'Los cambios no se guardarán',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Sí, cancelar',
-            cancelButtonText: 'No, continuar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Redireccionar a la página de inicio o realizar alguna acción adicional
-                window.location.href = '<?php echo $url_base; ?>secciones/usuarios/index.php';
-            }
-        })
     }
 </script>
 <?php

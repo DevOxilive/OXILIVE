@@ -7,7 +7,6 @@ if (!isset($_SESSION['us'])) {
     include('../../../../connection/conexion.php');
     include("../../../usuarios/consulta.php");
     include('model/eliminar.php');
-    include("model/consulta.php");
 } else {
     echo "Error en el sistema";
 }
@@ -28,20 +27,26 @@ if (!isset($_SESSION['us'])) {
                 <h2>Horario de servicios</h2>
                 <hr>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        Filtro
+                    <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="btnFiltro">
+                        <i class="bi bi-funnel-fill"></i> Filtro
                     </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="" onclick="getTabla(event)">Sin Completar</a></li>
-                        <li><a class="dropdown-item" href="" onclick="getTabla(event)">En Proceso</a></li>
-                        <li><a class="dropdown-item" href="" onclick="getTabla(event)">Completados</a></li>
+                    <ul class="dropdown-menu" id="lista">
+                        <li><a class="dropdown-item" href="" onclick="filtro(event, 1, this)">Sin Completar</a></li>
+                        <li><a class="dropdown-item" href="" onclick="filtro(event, 2, this)">En Proceso</a></li>
+                        <li><a class="dropdown-item" href="" onclick="filtro(event, 3, this)">Completados</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">Cancelados</a></li>
+                        <li><a class="dropdown-item" href="" onclick="filtro(event, 4, this)">Cancelados</a></li>
+                        <li class="deleteFilter" style="display: none;">
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li class="deleteFilter" style="display: none;">
+                            <a class="dropdown-item text-danger" href="" onclick="filtro(event, 0, this)">Eliminar filtro</a>
+                        </li>
                     </ul>
                 </div>
-                <a class="btn btn-outline-primary" href="crear.php" role="button">
+                <a class="btn btn-outline-primary" href="pages/crear.php" role="button">
                     <i class="bi bi-calendar-plus"></i>
                     Nueva Guardia
                 </a>
@@ -59,38 +64,7 @@ if (!isset($_SESSION['us'])) {
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <?php foreach ($lista_horarios as $horario) { ?>
-                                <tr id="fila<?php echo $horario['id_asignacionHorarios']; ?>">
-                                    <td id="fila<?php echo $horario['id_asignacionHorarios']; ?>">
-                                        <?php echo $horario['enfermero']; ?>
-                                    </td>
-                                    <td>
-                                        <center>
-                                            <?php echo $horario['fecha']; ?>
-                                        </center>
-                                    </td>
-                                    <td>
-                                        <center>
-                                            <?php echo $horario['horarioEntrada']; ?> /<br>
-                                            <?php echo $horario['horarioSalida']; ?>
-                                        </center>
-                                    </td>
-                                    <td>
-                                        <?php echo $horario['paciente']; ?>
-                                    </td>
-                                    <td>
-                                        <center>
-                                            <span id="status<?php echo $horario['id_asignacionHorarios'] ?>">
-                                            </span>
-                                        </center>
-                                    </td>
-                                    <td>
-                                        <center id="acciones<?php echo $horario['id_asignacionHorarios'] ?>">
-                                        </center>
-                                    </td>
-                                </tr>
-                            <?php } ?>
+                        <tbody id="table">
                         </tbody>
                     </table>
                 </div>
@@ -143,14 +117,11 @@ if (!isset($_SESSION['us'])) {
                 });
             }
         });
-        function getTabla(e){
-            e.preventDefault();
-            
-        }
     }
 </script>
 <script src="js/statusHorario.js"></script>
 <script src="js/cancelados.js"></script>
+<script src="js/filtro.js"></script>
 
 </html>
 <?php

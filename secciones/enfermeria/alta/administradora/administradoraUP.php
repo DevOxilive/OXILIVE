@@ -2,45 +2,36 @@
 include("../../../../connection/conexion.php");
 include_once '../../../../templates/hea.php';
 
-if (isset($_GET['txtID'])) {
-
+/*if (isset($_GET['txtID'])) {
   //CONSULTA LOS DATOS Y TRAE LOS DATOS DE LA BASE DE DATOS
   $txtID = (isset($_GET['txtID'])) ? $_GET['txtID'] : "";
-  $sentencia = $con->prepare("SELECT * FROM administradora WHERE id_administradora=:id_administradora");
-  $sentencia->bindParam(":id_administradora", $txtID);
+  //$administradora = (isset($_GET['adminis$administradora'])) ? $_GET['adminis$administradora'] : "";
+  //$Nombre_banco = (isset($_GET['Nombre_banco'])) ? $_GET['Nombre_banco'] : "";
+
+  $sentencia = $con->prepare("SELECT * FROM bancos WHERE id_bancos=:bancos");
+  $sentencia->bindParam(":bancos", $txtID);
   $sentencia->execute();
-  $registro = $sentencia->fetch(PDO::FETCH_LAZY);
-  $Nombre_administradora = $registro["Nombre_administradora"];
-}
+  $registro = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+  $Nombre_banco = $registro["Nombre_banco"];
+  $administradora = $registro["administradora"];
+}*/
 
 if ($_POST) {
   //PRIMERO VERIFICA SI EL DATO A EDITAR NO EXISTE
   $txtID = (isset($_POST['txtID'])) ? $_POST['txtID'] : "";
-  $Nombre_administradora = (isset($_POST["Nombre_administradora"]) ? $_POST["Nombre_administradora"] : "");    
-  $consulta = $con->prepare("SELECT * FROM administradora WHERE Nombre_administradora = '$Nombre_administradora'");
+  $administradora = (isset($_POST["administradora"]) ? $_POST["administradora"] : "");    
+  $Nombre_banco = (isset($_POST["Nombre_banco"]) ? $_POST["Nombre_banco"] : ""); 
+  $consulta = $con->prepare("SELECT * FROM bancos WHERE Nombre_banco = '$Nombre_banco'");
   $consulta->execute();
-  $resul = $consulta->rowCount();
-  if ($resul > 0) {
-    echo '<script language="javascript"> ';
-    echo 'Swal.fire({
-          icon: "warning",
-          title: "DUPLICADO",
-          text: "El dato ingresado ya existe",
-          showConfirmButton: false,
-          timer: 2000,
-       }).then(function() {
-          window.location = "index.php";
-          });';
-    echo '</script>';
-  } else {
-    //SI NO EXISTE, ENTONCES SI PUEDE EDITAR EL DATO CON ESE NOMBRE. 
-    $sentencia = $con->prepare("UPDATE administradora 
-    SET Nombre_administradora=:Nombre_administradora
-                WHERE id_administradora=:id_administradora");
+    $sentencia = $con->prepare("UPDATE bancos 
+    SET Nombre_banco=:Nombre_banco , admi = :admi
+                WHERE id_bancos=:id_banco");
 
-    $sentencia->bindParam(":Nombre_administradora", $Nombre_administradora);
-    $sentencia->bindParam(":id_administradora", $txtID);
+    $sentencia->bindParam(":Nombre_banco", $Nombre_banco);
+    $sentencia->bindParam(":admi", $administradora);
+    $sentencia->bindParam(":id_banco", $txtID);
     $sentencia->execute();
+
     echo '<script language="javascript"> ';
     echo 'Swal.fire({
           icon: "success",
@@ -52,6 +43,7 @@ if ($_POST) {
           window.location = "index.php";
           });';
     echo '</script>';
-  }
+    
 }
+
 ?>
