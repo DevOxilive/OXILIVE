@@ -408,7 +408,6 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
         </ul>
         </li><!-- End Forms Nav -->
     <?php endif; ?>
-
     <?php if ($_SESSION['puesto'] === 11) : ?>
         <!-- Apartado de bloque de departamento de enfermeria -->
 
@@ -437,7 +436,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/user/pages/indexAsistencias.php">
+            <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/user/pages/indexAsistencias.php?id=<?php echo $_SESSION['idus']; ?>">
                 <i class="bi bi-calendar2-check"></i>
                 <span>Asistencias</span>
             </a>

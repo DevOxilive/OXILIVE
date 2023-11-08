@@ -5,7 +5,8 @@ if (!isset($_SESSION['us'])) {
 } elseif (isset($_SESSION['us'])) {
     include("../../../../templates/header.php");
     include("../../../../connection/conexion.php");
-    include("../model/asistencias.php");
+    $id = $_GET['id'];
+    include("../model/fechasAsistencias.php");
 } else {
     echo "Error en el sistema";
 }
@@ -16,60 +17,41 @@ if (!isset($_SESSION['us'])) {
 <head>
     <link rel="stylesheet" href="<?php echo $url_base; ?>assets/css/foto_perfil.css">
     <link rel="stylesheet" href="<?php echo $url_base; ?>assets/css/edit.css">
+    <link rel="stylesheet" href="<?php echo $url_base; ?>secciones/enfermeria/user/css/timeline.css">
 </head>
 <main id="main" class="main">
-    <?php foreach ($lista_asistencias as $asis) { ?>
-        <div class="pagetitle">
-            <h1>Asistencias</h1>
-            <br>
-            <nav>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="<?php echo $url_base; ?>secciones/enfermeria/user/index.php">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Asistencias</li>
-                </ol>
-            </nav>
-        </div>
-        <section class="section dashboard">
-            <div class="row">
-                <div class="col-lg-7">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Check In</h5>
-                            <div class="row align-items-center">
-                                <img src="<?php echo $asis['checkFotografia']; ?>" alt="Foto de Asistencias">
-                            </div>
-
-                        </div>
+    <div class="pagetitle">
+        <h1>Asistencias</h1>
+        <br>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="<?php echo $url_base; ?>secciones/enfermeria/user/index.php">Dashboard</a></li>
+                <li class="breadcrumb-item active">Asistencias</li>
+            </ol>
+        </nav>
+    </div>
+    <section class="section dashboard">
+        <div class="container animated animated-done bootdey" data-animate="fadeIn" data-animate-delay="0.05" style="animation-delay: 0.05s;">
+            <hr class="hr-lg mt-0 mb-2 w-10 mx-auto hr-primary">
+            <h2 class="text-slab text-center text-uppercase mt-0 mb-5">
+                Timeline de asistencias
+            </h2>
+            <div class="timeline timeline-left mx-lg-10">
+                <?php foreach ($lista_fechas as $fechas) { ?>
+                    <div class="timeline-breaker"><?php echo $fechas['fechaAsis']; ?></div>
+                    <!--Timeline item 1-->
+                    <div class="timeline-item mt-3 row text-center p-2" data-date="<?php echo $fechas['fechaAsis']; ?>">
+                        <div class="col font-weight-bold text-md-right">West Ham</div>
+                        <div class="col-1">vs</div>
+                        <div class="col font-weight-bold text-md-left">Chelsea</div>
+                        <div class="col-12 text-xs text-muted">Football - English Premier League - 19:45 GMT</div>
                     </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Ubicación</h5>
-                            <iframe width="600" height="450" style="border:0" loading="lazy"
-                            allowfullscreen referrerpolicy="no-referrer-when-downgrade"
-                            src="https://www.google.com/maps/embed/v1/place?key=API_KEY&q=Space+Needle,Seattle+WA">
-                            </iframe>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-5">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Datos Generales</h5>
-                            <dl class="row">
-                                <dt class="col-lg-3 col-md-4 label">Paciente:</dt>
-                                <dd class="col-lg-9 col-md-8" id="paciente"><?php echo $asis['id_empleadoEnfermeria']; ?></dd>
-                                <dt class="col-lg-3 col-md-4 label">Hora Check:</dt>
-                                <dd class="col-lg-9 col-md-8" id="horaEntrada"><?php echo $asis['checkTime']; ?></dd>
-                                <dt class="col-lg-3 col-md-4 label">Fecha Check:</dt>
-                                <dd class="col-lg-9 col-md-8" id="fechaEntrada"><?php echo $asis['fechaAsis']; ?></dd>
-                            </dl>
-                        </div>
-                    </div>
-                </div>
+                   
+                    <!--<div class="timeline-breaker timeline-breaker-bottom">More next week........</div>-->
+                <?php } ?>
             </div>
-        </section>
-    <?php } ?>
+        </div>
+    </section>
 </main>
 
 </html>
