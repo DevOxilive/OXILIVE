@@ -48,7 +48,7 @@ if (!isset($_SESSION['us'])) {
                     <div class="formulario__grupo">
                         <label for="temperatura" class="formulario__label">Temperatura:</label>
                         <div class="formulario__grupo-input">
-                            <input type="number" class="formulario__input" name="temperatura" id="temperatura"
+                            <input type="text" class="formulario__input" name="temperatura" id="temperatura"
                                 placeholder="Ej. 35.3º">
                         </div>
                     </div>
@@ -57,7 +57,7 @@ if (!isset($_SESSION['us'])) {
                     <div class="formulario__grupo">
                         <label for="pulso" class="formulario__label">Pulso:</label>
                         <div class="formulario__grupo-input">
-                            <input type="number" class="formulario__input" name="pulso" id="pulso"
+                            <input type="text" class="formulario__input" name="pulso" id="pulso"
                                 placeholder="Ej. 100.67 ppm">
                         </div>
                     </div>
@@ -84,7 +84,7 @@ if (!isset($_SESSION['us'])) {
                     <div class="formulario__grupo">
                         <label for="spo2" class="formulario__label">SPO2:</label>
                         <div class="formulario__grupo-input">
-                            <input type="number" class="formulario__input" name="spo2" id="spo2" placeholder="89%">
+                            <input type="text" class="formulario__input" name="spo2" id="spo2" placeholder="89%">
                         </div>
                     </div>
                 </div>
@@ -92,7 +92,7 @@ if (!isset($_SESSION['us'])) {
                     <div class="formulario__grupo">
                         <label for="glicemiaCapilar" class="formulario__label">Glicemia Capilar:</label>
                         <div class="formulario__grupo-input">
-                            <input type="number" class="formulario__input" name="glicemiaCapilar" id="glicemiaCapilar"
+                            <input type="text" class="formulario__input" name="glicemiaCapilar" id="glicemiaCapilar"
                                 placeholder="Ej. 30.3º">
                         </div>
                     </div>

@@ -30,7 +30,7 @@ if (!isset($_SESSION['us'])) {
         </div>
         <?php foreach ($resultado as $asignacion) { ?>
         <div class="card-body" style="border: 2px solid #BFE5FF;">
-            <form action="#" method="POST" class="formLogin" id="formulario">
+            <form class="formLogin form-inline" id="formulario">
                 <div class="row">
                     <div class="col-md-2 ">
                         <div class="formulario__grupo" id="grupo__Nombre_administradora">
@@ -92,7 +92,7 @@ if (!isset($_SESSION['us'])) {
                         <div class="formulario__grupo">
                             <label for="peso" class="formulario__label">Nombre del enfermero:</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="enfermero" id="enferemro"
+                                <input type="text" class="formulario__input" name="enfermero" id="enfermero"
                                     value="<?php echo $asignacion['nombre del enfermero']; ?>" readonly disabled>
                             </div>
                         </div>
@@ -102,7 +102,7 @@ if (!isset($_SESSION['us'])) {
     </div>
     <br>
     <!-- Tu botón en HTML -->
-    <button id="btnSiguiente" class="btn btn-primary">Iniciar Registro</button>
+    <button id="btnSiguiente" class="btn btn-primary" type="submit" form="formulario">Iniciar Registro</button>
     <?php if ($datosGuardados) { ?>
     <button type="button" class="btn btn-outline-success" id="generar-pdf-btn" data-id="<?php echo $idReg; ?>">
         <span class="bi bi-file-earmark-pdf-fill"></span> Generar Registro
@@ -112,14 +112,7 @@ if (!isset($_SESSION['us'])) {
     </div>
     </div>
 </main>
-
 </html>
-<script>
-var btnSiguiente = document.getElementById('btnSiguiente');
-btnSiguiente.addEventListener('click', function() {
-    window.location.href = 'form1.php';
-});
-</script>
 <script type="text/javascript">
 // Obtener el botón por su ID
 var botonGenerarPDF = document.getElementById("generar-pdf-btn");
@@ -144,7 +137,7 @@ botonGenerarPDF.addEventListener("click", function() {
     xhr.send();
 });
 </script>
-
+<script src="js/valiform.js"></script>
 
 
 

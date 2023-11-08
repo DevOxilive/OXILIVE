@@ -27,7 +27,7 @@ if (!isset($_SESSION['us'])) {
             </h4>
         </div>
         <div class="card-body" style="border: 2px solid #BFE5FF;">
-            <form action="procesarf3.php" method="POST" class="formLogin form-inline" id="formulario">
+            <form class="formLogin form-inline" id="formulario">
             <div class="col-md-12">
                     <div class="formulario__grupo">
                         <label for="drescripcionCuracion" class="formulario__label">Curación (Descripción de procedimiento)</label>
@@ -35,83 +35,33 @@ if (!isset($_SESSION['us'])) {
                             <textarea name="drescripcionCuracion" id="drescripcionCuracion"
                                 style="width: 100%; max-width: 1000px; height: 90px;"
                                 placeholder="Descripción"></textarea>
-                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                         </div>
                     </div>
                 </div>    
             <div class="col-md-12">
                     <div class="formulario__grupo">
-                        <label for="notaenferdia" class="formulario__label">NOTA DE ENFREMERÍA (DÍA)</label>
+                        <label for="notaEnfermeria" class="formulario__label">NOTA DE ENFERMERÍA (DÍA O NOCHE)</label>
                         <div class="formulario__grupo-input">
-                            <textarea name="notaenferdia" id="notaenferdia"
+                            <textarea name="notaEnfermeria" id="notaEnfermeria"
                                 style="width: 100%; max-width: 1000px; height: 90px;"
                                 placeholder="Descripción"></textarea>
-                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="formulario__grupo">
-                        <label for="notaenfernoche" class="formulario__label">NOTA DE ENFREMERÍA (NOCHE)</label>
+                        <label for="descripComidas" class="formulario__label">NOTA DE ALIMENTACION (DESAYUNO, COMIDA Y CENA)</label>
                         <div class="formulario__grupo-input">
-                            <textarea name="notaenfernoche" id="notaenfernoche"
-                                style="width: 100%; max-width: 1000px; height: 90px;"
-                                placeholder="Descripción"></textarea>
-                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
+                            <textarea name="descripComidas" id="descripComidas"
+                                style="width: 100%; max-width: 900px; height: 90px;" placeholder="Descripción"></textarea>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 ">
                     <div class="formulario__grupo" id="grupo__Nombre_administradora">
-                        <label for="dasayunoH" class="formulario__label">DESAYUNO (HORARIO)</label>
+                        <label for="horarioComidas" class="formulario__label">HORARIO</label>
                         <div class="formulario__grupo-input">
-                            <input type="Time" class="formulario__input" name="dasayunoH" id="dasayunoH">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="formulario__grupo">
-                        <label for="descripDesayuno" class="formulario__label"></label>
-                        <div class="formulario__grupo-input">
-                            <textarea name="descripDesayuno" id="descripDesayuno"
-                                style="width: 100%; max-width: 900px; height: 90px;" placeholder="Desayuno"></textarea>
-                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 ">
-                    <div class="formulario__grupo" id="grupo__Nombre_administradora">
-                        <label for="comidaH" class="formulario__label">COMIDA (HORARIO)</label>
-                        <div class="formulario__grupo-input">
-                            <input type="Time" class="formulario__input" name="comidaH" id="comidaH">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="formulario__grupo">
-                        <label for="descripComida" class="formulario__label"></label>
-                        <div class="formulario__grupo-input">
-                            <textarea name="descripComida" id="descripComida"
-                                style="width: 100%; max-width: 900px; height: 90px;" placeholder="Comida"></textarea>
-                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 ">
-                    <div class="formulario__grupo" id="grupo__Nombre_administradora">
-                        <label for="cenaH" class="formulario__label">CENA (HORARIO)</label>
-                        <div class="formulario__grupo-input">
-                            <input type="Time" class="formulario__input" name="cenaH" id="cenaH">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="formulario__grupo">
-                        <label for="descripCena" class="formulario__label"></label>
-                        <div class="formulario__grupo-input">
-                            <textarea name="descripCena" id="descripCena"
-                                style="width: 100%; max-width: 900px; height: 90px;" placeholder="Cena"></textarea>
-                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
+                            <input type="Time" class="formulario__input" name="horarioComidas" id="horarioComidas">
                         </div>
                     </div>
                 </div>
@@ -122,18 +72,26 @@ if (!isset($_SESSION['us'])) {
         </div>
         </form>
     </div>
-    </div>
 </main>
 <script type="text/javascript">
 function mostrarAlerta() {
-    var confirmacion = confirm("¿Estás seguro de que deseas ir atrás? Los datos no se guardarán.");
-    if (confirmacion) {
-        window.history.back();
-    } else {
-        window.location.href = 'form3.php';
-    }
+    Swal.fire({
+        icon: 'question',
+        title: '¿Estás seguro de que deseas ir atrás?',
+        text: 'Los datos no se guardarán',
+        showCancelButton: true,
+        confirmButtonText: 'Sí',
+        cancelButtonText: 'No',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.history.back();
+        } else {
+            window.location.href = 'form3.php';
+        }
+    });
 }
 </script>
+<script src="js/valiform3.js"></script>
 
 <?php
 include("../../../templates/footer.php");

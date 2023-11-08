@@ -17,7 +17,7 @@ solucion.addEventListener("input", function () {
 });
 cantidad.addEventListener("input", function () {
     var regex = /^[a-zA-Z0-9.,\-\/\s]+$/;
-  var string = temperatura.value;
+  var string = cantidad.value;
   if (!regex.test(string)) {
     cantidad.value = string.slice(0, -1);
   }
@@ -61,7 +61,6 @@ termina.addEventListener("input", function () {
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
-    if (validar(formArray)) {
       var formData = {
         solucion: solucion.value,
         fecha: fecha.value,
@@ -92,7 +91,6 @@ form.addEventListener("submit", function (event) {
             });
           }
         });
-    } 
   
 });
 

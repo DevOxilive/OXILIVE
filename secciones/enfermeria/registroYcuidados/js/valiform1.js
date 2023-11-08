@@ -40,18 +40,19 @@ diagnosticoMedico.addEventListener("input", function () {
     diagnosticoMedico.value = string.slice(0, -1);
   }
 });
-temperatura.addEventListener("input", function () {
-  var regex = /^\d+(\.\d{1,2})?$/;
-  var numero = temperatura.value;
-  if (!regex.test(numero)) {
-    temperatura.value = numero.slice(0, -1);
+temperatura.addEventListener("input", function() {
+  var regex = /^\d+(\.\d{0,2})?$/;
+  var string = temperatura.value;
+  if (!regex.test(string)) {
+      temperatura.value = string.slice(0, -1);
   }
 });
-pulso.addEventListener("input", function () {
-  var regex = /^\d+(\.\d{1,2})?$/;
-  var numero = pulso.value;
-  if (!regex.test(numero)) {
-    pulso.value = numero.slice(0, -1);
+
+pulso.addEventListener("input", function() {
+  var regex = /^\d+(\.\d{0,2})?$/;
+  var string = pulso.value;
+  if (!regex.test(string)) {
+      pulso.value = string.slice(0, -1);
   }
 });
 respiracion.addEventListener("input", function () {
@@ -71,13 +72,13 @@ tensionArterial.addEventListener("input", function () {
   });
 spo2.addEventListener("input", function () {
   var regex = /^\d+$/;
-  var numero = spo2.value;
-  if (!regex.test(numero)) {
-    spo2.value = numero.slice(0, -1);
+  var string = spo2.value;
+  if (!regex.test(string)) {
+    spo2.value = string.slice(0, -1);
   }
 });
 glicemiaCapilar.addEventListener("input", function () {
-  var regex = /^\d+(\.\d{1,2})?$/;
+  var regex = /^\d+(\.\d{0,2})?$/;
   var string = glicemiaCapilar.value;
   if (!regex.test(string)) {
     glicemiaCapilar.value = string.slice(0, -1);
