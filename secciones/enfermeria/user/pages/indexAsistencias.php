@@ -31,28 +31,56 @@ if (!isset($_SESSION['us'])) {
         </nav>
     </div>
     <section class="section dashboard">
-        <div class="container animated animated-done bootdey" data-animate="fadeIn" data-animate-delay="0.05" style="animation-delay: 0.05s;">
-            <hr class="hr-lg mt-0 mb-2 w-10 mx-auto hr-primary">
-            <h2 class="text-slab text-center text-uppercase mt-0 mb-5">
-                Timeline de asistencias
-            </h2>
-            <div class="timeline timeline-left mx-lg-10">
-                <?php foreach ($lista_fechas as $fechas) { ?>
-                    <div class="timeline-breaker"><?php echo $fechas['fechaAsis']; ?></div>
-                    <!--Timeline item 1-->
-                    <div class="timeline-item mt-3 row text-center p-2" data-date="<?php echo $fechas['fechaAsis']; ?>">
-                        <div class="col font-weight-bold text-md-right">West Ham</div>
-                        <div class="col-1">vs</div>
-                        <div class="col font-weight-bold text-md-left">Chelsea</div>
-                        <div class="col-12 text-xs text-muted">Football - English Premier League - 19:45 GMT</div>
+        <div class="page-content page-container" id="page-content">
+            <div class="padding">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="timeline p-4 block mb-4">
+                            <div class="tl-item active">
+                                <div class="tl-dot b-warning"></div>
+                                <div class="tl-content">
+                                    <div class="">@twitter thanks for you appreciation and @google thanks for you appreciation</div>
+                                    <div class="tl-date text-muted mt-1">13 june 18</div>
+                                </div>
+                            </div>
+                            <div class="tl-item">
+                                <div class="tl-dot b-primary"></div>
+                                <div class="tl-content">
+                                    <div class="">Do you know how Google search works.</div>
+                                    <div class="tl-date text-muted mt-1">45 minutes ago</div>
+                                </div>
+                            </div>
+                            <div class="tl-item">
+                                <div class="tl-dot b-danger"></div>
+                                <div class="tl-content">
+                                    <div class="">Thanks to <a href="#" data-abc="true">@apple</a>, for iphone 7</div>
+                                    <div class="tl-date text-muted mt-1">1 day ago</div>
+                                </div>
+                            </div>
+                            <div class="tl-item">
+                                <div class="tl-dot b-danger"></div>
+                                <div class="tl-content">
+                                    <div class="">Order placed <a href="#" data-abc="true">@eBay</a> you will get your products</div>
+                                    <div class="tl-date text-muted mt-1">1 Week ago</div>
+                                </div>
+                            </div>
+                            <div class="tl-item">
+                                <div class="tl-dot b-warning"></div>
+                                <div class="tl-content">
+                                    <div class="">Learn how to use <a href="#" data-abc="true">Google Analytics</a> to discover vital information about your readers.</div>
+                                    <div class="tl-date text-muted mt-1">3 days ago</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                   
-                    <!--<div class="timeline-breaker timeline-breaker-bottom">More next week........</div>-->
-                <?php } ?>
+
+
+                </div>
             </div>
         </div>
     </section>
 </main>
+<script src="../js/timeline.js"></script>
 
 </html>
 <?php
