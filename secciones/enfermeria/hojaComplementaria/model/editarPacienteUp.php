@@ -77,11 +77,7 @@ if ($_POST) {
         } else {
             echo "Error al guardar el comprobante.";
         }
-    } else {
-        $comprobante = $comprobanteA;
     }
-    
-
     
     if (!empty($_FILES['Credencial_front']['name'])) {
         // Procesa la subida del nuevo Credencial INE Frontal aquí y actualiza la variable $Credencial_front con la nueva ruta.

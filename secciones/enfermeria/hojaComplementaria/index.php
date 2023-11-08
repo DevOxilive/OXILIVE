@@ -91,8 +91,6 @@ if (!isset($_SESSION['us'])) {
       success: function () {
         Swal.fire("Eliminado:", "Ha sido eliminado", "success").then((result) => {
           window.location.href = "index.php";
-
-
         });
       },
 
