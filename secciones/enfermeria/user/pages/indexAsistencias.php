@@ -40,8 +40,14 @@ if (!isset($_SESSION['us'])) {
                                 <div class="tl-item">
                                     <div class="tl-dot <?php echo ($dato['id_check'] == 1 ? "b-success" : "b-danger") ?>"></div>
                                     <div class="tl-content">
-                                        <div class="">Servicio de <b><?php echo $dato['nombreServicio'] ?></b> con <b><?php echo $dato['paciente'] ?></b></div>
-                                        <div class="tl-date text-muted mt-1"><?php echo $dato['fechaAsis'] . " | " . $dato['checkTime']; ?></div>
+                                        <div class="">
+                                            <?php echo ($dato['id_check'] == 1 ? "Entrada" : "Salida"); ?> del servicio 
+                                            <a class="fw-bold text-dark" href="datosAsistencia.php?idSer=<?php echo $dato['id_asistencias'];?>"><?php echo $dato['nombreServicio'] ?></a> con 
+                                            <a class="fw-bold text-dark" href="../../../pacientes/paciente.php?idPac=<?php echo $dato['id_pacientes']; ?>"><?php echo $dato['paciente'] ?></a>
+                                        </div>
+                                        <div class="tl-date text-muted mt-1">
+                                            <?php echo $dato['fechaAsis'] . " | " . $dato['checkTime']; ?>
+                                        </div>
                                     </div>
                                 </div>
                             <?php } ?>

@@ -2,7 +2,7 @@
 include("../../../../connection/conexion.php");
 $data = json_decode(file_get_contents('php://input'), true);
 $sentencia = $con -> prepare("
-SELECT a.*, CONCAT(u.Nombres, ' ', u.Apellidos) enfermero, CONCAT(p.nombres, ' ', p.apellidos) paciente, t.nombreServicio
+SELECT a.*, CONCAT(u.Nombres, ' ', u.Apellidos) enfermero, p.id_pacientes, CONCAT(p.nombres, ' ', p.apellidos) paciente, t.nombreServicio
 FROM asistencias a, usuarios u, asignacion_horarios ah, pacientes_call_center p, tipos_servicios t
 WHERE a.id_empleadoEnfermeria = u.id_usuarios
 AND a.id_horario = ah.id_asignacionHorarios

@@ -5,6 +5,7 @@ if (!isset($_SESSION['us'])) {
 } elseif (isset($_SESSION['us'])) {
     include("../../../../templates/header.php");
     include("../../../../connection/conexion.php");
+    $id = $_GET['idSer'];
     include("../model/asistencias.php");
 } else {
     echo "Error en el sistema";
@@ -25,7 +26,8 @@ if (!isset($_SESSION['us'])) {
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="<?php echo $url_base; ?>secciones/enfermeria/user/index.php">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Asistencias</li>
+                    <li class="breadcrumb-item"><a href="<?php echo $url_base; ?>secciones/enfermeria/user/pages/indexAsistencias.php?id=<?php echo $_SESSION['idus'];7 ?>">Asistencias</a></li>
+                    <li class="breadcrumb-item active"><?php echo $id; ?></li>
                 </ol>
             </nav>
         </div>
