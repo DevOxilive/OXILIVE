@@ -1,0 +1,19 @@
+.title-hour {
+    padding: 20px 0 15px 0;
+    font-size: 13px;
+    font-weight: 500;
+    color: #012970;
+    font-family: "Poppins", sans-serif;
+}
+
+.card-header {
+    padding: 12px;
+    padding-left: 20px;
+}
+.card {
+    margin-bottom: 15px;
+}
+.card-body {
+    padding: 12px;
+    padding-left: 20px;
+}

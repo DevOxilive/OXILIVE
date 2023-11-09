@@ -15,6 +15,7 @@ if (!isset($_SESSION['us'])) {
 <head>
     <link rel="stylesheet" href="<?php echo $url_base; ?>assets/css/foto_perfil.css">
     <link rel="stylesheet" href="<?php echo $url_base; ?>assets/css/edit.css">
+    <link rel="stylesheet" href="<?php echo $url_base; ?>secciones/enfermeria/user/css/horarios.css">
 </head>
 <main id="main" class="main">
     <div class="pagetitle">
@@ -27,24 +28,40 @@ if (!isset($_SESSION['us'])) {
             </ol>
         </nav>
     </div>
-    <div class="card">
-        <div class="card-body">
-            <table class="table table-bordered  border-dark table-hover" id="myTable">
-                <thead class="table-dark">
-                    <tr class="table-active table-group-divider" style="text-align: center;">
-                        <th>Paciente</th>
-                        <th>Horario</th>
-                        <th>Fecha</th>
-                        <th>Estado</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="tableCont">
-                </tbody>
-            </table>
-            <input type="hidden" id="idUs" value="<?php echo $_SESSION['idus']; ?>">
+    <?php foreach ($lista_horarios as $hor) {
+        switch ($hor['statusHorario']) {
+            case 1:
+                $border = "#ffc107";
+                break;
+            case 2:
+                $border = "#0dcaf0";
+                break;
+            case 3:
+                $border = "#198754";
+                break;
+            case 4:
+                $border = "#dc3545";
+                break;
+        } ?>
+        <div class="card">
+            <div class="card-header" style = "border-bottom: <?php echo $border;?> 2px solid;"data-bs-toggle="collapse" data-bs-target="#card<?php echo $hor['id_asignacionHorarios']; ?>">
+                <div class="row justify-content-between d-flex">
+                    <div class="col-10">
+                        <b class="title-hour"><?php echo $hor['nomPaciente']; ?></b>
+                    </div>
+                    <div class="col-2"><i class="bi bi-chevron-down ms-auto"></i></div>
+                </div>
+            </div>
+            <div id="card<?php echo $hor['id_asignacionHorarios']; ?>" class="card-body collapse">
+                <div class="row">
+                    <div class="col">
+                        sdfsdfds
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    <?php } ?>
+    <input type="hidden" id="idus" value="<?php echo $_SESSION['idus']?>">
 </main>
 
 </html>
