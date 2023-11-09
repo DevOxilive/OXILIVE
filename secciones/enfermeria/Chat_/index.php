@@ -1,3 +1,6 @@
+<script src="notificaciones/js/push.min.js"></script>
+<script src="js/notificaciones.js"></script>
+<link rel="stylesheet" href="css/index.css">
 <?php
 session_start();
 if (!isset($_SESSION['us'])) {
@@ -10,26 +13,20 @@ if (!isset($_SESSION['us'])) {
 }
 ?>
 <!-- seccion de chat formaulario-->
-<script src="notificaciones/js/push.min.js"></script>
-<script src="js/notificaciones.js"></script>
-<link rel="stylesheet" href="css/index.css">
-
-<body style="background-color: rgb(53, 53, 53);">
-    <main id="main" class="main">
-        <br>
-        <div class="row">
-            <div class="content">
-                <div class="user-list-container">
-                    <div id="notifi"></div>
-                    <h1><b>Chats</b></h1>
-                    <ul id="users-list">
-                        <!-- aqui se generan los usuarios desde la base de datos -->
-                    </ul>
-                </div>
+<main id="main" class="main">
+    <br>
+    <div class="row">
+        <div class="content">
+            <div class="user-list-container">
+                <div id="notifi"></div>
+                <h1><b>Chats</b></h1>
+                <ul id="users-list">
+                    <!-- aqui se generan los usuarios desde la base de datos -->
+                </ul>
             </div>
         </div>
-    </main>
-</body>
+    </div>
+</main>
 <script src="js/usuarios.js"></script>
 <!-- terminacion de chat -->
 <?php

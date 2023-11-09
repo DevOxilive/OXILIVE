@@ -16,9 +16,9 @@
 
 
 -- Volcando estructura de base de datos para bdoxilive
-DROP DATABASE IF EXISTS `bdoxilive`;
-CREATE DATABASE IF NOT EXISTS `bdoxilive` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
-USE `bdoxilive`;
+DROP DATABASE IF EXISTS `u199109938_oxilivePrueba`;
+CREATE DATABASE IF NOT EXISTS `u199109938_oxilivePrueba` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+USE `u199109938_oxilivePrueba`;
 
 -- Volcando estructura para tabla bdoxilive.administradora
 DROP TABLE IF EXISTS `administradora`;
