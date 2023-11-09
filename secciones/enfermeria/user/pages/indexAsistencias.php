@@ -6,7 +6,7 @@ if (!isset($_SESSION['us'])) {
     include("../../../../templates/header.php");
     include("../../../../connection/conexion.php");
     $id = $_GET['id'];
-    include("../model/fechasAsistencias.php");
+    include("../model/timeline.php");
 } else {
     echo "Error en el sistema";
 }
@@ -34,43 +34,17 @@ if (!isset($_SESSION['us'])) {
         <div class="page-content page-container" id="page-content">
             <div class="padding">
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-10">
                         <div class="timeline p-4 block mb-4">
-                            <div class="tl-item active">
-                                <div class="tl-dot b-warning"></div>
-                                <div class="tl-content">
-                                    <div class="">@twitter thanks for you appreciation and @google thanks for you appreciation</div>
-                                    <div class="tl-date text-muted mt-1">13 june 18</div>
+                            <?php foreach ($lista_timeline as $dato) { ?>
+                                <div class="tl-item">
+                                    <div class="tl-dot <?php echo ($dato['id_check'] == 1 ? "b-success" : "b-danger") ?>"></div>
+                                    <div class="tl-content">
+                                        <div class="">Servicio de <b><?php echo $dato['nombreServicio'] ?></b> con <b><?php echo $dato['paciente'] ?></b></div>
+                                        <div class="tl-date text-muted mt-1"><?php echo $dato['fechaAsis'] . " | " . $dato['checkTime']; ?></div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="tl-item">
-                                <div class="tl-dot b-primary"></div>
-                                <div class="tl-content">
-                                    <div class="">Do you know how Google search works.</div>
-                                    <div class="tl-date text-muted mt-1">45 minutes ago</div>
-                                </div>
-                            </div>
-                            <div class="tl-item">
-                                <div class="tl-dot b-danger"></div>
-                                <div class="tl-content">
-                                    <div class="">Thanks to <a href="#" data-abc="true">@apple</a>, for iphone 7</div>
-                                    <div class="tl-date text-muted mt-1">1 day ago</div>
-                                </div>
-                            </div>
-                            <div class="tl-item">
-                                <div class="tl-dot b-danger"></div>
-                                <div class="tl-content">
-                                    <div class="">Order placed <a href="#" data-abc="true">@eBay</a> you will get your products</div>
-                                    <div class="tl-date text-muted mt-1">1 Week ago</div>
-                                </div>
-                            </div>
-                            <div class="tl-item">
-                                <div class="tl-dot b-warning"></div>
-                                <div class="tl-content">
-                                    <div class="">Learn how to use <a href="#" data-abc="true">Google Analytics</a> to discover vital information about your readers.</div>
-                                    <div class="tl-date text-muted mt-1">3 days ago</div>
-                                </div>
-                            </div>
+                            <?php } ?>
                         </div>
                     </div>
 
