@@ -26,14 +26,30 @@ if (!isset($_SESSION['us'])) {
             </h4>
         </div>
         <div class="card-body" style="border: 2px solid #BFE5FF;">
-            <form action="procesarf1.php" method="POST" class="formLogin form-inline" id="formulario">
+            <form class="formLogin form-inline" id="formulario">
+                <div class="col-md-2">
+                    <div class="formulario__grupo">
+                        <label for="peso" class="formulario__label">Peso del paciente:</label>
+                        <div class="formulario__grupo-input">
+                            <input type="text" class="formulario__input" name="peso" id="peso" placeholder="Ej. 60 kg">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-10">
+                    <div class="formulario__grupo">
+                        <label for="diagnosticoMedico" class="formulario__label">Diagnostico medico:</label>
+                        <div class="formulario__grupo-input">
+                            <input type="text" class="formulario__input" name="diagnosticoMedico" id="diagnosticoMedico"
+                                placeholder="Ej. Enfermedad pulmonar obstructiva crónica">
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-2">
                     <div class="formulario__grupo">
                         <label for="temperatura" class="formulario__label">Temperatura:</label>
                         <div class="formulario__grupo-input">
-                            <input type="number" class="formulario__input" name="temperatura" id="temperatura"
-                                placeholder="Ej. 35.3º" step="any" pattern="^\d+(\.\d{1,2})?$">
-                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
+                            <input type="text" class="formulario__input" name="temperatura" id="temperatura"
+                                placeholder="Ej. 35.3º">
                         </div>
                     </div>
                 </div>
@@ -41,9 +57,8 @@ if (!isset($_SESSION['us'])) {
                     <div class="formulario__grupo">
                         <label for="pulso" class="formulario__label">Pulso:</label>
                         <div class="formulario__grupo-input">
-                            <input type="number" class="formulario__input" name="pulso" id="pulso"
-                                placeholder="Ej. 100.67 ppm" step="any" pattern="^\d+(\.\d{1,2})?$">
-                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
+                            <input type="text" class="formulario__input" name="pulso" id="pulso"
+                                placeholder="Ej. 100.67 ppm">
                         </div>
                     </div>
                 </div>
@@ -52,8 +67,7 @@ if (!isset($_SESSION['us'])) {
                         <label for="respiracion" class="formulario__label">Respiración:</label>
                         <div class="formulario__grupo-input">
                             <input type="number" class="formulario__input" name="respiracion" id="respiracion"
-                                placeholder="19 rpm" oninput="validarNumeroEntero(this)">
-                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
+                                placeholder="19 rpm">
                         </div>
                     </div>
                 </div>
@@ -62,9 +76,7 @@ if (!isset($_SESSION['us'])) {
                         <label for="tensionArterial" class="formulario__label">Tensión Arterial:</label>
                         <div class="formulario__grupo-input">
                             <input type="text" class="formulario__input" name="tensionArterial" id="tensionArterial"
-                                placeholder="120/80 mm Hg" oninput="validarTensionArterial(this)"
-                                pattern="\d{1,3}/\d{1,3}">
-                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
+                                placeholder="120/80 mm Hg">
                         </div>
                     </div>
                 </div>
@@ -72,9 +84,7 @@ if (!isset($_SESSION['us'])) {
                     <div class="formulario__grupo">
                         <label for="spo2" class="formulario__label">SPO2:</label>
                         <div class="formulario__grupo-input">
-                            <input type="number" class="formulario__input" name="spo2" id="spo2" placeholder="89%"
-                                oninput="validarNumeroEntero(this)">
-                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
+                            <input type="text" class="formulario__input" name="spo2" id="spo2" placeholder="89%">
                         </div>
                     </div>
                 </div>
@@ -82,9 +92,8 @@ if (!isset($_SESSION['us'])) {
                     <div class="formulario__grupo">
                         <label for="glicemiaCapilar" class="formulario__label">Glicemia Capilar:</label>
                         <div class="formulario__grupo-input">
-                            <input type="number" class="formulario__input" name="glicemiaCapilar" id="glicemiaCapilar"
-                                placeholder="Ej. 30.3º" step="any" pattern="^\d+(\.\d{1,2})?$">
-                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
+                            <input type="text" class="formulario__input" name="glicemiaCapilar" id="glicemiaCapilar"
+                                placeholder="Ej. 30.3º">
                         </div>
                     </div>
                 </div>
@@ -98,7 +107,6 @@ if (!isset($_SESSION['us'])) {
                                 <option value="2">2°</option>
                                 <option value="3">3°</option>
                             </select>
-                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                         </div>
                     </div>
                 </div>
@@ -112,7 +120,6 @@ if (!isset($_SESSION['us'])) {
                                 <option value="2">2°</option>
                                 <option value="3">3°</option>
                             </select>
-                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                         </div>
                     </div>
                 </div>
@@ -126,7 +133,6 @@ if (!isset($_SESSION['us'])) {
                                 <option value="2">2°</option>
                                 <option value="3">3°</option>
                             </select>
-                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                         </div>
                     </div>
                 </div>
@@ -140,7 +146,6 @@ if (!isset($_SESSION['us'])) {
                                 <option value="2">2°</option>
                                 <option value="3">3°</option>
                             </select>
-                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                         </div>
                     </div>
                 </div>
@@ -154,7 +159,6 @@ if (!isset($_SESSION['us'])) {
                                 <option value="2">2°</option>
                                 <option value="3">3°</option>
                             </select>
-                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                         </div>
                     </div>
                 </div>
@@ -168,7 +172,6 @@ if (!isset($_SESSION['us'])) {
                                 <option value="2">2°</option>
                                 <option value="3">3°</option>
                             </select>
-                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                         </div>
                     </div>
                 </div>
@@ -183,7 +186,6 @@ if (!isset($_SESSION['us'])) {
                                 <option value="3">3</option>
                                 <option value="4">4</option>
                             </select>
-                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                         </div>
                     </div>
                 </div>
@@ -195,7 +197,6 @@ if (!isset($_SESSION['us'])) {
                             <textarea name="descripcionUpp" id="descripcionUpp"
                                 style="width: 100%; max-width: 900px; height: 90px;"
                                 placeholder="(Descripción)"></textarea>
-                            <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                         </div>
                     </div>
                 </div>
@@ -204,52 +205,32 @@ if (!isset($_SESSION['us'])) {
             <button id="btnAnterior" class="btn btn-secondary" onclick="mostrarAlerta()">Anterior</button>
             <button id="btnSiguiente" class="btn btn-primary" type="submit" form="formulario">Siguiente</button>
         </div>
-        </form>
     </div>
     </div>
 </main>
-<script>
-
-//esta funcion es para que no acepte valores que no sean enteros
-function validarNumeroEntero(input) {
-    // Remueve cualquier punto decimal ingresado por el usuario
-    input.value = input.value.replace(/[.,]/g, '');
-
-    // Valida que el valor sea un número entero
-    if (input.value !== '') {
-        input.value = parseInt(input.value, 10);
-    }
-}
-
-//esta funcion es para que la tencion arterial valode el tipo de formato
-function validarTensionArterial(input) {
-    // Expresión regular para el formato XXX/XXX
-    var regex = /^\d{1,3}\/\d{1,3}$/;
-
-    // Valida el formato usando la expresión regular
-    if (!regex.test(input.value)) {
-        // Si el formato no es válido, muestra un mensaje de error
-        input.setCustomValidity("Formato incorrecto. Debe ser XXX/XXX.");
-    } else {
-        // Si el formato es válido, limpia el mensaje de error
-        input.setCustomValidity("");
-    }
+<script type="text/javascript">
+function mostrarAlerta() {
+    Swal.fire({
+        icon: 'question',
+        title: '¿Estás seguro de que deseas ir atrás?',
+        text: 'Los datos no se guardarán',
+        showCancelButton: true,
+        confirmButtonText: 'Sí',
+        cancelButtonText: 'No',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.history.back();
+        } else {
+            window.location.href = 'form1.php';
+        }
+    });
 }
 </script>
+<script src="js/valiform1.js"></script>
+
+
 
 
 <?php
 include("../../../templates/footer.php");
 ?>
-
-
-<script type="text/javascript">
-function mostrarAlerta() {
-    var confirmacion = confirm("¿Estás seguro de que deseas ir atrás? Los datos no se guardarán.");
-    if (confirmacion) {
-        window.history.back();
-    } else {
-        window.location.href = 'form1.php';
-    }
-}
-</script>

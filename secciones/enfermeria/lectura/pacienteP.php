@@ -30,7 +30,7 @@ if (!isset($_SESSION['us'])) {
                             <th scope="col">Lo atendio el medico</th>
                             <th scope="col">Fecha de consulta</th>
                             <th scope="col">Edad</th>
-                            <th scope="col">Municipio</th>
+                            <!-- <th scope="col">Municipio</th> -->
                             <th scope="col">colonia</th>
                             <th scope="col">RFC</th>
                         </tr>
@@ -41,7 +41,7 @@ if (!isset($_SESSION['us'])) {
                             <td><?php  echo $lista["Medico"]; ?></td>
                             <td><?php  echo $lista["Fecha_registro"]; ?></td>
                             <td><?php  echo $lista["Edad"]; ?></td>
-                            <td><?php  echo $lista["municipio"]; ?></td>
+                            <!-- <td><?php  echo $lista["municipio"]; ?></td> -->
                             <td><?php  echo $lista["colonia"]; ?></td>
                             <td><?php  echo $lista["rfc"]; ?></td>
                        </tr>

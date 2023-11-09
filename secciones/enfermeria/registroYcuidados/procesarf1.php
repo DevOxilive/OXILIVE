@@ -1,27 +1,24 @@
 <?php
 session_start();
+$data = json_decode(file_get_contents('php://input'), true);
+    $_SESSION['peso'] = $data['peso'];
+    $_SESSION['diagnosticoMedico'] = $data['diagnosticoMedico'];
+    $_SESSION['temperatura'] = $data['temperatura'];
+    $_SESSION['pulso'] = $data['pulso'];
+    $_SESSION['respiracion'] = $data['respiracion'];
+    $_SESSION['tensionArterial'] = $data['tensionArterial']; 
+    $_SESSION['spo2'] = $data['spo2'] != '' ? $data['spo2'] : NULL;
+    $_SESSION['glicemiaCapilar'] = $data['glicemiaCapilar'] != '' ? $data['glicemiaCapilar'] : NULL;
+    $_SESSION['vomito'] = $data['vomito'] != '' ? $data['vomito'] : NULL;
+    $_SESSION['evacuaciones'] = $data['evacuaciones'] != '' ? $data['evacuaciones'] : NULL;
+    $_SESSION['orina'] = $data['orina'] != '' ? $data['orina'] : NULL;
+    $_SESSION['ingestaLiquidos'] = $data['ingestaLiquidos'] != '' ? $data['ingestaLiquidos'] : NULL;
+    $_SESSION['caidas'] = $data['caidas'] != '' ? $data['caidas'] : NULL;
+    $_SESSION['drenajesVendajes'] = $data['drenajesVendajes'] != '' ? $data['drenajesVendajes'] : NULL;
+    $_SESSION['uppHh'] = $data['uppHh'] != '' ? $data['uppHh'] : NULL;
+    $_SESSION['descripcionUpp'] = $data['descripcionUpp'] != '' ? $data['descripcionUpp'] : NULL; 
 
-
-    $_SESSION['temperatura'] = $_POST['temperatura'];
-    $_SESSION['pulso'] = $_POST['pulso'];
-    $_SESSION['respiracion'] = $_POST['respiracion'];
-    $_SESSION['tensionArterial'] = $_POST['tensionArterial']; 
-    $_SESSION['spo2'] = $_POST['spo2'];
-    $_SESSION['glicemiaCapilar'] = $_POST['glicemiaCapilar'];
-    $_SESSION['vomito'] = $_POST['vomito'];
-    $_SESSION['evacuaciones'] = $_POST['evacuaciones'];
-    $_SESSION['orina'] = $_POST['orina'];
-    $_SESSION['ingestaLiquidos'] = $_POST['ingestaLiquidos'];
-    $_SESSION['caidas'] = $_POST['caidas'];
-    $_SESSION['drenajesVendajes'] = $_POST['drenajesVendajes'];
-    $_SESSION['uppHh'] = $_POST['uppHh'];
-    $_SESSION['descripcionUpp'] = $_POST['descripcionUpp']; 
-
-
-
-    // Redirige al siguiente formulario (form2.php en este caso)
-    header("Location: form2.php");
-    exit();
+    echo true;
 
 
 ?>

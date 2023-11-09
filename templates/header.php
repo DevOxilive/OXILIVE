@@ -349,9 +349,8 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                         <li>
                             <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#alta" href="#"><i class="bi bi-circle"></i><span>Dar de Alta</span><i class="bi bi-chevron-down ms-auto fs-6"></i></a>
                             <ul id="alta" class="collapse">
-                                <li><a href="<?php echo $url_base; ?>secciones/enfermeria/alta/cpts/index.php"><i class="bi bi-circle"></i><span>Cpts</span></a></li>
-                                <li><a href="<?php echo $url_base; ?>secciones/enfermeria/alta/bancos/index.php"><i class="bi bi-circle"></i><span>Bancos</a></li>
-                                <li><a href="<?php echo $url_base; ?>secciones/enfermeria/alta/aseguradoras/index.php"><i class="bi bi-circle"></i><span>Aseguradora</a></li>
+                                <li><a href="<?php echo $url_base; ?>secciones/enfermeria/alta/codigo_servicios/index.php"><i class="bi bi-circle"></i><span>Código</span></a></li>
+                                <li><a href="<?php echo $url_base; ?>secciones/enfermeria/alta/cpts/index.php"><i class="bi bi-circle"></i><span>Cpts</a></li>
                                 <li><a href="<?php echo $url_base; ?>secciones/enfermeria/alta/administradora/index.php"><i class="bi bi-circle"></i><span>Administradora</a></li>
                             </ul>
                         </li>
@@ -438,27 +437,21 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/user/pages/indexAsistencia.php">
+            <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/user/pages/indexAsistencias.php">
                 <i class="bi bi-calendar2-check"></i>
                 <span>Asistencias</span>
             </a>
         </li>
         <!--Implementación de apartado registros clínico y cuidados generales-->
-        <li>
-            <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/registroYcuidados/index.php">
-                <i class="bi bi-circle"></i>
-                <span>Registro Clínico y Cuidados Generales</span>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/registroYcuidados/registrosClinicos/registrosCreados.php">
+            <i class="bi bi-person-hearts"></i>
+                <span>Registros Clinicos</span>
             </a>
         </li>
-
         <!--Aquí termina-->
-
         <!-- End Forms Nav -->
-
     <?php endif; ?>
-
-
-
     <?php if ($_SESSION['puesto'] === 5 || $_SESSION['puesto'] === 1 || $_SESSION['puesto'] == 12) : ?>
 
         <li class="nav-item">

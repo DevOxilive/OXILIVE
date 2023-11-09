@@ -14,13 +14,12 @@ if (!isset($_SESSION['us'])) {
 
 <main id="main" class="main">
   <div class="row">
-  <h1 style="text-align: center;">Pacientes</h1>
   <div class="card-header" style="text-align: right;">
-                    <a class="btn btn-outline-dark" href="genepaci.php" role="button"><i class="bi bi-printer-fill"></i></a>
+  <h1 style="text-align: center; color:black;">Pacientes Generales</h1>
             </div>
     <div class="card">
       <div class="card-header">
-        <a class="btn btn-outline-primary" href="crear.php" role="button"><i class="bi bi-person-fill-add"></i>
+        <a class="btn btn-outline-primary" href="buscador.php" role="button"><i class="bi bi-person-fill-add"></i>
           Crear Hoja Complementaria</a>
     </div>
     <div class="card-body">
@@ -29,7 +28,7 @@ if (!isset($_SESSION['us'])) {
           <thead class="table-dark">
             <tr class="table-active table-group-divider" style="text-align: center;">
               <th scope="col">Num</th>
-              <th scope="col">Nombre</th>
+              <th scope="col">Nombre(s)</th>
               <th scope="col">Apellidos</th>
               <th scope="col">Aseguradora</th>
               <th scope="col">Telefono</th>
@@ -40,14 +39,14 @@ if (!isset($_SESSION['us'])) {
         <?php foreach($pacientes as $pacien){ ?>
           <tr>
             <th scope="row"><?php echo $pacien['id_pacientes']; ?></th>
-            <td><?php echo $pacien['Nombres']; ?></td>
-            <td><?php echo $pacien['Apellidos']; ?></td>
-            <td><?php echo $pacien['Nombre_aseguradora']; ?></td>
-            <td><?php echo $pacien['Telefono']; ?></td>
+            <td><?php echo $pacien['nombres']; ?></td>
+            <td><?php echo $pacien['apellidos']; ?></td>
+            <td><?php echo $pacien['Nombre_banco']; ?></td>
+            <td><?php echo $pacien['telefono']; ?></td>
             <td>
                 <a name="" id="" class="btn btn-outline-info" href="pacientes.php?txtID=<?php echo $pacien['id_pacientes']; ?>" role="button" style="font-size=10px;"><i class="bi bi-file-earmark-pdf"></i></a> |
                 <a name="" id="" class="btn btn-outline-warning"
-                href="editar.php?txtID=<?php echo $pacien['id_pacientes']; ?>" role="button"><i
+                href="crear/editarPaciente.php?txtID=<?php echo $pacien['id_pacientes']; ?>" role="button"><i
                     class="bi bi-pencil-square"></i></a> |
                 <a name="" id="" class="btn btn-outline-danger"
                   onclick="eliminar(<?php echo $pacien['id_pacientes']; ?>)" role="button" style="font-size=10px;"><i
@@ -86,7 +85,7 @@ if (!isset($_SESSION['us'])) {
     parametros = { id: codigo };
     $.ajax({
       data: parametros,
-      url: "./eliminar.php",
+      url: "model/eliminar.php",
       type: "POST",
       beforeSend: function () { },
       success: function () {
@@ -111,9 +110,6 @@ if (!isset($_SESSION['us'])) {
         row.classList.remove("border-animation");
       });
     });
-
-
-
   }
   $(document).ready(function () {
     $.noConflict();
@@ -125,8 +121,6 @@ if (!isset($_SESSION['us'])) {
     });
 
   });
-
-
 </script>
 <?php
 include("../../../templates/footer.php");

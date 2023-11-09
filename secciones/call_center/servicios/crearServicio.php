@@ -28,7 +28,7 @@ if (!isset($_SESSION['us'])) {
                     Datos del nuevo servicio</H4>
             </div>
             <div class="card-body" style="border: 12px solid #005880;">
-                <form action="./agregarServicio.php" method="POST" class="formLogin row g-3" id="formulario">
+                <form action="./model/agregarServicio.php" method="POST" class="formLogin row g-3" id="formulario">
 
                     <div class="contenido col-md-6"> <br>
                         <div class="formulario__grupo" id="grupo__nomServicio">

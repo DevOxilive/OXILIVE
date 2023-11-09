@@ -58,7 +58,7 @@ if (!isset($_SESSION['us'])) {
                                             <a name="" id="" class="btn btn-outline-primary" href="editar.php?id=<?php echo $tipos['id_tipoServicio']; ?>" role="button">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a> |
-                                            <a name="" class="btn btn-outline-danger" role="button" onclick="del(<?php echo $tipos['id_tipoServicio']; ?>)">
+                                            <a name="" class="btn btn-outline-danger" role="button" href="" onclick="del(event, <?php echo $tipos['id_tipoServicio']; ?>)">
                                                 <i class="bi bi-trash-fill"></i>
                                             </a>
                                         </center>
@@ -93,7 +93,8 @@ if (!isset($_SESSION['us'])) {
         });
     });
 
-    function del(id) {
+    function del(e, id) {
+        e.preventDefault();
         var $id = id;
         Swal.fire({
             title: '¿Seguro que quieres borrar este servicio?',

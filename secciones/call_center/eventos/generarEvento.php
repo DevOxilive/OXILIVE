@@ -6,8 +6,8 @@ if (!isset($_SESSION['us'])) {
 } elseif (isset($_SESSION['us'])) {
     include("../../../templates/header.php");
     include_once '../../../connection/conexion.php';
-    include("./buscarServicio.php");
-    include("./buscarMedicos.php");
+    include("../eventos/buscarServicio.php");
+    include("../eventos/buscarMedicos.php");
 } else {
     echo "Error en el sistema";
 }
@@ -30,7 +30,7 @@ $pacienteData = $_GET['pacienteData'];
             </div>
             <input type="hidden" id="idPac" value="<?php echo $pacienteData; ?>">
             <div class="card-body" style="border: 2px solid #BFE5FF;">
-                <form action="guardarevento.php" method="POST" class="formLogin row g-3" id="formulario">
+                <form action="./guardarEvento.php" method="POST" class="formLogin row g-3" id="formulario">
                     <div class="contenido col-md-1">
                         <br>
                         <label for="idPaciente" class="form-label">No</label>
@@ -193,6 +193,7 @@ $pacienteData = $_GET['pacienteData'];
             $('#tipoServicio' + newData).remove();
             $("#del" + newData).remove();
             newData--;
+            
         });
     });
 </script>
