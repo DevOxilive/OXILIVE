@@ -6,7 +6,6 @@ if (!isset($_SESSION['us'])) {
     include("../../../templates/header.php");
     include("../../../connection/conexion.php");
     include("model/proxServicio.php");
-    include("model/horarios.php");
 } else {
     echo "Error en el sistema";
 }
