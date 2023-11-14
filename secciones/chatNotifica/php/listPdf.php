@@ -1,5 +1,5 @@
-<form action="eliminar_documento.php" method="post">
-    <table>
+<!-- <form action="eliminar_documento.php" method="post"> -->
+
         <?php
         try {
 
@@ -10,5 +10,4 @@
             echo ":D";
         }
         ?>
-    </table>
-</form>
+<!-- </form> -->

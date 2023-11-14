@@ -14,6 +14,7 @@ $(document).ready(function () {
     setInterval(() => {
         documents();
     }, 2000);
+    
     // Made by Dazz
 
     /**

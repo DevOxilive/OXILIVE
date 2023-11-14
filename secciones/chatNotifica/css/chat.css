@@ -8,7 +8,7 @@ body {
     width: auto;
     margin: 0 auto;
     border: 1px solid #ffffff;
-    background-color: #bcd9ff;
+    background-color: #dcdcdc;
     padding: 10px;
     height: 55vh;
     overflow-y: scroll;
@@ -142,40 +142,10 @@ button[type="submit"] {
     border-radius: 10px;
 }
 
-.contenedor-documentos {
-    background-color: white;
-    width: auto;
-    margin: 20px auto;
-    border: 1px solid #ffffff;
-    padding: 10px;
-    height: 55vh;
-    overflow-y: scroll;
-}
-
-table {
-    width: auto;
-    border-collapse: separate;
-    text-align: center;
-}
-
-.encabezadoT {
-    background-color: #272727;
-    color: white;
-}
-
-.encabezadoT td {
-    padding: 10px;
-}
-
-tr:hover {
-    background-color: #888;
-    color: white;
-}
-
-a {
-    text-decoration: none;
-}
-
 .file-selected {
     background-color: rgb(64, 255, 64);
+}
+
+.ocult {
+    display: none;
 }
