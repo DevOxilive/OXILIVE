@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../../../../connection/conexion.php';
+include '../../../connection/conexion.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['message'])) {
     date_default_timezone_set('America/Mexico_City');
     $message = htmlspecialchars($_POST['message'], ENT_NOQUOTES, 'UTF-8');

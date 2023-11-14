@@ -8,17 +8,11 @@ try {
     $userP = $_SESSION['us'];
     $idus = $_SESSION['idus'];
 
-    include '../../../../connection/conexion.php';
-    $sentencia = $con->prepare("SELECT id_usuarios, Usuario, token, estatus, Foto_perfil FROM usuarios WHERE id_usuarios != $idus AND (id_departamentos = 1 OR id_departamentos =6)");
+    include '../../../connection/conexion.php';
+    $sentencia = $con->prepare("SELECT id_usuarios, Usuario, token, estatus, Foto_perfil FROM usuarios WHERE id_usuarios != $idus AND (id_departamentos = 1 OR id_departamentos =5 OR id_departamentos = 12) order by id_usuarios asc");
     $sentencia->execute();
     $resultado = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
-
-    echo '<a href="src/chat.php" rel="noopener noreferrer">
-            <li>
-                <img src="img/grupo.png" alt="img perfil"><b>Chat general</b>
-            </li>
-      </a>';
     if (count($resultado) > 0) {
         foreach ($resultado as $fila) {
             $sql2 = "SELECT * FROM mensajes WHERE (id_salida = {$idus} AND id_entrada = {$fila['id_usuarios']}) OR (id_entrada = {$idus} AND id_salida = {$fila['id_usuarios']}) ORDER BY id_msg DESC limit 1";

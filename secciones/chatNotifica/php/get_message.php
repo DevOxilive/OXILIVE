@@ -5,7 +5,7 @@ try {
 
     session_start();
     // Conexión a la base de datos (ajusta los valores según tu configuración)
-    include '../../../../connection/conexion.php';
+    include '../../../connection/conexion.php';
     if (!isset($_SESSION['idus'])) {
         throw new Exception(":D ");
     }
@@ -18,17 +18,19 @@ try {
     // comprueba que tenga filas la consulta si las tiene carga el chat
     if (count($resultado) > 0) {
         foreach ($resultado as $fila) {
+            $mensaje = $fila['msg'];
             if ($fila['leido'] == '1') {
                 $leido = '<i class="bi bi-check2-all"></i>';
             } else {
                 $leido = '<i class="bi bi-check2"></i>';
             }
             if ($_SESSION['idus'] === $fila['id_entrada']) {
-                echo '<div class="burbuja-you">' . $fila['msg'] . " " . $leido .  '. ' . $fila['hora_minuto'] .  '</div>';
+
+                echo '<div class="burbuja-you">' . $mensaje . " " . $leido .  '. ' . $fila['hora_minuto'] .  '</div>';
             } else {
                 $sent = $con->prepare("UPDATE mensajes SET leido = '1' WHERE id_msg={$fila['id_msg']}");
                 $sent->execute();
-                echo '<div class="burbuja">' . $fila['msg'] . ' .' . $fila['hora_minuto'] . '</div>';
+                echo '<div class="burbuja">' . $mensaje . ' .' . $fila['hora_minuto'] . '</div>';
             }
         }
     } else {

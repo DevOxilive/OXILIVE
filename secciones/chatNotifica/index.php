@@ -1,16 +1,15 @@
 <?php
 session_start();
 if (!isset($_SESSION['us'])) {
-    header('Location: ../../../login.php');
+    header('Location: ../../login.php');
 } elseif (isset($_SESSION['us'])) {
-    include("../../../templates/header.php");
+    include("../../templates/header.php");
 } else {
     // esto queda pendiente para mostrar una mejor vista al usuario y no se confunca sobre esto...
     echo "Error en el sistema";
 }
 ?>
 <!-- seccion de chat formaulario-->
-<script src="notificaciones/js/push.min.js"></script>
 <script src="js/notificaciones.js"></script>
 <link rel="stylesheet" href="css/index.css">
 
@@ -33,5 +32,5 @@ if (!isset($_SESSION['us'])) {
 <script src="js/usuarios.js"></script>
 <!-- terminacion de chat -->
 <?php
-include("../../../templates/footer.php");
+include("../../templates/footer.php");
 ?>

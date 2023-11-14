@@ -1,6 +1,6 @@
 <?php
 try {
-    include '../../../../connection/conexion.php';
+    include '../../../connection/conexion.php';
     session_start();
     if (!isset($_SESSION['idus'])) {
         throw new Exception("");

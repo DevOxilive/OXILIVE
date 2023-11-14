@@ -1,8 +1,0 @@
-CREATE TABLE `documentos` (
-	`id` INT(10) NOT NULL AUTO_INCREMENT,
-	`nombreArchi` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`id_envia` INT(10) NULL DEFAULT NULL,
-	`id_recibe` INT(10) NULL DEFAULT NULL,
-	`persona` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	PRIMARY KEY (`id`) USING BTREE
-);

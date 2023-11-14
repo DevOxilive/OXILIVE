@@ -3,7 +3,7 @@
 try {
     //code...
 
-    include '../../../../connection/conexion.php';
+    include '../../../connection/conexion.php';
     session_start();
     function guardarDocumento($con, $carpeta, $nombre, $archivo, $envio, $recibe, $persona)
     {

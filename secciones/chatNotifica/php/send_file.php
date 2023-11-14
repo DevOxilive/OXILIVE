@@ -7,8 +7,8 @@
 //     $carpeta = 'documentos/';
 //     guardarDocumento($con, $carpeta, $nombreArchivo, $archivo, $persona);
 // }
-include '../../../../cargaDoc/control.php';
-include '../../../../connection/conexion.php';
+include '../../../cargaDoc/control.php';
+include '../../../connection/conexion.php';
 session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['file'])) {
     $user = $_POST['user'];
