@@ -45,7 +45,6 @@ if (isset($_GET['txtID'])) {
     $admin = $registro["Nombre_administradora"];
 }
 if ($_POST) {
-    echo "POST data: <pre>" . print_r($_POST, true) . "</pre>";
     $txtID = (isset($_POST['txtID'])) ? $_POST['txtID'] : "";
     $nombres = (isset($_POST["nombre"]) ? $_POST["nombre"] : "");
     $apellidos = (isset($_POST["apellidos"]) ? $_POST["apellidos"] : "");
@@ -60,59 +59,70 @@ if ($_POST) {
     $num_ext = isset($_POST['numExt']) ? $_POST['numExt'] : "";
     $num_int = isset($_POST['numInt']) ? $_POST['numInt'] : NULL;
     $referencias = isset($_POST['referencias']) ? $_POST['referencias'] : NULL;
-    $comprobante = isset($_POST['comprobante']) ? $_POST['comprobante'] : "";
-    $Credencial_front = isset($_POST['Credencial_front']) ? $_POST['Credencial_front'] : "";
-    $Credencial_post = isset($_POST['Credencial_post']) ? $_POST['Credencial_post'] : "";
-    $Credencial_aseguradora = isset($_POST['Credencial_aseguradora']) ? $_POST['Credencial_aseguradora'] : "";
-    $Credencial_aseguradoras_post = isset($_POST['Credencial_aseguradoras_post']) ? $_POST['Credencial_aseguradoras_post'] : "";
+
+    //  $comprobante = (isset($_FILES['comprobante']) && is_uploaded_file($_FILES['comprobante']['tmp_name'])) ? $_FILES['comprobante']['name'] : "";
+    // $Credencial_front = (isset($_FILES['Credencial_front']) && is_uploaded_file($_FILES['Credencial_front']['tmp_name'])) ? $_FILES['Credencial_front']['name'] : "";
+    // $Credencial_post = (isset($_FILES['Credencial_post']) && is_uploaded_file($_FILES['Credencial_post']['tmp_name'])) ? $_FILES['Credencial_post']['name'] : "";
+    // $Credencial_aseguradora = (isset($_FILES['Credencial_aseguradora']) && is_uploaded_file($_FILES['Credencial_aseguradora']['tmp_name'])) ? $_FILES['Credencial_aseguradora']['name'] : "";
+    // $Credencial_aseguradoras_post = (isset($_FILES['Credencial_aseguradoras_post']) && is_uploaded_file($_FILES['Credencial_aseguradoras_post']['tmp_name'])) ? $_FILES['Credencial_aseguradoras_post']['name'] : "";
+
+    
     $responsable = isset($_POST['responsable']) ? $_POST['responsable'] : NULL;
     $No_nomina = isset($_POST['No_nomina']) ? $_POST['No_nomina'] : "";
     $rfc = isset($_POST['rfc']) ? $_POST['rfc'] : "";
     $banco = isset($_POST['banco']) ? $_POST['banco'] : "";
-    echo "Llegué al final del bloque if.";
+    /*Esta consulta es para ver si el numero de nomina ya existe*/
+    $consultaDuplicados = $con->prepare("SELECT COUNT(*) FROM pacientes_call_center WHERE No_nomina = :No_nomina");
+    $consultaDuplicados->bindParam(":No_nomina", $No_nomina);
+    $consultaDuplicados->execute();
+    $cantidadDuplicados = $consultaDuplicados->fetchColumn();
+    if ($cantidadDuplicados > 0) {
+        echo '<script language="javascript"> ';
+        echo 'Swal.fire({
+                icon: "warning",
+                title: "DUPLICADO",
+                text: "NOMINA YA EXISTE CON UN PACIENTE",
+                showConfirmButton: false,
+                timer: 2000,
+            }).then(function() {
+                window.location = "../buscador.php";
+                });';
+        echo '</script>';
+        exit;
+            }else{
 
-    if (!empty($_FILES['comprobante']['name'])) {
-        $nombreArchivoComprobante = $_FILES['comprobante']['name'];
-        $rutaArchivoComprobante = "../directorio_comprobante/" . $nombreArchivoComprobante;
-        if (move_uploaded_file($_FILES['comprobante']['tmp_name'], $rutaArchivoComprobante)) {
-            $comprobante = $nombreArchivoComprobante;
-        } else {
-            echo "Error al guardar el comprobante.";
-        }
-    }
+    /**Aquí es donde verifico lo del comprobante */
+// if (!empty($_FILES['comprobante']['name'])) {
+//     $nombreArchivoComprobante = $_FILES['comprobante']['name'];
+//     $rutaArchivoComprobante = "../directorio_comprobante/" . $nombreArchivoComprobante;
+//     if (move_uploaded_file($_FILES['comprobante']['tmp_name'], $rutaArchivoComprobante)) {
+//         $comprobante = $nombreArchivoComprobante;
+//     } else {
+//         echo "Error al guardar el comprobante.";
+//     }
+// }
+// Función para procesar la subida de archivos
+// function procesarSubidaArchivo($archivo, &$variable, $directorio)
+// {
+//     if (!empty($archivo['name'])) {
+//         // Genera un nombre único para el archivo
+//         $nombreArchivo = uniqid() . '_' . $archivo['name'];
+//         $rutaArchivo = $directorio . $nombreArchivo;
+//         // Intenta mover el archivo al directorio destino
+//         if (move_uploaded_file($archivo['tmp_name'], $rutaArchivo)) {
+//             // Actualiza la variable con el nuevo nombre del archivo
+//             $variable = $nombreArchivo;
+//         } else {
+//             echo "Error al guardar el archivo en $directorio.";
+//         }
+//     }
+// }
 
-    // Repite el mismo proceso para las otras imágenes solo si se proporcionan nuevos archivos
-    if (!empty($_FILES['Credencial_front']['name'])) {
-        $nombreArchivoFront = $_FILES['Credencial_front']['name'];
-        $rutaArchivoFront = "../directorio_INES/" . $nombreArchivoFront;
-        move_uploaded_file($_FILES['Credencial_front']['tmp_name'], $rutaArchivoFront);
-        $Credencial_front = $nombreArchivoFront;
-    }
-
-
-// Repite el mismo proceso para la Credencial INE Posterior.
-if (!empty($_FILES['Credencial_post']['name'])) {
-    $nombreArchivoPost = $_FILES['Credencial_post']['name'];
-    $rutaArchivoPost = "../directorio_INES/" . $nombreArchivoPost;
-    move_uploaded_file($_FILES['Credencial_post']['tmp_name'], $rutaArchivoPost);
-    $Credencial_post = $nombreArchivoPost;
-}
-
-// Procesa Credencial Aseguradora Frontal si se proporciona un nuevo archivo
-if (!empty($_FILES['Credencial_aseguradora']['name'])) {
-    $nombreArchivoAseguradora = $_FILES['Credencial_aseguradora']['name'];
-    $rutaArchivoAseguradora = "../directorio_INES/" . $nombreArchivoAseguradora;
-    move_uploaded_file($_FILES['Credencial_aseguradora']['tmp_name'], $rutaArchivoAseguradora);
-    $Credencial_aseguradora = $nombreArchivoAseguradora;
-}
-
-// Procesa Credencial Aseguradora Posterior si se proporciona un nuevo archivo
-if (!empty($_FILES['Credencial_aseguradoras_post']['name'])) {
-    $nombreArchivoAseguradoraPost = $_FILES['Credencial_aseguradoras_post']['name'];
-    $rutaArchivoAseguradoraPost = "../directorio_INES/" . $nombreArchivoAseguradoraPost;
-    move_uploaded_file($_FILES['Credencial_aseguradoras_post']['tmp_name'], $rutaArchivoAseguradoraPost);
-    $Credencial_aseguradoras_post = $nombreArchivoAseguradoraPost;
-}
+// // Procesa la subida de archivos utilizando la función definida
+// procesarSubidaArchivo($_FILES['Credencial_front'], $Credencial_front, "../directorio_INES/");
+// procesarSubidaArchivo($_FILES['Credencial_post'], $Credencial_post, "../directorio_INES/");
+// procesarSubidaArchivo($_FILES['Credencial_aseguradora'], $Credencial_aseguradora, "../directorio_INES/");
+// procesarSubidaArchivo($_FILES['Credencial_aseguradoras_post'], $Credencial_aseguradoras_post, "../directorio_INES/");
 
     $sentencia = $con->prepare("UPDATE pacientes_call_center 
     SET nombres = :nom, 
@@ -126,11 +136,11 @@ if (!empty($_FILES['Credencial_aseguradoras_post']['name'])) {
     num_ext = :num_ext, 
     num_int = :num_int, 
     referencias = :referencia, 
-    comprobante = IFNULL(:comprobante, comprobante),
-        Credencial_front = IFNULL(:Credencial_front, Credencial_front),
-        Credencial_post = IFNULL(:Credencial_post, Credencial_post),
-        Credencial_aseguradora = IFNULL(:Credencial_aseguradora, Credencial_aseguradora),
-        Credencial_aseguradoras_post = IFNULL(:Credencial_aseguradoras_post, Credencial_aseguradoras_post),
+    comprobante = :comprobante,
+    Credencial_front = :Credencial_front, 
+    Credencial_post = :Credencial_post, 
+    Credencial_aseguradora = :Credencial_aseguradora, 
+    Credencial_aseguradoras_post = :Credencial_aseguradoras_post, 
     responsable = :responsable, 
     No_nomina = :No_nomina, 
     rfc = :rfc, 
@@ -171,5 +181,5 @@ if (!empty($_FILES['Credencial_aseguradoras_post']['name'])) {
         });';
     echo '</script>';
 }
-
+}
 ?>

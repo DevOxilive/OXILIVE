@@ -7,6 +7,8 @@ if ($_POST) {
     $unidad = (isset($_POST["unidad"]) ? $_POST["unidad"] : []);
     $administradora = (isset($_POST["administradora"]) ? $_POST["administradora"] : "");
 
+
+    
     function insertacodigo($codigo, $descripcion,$unidad ,$administradora, $con){
         $sentencia = $con->prepare("INSERT INTO codigo_administradora(id_codigo, codigo,descripcion,unidad ,admi) VALUES (null, :codigo, :descripcion,:unidad ,:admi)");
 
@@ -44,7 +46,7 @@ if ($_POST) {
         echo '<script language="javascript"> ';
         echo 'Swal.fire({
                 icon: "success",
-                title: "Código AGREGADO",
+                title: "CÓDIGO DE SERVICIO AGREGADO",
                 showConfirmButton: false,
                 timer: 1500,
             }).then(function() {

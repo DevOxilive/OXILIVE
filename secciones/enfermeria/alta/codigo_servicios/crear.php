@@ -14,8 +14,6 @@ if (!isset($_SESSION['us'])) {
 <html>
 <link rel="stylesheet" href="../../../../assets/css/vali.css">
 <link rel="stylesheet" href="../../../../assets/css/edit.css">
-
-</html>
 <main id="main" class="main">
     <section class="section dashboard">
         <div class="card">
@@ -28,8 +26,8 @@ if (!isset($_SESSION['us'])) {
             <div class="card-body" style="border: 2px solid #BFE5FF;">
                 <form action="./crearADD.php" method="POST" enctype="multipart/form-data" class="formLogin row g-3"
                     id="formulario">
-                    <div class="contenido col-md-4">
-                        <label for="administradora" class="formulario__label">Administradora a la que
+                    <div class="contenido col-md-3">
+                        <label for="administradora" class="formulario__label" style="text-align:Center">Administradora a la que
                             pertenece</label>
                         <select id="administradora" name="administradora" class="form-select">
                             <option value="0" selected disabled>Elija una opción</option>
@@ -43,22 +41,22 @@ if (!isset($_SESSION['us'])) {
                     </div>
 
                     <!---->
-                    <div class="col-md-2 align-self-center">
+                    <div class="col-md-3 align-self-center">
                         <div class="formulario__grupo" id="grupo__Nombre_aseguradora">
                             <label for="codigo" class="formulario__label text-left">Código</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" name="codigo[]" class="form-control " placeholder="Ejemplo E20B-21-ND"
-                                   required >
+                                <input type="text" name="codigo[]" id="codigo" class="form-control " placeholder="Ejemplo E20B-21-ND"
+                                   required>
                                 <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-2 align-self-center">
+                    <div class="col-md-3 align-self-center">
                         <div class="formulario__grupo" id="grupo__Nombre_aseguradora">
                             <label for="descripcion" class="formulario__label text-left">descripcion</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" name="descripcion[]" class="form-control "
-                                    placeholder="Apoyo General 8 Horas" required >
+                                <input type="text" name="descripcion[]" id="descripcion" class="form-control "
+                                   required  placeholder="Apoyo General 8 Horas">
                                 <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                             </div>
                         </div>
@@ -67,15 +65,14 @@ if (!isset($_SESSION['us'])) {
                         <div class="formulario__grupo" id="grupo__Nombre_aseguradora">
                             <label for="unidad" class="formulario__label text-left">Unidad</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" name="unidad[]" class="form-control " placeholder="Turno 8 Horas"
-                                required>
+                                <input type="text" name="unidad[]" id="unidad" class="form-control " required placeholder="Turno 8 Horas">
                                 <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                             </div>
                         </div>
                     </div>
 
 
-                    <div class="col-md-2 align-self-center">
+                    <div class="col-md-1 align-self-center">
                         <br>
                         <div class="formulario__grupo" id="grupo__Nombre_aseguradora">
                             <label for="code" class="text-left"></label>
@@ -96,53 +93,61 @@ if (!isset($_SESSION['us'])) {
             </div>
         </div>
 </main>
-<!--Este escript es para generar los input-->
+<style>
+    .campo-incompleto {
+        border: 1px solid #ff0000; /* Añade un borde rojo */
+    }
+</style>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('.formLogin').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var administradora = document.getElementById('administradora');
+            var numCampos = document.querySelectorAll('.form-row').length;
+            var camposIncompletos = false;
+            var campos = document.querySelectorAll('.form-row input');
+
+            // Elimina la clase y el borde rojo al cambiar el valor de la administradora
+            administradora.addEventListener('change', function() {
+                administradora.classList.remove('campo-incompleto');
+                administradora.style.border = '1px solid #ced4da'; /* Cambia el color del borde a su valor original */
+            });
+
+            campos.forEach(function(campo) {
+                if (campo.value.trim() === "") {
+                    camposIncompletos = true;
+                    campo.classList.add('campo-incompleto');
+                    campo.style.border = '1px solid #ff0000'; /* Cambia el color del borde a rojo */
+                } else {
+                    campo.classList.remove('campo-incompleto');
+                    campo.style.border = '1px solid #ced4da'; /* Cambia el color del borde a su valor original */
+                }
+            });
+
+            if (administradora.value === "0") {
+                // Agrega la clase y el borde rojo al campo administradora si no se selecciona nada
+                administradora.classList.add('campo-incompleto');
+                administradora.style.border = '1px solid #ff0000'; /* Cambia el color del borde a rojo */
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Campo Administradora requerido',
+                    text: 'Por favor, seleccione una administradora.',
+                });
+            } else if (camposIncompletos) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Campos Código, Descripción y Unidad requeridos',
+                    text: 'Por favor, complete todos los campos Códigos, Descripción y Unidad en cada conjunto.',
+                });
+            } else {
+                this.submit();
+            }
+        });
+    });
+</script>
 <!-- Incluye SweetAlert2 desde un CDN -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelector('.formLogin').addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        var administradora = document.getElementById('administradora').value;
-        var numCampos = document.querySelectorAll('.form-row').length;
-        var camposIncompletos = false;
-        var campos = document.querySelectorAll('.form-row');
-
-        for (var i = 0; i < campos.length; i++) {
-            var codigoInput = campos[i].querySelector('input[name="codigo[]"]').value.trim();
-            var descripcionInput = campos[i].querySelector('input[name="descripcion[]"]').value.trim();
-            var unidadInput = campos[i].querySelector('input[name="unidad[]"]').value.trim();
-
-            if (codigoInput === "" || descripcionInput === "" || unidadInput === "") {
-                camposIncompletos = true;
-                break;
-            }
-        }
-
-        if (administradora === "0") {
-            Swal.fire({
-                icon: 'error',
-                title: 'Campo Administradora requerido',
-                text: 'Por favor, seleccione una administradora.',
-            });
-        } else if (camposIncompletos) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Campos Código, Descripción y Unidad requeridos',
-                text: 'Por favor, complete todos los campos Códigos, Descripción y Unidad en cada conjunto.',
-            });
-        } else {
-            this.submit();
-        }
-    });
-});
-</script>
-
-
-
-
 <script type="text/javascript">
 $(function() {
     var maxDivs = 20; // Cambiar el límite a 6
@@ -193,9 +198,6 @@ $(function() {
 
 });
 </script>
-
-
-
 <script>
 function confirmCancel(event) {
     event.preventDefault();
@@ -215,10 +217,6 @@ function confirmCancel(event) {
     });
 }
 </script>
-
-
-
-
 <?php
 include("../../../../templates/footer.php");
 ?>
