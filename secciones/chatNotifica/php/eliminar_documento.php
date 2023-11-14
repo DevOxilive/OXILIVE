@@ -2,10 +2,10 @@
 <?php
 session_start();
 if (!isset($_SESSION['us'])) {
-    header('Location: ../../../../login.php');
+    header('Location: ../../../login.php');
 } elseif (isset($_SESSION['us'])) {
-    include '../../../../connection/conexion.php';
-    include("../../../../templates/header.php");
+    include '../../../connection/conexion.php';
+    include("../../../templates/header.php");
 } else {
     // esto queda pediente para mostrar una mejor vista al usuario y no se confunca sobre esto...
     echo "Error en el sistema";

@@ -9,7 +9,14 @@ try {
     $idus = $_SESSION['idus'];
 
     include '../../../connection/conexion.php';
-    $sentencia = $con->prepare("SELECT id_usuarios, Usuario, token, estatus, Foto_perfil FROM usuarios WHERE id_usuarios != $idus AND (id_departamentos = 1 OR id_departamentos =5 OR id_departamentos = 12) order by id_usuarios asc");
+    $sentencia = $con->prepare("SELECT id_usuarios, Usuario, token, estatus, Foto_perfil 
+    FROM usuarios 
+    WHERE id_usuarios != $idus AND (id_departamentos = 1 OR id_departamentos =5 OR id_departamentos = 6 OR id_departamentos = 11 OR id_departamentos = 12) 
+    ORDER BY (SELECT MAX(id_msg) 
+        FROM mensajes 
+        WHERE (id_salida = usuarios.id_usuarios AND id_entrada = $idus) 
+            OR (id_entrada = usuarios.id_usuarios AND id_salida = $idus)
+    ) DESC");
     $sentencia->execute();
     $resultado = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
@@ -17,7 +24,6 @@ try {
         foreach ($resultado as $fila) {
             $sql2 = "SELECT * FROM mensajes WHERE (id_salida = {$idus} AND id_entrada = {$fila['id_usuarios']}) OR (id_entrada = {$idus} AND id_salida = {$fila['id_usuarios']}) ORDER BY id_msg DESC limit 1";
 
-            //  OR (id_entrada = {$idus} AND id_salida = {$fila['id_usuarios']}) por si algo falla aqui esta un posible solucion en la consulta....
             $sent = $con->prepare($sql2);
             $sent->execute();
             $lastMessage = $sent->fetch(PDO::FETCH_ASSOC);
