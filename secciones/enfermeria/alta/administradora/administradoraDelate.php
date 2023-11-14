@@ -25,7 +25,7 @@ if (!isset($_SESSION['us'])) {
                         <thead class="table-dark">
                             <tr class="table-active table-group-divider" style="text-align: center;">
                                 <th scope="col">Administradora</th>
-                                <th scope="col">Accion</th>
+                                <th scope="col">Acciones Administradora</th>
                             </tr>
                         </thead>
                         <tbody style="text-align: center;">
@@ -33,6 +33,10 @@ if (!isset($_SESSION['us'])) {
                             <tr class="">
                                 <td><?php echo $registro['Nombre_administradora']; ?></td>
                                 <td style="text-align: center;">
+                                <a class="btn btn-outline-warning"
+                                        href="editarAdmin.php?txtID=<?php echo $registro['id_administradora']; ?>" role="button"><i
+                                            class="bi bi-pencil-square"></i></a>
+
                                     <a class="btn btn-outline-danger"
                                         onclick="delate(<?php echo $registro['id_administradora']; ?>)" role="button"><i
                                             class="bi bi-trash-fill"></i></a>

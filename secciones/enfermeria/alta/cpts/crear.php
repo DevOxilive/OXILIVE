@@ -76,39 +76,48 @@ if (!isset($_SESSION['us'])) {
 </script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        document.querySelector('.formLogin').addEventListener('submit', function(event) {
-            event.preventDefault();
-            var cpt = document.getElementById('cpt').value;
-            var administradora = document.getElementById('administradora').value;
+        var formLogin = document.querySelector('.formLogin');
+    var cptInput = document.getElementById('cpt');
+    var administradoraInput = document.getElementById('administradora');
             
+    formLogin.addEventListener('submit', function(event) {
+        event.preventDefault();
 
-            var cptInput = document.getElementById('cpt');
-            var cptValue = cptInput.value;
-            var regex = /^\d{5}$/;
-            
-            var administradoraInput = document.getElementById('administradora');
-            var administradoraValue = administradoraInput.value;
+        var cpt = cptInput.value;
+        var administradora = administradoraInput.value;
+        var regex = /^\d{5}$/;
 
-            if (!cpt || !administradora) {
-                cptInput.style.borderColor = 'red';
-                administradoraInput.style.borderColor = 'red';
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Campos vacíos',
-                    text: 'Por favor, completa todos los campos obligatorios.',
-                });
-            }else if (!regex.test(cptValue)) {
-                cptInput.style.borderColor = 'red';
-                
-                Swal.fire({
-                    icon: 'error',
-                    title: 'CPT Inválido',
-                    text: 'El campo CPT debe contener exactamente 5 dígitos.',
-                }); 
-             }else {
-                this.submit();
-            }
-        });
+        if (!cpt || !administradora) {
+            setInvalidInput(cptInput);
+            setInvalidInput(administradoraInput);
+            Swal.fire({
+                icon: 'error',
+                title: 'Campos vacíos',
+                text: 'Por favor, completa todos los campos obligatorios.',
+            });
+        } else if (!regex.test(cpt)) {
+            setInvalidInput(cptInput);
+            Swal.fire({
+                icon: 'error',
+                title: 'CPT Inválido',
+                text: 'El campo CPT debe contener exactamente 5 dígitos.',
+            });
+        } else {
+            formLogin.submit();
+        }
+    });
+    cptInput.addEventListener('input', function() {
+        resetBorderColor(cptInput);
+    });
+    administradoraInput.addEventListener('input', function() {
+        resetBorderColor(administradoraInput);
+    });
+    function setInvalidInput(element) {
+        element.style.borderColor = 'red';
+    }
+    function resetBorderColor(element) {
+        element.style.borderColor = '';
+    }
     });
 </script>
 

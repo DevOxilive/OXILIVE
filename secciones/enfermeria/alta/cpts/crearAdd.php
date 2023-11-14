@@ -12,7 +12,7 @@ if ($_POST) {
         echo 'Swal.fire({
                 icon: "warning",
                 title: "DUPLICADO",
-                text: "El dato ingresado ya existe",
+                text: "EL CPT YA EXISTE Y ESTA ASOCIADO CON ESA ADMINISTRADORA",
                 showConfirmButton: false,
                 timer: 2000,
             }).then(function() {

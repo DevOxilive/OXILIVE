@@ -12,9 +12,8 @@ if (!isset($_SESSION['us'])) {
 
 ?>
 <html>
-<link rel="stylesheet" href="../../assets/css/edit.css">
-
-</html>
+<link rel="stylesheet" href="../../../../assets/css/vali.css">
+<link rel="stylesheet" href="../../../../assets/css/edit.css">
 <main id="main" class="main">
     <section class="section dashboard">
         <div class="card">
@@ -31,7 +30,7 @@ if (!isset($_SESSION['us'])) {
 
                     <div class="contenido col-md-6"> <br>
                         <label for="cpt" class="form-label">Cpt</label>
-                        <input type="text" value="<?php echo $cpt; ?>" class="form-control" name="cpt" id="cpt" placeholder="Nombre cpt" maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 5);">
+                        <input type="text" value="<?php echo $cpt; ?>" class="form-control" name="cpt" id="cpt" maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 5);">
                     </div>
                     <div class="contenido col-md-3"> <br>
                         <label for="administradora" class="form-label">Administradora</label>

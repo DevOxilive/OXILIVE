@@ -27,7 +27,7 @@ if ($_POST) {
                 echo '<script language="javascript"> ';
                 echo 'Swal.fire({
                     icon: "success",
-                    title: "Servicio Agregado",
+                    title: "BANCO ASOCIADO Y CREADO CORRECTAMENTE",
                     showConfirmButton: false,
                     timer: 1500,
                 }).then(function() {

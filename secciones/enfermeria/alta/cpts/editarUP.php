@@ -37,14 +37,14 @@ if ($_POST) {
     $sentencia = $con->prepare("UPDATE cpts 
     SET cpt=:cpt, admi=:admi
                 WHERE id_cpt=:id_cpt");
-    $sentencia->bindParam(":cpt", $Nombre_aseguradora);
-    $sentencia->bindParam(":admi", $administradora);
     $sentencia->bindParam(":id_cpt", $txtID);
+    $sentencia->bindParam(":cpt", $cpt);
+    $sentencia->bindParam(":admi", $administradora);
     $sentencia->execute();
     echo '<script language="javascript"> ';
     echo 'Swal.fire({
           icon: "success",
-          title: "DATOS GUARDADOS",
+          title: "CPT EDITADO",
           text: "LOS DATOS SE GUARDARON CORRECTAMENTE",
           showConfirmButton: false,
           timer: 2000,

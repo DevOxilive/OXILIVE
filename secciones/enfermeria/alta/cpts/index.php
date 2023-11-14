@@ -10,8 +10,9 @@ if (!isset($_SESSION['us'])) {
 }
 ?>
 <main id="main" class="main">
-<div class="card-header" style="text-align: right;">
-            </div>
+    <div class="card-header" style="text-align: right;">
+            <h1 style="text-align: center; color:black">CPTS</h1>
+        </div>
     <div class="card">
         <div class="card-header">
             <a name="" id="" class="btn btn-outline-primary" href="crear.php" role="button">

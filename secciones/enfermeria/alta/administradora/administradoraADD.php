@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo 'Swal.fire({
                 icon: "warning",
                 title: "DUPLICADO",
-                text: "El dato ingresado ya existe",
+                text: "La administradora ya existe",
                 showConfirmButton: false,
                 timer: 2000,
             }).then(function() {
