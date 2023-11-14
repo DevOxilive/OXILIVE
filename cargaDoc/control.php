@@ -47,7 +47,7 @@ try {
                         ' . $filas['id'] . '
                     </td>
                     <td>
-                        <a href="' . $ruta . $filas['nombreArchi'] . '" target="_BLANK" style ="text-decoration: none;">' . $filas['nombreArchi'] . '</a>
+                        <a href="' . $ruta . $filas['nombreArchi'] . '" target="_BLANK" style ="text-decoration: none;"><i class="bi bi-file-earmark-richtext"></i>' . $filas['nombreArchi'] . '</a>
                     </td>
                     <td>' . $filas['persona'] . '</td>';
                 if ($_SESSION['puesto'] == 5) {
@@ -64,40 +64,6 @@ try {
             echo "no hay documentos en la carpeta de este chat";
         }
     }
-    // function mostrarImagen($con)
-    // {
-    //     echo '<br>imagenes del directorio<br>';
-    //     $sql = "SELECT * FROM imgpruebas";
-    //     $stat = $con->prepare($sql);
-    //     $stat->execute();
-    //     $result = $stat->fetchAll(PDO::FETCH_ASSOC);
-
-    //     foreach ($result as $filas) {
-    //         if (!strstr($filas['nombreImg'], ".pdf")) {
-    //             # code...
-    //             echo '<img src="documentos/' . $filas['nombreImg'] . '" alt="" class="imgPruebas"></img><br>';
-    //         }
-    //     }
-    // }
-
-    // Ruta al archivo PDF
-    // $pdf_file = 'Proyecto.pdf';
-    // frameborder="0"
-    // // Verificamos si el archivo existe
-    // if (file_exists($pdf_file)) {
-    //     // Configuramos las cabeceras para indicar que es un archivo PDF
-    //     header('Content-Type: application/pdf');
-    //     header('Content-Disposition: inline; filename="' . basename($pdf_file) . '"');
-    //     header('Content-Transfer-Encoding: binary');
-    //     header('Content-Length: ' . filesize($pdf_file));
-    //     header('Accept-Ranges: bytes');
-
-    //     // Leemos y mostramos el contenido del archivo PDF
-    //     readfile($pdf_file);
-    // } else {
-    //     // Si el archivo no existe, puedes mostrar un mensaje de error
-    //     echo 'El archivo PDF no se encontró.';
-    // }
 } catch (Exception $e) {
     echo $e->getMessage();
 }
