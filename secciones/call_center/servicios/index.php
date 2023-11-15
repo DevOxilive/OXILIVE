@@ -16,7 +16,7 @@ if (!isset($_SESSION['us'])) {
             <div class="card-header">
                 <!--botón en caso de que se desee agregar un servicio nuevo-->
                 <a class="btn btn-outline-primary" href="crearServicio.php" role="button"><i
-                        class="bi bi-bag-heart-fill"></i>
+                        class="fas fa-user-plus"></i>
                     Registrar Servicio</a>
             </div>
             <div class="card-body">
@@ -25,7 +25,7 @@ if (!isset($_SESSION['us'])) {
                         <thead class="table-dark">
                             <!--títulos de las columnas-->
                             <tr class="table-active table-group-divider" style="text-align: center;">
-                                <th scope="col">N°</th>
+                                <th scope="col">No</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Descripcion</th>
                                 <th scope="col">Acciones</th>

@@ -14,12 +14,6 @@ if (!isset($_SESSION['us'])) {
 
 <!-- Empieza main -->
 <main id="main" class="main">
-    <div class="row">
-        <div class="card-header" style="text-align: right;">
-            <!-- Boton para el reporte en PDF -->
-            <a class="btn btn-outline-info" href="" role="button"><i class="bi bi-printer-fill"></i></a>
-        </div>
-    </div>
     <div class="card">
         <div class="card-header">
             <p class="font-weight-bold">Bitacora de asistencia</p>

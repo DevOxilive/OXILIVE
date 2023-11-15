@@ -13,6 +13,8 @@ $data = json_decode(file_get_contents('php://input'), true);
     $_SESSION['horario_4'] = (isset($data['horario_4']) != '' ? $data['horario_4'] : NULL);
     $_SESSION['medicamento_5'] = (isset($data['medicamento_5']) != '' ? $data['medicamento_5'] : NULL);
     $_SESSION['horario_5'] = (isset($data['horario_5']) != '' ? $data['horario_5'] : NULL);  
+
+ 
 // Verifica si las variables de sesión están inicializadas
     // Obtén las variables de sesión
     $numeroAsignacion = $_SESSION['numeroAsignacion'];
@@ -142,15 +144,12 @@ $data = json_decode(file_get_contents('php://input'), true);
     $consulta->bindParam(':medicamento_3', $medicamento_3);
     $consulta->bindParam(':horario_3', $horario_3);
     $consulta->bindParam(':medicamento_4', $medicamento_4);
-    $consulta->bindParam(':horario_4', $horario_5);
+    $consulta->bindParam(':horario_4', $horario_4);
     $consulta->bindParam(':medicamento_5', $medicamento_5);
     $consulta->bindParam(':horario_5', $horario_5);
 
     if($consulta->execute()){
-        return true;
-    
-  
-
+        
 
     //elimina las variables de la sesion para porder realizar otro registro
     unset($_SESSION["peso"]);
@@ -199,5 +198,5 @@ $data = json_decode(file_get_contents('php://input'), true);
     } else {
         echo 'ERROR AUN';
     }
-echo '<script>window.location.href = "../registroYcuidados/index.php";</script>';
+
 ?>

@@ -25,7 +25,7 @@ if (!isset($_SESSION['us'])) {
             <h4 style="text-align:center;
             color: #ffff;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
-                REGISTRO CLÍNICO Y CUDADOS GENERALES
+                REGISTRO CLÍNICO Y CUIDADOS GENERALES
             </h4>
         </div>
         <?php foreach ($resultado as $asignacion) { ?>
@@ -72,7 +72,7 @@ if (!isset($_SESSION['us'])) {
                     </div>
                     <div class="col-md-2">
                         <div class="formulario__grupo">
-                            <label for="edad" class="formulario__label">Edad:</label>
+                            <label for="edad" class="formulario__label">Edad del paciente:</label>
                             <div class="formulario__grupo-input">
                                 <input type="text" class="formulario__input" name="edad" id="edad"
                                     value="<?php echo $asignacion['edad']; ?>" readonly disabled>

@@ -35,7 +35,7 @@ $trabajador = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 // Se establecen los criterios del excel
 $excel = new Spreadsheet();
 $hojaActiva = $excel->getActiveSheet();
-$hojaActiva->setTitle("Nomina");
+$hojaActiva->setTitle("Nominas Enfermeria");
 
 // Establece estilos para la PRIMERA fila (encabezados)
 $headerStyle = [
@@ -144,10 +144,13 @@ for ($i = 2; $i <= $fila; $i += 2) {
     $hojaActiva->getStyle('A' . $i . ':E' . $i)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('d3d3d3');
 }
 
+$nombre_archivo = 'nominas_' . str_replace('-', '', $fecha1) . '_a_' . str_replace('-', '', $fecha2) . '.xlsx';
+
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment;filename="nomina.xlsx"');
+header('Content-Disposition: attachment;filename="' . $nombre_archivo . '"');
 header('Cache-Control: max-age=0');
 
 $writer = IOFactory::createWriter($excel, 'Xlsx');
 $writer->save('php://output');
+
 ?>
