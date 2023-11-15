@@ -45,7 +45,6 @@ if (isset($_GET['txtID'])) {
     $admin = $registro["Nombre_administradora"];
 }
 if ($_POST) {
-    echo "POST data: <pre>" . print_r($_POST, true) . "</pre>";
     $txtID = (isset($_POST['txtID'])) ? $_POST['txtID'] : "";
     $nombres = (isset($_POST["nombre"]) ? $_POST["nombre"] : "");
     $apellidos = (isset($_POST["apellidos"]) ? $_POST["apellidos"] : "");
@@ -69,7 +68,6 @@ if ($_POST) {
     $No_nomina = isset($_POST['No_nomina']) ? $_POST['No_nomina'] : "";
     $rfc = isset($_POST['rfc']) ? $_POST['rfc'] : "";
     $banco = isset($_POST['banco']) ? $_POST['banco'] : "";
-    echo "Llegué al final del bloque if.";
 
     $sentencia = $con->prepare("UPDATE pacientes_call_center 
     SET nombres = :nom, 
@@ -143,9 +141,35 @@ if ($_POST) {
         $nombre_archivo = (isset($_FILES[$campo_archivo]['name']) ? $_FILES[$campo_archivo]['name'] : "");
         $fecha_archivo = new DateTime();
         $nombre_archivo_original = (!empty($nombre_archivo) ? $fecha_archivo->getTimestamp() . "_" . $nombre_archivo : "");
-        $tmp_archivo = $_FILES[$campo_archivo]['tmp_name'];
     
-        $archivo_guardado = guardarArchivo($tmp_archivo, $nombre_archivo_original, $carpeta_usuario);
+        // Verifica si $tmp_archivo está definido y no está vacío
+        if (isset($_FILES[$campo_archivo]['tmp_name']) && !empty($_FILES[$campo_archivo]['tmp_name'])) {
+            $tmp_archivo = $_FILES[$campo_archivo]['tmp_name'];
+    
+            // Convertir imágenes si es necesario
+            if ($campo_archivo === 'comprobante' || $campo_archivo === 'Credencial_front' || $campo_archivo === 'Credencial_post' || $campo_archivo === 'Credencial_aseguradora' || $campo_archivo === 'Credencial_aseguradoras_post') {
+                $tipo_imagen = exif_imagetype($tmp_archivo);
+                $extension = pathinfo($nombre_archivo, PATHINFO_EXTENSION);
+    
+                // Verifica si la extensión es .jfif y renombra el archivo si es necesario
+                if ($extension === 'jfif') {
+                    $nombre_archivo_original = $fecha_archivo->getTimestamp() . "_" . pathinfo($nombre_archivo, PATHINFO_FILENAME) . ".jpg";
+                }
+    
+                // Si la imagen no es PNG, conviértela a PNG
+                if ($tipo_imagen !== IMAGETYPE_PNG) {
+                    $imagen_png = imagecreatefromstring(file_get_contents($tmp_archivo));
+                    $ruta_destino_png = $carpeta_usuario . "/" . $nombre_archivo_original;
+                    imagepng($imagen_png, $ruta_destino_png);
+                    imagedestroy($imagen_png);
+    
+                    // Actualiza la variable para guardar el nombre del nuevo archivo
+                    $nombre_archivo = $nombre_archivo_original;
+                    $tmp_archivo = $ruta_destino_png;
+                }
+            }
+    
+            $archivo_guardado = guardarArchivo($tmp_archivo, $nombre_archivo_original, $carpeta_usuario);
     
         if (!empty($archivo_guardado)) {
             
@@ -175,6 +199,7 @@ if ($_POST) {
         window.location = "../index.php";
         });';
     echo '</script>';
+}
 }
 
 ?>

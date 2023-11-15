@@ -36,14 +36,14 @@ var formArray = [
 ];
 
 nombre.addEventListener("input", function () {
-  var regex = /^[a-zA-Z\s]+$/;
+  var regex = /^[a-zA-ZñÑ0-9\s.]+$/;
   var string = nombre.value;
   if (!regex.test(string)) {
     nombre.value = string.slice(0, -1);
   }
 });
 apellidos.addEventListener("input", function () {
-  var regex = /^[a-zA-Z\s]+$/;
+  var regex = /^[a-zA-ZñÑ0-9\s.]+$/;
   var string = apellidos.value;
   if (!regex.test(string)) {
     apellidos.value = string.slice(0, -1);
@@ -73,12 +73,13 @@ telDos.addEventListener("input", function () {
   valNum(telDos);
 });
 calle.addEventListener("input", function () {
-  var regex = /^[a-zA-Z0-9\s]+$/;
+  var regex = /^[a-zA-ZñÑ0-9\s.]+$/;
   var string = calle.value;
   if (!regex.test(string)) {
     calle.value = string.slice(0, -1);
   }
 });
+
 numExt.addEventListener("input", function () {
   var regex = /^[a-zA-Z0-9\s]+$/;
   var string = numExt.value;

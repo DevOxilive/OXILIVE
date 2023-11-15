@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo '</script>';
         exit;
             }else{
-                
+
     // Comprobar si se ha subido un archivo de comprobante
     if (isset($_FILES['comprobante']) && $_FILES['comprobante']['error'] === UPLOAD_ERR_OK) {
         $temporal_Comprobante = $_FILES['comprobante']['tmp_name'];
@@ -139,7 +139,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "Error al mover el archivo de comprobante.";
         }
     } else {
-        echo "No se seleccionó ningún archivo de comprobante o hubo un error al cargarlo.";
+        echo '<script language="javascript"> ';
+                                            echo 'Swal.fire({
+                                                    icon: "warning",
+                                                    title: "FALTO SELECCIONAR COMPROBANTE",
+                                                    showConfirmButton: false,
+                                                    timer: 1500,
+                                                }).then(function() {
+                                                    window.location = "../crear/crearPaciente.php";
+                                                    });';
+                                            echo '</script>';
     }
 }
 }
