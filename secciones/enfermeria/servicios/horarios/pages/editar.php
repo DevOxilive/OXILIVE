@@ -5,8 +5,8 @@ if (!isset($_SESSION['us'])) {
 } elseif (isset($_SESSION['us'])) {
     include("../../../../../templates/header.php");
     include("../../../../../connection/conexion.php");
-    include("../model/enfermeros.php");
-    include("../model/pacientes.php");
+    include("../../../../../module/enfermeros.php");
+    include("../../../../../module/pacientes.php");
     include("../../tipos/model/tipos.php");
     include("../model/editConsul.php");
     $id=$_GET['idHor'];
@@ -66,7 +66,7 @@ if (!isset($_SESSION['us'])) {
                             <option value="">Elige un paciente</option>
                             <?php foreach ($lista_pacientes as $pacientes) { ?>
                                 <option value="<?php echo $pacientes['id_pacientes'];?>" <?php if($pacientes['id_pacientes']==$horarios['id_pacienteEnfermeria']){ echo 'selected'; } ?>>
-                                    <?php echo $pacientes['Nombres'] . " " . $pacientes['Apellidos']; ?>
+                                    <?php echo $pacientes['nombres'] . " " . $pacientes['apellidos']; ?>
                                 </option>
                             <?php } ?>
                         </select>
@@ -110,8 +110,8 @@ if (!isset($_SESSION['us'])) {
                     <!-- Botones -->
                     <div class="col-12">
                         <br>
-                        <button type="submit" class="btn btn-outline-primary">Guardar</button>
-                        <a role="button" onclick="confirmCancel(event)" name="cancelar" class="btn btn-outline-danger">
+                        <button type="submit" class="btn btn-outline-primary">Registrar</button>
+                        <a role="button" href="#" onclick="confirmCancel(event)" name="cancelar" class="btn btn-outline-danger">
                             Cancelar
                         </a>
                     </div>

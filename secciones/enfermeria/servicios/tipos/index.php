@@ -23,7 +23,7 @@ if (!isset($_SESSION['us'])) {
     <div class="row">
         <div class="card">
             <div class="card-header">
-                <h2>Tipos de Servicios</h2>
+                <h2>Tipos de Servicio</h2>
                 <hr>
                 <a class="btn btn-outline-primary" href="crear.php" role="button">
                     <i class="bi bi-heart-pulse"></i>
@@ -101,6 +101,7 @@ if (!isset($_SESSION['us'])) {
             text: 'Esta acción no se podrá deshacer una vez se realice',
             showCancelButton: true,
             width: 700,
+            icon: "warning",    
             confirmButtonText: 'Borrar',
             confirmButtonColor: '#3085d6',
             cancelButtonText: `Cancelar`,

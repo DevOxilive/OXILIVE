@@ -54,7 +54,7 @@ if (!isset($_SESSION['us'])) {
                 </div>
                 <br><br>
                 <div class="col-12">
-                    <button type="submit" class="btn btn-outline-primary">Guardar</button>
+                    <button type="submit" class="btn btn-outline-primary">Registrar</button>
                     <button type="cancel" class="btn btn-outline-danger" onclick="confirmCancel(event)">Cancelar</button>
                 </div>
             </form>
