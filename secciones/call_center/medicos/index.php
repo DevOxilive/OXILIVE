@@ -22,9 +22,9 @@ if (!isset($_SESSION['us'])) {
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="card-header">
-                        <a class="btn btn-outline-primary" href="../pacientes/index.php" role="button"><i
-                                class="bi bi-person-fill"></i>Ver</a>
+                    <div class="card-header" style="text-align: center;">
+                           <h2>Lista de los pacientes que han tenido incidencias:</h2> <a class="btn btn-outline-primary" href="../pacientes/index.php" role="button"><i
+                           class="bi bi-person-fill"></i>Ver </a>
                     </div>
                 </div>
             </div>
@@ -32,9 +32,11 @@ if (!isset($_SESSION['us'])) {
         <br>
         <div class="container">
             <div class="row">
-                <div class="col-12">
+            <div class="col-12">
+            <div class="card-header">
                     <div class="mostrarServicios">
-                        <!-- aqui se imprime el servicio -->
+                        
+                         </div>
                     </div>
                 </div>
             </div>
