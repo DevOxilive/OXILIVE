@@ -3,7 +3,7 @@
 try {
     //code...
 
-    include '../../../../connection/conexion.php';
+    include '../../../connection/conexion.php';
     session_start();
     function guardarDocumento($con, $carpeta, $nombre, $archivo, $envio, $recibe, $persona)
     {
@@ -21,83 +21,55 @@ try {
 
     function mostrarPDF($con, $ruta, $recibe)
     {
-        if(!isset($_SESSION['idus'])){
+        if (!isset($_SESSION['idus'])) {
             throw new Exception("   ");
-            
+
         }
-        echo '<tr class="encabezadoT">
-                    <th>id</th>
-                    <th>nombre del documento</th>
-                    <th>responsable</th>';
-        $sql = "SELECT * FROM documentos where (id_envia ={$_SESSION['idus']} and id_recibe = $recibe) or (id_envia =$recibe and id_recibe = {$_SESSION['idus']})";
+        $sql = "SELECT * FROM documentos where (id_envia ={$_SESSION['idus']} and id_recibe = $recibe) or (id_envia =$recibe and id_recibe = {$_SESSION['idus']}) order by id DESC";
         $stat = $con->prepare($sql);
         $stat->execute();
         $result = $stat->fetchAll(PDO::FETCH_ASSOC);
         if (count($result) > 0) {
             if ($_SESSION['puesto'] == 5) {
-                echo '</tr>';
+                // echo '</tr>';
             } else if ($_SESSION['puesto'] == 1) {
-                echo '<th>eliminar</th>
-            </tr>';
+                // echo '<th>eliminar</th>
+                //         </tr>';
             }
+            $cont = 0;
             foreach ($result as $key => $filas) {
+                $cont++;
+                echo '<div class="archivos">
+                        <div class="mensaje-previo">' . $cont . '. ' . $filas['persona'] . '</div>
+                        <a href="' . $ruta . $filas['nombreArchi'] . '">
+                        <i class="bi bi-file-earmark-richtext" style="font-size: 6em;"></i>
+                        <div class="mensaje-previo">
+                        ' . $filas['nombreArchi'] . '
+                        </div></a>
+                    </div>';
 
-                echo '<tr>
-                    <td>
-                        ' . $filas['id'] . '
-                    </td>
-                    <td>
-                        <a href="' . $ruta . $filas['nombreArchi'] . '" target="_BLANK" style ="text-decoration: none;">' . $filas['nombreArchi'] . '</a>
-                    </td>
-                    <td>' . $filas['persona'] . '</td>';
+                // echo '<tr>
+                //     <td>
+                //         ' . $filas['id'] . '
+                //     </td>
+                //     <td>
+                //         <a href="' . $ruta . $filas['nombreArchi'] . '" target="_BLANK" style ="text-decoration: none;"><i class="bi bi-file-earmark-richtext"></i>' . $filas['nombreArchi'] . '</a>
+                //     </td>
+                //     <td>' . $filas['persona'] . '</td>';
                 if ($_SESSION['puesto'] == 5) {
-                    echo '</tr>';
+                    // echo '</tr>';
                 } else if ($_SESSION['puesto'] == 1) {
-                    echo '<td>
-                        <button name="documento_id" value="' . $filas['id'] . '"><i class="bi bi-trash-fill"></i></button>
-                      </td>
-                    </tr>';
+                    // echo '<td>
+                    //     <button name="documento_id" value="' . $filas['id'] . '"><i class="bi bi-trash-fill"></i></button>
+                    //   </td>
+                    // </tr>';
                     // <i class="bi bi-trash-fill"></i>
                 }
             }
         } else {
-            echo "no hay documentos en la carpeta de este chat";
+            echo "<div style='color: white;'>no hay documentos en la carpeta de este chat</div>";
         }
     }
-    // function mostrarImagen($con)
-    // {
-    //     echo '<br>imagenes del directorio<br>';
-    //     $sql = "SELECT * FROM imgpruebas";
-    //     $stat = $con->prepare($sql);
-    //     $stat->execute();
-    //     $result = $stat->fetchAll(PDO::FETCH_ASSOC);
-
-    //     foreach ($result as $filas) {
-    //         if (!strstr($filas['nombreImg'], ".pdf")) {
-    //             # code...
-    //             echo '<img src="documentos/' . $filas['nombreImg'] . '" alt="" class="imgPruebas"></img><br>';
-    //         }
-    //     }
-    // }
-
-    // Ruta al archivo PDF
-    // $pdf_file = 'Proyecto.pdf';
-    // frameborder="0"
-    // // Verificamos si el archivo existe
-    // if (file_exists($pdf_file)) {
-    //     // Configuramos las cabeceras para indicar que es un archivo PDF
-    //     header('Content-Type: application/pdf');
-    //     header('Content-Disposition: inline; filename="' . basename($pdf_file) . '"');
-    //     header('Content-Transfer-Encoding: binary');
-    //     header('Content-Length: ' . filesize($pdf_file));
-    //     header('Accept-Ranges: bytes');
-
-    //     // Leemos y mostramos el contenido del archivo PDF
-    //     readfile($pdf_file);
-    // } else {
-    //     // Si el archivo no existe, puedes mostrar un mensaje de error
-    //     echo 'El archivo PDF no se encontró.';
-    // }
 } catch (Exception $e) {
     echo $e->getMessage();
 }
