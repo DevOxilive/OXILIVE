@@ -124,10 +124,8 @@ function consultarServicio() {
                     });
                     cancelar.appendChild(btnCancelar);
                 }
-
                 fila.append(id_sv, paciente, usuario, motivo, fecha, estadoT, hora, cancelar);
                 tabla.append(fila);
-
                 var estado = dato.estado;
                 if (estado === 1) {
                     estadoT.style = azul;
