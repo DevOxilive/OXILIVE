@@ -23,7 +23,7 @@ if (!isset($_SESSION['us'])) {
             <h4 style="text-align:center;
             color: #ffff;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
-                REGISTRO CLÍNICO Y CUDADOS GENERALES
+                Formulario parte 2
             </h4>
         </div>
         <div class="card-body" style="border: 2px solid #BFE5FF;">
@@ -94,22 +94,20 @@ if (!isset($_SESSION['us'])) {
     </div>
 </main>
 <script type="text/javascript">
-function mostrarAlerta() {
-    Swal.fire({
-        icon: 'question',
-        title: '¿Estás seguro de que deseas ir atrás?',
-        text: 'Los datos no se guardarán',
-        showCancelButton: true,
-        confirmButtonText: 'Sí',
-        cancelButtonText: 'No',
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.history.back();
-        } else {
-            window.location.href = 'form2.php';
-        }
-    });
-}
+    function mostrarAlerta() {
+        Swal.fire({
+            icon: 'question',
+            title: '¿Estás seguro de ir atrás?',
+            text: 'Los datos no se guardarán',
+            showCancelButton: true,
+            confirmButtonText: 'Sí',
+            cancelButtonText: 'No',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = 'form1.php'; // Cambia aquí para redirigir a 'index.php'
+            }
+        });
+    }
 </script>
 <script src="js/valiform2.js"></script>
 

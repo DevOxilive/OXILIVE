@@ -27,32 +27,24 @@ tensionArterial,
 ];
 
 peso.addEventListener("input", function () {
-  var regex = /^\d+(\.\d{1,2})?$/;
-  var numero = peso.value;
-  if (!regex.test(numero)) {
-    peso.value = numero.slice(0, -1);
-  }
-});
-diagnosticoMedico.addEventListener("input", function () {
-  var regex = /^[a-zA-Z0-9\-.,\s]+$/;
-  var string = diagnosticoMedico.value;
+  var regex = /^\d{0,3}(\.\d{0,2})?$/;
+  var string = peso.value;
   if (!regex.test(string)) {
-    diagnosticoMedico.value = string.slice(0, -1);
+    peso.value = string.slice(0, -1);
   }
 });
-temperatura.addEventListener("input", function() {
-  var regex = /^\d+(\.\d{0,2})?$/;
+temperatura.addEventListener("input", function () {
+  var regex = /^\d{0,2}(\.\d{0,2})?$/;
   var string = temperatura.value;
   if (!regex.test(string)) {
-      temperatura.value = string.slice(0, -1);
+    temperatura.value = string.slice(0, -1);
   }
 });
-
-pulso.addEventListener("input", function() {
-  var regex = /^\d+(\.\d{0,2})?$/;
+pulso.addEventListener("input", function () {
+  var regex = /^\d{0,3}(\.\d{0,2})?$/;
   var string = pulso.value;
   if (!regex.test(string)) {
-      pulso.value = string.slice(0, -1);
+    pulso.value = string.slice(0, -1);
   }
 });
 respiracion.addEventListener("input", function () {
@@ -63,15 +55,15 @@ respiracion.addEventListener("input", function () {
   }
 });
 tensionArterial.addEventListener("input", function () {
-    var regex = /^\d{1,3}\/\d{1,3}$/;
-    var string = tensionArterial.value;
-    if (!regex.test(string)) {
-      // Eliminar cualquier caracter no permitido (excepto números y '/')
-      tensionArterial.value = string.replace(/[^\d/]/g, '');
-    }
-  });
+  var regex = /^\d{1,3}\/\d{1,2}$/;
+  var string = tensionArterial.value;
+  if (!regex.test(string)) {
+    // Eliminar cualquier caracter no permitido (excepto números y '/')
+    tensionArterial.value = string.replace(/[^\d/]/g, '');
+  }
+});
 spo2.addEventListener("input", function () {
-  var regex = /^\d+$/;
+  var regex = /^\d+(\.\d{0,2})?$/;
   var string = spo2.value;
   if (!regex.test(string)) {
     spo2.value = string.slice(0, -1);
@@ -118,8 +110,8 @@ form.addEventListener("submit", function (event) {
             console.log(resultado);
           if (resultado == true) {
             Swal.fire({
-              title: "Registrado",
-              text: "Registro realizado correctamente",
+              title: "Datos Registrados",
+              text: "continúa en la siguiente pagina",
               icon: "success",
               showConfirmButton: false,
               timer: 1500,

@@ -1,13 +1,17 @@
-var fechaServicio = document.getElementById("fechaServicio"),
+var 
+fechaServicio = document.getElementById("fechaServicio"),
 horaEntrada = document.getElementById("horaEntrada"),
 motivoConsulta = document.getElementById("motivoConsulta"),
 nAutorizacion = document.getElementById("nAutorizacion"),
 auEspecial = document.getElementById("auEspecial"),
-asignarMedico = document.getElementById("asignarMedico"),
-tipoServicio = document.getElementsByName("tipoServicio");
-var elementosServicios = Array.from(tipoServicio.children);
+asignarMedico = document.getElementById("asignarMedico");
+var tipoServicioElements = document.getElementsByName("tipoServicio");
+var tipoServicioValues = [];
 var form = document.getElementById("formulario");
 
+for (var i = 0; i < tipoServicioElements.length; i++) {
+  tipoServicioValues.push(tipoServicioElements[i].value);
+}
 
 var formArray = [
 fechaServicio,
@@ -15,53 +19,35 @@ horaEntrada,
 motivoConsulta,
 nAutorizacion,
 auEspecial,
-asignarMedico,
-tipoServicio,
+
 ];
 
-fechaServicio.addEventListener("input", function () {
-    var inputDate = new Date(fechaServicio.value);
-    var currentDate = new Date();
-    // Compara la fecha ingresada con la fecha actual
-    if (inputDate < currentDate) {
-        // Si la fecha ingresada es anterior a la actual, establece la fecha actual en el campo
-        var day = ("0" + currentDate.getDate()).slice(-2);
-        var month = ("0" + (currentDate.getMonth() + 1)).slice(-2);
-        var year = currentDate.getFullYear();
-        fechaServicio.value = year + "-" + month + "-" + day;
-    }
-});
-
 form.addEventListener("submit", function (event) {
-  var usuariosMostrados = document.getElementById("usuariosMostrados");
-  var elementosPaciente = Array.from(usuariosMostrados.children);
-  var ids_sv = document.getElementById('ids_sv');
-  var elemnetosIdsv = Array.from(ids_sv.children);
+  var id_sv = document.getElementById("id_sv");
   event.preventDefault();
     if (validar(formArray)) {
       var formData = {
-        fechaServicio: fechaServicio.value,
-        horaEntrada: horaEntrada.value,
-        motivoConsulta: motivoConsulta.value,
-        nAutorizacion: nAutorizacion.value,
-        auEspecial: auEspecial.value,
-        asignarMedico: asignarMedico.value,
-        elementosServicios: tipoServicio.value,
-        
-        elementosPaciente: usuariosMostrados.value,
-        elemnetosIdsv: ids_sv.value
+       
 
+       fechaServicio: fechaServicio.value,
+       horaEntrada: horaEntrada.value,
+       motivoConsulta: motivoConsulta.value,
+       nAutorizacion: nAutorizacion.value,
+       auEspecial: auEspecial.value,
+       asignarMedico: asignarMedico.value,
+       tipoServicio: tipoServicioValues,
+
+       id_sv: id_sv.value
       };
-      
-      if(ids_sv.value !== null && ids_sv.value !== undefined && usuariosMostrados.value !== null && usuariosMostrados.value !== undefined){
-      fetch("../model/editarEvento.php", {
+
+      fetch("model/guardarEvento.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       })
-        .then((response) => response.json())
+        .then((response) => response.text())
         .then((resultado) => {
-
+            console.log(resultado);
           if (resultado == true) {
             Swal.fire({
               title: "Registrado",
@@ -70,11 +56,11 @@ form.addEventListener("submit", function (event) {
               showConfirmButton: false,
               timer: 1500,
             }).then(function () {
-              window.location.replace("../../cancelar/cancelar.php");
+             window.location.replace("../../cancelar/cancelar.php");
             });
           }
         });
-      } else {
+    } else {
       Swal.fire({
         title: "Faltan datos",
         text: "Revisa que todos los datos obligatorios estén ingresados",
@@ -82,15 +68,27 @@ form.addEventListener("submit", function (event) {
         showConfirmButton: false,
         timer: 2500,
       });
-    } 
+    }
   reload();
   setInterval(reload, 1000);
-}
-
 });
 
-
-
+function reload() {
+  var etiqueta;
+  formArray.forEach((campo) => {
+    etiqueta = campo.labels[0];
+    if (campo.value == "") {
+      campo.style.borderColor = "red";
+      campo.style.borderWidth = "2px";
+      etiqueta.style.color = "red";
+    } else {
+      campo.style.borderColor = "";
+      campo.style.borderWidth = "";
+      etiqueta.style.color = "";
+    }
+  });
+  
+}
 function validar(arre) {
   for (var i = 0; i < arre.length; i++) {
     if (
@@ -103,3 +101,4 @@ function validar(arre) {
   }
   return true;
 }
+

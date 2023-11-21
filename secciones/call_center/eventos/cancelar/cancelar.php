@@ -28,7 +28,7 @@ if (!isset($_SESSION['us'])) {
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
-                    <tbody id="tabla" style="text-align: :center;">
+                    <tbody id="tabla" style="text-align: center;">
 
                     </tbody>
                 </table>

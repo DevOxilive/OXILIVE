@@ -23,8 +23,8 @@ form.addEventListener("submit", function (event) {
             console.log(resultado);
           if (resultado == true) {
             Swal.fire({
-              title: "Registrado",
-              text: "Registro realizado correctamente",
+              title: "Datos Registrados",
+              text: "continúa en la siguiente pagina",
               icon: "success",
               showConfirmButton: false,
               timer: 1500,
