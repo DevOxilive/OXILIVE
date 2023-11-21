@@ -20,7 +20,7 @@ if (!isset($_SESSION['us'])) {
                     Registrar Administradora</a>
                 <a class="btn btn-outline-success" href="bancos/crear.php" role="button"><i class="bi bi-bank2"></i>
                     Registrar Bancos</a>
-                    <a class="btn btn-outline-danger float-right" href="./administradoraDelate.php" role="button" ><i class="bi bi-bookmark-x"></i> Eliminar Administradora</a>
+                    <a class="btn btn btn-primary float-right" href="./administradoraDelate.php" role="button" ><i class="bi bi-bookmark-x"></i> Acciones a Administradora</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive-sm">
@@ -29,7 +29,7 @@ if (!isset($_SESSION['us'])) {
                             <tr class="table-active table-group-divider" style="text-align: center;">
                                 <th scope="col">Bancos</th>
                                 <th scope="col">Administradora</th>
-                                <th scope="col">Acciones</th>
+                                <th scope="col">Acciones a Bancos</th>
                             </tr>
                         </thead>
                         <tbody>

@@ -66,12 +66,12 @@ $pdf = new PDF();
 $pdf-> AliasNbPages();
 $pdf->AddPage();
 while($imprime = $sentencia->fetch(PDO::FETCH_ASSOC)){
-$pdf->SetXY(20, 20);
+$pdf->SetXY(10, 20);
 //$pdf->MultiCell(500, 5, ('Nombre del Paciente: '));
 $pdf->MultiCell(500, 5, ('Nombre del Paciente: '.$imprime['Paciente']));
-$pdf->SetXY(20,29);
+$pdf->SetXY(10,29);
 $pdf->MultiCell(70, 5, ('Numero de Nomina: ' .$imprime['No_nomina'] ));
-$pdf->SetXY(20, 30);
+$pdf->SetXY(10, 30);
 $pdf->MultiCell(70, 20, utf8_decode('Médico Tratante:' .$imprime['Medico'])); 
 $pdf->SetXY(112, 20);
 $pdf->MultiCell(70, 5, utf8_decode('Código ICD:' .$imprime['icd'] )); 
@@ -110,7 +110,7 @@ while ($res = $lista->fetch(PDO::FETCH_ASSOC)) {
         }
         $pdf->SetXY(10, $y);
         $pdf->Cell(10, $alturaCelda, $contador, 1, 0, 'C', 0);
-        $pdf->SetXY(20, $y);
+        $pdf->SetXY(21, $y);
         $pdf->Cell(27, $alturaCelda, $res['codigo'], 1, 0, 'C', 0);
         $pdf->SetXY(47, $y);
         $descripcion = $res['descripcion'];

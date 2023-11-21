@@ -19,7 +19,7 @@ function openFilePicker(event) {
 
 function deletePhoto(event) {
     event.preventDefault();
-    document.getElementById('preview').src = '../../../img/Logo.png';
+    document.getElementById('preview').src = '../../../../img/Logo.png';
     document.getElementById('preview').style.display = 'none';
     document.getElementById('Credencial_front').value = '';
     var deleteLink = document.querySelector('.delete-link');
@@ -49,7 +49,7 @@ function openFilePicker2(event) {
 
 function deletePhoto2(event) {
     event.preventDefault();
-    document.getElementById('preview2').src = '../../../img/Logo.png';
+    document.getElementById('preview2').src = '../../../../img/Logo.png';
     document.getElementById('preview2').style.display = 'none';
     document.getElementById('Credencial_aseguradora').value = '';
     var deleteLink = document.querySelector('.delete-link');
@@ -108,7 +108,7 @@ function openFilePicker1(event) {
 
 function deletePhoto1(event) {
     event.preventDefault();
-    document.getElementById('preview1').src = '../../../img/Logo.png';
+    document.getElementById('preview1').src = '../../../../img/Logo.png';
     document.getElementById('preview1').style.display = 'none';
     document.getElementById('Credencial_post').value = '';
     var deleteLink = document.querySelector('.delete-link');
@@ -226,7 +226,7 @@ function cambiarImagen2(event) {
 function eliminarImagen2(event) {
     event.preventDefault();
     var imagenActual2 = document.getElementById("imagenActual2");
-    imagenActual2.src = "../../img/OXILIVE.ico";
+    imagenActual2.src = "../../../../img/OXILIVE.ico";
     var selectorArchivo2 = document.getElementById("Credencial_aseguradora");
     selectorArchivo2.value = null;
 }
@@ -265,35 +265,7 @@ function cambiarImagen3(event) {
 function eliminarImagen3(event) {
     event.preventDefault();
     var imagenActual3 = document.getElementById("imagenActual3");
-    imagenActual3.src = "../../img/OXILIVE.ico";
+    imagenActual3.src = "../../../../img/OXILIVE.ico";
     var selectorArchivo3 = document.getElementById("Credencial_aseguradoras_post");
     selectorArchivo3.value = null;
-}
-//PARA LAS ASEGURADORAS 
-function actualizarAseguradoras(administradoraId) {
-    // console.log("Llamado a actualizarAseguradoras con administradoraId:", administradoraId);
-    const aseguradoraSelect = document.getElementById("Aseguradora");
-    aseguradoraSelect.innerHTML = '<option value="0" selected disabled>Cargando...</option>';
-
-    const xhr = new XMLHttpRequest();
-    xhr.open("POST", "../../../module/obtener_aseguradora.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            aseguradoraSelect.innerHTML = '<option value="0" selected disabled>Elija una opción</option>';
-            const data = JSON.parse(xhr.responseText);
-
-            data.forEach(function(aseguradora) {
-                const option = document.createElement("option");
-                option.value = aseguradora.id_aseguradora;
-                option.textContent = aseguradora.Nombre_aseguradora;
-                aseguradoraSelect.appendChild(option);
-            });
-        } else if (xhr.readyState === 4) {
-            aseguradoraSelect.innerHTML = '<option value="0" selected disabled>Error al cargar las aseguradoras</option>';
-        }
-    };
-    // console.log("administradoraId antes de enviar:", administradoraId);
-    xhr.send("administradoraId=" + encodeURIComponent(administradoraId));
 }

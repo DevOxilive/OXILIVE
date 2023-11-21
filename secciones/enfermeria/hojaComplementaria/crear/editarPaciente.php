@@ -231,7 +231,7 @@ if (!isset($_SESSION['us'])) {
                             </div>
                         </div>
                         <input type="file" class="form-control" name="Credencial_front" id="Credencial_front"
-                            onchange="cambiarImagen(event)" style="display: none;">
+                          value="<?php echo $Credencial_front ?>"  onchange="cambiarImagen(event)" style="display: none;">
                     </div>
                         
                         <div class="col-md-4">
@@ -255,7 +255,7 @@ if (!isset($_SESSION['us'])) {
                             </div>
                         </div>
                         <input type="file" class="form-control" name="Credencial_post" id="Credencial_post"
-                            onchange="cambiarImagen1(event)" style="display: none;">
+                           value="<?php  echo $Credencial_post?>" onchange="cambiarImagen1(event)" style="display: none;">
                     </div>
 
                     <div class="col-md-4">
@@ -281,7 +281,7 @@ if (!isset($_SESSION['us'])) {
                             </div>
                         </div>
                         <input type="file" class="form-control" name="Credencial_aseguradora"
-                            id="Credencial_aseguradora" onchange="cambiarImagen2(event)" style="display: none;">
+                          value="<?php echo $Credencial_aseguradora?>"  id="Credencial_aseguradora" onchange="cambiarImagen2(event)" style="display: none;">
                     </div>
 
                     <div class="contenido col-md-1">
@@ -310,7 +310,7 @@ if (!isset($_SESSION['us'])) {
                             </div>
                         </div>
                         <input type="file" class="form-control" name="Credencial_aseguradoras_post"
-                            id="Credencial_aseguradoras_post" onchange="cambiarImagen3(event)" style="display: none;">
+                          value="<?php $Credencial_aseguradoras_post ?>"  id="Credencial_aseguradoras_post" onchange="cambiarImagen3(event)" style="display: none;">
                     </div>
                     <div class="contenido col-md-9" style="text-align: center;">
                         <div class="formulario__mensaj" id="formulario__mensaj">
@@ -320,8 +320,6 @@ if (!isset($_SESSION['us'])) {
                         </div>
                     </div>
                     <br>
-                    <!-- Botones para el formulario -->
-
                     <div class="col-12">
                         <br>
                         <a role="button" onclick="confirmCancel(event)" name="cancelar" class="btn btn-outline-danger">
@@ -339,10 +337,8 @@ if (!isset($_SESSION['us'])) {
 </main>
 <script src="../js/nomina.js"></script>
 <script src="../js/botonAdd.js"></script>
-<script src="../js/validacion.js"></script>
 <script src="../js/formButtons.js"></script>
 <script src="../js/domicilio.js"></script>
-<script src="../js/credenciales.js"></script>
 <script src="../js/paciente.js"></script>
 </html>
 <?php

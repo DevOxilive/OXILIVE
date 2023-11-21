@@ -2,11 +2,7 @@
 require('../../../fpdf/fpdf.php');
 require('../../../connection/conexion.php');
 
-
-
 class PDF extends FPDF{
-
-    
    // se establece que si el headre tiene contenido solo se colocara en la primera pagina 
     private $isFirstPage = true;
 // Cabecera de página
@@ -215,7 +211,7 @@ $this->SetY($this->GetY() - 24); // Ajustar posición vertical
 $this->SetX(60); // Ajustar posición horizontal para el cuadro de texto
 
 // Cuadro de texto
-$this->MultiCell(140, 24, utf8_decode('(Descripción)'), 1, 'L'); // Cuadro de texto, puedes cambiar el tamaño aquí
+$this->MultiCell(140, 24, utf8_decode(''), 1, 'L'); // Cuadro de texto, puedes cambiar el tamaño aquí
 
 
 //----------------------- Empieza tabla soluciones IV ----------------------------------------------------------
@@ -396,22 +392,83 @@ foreach ($nombresColumnas as $nombre) {
 $this->Ln(); // Salto de línea después de la segunda fila
  }
 }
-/*require('../../../connection/conexion.php');
-    $btnI = (isset($_GET['data-id'])) ? $_GET['data-id'] : "";
-    $sentencia = $con->prepare("SELECT * FROM regisclinicos_cuidagenerales WHERE id_RC = :id_rc");
-    $sentencia->bindParam(":id_rc",$datosGuardados);
-    $sentencia->execute();*/
 //Instanciar funcionaes 
-    $pdf = new PDF();
-    $pdf-> AliasNbPages();
-    $pdf->AddPage();
-    $pdf->SetFont('Arial','B',10);
-    /*while($resultado = $sentencia->fetch(PDO::FETCH_ASSOC)){
-       echo($resultado);
-        $pdf->SetXY(20, 20);
-        //$pdf->MultiCell(500, 5, ('Nombre del Paciente: '));
-        $pdf->MultiCell(100, 5, '' . $resultado['Respiracion']);
-    }*/
+$pdf = new PDF();
+$pdf-> AliasNbPages();
+$pdf->AddPage();
+require '../../../connection/conexion.php';
+    $btnI = (isset($_GET['btnId'])) ? $_GET['btnId'] : "";
+    $lista = $con->prepare("SELECT rc.*,a.id_asignacionHorarios,
+    CONCAT(p.nombres, ' ', p.apellidos) AS 'paciente',
+    t.nombreServicio,
+    p.responsable,
+    p.edad,
+    gr.genero,
+    CONCAT(u.Nombres, ' ', u.Apellidos) AS 'enfermero',
+    CONCAT(u2.Nombres, ' ', u2.Apellidos) AS 'medico', u.id_usuarios 
+FROM registro_clinico rc , pacientes_call_center p
+INNER JOIN asignacion_horarios a ON p.id_pacientes = a.id_pacienteEnfermeria
+INNER JOIN tipos_servicios t ON t.id_tipoServicio = a.id_tipoServicio
+INNER JOIN usuarios u ON u.id_usuarios = a.id_usuario
+INNER JOIN asignacion_servicio a2 ON a2.num_paciente = p.id_pacientes
+INNER JOIN usuarios u2 ON u2.id_usuarios = a2.num_medico 
+INNER JOIN genero gr ON gr.id_genero = p.genero WHERE id_RC = :id_rc LIMIT 1 ");
+    $lista->bindParam(":id_rc",$btnI);
+    $lista->execute();
+    // $pdf->SetFont('Arial','B',10);
+    while($listaPapus = $lista->fetch(PDO::FETCH_ASSOC)){
+        $pdf->SetXY(20,75);
+        $pdf->Cell(75, -62, ''.utf8_decode($listaPapus['paciente']),0, 0, 'R', 0);
+        $pdf->SetXY(115,75);
+        $pdf->Cell(75, -62, ''.utf8_decode($listaPapus['nombreServicio']),0, 0, 'R', 0);
+        $pdf->SetXY(20,75);
+        $pdf->Cell(61, -45, ''.utf8_decode($listaPapus['responsable']),0, 0, 'R', 0);
+        $pdf->SetXY(20,75);
+        $pdf->Cell(126, -46, ''.utf8_decode($listaPapus['edad']),0, 0, 'R', 0);
+        $pdf->SetXY(20,75);
+        $pdf->Cell(41, -30, ''.utf8_decode($listaPapus['medico']),0, 0, 'R', 0);
+        $pdf->SetXY(20,75);
+        $pdf->Cell(143, -30, ''.utf8_decode($listaPapus['genero']),0, 0, 'R', 0);
+        $pdf->SetXY(20,75);
+        $pdf->Cell(47, -14, ''.utf8_decode($listaPapus['diagnoticoPaciente']),0, 0, 'R', 0);
+        $pdf->SetXY(20,75);
+        $pdf->Cell(125, -14, ''.utf8_decode($listaPapus['peso']),0, 0, 'R', 0);
+        $pdf->SetXY(20,75);
+        $pdf->Cell(45, 25, ''.utf8_decode($listaPapus['temperatura']),0, 0, 'R', 0);
+        $pdf->SetXY(20,75);
+        $pdf->Cell(45, 35, ''.utf8_decode($listaPapus['pulso']),0, 0, 'R', 0);
+        $pdf->SetXY(20,75);
+        $pdf->Cell(45, 64, ''.utf8_decode($listaPapus['respiracion']),0, 0, 'R', 0);
+        $pdf->SetXY(20,75);
+        $pdf->Cell(45, 74, ''.utf8_decode($listaPapus['tensionArterial']),0, 0, 'R', 0);
+        $pdf->SetXY(20,75);
+        $pdf->Cell(45, 84, ''.utf8_decode($listaPapus['spo2']),0, 0, 'R', 0);
+        $pdf->SetXY(20,75);
+        $pdf->Cell(45, 93, ''.utf8_decode($listaPapus['glicemiaCapilar']),0, 0, 'R', 0);
+        $pdf->SetXY(20,75);
+        $pdf->Cell(28, 118, ''.utf8_decode($listaPapus['vomitos']),0, 0, 'R', 0);
+        $pdf->SetXY(20,75);
+        $pdf->Cell(28, 127, ''.utf8_decode($listaPapus['evacuaciones']),0, 0, 'R', 0);
+        $pdf->SetXY(20,75);
+        
+        $pdf->Cell(28, 137, ''.utf8_decode($listaPapus['orina']),0, 0, 'R', 0);
+        $pdf->SetXY(20,75);
+        $pdf->Cell(28, 147, ''.utf8_decode($listaPapus['ingestaLiquidos']),0, 0, 'R', 0);
+        $pdf->SetXY(20,75);
+        $pdf->Cell(28, 157, ''.utf8_decode($listaPapus['caidas']),0, 0, 'R', 0);
+        $pdf->SetXY(20,75);
+        $pdf->Cell(28, 167, ''.utf8_decode($listaPapus['drenajesVendajes']),0, 0, 'R', 0);
+        $pdf->SetXY(20,75);
+        $pdf->Cell(36, 186, ''.utf8_decode($listaPapus['uppHh']),0, 0, 'R', 0);
+        // SOLUCIONES
+        $descripcionUpp = $listaPapus['descripcionUpp'];
+        // Dividir el texto después de 45 palabras
+        $descripcionUppDividido = wordwrap($descripcionUpp, 45, "\n", true);
+        $pdf->Cell(138, 200, utf8_decode($descripcionUppDividido), 0, 0, 'R', 0);
+        
+        // $pdf->SetXY(20,75);
+        // $pdf->Cell(75, 205, ''.utf8_decode($listaPapus['solucion']),0, 0, 'R', 0);
+}
         $header = [];
         // Datos de la tabla (5 columnas)
         $data = [];    

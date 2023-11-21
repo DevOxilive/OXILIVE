@@ -12,7 +12,8 @@ if (!isset($_SESSION['us'])) {
 <html>
 <link rel="stylesheet" href="../../../assets/css/vali.css">
 <link rel="stylesheet" href="../../../assets/css/edit.css">
-
+<style>.campo-invalido {border: 2px solid red !important;}
+</style>
 </html>
 <main id="main" class="main">
     <section class="section dashboard">
@@ -55,7 +56,7 @@ if (!isset($_SESSION['us'])) {
                         <div class="formulario__grupo" id="grupo__Nombre_aseguradora">
                             <label for="codigo_ICD" class="formulario__label">Código ICD:</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="codigo_ICD" id="codigo_ICD"
+                                <input type="text" maxlength="15" class="formulario__input" name="codigo_ICD" id="codigo_ICD"
                                     placeholder="187.2 / 163">
                                 <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                             </div>
@@ -271,29 +272,8 @@ function confirmCancel(event) {
     });
 }
 </script>
-<script>
-document.getElementById("formulario").addEventListener("submit", function(event) {
-    const paciente = document.getElementById("paciente").value;
-    const medico = document.getElementById("medico").value;
-    const codigo_ICD = document.getElementById("codigo_ICD").value;
-    const dx = document.getElementById("dx").value;
-    const Nombre_admi = document.getElementById("Nombre_admi").value;
-    const codigo = document.getElementById("codigo").value;
-    const descripcion = document.getElementById("descripcion").value;
-    const unidad = document.getElementById("unidad").value;
-    const fecha = document.getElementById("fecha").value;
-
-    if (!paciente || !medico || !codigo_ICD || !dx || !Nombre_admi || !codigo || !descripcion || !unidad || !
-        fecha) {
-        // Al menos un campo está vacío, muestra una alerta y evita el envío del formulario
-        event.preventDefault();
-        Swal.fire({
-            title: 'Campos Vacíos',
-            text: 'Por favor, complete todos los campos antes de enviar el formulario.',
-            icon: 'error'
-        });
-    }
-});
+<script src="js/validaciones.js">
+    
 </script>
 
 <?php

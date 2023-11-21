@@ -59,59 +59,16 @@ if ($_POST) {
     $num_ext = isset($_POST['numExt']) ? $_POST['numExt'] : "";
     $num_int = isset($_POST['numInt']) ? $_POST['numInt'] : NULL;
     $referencias = isset($_POST['referencias']) ? $_POST['referencias'] : NULL;
-    $comprobante = isset($_POST['comprobante']) ? $_POST['comprobante'] : "";
-    $Credencial_front = isset($_POST['Credencial_front']) ? $_POST['Credencial_front'] : "";
-    $Credencial_post = isset($_POST['Credencial_post']) ? $_POST['Credencial_post'] : "";
-    $Credencial_aseguradora = isset($_POST['Credencial_aseguradora']) ? $_POST['Credencial_aseguradora'] : "";
-    $Credencial_aseguradoras_post = isset($_POST['Credencial_aseguradoras_post']) ? $_POST['Credencial_aseguradoras_post'] : "";
+    // $comprobante = isset($_POST['comprobante']) ? $_POST['comprobante'] : "";
+    // $Credencial_front = isset($_POST['Credencial_front']) ? $_POST['Credencial_front'] : "";
+    // $Credencial_post = isset($_POST['Credencial_post']) ? $_POST['Credencial_post'] : "";
+    // $Credencial_aseguradora = isset($_POST['Credencial_aseguradora']) ? $_POST['Credencial_aseguradora'] : "";
+    // $Credencial_aseguradoras_post = isset($_POST['Credencial_aseguradoras_post']) ? $_POST['Credencial_aseguradoras_post'] : "";
     $responsable = isset($_POST['responsable']) ? $_POST['responsable'] : NULL;
     $No_nomina = isset($_POST['No_nomina']) ? $_POST['No_nomina'] : "";
     $rfc = isset($_POST['rfc']) ? $_POST['rfc'] : "";
     $banco = isset($_POST['banco']) ? $_POST['banco'] : "";
 
-    if (!empty($_FILES['comprobante']['name'])) {
-        $nombreArchivoComprobante = $_FILES['comprobante']['name'];
-        $rutaArchivoComprobante = "../directorio_comprobante/" . $nombreArchivoComprobante;
-        if (move_uploaded_file($_FILES['comprobante']['tmp_name'], $rutaArchivoComprobante)) {
-            $comprobante = $nombreArchivoComprobante;
-        } else {
-            echo "Error al guardar el comprobante.";
-        }
-    } else {
-        $comprobante = $comprobanteA;
-    }
-    
-
-    
-    if (!empty($_FILES['Credencial_front']['name'])) {
-        // Procesa la subida del nuevo Credencial INE Frontal aquí y actualiza la variable $Credencial_front con la nueva ruta.
-        $nombreArchivoFront = $_FILES['Credencial_front']['name'];
-        $rutaArchivoFront = "../directorio_INES/" . $nombreArchivoFront;
-        move_uploaded_file($_FILES['Credencial_front']['tmp_name'], $rutaArchivoFront);
-        $Credencial_front = $nombreArchivoFront;
-    }
-    // Repite el mismo proceso para la Credencial INE Posterior.
-    if (!empty($_FILES['Credencial_post']['name'])) {
-        // Procesa la subida del nuevo Credencial INE Posterior aquí y actualiza la variable $Credencial_post con la nueva ruta.
-        $nombreArchivoPost = $_FILES['Credencial_post']['name'];
-        $rutaArchivoPost = "../directorio_INES/" . $nombreArchivoPost;
-        move_uploaded_file($_FILES['Credencial_post']['tmp_name'], $rutaArchivoPost);
-        $Credencial_post = $nombreArchivoPost;
-    }
-    if (!empty($_FILES['Credencial_aseguradora']['name'])) {
-        $nombreArchivoAseguradora = $_FILES['Credencial_aseguradora']['name'];
-        $rutaArchivoAseguradora = "../directorio_INES/" . $nombreArchivoAseguradora;
-        move_uploaded_file($_FILES['Credencial_aseguradora']['tmp_name'], $rutaArchivoAseguradora);
-        $Credencial_aseguradora = $nombreArchivoAseguradora;
-    }
-
-    // Procesa Credencial Aseguradora Posterior si se proporcionó un nuevo archivo
-    if (!empty($_FILES['Credencial_aseguradoras_post']['name'])) {
-        $nombreArchivoAseguradoraPost = $_FILES['Credencial_aseguradoras_post']['name'];
-        $rutaArchivoAseguradoraPost = "../directorio_INES/" . $nombreArchivoAseguradoraPost;
-        move_uploaded_file($_FILES['Credencial_aseguradoras_post']['tmp_name'], $rutaArchivoAseguradoraPost);
-        $Credencial_aseguradoras_post = $nombreArchivoAseguradoraPost;
-    }
     $sentencia = $con->prepare("UPDATE pacientes_call_center 
     SET nombres = :nom, 
     apellidos = :ape,
@@ -124,11 +81,11 @@ if ($_POST) {
     num_ext = :num_ext, 
     num_int = :num_int, 
     referencias = :referencia, 
-    comprobante = :comprobante,
-    Credencial_front = :Credencial_front, 
-    Credencial_post = :Credencial_post, 
-    Credencial_aseguradora = :Credencial_aseguradora, 
-    Credencial_aseguradoras_post = :Credencial_aseguradoras_post, 
+    comprobante = IFNULL(:comprobante, comprobante),
+        Credencial_front = IFNULL(:Credencial_front, Credencial_front),
+        Credencial_post = IFNULL(:Credencial_post, Credencial_post),
+        Credencial_aseguradora = IFNULL(:Credencial_aseguradora, Credencial_aseguradora),
+        Credencial_aseguradoras_post = IFNULL(:Credencial_aseguradoras_post, Credencial_aseguradoras_post),
     responsable = :responsable, 
     No_nomina = :No_nomina, 
     rfc = :rfc, 
@@ -157,7 +114,81 @@ if ($_POST) {
     $sentencia->bindParam(":banco", $banco);
     $sentencia->execute();
    
+    $carpeta_usuario = "../directorio_INES/";
 
+    function guardarArchivo($tmp_file, $nombre_original, $carpeta_usuario) {
+        if (!empty($nombre_original) && $tmp_file != '') {
+            if (!file_exists($carpeta_usuario)) {
+                mkdir($carpeta_usuario, 0777, true);
+            }
+            $ruta_destino = $carpeta_usuario . "/" . $nombre_original;
+            if (move_uploaded_file($tmp_file, $ruta_destino)) {
+                return $nombre_original;
+            }
+        }
+        return "";
+    }
+
+    $campos_archivos = array(
+        "Credencial_front",
+        "Credencial_post",
+        "Credencial_aseguradora",
+        "Credencial_aseguradoras_post",
+        "comprobante",
+    );
+    
+    foreach ($campos_archivos as $campo_archivo) {
+        $nombre_archivo = (isset($_FILES[$campo_archivo]['name']) ? $_FILES[$campo_archivo]['name'] : "");
+        $fecha_archivo = new DateTime();
+        $nombre_archivo_original = (!empty($nombre_archivo) ? $fecha_archivo->getTimestamp() . "_" . $nombre_archivo : "");
+    
+        // Verifica si $tmp_archivo está definido y no está vacío
+        if (isset($_FILES[$campo_archivo]['tmp_name']) && !empty($_FILES[$campo_archivo]['tmp_name'])) {
+            $tmp_archivo = $_FILES[$campo_archivo]['tmp_name'];
+    
+            // Convertir imágenes si es necesario
+            if ($campo_archivo === 'comprobante' || $campo_archivo === 'Credencial_front' || $campo_archivo === 'Credencial_post' || $campo_archivo === 'Credencial_aseguradora' || $campo_archivo === 'Credencial_aseguradoras_post') {
+                $tipo_imagen = exif_imagetype($tmp_archivo);
+                $extension = pathinfo($nombre_archivo, PATHINFO_EXTENSION);
+    
+                // Verifica si la extensión es .jfif y renombra el archivo si es necesario
+                if ($extension === 'jfif') {
+                    $nombre_archivo_original = $fecha_archivo->getTimestamp() . "_" . pathinfo($nombre_archivo, PATHINFO_FILENAME) . ".jpg";
+                }
+    
+                // Si la imagen no es PNG, conviértela a PNG
+                if ($tipo_imagen !== IMAGETYPE_PNG) {
+                    $imagen_png = imagecreatefromstring(file_get_contents($tmp_archivo));
+                    $ruta_destino_png = $carpeta_usuario . "/" . $nombre_archivo_original;
+                    imagepng($imagen_png, $ruta_destino_png);
+                    imagedestroy($imagen_png);
+    
+                    // Actualiza la variable para guardar el nombre del nuevo archivo
+                    $nombre_archivo = $nombre_archivo_original;
+                    $tmp_archivo = $ruta_destino_png;
+                }
+            }
+    
+            $archivo_guardado = guardarArchivo($tmp_archivo, $nombre_archivo_original, $carpeta_usuario);
+    
+        if (!empty($archivo_guardado)) {
+            
+            $sentencia = $con->prepare("SELECT $campo_archivo FROM `pacientes_call_center` WHERE id_pacientes=:id_pacientes");
+            $sentencia->bindParam(":id_pacientes", $txtID);
+            $sentencia->execute();
+            $registro_recuperado = $sentencia->fetch(PDO::FETCH_ASSOC);
+            if (isset($registro_recuperado[$campo_archivo])) {
+                $ruta_archivo = $carpeta_usuario . "/" . $registro_recuperado[$campo_archivo];
+                if (file_exists($ruta_archivo)) {
+                    unlink($ruta_archivo);
+                }
+            }
+            $sentencia = $con->prepare("UPDATE pacientes_call_center SET $campo_archivo=:archivo WHERE id_pacientes=:id_pacientes");
+            $sentencia->bindParam(":archivo", $archivo_guardado);
+            $sentencia->bindParam(":id_pacientes", $txtID);
+            $sentencia->execute();
+        }
+    }
     echo '<script language="javascript"> ';
     echo 'Swal.fire({
         icon: "success",
@@ -168,6 +199,7 @@ if ($_POST) {
         window.location = "../index.php";
         });';
     echo '</script>';
+}
 }
 
 ?>

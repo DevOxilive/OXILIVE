@@ -19,7 +19,7 @@ if ($_POST) {
         echo 'Swal.fire({
                 icon: "warning",
                 title: "DUPLICADO",
-                text: "El dato ingresado ya existe",
+                text: "EL PACIENTE YA EXISTE CON ESE ICD ",
                 showConfirmButton: false,
                 timer: 2000,
             }).then(function() {
