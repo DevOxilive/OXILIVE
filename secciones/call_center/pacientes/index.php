@@ -24,7 +24,7 @@ if (!isset($_SESSION['us'])) {
                 <h2>Pacientes</h2>
                 <?php if ($_SESSION['puesto'] == 1 || $_SESSION['puesto'] == 5) { ?>
                     <a class="btn btn-outline-primary" href="pages/crearPaciente.php" role="button">
-                        <i class="bi bi-calendar-plus"></i>
+                        <i class="bi bi-person-fill-add"></i>
                         Nuevo Paciente
                     </a>
                 <?php } ?>
@@ -99,7 +99,7 @@ if (!isset($_SESSION['us'])) {
     function deletePac(idPac) {
         Swal.fire({
             title: "¿Estás seguro?",
-            html: "Se eliminará permanentemente todos los datos de este paciente<br><b>No podrás recuperar la infromación</b>",
+            html: "Se eliminará permanentemente todos los datos de este paciente<br><b>No podrás recuperar la información</b>",
             icon: "warning",
             showCancelButton: true,
             width: 700,

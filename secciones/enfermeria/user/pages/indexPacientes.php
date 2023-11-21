@@ -28,6 +28,7 @@ if (!isset($_SESSION['us'])) {
         </nav>
     </div>
     <div class="card">
+        <br>
         <div class="card-body">
             <div class="table-responsive-sm">
                 <table class="table table-bordered  border-dark table-hover" id="myTable">

@@ -19,6 +19,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $rfc = isset($_POST['rfc']) ? $_POST['rfc'] : "";
     $banco = isset($_POST['banco']) ? $_POST['banco'] : "";
 
+    $consultaDuplicados = $con->prepare("SELECT COUNT(*) FROM pacientes_call_center WHERE No_nomina = :No_nomina");
+    $consultaDuplicados->bindParam(":No_nomina", $No_nomina);
+    $consultaDuplicados->execute();
+    $cantidadDuplicados = $consultaDuplicados->fetchColumn();
+    if ($cantidadDuplicados > 0) {
+        echo '<script language="javascript"> ';
+        echo 'Swal.fire({
+                icon: "warning",
+                title: "DUPLICADO",
+                text: "NOMINA YA EXISTE CON UN PACIENTE",
+                showConfirmButton: false,
+                timer: 2000,
+            }).then(function() {
+                window.location = "../buscador.php";
+                });';
+        echo '</script>';
+        exit;
+            }else{
+
     // Comprobar si se ha subido un archivo de comprobante
     if (isset($_FILES['comprobante']) && $_FILES['comprobante']['error'] === UPLOAD_ERR_OK) {
         $temporal_Comprobante = $_FILES['comprobante']['tmp_name'];
@@ -120,7 +139,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "Error al mover el archivo de comprobante.";
         }
     } else {
-        echo "No se seleccionó ningún archivo de comprobante o hubo un error al cargarlo.";
+        echo '<script language="javascript"> ';
+                                            echo 'Swal.fire({
+                                                    icon: "warning",
+                                                    title: "FALTO SELECCIONAR COMPROBANTE",
+                                                    showConfirmButton: false,
+                                                    timer: 1500,
+                                                }).then(function() {
+                                                    window.location = "../crear/crearPaciente.php";
+                                                    });';
+                                            echo '</script>';
     }
+}
 }
 ?>

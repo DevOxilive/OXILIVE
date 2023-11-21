@@ -11,23 +11,23 @@ if (!isset($_SESSION['us'])) {
 }
 ?>
 <html>
-<link rel="stylesheet" href="../../../../../assets/css/edit.css">
-</html>
+<link rel="stylesheet" href="../../../../assets/css/vali.css">
+<link rel="stylesheet" href="../../../../assets/css/edit.css">
 <main id="main" class="main">
     <section class="section dashboard">
         <div class="card">
             <div class="card-header" style="border: 2px solid #012970; background: #005880;">
                 <h4 style="text-align: center; color: #fff; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
-                    Editar aseguradora</H4>
+                    Editar Código de servicios</H4>
             </div>
             <div class="card-body" style="border: 2px solid #BFE5FF;">
                 <form action="./editarUP.php" method="POST" class="row g-3 formEdit">
-                    <div class="contenido col-md-1">
+                    <div class="contenido col-md-1"><br>
                         <label for="txtID" class="form-label">Num</label>
                         <input type="text" value="<?php echo $txtID; ?>" class="form-control" readonly name="txtID[]"
                             id="txtID" aria-describedby="helpId">
                     </div>
-                    <div class="contenido col-md-3"> 
+                    <div class="contenido col-md-2"><br> 
                         <label for="administradora" class="form-label">Administradora</label>
                         <select id="administradora" name="administradora" class="form-select">
                             <?php foreach ($lis_admi as $registro) { ?>
@@ -41,7 +41,7 @@ if (!isset($_SESSION['us'])) {
 
                     <!-- Aquí vamos hacer la prueba -->
                     <!-- Repite estos campos según sea necesario -->
-                    <div class="col-md-2 align-self-center">
+                    <div class="col-md-3 align-self-center">
                         <div class="formulario__grupo" id="grupo__Nombre_aseguradora">
                             <label for="codigo" class="formulario__label text-left">Código</label>
                             <div class="formulario__grupo-input">
@@ -50,7 +50,7 @@ if (!isset($_SESSION['us'])) {
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-2 align-self-center">
+                    <div class="col-md-3 align-self-center">
                         <div class="formulario__grupo" id="grupo__Nombre_aseguradora">
                             <label for="descripcion" class="formulario__label text-left">Descripción</label>
                             <div class="formulario__grupo-input">
@@ -59,7 +59,7 @@ if (!isset($_SESSION['us'])) {
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-2 align-self-center">
+                    <div class="col-md-3 align-self-center">
                         <div class="formulario__grupo" id="grupo__Nombre_aseguradora">
                             <label for="unidad" class="formulario__label text-left">Unidad</label>
                             <div class="formulario__grupo-input">

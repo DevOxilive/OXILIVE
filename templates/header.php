@@ -408,7 +408,6 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
         </ul>
         </li><!-- End Forms Nav -->
     <?php endif; ?>
-
     <?php if ($_SESSION['puesto'] === 11) : ?>
         <!-- Apartado de bloque de departamento de enfermeria -->
 
@@ -437,7 +436,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/user/pages/indexAsistencias.php">
+            <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/user/pages/indexAsistencias.php?id=<?php echo $_SESSION['idus']; ?>">
                 <i class="bi bi-calendar2-check"></i>
                 <span>Asistencias</span>
             </a>
@@ -491,7 +490,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                 </li>
                 <!--Aquí voy agregar el menu desplegable -->
                 <li>
-                    <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#alta" href="#"><i class="bi bi-circle"></i><span>Eventos</span><i class="bi bi-chevron-down ms-auto fs-6"></i></a>
+                    <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#alta" href="#"><i class="bi bi-circle"></i><span>Generar Incidencia</span><i class="bi bi-chevron-down ms-auto fs-6"></i></a>
                     <ul id="alta" class="collapse">
                         <li><a href="<?php echo $url_base; ?>secciones/call_center/eventos/index.php"><i class="bi bi-circle"></i><span>Crear Evento</span></a></li>
                         <li><a href="<?php echo $url_base; ?>secciones/call_center/eventos/cancelar/cancelar.php"><i class="bi bi-circle"></i><span>Cancelar Evento</a></li>
@@ -499,7 +498,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                 </li>
                 <li>
                     <a href="<?php echo $url_base; ?>secciones/call_center/medicos/index.php">
-                        <i class="bi bi-circle"></i><span>Asistencia Médcia</span>
+                        <i class="bi bi-circle"></i><span>Incidencia Médica</span>
                     </a>
                 </li>
             </ul>

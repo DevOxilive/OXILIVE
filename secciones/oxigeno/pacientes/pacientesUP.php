@@ -125,6 +125,7 @@ if ($_POST) {
         $archivo_guardado = guardarArchivo($tmp_archivo, $nombre_archivo_original, $carpeta_usuario);
     
         if (!empty($archivo_guardado)) {
+            
             $sentencia = $con->prepare("SELECT $campo_archivo FROM `pacientes_oxigeno` WHERE id_pacientes=:id_pacientes");
             $sentencia->bindParam(":id_pacientes", $txtID);
             $sentencia->execute();

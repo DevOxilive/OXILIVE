@@ -5,7 +5,6 @@ if (!isset($_SESSION['us'])) {
 } elseif (isset($_SESSION['us'])) {
     include("../../../../templates/header.php");
     include("../../../../connection/conexion.php");
-    include("../model/horarios.php");
 } else {
     echo "Error en el sistema";
 }
@@ -15,6 +14,7 @@ if (!isset($_SESSION['us'])) {
 <head>
     <link rel="stylesheet" href="<?php echo $url_base; ?>assets/css/foto_perfil.css">
     <link rel="stylesheet" href="<?php echo $url_base; ?>assets/css/edit.css">
+    <link rel="stylesheet" href="<?php echo $url_base; ?>secciones/enfermeria/user/css/horarios.css">
 </head>
 <main id="main" class="main">
     <div class="pagetitle">
@@ -27,24 +27,7 @@ if (!isset($_SESSION['us'])) {
             </ol>
         </nav>
     </div>
-    <div class="card">
-        <div class="card-body">
-            <table class="table table-bordered  border-dark table-hover" id="myTable">
-                <thead class="table-dark">
-                    <tr class="table-active table-group-divider" style="text-align: center;">
-                        <th>Paciente</th>
-                        <th>Horario</th>
-                        <th>Fecha</th>
-                        <th>Estado</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="tableCont">
-                </tbody>
-            </table>
-            <input type="hidden" id="idUs" value="<?php echo $_SESSION['idus']; ?>">
-        </div>
-    </div>
+    <input type="hidden" id="idus" value="<?php echo $_SESSION['idus']?>">
 </main>
 
 </html>

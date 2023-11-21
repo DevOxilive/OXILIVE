@@ -41,10 +41,9 @@ if (!isset($_SESSION['us'])) {
                         </select>
                     </div>
 
-                    <div class="contenido col-md-6"> <br>
+                    <div class="contenido col-md-6"> 
                         <div class="formulario__grupo" id="grupo__Nombre_banco">
-                            <label for="Nombre_banco" class="formulario-label">Nombre del banco</label>
-
+                        <label for="administradora" class="formulario__label">Nombre del banco</label>
                             <div class="formulario__grupo-input">
                                 <input type="text" class="formulario__input" name="Nombre_banco[]" id="Nombre_banco"
                                     placeholder="Nombre del banco">
@@ -140,25 +139,53 @@ function confirmCancel(event) {
 }
 </script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelector('.formLogin').addEventListener('submit', function(event) {
-        event.preventDefault();
+    document.addEventListener('DOMContentLoaded', function() {
+        var nombreBancoInput = document.getElementById('Nombre_banco');
+        var administradoraSelect  = document.getElementById('administradora');
 
-        // Verifica si los campos obligatorios están vacíos
-        var Nombre_banco = document.getElementById('Nombre_banco').value;
-
-        if (!Nombre_banco) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Campos vacíos',
-                text: 'Por favor, completa todos los campos obligatorios.',
-            });
-        } else {
-            this.submit();
+        function validarCampoSelect() {
+            var valorSelect = administradoraSelect.value;
+            if (valorSelect === '0') {
+                administradoraSelect.style.borderColor = 'red';
+            } else {
+                administradoraSelect.style.borderColor = '';
+            }
         }
+
+        function validarCampo() {
+            var valorCampo = nombreBancoInput.value;
+            if (!valorCampo.trim()) {
+                nombreBancoInput.style.borderColor = 'red';
+            } else {
+                nombreBancoInput.style.borderColor = '';
+            }
+        }
+        // Agregar un event listener para el evento de cambio en el campo de entrada
+        nombreBancoInput.addEventListener('input', validarCampo);
+        administradoraSelect.addEventListener('change', validarCampoSelect);
+
+        document.querySelector('.formLogin').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var Nombre_banco = nombreBancoInput.value;
+            var valorSelect = administradoraSelect.value;
+            // Validar si el campo está vacío
+            if (!Nombre_banco.trim()) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Campo Vacío',
+                    text: 'Por favor, completa el campo.',
+                });
+                nombreBancoInput.style.borderColor = 'red';
+                 administradoraSelect.style.borderColor = 'red';
+                return;
+            }
+
+            // Si el campo no está vacío, enviar el formulario
+            this.submit();
+        });
     });
-});
 </script>
+
 <?php
 include("../../../../../templates/footer.php");
 ?>

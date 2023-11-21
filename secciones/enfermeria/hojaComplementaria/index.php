@@ -47,10 +47,10 @@ if (!isset($_SESSION['us'])) {
                 <a name="" id="" class="btn btn-outline-info" href="pacientes.php?txtID=<?php echo $pacien['id_pacientes']; ?>" role="button" style="font-size=10px;"><i class="bi bi-file-earmark-pdf"></i></a> |
                 <a name="" id="" class="btn btn-outline-warning"
                 href="crear/editarPaciente.php?txtID=<?php echo $pacien['id_pacientes']; ?>" role="button"><i
-                    class="bi bi-pencil-square"></i></a> |
-                <a name="" id="" class="btn btn-outline-danger"
+                    class="bi bi-pencil-square"></i></a> 
+                <!-- <a name="" id="" class="btn btn-outline-danger"
                   onclick="eliminar(<?php echo $pacien['id_pacientes']; ?>)" role="button" style="font-size=10px;"><i
-                    class="bi bi-trash-fill"></i></a>
+                    class="bi bi-trash-fill"></i></a> -->
               </td>
             </tr>
             <?php }?>
@@ -91,8 +91,6 @@ if (!isset($_SESSION['us'])) {
       success: function () {
         Swal.fire("Eliminado:", "Ha sido eliminado", "success").then((result) => {
           window.location.href = "index.php";
-
-
         });
       },
 

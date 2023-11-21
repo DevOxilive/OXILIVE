@@ -90,56 +90,64 @@ while ($user = $sentencia->fetch(PDO::FETCH_ASSOC)) {
     $rutaCredencialPost = $carpeta_usuario . "/" . $nombre_Credencial_post_orginal;
     $rutaCredencialAseguradora = $carpeta_usuario . "/" . $nombre_Credencial_aseguradora_orginal;
     $rutaCredencialAseguradorasPost = $carpeta_usuario . "/" . $nombre_Credencial_aseguradoras_post_orginal;
+    
     //Este es mi tamañao de las imagenes
     $pdf->Image($rutaCredencialFront, 20, 140, 80, 50);
     $pdf->Image($rutaCredencialPost, 110, 140, 80, 50);
     // Coloca las dos imágenes inferiores con el tamaño deseado
     $pdf->Image($rutaCredencialAseguradora, 20, 200, 80, 50);
     $pdf->Image($rutaCredencialAseguradorasPost, 110, 200, 80, 50);
-$pdf->SetXY(31,75);
-$pdf->Cell(90, 10, 'Nombre del Paciente: '.utf8_decode($user['paciente']),0, 0, 'R', 0);
-$pdf->Line(130, 82,55, 82); 
-$pdf->Cell(30);
-$pdf->Cell(40, 10, 'RFC: ' .utf8_decode($user['rfc']),0, 0, 'C', 0);
-$pdf->Line(197, 82, 160, 82);
-$pdf->SetXY(10,75);
-$pdf->Cell(35, 30, 'Calle: '.utf8_decode($user['calle']),0, 0, 'U', 0);
+// Obtén la longitud del nombre del paciente y usa ese valor para ajustar las posiciones de las líneas y celdas
+$longitudNombrePaciente = strlen($user['paciente']);
+$ajusteXPaciente = 70 + $longitudNombrePaciente * 1.5; // Puedes ajustar el factor multiplicativo según sea necesario
+
+$longitudNombreResponsable = strlen($user['responsable']);
+$ajusteXResponsable = 10 + $longitudNombreResponsable * 1.5; // Puedes ajustar el factor multiplicativo según sea necesario
+
+$pdf->SetXY(31, 75);
+$pdf->Cell($ajusteXPaciente, 10, 'Nombre del Paciente: ' . utf8_decode($user['paciente']), 0, 0, 'R', 0);
+$pdf->Line(30 + $ajusteXPaciente, 82, 55, 82);
+$pdf->Cell(20);
+$pdf->Cell(30, 10, 'RFC: ' . utf8_decode($user['rfc']), 0, 0, 'C', 0);
+$pdf->Line(200, 82, 175, 82);
+$pdf->SetXY(10, 75);
+$pdf->Cell(35, 30, 'Calle: ' . utf8_decode($user['calle']), 0, 0, 'U', 0);
 $pdf->Line(23, 92, 130, 92);
-$pdf->SetXY(120,75);
-$pdf->Cell(50, 30, utf8_decode('Núm.Ext: ') .utf8_decode($user['num_ext']),0, 0, 'C', 0);
+$pdf->SetXY(120, 75);
+$pdf->Cell(50, 30, utf8_decode('Núm.Ext: ') . utf8_decode($user['num_ext']), 0, 0, 'C', 0);
 $pdf->Line(153, 92, 168, 92);
-$pdf->SetXY(145,75);
-$pdf->Cell(70, 30, utf8_decode('Núm.Int: ') .utf8_decode($user['num_int']),0, 0, 'C', 0);
+$pdf->SetXY(145, 75);
+$pdf->Cell(70, 30, utf8_decode('Núm.Int: ') . utf8_decode($user['num_int']), 0, 0, 'C', 0);
 $pdf->Line(188, 92, 200, 92);
 $pdf->Ln();
-$pdf->SetXY(31,95);
-$pdf->Cell(55, 10, 'Colonia: '.utf8_decode($user['colonia']),0, 0, 'R', 0);
+$pdf->SetXY(45, 95);
+$pdf->Cell(55, 10, 'Colonia: ' . utf8_decode($user['colonia']), 0, 0, 'R', 0);
 $pdf->Line(27, 102, 119, 102);
 $pdf->Cell(20);
-$pdf->Cell(50, 10, utf8_decode('CP: ') .utf8_decode($user['codigo_postal']),0, 0, 'C', 0);
+$pdf->Cell(50, 10, utf8_decode('CP: ') . utf8_decode($user['codigo_postal']), 0, 0, 'C', 0);
 $pdf->Line(128, 102, 168, 102);
 $pdf->Ln();
-$pdf->SetXY(12,105);
-$pdf->Cell(55, 10, 'Municipio:    '.utf8_decode($user['municipio']),0, 0, 'R', 0);
+$pdf->SetXY(12, 105);
+$pdf->Cell(55, 10, 'Municipio:    ' . utf8_decode($user['municipio']), 0, 0, 'R', 0);
 $pdf->Line(31, 112, 75, 112);
 $pdf->Cell(20);
-$pdf->Cell(35, 10, utf8_decode('Estado: ') .utf8_decode($user['estadoDir']),0, 0, 'C', 0);
+$pdf->Cell(35, 10, utf8_decode('Estado: ') . utf8_decode($user['estadoDir']), 0, 0, 'C', 0);
 $pdf->Line(93, 112, 136, 112);
-$pdf->Cell(85, 10, utf8_decode('Tel. de casa: ') .utf8_decode($user['telefono']),0, 0, 'C', 0);
+$pdf->Cell(85, 10, utf8_decode('Tel. de casa: ') . utf8_decode($user['telefono']), 0, 0, 'C', 0);
 $pdf->Line(165, 112, 191, 112);
 $pdf->Ln();
-$pdf->SetXY(56,115);
-$pdf->Cell(55, 10, 'Nombre del Responsable: '.utf8_decode($user['responsable']),0, 0, 'R', 0);
-$pdf->Line(62, 122, 200, 122);
-$pdf->SetXY(15,75);
-$pdf->Cell(57, 110, 'Administradora: '.utf8_decode($user['Nombre_administradora']),0, 0, 'R', 0);
+$pdf->SetXY(100, 115);
+$pdf->Cell($ajusteXResponsable, 10, 'Nombre del Responsable: ' . utf8_decode($user['responsable']), 0, 0, 'R', 0);
+$pdf->Line(50 + $ajusteXResponsable, 122, 200, 122);
+$pdf->SetXY(15, 75);
+$pdf->Cell(57, 110, 'Administradora: ' . utf8_decode($user['Nombre_administradora']), 0, 0, 'R', 0);
 $pdf->Line(40, 132, 83, 132);
-$pdf->SetXY(93,75);
-$pdf->Cell(25, 110, utf8_decode('N° de contrato: ') .utf8_decode(''),0, 0, 'C', 0);
-$pdf->Line(120, 132, 150, 132);
-$pdf->SetXY(160,75);
-$pdf->Cell(25, 110, utf8_decode('N° de empleado: ') .utf8_decode($user['No_nomina']),0, 0, 'C', 0);
-$pdf->Line(188, 132, 200, 132);
+$pdf->SetXY(93, 75);
+$pdf->Cell(25, 110, utf8_decode('N° de contrato: ') . utf8_decode(''), 0, 0, 'C', 0);
+$pdf->Line(120, 132, 143, 132);
+$pdf->SetXY(160, 75);
+$pdf->Cell(25, 110, utf8_decode('N° de empleado: ') . utf8_decode($user['No_nomina']), 0, 0, 'C', 0);
+$pdf->Line(180, 132, 200, 132);
 }
 $pdf->Ln();
 

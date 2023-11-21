@@ -105,8 +105,8 @@ if (!isset($_SESSION['us'])) {
                     <!-- Botones -->
                     <div class="col-12">
                         <br>
-                        <button type="submit" class="btn btn-outline-primary">Guardar</button>
-                        <a role="button" href="" onclick="confirmCancel(event)" name="cancelar" class="btn btn-outline-danger">
+                        <button type="submit" class="btn btn-outline-primary">Registrar</button>
+                        <a role="button" href="#" onclick="confirmCancel(event)" name="cancelar" class="btn btn-outline-danger">
                             Cancelar
                         </a>
                     </div>

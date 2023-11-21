@@ -4,6 +4,7 @@ if (!isset($_SESSION['us'])) {
   header('Location: ../../login.php');
 } elseif (isset($_SESSION['us'])) {
   include("../../../../templates/header.php");
+  $datosGuardados = $_GET['btnId'];
   include("consultaCreados.php");
 } else {
   echo "Error en el sistema";
@@ -28,17 +29,21 @@ if (!isset($_SESSION['us'])) {
                             <th scope="col">Nombre del Médico:</th>
                             <th scope="col">Nombre del Enfermero:</th>
                             <th scope="col">Diagnostico del Médico:</th>
+                            <th scope="col">Opciones:</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach($lisClinica as $todRegistros){ ?>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                    <?php foreach($listaPapus as $registroPaps){ ?>
+                      <td><?php echo $registroPaps['paciente'];?></td>
+                      <td><?php echo $registroPaps['responsable'];?></td>
+                      <td><?php echo $registroPaps['medico'];?></td>
+                      <td><?php echo $registroPaps['enfermero'];?></td>
+                      <td><?php echo $registroPaps['diagnoticoPaciente'];?></td>
+                      <td>
+                      <a name="" id="" class="btn btn-outline-info" href="../registro_pdf.php?btnId=<?php echo $registroPaps['id_RC']; ?>" role="button" style="font-size=10px;"><i class="bi bi-file-earmark-pdf"></i></a> |
+                      </td>
+                      <?php } ?>
                     </tbody>
-                    <?php } ?>
                 </table>
             </div>
         </div>
