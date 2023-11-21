@@ -479,9 +479,9 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                     </a>
                 </li>
             </ul>
-        </li><!-- End Tables Nav -
-        <?php endif; ?>
-        <?php if ($_SESSION['puesto'] === 7 || $_SESSION['puesto'] === 1) : ?>
+        </li><!-- End Tables Nav -->
+    <?php endif; ?>
+    <?php if ($_SESSION['puesto'] === 7 || $_SESSION['puesto'] === 1) : ?>
                 <li class="nav-item">
                     <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
                         <i class="bi bi-person-circle"></i><span>Capital Humano</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -538,7 +538,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                 </li>
             <?php endif; ?>
         </ul>
-    </aside><!-- End Sidebar-->
+    </aside>
         <script>
             // Función para actualizar el estatus
             function actualizarEstatus() {
