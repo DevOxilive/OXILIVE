@@ -136,7 +136,8 @@ function validarFechas() {
 
     if (fecha1 === "" || fecha2 === "") {
         Swal.fire({
-            title: "Por favor, selecciona ambas fechas antes de generar el reporte.",
+            icon: "error",
+            title: "Selecciona las fechas antes de generar el reporte.",
             width: "600px",
             showClass: {
                 popup: 'animate__animated animate__fadeInDown'

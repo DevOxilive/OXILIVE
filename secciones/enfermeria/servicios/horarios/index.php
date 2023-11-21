@@ -90,6 +90,7 @@ if (!isset($_SESSION['us'])) {
             text: 'Esta acción no se podrá deshacer una vez se realice, pero podrás seguir viendo el horario en la seccion de Cancelados',
             showCancelButton: true,
             width: 700,
+            icon: "warning",
             confirmButtonText: 'Confirmar',
             confirmButtonColor: '#3085d6',
             cancelButtonText: `Cancelar`,

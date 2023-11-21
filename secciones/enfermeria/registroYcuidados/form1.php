@@ -22,7 +22,7 @@ if (!isset($_SESSION['us'])) {
             <h4 style="text-align:center;
             color: #ffff;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
-                REGISTRO CLÍNICO Y CUDADOS GENERALES
+                Formulario parte 1
             </h4>
         </div>
         <div class="card-body" style="border: 2px solid #BFE5FF;">
@@ -31,7 +31,7 @@ if (!isset($_SESSION['us'])) {
                     <div class="formulario__grupo">
                         <label for="peso" class="formulario__label">Peso del paciente:</label>
                         <div class="formulario__grupo-input">
-                            <input type="text" class="formulario__input" name="peso" id="peso" placeholder="Ej. 60 kg">
+                            <input type="text" class="formulario__input" name="peso" id="peso" placeholder="Ej. 60.30 kg">
                         </div>
                     </div>
                 </div>
@@ -209,22 +209,20 @@ if (!isset($_SESSION['us'])) {
     </div>
 </main>
 <script type="text/javascript">
-function mostrarAlerta() {
-    Swal.fire({
-        icon: 'question',
-        title: '¿Estás seguro de que deseas ir atrás?',
-        text: 'Los datos no se guardarán',
-        showCancelButton: true,
-        confirmButtonText: 'Sí',
-        cancelButtonText: 'No',
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.history.back();
-        } else {
-            window.location.href = 'form1.php';
-        }
-    });
-}
+    function mostrarAlerta() {
+        Swal.fire({
+            icon: 'question',
+            title: '¿Estás seguro de ir atrás?',
+            text: 'Los datos no se guardarán',
+            showCancelButton: true,
+            confirmButtonText: 'Sí',
+            cancelButtonText: 'No',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = 'index.php'; // Cambia aquí para redirigir a 'index.php'
+            }
+        });
+    }
 </script>
 <script src="js/valiform1.js"></script>
 

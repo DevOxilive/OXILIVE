@@ -9,13 +9,7 @@ if (!isset($_SESSION['us'])) {
     include("./model/buscarmedico.php");
     include("./model/buscarServicios.php");
 
-   // Array para almacenar IDs de usuarios ya mostrados
-   $usuariosMostrados = array();
-   $ids_sv = array();
-   // Iterar sobre tus datosServicio y almacenar los valores de id_sv en el array
-   foreach ($datosServicio as $servicio) {
-       $ids_sv[] = $servicio['id_sv'];
-   }
+    
 
 } else {
     echo "Error en el sistema";
@@ -43,7 +37,6 @@ if (!isset($_SESSION['us'])) {
             <div class="card-body" style="border: 2px solid #BFE5FF">
                 <form method="POST" enctype="multipart/form-data" class="formLogin row g-3" id="formulario">
                     <?php foreach ($datosServicio as $serv) { 
-       if (!in_array($serv['num_paciente'], $usuariosMostrados)) {
           ?>
                     <!-- Apartado del registro para datos generales -->
                     <div class="contenido col-md-12">
@@ -128,13 +121,9 @@ if (!isset($_SESSION['us'])) {
                         </a>
                         <button type="submit" class="btn btn-outline-primary">Actualizar</button>
                     </div>
+                    <input type="hidden" id="id_sv" value="<?php echo $serv['id_sv']; ?>">
                     <?php 
-                    $usuariosMostrados[] = $serv['num_paciente'];
-                }
-                   
                   } ?>
-                    <input type="hidden" id="usuariosMostrados" value="<?php print_r($usuariosMostrados); ?>">
-                    <input type="hidden" id="ids_sv" value="<?php print_r($ids_sv); ?>">
                 </form>
             </div>
         </div>
@@ -254,7 +243,7 @@ function confirmCancel(event) {
     });
 }
 </script>
-
+<script src="./js/validacion.js"></script>
 
 
 </html>

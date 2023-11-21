@@ -23,11 +23,11 @@ if (!isset($_SESSION['us'])) {
             <h4 style="text-align:center;
             color: #ffff;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
-                REGISTRO CLÍNICO Y CUDADOS GENERALES
+                Formulario parte 4
             </h4>
         </div>
         <div class="card-body" style="border: 2px solid #BFE5FF;">
-            <form class="formLogin form-inline" id="formulario">
+            <form  class="formLogin form-inline" id="formulario">
                     <div class="col-md-5">
                         <div class="formulario__grupo">
                             <label for="medicamento_1" class="formulario__label">1.° MEDICAMENTO</label>
@@ -118,25 +118,23 @@ if (!isset($_SESSION['us'])) {
 
 
 <script type="text/javascript">
-function mostrarAlerta() {
-    Swal.fire({
-        icon: 'question',
-        title: '¿Estás seguro de que deseas ir atrás?',
-        text: 'Los datos no se guardarán',
-        showCancelButton: true,
-        confirmButtonText: 'Sí',
-        cancelButtonText: 'No',
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.history.back();
-        } else {
-            window.location.href = 'form3.php';
-        }
-    });
-}
+    function mostrarAlerta() {
+        Swal.fire({
+            icon: 'question',
+            title: '¿Estás seguro de ir atrás?',
+            text: 'Los datos no se guardarán',
+            showCancelButton: true,
+            confirmButtonText: 'Sí',
+            cancelButtonText: 'No',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = 'form3.php'; // Cambia aquí para redirigir a 'index.php'
+            }
+        });
+    }
 </script>
 
-<script src="js/valiform4.js"></script>
+<script src="js/valiform4.js"></script></script>
 
 
 <?php

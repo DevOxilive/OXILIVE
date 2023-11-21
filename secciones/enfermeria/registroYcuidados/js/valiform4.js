@@ -14,8 +14,7 @@ var form = document.getElementById("formulario");
 var formArray = [
 medicamento_1,
 horario_1,
-medicamento_2,
-horario_2,
+
 ];
 
 
@@ -30,9 +29,8 @@ form.addEventListener("submit", function (event) {
      horario_1: horario_1.value,
      medicamento_2: medicamento_2.value,
      horario_2: horario_2.value,
-
-     medicamento_3: medicamento_3.vale,
-     horario_3: horario_3.vale,
+     medicamento_3: medicamento_3.value,
+     horario_3: horario_3.value,
      medicamento_4: medicamento_4.value,
      horario_4: horario_4.value,
      medicamento_5: medicamento_5.value,
@@ -47,7 +45,6 @@ form.addEventListener("submit", function (event) {
         .then((response) => response.text())
         .then((resultado) => {
             console.log(resultado);
-          if (resultado == true) {
             Swal.fire({
               title: "Registrado",
               text: "Registro realizado correctamente",
@@ -57,7 +54,6 @@ form.addEventListener("submit", function (event) {
             }).then(function () {
               window.location.replace("index.php");
             });
-          }
         });
     } else {
       Swal.fire({

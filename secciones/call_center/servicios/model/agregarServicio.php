@@ -1,6 +1,6 @@
 <?php 
-include("../../../connection/conexion.php");
-include_once '../../../templates/hea.php';
+include("../../../../connection/conexion.php");
+include_once '../../../../templates/hea.php';
 
  
 if($_POST){
@@ -28,7 +28,7 @@ if($_POST){
                 showConfirmButton: false,
                 timer: 1500,
             }).then(function() {
-                window.location = "./index.php";
+                window.location = "../index.php";
                 });';
         echo '</script>';
     
