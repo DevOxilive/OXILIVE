@@ -48,7 +48,7 @@ if (!isset($_SESSION['us'])) {
                                 <button type="button" class="btn btn-success btn-sm" id="startCamera">Iniciar
                                     Cámara</button>
                                 <button type="button" class="btn btn-danger btn-sm" id="stopDetection" disabled>Detener
-                                    Detección</button>
+                                    Cámara</button>
 
                                 <button type="button" class="btn btn-info btn-sm" id="capture" style="display:none;"
                                     disabled>Capturar</button>
