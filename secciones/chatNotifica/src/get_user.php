@@ -46,9 +46,13 @@ try {
             } else {
                 $clase = '';
             }
-            echo '<a href="php/chat.php?chat=' . $fila['token'] . '" ' . $clase . '><li>
-                <img src="data:image/jpg/png;base64,' . base64_encode($fila['Foto_perfil']) . '" alt="img perfil"><b>' . $fila['Usuario'] . '</b> ' . $conectado . '<br><div class="mensaje-previo"> ' . $por . $estatusMensaje . '</div></li>
-                </a>';
+            echo '<a href="php/chat.php?chat=' . $fila['token'] . '" ' . $clase . '>
+                    <il class="user-list-item">
+                        <img src="data:image/jpg/png;base64,' . base64_encode($fila['Foto_perfil']) . '" alt="img perfil">
+                        <div class="user-details">
+                            <div class="user-name">' . $fila['Usuario'] . $conectado . '</div><div class="mensaje-previo last-message"> ' . $por . $estatusMensaje . '</div>
+                            </div>
+                    </il></a>';
         }
     } else {
         // si no envia el mensaje de comenzar chat

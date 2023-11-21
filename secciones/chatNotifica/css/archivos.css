@@ -3,7 +3,7 @@
     padding: 10px;
     height: 55vh;
     overflow-y: scroll;
-    background-color: rgb(137, 137, 137);
+    background-color: #dcdcdc;
 }
 
 #list-documentos {
