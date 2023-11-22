@@ -30,40 +30,28 @@ try {
         $stat->execute();
         $result = $stat->fetchAll(PDO::FETCH_ASSOC);
         if (count($result) > 0) {
-            if ($_SESSION['puesto'] == 5) {
-                // echo '</tr>';
-            } else if ($_SESSION['puesto'] == 1) {
-                // echo '<th>eliminar</th>
-                //         </tr>';
-            }
             $cont = 0;
             foreach ($result as $key => $filas) {
                 $cont++;
-                echo '<div class="archivos">
-                        <div class="mensaje-previo">' . $cont . '. ' . $filas['persona'] . '</div>
-                        <a href="' . $ruta . $filas['nombreArchi'] . '">
+                if ($_SESSION['puesto'] == 5) {
+                    echo '<div class="archivos">    
+                    <div class="mensaje-previo">' . $cont . '. ' . $filas['persona'] . '</div>
+                    <a href="' . $ruta . $filas['nombreArchi'] . '">
                         <i class="bi bi-file-earmark-richtext" style="font-size: 6em;"></i>
                         <div class="mensaje-previo">
                         ' . $filas['nombreArchi'] . '
                         </div></a>
                     </div>';
-
-                // echo '<tr>
-                //     <td>
-                //         ' . $filas['id'] . '
-                //     </td>
-                //     <td>
-                //         <a href="' . $ruta . $filas['nombreArchi'] . '" target="_BLANK" style ="text-decoration: none;"><i class="bi bi-file-earmark-richtext"></i>' . $filas['nombreArchi'] . '</a>
-                //     </td>
-                //     <td>' . $filas['persona'] . '</td>';
-                if ($_SESSION['puesto'] == 5) {
-                    // echo '</tr>';
                 } else if ($_SESSION['puesto'] == 1) {
-                    // echo '<td>
-                    //     <button name="documento_id" value="' . $filas['id'] . '"><i class="bi bi-trash-fill"></i></button>
-                    //   </td>
-                    // </tr>';
-                    // <i class="bi bi-trash-fill"></i>
+                    echo '<div class="archivos">    
+                    <div class="mensaje-previo">' . $cont . '. ' . $filas['persona'] . '</div>
+                    <button type="submit" name="documento_id" value="' . $filas['id'] . '"><i class="bi bi-trash-fill"></i></button>    
+                    <a href="' . $ruta . $filas['nombreArchi'] . '">
+                        <i class="bi bi-file-earmark-richtext" style="font-size: 6em;"></i>
+                        <div class="mensaje-previo">
+                        ' . $filas['nombreArchi'] . '
+                        </div></a>
+                    </div>';
                 }
             }
         } else {

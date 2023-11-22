@@ -43,11 +43,13 @@ if (count($resultado) > 0) {
                         <button id="btnMostrar"><i class="bi bi-folder-plus"></i></button>
                     </h2>
                 </div>
-                <div class="vistaArchivos" id="miGaleria">
-                    <div id="list-documentos">
+                <form action="eliminar_documento.php" method="post">
+                    <div class="vistaArchivos" id="miGaleria">
+                        <div id="list-documentos">
 
+                        </div>
                     </div>
-                </div>
+                </form>
                 <div id="chat-container">
                     <div id="chat-messages">
                         <!-- aqui se generan los mensajes -->
