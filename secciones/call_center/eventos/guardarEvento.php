@@ -10,7 +10,10 @@ if ($_POST) {
     $motivoConsulta = (isset($_POST["motivoConsulta"]) ? $_POST["motivoConsulta"] : "");
     $nAutorizacion = (isset($_POST["nAutorizacion"]) ? $_POST["nAutorizacion"] : "");
     $auEspecial = (isset($_POST["auEspecial"]) ? $_POST["auEspecial"] : "");
-    $id_usuarios = (isset($_POST["asignarMedico"]) ? $_POST["asignarMedico"] : "");
+    $id_usuarios = (isset($_POST["asignarMedico"]) ? $_POST["asignarMedico"] : NULL);
+    if ($id_usuarios === "") {
+        $id_usuarios = NULL;
+    }
     $idServicio = (isset($_POST["tipoServicio"]) ? $_POST["tipoServicio"] : []);
 
 //es para que los datos se vean en mayusculas  

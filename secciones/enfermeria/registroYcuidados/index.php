@@ -8,7 +8,7 @@ if (!isset($_SESSION['us'])) {
     include("../../enfermeria/registroYcuidados/model/consultaDatos.php");
 
 
-    $datosGuardados = isset($_SESSION['datos_guardados']) && $_SESSION['datos_guardados'] === true;
+
 } else {
     echo "Error en el sistema";
 }
@@ -103,40 +103,12 @@ if (!isset($_SESSION['us'])) {
     <br>
     <!-- Tu botón en HTML -->
     <button id="btnSiguiente" class="btn btn-primary" type="submit" form="formulario">Iniciar Registro</button>
-    <?php if ($datosGuardados) { ?>
-    <button type="button" class="btn btn-outline-success" id="generar-pdf-btn" data-id="<?php echo $idReg; ?>">
-        <span class="bi bi-file-earmark-pdf-fill"></span> Generar Registro
-    </button>
-    <?php } ?>
     </form>
     </div>
     </div>
 </main>
 </html>
-<script type="text/javascript">
-// Obtener el botón por su ID
-var botonGenerarPDF = document.getElementById("generar-pdf-btn");
-// Obtener el ID real del registro desde el atributo data
-var datosGuardados = botonGenerarPDF.getAttribute("data-id");
 
-// Agregar un manejador de eventos al botón
-botonGenerarPDF.addEventListener("click", function() {
-    // Realizar la redirección con el ID real del registro
-    var xhr = new XMLHttpRequest();
-    var url = "consulta.php?btnId=" + datosGuardados;
-    xhr.open("GET", url, true);
-
-    xhr.onload = function() {
-        // Verificar que la solicitud AJAX se haya completado correctamente
-        if (xhr.status === 200) {
-            // Realizar la redirección después de que la solicitud AJAX esté completa
-            window.location.href = "registro_pdf.php?btnId=" + datosGuardados;
-        }
-    };
-
-    xhr.send();
-});
-</script>
 <script src="js/valiform.js"></script>
 
 
