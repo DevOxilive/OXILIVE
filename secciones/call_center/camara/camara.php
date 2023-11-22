@@ -40,7 +40,8 @@ if (!isset($_SESSION['us'])) {
                             <div id="canvasContainer" class="text-center" style="margin-top: 40px;">
                                 <canvas id="canvas" class="img-fluid"></canvas>
                                 <div id="videoContainer">
-                                    <video id="video" autoplay class="img-fluid"></video>
+                       
+                                <video id="video" autoplay class="img-fluid"></video>
                                 </div>
                                 <img id="capturedImage" class="img-fluid">
                             </div>
