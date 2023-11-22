@@ -3,16 +3,15 @@
 include("../../../connection/conexion.php");
 
 $consulta = "
-SELECT A.id_empleadoEnfermeria, CONCAT(U.Nombres, ' ', U.Apellidos) AS NombreCompleto, T.nombreServicio, A.fechaAsis, R.hora_entrada, H.horarioEntrada,
-(SELECT COUNT(id_Rbitacora) FROM registro_bitacora R2 WHERE R2.id_usuario = U.id_usuarios) AS numero_de_registros, T.sueldo
-FROM asistencias A,  registro_bitacora R, tipos_servicios T, asignacion_horarios H, usuarios U
-WHERE A.id_horario = H.id_asignacionHorarios
-AND A.id_empleadoEnfermeria = U.id_usuarios
-AND A.id_asistencias = R.id_checkIn
-AND H.id_tipoServicio = T.id_tipoServicio
-AND H.id_usuario = U.id_usuarios
-AND A.fechaAsis = R.Registro_fecha
-AND U.id_departamentos = 11;
+SELECT u.id_usuarios, COUNT(statusHorario) AS numero_de_Asistencias, 
+CONCAT(Nombres, ' ', Apellidos) AS NombreCompleto, nombreServicio, sueldo, horarioEntrada, checkTime
+FROM asignacion_horarios sis, usuarios u, tipos_servicios t, asistencias a
+WHERE sis.id_usuario = u.id_usuarios
+AND a.id_empleadoEnfermeria = u.id_usuarios
+AND a.id_horario = sis.id_asignacionHorarios 
+AND  statusHorario = 3
+AND id_check = 1
+GROUP BY u.id_usuarios, Nombres, Apellidos, nombreServicio, sueldo, horarioEntrada, checkTime
 ";
 
 $sentencia = $con->prepare($consulta);
