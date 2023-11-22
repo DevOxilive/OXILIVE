@@ -61,9 +61,7 @@ function consultarServicio() {
                 const rojo = "background-color: #FF6961; color: white;";
                 const amarillo = "background-color: #F9E37C; color: white;";
                 const azul = "background-color: #2271B3; color: white;";
-
                 const fila = document.createElement("tr");
-
                 const id_sv = document.createElement("th");
                 const paciente = document.createElement("td");
                 const usuario = document.createElement("td");
@@ -71,8 +69,7 @@ function consultarServicio() {
                 const motivo = document.createElement("td");
                 const estadoT = document.createElement("td");
                 const hora = document.createElement("td");
-                const cancelar = document.createElement("td");
-
+                const acciones = document.createElement("td");
 
                 id_sv.textContent = dato.id_sv;
                 paciente.textContent = dato.paciente;
@@ -83,16 +80,26 @@ function consultarServicio() {
                 hora.textContent = dato.hora;
 
                 if (dato.estado === 1) {
-
-
+                    // Aquí le dejo su boton a Jon xD
+                    const contenedorBotones = document.createElement("div");
+                    const btnEditar = document.createElement("button");
+                    btnEditar.id = "botonEditar";
+                    btnEditar.setAttribute("data-valor", id_sv.textContent);
+                    btnEditar.className = "btn btn-outline-warning";
+                    btnEditar.innerHTML = "<i class='bi bi-pencil-fill'></i>";
+                    btnEditar.textContent = "Editar";
+                    btnEditar.addEventListener("click", function() {
+                        var valorid = this.getAttribute("data-valor");
+                        console.log("Editar servicio con ID: " + valorid);
+                    });
+                    //Este es mio jsjsjs
                     const btnCancelar = document.createElement("button");
-                    btnCancelar.id = "botnCancelar";
+                    btnCancelar.id = "botonCancelar";
                     btnCancelar.setAttribute("data-valor", id_sv.textContent);
                     btnCancelar.className = "btn btn-outline-danger";
                     btnCancelar.innerHTML = "<i class='bi bi-trash-fill'></i>";
-                    btnCancelar.textContent = "cancelar";
+                    btnCancelar.textContent = "Cancelar";
                     btnCancelar.addEventListener("click", function() {
-
                         var valorid = this.getAttribute("data-valor");
                         console.log(valorid);
                         Swal.fire({
@@ -115,16 +122,17 @@ function consultarServicio() {
                                     data: {
                                         valorid: valorid
                                     },
-                                    success: function(data) {
-                                    }
+                                    success: function(data) {}
                                 });
                             }
                         });
 
                     });
-                    cancelar.appendChild(btnCancelar);
+                    contenedorBotones.appendChild(btnEditar);
+                    contenedorBotones.appendChild(btnCancelar);
+                    acciones.appendChild(contenedorBotones);
                 }
-                fila.append(id_sv, paciente, usuario, motivo, fecha, estadoT, hora, cancelar);
+                fila.append(id_sv, paciente, usuario, motivo, fecha, estadoT, hora, acciones);
                 tabla.append(fila);
                 var estado = dato.estado;
                 if (estado === 1) {
@@ -136,7 +144,7 @@ function consultarServicio() {
                 } else if (estado === 0) {
                     estadoT.style = rojo;
                 } else {
-                    alert("Hay algun problema")
+                    alert("Hay algún problema");
                 }
             })
         },
