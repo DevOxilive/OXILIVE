@@ -33,7 +33,7 @@ try {
             $cont = 0;
             foreach ($result as $key => $filas) {
                 $cont++;
-                if ($_SESSION['puesto'] == 5) {
+                if ($_SESSION['puesto'] !== 1) {
                     echo '<div class="archivos">    
                     <div class="mensaje-previo">' . $cont . '. ' . $filas['persona'] . '</div>
                     <a href="' . $ruta . $filas['nombreArchi'] . '">

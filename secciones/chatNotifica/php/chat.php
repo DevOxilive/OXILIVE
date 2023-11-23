@@ -10,11 +10,12 @@ if (!isset($_SESSION['us'])) {
     echo "Error en el sistema";
 }
 $token = $_GET['chat'];
+//se verifica la existencia del usuario seleccionado
 $s = $con->prepare("SELECT * FROM usuarios WHERE token = '$token'");
 $s->execute();
 $resultado = $s->fetchAll(PDO::FETCH_ASSOC);
+//si hay un resultado se cargan los datos del usuario a quien se le mandara mensaje
 if (count($resultado) > 0) {
-    // El resultado se encuentra en $resultado['Usuario']
     foreach ($resultado as $filas) {
         $valorUsuario = $filas['Usuario'];
         $img = $filas['Foto_perfil'];
@@ -36,13 +37,14 @@ if (count($resultado) > 0) {
                             echo '<img src="data:image/jpg/png;base64,' . base64_encode($img) . '" class="iconoUsuario" alt="">';
                             echo $valorUsuario;
 
-} else {
-    header("Location: ../../../../403.html");
-}
-?>
+                                } else {
+                                    header("Location: ../../../../403.html");
+                                }
+                            ?>
                         <button id="btnMostrar"><i class="bi bi-folder-plus"></i></button>
                     </h2>
                 </div>
+                <!-- modulo de eliminacion de mensajes -->
                 <form action="eliminar_documento.php" method="post">
                     <div class="vistaArchivos" id="miGaleria">
                         <div id="list-documentos">
@@ -69,21 +71,7 @@ if (count($resultado) > 0) {
         </div>
     </div>
 </main>
-<script>
-    document.getElementById('btnMostrar').addEventListener('click', function () {
-        var galeria = document.getElementById('miGaleria');
-        var chatContainer = document.getElementById('chat-container');
-
-        if (galeria.style.display === 'none') {
-            galeria.style.display = 'grid';
-            chatContainer.classList.add('ocult');
-        } else {
-            galeria.style.display = 'none';
-            chatContainer.classList.remove('ocult');
-
-        }
-    });
-</script>
+<script src="../js/interfazArchi.js"></script>
 <script src="../js/documentos.js"></script>
 <!-- controlador de los estilos del chat -->
 <script src="../js/chatPriv.js"></script>
