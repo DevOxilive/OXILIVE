@@ -3,7 +3,8 @@
     padding: 10px;
     height: 55vh;
     overflow-y: scroll;
-    background-color: rgb(137, 137, 137);
+    background-color: #dcdcdc;
+    color: black;
 }
 
 #list-documentos {
@@ -19,6 +20,7 @@
     object-fit: cover;
     aspect-ratio: 3/2;
     background-color: white;
+    color: black;
 }
 
 .mensaje-previo {

@@ -65,12 +65,12 @@ if (!isset($_SESSION['us'])) {
                         
                         foreach ($trabajador as $trab) {
                             // Si el usuario aún no está en el array, agregarlo
-                            if (!isset($usuariosUnicos[$trab['id_empleadoEnfermeria']])) {
-                                $hora_registrado = strtotime($trab['hora_entrada']);
-                                $horario_entrada = strtotime($trab['horarioEntrada']);
+                            if (!isset($usuariosUnicos[$trab['id_usuarios']])) {
+                                $horarioEntrada = strtotime($trab['horarioEntrada']);
+                                $checkTime = strtotime($trab['checkTime']);
                         
                                 // Calcular la diferencia en minutos entre la hora actual y el horario de entrada
-                                $diferencia_minutos = ($hora_registrado - $horario_entrada) / 60;
+                                $diferencia_minutos = ($horarioEntrada - $checkTime) / 60;
                         
                                 // Validar el retardo y contar los retardos acumulados
                                 $retardos = 0;
@@ -80,14 +80,14 @@ if (!isset($_SESSION['us'])) {
                         
                                 // Deducción de sueldo por 3 retardos acumulados
                                 if ($retardos >= 3) {
-                                    $sueldo_total = $trab['numero_de_registros'] * ($trab['sueldo'] - $trab['sueldo']);
+                                    $sueldo_total = $trab['numero_de_Asistencias'] * ($trab['sueldo'] - $trab['sueldo']);
                                 } else {
-                                    $sueldo_total = $trab['numero_de_registros'] * $trab['sueldo'];
+                                    $sueldo_total = $trab['numero_de_Asistencias'] * $trab['sueldo'];
                                 }
                         
                                 // Almacenar la información única del usuario en el array
-                                $usuariosUnicos[$trab['id_empleadoEnfermeria']] = [
-                                    'numero_de_registros' => $trab['numero_de_registros'],
+                                $usuariosUnicos[$trab['id_usuarios']] = [
+                                    'numero_de_Asistencias' => $trab['numero_de_Asistencias'],
                                     'NombreCompleto' => $trab['NombreCompleto'],
                                     'nombreServicio' => $trab['nombreServicio'],
                                     'retardos' => $retardos,
@@ -102,7 +102,7 @@ if (!isset($_SESSION['us'])) {
 
                         <tr>
                             <th scope="row">
-                                <?php echo $usuario['numero_de_registros']; ?>
+                                <?php echo $usuario['numero_de_Asistencias']; ?>
                             </th>
                             <td>
                                 <?php echo $usuario['NombreCompleto']; ?>
