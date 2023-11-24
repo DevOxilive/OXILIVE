@@ -24,7 +24,8 @@ if (!isset($_SESSION['us'])) {
                 <table class="table table-bordered  border-dark table-hover" id="myTable">
                     <thead class="table-dark">
                         <tr class="table-active table-group-divider" style="text-align: center;">
-                            <th scope="col">Nombre del Paciente</th>
+                        <th scope="col">No.</th>    
+                        <th scope="col">Nombre del Paciente</th>
                             <th scope="col">Familiar Responsable:</th>
                             <th scope="col">Nombre del Médico:</th>
                             <th scope="col">Nombre del Enfermero:</th>
@@ -32,8 +33,9 @@ if (!isset($_SESSION['us'])) {
                             <th scope="col">Opciones:</th>
                         </tr>
                     </thead>
-                    <tbody>
                     <?php foreach($listaPapus as $registroPaps){ ?>
+                    <tbody>
+                      <td><?php echo $registroPaps['id_RC'] ?></td>
                       <td><?php echo $registroPaps['paciente'];?></td>
                       <td><?php echo $registroPaps['responsable'];?></td>
                       <td><?php echo $registroPaps['medico'];?></td>
@@ -42,8 +44,8 @@ if (!isset($_SESSION['us'])) {
                       <td>
                       <a name="" id="" class="btn btn-outline-info" href="../registro_pdf.php?btnId=<?php echo $registroPaps['id_RC']; ?>" role="button" style="font-size=10px;"><i class="bi bi-file-earmark-pdf"></i></a> |
                       </td>
-                      <?php } ?>
                     </tbody>
+                    <?php } ?>
                 </table>
             </div>
         </div>
@@ -104,6 +106,17 @@ $(document).ready(function() {
         "language": {
             "url": "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"
         }
+    });
+
+    // Manejar clic en el botón de generación de PDF
+    $('.btn-outline-info').click(function(e) {
+        e.preventDefault();
+
+        // Obtener la URL del enlace
+        var pdfUrl = $(this).attr('href');
+
+        // Abre una nueva ventana o pestaña con la URL del PDF
+        window.open(pdfUrl, "_blank");
     });
 });
 </script>
