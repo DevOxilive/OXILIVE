@@ -146,32 +146,10 @@ if ($_POST) {
         if (isset($_FILES[$campo_archivo]['tmp_name']) && !empty($_FILES[$campo_archivo]['tmp_name'])) {
             $tmp_archivo = $_FILES[$campo_archivo]['tmp_name'];
     
-            // Convertir imágenes si es necesario
-            if ($campo_archivo === 'comprobante' || $campo_archivo === 'Credencial_front' || $campo_archivo === 'Credencial_post' || $campo_archivo === 'Credencial_aseguradora' || $campo_archivo === 'Credencial_aseguradoras_post') {
-                $tipo_imagen = exif_imagetype($tmp_archivo);
-                $extension = pathinfo($nombre_archivo, PATHINFO_EXTENSION);
-    
-                // Verifica si la extensión es .jfif y renombra el archivo si es necesario
-                if ($extension === 'jfif') {
-                    $nombre_archivo_original = $fecha_archivo->getTimestamp() . "_" . pathinfo($nombre_archivo, PATHINFO_FILENAME) . ".jpg";
-                }
-    
-                // Si la imagen no es PNG, conviértela a PNG
-                if ($tipo_imagen !== IMAGETYPE_PNG) {
-                    $imagen_png = imagecreatefromstring(file_get_contents($tmp_archivo));
-                    $ruta_destino_png = $carpeta_usuario . "/" . $nombre_archivo_original;
-                    imagepng($imagen_png, $ruta_destino_png);
-                    imagedestroy($imagen_png);
-    
-                    // Actualiza la variable para guardar el nombre del nuevo archivo
-                    $nombre_archivo = $nombre_archivo_original;
-                    $tmp_archivo = $ruta_destino_png;
-                }
-            }
     
             $archivo_guardado = guardarArchivo($tmp_archivo, $nombre_archivo_original, $carpeta_usuario);
     
-        if (!empty($archivo_guardado)) {
+         if (!empty($archivo_guardado)) {
             
             $sentencia = $con->prepare("SELECT $campo_archivo FROM `pacientes_call_center` WHERE id_pacientes=:id_pacientes");
             $sentencia->bindParam(":id_pacientes", $txtID);
@@ -188,18 +166,18 @@ if ($_POST) {
             $sentencia->bindParam(":id_pacientes", $txtID);
             $sentencia->execute();
         }
+       }
     }
-    echo '<script language="javascript"> ';
-    echo 'Swal.fire({
-        icon: "success",
-        title: "DATOS MODIFICADOS",
-        showConfirmButton: false,
-        timer: 1500,
-    }).then(function() {
-        window.location = "../index.php";
-        });';
-    echo '</script>';
-}
-}
+        echo '<script language="javascript"> ';
+        echo 'Swal.fire({
+            icon: "success",
+            title: "DATOS MODIFICADOS",
+            showConfirmButton: false,
+            timer: 1500,
+        }).then(function() {
+            window.location = "../index.php";
+            });';
+        echo '</script>';
+    }
 
 ?>
