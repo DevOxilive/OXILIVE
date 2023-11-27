@@ -5,7 +5,9 @@ if (!isset($_SESSION['us'])) {
 } elseif (isset($_SESSION['us'])) {
   include("../../../templates/header.php");
   include("../../../connection/conexion.php");
-  include("./consulta.php");
+  include("../control_de_nomina/model/consultaAsistencias.php");
+  include("../control_de_nomina/model/consultaSueldo.php");
+  include("../control_de_nomina/model/consultaHorarios.php");
 
 } else {
   echo "Error en el sistema";
@@ -52,75 +54,67 @@ if (!isset($_SESSION['us'])) {
                         <tr class="table-active table-group-divider" style="text-align: center;">
                             <th scope="col">Asistencias</th>
                             <th scope="col">Nombre completo</th>
-                            <th scope="col">Tipo de guardia</th>
                             <th scope="col">Retardos</th>
+                            <th scope="col">Decuento</th>
                             <th scope="col">Sueldo Total</th>
                         </tr>
                     </thead>
                     <tbody>
+
+
+
                         <?php 
+        $usuariosUnicos = [];
 
-// Inicializar un array para almacenar la información única de cada usuario   
-                        $usuariosUnicos = [];
-                        
-                        foreach ($trabajador as $trab) {
-                            // Si el usuario aún no está en el array, agregarlo
-                            if (!isset($usuariosUnicos[$trab['id_usuarios']])) {
-                                $horarioEntrada = strtotime($trab['horarioEntrada']);
-                                $checkTime = strtotime($trab['checkTime']);
-                        
-                                // Calcular la diferencia en minutos entre la hora actual y el horario de entrada
-                                $diferencia_minutos = ($horarioEntrada - $checkTime) / 60;
-                        
-                                // Validar el retardo y contar los retardos acumulados
-                                $retardos = 0;
-                                if ($diferencia_minutos > 15) {
-                                    $retardos = floor($diferencia_minutos / 15);
-                                }
-                        
-                                // Deducción de sueldo por 3 retardos acumulados
-                                if ($retardos >= 3) {
-                                    $sueldo_total = $trab['numero_de_Asistencias'] * ($trab['sueldo'] - $trab['sueldo']);
-                                } else {
-                                    $sueldo_total = $trab['numero_de_Asistencias'] * $trab['sueldo'];
-                                }
-                        
-                                // Almacenar la información única del usuario en el array
-                                $usuariosUnicos[$trab['id_usuarios']] = [
-                                    'numero_de_Asistencias' => $trab['numero_de_Asistencias'],
-                                    'NombreCompleto' => $trab['NombreCompleto'],
-                                    'nombreServicio' => $trab['nombreServicio'],
-                                    'retardos' => $retardos,
-                                    'sueldo_total' => $sueldo_total,
-                                ];
-                            }
-                        }
+        // Combina la información de asistencias y sueldo para cada usuario
+        foreach ($trabajador as $usuario) {
+            $idUsuario = $usuario['id_usuarios'];
+        
+            if (!isset($usuariosUnicos[$idUsuario])) {
+                $usuariosUnicos[$idUsuario] = [
+                    'numero_de_Asistencias' => $usuario['numero_de_Asistencias'],
+                    'NombreCompleto' => $usuario['NombreCompleto'],
+                    'retardos' => 0, // Inicializar el retardo
+                    'sueldo_total' => 0, // Inicializar el sueldo total
+                ];
+            }
+        }
+        foreach ($sueldo as $pago) {
+            $idUsuario = $pago['id_usuarios'];
+        
+            if (isset($usuariosUnicos[$idUsuario])) {
+                $usuariosUnicos[$idUsuario]['sueldo_total'] = $pago['sueldo_total'];
+            }
+        }
 
-                        // Mostrar los datos únicos en la tabla
-        foreach ($usuariosUnicos as $usuario) {
+        foreach ($horarios as $retardo) {
+            $idUsuario = $retardo['id_usuarios'];
+        
+            if (isset($usuariosUnicos[$idUsuario])) {
+                $usuariosUnicos[$idUsuario]['retardos'] = $retardo['retardos'];
+        
+                // Aplicar descuento si hay 3 o más retardos
+                if ($retardo['retardos'] >= 3) {
+                    // Ajusta el valor del descuento según tus necesidades
+                    $usuariosUnicos[$idUsuario]['descuento'] = $usuariosUnicos[$idUsuario]['sueldo_total'] /  $usuariosUnicos[$idUsuario]['numero_de_Asistencias'] ; // Por ejemplo, 10%
+                } else {
+                    // Si no hay descuento, establecerlo en 0
+                    $usuariosUnicos[$idUsuario]['descuento'] = 0;
+                }
+            }
+        }
     ?>
-
+                        <?php foreach ($usuariosUnicos as $usuario): ?>
                         <tr>
-                            <th scope="row">
-                                <?php echo $usuario['numero_de_Asistencias']; ?>
-                            </th>
-                            <td>
-                                <?php echo $usuario['NombreCompleto']; ?>
-                            </td>
-                            <td>
-                                <?php echo $usuario['nombreServicio']; ?>
-                            </td>
-                            <td>
-                                <?php echo $usuario['retardos']; ?>
-                            </td>
-                            <td>
-                                <?php echo $usuario['sueldo_total']; ?>
-                            </td>
+                            <th scope="row"><?php echo $usuario['numero_de_Asistencias']; ?></th>
+                            <td><?php echo $usuario['NombreCompleto']; ?></td>
+                            <td><?php echo $usuario['retardos']; ?></td>
+                            <td><?php echo isset($usuario['descuento']) ? $usuario['descuento'] : 0; ?></td>
+                            <td><?php echo $usuario['sueldo_total'] - $usuario['descuento']; ?></td>
                         </tr>
-                        <?php } ?>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
-
                 <!-- fin de la tabla -->
             </div>
         </div>
