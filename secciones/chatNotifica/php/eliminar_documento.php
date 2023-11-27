@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 if (!isset($_SESSION['us'])) {
@@ -10,6 +9,7 @@ if (!isset($_SESSION['us'])) {
     // esto queda pediente para mostrar una mejor vista al usuario y no se confunca sobre esto...
     echo "Error en el sistema";
 }
+
 if (isset($_POST['documento_id'])) {
     $documentoID = $_POST['documento_id'];
     echo $documentoID;
