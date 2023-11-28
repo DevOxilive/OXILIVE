@@ -58,18 +58,25 @@ $fecha2 = $_GET['fecha2'];
 
 // Consulta para añadir información al PDF
 
-$sentencia = $con->prepare("SELECT A.id_empleadoEnfermeria, CONCAT(U.Nombres, ' ', U.Apellidos) AS NombreCompleto, T.nombreServicio, A.fechaAsis, R.hora_entrada, H.horarioEntrada,
-(SELECT COUNT(id_Rbitacora) FROM registro_bitacora R2 WHERE R2.id_usuario = U.id_usuarios) AS numero_de_registros, T.sueldo
-FROM asistencias A,  registro_bitacora R, tipos_servicios T, asignacion_horarios H, usuarios U
-WHERE A.id_horario = H.id_asignacionHorarios
-AND A.id_empleadoEnfermeria = U.id_usuarios
-AND A.id_asistencias = R.id_checkIn
-AND H.id_tipoServicio = T.id_tipoServicio
-AND H.id_usuario = U.id_usuarios
-AND A.fechaAsis = R.Registro_fecha
-AND U.id_departamentos = 11
-AND H.fecha >= :fecha1
-AND H.fecha <= :fecha2;");
+$sentencia = $con->prepare("SELECT 
+u.id_usuarios, 
+COUNT(sis.statusHorario) AS numero_de_Asistencias,
+CONCAT(u.Nombres, ' ', u.Apellidos) AS NombreCompleto,
+SUM(t.sueldo) AS sueldo_total,
+COUNT(CASE WHEN TIMEDIFF(a.checkTime, sis.horarioEntrada) > '00:15:00' THEN 1 END) AS retardos
+FROM 
+asignacion_horarios sis
+INNER JOIN usuarios u ON sis.id_usuario = u.id_usuarios
+INNER JOIN tipos_servicios t ON sis.id_tipoServicio = t.id_tipoServicio
+LEFT JOIN asistencias a ON a.id_empleadoEnfermeria = u.id_usuarios AND a.id_horario = sis.id_asignacionHorarios AND a.id_check = 1
+WHERE 
+sis.statusHorario = 3
+AND MONTH(sis.fecha) = MONTH(CURRENT_DATE)
+AND YEAR(sis.fecha) = YEAR(CURRENT_DATE)
+AND sis.fecha >= :fecha1
+AND sis.fecha <= :fecha2
+GROUP BY 
+u.id_usuarios, u.Nombres, u.Apellidos");
 
 $sentencia->bindParam(':fecha1', $fecha1);
 $sentencia->bindParam(':fecha2', $fecha2);
@@ -79,57 +86,23 @@ $trabajador = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 $pdf->Ln(0.6);
 $pdf->setX(15);
 $pdf->SetFont('Times', 'B', 12);
-$pdf->Cell(18, 10, 'Asistencia', 1, 0, 'C', 0);
-$pdf->Cell(70, 10, 'Nombre completo', 1, 0, 'C', 0);
+$pdf->Cell(25, 10, 'Asistencias', 1, 0, 'C', 0);
+$pdf->Cell(60, 10, 'Nombre completo', 1, 0, 'C', 0);
 $pdf->Cell(33, 10, 'Tipo de guardia', 1, 0, 'C', 0);
 $pdf->Cell(30, 10, 'Dias laborados', 1, 0, 'C', 0);
 $pdf->Cell(32, 10, 'Sueldo Total', 1, 1, 'C', 0);
 
-// Inicializar un array para almacenar la información única de cada usuario   
-$usuariosUnicos = [];
-                        
-foreach ($trabajador as $trab) {
-    // Si el usuario aún no está en el array, agregarlo
-    if (!isset($usuariosUnicos[$trab['id_empleadoEnfermeria']])) {
-        $hora_registrado = strtotime($trab['hora_entrada']);
-        $horario_entrada = strtotime($trab['horarioEntrada']);
-
-        // Calcular la diferencia en minutos entre la hora actual y el horario de entrada
-        $diferencia_minutos = ($hora_registrado - $horario_entrada) / 60;
-
-        // Validar el retardo y contar los retardos acumulados
-        $retardos = 0;
-        if ($diferencia_minutos > 15) {
-            $retardos = floor($diferencia_minutos / 15);
-        }
-
-        // Deducción de sueldo por 3 retardos acumulados
-        if ($retardos >= 3) {
-            $sueldo_total = $trab['numero_de_registros'] * ($trab['sueldo'] - $trab['sueldo']);
-        } else {
-            $sueldo_total = $trab['numero_de_registros'] * $trab['sueldo'];
-        }
-
-        // Almacenar la información única del usuario en el array
-        $usuariosUnicos[$trab['id_empleadoEnfermeria']] = [
-            'numero_de_registros' => $trab['numero_de_registros'],
-            'NombreCompleto' => $trab['NombreCompleto'],
-            'nombreServicio' => $trab['nombreServicio'],
-            'retardos' => $retardos,
-            'sueldo_total' => $sueldo_total,
-        ];
-    }
-}
-
-foreach ($usuariosUnicos as $userRow) {
+foreach ($trabajador as $userRow) {
     $pdf->SetFont('Arial', '', 12);
     $pdf->setX(15);
-    $pdf->Cell(18, 10, utf8_decode($userRow['numero_de_registros']), 1, 0, 'C', 0);
-    $pdf->Cell(70, 10, utf8_decode($userRow['NombreCompleto']), 1, 0, 'C', 0);
-    $pdf->Cell(33, 10, utf8_decode($userRow['nombreServicio']), 1, 0, 'C', 0);
-    $pdf->Cell(30, 10, utf8_decode($userRow['retardos']), 1, 0, 'C', 0);
-    $pdf->Cell(32, 10, utf8_decode($userRow['sueldo_total']), 1, 1, 'C', 0);
+    $pdf->Cell(25, 10, utf8_decode($userRow['numero_de_Asistencias']), 1, 0, 'C', 0);
+    $pdf->Cell(60, 10, utf8_decode($userRow['NombreCompleto']), 1, 0, 'C', 0);
+    $pdf->Cell(33, 10, utf8_decode($userRow['retardos']), 1, 0, 'C', 0);
+    $descuento = ($userRow['retardos'] > 0) ? $userRow['sueldo_total'] / $userRow['retardos'] : 0;
+    $pdf->Cell(30, 10, utf8_decode(isset($descuento) ? number_format($descuento, 2) : 0), 1, 0, 'C', 0);
+    $pdf->Cell(32, 10, utf8_decode(number_format($userRow['sueldo_total'] - $descuento, 2)), 1, 1, 'C', 0);
 }
+
 
 
 $pdf->Output();

@@ -89,8 +89,9 @@ function consultarServicio() {
                     btnEditar.innerHTML = "<i class='bi bi-pencil-fill'></i>";
                     btnEditar.textContent = "Editar";
                     btnEditar.addEventListener("click", function() {
-                        var valorid = this.getAttribute("data-valor");
-                        console.log("Editar servicio con ID: " + valorid);
+                        var id_sv = this.getAttribute("data-valor");
+                        console.log("Editar servicio con ID: " + id_sv);
+                        window.location.href = "../editar/editarEvento.php?id=" + id_sv;
                     });
                     //Este es mio jsjsjs
                     const btnCancelar = document.createElement("button");

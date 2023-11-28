@@ -2,9 +2,9 @@
 
 // conexión a la base de datos
 include("../../../connection/conexion.php");
-
 // trae las librerías para el formato en excel
 require_once("../../../vendor/autoload.php");
+
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\IOFactory;
@@ -13,18 +13,27 @@ $fecha1 = $_GET['fecha1'];
 $fecha2 = $_GET['fecha2'];
 
 
-$consulta = "SELECT A.id_empleadoEnfermeria, CONCAT(U.Nombres, ' ', U.Apellidos) AS NombreCompleto, T.nombreServicio, A.fechaAsis, R.hora_entrada, H.horarioEntrada,
-(SELECT COUNT(id_Rbitacora) FROM registro_bitacora R2 WHERE R2.id_usuario = U.id_usuarios) AS numero_de_registros, T.sueldo
-FROM asistencias A,  registro_bitacora R, tipos_servicios T, asignacion_horarios H, usuarios U
-WHERE A.id_horario = H.id_asignacionHorarios
-AND A.id_empleadoEnfermeria = U.id_usuarios
-AND A.id_asistencias = R.id_checkIn
-AND H.id_tipoServicio = T.id_tipoServicio
-AND H.id_usuario = U.id_usuarios
-AND A.fechaAsis = R.Registro_fecha
-AND U.id_departamentos = 11
-AND H.fecha >= :fecha1
-AND H.fecha <= :fecha2;";
+$consulta = "
+SELECT 
+    u.id_usuarios, 
+    COUNT(sis.statusHorario) AS numero_de_Asistencias,
+    CONCAT(u.Nombres, ' ', u.Apellidos) AS NombreCompleto,
+    SUM(t.sueldo) AS sueldo_total,
+    COUNT(CASE WHEN TIMEDIFF(a.checkTime, sis.horarioEntrada) > '00:15:00' THEN 1 END) AS retardos
+FROM 
+    asignacion_horarios sis
+    INNER JOIN usuarios u ON sis.id_usuario = u.id_usuarios
+    INNER JOIN tipos_servicios t ON sis.id_tipoServicio = t.id_tipoServicio
+    LEFT JOIN asistencias a ON a.id_empleadoEnfermeria = u.id_usuarios AND a.id_horario = sis.id_asignacionHorarios AND a.id_check = 1
+WHERE 
+    sis.statusHorario = 3
+    AND MONTH(sis.fecha) = MONTH(CURRENT_DATE)
+    AND YEAR(sis.fecha) = YEAR(CURRENT_DATE)
+    AND sis.fecha >= :fecha1
+    AND sis.fecha <= :fecha2
+GROUP BY 
+    u.id_usuarios, u.Nombres, u.Apellidos
+";
 
 $sentencia = $con->prepare($consulta);
 $sentencia->bindParam(':fecha1', $fecha1);
@@ -61,56 +70,21 @@ $hojaActiva->getStyle('A1:E1')->applyFromArray($headerStyle);
 // Llena la tabla con datos
 $hojaActiva->setCellValue('A1', 'Asistencia');
 $hojaActiva->setCellValue('B1', 'Nombre completo');
-$hojaActiva->setCellValue('C1', 'Tipo de guardia');
-$hojaActiva->setCellValue('D1', 'Retardos');
+$hojaActiva->setCellValue('C1', 'Retardos');
+$hojaActiva->setCellValue('D1', 'decuento');
 $hojaActiva->setCellValue('E1', 'Sueldo Total');
 
 $fila = 2;
 
 
-// Inicializar un array para almacenar la información única de cada usuario   
-$usuariosUnicos = [];
-                        
-foreach ($trabajador as $trab) {
-    // Si el usuario aún no está en el array, agregarlo
-    if (!isset($usuariosUnicos[$trab['id_empleadoEnfermeria']])) {
-        $hora_registrado = strtotime($trab['hora_entrada']);
-        $horario_entrada = strtotime($trab['horarioEntrada']);
-
-        // Calcular la diferencia en minutos entre la hora actual y el horario de entrada
-        $diferencia_minutos = ($hora_registrado - $horario_entrada) / 60;
-
-        // Validar el retardo y contar los retardos acumulados
-        $retardos = 0;
-        if ($diferencia_minutos > 15) {
-            $retardos = floor($diferencia_minutos / 15);
-        }
-
-        // Deducción de sueldo por 3 retardos acumulados
-        if ($retardos >= 3) {
-            $sueldo_total = $trab['numero_de_registros'] * ($trab['sueldo'] - $trab['sueldo']);
-        } else {
-            $sueldo_total = $trab['numero_de_registros'] * $trab['sueldo'];
-        }
-
-        // Almacenar la información única del usuario en el array
-        $usuariosUnicos[$trab['id_empleadoEnfermeria']] = [
-            'numero_de_registros' => $trab['numero_de_registros'],
-            'NombreCompleto' => $trab['NombreCompleto'],
-            'nombreServicio' => $trab['nombreServicio'],
-            'retardos' => $retardos,
-            'sueldo_total' => $sueldo_total,
-        ];
-    }
-}
-
 // Mostrar los datos únicos en la tabla
-foreach ($usuariosUnicos as $usuario) {
-    $hojaActiva->setCellValue('A' . $fila, $usuario['numero_de_registros']);
+foreach ($trabajador as $usuario) {
+    $hojaActiva->setCellValue('A' . $fila, $usuario['numero_de_Asistencias']);
     $hojaActiva->setCellValue('B' . $fila, $usuario['NombreCompleto']);
-    $hojaActiva->setCellValue('C' . $fila, $usuario['nombreServicio']);
-    $hojaActiva->setCellValue('D' . $fila, $usuario['retardos']);
-    $hojaActiva->setCellValue('E' . $fila, $usuario['sueldo_total']);
+    $hojaActiva->setCellValue('C' . $fila, $usuario['retardos']);
+    $descuento = ($usuario['retardos'] > 0) ? $usuario['sueldo_total'] / $usuario['retardos'] : 0;
+    $hojaActiva->setCellValue('D' . $fila, isset($descuento) ? number_format($descuento, 2) : 0);
+    $hojaActiva->setCellValue('E' . $fila, number_format($usuario['sueldo_total'] - $descuento, 2));
     $fila++;
 }
 
