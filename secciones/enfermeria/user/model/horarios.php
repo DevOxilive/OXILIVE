@@ -9,7 +9,7 @@ $sentenciaHora = $con->prepare(
     AND p.id_pacientes = a.id_pacienteEnfermeria
     AND t.id_tipoServicio = a.id_tipoServicio
     AND a.statusHorario = e.id_estadoHorarios
-    ORDER BY a.fecha ASC, a.horarioEntrada ASC, a.horarioSalida ASC"
+    ORDER BY a.statusHorario ASC, a.fecha DESC, a.horarioEntrada DESC, a.horarioSalida DESC"
 );
 $iduser=$data['id'];
 $sentenciaHora->bindParam(':idUser', $iduser);
