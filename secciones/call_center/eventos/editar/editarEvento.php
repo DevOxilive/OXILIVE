@@ -5,6 +5,7 @@ if (!isset($_SESSION['us'])) {
 } elseif (isset($_SESSION['us'])) {
     include("../../../../templates/header.php");
     include("../../../../connection/conexion.php");
+    $id_sv = $_GET['id'];
     include("./model/consultarServicio.php");
     include("./model/buscarmedico.php");
     include("./model/buscarServicios.php");
@@ -119,7 +120,7 @@ if (!isset($_SESSION['us'])) {
                         <a role="button" onclick="confirmCancel(event)" name="cancelar" class="btn btn-outline-danger">
                             Cancelar
                         </a>
-                        <button type="submit" class="btn btn-outline-primary">Actualizar</button>
+                        <button id="btnGuardar" class="btn btn-success" type="submit" form="formulario">Guardar</button>
                     </div>
                     <input type="hidden" id="id_sv" value="<?php echo $serv['id_sv']; ?>">
                     <?php 
