@@ -47,7 +47,7 @@ if (!isset($_SESSION['us'])) {
                             <h5 class="card-title">Datos Generales</h5>
                             <dl class="row">
                                 <dt class="col-lg-3 col-md-4 label">Paciente:</dt>
-                                <dd class="col-lg-9 col-md-8" id="paciente"><?php echo $asis['id_empleadoEnfermeria']; ?></dd>
+                                <dd class="col-lg-9 col-md-8" id="paciente"><?php echo $asis['nomPac']; ?></dd>
                                 <dt class="col-lg-3 col-md-4 label">Hora Check:</dt>
                                 <dd class="col-lg-9 col-md-8" id="horaEntrada"><?php echo $asis['checkTime']; ?></dd>
                                 <dt class="col-lg-3 col-md-4 label">Fecha Check:</dt>
