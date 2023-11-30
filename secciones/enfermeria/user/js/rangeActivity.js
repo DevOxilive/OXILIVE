@@ -1,6 +1,6 @@
 // Obtener el elemento <span> por su ID
 var spanFilter = document.getElementById("range-activity");
-// Crear una instancia de MutationObserver y pasar una función de retorno de llamada
+// Crea una instancia de MutationObserver y pasa una función de retorno de llamada
 var observer = new MutationObserver(function(mutationsList) {
     // Esta función se ejecutará cuando haya cambios en el DOM
     obtenerDatos();
@@ -34,6 +34,7 @@ function obtenerDatos() {
         // Actualizar el apartado según la opción seleccionada
         let filtro = document.getElementById("range-activity").textContent;
         if (filtro === "Hoy") {
+            console.log(data.hoy[0]);
             setRangeActivity(data.hoy);
         } else if (filtro === "Semana") {
             setRangeActivity(data.semana);
