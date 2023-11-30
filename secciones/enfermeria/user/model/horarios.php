@@ -2,13 +2,14 @@
 $data = json_decode(file_get_contents('php://input'), true);
 include('../../../../connection/conexion.php');
 $sentenciaHora = $con->prepare(
-    "SELECT a.*, CONCAT(p.nombres, ' ', p.apellidos) AS 'nomPaciente', t.nombreServicio AS 'nomGuardia'
-    FROM usuarios u, pacientes_call_center p, asignacion_horarios a, tipos_servicios t
+    "SELECT a.*, CONCAT(p.nombres, ' ', p.apellidos) AS 'nomPaciente', t.nombreServicio AS 'nomGuardia', e.estado
+    FROM usuarios u, pacientes_call_center p, asignacion_horarios a, tipos_servicios t, estado_horarios e
     WHERE u.id_usuarios = :idUser
     AND u.id_usuarios = a.id_usuario
     AND p.id_pacientes = a.id_pacienteEnfermeria
     AND t.id_tipoServicio = a.id_tipoServicio
-    ORDER BY a.fecha ASC, a.horarioEntrada ASC, a.horarioSalida ASC"
+    AND a.statusHorario = e.id_estadoHorarios
+    ORDER BY a.statusHorario ASC, a.fecha DESC, a.horarioEntrada DESC, a.horarioSalida DESC"
 );
 $iduser=$data['id'];
 $sentenciaHora->bindParam(':idUser', $iduser);

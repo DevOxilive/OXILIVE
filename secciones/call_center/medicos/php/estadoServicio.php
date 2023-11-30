@@ -2,8 +2,8 @@
 session_start();
 include '../../../../connection/conexion.php';
 $id = $_SESSION['idus'];
-$stmt = $con->prepare("SELECT s.*,CONCAT (p.nombres,' ',p.apellidos) AS pacientes, b.Nombre_banco, a.Nombre_administradora, c.municipio, c.ciudad, c.codigo_postal, c.nombre AS calle, m.nombre AS municipio
-FROM asignacion_servicio s, pacientes_call_center p, bancos b, administradora a , colonias c, municipios m 
+$stmt = $con->prepare("SELECT s.*,CONCAT (p.nombres,' ',p.apellidos) AS pacientes, b.Nombre_banco, a.Nombre_administradora, p.referencias,c.municipio, c.ciudad, c.codigo_postal, c.nombre AS calle, m.nombre AS municipio
+FROM asignacion_servicio s, pacientes_call_center p, bancos b, administradora a , colonias c, municipios m
 WHERE s.num_paciente = p.id_pacientes
 AND p.bancosAdmi = b.id_bancos
 AND b.admi = a.id_administradora
@@ -54,7 +54,9 @@ if (count($result) > 0) {
                             Municio:
                             <?php echo $value['municipio'] ?> <br>
                             Cp:
-                            <?php echo $value['codigo_postal'] ?>
+                            <?php echo $value['codigo_postal'] ?><br>
+                            Referencias:
+                            <?php echo $value['referencias'] ?>
                             <p id="copiado" style="color: red;">----</p>
                         </p>
                         <button type="button" class="btn btn-primary" id="copiarContenido">Copiar 📋</button>

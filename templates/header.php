@@ -381,7 +381,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                 </li>
                 <!-- Módulo de nomina -->
                 <li>
-                    <a href="<?php echo $url_base; ?>secciones/enfermeria/control_de_nómina/index.php">
+                    <a href="<?php echo $url_base; ?>secciones/enfermeria/control_de_nomina/index.php">
                         <i class="bi bi-circle"></i><span>Nómina</span>
                     </a>
                 </li>
@@ -413,7 +413,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/user/pages/indexAsistencias.php">
+            <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/user/pages/indexAsistencias.php?id=<?php echo $_SESSION['idus'];?>">
                 <i class="bi bi-calendar2-check"></i>
                 <span>Asistencias</span>
             </a>

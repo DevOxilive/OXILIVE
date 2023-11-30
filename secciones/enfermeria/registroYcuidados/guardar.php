@@ -193,8 +193,7 @@ $data = json_decode(file_get_contents('php://input'), true);
 
     $_SESSION['datos_guardados'] = true;
     
-   
-    exit();
+    echo true;
     } else {
         echo 'ERROR AUN';
     }
