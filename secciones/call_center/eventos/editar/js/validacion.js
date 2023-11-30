@@ -48,7 +48,7 @@ form.addEventListener("submit", function (event) {
         .then((response) => response.text())
         .then((resultado) => {
             console.log(resultado);
-          if (resultado == true) {
+          
             Swal.fire({
               title: "Registrado",
               text: "Registro realizado correctamente",
@@ -56,9 +56,9 @@ form.addEventListener("submit", function (event) {
               showConfirmButton: false,
               timer: 1500,
             }).then(function () {
-             window.location.replace("../../cancelar/cancelar.php");
+             window.location.replace("http://localhost:8080/OXILIVE/secciones/call_center/eventos/cancelar/cancelar.php");
             });
-          }
+          
         });
     } else {
       Swal.fire({

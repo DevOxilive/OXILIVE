@@ -60,4 +60,5 @@ try {
     }
 } catch (Exception $e) {
     echo $e->getMessage();
+    $msg = 'error, manejador de errores corriendo.';
 }

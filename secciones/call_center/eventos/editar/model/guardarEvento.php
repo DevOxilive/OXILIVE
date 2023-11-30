@@ -2,7 +2,7 @@
     include("../../../../../connection/conexion.php");
     $data = json_decode(file_get_contents('php://input'), true);
 
-    print_r($data);
+
     
     $fechaServicio = $data['fechaServicio'] != "" ? $data["fechaServicio"] : NULL;
     $horaEntrada = $data['horaEntrada'] != "" ? $data["horaEntrada"] : NULL;
