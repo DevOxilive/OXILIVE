@@ -14,8 +14,10 @@ if (!isset($_SESSION['us'])) {
 ?>
 <html>
 <link rel="stylesheet" href="../../../../../assets/css/vali.css">
-
-</html>
+<style>.campo-invalido {
+    border: 1px solid red;
+}
+</style>
 <main id="main" class="main">
     <section class="section dashboard">
         <div class="card">
@@ -43,9 +45,9 @@ if (!isset($_SESSION['us'])) {
 
                     <div class="contenido col-md-6"> 
                         <div class="formulario__grupo" id="grupo__Nombre_banco">
-                        <label for="administradora" class="formulario__label">Nombre del banco</label>
+                        <label for="Nombre_banco" class="formulario__label">Nombre del banco</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="Nombre_banco[]" id="Nombre_banco"
+                                <input max="49" type="text" class="formulario__input" name="Nombre_banco[]" id="Nombre_banco"
                                     placeholder="Nombre del banco">
                                 <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                             </div>
@@ -74,7 +76,7 @@ if (!isset($_SESSION['us'])) {
         </div>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+<script src="../js/validaciones.js"></script>
 <script type="text/javascript">
 $(function() {
     var maxDivs = 50; // Cambiar el límite a 6
@@ -138,54 +140,6 @@ function confirmCancel(event) {
     });
 }
 </script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var nombreBancoInput = document.getElementById('Nombre_banco');
-        var administradoraSelect  = document.getElementById('administradora');
-
-        function validarCampoSelect() {
-            var valorSelect = administradoraSelect.value;
-            if (valorSelect === '0') {
-                administradoraSelect.style.borderColor = 'red';
-            } else {
-                administradoraSelect.style.borderColor = '';
-            }
-        }
-
-        function validarCampo() {
-            var valorCampo = nombreBancoInput.value;
-            if (!valorCampo.trim()) {
-                nombreBancoInput.style.borderColor = 'red';
-            } else {
-                nombreBancoInput.style.borderColor = '';
-            }
-        }
-        // Agregar un event listener para el evento de cambio en el campo de entrada
-        nombreBancoInput.addEventListener('input', validarCampo);
-        administradoraSelect.addEventListener('change', validarCampoSelect);
-
-        document.querySelector('.formLogin').addEventListener('submit', function(event) {
-            event.preventDefault();
-            var Nombre_banco = nombreBancoInput.value;
-            var valorSelect = administradoraSelect.value;
-            // Validar si el campo está vacío
-            if (!Nombre_banco.trim()) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Campo Vacío',
-                    text: 'Por favor, completa el campo.',
-                });
-                nombreBancoInput.style.borderColor = 'red';
-                 administradoraSelect.style.borderColor = 'red';
-                return;
-            }
-
-            // Si el campo no está vacío, enviar el formulario
-            this.submit();
-        });
-    });
-</script>
-
 <?php
 include("../../../../../templates/footer.php");
 ?>

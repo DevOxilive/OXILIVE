@@ -13,7 +13,11 @@ if (!isset($_SESSION['us'])) {
 <html>
 <link rel="stylesheet" href="../../../../assets/css/vali.css">
 <link rel="stylesheet" href="../../../../assets/css/edit.css">
-</html>
+<style>
+.campo-invalido {
+    border: 1px solid red !important;
+}
+</style>
 <main id="main" class="main">
     <section class="section dashboard">
         <div class="card">
@@ -74,53 +78,7 @@ if (!isset($_SESSION['us'])) {
         });
     }
 </script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var formLogin = document.querySelector('.formLogin');
-    var cptInput = document.getElementById('cpt');
-    var administradoraInput = document.getElementById('administradora');
-            
-    formLogin.addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        var cpt = cptInput.value;
-        var administradora = administradoraInput.value;
-        var regex = /^\d{5}$/;
-
-        if (!cpt || !administradora) {
-            setInvalidInput(cptInput);
-            setInvalidInput(administradoraInput);
-            Swal.fire({
-                icon: 'error',
-                title: 'Campos vacíos',
-                text: 'Por favor, completa todos los campos obligatorios.',
-            });
-        } else if (!regex.test(cpt)) {
-            setInvalidInput(cptInput);
-            Swal.fire({
-                icon: 'error',
-                title: 'CPT Inválido',
-                text: 'El campo CPT debe contener exactamente 5 dígitos.',
-            });
-        } else {
-            formLogin.submit();
-        }
-    });
-    cptInput.addEventListener('input', function() {
-        resetBorderColor(cptInput);
-    });
-    administradoraInput.addEventListener('input', function() {
-        resetBorderColor(administradoraInput);
-    });
-    function setInvalidInput(element) {
-        element.style.borderColor = 'red';
-    }
-    function resetBorderColor(element) {
-        element.style.borderColor = '';
-    }
-    });
-</script>
-
+<script src="./js/validaciones.js"></script>
 
 <?php
 include("../../../../templates/footer.php");

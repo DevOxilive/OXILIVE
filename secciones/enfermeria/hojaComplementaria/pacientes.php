@@ -80,7 +80,7 @@ $cuadro_ancho = 200;
 $cuadro_alto = 120;
 
 while ($user = $sentencia->fetch(PDO::FETCH_ASSOC)) {
-    $carpeta_usuario = "./directorio_INES/";
+    $carpeta_usuario = "./directorio_INES";
     // dentro del ciclo defino la ruta
     $nombre_Credencial_front_orginal = $user['Credencial_front'];
     $nombre_Credencial_post_orginal = $user['Credencial_post'];

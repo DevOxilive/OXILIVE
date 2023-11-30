@@ -27,7 +27,7 @@ if (!isset($_SESSION['us'])) {
                             <label for="Nombre_administradora" class="formulario__label">Nombre de la
                                 Administradora</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="Nombre_administradora" id="Nombre_administradora" placeholder="Nombre administradora">
+                                <input maxlength="49" type="text" class="formulario__input" name="Nombre_administradora" id="Nombre_administradora" placeholder="Nombre administradora">
                             </div>
                         </div>
                     </div>
