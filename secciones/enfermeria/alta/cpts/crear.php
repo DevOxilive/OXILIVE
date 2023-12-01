@@ -45,7 +45,7 @@ if (!isset($_SESSION['us'])) {
                         <div class="formulario__grupo" id="grupo__Nombre_aseguradora">
                             <label for="cpt" class="formulario__label">Nombe del cpt</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="cpt" id="cpt" placeholder="Ejemplo 25061" maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 5);">
+                                <input type="text"  class="formulario__input" name="cpt" id="cpt" placeholder="Ejemplo 25061" maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 5);">
                                 <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                             </div>
                         </div>

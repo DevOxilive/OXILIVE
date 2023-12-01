@@ -67,7 +67,7 @@ if (!isset($_SESSION['us'])) {
                         <div class="formulario__grupo" id="grupo__Nombre_aseguradora">
                             <label for="dx" class="formulario__label">DX: Insuficiencia Venosa / EVC</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="dx" id="dx"
+                                <input type="text" maxlength="49" class="formulario__input" name="dx" id="dx"
                                     placeholder="Insuficiencia Venosa / EVC">
                                 <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                             </div>
