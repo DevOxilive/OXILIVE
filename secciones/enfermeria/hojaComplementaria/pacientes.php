@@ -137,11 +137,11 @@ while ($user = $sentencia->fetch(PDO::FETCH_ASSOC)) {
     $rutaCredencialAseguradorasPost = $carpeta_usuario . "/" . $nombre_Credencial_aseguradoras_post_orginal;
     
     //Este es mi tamañao de las imagenes
-    $pdf->Image($rutaCredencialFront, 20, 140, 80, 50);
-    $pdf->Image($rutaCredencialPost, 110, 140, 80, 50);
+    $pdf->Image($rutaCredencialFront, 20, 140, 80, 40);
+    $pdf->Image($rutaCredencialPost, 110, 140, 80, 40);
     // Coloca las dos imágenes inferiores con el tamaño deseado
-    $pdf->Image($rutaCredencialAseguradora, 20, 200, 80, 50);
-    $pdf->Image($rutaCredencialAseguradorasPost, 110, 200, 80, 50);
+    $pdf->Image($rutaCredencialAseguradora, 20, 187, 80, 40);
+    $pdf->Image($rutaCredencialAseguradorasPost, 110, 187, 80, 40);
 // Obtén la longitud del nombre del paciente y usa ese valor para ajustar las posiciones de las líneas y celdas
 $longitudNombrePaciente = strlen($user['paciente']);
 $ajusteXPaciente = 52 + $longitudNombrePaciente * 1.5; // Puedes ajustar el factor multiplicativo según sea necesario
@@ -156,6 +156,7 @@ $pdf->Cell(20);
 $pdf->Ln();
 $pdf->Cell(306, 10, '' . utf8_decode($user['rfc']), 0, 0, 'C', 0);
 $pdf->Line(146, 82, 183, 82);
+$pdf->Ln();
 $pdf->SetXY(23, 75);
 $pdf->Cell(35, 30, '' . utf8_decode($user['calle']), 0, 0, 'U', 0);
 $pdf->Line(23, 92, 130, 92);
