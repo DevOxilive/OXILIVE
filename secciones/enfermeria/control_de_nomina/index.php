@@ -54,7 +54,7 @@ if (!isset($_SESSION['us'])) {
                             <th scope="col">Asistencias</th>
                             <th scope="col">Nombre completo</th>
                             <th scope="col">Retardos</th>
-                            <th scope="col">Decuento</th>
+                            <th scope="col">Descuento</th>
                             <th scope="col">Sueldo Total</th>
                         </tr>
                     </thead>
