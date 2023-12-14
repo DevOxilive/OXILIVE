@@ -9,7 +9,7 @@ if (!isset($_SESSION['us'])) {
   include("../../secciones/puestos/consulta.php");
   include("../../module/genero.php");
   include("../../module/estado.php");
-  include("../../secciones/usuarios/usuariosADD.php");
+  include("../../secciones/usuarios/usuariosADD copy.php");
 } else {
   echo "Error en el sistema";
 }
@@ -30,7 +30,7 @@ if (!isset($_SESSION['us'])) {
           Datos del nuevo Usuario</H4>
       </div>
       <div class="card-body" style="border: 2px solid #BFE5FF;">
-        <form action="./usuariosADD.php" method="POST" enctype="multipart/form-data" class="formLogin row g-3">
+        <form action="./usuariosADD copy.php" method="POST" enctype="multipart/form-data" class="formLogin row g-3">
           <div class="col-md-2">
             <label for="Foto_perfil" class="form-label">Sube una foto de perfil</label>
             <div class="profile-picture">

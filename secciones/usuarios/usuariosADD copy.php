@@ -1,24 +1,12 @@
 <?php
 include("../../connection/conexion.php");
+include("../../connection/url.php");
 include("../../templates/hea.php");
-
-/**
- * reconstrccion de carga de usuarios en el sistema.
- * oscar
- * alexis
- * 
- * 12/12/2023.
- */
 include("../../ctrlArchivos/control/Archivero.php");
-include_once("../../ctrlArchivos/modelo/Documento.php");
-
-$objArchivo = new Archivero();
-$objDoc = new Documento();
-
+$archivero = new Archivero();
 // comprobacion de envio de valores por metodo post.
 
-if ($_POST) {
-    var_dump($_FILES);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $usuario = (isset($_POST["usuario"]) ? $_POST["usuario"] : "");
     $password = (isset($_POST["password"]) ? $_POST["password"] : "");
@@ -40,66 +28,62 @@ if ($_POST) {
     //encriptar contraseña
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    //tratamiento de archivos em carpetas
-    // $Foto_perfil = $_FILES["Foto_perfil"]['name'];
-    // $credencialFrente = $_FILES["credencialFrente"]['name'];
-    // $credencialAtras = $_FILES["credencialAtras"]['name'];
-    // $comprobante_domicilio = $_FILES["comprobante_domicilio"]['name'];
-    $Foto_perfil = (isset($_FILES["Foto_perfil"]['name']) ? $_FILES["Foto_perfil"]['name'] : "");
-    $credencialFrente = (isset($_FILES["credencialFrente"]['name']) ? $_FILES["credencialFrente"]['name'] : "");
-    $credencialAtras = (isset($_FILES["credencialAtras"]['name']) ? $_FILES["credencialAtras"]['name'] : "");
-    $comprobante_domicilio = (isset($_FILES["comprobante_domicilio"]['name']) ? $_FILES["comprobante_domicilio"]['name'] : "");
+    //valores archivos
+    $doc[] = $_FILES['Foto_perfil']['name'];
+    $doc[] = $_FILES['comprobante_domicilio']['name'];
+    $doc[] = $_FILES['credencialFrente']['name'];
+    $doc[] = $_FILES['credencialAtras']['name'];
 
-    // comprobacion de contenido del archivo.
-    if ($_FILES['Foto_perfil']['error'] !== 4) {
-        $Foto_perfilX = addslashes(file_get_contents($_FILES['Foto_perfil']['tmp_name']));
-    } else {
-        $Foto_perfilX = addslashes(file_get_contents("../chatNotifica/img/usuario.png"));
-    }
-
-    if ($_FILES["credencialFrente"]['error'] !== 4) {
-        $credencialFrenteX = addslashes(file_get_contents($_FILES["credencialFrente"]['tmp_name']));
-    } else {
-        $credencialFrenteX = addslashes(file_get_contents("../chatNotifica/img/usuario.png"));
-    }
-
-    if ($_FILES["credencialAtras"]['error'] !== 4) {
-        $credencialAtrasX = addslashes(file_get_contents($_FILES["credencialAtras"]['tmp_name']));
-    } else {
-        $credencialAtrasX = addslashes(file_get_contents("../chatNotifica/img/usuario.png"));
-    }
-
-    if ($_FILES["comprobante_domicilio"]['error'] !== 4) {
-        $comprobante_domicilioX = addslashes(file_get_contents($_FILES["comprobante_domicilio"]['tmp_name']));
-    } else {
-        $comprobante_domicilioX = addslashes(file_get_contents("../chatNotifica/img/usuario.png"));
-    }
+    $Contenido[] = $_FILES['Foto_perfil']['tmp_name'];
+    $Contenido[] = $_FILES['comprobante_domicilio']['tmp_name'];
+    $Contenido[] = $_FILES['credencialFrente']['tmp_name'];
+    $Contenido[] = $_FILES['credencialAtras']['tmp_name'];
 
     //mayuscula o minuscula según sea el caso 
     $usuario = strtolower($usuario);
     $nombres = strtoupper($nombres);
     $apellidos = strtoupper($apellidos);
     //comprobar errores de creacion de la carpeta del usuario nuevo.
-    $solicitud1 = $objArchivo->crearCarpeta("OXILIVE/", $nombres . " " . $apellidos);
-    $carpetaNueva = "OXILIVE/" . $nombres  . " " . $apellidos;
+    $carpetaNueva = "OXILIVE/" . $apellidos . " " . $nombres;
+    $solicitud1 = $archivero->crearCarpeta("OXILIVE/", $apellidos . " " . $nombres);
     echo $solicitud1;
     if ($solicitud1 === true) {
-
-        $resultados[0] = $objArchivo->guardarArchivo($Foto_perfil, $Foto_perfilX, $carpetaNueva);
-        $resultados[1] = $objArchivo->guardarArchivo($credencialFrente, $credencialFrenteX, $carpetaNueva);
-        $resultados[2] = $objArchivo->guardarArchivo($credencialAtras, $credencialAtrasX, $carpetaNueva);
-        $resultados[3] = $objArchivo->guardarArchivo($comprobante_domicilio, $comprobante_domicilioX, $carpetaNueva);
-        $respuesta = "";
-        for ($i = 0; $i < count($resultados); $i++) {
-            if ($resultados[$i] === true) {
-                //va muy buen :D
-            } else {
-                // algo anda mal :(
-                $respuesta .= $i + 1 . ": " . $resultados[$i];
-            }
+        // comprobacion de contenido del archivo.
+        if ($_FILES['Foto_perfil']['error'] !== 4) {
+            $Foto_perfilX = $url_base . "secciones/" . $carpetaNueva . $_FILES['Foto_perfil']['name'];
+        } else {
+            $Foto_perfilX = $url_base . "secciones/chatNotifica/img/usuario.png";
         }
 
-        if (empty($respuesta)) {
+        if ($_FILES["credencialFrente"]['error'] !== 4) {
+            $credencialFrenteX = $url_base . "secciones/" . $carpetaNueva . $_FILES['comprobante_domicilio']['name'];
+        } else {
+            $credencialFrenteX = $url_base . "secciones/chatNotifica/img/usuario.png";
+        }
+
+        if ($_FILES["credencialAtras"]['error'] !== 4) {
+            $credencialAtrasX = $url_base . "secciones/" . $carpetaNueva . $_FILES['credencialFrente']['name'];
+        } else {
+            $credencialAtrasX = $url_base . "secciones/chatNotifica/img/usuario.png";
+        }
+
+        if ($_FILES["comprobante_domicilio"]['error'] !== 4) {
+            $comprobante_domicilioX = $url_base . "secciones/" . $carpetaNueva . $_FILES['credencialAtras']['name'];
+        } else {
+            $comprobante_domicilioX = $url_base . "secciones/chatNotifica/img/usuario.png";
+        }
+        echo "<br>";
+        for ($i = 0; $i < count($Contenido); $i++) {
+            $respuestas[] = $archivero->guardarArchivo($doc[$i], $Contenido[$i], $carpetaNueva) . "<br>";
+        }
+        for ($i = 0; $i < count($respuestas); $i++) {
+            if ($respuestas[$i] === false) {
+                $permitir = false;
+                break;
+            }
+            $permitir = true;
+        }
+        if ($permitir === true) {
             //revision de token asignado... 
             do {
                 $regresar = false;
