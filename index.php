@@ -1,3 +1,4 @@
+<!-- esto se hizo en una plantila -->
 <?php
 session_start();
 //AQUI SE INDICA QUE SI EL PUESTO ES A ADMINISTRADOR PERTENECE A ESTA VISTA INICIO-
@@ -5,7 +6,7 @@ if (isset($_SESSION['us']) && $_SESSION['puesto'] == 1) {
     include_once("connection/conexion.php");
     include("templates/header.php");
 
-    ?>
+?>
     <main id="main" class="main">
         <div class="pagetitle">
 
@@ -46,14 +47,12 @@ if (isset($_SESSION['us']) && $_SESSION['puesto'] == 1) {
                                     <h5 class="card-title">Sales <span>| Today</span></h5>
 
                                     <div class="d-flex align-items-center">
-                                        <div
-                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                             <i class="bi bi-cart"></i>
                                         </div>
                                         <div class="ps-3">
                                             <h6>145</h6>
-                                            <span class="text-success small pt-1 fw-bold">12%</span> <span
-                                                class="text-muted small pt-2 ps-1">increase</span>
+                                            <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
 
                                         </div>
                                     </div>
@@ -83,14 +82,12 @@ if (isset($_SESSION['us']) && $_SESSION['puesto'] == 1) {
                                     <h5 class="card-title">Revenue <span>| This Month</span></h5>
 
                                     <div class="d-flex align-items-center">
-                                        <div
-                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                             <i class="bi bi-currency-dollar"></i>
                                         </div>
                                         <div class="ps-3">
                                             <h6>$3,264</h6>
-                                            <span class="text-success small pt-1 fw-bold">8%</span> <span
-                                                class="text-muted small pt-2 ps-1">increase</span>
+                                            <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
 
                                         </div>
                                     </div>
@@ -121,14 +118,12 @@ if (isset($_SESSION['us']) && $_SESSION['puesto'] == 1) {
                                     <h5 class="card-title">Customers <span>| This Year</span></h5>
 
                                     <div class="d-flex align-items-center">
-                                        <div
-                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                             <i class="bi bi-people"></i>
                                         </div>
                                         <div class="ps-3">
                                             <h6>1244</h6>
-                                            <span class="text-danger small pt-1 fw-bold">12%</span> <span
-                                                class="text-muted small pt-2 ps-1">decrease</span>
+                                            <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
 
                                         </div>
                                     </div>
@@ -327,9 +322,7 @@ if (isset($_SESSION['us']) && $_SESSION['puesto'] == 1) {
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <th scope="row"><a href="#"><img
-                                                            src="<?php echo $url_base; ?>assets/img/product-1.jpg"
-                                                            alt=""></a></th>
+                                                <th scope="row"><a href="#"><img src="<?php echo $url_base; ?>assets/img/product-1.jpg" alt=""></a></th>
                                                 <td><a href="#" class="text-primary fw-bold">Ut inventore ipsa voluptas
                                                         nulla</a></td>
                                                 <td>$64</td>
@@ -337,9 +330,7 @@ if (isset($_SESSION['us']) && $_SESSION['puesto'] == 1) {
                                                 <td>$5,828</td>
                                             </tr>
                                             <tr>
-                                                <th scope="row"><a href="#"><img
-                                                            src="<?php echo $url_base; ?>assets/img/product-2.jpg"
-                                                            alt=""></a></th>
+                                                <th scope="row"><a href="#"><img src="<?php echo $url_base; ?>assets/img/product-2.jpg" alt=""></a></th>
                                                 <td><a href="#" class="text-primary fw-bold">Exercitationem similique
                                                         doloremque</a></td>
                                                 <td>$46</td>
@@ -347,9 +338,7 @@ if (isset($_SESSION['us']) && $_SESSION['puesto'] == 1) {
                                                 <td>$4,508</td>
                                             </tr>
                                             <tr>
-                                                <th scope="row"><a href="#"><img
-                                                            src="<?php echo $url_base; ?>assets/img/product-3.jpg"
-                                                            alt=""></a></th>
+                                                <th scope="row"><a href="#"><img src="<?php echo $url_base; ?>assets/img/product-3.jpg" alt=""></a></th>
                                                 <td><a href="#" class="text-primary fw-bold">Doloribus nisi
                                                         exercitationem</a></td>
                                                 <td>$59</td>
@@ -357,9 +346,7 @@ if (isset($_SESSION['us']) && $_SESSION['puesto'] == 1) {
                                                 <td>$4,366</td>
                                             </tr>
                                             <tr>
-                                                <th scope="row"><a href="#"><img
-                                                            src="<?php echo $url_base; ?>assets/img/product-4.jpg"
-                                                            alt=""></a></th>
+                                                <th scope="row"><a href="#"><img src="<?php echo $url_base; ?>assets/img/product-4.jpg" alt=""></a></th>
                                                 <td><a href="#" class="text-primary fw-bold">Officiis quaerat sint rerum
                                                         error</a></td>
                                                 <td>$32</td>
@@ -367,9 +354,7 @@ if (isset($_SESSION['us']) && $_SESSION['puesto'] == 1) {
                                                 <td>$2,016</td>
                                             </tr>
                                             <tr>
-                                                <th scope="row"><a href="#"><img
-                                                            src="<?php echo $url_base; ?>assets/img/product-5.jpg"
-                                                            alt=""></a></th>
+                                                <th scope="row"><a href="#"><img src="<?php echo $url_base; ?>assets/img/product-5.jpg" alt=""></a></th>
                                                 <td><a href="#" class="text-primary fw-bold">Sit unde debitis delectus
                                                         repellendus</a></td>
                                                 <td>$79</td>
@@ -493,42 +478,42 @@ if (isset($_SESSION['us']) && $_SESSION['puesto'] == 1) {
                                         radar: {
                                             // shape: 'circle',
                                             indicator: [{
-                                                name: 'Sales',
-                                                max: 6500
-                                            },
-                                            {
-                                                name: 'Administration',
-                                                max: 16000
-                                            },
-                                            {
-                                                name: 'Information Technology',
-                                                max: 30000
-                                            },
-                                            {
-                                                name: 'Customer Support',
-                                                max: 38000
-                                            },
-                                            {
-                                                name: 'Development',
-                                                max: 52000
-                                            },
-                                            {
-                                                name: 'Marketing',
-                                                max: 25000
-                                            }
+                                                    name: 'Sales',
+                                                    max: 6500
+                                                },
+                                                {
+                                                    name: 'Administration',
+                                                    max: 16000
+                                                },
+                                                {
+                                                    name: 'Information Technology',
+                                                    max: 30000
+                                                },
+                                                {
+                                                    name: 'Customer Support',
+                                                    max: 38000
+                                                },
+                                                {
+                                                    name: 'Development',
+                                                    max: 52000
+                                                },
+                                                {
+                                                    name: 'Marketing',
+                                                    max: 25000
+                                                }
                                             ]
                                         },
                                         series: [{
                                             name: 'Budget vs spending',
                                             type: 'radar',
                                             data: [{
-                                                value: [4200, 3000, 20000, 35000, 50000, 18000],
-                                                name: 'Allocated Budget'
-                                            },
-                                            {
-                                                value: [5000, 14000, 28000, 26000, 42000, 21000],
-                                                name: 'Actual Spending'
-                                            }
+                                                    value: [4200, 3000, 20000, 35000, 50000, 18000],
+                                                    name: 'Allocated Budget'
+                                                },
+                                                {
+                                                    value: [5000, 14000, 28000, 26000, 42000, 21000],
+                                                    name: 'Actual Spending'
+                                                }
                                             ]
                                         }]
                                     });
@@ -588,25 +573,25 @@ if (isset($_SESSION['us']) && $_SESSION['puesto'] == 1) {
                                                 show: false
                                             },
                                             data: [{
-                                                value: 1048,
-                                                name: 'Search Engine'
-                                            },
-                                            {
-                                                value: 735,
-                                                name: 'Direct'
-                                            },
-                                            {
-                                                value: 580,
-                                                name: 'Email'
-                                            },
-                                            {
-                                                value: 484,
-                                                name: 'Union Ads'
-                                            },
-                                            {
-                                                value: 300,
-                                                name: 'Video Ads'
-                                            }
+                                                    value: 1048,
+                                                    name: 'Search Engine'
+                                                },
+                                                {
+                                                    value: 735,
+                                                    name: 'Direct'
+                                                },
+                                                {
+                                                    value: 580,
+                                                    name: 'Email'
+                                                },
+                                                {
+                                                    value: 484,
+                                                    name: 'Union Ads'
+                                                },
+                                                {
+                                                    value: 300,
+                                                    name: 'Video Ads'
+                                                }
                                             ]
                                         }]
                                     });
@@ -677,7 +662,7 @@ if (isset($_SESSION['us']) && $_SESSION['puesto'] == 1) {
         </section>
 
     </main><!-- End #main -->
-    <?php
+<?php
     //SI NO CORRESPONDE AL ADMINISTRADOR EL PUESTO, SE EJECUTARAN LOS DIFERENTES ELSE QUE LLEVARAN A LAS DISTINTAS PESTAÑAS DE INICIO PARA EL PERFIL
 } elseif ($_SESSION['puesto'] === 2) {
     header('Location: secciones/Padministradora/index.php');
@@ -693,18 +678,18 @@ if (isset($_SESSION['us']) && $_SESSION['puesto'] == 1) {
     header('Location: secciones/Capital_humano/index.php');
 } elseif ($_SESSION['puesto'] === 8) {
     header('Location: secciones/almacen/index.php');
-}elseif ($_SESSION['puesto'] === 9) {
+} elseif ($_SESSION['puesto'] === 9) {
     header('Location: secciones/Pchofer/index.php');
-}elseif ($_SESSION['puesto'] === 10) {
+} elseif ($_SESSION['puesto'] === 10) {
     header('Location: secciones/enfermeria/index.php');
-}elseif ($_SESSION['puesto'] === 11) {
+} elseif ($_SESSION['puesto'] === 11) {
     header('Location: secciones/enfermeria/user/index.php');
-}elseif ($_SESSION['puesto'] === 12) {
-    header('Location: secciones/call_center/index.php');   
-
+} elseif ($_SESSION['puesto'] === 12) {
+    header('Location: secciones/call_center/index.php');
 } else {
     header('Location: login.php');
 }
 include("templates/footer.php");
 ?>
+
 </html>
