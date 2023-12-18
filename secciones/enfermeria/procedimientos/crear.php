@@ -67,7 +67,7 @@ if (!isset($_SESSION['us'])) {
                         <div class="formulario__grupo" id="grupo__Nombre_aseguradora">
                             <label for="dx" class="formulario__label">DX: Insuficiencia Venosa / EVC</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="dx" id="dx"
+                                <input type="text" maxlength="49" class="formulario__input" name="dx" id="dx"
                                     placeholder="Insuficiencia Venosa / EVC">
                                 <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                             </div>
@@ -153,26 +153,33 @@ $(document).ready(function() {
         var fechaSeleccionada = new Date(fechaInput);
         var anioMinimo = 2023;
         var anioIngresado = fechaSeleccionada.getFullYear();
-
         if (anioIngresado < anioMinimo) {
             alert('La fecha debe ser del año 2023 en adelante.');
-            // Puedes añadir más acciones aquí si la fecha no es válida, como limpiar el campo de fecha.
-            $('#fecha').val(''); // Limpia el campo de fecha
+            $('#fecha').val(''); 
         }
     });
 });
 </script>
-
+<script>
+$(document).ready(function() {
+    $('#fecha').on('change', function() {
+        var fechaInput = $('#fecha').val();
+        var fechaSeleccionada = new Date(fechaInput);
+        var fechaActual = new Date();
+        if (fechaSeleccionada.setHours(0, 0, 0, 0) > fechaActual.setHours(0, 0, 0, 0)) {
+            alert('La fecha no puede ser después del día presente.');
+            $('#fecha').val('');
+        }
+    });
+});
+</script>
 <script>
 function actualizarcodigo(Nombre_admi) {
-    console.log("Llamado a loscodigo con Nombre_admi:", Nombre_admi);
     const codigoselect = document.getElementById("codigo");
     codigoselect.innerHTML = '<option value="0" selected disabled>Cargando...</option>';
-
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "./obtener_codigo.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
             codigoselect.innerHTML = '<option value="0" selected disabled>Elija una opción</option>';
@@ -273,9 +280,7 @@ function confirmCancel(event) {
 }
 </script>
 <script src="js/validaciones.js">
-    
 </script>
-
 <?php
 include("../../../templates/footer.php");
 ?>

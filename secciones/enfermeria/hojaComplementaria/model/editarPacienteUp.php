@@ -166,6 +166,7 @@ if ($_POST) {
             $sentencia->bindParam(":id_pacientes", $txtID);
             $sentencia->execute();
         }
+        
        }
     }
         echo '<script language="javascript"> ';

@@ -110,7 +110,7 @@ while ($res = $lista->fetch(PDO::FETCH_ASSOC)) {
         }
         $pdf->SetXY(10, $y);
         $pdf->Cell(10, $alturaCelda, $contador, 1, 0, 'C', 0);
-        $pdf->SetXY(21, $y);
+        $pdf->SetXY(20, $y);
         $pdf->Cell(27, $alturaCelda, $res['codigo'], 1, 0, 'C', 0);
         $pdf->SetXY(47, $y);
         $descripcion = $res['descripcion'];

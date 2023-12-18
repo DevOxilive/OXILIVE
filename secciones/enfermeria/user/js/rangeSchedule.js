@@ -1,0 +1,1 @@
+var spanFilter2 = document.getElementById("range-schedule");

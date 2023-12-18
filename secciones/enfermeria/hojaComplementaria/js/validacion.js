@@ -10,6 +10,7 @@ var nombre = document.getElementById("nombre"),
   colonia = document.getElementById("colonia"),
   calle = document.getElementById("calle");
   No_nomina = document.getElementById("No_nomina");
+  comprobante = document.getElementById("comprobante");
   Credencial_front = document.getElementById("Credencial_front");
   Credencial_post = document.getElementById("Credencial_post");
   Credencial_aseguradora = document.getElementById("Credencial_aseguradora");
@@ -29,6 +30,7 @@ var formArray = [
   calle,
   numExt,
   No_nomina,
+  comprobante,
   Credencial_front,
   Credencial_post,
   Credencial_aseguradora,

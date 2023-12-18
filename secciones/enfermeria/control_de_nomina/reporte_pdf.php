@@ -88,8 +88,8 @@ $pdf->setX(15);
 $pdf->SetFont('Times', 'B', 12);
 $pdf->Cell(25, 10, 'Asistencias', 1, 0, 'C', 0);
 $pdf->Cell(60, 10, 'Nombre completo', 1, 0, 'C', 0);
-$pdf->Cell(33, 10, 'Tipo de guardia', 1, 0, 'C', 0);
-$pdf->Cell(30, 10, 'Dias laborados', 1, 0, 'C', 0);
+$pdf->Cell(33, 10, 'Retardos', 1, 0, 'C', 0);
+$pdf->Cell(30, 10, 'Descuento', 1, 0, 'C', 0);
 $pdf->Cell(32, 10, 'Sueldo Total', 1, 1, 'C', 0);
 
 foreach ($trabajador as $userRow) {

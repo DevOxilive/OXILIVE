@@ -45,7 +45,7 @@ if (!isset($_SESSION['us'])) {
                         <div class="formulario__grupo" id="grupo__Nombre_aseguradora">
                             <label for="codigo" class="formulario__label text-left">Código</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" name="codigo[]" id="codigo" class="form-control " placeholder="Ejemplo E20B-21-ND"
+                                <input  type="text" maxlength="12" name="codigo[]" id="codigo" class="form-control " placeholder="Ejemplo E20B-21-ND"
                                    required>
                                 <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                             </div>
@@ -55,7 +55,7 @@ if (!isset($_SESSION['us'])) {
                         <div class="formulario__grupo" id="grupo__Nombre_aseguradora">
                             <label for="descripcion" class="formulario__label text-left">descripcion</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" name="descripcion[]" id="descripcion" class="form-control "
+                                <input type="text" maxlength="40" name="descripcion[]"  id="descripcion" class="form-control "
                                    required  placeholder="Apoyo General 8 Horas">
                                 <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                             </div>
@@ -65,7 +65,7 @@ if (!isset($_SESSION['us'])) {
                         <div class="formulario__grupo" id="grupo__Nombre_aseguradora">
                             <label for="unidad" class="formulario__label text-left">Unidad</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" name="unidad[]" id="unidad" class="form-control " required placeholder="Turno 8 Horas">
+                                <input type="text" maxlength="40"  name="unidad[]" id="unidad" class="form-control " required placeholder="Turno 8 Horas">
                                 <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                             </div>
                         </div>
