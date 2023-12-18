@@ -62,104 +62,54 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
-        <nav class="header-nav ms-auto">
-            <ul class="d-flex align-items-center">
+        <!-- aqui empiesan las secciones paracada nivel de usuario -->
+        <li class="nav-item dropdown pe-3">
+            <!-- linea 129 header.php --> <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                <img src="<?php echo $_SESSION['foto'] ?>" id="fot" alt="Foto de perfil" style="width: 40px; height: 40px;" class="rounded-circle">
+                <span class="d-none d-md-block dropdown-toggle ps-2">
+                    <?php echo $_SESSION['us'] ?>
+                </span>
+            </a> <!-- End Profile Iamge Icon -->
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                <li class="dropdown-header">
+                    <span>
+                        <?php echo $datos['Nombre_puestos'] ?>
+                    </span>
+                </li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
                 <?php if ($_SESSION['puesto'] != 2) : ?>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link nav-icon" href="../secciones/oxigeno/rutas/index.php" data-bs-toggle="dropdown">
-                            <i class="bi bi-bell"></i>
-                            <span class="badge bg-primary badge-number">
-                                <?php echo $totalNoti ?>
-                            </span>
-                        </a><!-- End Notification Icon -->
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications" style="max-height: 300px; overflow-y: auto;">
-                            <li class="dropdown-header">
-                                Tienes
-                                <?php echo $totalNoti ?> nueva(s)
-                            </li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <?php
-                            // Ordenar las notificaciones por fecha (de la más reciente a la más antigua)
-                            usort($notificaciones, function ($a, $b) {
-                                return strtotime($b['fecha']) - strtotime($a['fecha']);
-                            });
-                            $count = 0;
-                            foreach ($notificaciones as $arre) {
-                                if ($count < 3) { // Mostrar solo las últimas tres notificaciones
-                            ?>
-                                    <li class="notification-item">
-                                        <i class="bi bi-bell-fill"></i>
-                                        <div>
-                                            <h4 style="width: 400px;">
-                                                <?php echo $arre['asunto']; ?>
-                                            </h4>
-                                            <p>
-                                                <?php echo $arre['mensaje']; ?>
-                                            </p>
-                                            <p>
-                                                <?php echo $arre['fecha']; ?>
-                                            </p>
-                                        </div>
-                                    </li>
-                            <?php
-                                    $count++;
-                                } else {
-                                    break;
-                                }
-                            } ?>
-                        </ul><!-- End Notification Dropdown Items -->
-                    </li><!-- End Notification Nav -->
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center" href="<?php echo $url_base; ?>secciones/perfil/account.php">
+                            <i class="bi bi-gear"></i>
+                            <span>Configuración</span>
+                        </a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
                 <?php endif; ?>
-                <!-- aqui empiesan las secciones paracada nivel de usuario -->
-                <li class="nav-item dropdown pe-3">
-                    <!-- linea 129 header.php --> <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="<?php echo $_SESSION['foto'] ?>" id="fot" alt="Foto de perfil" style="width: 40px; height: 40px;" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">
-                            <?php echo $_SESSION['us'] ?>
-                        </span>
-                    </a> <!-- End Profile Iamge Icon -->
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-                        <li class="dropdown-header">
-                            <span>
-                                <?php echo $datos['Nombre_puestos'] ?>
-                            </span>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <?php if ($_SESSION['puesto'] != 2) : ?>
-                            <li>
-                                <a class="dropdown-item d-flex align-items-center" href="<?php echo $url_base; ?>secciones/perfil/account.php">
-                                    <i class="bi bi-gear"></i>
-                                    <span>Configuración</span>
-                                </a>
-                            </li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                        <?php endif; ?>
-                        <?php if ($_SESSION['puesto'] == 10) : ?>
-                            <li>
-                                <a class="dropdown-item d-flex align-items-center" href="<?php echo $url_base; ?>secciones/perfil/help.php">
-                                    <i class="bi bi-question-circle"></i>
-                                    <span>¿Necesitas ayuda?</span>
-                                </a>
-                            </li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                        <?php endif; ?>
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="#" onclick="cerrar(this.value)">
-                                <i class="bi bi-box-arrow-right"></i>
-                                <span>Cerrar sesión</span>
-                            </a>
-                        </li>
-                    </ul><!-- End Profile Dropdown Items -->
-                </li><!-- End Profile Nav -->
-            </ul>
+                <?php if ($_SESSION['puesto'] == 10) : ?>
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center" href="<?php echo $url_base; ?>secciones/perfil/help.php">
+                            <i class="bi bi-question-circle"></i>
+                            <span>¿Necesitas ayuda?</span>
+                        </a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                <?php endif; ?>
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="#" onclick="cerrar(this.value)">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>Cerrar sesión</span>
+                    </a>
+                </li>
+            </ul><!-- End Profile Dropdown Items -->
+        </li><!-- End Profile Nav -->
+        </ul>
         </nav><!-- End Icons Navigation -->
     </header><!-- End Header -->
     <!-- ======= Sidebar ======= -->
