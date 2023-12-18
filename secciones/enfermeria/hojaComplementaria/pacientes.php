@@ -42,6 +42,51 @@ class PDF extends FPDF
         $this->Cell(60, 7, utf8_decode('DATOS PERSONALES'), 0, 0, 'C', 'true');
         $this->Ln(14);
 
+        $this->SetTextColor(0, 0, 0);
+        $this->SetFillColor(0, 175, 164);
+        $this->Cell(46, 10, utf8_decode('Nombre del paciente:'), 0, 0, 'C');
+        $this->Ln(0);
+
+        $this->SetTextColor(0, 0, 0);
+        $this->SetFillColor(0, 175, 164);
+        $this->Cell(260, 10, utf8_decode('RFC:'), 0, 0, 'C');
+        $this->Ln(10);
+
+        $this->SetTextColor(0, 0, 0);
+        $this->SetFillColor(0, 175, 164);
+        $this->Cell(14, 10, utf8_decode('Calle:'), 0, 0, 'C');
+        $this->Ln(10);
+
+        $this->SetTextColor(0, 0, 0);
+        $this->SetFillColor(0, 175, 164);
+        $this->Cell(20, 10, utf8_decode('Colonia:'), 0, 0, 'C');
+        $this->Ln(0);
+
+        $this->SetTextColor(0, 0, 0);
+        $this->SetFillColor(0, 175, 164);
+        $this->Cell(290, 10, utf8_decode('CPT:'), 0, 0, 'C');
+        $this->Ln(10);
+
+        $this->SetTextColor(0, 0, 0);
+        $this->SetFillColor(0, 175, 164);
+        $this->Cell(23, 10, utf8_decode('Municipio:'), 0, 0, 'C');
+        $this->Ln(0);
+
+        $this->SetTextColor(0, 0, 0);
+        $this->SetFillColor(0, 175, 164);
+        $this->Cell(155, 10, utf8_decode('Estado:'), 0, 0, 'C');
+        $this->Ln(10);
+
+        $this->SetTextColor(0, 0, 0);
+        $this->SetFillColor(0, 175, 164);
+        $this->Cell(53, 10, utf8_decode('Nombre del Responsable:'), 0, 0, 'C');
+        $this->Ln(10);
+
+        $this->SetTextColor(0, 0, 0);
+        $this->SetFillColor(0, 175, 164);
+        $this->Cell(33, 10, utf8_decode('Administradora:'), 0, 0, 'C');
+        $this->Ln(10);
+
     }
     // Pie de página
     function Footer()
@@ -80,7 +125,7 @@ $cuadro_ancho = 200;
 $cuadro_alto = 120;
 
 while ($user = $sentencia->fetch(PDO::FETCH_ASSOC)) {
-    $carpeta_usuario = "./directorio_INES/";
+    $carpeta_usuario = "./directorio_INES";
     // dentro del ciclo defino la ruta
     $nombre_Credencial_front_orginal = $user['Credencial_front'];
     $nombre_Credencial_post_orginal = $user['Credencial_post'];
@@ -92,26 +137,28 @@ while ($user = $sentencia->fetch(PDO::FETCH_ASSOC)) {
     $rutaCredencialAseguradorasPost = $carpeta_usuario . "/" . $nombre_Credencial_aseguradoras_post_orginal;
     
     //Este es mi tamañao de las imagenes
-    $pdf->Image($rutaCredencialFront, 20, 140, 80, 50);
-    $pdf->Image($rutaCredencialPost, 110, 140, 80, 50);
+    $pdf->Image($rutaCredencialFront, 20, 140, 80, 40);
+    $pdf->Image($rutaCredencialPost, 110, 140, 80, 40);
     // Coloca las dos imágenes inferiores con el tamaño deseado
-    $pdf->Image($rutaCredencialAseguradora, 20, 200, 80, 50);
-    $pdf->Image($rutaCredencialAseguradorasPost, 110, 200, 80, 50);
+    $pdf->Image($rutaCredencialAseguradora, 20, 187, 80, 40);
+    $pdf->Image($rutaCredencialAseguradorasPost, 110, 187, 80, 40);
 // Obtén la longitud del nombre del paciente y usa ese valor para ajustar las posiciones de las líneas y celdas
 $longitudNombrePaciente = strlen($user['paciente']);
-$ajusteXPaciente = 70 + $longitudNombrePaciente * 1.5; // Puedes ajustar el factor multiplicativo según sea necesario
+$ajusteXPaciente = 52 + $longitudNombrePaciente * 1.5; // Puedes ajustar el factor multiplicativo según sea necesario
 
 $longitudNombreResponsable = strlen($user['responsable']);
 $ajusteXResponsable = 10 + $longitudNombreResponsable * 1.5; // Puedes ajustar el factor multiplicativo según sea necesario
 
 $pdf->SetXY(31, 75);
-$pdf->Cell($ajusteXPaciente, 10, 'Nombre del Paciente: ' . utf8_decode($user['paciente']), 0, 0, 'R', 0);
+$pdf->Cell($ajusteXPaciente, 10, '' . utf8_decode($user['paciente']), 0, 0, 'R', 0);
 $pdf->Line(30 + $ajusteXPaciente, 82, 55, 82);
 $pdf->Cell(20);
-$pdf->Cell(30, 10, 'RFC: ' . utf8_decode($user['rfc']), 0, 0, 'C', 0);
-$pdf->Line(200, 82, 175, 82);
-$pdf->SetXY(10, 75);
-$pdf->Cell(35, 30, 'Calle: ' . utf8_decode($user['calle']), 0, 0, 'U', 0);
+$pdf->Ln();
+$pdf->Cell(306, 10, '' . utf8_decode($user['rfc']), 0, 0, 'C', 0);
+$pdf->Line(146, 82, 183, 82);
+$pdf->Ln();
+$pdf->SetXY(23, 75);
+$pdf->Cell(35, 30, '' . utf8_decode($user['calle']), 0, 0, 'U', 0);
 $pdf->Line(23, 92, 130, 92);
 $pdf->SetXY(120, 75);
 $pdf->Cell(50, 30, utf8_decode('Núm.Ext: ') . utf8_decode($user['num_ext']), 0, 0, 'C', 0);
@@ -121,27 +168,27 @@ $pdf->Cell(70, 30, utf8_decode('Núm.Int: ') . utf8_decode($user['num_int']), 0,
 $pdf->Line(188, 92, 200, 92);
 $pdf->Ln();
 $pdf->SetXY(45, 95);
-$pdf->Cell(55, 10, 'Colonia: ' . utf8_decode($user['colonia']), 0, 0, 'R', 0);
-$pdf->Line(27, 102, 119, 102);
+$pdf->Cell(43, 10, '' . utf8_decode($user['colonia']), 0, 0, 'R', 0);
+$pdf->Line(27, 102, 120, 102);
 $pdf->Cell(20);
-$pdf->Cell(50, 10, utf8_decode('CP: ') . utf8_decode($user['codigo_postal']), 0, 0, 'C', 0);
-$pdf->Line(128, 102, 168, 102);
+$pdf->Cell(120, 10, utf8_decode('') . utf8_decode($user['codigo_postal']), 0, 0, 'C', 0);
+$pdf->Line(160, 102, 177, 102);
 $pdf->Ln();
 $pdf->SetXY(12, 105);
-$pdf->Cell(55, 10, 'Municipio:    ' . utf8_decode($user['municipio']), 0, 0, 'R', 0);
+$pdf->Cell(65, 10, '' . utf8_decode($user['municipio']), 0, 0, 'R', 0);
 $pdf->Line(31, 112, 75, 112);
 $pdf->Cell(20);
-$pdf->Cell(35, 10, utf8_decode('Estado: ') . utf8_decode($user['estadoDir']), 0, 0, 'C', 0);
+$pdf->Cell(35, 10, utf8_decode('') . utf8_decode($user['estadoDir']), 0, 0, 'C', 0);
 $pdf->Line(93, 112, 136, 112);
 $pdf->Cell(85, 10, utf8_decode('Tel. de casa: ') . utf8_decode($user['telefono']), 0, 0, 'C', 0);
-$pdf->Line(165, 112, 191, 112);
+$pdf->Line(175, 112, 202, 112);
 $pdf->Ln();
-$pdf->SetXY(100, 115);
-$pdf->Cell($ajusteXResponsable, 10, 'Nombre del Responsable: ' . utf8_decode($user['responsable']), 0, 0, 'R', 0);
-$pdf->Line(50 + $ajusteXResponsable, 122, 200, 122);
+$pdf->SetXY(75, 115);
+$pdf->Cell($ajusteXResponsable, 10, '' . utf8_decode($user['responsable']), 0, 0, 'R', 0);
+$pdf->Line(5 + $ajusteXResponsable, 122, 200, 122);
 $pdf->SetXY(15, 75);
-$pdf->Cell(57, 110, 'Administradora: ' . utf8_decode($user['Nombre_administradora']), 0, 0, 'R', 0);
-$pdf->Line(40, 132, 83, 132);
+$pdf->Cell(55, 110, '' . utf8_decode($user['Nombre_administradora']), 0, 0, 'R', 0);
+$pdf->Line(43, 132, 83, 132);
 $pdf->SetXY(93, 75);
 $pdf->Cell(25, 110, utf8_decode('N° de contrato: ') . utf8_decode(''), 0, 0, 'C', 0);
 $pdf->Line(120, 132, 143, 132);

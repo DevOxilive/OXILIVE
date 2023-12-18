@@ -48,8 +48,6 @@ document.getElementById("formulario").addEventListener("submit", function (event
             text: "Revisar que todos los datos obligatorios estén ingresados",
             showConfirmButton: false,
             timer: 2000,
-        }).then(function() {
-            window.location = "./crear.php";
         });
         exit ; 
     }

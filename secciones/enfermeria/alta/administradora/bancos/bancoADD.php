@@ -47,7 +47,6 @@ if ($_POST) {
             }
         }
     }
-
     if (!empty($error)) {
         // Manejar bancos duplicados
         $duplicados = implode(', ', $error);

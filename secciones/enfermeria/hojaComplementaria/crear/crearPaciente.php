@@ -40,12 +40,12 @@ if (!isset($_SESSION['us'])) {
                     <div class="contenido col-md-4">
                         <label for="nombre" class="form-label">Nombre(s):</label>
                         <input type="text" class="form-control" name="nombre" id="nombre"
-                            placeholder="Ingresa el/los nombre(s)">
+                            placeholder="Ingresa el/los nombre(s)" maxlength="50">
                     </div>
                     <div class="contenido col-md-4">
                         <label for="apellidos" class="form-label">Apellidos:</label>
                         <input type="text" class="form-control" name="apellidos" id="apellidos"
-                            placeholder="Ingresa los apellidos">
+                            placeholder="Ingresa los apellidos" maxlength="50">
                     </div>
 
                     <!--Implemente lo que es rfc-->
@@ -106,21 +106,21 @@ if (!isset($_SESSION['us'])) {
                     </div>
                     <div class="contenido col-md-4">
                         <label for="calle" class="form-label">Calle:</label>
-                        <input type="text" class="form-control" name="calle" id="calle" placeholder="Ingresa la calle">
-                    </div>
-                    <div class="contenido col-md-2">
-                        <label for="numInt" class="form-label">Núm.Int</label>
-                        <input type="text" maxlength="15" class="form-control" name="numInt" id="numInt"
-                            placeholder="456">
+                        <input type="text" maxlength="99" class="form-control" name="calle" id="calle" placeholder="Ingresa la calle">
                     </div>
                     <div class="contenido col-md-2">
                         <label for="numExt" class="form-label">Nún.Ext</label>
-                        <input type="text" maxlength="15" class="form-control" name="numExt" id="numExt"
+                        <input type="text" maxlength="6" class="form-control" name="numExt" id="numExt"
                             placeholder="123">
+                    </div>
+                    <div class="contenido col-md-2">
+                        <label for="numInt" class="form-label">Núm.Int</label>
+                        <input type="text" maxlength="6" class="form-control" name="numInt" id="numInt"
+                            placeholder="456">
                     </div>
                     <div class="contenido col-md-4">
                         <label for="cp" class="form-label">Código Postal:</label>
-                        <input type="text" maxlength="5" class="form-control" id="cp"
+                        <input type="text" class="form-control" id="cp"
                             placeholder="Ingresa un Código Postal">
                     </div>
                     <div class="contenido col-md-4">
@@ -144,7 +144,7 @@ if (!isset($_SESSION['us'])) {
                     <div class="contenido col-md-11">
                         <label for="referencias" class="form-label">Referencias:</label>
                         <input type="text" class="form-control" name="referencias" id="referencias"
-                            placeholder="Ingresa mayores referencias del domicilio">
+                            placeholder="Ingresa mayores referencias del domicilio" maxlength="249">
                     </div>
                     <!-- Datos de la aseguradora -->
                     <div class="contenido col-md-12">
@@ -173,7 +173,7 @@ if (!isset($_SESSION['us'])) {
                         <div class="formulario__grupo" id="grupo__No_nomina">
                             <label for="No_nomina" class="formulario__label">No. nomina</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="No_nomina" id="No_nomina"
+                                <input type="text"  class="formulario__input" name="No_nomina" id="No_nomina"
                                     placeholder="No_nomina" maxlength="7">
                                 <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"><small
                                         class="formulario__input-error"> Nomina no valida.
@@ -184,7 +184,7 @@ if (!isset($_SESSION['us'])) {
                    
                     <div class="contenido col-md-3">
                         <label for="responsable" class="form-label">Familiar Responsable</label>
-                        <input type="text" id="responsable" name="responsable" class="form-control"
+                        <input type="text" maxlength="249" id="responsable" name="responsable" class="form-control"
                             placeholder="Ejem-Maria Gutierrez">
                     </div>
                     
