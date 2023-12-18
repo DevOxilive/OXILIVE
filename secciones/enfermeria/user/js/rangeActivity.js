@@ -34,7 +34,7 @@ function obtenerDatos() {
         // Actualizar el apartado según la opción seleccionada
         let filtro = document.getElementById("range-activity").textContent;
         if (filtro === "Hoy") {
-            console.log(data.hoy[0]);
+            console.log(data.hoy);
             setRangeActivity(data.hoy);
         } else if (filtro === "Semana") {
             setRangeActivity(data.semana);
