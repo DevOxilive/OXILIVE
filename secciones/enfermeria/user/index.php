@@ -116,8 +116,8 @@ if (!isset($_SESSION['us'])) {
                             </div>
                             <!-- End Filtro -->
                             <div class="card-body">
-                                <h5 class="card-title">Horarios <span>| Últimos tres</span></h5>
-
+                                <h5 class="card-title">Horarios <span>| </span><span id="range-schedule">Semana</span></h5>
+                                    
                             </div>
                         </div>
                     </div><!-- End Horarios del usuario -->

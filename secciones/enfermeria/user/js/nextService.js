@@ -22,7 +22,7 @@ function nextService(button) {
       card.setAttribute('class', 'card info-card finish-service-card');
       button.innerHTML = "";
       button.innerHTML =
-        '<a class="btn btn-outline-danger text-danger" href="pages/crear.php?status=3&idHor=' +
+        '<a class="btn btn-outline-danger" href="pages/crear.php?status=3&idHor=' +
         idHor +
         '" role="button"><i class="bi bi-clipboard-check-fill"></i>    Terminar Servicio</a>';
     }
