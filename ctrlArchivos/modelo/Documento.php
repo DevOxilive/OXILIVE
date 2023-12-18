@@ -14,7 +14,7 @@ class Documento
         return $this->archivo;
     }
 
-    public function getruta()
+    public function getRuta()
     {
         return $this->ruta;
     }

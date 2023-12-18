@@ -9,36 +9,36 @@ if (!isset($_SESSION['us'])) {
   include("../../secciones/puestos/consulta.php");
   include("../../module/genero.php");
   include("../../module/estado.php");
-  include("../../secciones/usuarios/usuariosADD.php");
+  include("../../secciones/usuarios/usuariosADD copy.php");
 } else {
   echo "Error en el sistema";
 }
 
 ?>
 <!DOCTYPE html>
-  <link rel="stylesheet" href="../../assets/css/foto_perfil.css">
-  <link rel="stylesheet" href="../../assets/css/edit.css">
+<link rel="stylesheet" href="../../assets/css/foto_perfil.css">
+<link rel="stylesheet" href="../../assets/css/edit.css">
 </head>
+
 </html>
 <main id="main" class="main">
 
   <section class="section dashboard">
     <div class="card">
       <div class="card-header" style="border: 2px solid #012970; background: #005880;">
-        <h4
-          style="text-align: center; color: #fff; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+        <h4 style="text-align: center; color: #fff; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
           Datos del nuevo Usuario</H4>
       </div>
       <div class="card-body" style="border: 2px solid #BFE5FF;">
-        <form action="./usuariosADD.php" method="POST" enctype="multipart/form-data" class="formLogin row g-3">
-        <div class="col-md-2">
+        <form action="./usuariosADD copy.php" method="POST" enctype="multipart/form-data" class="formLogin row g-3">
+          <div class="col-md-2">
             <label for="Foto_perfil" class="form-label">Sube una foto de perfil</label>
             <div class="profile-picture">
               <div class="picture-container">
                 <?php if (!empty($Foto_perfil)) { ?>
                   <img id="preview" src="<?php echo $Foto_perfil; ?>">
                 <?php } else { ?>
-                  <img id="preview" src="../enfermeria//Chat_/img/usuario.png">
+                  <img id="preview" src="../chatNotifica/img/usuario.png">
                 <?php } ?>
                 <div class="overlay">
                   <?php if (empty($Foto_perfil)) { ?>
@@ -51,8 +51,7 @@ if (!isset($_SESSION['us'])) {
                 </div>
               </div>
             </div>
-            <input type="file" class="form-control" name="Foto_perfil" id="Foto_perfil" onchange="previewImage(this);"
-              style="display: none;">
+            <input type="file" class="form-control" name="Foto_perfil" id="Foto_perfil" onchange="previewImage(this);" style="display: none;">
           </div>
           <div class="contenido col-md-3"> <br>
             <label for="nombres" class="form-label">Nombres</label>
@@ -76,21 +75,21 @@ if (!isset($_SESSION['us'])) {
             </select>
           </div>
 
-          <div class="contenido col-md-2">  <br>
+          <div class="contenido col-md-2"> <br>
             <label for="usuario" class="form-label">RFC</label>
             <input type="text" class="form-control" name="rfc" id="rfc" placeholder="RFC">
           </div>
-          
-          <div class="contenido col-md-2"> 
+
+          <div class="contenido col-md-2">
             <label for="usuario" class="form-label">Usuario</label>
             <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Usuario">
           </div>
-          <div class="contenido col-md-2"> 
+          <div class="contenido col-md-2">
             <label for="password" class="form-label">Contraseña</label>
             <input type="password" class="form-control" name="password" id="password" placeholder="********">
           </div>
-          
-          <div class="contenido col-md-2"> 
+
+          <div class="contenido col-md-2">
             <label for="departamento" class="form-label">Departamento</label>
 
             <select id="departamento" name="departamento" class="form-select">
@@ -109,8 +108,7 @@ if (!isset($_SESSION['us'])) {
 
           <div class="contenido col-md-3">
             <label for="email" class="form-label">Correo</label>
-            <input type="email" class="form-control" name="email" id="email"
-              placeholder="Ingrese el correo ">
+            <input type="email" class="form-control" name="email" id="email" placeholder="Ingrese el correo ">
           </div>
           <div class="contenido col-md-3">
             <label for="alcaldia" class="form-label">Alcaldía</label>
@@ -157,7 +155,7 @@ if (!isset($_SESSION['us'])) {
             <label for="credencialAtras" class="form-label">(INE) Credencial parte inferior</label>
             <input type="file" class="formulario__input-file" name="credencialAtras" id="credencialAtras">
           </div>
-          
+
           <div class="col-12">
             <button type="submit" class="btn btn-outline-primary">Guardar</button>
             <a role="button" onclick="confirmCancel(event)" name="cancelar" class="btn btn-outline-danger"> Cancelar</a>
@@ -171,7 +169,7 @@ if (!isset($_SESSION['us'])) {
     var preview = document.getElementById('preview');
     if (input.files && input.files[0]) {
       var reader = new FileReader();
-      reader.onload = function (e) {
+      reader.onload = function(e) {
         preview.setAttribute('src', e.target.result);
         preview.style.display = 'block';
       }

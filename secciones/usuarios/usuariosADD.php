@@ -15,7 +15,7 @@ if ($_POST) {
     if ($_FILES['Foto_perfil']['error'] !== 4) {
         $Foto_perfilX = addslashes(file_get_contents($_FILES['Foto_perfil']['tmp_name']));
     } else {
-        $Foto_perfilX = addslashes(file_get_contents("../enfermeria/Chat_/img/usuario.png"));
+        $Foto_perfilX = addslashes(file_get_contents("../chatNotifica/img/usuario.png"));
     }
     //esto va en usuarios, oxilive, y se pega aqui...
 

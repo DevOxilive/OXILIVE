@@ -30,7 +30,7 @@ if (!isset($_SESSION['us'])) {
 
                     <div class="card">
                         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                            <img src="../usuarios/OXILIVE/<?php echo $_SESSION['ape']." ".$_SESSION['no']?>/<?php echo $fot; ?>" style="width: 120px; height: 120px;" id="fotito" alt="Profile" class="rounded-circle">
+                            <img src="<?php echo $_SESSION['foto']?>" style="width: 120px; height: 120px;" id="fotito" alt="Profile" class="rounded-circle">
                             <h2>
                                 <?php echo $_SESSION['no'] ?>
                                 <?php echo $_SESSION['ape'] ?>

@@ -90,7 +90,7 @@ $(document).ready(function () {
 
     setInterval(() => {
         loadMessages();
-    }, 500);    // esta función ayuda a actualizar el chat cada 0.5 segundos
+    }, 1000);    // esta función ayuda a actualizar el chat cada 1 segundos
 
     function scrollToBottom() {
         chatBox.scrollTop = chatBox.scrollHeight;
