@@ -82,7 +82,7 @@ if (!isset($_SESSION['us'])) {
 
                     <div class="contenido col-md-3">
                         <label for="password" class="form-label">Contraseña</label>
-                        <input type="password" value="" class="form-control" name="password" id="password" placeholder="actualizar Contraseña">
+                        <input type="password" value="" class="form-control" name="password" id="password" placeholder="actualizar Contraseña" minlength="8" maxlength="12">
                     </div>
 
                     <div class="contenido col-md-3">
