@@ -4,7 +4,7 @@ if (!isset($_SESSION['us'])) {
   header('Location: ../../login.php');
 } elseif (isset($_SESSION['us'])) {
   include("../../../../templates/header.php");
-  $datosGuardados = $_GET['btnId'];
+
   include("consultaCreados.php");
 } else {
   echo "Error en el sistema";
