@@ -5,11 +5,10 @@ if (!isset($_SESSION['us'])) {
     header('Location: ../../../login.php');
 } elseif (isset($_SESSION['us'])) {
     include("../../../templates/header.php");
+    $token = $_GET['chat'];
 } else {
-    // esto queda pediente para mostrar una mejor vista al usuario y no se confunca sobre esto...
     echo "Error en el sistema";
 }
-$token = $_GET['chat'];
 //se verifica la existencia del usuario seleccionado
 $s = $con->prepare("SELECT * FROM usuarios WHERE token = '$token'");
 $s->execute();
@@ -24,7 +23,6 @@ if (count($resultado) > 0) {
 ?>
     <link rel="stylesheet" href="../css/chat.css">
     <link rel="stylesheet" href="../css/archivos.css">
-    <script src="../../../js/jquery-3.7.0.min.js"></script>
     <!-- estilos del chat -->
     <main id="main" class="main">
         <div class="row">
@@ -33,14 +31,11 @@ if (count($resultado) > 0) {
                     <div class="chat-header">
                         <h2>
                             <a href="../index.php"><i class="bi bi-chevron-compact-left" style="color: white;"></i></a>
-                        <?php
-                        echo '<img src="' . $img . '" class="iconoUsuario" alt="">';
-                        echo $valorUsuario;
-                    } else {
-                        header("Location: ../../../../403.html");
-                    }
-                        ?>
-                        <button id="btnMostrar"><i class="bi bi-folder-plus"></i></button>
+                            <?php
+                            echo '<img src="' . $img . '" class="iconoUsuario" alt="">';
+                            echo $valorUsuario;
+                            ?>
+                            <button id="btnMostrar"><i class="bi bi-folder-plus"></i></button>
                         </h2>
                     </div>
                     <!-- modulo de eliminacion de mensajes -->
@@ -74,6 +69,7 @@ if (count($resultado) > 0) {
     <script src="../js/documentos.js"></script>
     <!-- controlador de los estilos del chat -->
     <script src="../js/chatPriv.js"></script>
-    <?php
+<?php
     include("../../../templates/footer.php");
-    ?>
+}
+?>

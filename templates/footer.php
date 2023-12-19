@@ -4,10 +4,6 @@
     &copy; Copyright <strong><span>OXILIVE</span></strong>. Todos los derechos reservados
   </div>
   <div class="credits">
-    <!-- All the links in the footer should remain intact. -->
-    <!-- You can delete the links only if you purchased the pro version. -->
-    <!-- Licensing information: https://bootstrapmade.com/license/ -->
-    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
    Nuestras redes sociales <br> 
    <a href="https://www.facebook.com/OxiliveMx"><i class="bi bi-facebook" style="font-size: 30px;"></i></a> &nbsp; &nbsp;
    <a href="https://www.instagram.com/oxilivemx/"><i class="bi bi-instagram" style="font-size: 30px;"></i></a> &nbsp; &nbsp;
