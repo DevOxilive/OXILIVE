@@ -1,9 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION['us'])) {
-
-} else {
-
+    header('Location: index.php');
 }
 ?>
 <!doctype html>
@@ -52,7 +50,6 @@ if (isset($_SESSION['us'])) {
                                                     <button class="btn mt-4" type="submit" class="login-form-btn">Iniciar sesión</button>
                                             </div>
                                             </form>
-                                            <p class="mb-0 mt-4 text-center"><a href="registro/registro.php" class="link">¿No tienes cuenta? Registrate</a></p>
                                         </div>
                                     </div>
                                     <div class="card-back">
