@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['us'])) {
-    header('Location: ../../../login.php');
+    header('Location: login.php');
 } elseif (isset($_SESSION['us'])) {
     include("../../../templates/header.php");
     $token = $_GET['chat'];
