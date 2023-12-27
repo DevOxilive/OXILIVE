@@ -1,3 +1,5 @@
+<!-- End Body -->
+</body>
 <!-- ======= Footer ======= -->
 <footer id="footer" class="footer" style="background-color: white;">
   <div class="copyright">
@@ -12,20 +14,11 @@
   </div>
 </footer><!-- End Footer -->
 
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-    class="bi bi-arrow-up-short"></i></a>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+  <i class="bi bi-arrow-up-short"></i>
+</a>
+<!-- JQuery 3.7.1 JS -->
+<script async src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-<!-- Vendor JS Files -->
-<script src="<?php echo $url_base; ?>assets/vendor/apexcharts/apexcharts.min.js"></script>
-<script src="<?php echo $url_base; ?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="<?php echo $url_base; ?>assets/vendor/chart.js/chart.umd.js"></script>
-<script src="<?php echo $url_base; ?>assets/vendor/echarts/echarts.min.js"></script>
-<script src="<?php echo $url_base; ?>assets/vendor/quill/quill.min.js"></script>
-<script src="<?php echo $url_base; ?>assets/vendor/simple-datatables/simple-datatables.js"></script>
-<script src="<?php echo $url_base; ?>assets/vendor/tinymce/tinymce.min.js"></script>
-<script src="<?php echo $url_base; ?>assets/vendor/php-email-form/validate.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="<?php echo $url_base; ?>/js/jquery-3.7.0.min.js"></script>
 
-<!-- Template Main JS File -->
-<script src="<?php echo $url_base; ?>assets/js/main.js"></script>
+    

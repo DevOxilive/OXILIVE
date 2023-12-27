@@ -30,10 +30,10 @@ if (!isset($_SESSION['us'])) {
                 <?php } ?>
             </div>
             <div class="card-body">
-                <div class="table-responsive-sm">
-                    <table class="table table-bordered border-dark table-hover" id="myTable">
+                <div class="table-responsive-sm" style="border: 1px black">
+                    <table class="table border-dark table-hover" id="myTable">
                         <thead class="table-dark">
-                            <tr class="table-active table-group-divider" style="text-align: center;">
+                            <tr class="table-active table-group-divider">
                                 <th scope="col">N° de Exp</th>
                                 <th scope="col">Nombres</th>
                                 <th scope="col">Apellidos</th>
@@ -43,7 +43,7 @@ if (!isset($_SESSION['us'])) {
                                 <?php } ?>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="table-group-divider">
                             <?php foreach ($pacientes as $datos) { ?>
                                 <tr>
                                     <td class="clickeable-row" data-url="../../pacientes/paciente.php?idPac=<?php echo $datos['id_pacientes']; ?>">
@@ -68,8 +68,8 @@ if (!isset($_SESSION['us'])) {
                                                 <a class="btn btn-outline-primary" href="pages/editarPaciente.php?idPac=<?php echo $datos['id_pacientes']; ?>" role="button">
                                                     <i class="bi bi-pencil-square"></i><span> Editar</span>
                                                 </a> |
-                                                <a class="btn btn-outline-danger" onclick="deletePac(<?php echo $datos['id_pacientes']; ?>)" role="button">
-                                                    <i class="bi bi-trash-fill text-danger"></i><span class="text-danger"> Eliminar</span>
+                                                <a class="btn btn-outline-danger" href="#" onclick="deletePac(<?php echo $datos['id_pacientes']; ?>)" role="button">
+                                                    <i class="bi bi-trash-fill"></i> Eliminar</span>
                                                 </a>
                                             </center>
                                         </td>
@@ -92,7 +92,16 @@ if (!isset($_SESSION['us'])) {
         $('#myTable').DataTable({
             "language": {
                 "url": "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"
-            }
+            },
+            "columnDefs": [{
+                    "targets": "_all",
+                    className: 'dt-head-center'
+                },
+                {
+                    "targets": -1,
+                    "orderable": false
+                }
+            ]
         });
     });
 

@@ -31,7 +31,7 @@ if (!isset($_SESSION['us'])) {
         <br>
         <div class="card-body">
             <div class="table-responsive-sm">
-                <table class="table table-bordered  border-dark table-hover" id="myTable">
+                <table class="table   border-dark table-hover" id="myTable">
                     <thead class="table-dark">
                         <tr class="table-active table-group-divider" style="text-align: center;">
                             <th scope="col">Nombre(s)</th>
