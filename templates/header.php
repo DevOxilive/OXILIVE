@@ -1,9 +1,9 @@
 <?php
-$url_base = "http://localhost:8080/OXILIVE/";
-include_once 'C:\laragon\www\OXILIVE\connection/conexion.php';
-include_once 'C:\laragon\www\OXILIVE\module/puestos.php';
-include_once 'C:\laragon\www\OXILIVE\module/foto.php';
-include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
+$url_base = "https://swoe.oxilive.com.mx";
+include_once './connection/conexion.php';
+include_once './module/puestos.php';
+include_once './module/foto.php';
+include_once './secciones/notificaciones/consulta.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
