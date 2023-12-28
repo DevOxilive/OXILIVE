@@ -53,7 +53,7 @@
 <!-- Apartado Servicios -->
 <li class="nav-item">
     <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#services" href="#">
-        <i class="bi bi-circle"></i><span>Servicios</span><i class="bi bi-chevron-down ms-auto fs-6"></i>
+        <i class=""></i><span>Servicios</span><i class="bi bi-chevron-down ms-auto fs-6"></i>
     </a>
     <ul id="services" class="nav-content collapse">
         <!-- Subapartado Horarios -->
@@ -73,7 +73,7 @@
 <!-- Apartado Bitacora de asistencias -->
 <li class="nav-item">
     <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/Bitacora_de_asistencias/admin/index.php">
-        <i class="bi bi-circle"></i><span>Bitacora de asistencias</span>
+        <i class="bi bi-clipboard-check"></i><span>Bitacora de asistencias</span>
     </a>
 </li>
 <!-- Apartado Enfermeros -->
@@ -85,6 +85,6 @@
 <!-- Apartado Nómina -->
 <li class="nav-item">
     <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/control_de_nomina/index.php">
-        <i class="bi bi-circle"></i><span>Nómina</span>
+        <i class="bi bi-cash-coin"></i><span>Nómina</span>
     </a>
 </li>

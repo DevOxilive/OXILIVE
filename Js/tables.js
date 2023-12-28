@@ -2,7 +2,7 @@ $(document).ready(function() {
     $.noConflict();
     $('#myTable').DataTable({
         "language": {
-            "url": "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"
+            "url": "https://cdn.datatables.net/plug-ins/1.13.7/i18n/es-MX.json"
         },
         "columnDefs": [{
                 "targets": "_all",
