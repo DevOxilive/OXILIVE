@@ -120,7 +120,7 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                 break;
                 //Sistemas
                 case 3:
-
+                    include("navbar-items/sistemas.php");
                 break;
                 //Oxígeno
                 case 4:
@@ -142,12 +142,17 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
                 case 8:
                     include("navbar-items/almacen.php");
                 break;
+                //Chofer
                 case 9:
                 break;
+                //Cliente POR CHECAR
                 case 10:
                 break;
+                //Enfermero
                 case 11:
+                    include("navbar-items/enfermeria.php");
                 break;
+                //Médico
                 case 12:
                 break;
             } ?>
