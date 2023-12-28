@@ -106,23 +106,9 @@ if (!isset($_SESSION['us']) || $_SESSION['puesto'] != 2) {
         row.classList.remove("border-animation");
       });
     });
-
-
-
   }
-  $(document).ready(function () {
-    $.noConflict();
-
-    $('#myTable').DataTable({
-      "language": {
-        "url": "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"
-      }
-    });
-
-  });
-
-
 </script>
+<script src="../../../js/tables.js"></script>
 <?php
 include("../../../templates/footer.php");
 ?>

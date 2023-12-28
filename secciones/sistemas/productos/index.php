@@ -87,29 +87,12 @@ if (!isset($_SESSION['us'])) {
       success: function () {
         Swal.fire("Eliminado:", "Ha sido eliminado", "success").then((result) => {
           window.location.href = "index.php";
-
-
         });
       },
-
-
-
     });
-
-
-
   }
-    $(document).ready(function () {
-    $.noConflict();
-
-    $('#myTable').DataTable({
-      "language": {
-        "url": "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"
-      }
-    });
-
-  });
 </script>
+<script src="../../../js/tables.js"></script>
 <?php 
 
 include("../../../templates/footer.php");

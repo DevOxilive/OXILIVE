@@ -55,18 +55,8 @@ if (!isset($_SESSION['us'])) {
         </div>
     </div>
 </main>
-<script>
-    $(document).ready(function() {
-        $.noConflict();
-        $('#myTable').DataTable({
-            "language": {
-                "url": "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"
-            }
-        });
-    });
-</script>
 <script src="../js/indexPaciente.js"></script>
-
+<script src="../../../../js/tables.js"></script>
 </html>
 <?php
 include("../../../../templates/footer.php");

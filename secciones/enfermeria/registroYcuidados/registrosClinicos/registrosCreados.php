@@ -102,12 +102,6 @@ function mandar(codigo) {
 $(document).ready(function() {
     $.noConflict();
 
-    $('#myTable').DataTable({
-        "language": {
-            "url": "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"
-        }
-    });
-
     // Manejar clic en el botón de generación de PDF
     $('.btn-outline-info').click(function(e) {
         e.preventDefault();
@@ -120,6 +114,7 @@ $(document).ready(function() {
     });
 });
 </script>
+<script src="../../../../js/tables.js"></script>
 <?php
 include("../../../../templates/footer.php");
 ?>

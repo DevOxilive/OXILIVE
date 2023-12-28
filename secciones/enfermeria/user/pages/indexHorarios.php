@@ -31,19 +31,9 @@ if (!isset($_SESSION['us'])) {
 </main>
 
 </html>
-<script>
-    $(document).ready(function() {
-        $.noConflict();
-        $('#myTable').DataTable({
-            "language": {
-                "url": "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"
-            },
-            "order": [],
-        });
-    });
-</script>
 <script src="../js/indexHorario.js"></script>
 <script src="../js/statusHorario.js"></script>
+<script src="../../../../js/tables.js"></script>
 
 <?php
 include("../../../../templates/footer.php");

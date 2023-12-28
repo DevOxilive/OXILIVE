@@ -73,16 +73,6 @@ if (!isset($_SESSION['us'])) {
     </div>
 </main><!-- End #main -->
 <script>
-    $(document).ready(function() {
-        $.noConflict();
-        $('#myTable').DataTable({
-            "language": {
-                "url": "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"
-            },
-            "order": [],
-        });
-    });
-
     function cancelHor(e, id) {
         e.preventDefault();
         Swal.fire({
@@ -120,6 +110,7 @@ if (!isset($_SESSION['us'])) {
         });
     }
 </script>
+<script src="../../../../js/tables.js"></script>
 <script src="js/statusHorario.js"></script>
 <script src="js/cancelados.js"></script>
 <script src="js/filtro.js"></script>

@@ -75,14 +75,6 @@ if (!isset($_SESSION['us'])) {
 
 </html>
 <script>
-    $(document).ready(function() {
-        $.noConflict();
-        $('#myTable').DataTable({
-            "language": {
-                "url": "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"
-            }
-        });
-    });
     const rows = document.querySelectorAll(".animated-border");
     rows.forEach(row => {
         row.addEventListener("mouseover", () => {
@@ -130,6 +122,7 @@ if (!isset($_SESSION['us'])) {
         })
     }
 </script>
+<script src="../../../../js/tables.js"></script>
 <?php
 include("../../../../templates/footer.php");
 ?>
