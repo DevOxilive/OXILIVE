@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $vPassword = $_POST["txtPass"];
 
     if (!empty($vUsuario) && !empty($vPassword)) {
-        $consu = "SELECT * FROM usuarios WHERE BINARY Usuario = :vUsuario AND Estado != 2";
+        $consu = "SELECT * FROM usuarios WHERE Usuario = :vUsuario AND Estado != 2";
         $stmt = $con->prepare($consu);
         $stmt->bindParam(":vUsuario", $vUsuario);
         $stmt->execute();
@@ -17,8 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $incre = $con->prepare($incremento);
         $incre->bindParam(":vUsuario", $vUsuario);
         $incre->execute();
-
-
 
         if ($datos && password_verify($vPassword, $datos["paswword"])) {
             $_SESSION['idus'] = $datos["id_usuarios"];
@@ -33,107 +31,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['rfc'] = $datos["rfc"];
             $_SESSION['estado'] = $datos['Estado'];
 
-
             $sentensia2 = $con->prepare("UPDATE usuarios SET estatus = '1' WHERE id_usuarios = '{$_SESSION['idus']}' ");
             $sentensia2->execute();
 
             switch ($datos["id_departamentos"]) {
                 case '1':
-                    echo "<script> 
-                         Swal.fire({
-                             icon: 'success',
-                            title: 'BIENVENIDO',
-                            showConfirmButton: false,
-                            timer: 1500,
-                        }).then(function() {
-                    window.location = 'index.php';
-                        });
-                </script>";
-                    break;
+                    alertSuccess("index.php");    
+                break;
                 case '2':
-                    echo "<script> 
-                         Swal.fire({
-                             icon: 'success',
-                            title: 'BIENVENIDO',
-                            showConfirmButton: false,
-                            timer: 1500,
-                        }).then(function() {
-                    window.location = 'secciones/Padministradora/index.php';
-                        });
-                </script>";
-                    break;
+                    alertSuccess("secciones/Padministradora/index.php");    
+                break;
                 case '3':
-                    echo "<script> 
-                             Swal.fire({
-                                 icon: 'success',
-                                title: 'BIENVENIDO',
-                                showConfirmButton: false,
-                                timer: 1500,
-                            }).then(function() {
-                        window.location = 'secciones/sistemas/index.php';
-                            });
-                    </script>";
-                    break;
+                    alertSuccess("secciones/sistemas/index.php");
+                break;
                 case '4':
-                    echo "<script> 
-                             Swal.fire({
-                                 icon: 'success',
-                                title: 'BIENVENIDO',
-                                showConfirmButton: false,
-                                timer: 1500,
-                            }).then(function() {
-                        window.location = 'secciones/oxigeno/index.php';
-                            });
-                    </script>";
-                    break;
+                    alertSuccess("secciones/oxigeno/index.php");
+                break;
                 case '5':
-                    echo "<script> 
-                             Swal.fire({
-                                 icon: 'success',
-                                title: 'BIENVENIDO',
-                                showConfirmButton: false,
-                                timer: 1500,
-                            }).then(function() {
-                        window.location = 'secciones/call_center/index.php';
-                            });
-                    </script>";
-                    break;
+                    alertSuccess("secciones/call_center/index.php");
+                break;
                 case '6':
-                    echo "<script> 
-                             Swal.fire({
-                                 icon: 'success',
-                                title: 'BIENVENIDO',
-                                showConfirmButton: false,
-                                timer: 1500,
-                            }).then(function() {
-                        window.location = 'secciones/enfermeria/user/index.php';
-                            });
-                    </script>";
-                    break;
+                    alertSuccess("secciones/enfermeria/user/index.php");
+                break;
                 case '7':
-                    echo "<script> 
-                                 Swal.fire({
-                                     icon: 'success',
-                                    title: 'BIENVENIDO',
-                                    showConfirmButton: false,
-                                    timer: 1500,
-                                }).then(function() {
-                            window.location = 'secciones/Capital_humano/index.php';
-                                });
-                        </script>";
-                    break;
+                    alertSuccess("secciones/Capital_humano/index.php");    
+                break;
                 case '8':
-                    echo "<script> 
-                             Swal.fire({
-                                 icon: 'success',
-                                title: 'BIENVENIDO',
-                                showConfirmButton: false,
-                                timer: 1500,
-                            }).then(function() {
-                        window.location = 'secciones/almacen/index.php';
-                            });
-                    </script>";
-                    break;
+                    alertSuccess("secciones/almacen/index.php");
+                break;
                 case '9':
                     echo "<script> 
                             Swal.fire({
@@ -153,79 +78,55 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </script>";
                     break;
                 case '10':
-                    echo "<script> 
-                                 Swal.fire({
-                                     icon: 'success',
-                                    title: 'BIENVENIDO',
-                                    showConfirmButton: false,
-                                    timer: 1500,
-                                }).then(function() {
-                            window.location = 'secciones/catalogo/index.php';
-                                });
-                        </script>";
-                    break;
+                    alertSuccess("secciones/catalogo/index.php");   
+                break;
 
                 case '11':
-                    echo "<script> 
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'BIENVENIDO',
-                            showConfirmButton: false,
-                            timer: 1500,
-                        }).then(function() {
-                            window.location = 'secciones/enfermeria/user/index.php';
-                        });
-                    </script>";
-                    break;
-
+                    alertSuccess("secciones/enfermeria/user/index.php");    
+                break;
                 case '12':
-                    echo "<script> 
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'BIENVENIDO',
-                            showConfirmButton: false,
-                            timer: 1500,
-                        }).then(function() {
-                            window.location = 'secciones/call_center/index.php';
-                        });
-                    </script>";
-                    break;
+                    alertSuccess("secciones/call_center/index.php");
+                break;
                 default:
                     redirectTo('index.php');
-                    break;
+                break;
             }
         } else {
-            echo "<script> 
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'CAMPOS INCORRECTOS',
-                                text: 'Usuario y/o Contraseña incorrecto(s)',
-                                showConfirmButton: false,
-                                timer: 2000,
-                            }).then(function() {
-                                window.location = 'login.php';
-                            });
-                        </script>";
+            alertError("Campos Incorrectos", "Usuario y/o contraseña incorrecto(a)");
         }
     } else {
-        showErrorAlert("Los campos no deben ir vacíos.");
+        alertError("Error", "Los campos no deben ir vacíos.");
     }
 }
-
-function redirectTo($location)
-{
+function alertSuccess($wnd){
+    $name=ucfirst(strtolower($_SESSION['no']));
+    if($_SESSION['genero'] == 1){
+        $msg = "Bienvenido ". $name;
+    } else {
+        $msg = "Bienvenida ". $name;
+    }
+    echo "<script>
+        Swal.fire({
+            icon: 'success',
+            title: '".$msg."',
+            showConfirmButton: false,
+            timer: 1500,
+        }).then(function() {
+            window.location = '".$wnd."';
+        });
+    </script>";
+}
+function redirectTo($location){
     echo "<script>
         window.location = '$location';
     </script>";
 }
-
-function showErrorAlert($message)
-{
+function alertError($ttl, $msg){
     echo "<script>
         Swal.fire({
             icon: 'error',
-            title: 'Error',
-            text: '$message',
+            title: '".$ttl."',
+            text: '".$msg."',
             showConfirmButton: false,
             timer: 2000,
         }).then(function() {
@@ -233,3 +134,5 @@ function showErrorAlert($message)
         });
     </script>";
 }
+?>
+<title>OXILIVE S.A de C.V</title>

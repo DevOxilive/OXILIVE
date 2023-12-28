@@ -11,36 +11,23 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Favicons -->
-    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css" rel="stylesheet">
     <link href="<?php echo $url_base; ?>img/OXILIVE.ico" rel="icon">
     <link href="<?php echo $url_base; ?>img/OXILIVE.ico" rel="apple-touch-icon">
+    <!-- Bootstrap 5.3.2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- SweetAlert2 11.10.1 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css" rel="stylesheet">
     <!-- Google Fonts -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-    <!-- Vendor CSS Files -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
-    <link href="<?php echo $url_base; ?>assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?php echo $url_base; ?>assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="<?php echo $url_base; ?>assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="<?php echo $url_base; ?>assets/vendor/quill/quill.snow.css" rel="stylesheet">
-    <link href="<?php echo $url_base; ?>assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-    <link href="<?php echo $url_base; ?>assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="<?php echo $url_base; ?>assets/vendor/simple-datatables/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
-    <link href="<?php echo $url_base; ?>assets/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!--Librerias de despliegue iconos-->
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap Icons 1.11.2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <!-- Datatables 1.13.7 CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+    <!-- Estilos del template -->
+    <link href="<?php echo $url_base; ?>assets/css/style.css" rel="stylesheet">
     <title>OXILIVE S.A de C.V</title>
 </head>
 
@@ -109,304 +96,107 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
         <ul class="sidebar-nav" id="sidebar-nav">
-            <?php if ($_SESSION['puesto'] === 1) { ?>
+            <!-- Módulo Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo $url_base; ?>index.php">
+                    <i class="bi bi-grid"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <!-- Módulo Chat General -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/chatNotifica/index.php">
+                    <i class="bi bi-chat-square-text"></i>
+                    <span>Chat General</span>
+                </a>
+            </li>
+            <?php switch ($_SESSION['puesto']) {
+                //Administrador
+                case 1:
+                    include("navbar-items/admin.php");
+                break;
+                //Administradora POR CHECAR
+                case 2:
+                break;
+                //Sistemas
+                case 3:
+                    include("navbar-items/sistemas.php");
+                break;
+                //Oxígeno
+                case 4:
+                    include("navbar-items/oxigeno.php");
+                break;
+                //Call Center
+                case 5:
+                    include("navbar-items/call-center.php");
+                break;
+                //Enfermeria
+                case 6:
+                    include("navbar-items/enfermeria.php");
+                break;
+                //Capital Humano
+                case 7:
+                    include("navbar-items/capital-humano.php");
+                break;
+                //Almacén
+                case 8:
+                    include("navbar-items/almacen.php");
+                break;
+                //Chofer
+                case 9:
+                break;
+                //Cliente POR CHECAR
+                case 10:
+                break;
+                //Enfermero
+                case 11:
+                    include("navbar-items/enfermeria.php");
+                break;
+                //Médico
+                case 12:
+                break;
+            } ?>
+            <!--?if ($_SESSION['puesto'] === 2) { ?>
                 <li class="nav-item">
-                    <a class="nav-link " href="<?php echo $url_base; ?>index.php">
-                        <i class="bi bi-grid"></i>
-                        <span>Dashboard</span>
+                    <a class="nav-link collapsed" data-bs-target="#pa-nav" data-bs-toggle="collapse" href="<?php echo $url_base; ?>secciones/Padministradora/index.php">
+                        <i class="bi bi-file-person-fill"></i><span>Mis pacientes</span><i class="bi bi-chevron-down ms-auto"></i>
                     </a>
-                </li><!-- termina el Dashboard Nav -->
-            <?php }
-            if ($_SESSION['puesto'] === 1 || $_SESSION['puesto'] === 6 || $_SESSION['puesto'] === 11 || $_SESSION['puesto'] === 12 || $_SESSION['puesto'] === 5) { ?>
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/chatNotifica/index.php">
-                        <i class="bi bi-wechat"></i>
-                        <span>Chat General</span>
-                    </a>
-                </li>
-            <?php }
-            if ($_SESSION['puesto'] === 1 || $_SESSION['puesto'] === 4) { ?>
-                <li class="nav-item">
-                    <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="<?php echo $url_base; ?>secciones/oxigeno/index.php">
-                        <i class="bi bi-clipboard2-pulse"></i><span>Oxigeno</span><i class="bi bi-chevron-down ms-auto"></i>
-                    </a>
-                    <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                    <ul id="pa-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                         <li>
-                            <a href="<?php echo $url_base; ?>secciones/oxigeno/rutas/index.php">
-                                <i class="bi bi-pin-map-fill"></i><span>Rutas</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo $url_base; ?>secciones/oxigeno/pacientes/index.php">
-                                <i class="bi bi-person-rolodex"></i></i><span>Pacientes</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo $url_base; ?>secciones/administradora/index.php">
-                                <i class="bi bi-person-workspace"></i><span>Administradora</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo $url_base; ?>secciones/aseguradoras/index.php">
-                                <i class="bi bi-hospital-fill"></i><span>Aseguradora</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo $url_base; ?>secciones/bancos/index.php">
-                                <i class="bi bi-bank2"></i><span>Bancos</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo $url_base; ?>secciones/oxigeno/choferes/index.php">
-                                <i class="bi bi-truck-front-fill"></i><span>Choferes</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo $url_base; ?>secciones/oxigeno/carros/index.php">
-                                <i class="bi bi-truck-front-fill"></i><span>Carros</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo $url_base; ?>secciones/oxigeno/equipo/index.php">
-                                <i class="bi bi-usb-drive-fill"></i><span>Equipo de oxigeno</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo $url_base; ?>secciones/oxigeno/insumos/index.php">
-                                <i class="bi bi-usb-drive-fill"></i><span>Insumos</span>
+                            <a href="<?php echo $url_base; ?>secciones/Padministradora/pacientes/index.php">
+                                <i class="bi bi-circle"></i><span>Pacientes</span>
                             </a>
                         </li>
                     </ul>
                 </li>
-            <?php
-            }
-            if ($_SESSION['puesto'] === 1 || $_SESSION['puesto'] === 6) { ?>
                 <li class="nav-item">
-                    <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-                        <i class="bi bi-capsule"></i><span>Enfermeria</span><i class="bi bi-chevron-down ms-auto"></i>
+                    <a class="nav-link collapsed" data-bs-target="#rua-nav" data-bs-toggle="collapse" href="<?php echo $url_base; ?>secciones/Padministradora/index.php">
+                        <i class="bi bi-pin-map-fill"></i><span>Generar ruta</span><i class="bi bi-chevron-down ms-auto"></i>
                     </a>
-                    <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <ul id="rua-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                         <li>
-                            <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#alta" href="#"><i class="bi bi-circle"></i><span>Dar de Alta</span><i class="bi bi-chevron-down ms-auto fs-6"></i></a>
-                            <ul id="alta" class="collapse">
-                                <li><a href="<?php echo $url_base; ?>secciones/enfermeria/alta/codigo_servicios/index.php"><i class="bi bi-circle"></i><span>Código</span></a></li>
-                                <li><a href="<?php echo $url_base; ?>secciones/enfermeria/alta/cpts/index.php"><i class="bi bi-circle"></i><span>Cpts</a></li>
-                                <li><a href="<?php echo $url_base; ?>secciones/enfermeria/alta/administradora/index.php"><i class="bi bi-circle"></i><span>Administradora</a></li>
-                            </ul>
-                        </li>
-                        <!--Aquí vamos a crear los procesos a realizar-->
-                        <li><a class="nav-link" data-bs-toggle="collapse" data-bs-target="#crear" href="#"><i class="bi bi-circle"></i><span>Crear proceso</span><i class="bi bi-chevron-down ms-auto fs-6"></i></a>
-                            <ul id="crear" class="collapse">
-                                <li><a href="<?php echo $url_base; ?>secciones/enfermeria/hojaComplementaria/index.php"><i class="bi bi-circle"></i><span>Pacientes</span></a></li>
-                                <li><a href="<?php echo $url_base; ?>secciones/enfermeria/procedimientos/index.php"><i class="bi bi-circle"></i>Procedimientos</span></a></li>
-                                <li><a href="<?php echo $url_base; ?>secciones/enfermeria/lectura/index.php"><i class="bi bi-circle"></i>Historial Aseguradoras</span></a></li>
-                        </li>
-                    </ul>
-                    <!-- Módulo de Servicios -->
-                <li>
-                    <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#services" href="#">
-                        <i class="bi bi-circle"></i><span>Servicios</span><i class="bi bi-chevron-down ms-auto fs-6"></i>
-                    </a>
-                    <ul id="services" class="collapse">
-                        <li>
-                            <a href="<?php echo $url_base; ?>secciones/enfermeria/servicios/horarios/index.php">
-                                <i class="bi bi-circle"></i><span>Horarios</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo $url_base ?>secciones/enfermeria/servicios/tipos/index.php">
-                                <i class="bi bi-circle"></i><span>Tipos de Servicios</span>
+                            <a href="<?php echo $url_base; ?>secciones/Padministradora/rutas/index.php">
+                                <i class="bi bi-circle"></i><span>Rutas pacientes</span>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <!-- Módulo de Bitacora de asistencias -->
-                <li>
-                    <a href="<?php echo $url_base; ?>secciones/enfermeria/Bitacora_de_asistencias/admin/index.php">
-                        <i class="bi bi-circle"></i><span>Bitacora de asistencias</span>
-                    </a>
-                </li>
-                <!-- Módulo de Enfermeros -->
-                <li>
-                    <a href="<?php echo $url_base; ?>secciones/enfermeria/enfermeros/index.php">
-                        <i class="bi bi-circle"></i><span>Enfermeros</span>
-                    </a>
-                </li>
-                <!-- Módulo de nomina -->
-                <li>
-                    <a href="<?php echo $url_base; ?>secciones/enfermeria/control_de_nomina/index.php">
-                        <i class="bi bi-circle"></i><span>Nómina</span>
-                    </a>
-                </li>
-                <!--Aquí termina-->
-        </ul>
-        </li><!-- End Forms Nav -->
-    <?php  }
-            if ($_SESSION['puesto'] === 1 || $_SESSION['puesto'] === 8) { ?>
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#alma-nav" data-bs-toggle="collapse" href="<?php echo $url_base; ?>secciones/catalogo/index.php">
-                <i class="bi bi-house-lock-fill"></i><span>Almacen</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="alma-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="<?php echo $url_base; ?>secciones/almacen/materiales/index.php">
-                        <i class="bi bi-bookmark-check-fill"></i><span>Materiales y recursos</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?php echo $url_base; ?>secciones/almacen/salidas/index.php">
-                        <i class="bi bi-escape"></i><span>Salida de Materiales y recursos</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?php echo $url_base; ?>secciones/almacen/entradas/index.php">
-                        <i class="bi bi-box-arrow-right"></i><span>Entrada de Materiales y recursos</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-    <?php }
-            if ($_SESSION['puesto'] === 1 || $_SESSION['puesto'] === 5 || $_SESSION['puesto'] === 12) { ?>
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-telephone-fill"></i><span> Call Center</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="<?php echo $url_base; ?>secciones/call_center/camara/camara.php">
-                        <i class="bi bi-circle"></i><span>Scanner</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?php echo $url_base; ?>secciones/call_center/pacientes/index.php">
-                        <i class="bi bi-circle"></i><span>Pacientes</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?php echo $url_base; ?>secciones/aseguradoras/index.php">
-                        <i class="bi bi-circle"></i><span>Aseguradoras</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?php echo $url_base; ?>secciones/call_center/arribo/index.php">
-                        <i class="bi bi-circle"></i><span>Arribo</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?php echo $url_base; ?>secciones/call_center/servicios/index.php">
-                        <i class="bi bi-circle"></i><span>Servicios</span>
-                    </a>
-                </li>
-                <!--Aquí voy agregar el menu desplegable -->
-                <li>
-                    <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#alta" href="#"><i class="bi bi-circle"></i><span>Generar Incidencia</span><i class="bi bi-chevron-down ms-auto fs-6"></i></a>
-                    <ul id="alta" class="collapse">
-                        <li><a href="<?php echo $url_base; ?>secciones/call_center/eventos/index.php"><i class="bi bi-circle"></i><span>Crear Evento</span></a></li>
-                        <li><a href="<?php echo $url_base; ?>secciones/call_center/eventos/cancelar/cancelar.php"><i class="bi bi-circle"></i><span>Cancelar Evento</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="<?php echo $url_base; ?>secciones/call_center/medicos/index.php">
-                        <i class="bi bi-circle"></i><span>Incidencia Médica</span>
-                    </a>
-                </li>
-            </ul>
-        </li><!-- End Tables Nav -->
-    <?php }
-            if ($_SESSION['puesto'] === 1 || $_SESSION['puesto'] === 7) { ?>
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-person-circle"></i><span>Capital Humano</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="<?php echo $url_base; ?>secciones/Capital_humano/empleados/index.php">
-                        <i class="bi bi-circle"></i><span>Empleados</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?php echo $url_base; ?>secciones/aseguradoras/index.php">
-                        <i class="bi bi-circle"></i><span>Aseguradoras</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?php echo $url_base; ?>secciones/oxigeno/choferes/index.php">
-                        <i class="bi bi-circle"></i><span>Choferes</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?php echo $url_base; ?>secciones/oxigeno/carros/index.php">
-                        <i class="bi bi-circle"></i><span>Carros</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-    <?php }
-            if ($_SESSION['puesto'] === 1 || $_SESSION['puesto'] === 3) { ?>
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#systemas-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-pc-display-horizontal"></i><span>Sistemas</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="systemas-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="<?php echo $url_base; ?>secciones/usuarios/index.php">
-                        <i class="bi bi-circle"></i><span>Usuarios</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?php echo $url_base; ?>secciones/puestos/index.php">
-                        <i class="bi bi-circle"></i><span>Puestos</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?php echo $url_base; ?>secciones/almacen/entradas/index.php">
-                        <i class="bi bi-box-arrow-right"></i><span>Entrada de Materiales y recursos</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-    <?php }
-            if ($_SESSION['puesto'] === 2) { ?>
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#pa-nav" data-bs-toggle="collapse" href="<?php echo $url_base; ?>secciones/Padministradora/index.php">
-                <i class="bi bi-file-person-fill"></i><span>Mis pacientes</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="pa-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="<?php echo $url_base; ?>secciones/Padministradora/pacientes/index.php">
-                        <i class="bi bi-circle"></i><span>Pacientes</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#rua-nav" data-bs-toggle="collapse" href="<?php echo $url_base; ?>secciones/Padministradora/index.php">
-                <i class="bi bi-pin-map-fill"></i><span>Generar ruta</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="rua-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="<?php echo $url_base; ?>secciones/Padministradora/rutas/index.php">
-                        <i class="bi bi-circle"></i><span>Rutas pacientes</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-    <?php }
+            ?php }
             if ($_SESSION['puesto'] === 9) { ?>
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#cata-nav" data-bs-toggle="collapse" href="<?php echo $url_base; ?>secciones/Pchofer/index.php">
-                <i class="bi bi-book-half"></i><span>Mis rutas</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="cata-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="<?php echo $url_base; ?>secciones/Pchofer/misrutas/index.php">
-                        <i class="bi bi-circle"></i><span>En proceso</span>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#cata-nav" data-bs-toggle="collapse" href="<?php echo $url_base; ?>secciones/Pchofer/index.php">
+                        <i class="bi bi-book-half"></i><span>Mis rutas</span><i class="bi bi-chevron-down ms-auto"></i>
                     </a>
+                    <ul id="cata-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                        <li>
+                            <a href="<?php echo $url_base; ?>secciones/Pchofer/misrutas/index.php">
+                                <i class="bi bi-circle"></i><span>En proceso</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
-            </ul>
-        </li>
-    <?php } ?>
-    </ul>
+            ?php } ?>-->
+        </ul>
     </aside>
     <script>
         // Función para actualizar el estatus
@@ -422,7 +212,6 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
             var url = window.location;
         });
     </script>
-
     <script>
         function mostrarImagen(event) {
             var input = event.target;
@@ -489,3 +278,14 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
             verMasBtn.style.display = 'none'; // Oculta el botón "Ver más"
         });
     </script>
+    <!-- JQuery 3.7.1 JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Datatables 1.13.7 JS -->
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+    <!-- Template Main JS File -->
+    <script defer src="<?php echo $url_base; ?>assets/js/main.js"></script>
+    <!-- Bootstrap 5.3.2 JS -->
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <!-- SweetAlert2 11.10.1 JS -->
+    <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.all.min.js"></script>
