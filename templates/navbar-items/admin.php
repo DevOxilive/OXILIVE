@@ -69,19 +69,19 @@
         <!-- Apartado Materiales y Recursos -->
         <li>
             <a href="<?php echo $url_base; ?>secciones/almacen/materiales/index.php">
-                <i class="bi bi-bookmark-check-fill"></i><span>Materiales y recursos</span>
+                <i class="bi bi-circle"></i><span>Materiales y recursos</span>
             </a>
         </li>
         <!-- Apartado Salida de Materiales y Recursos -->
         <li>
             <a href="<?php echo $url_base; ?>secciones/almacen/salidas/index.php">
-                <i class="bi bi-escape"></i><span>Salida de Materiales y recursos</span>
+                <i class="bi bi-circle"></i><span>Salida de Materiales y recursos</span>
             </a>
         </li>
         <!-- Apartado Entrada de Materiales y Recursos -->
         <li>
             <a href="<?php echo $url_base; ?>secciones/almacen/entradas/index.php">
-                <i class="bi bi-box-arrow-right"></i><span>Entrada de Materiales y recursos</span>
+                <i class="bi bi-circle"></i><span>Entrada de Materiales y recursos</span>
             </a>
         </li>
     </ul>
