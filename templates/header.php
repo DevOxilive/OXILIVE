@@ -1,5 +1,4 @@
 <?php
-$url_base = "https://swoe.oxilive.com.mx";
 include_once './connection/conexion.php';
 include_once './module/puestos.php';
 include_once './module/foto.php';
