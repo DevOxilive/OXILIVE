@@ -11,8 +11,8 @@ include_once './secciones/notificaciones/consulta.php';
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <!-- Favicons -->
-    <link href="<?php echo $url_base; ?>img/OXILIVE.ico" rel="icon">
-    <link href="<?php echo $url_base; ?>img/OXILIVE.ico" rel="apple-touch-icon">
+    <link href="../img/OXILIVE.ico" rel="icon">
+    <link href="../img/OXILIVE.ico" rel="apple-touch-icon">
     <!-- Bootstrap 5.3.2 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- SweetAlert2 11.10.1 CSS -->
@@ -26,7 +26,7 @@ include_once './secciones/notificaciones/consulta.php';
     <!-- Datatables 1.13.7 CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
     <!-- Estilos del template -->
-    <link href="<?php echo $url_base; ?>assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
     <title>OXILIVE S.A de C.V</title>
 </head>
 
@@ -283,7 +283,7 @@ include_once './secciones/notificaciones/consulta.php';
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
     <!-- Template Main JS File -->
-    <script defer src="<?php echo $url_base; ?>assets/js/main.js"></script>
+    <script defer src="../assets/js/main.js"></script>
     <!-- Bootstrap 5.3.2 JS -->
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <!-- SweetAlert2 11.10.1 JS -->
