@@ -5,6 +5,7 @@ if (!isset($_SESSION['us'])) {
     header('Location: login.php');
 } elseif (isset($_SESSION['us'])) {
     include("../../../templates/header.php");
+    include("../../../connection/conexion.php");
     $token = $_GET['chat'];
 } else {
     echo "Error en el sistema";
