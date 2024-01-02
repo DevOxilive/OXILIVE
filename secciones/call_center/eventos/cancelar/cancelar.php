@@ -159,6 +159,7 @@ setInterval(() => {
     consultarServicio();
 }, 1000);
 </script>
+<script src="../../../../js/tables.js"></script>
 <?php
 include("../../../../templates/footer.php");
 ?>
