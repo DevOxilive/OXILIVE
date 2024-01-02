@@ -3,6 +3,7 @@ include_once './connection/conexion.php';
 include_once './module/puestos.php';
 include_once './module/foto.php';
 include_once './secciones/notificaciones/consulta.php';
+include_once './connection/url.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
