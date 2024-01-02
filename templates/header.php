@@ -1,9 +1,9 @@
 <?php
-$url_base = "http://localhost:8080/OXILIVE/";
-include_once 'C:\laragon\www\OXILIVE\connection/conexion.php';
-include_once 'C:\laragon\www\OXILIVE\module/puestos.php';
-include_once 'C:\laragon\www\OXILIVE\module/foto.php';
-include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
+$url_base = "https://swoe.oxilive.com.mx/";
+include_once ($url_base . 'connection/conexion.php');
+include_once ($url_base . 'module/puestos.php');
+include_once ($url_base . 'module/foto.php');
+include_once ($url_base . 'secciones/notificaciones/consulta.php');
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -198,11 +198,13 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
             ?php } ?>-->
         </ul>
     </aside>
+    <!-- JQuery 3.7.1 JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
         // Función para actualizar el estatus
         function actualizarEstatus() {
             $.ajax({
-                url: "<?php echo $url_base; ?>/templates/get_estatus.php", // URL del servidor para obtener el estatus
+                url: "<?php echo $url_base; ?>templates/get_estatus.php", // URL del servidor para obtener el estatus
                 type: "POST",
             });
         }
@@ -278,8 +280,6 @@ include_once 'C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php';
             verMasBtn.style.display = 'none'; // Oculta el botón "Ver más"
         });
     </script>
-    <!-- JQuery 3.7.1 JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- Datatables 1.13.7 JS -->
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
