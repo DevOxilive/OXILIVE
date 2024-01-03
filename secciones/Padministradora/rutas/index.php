@@ -22,7 +22,7 @@ if (!isset($_SESSION['us']) || $_SESSION['puesto'] != 2) {
             <div class="card-body">
                 <h3>Rutas </h3>
                 <div class="table-responsive-sm">
-                    <table class="table table-bordered border-dark table-hover" id="rutasProcesoTable">
+                    <table class="table  border-dark table-hover" id="rutasProcesoTable">
                         <thead class="table-dark">
                             <tr class="table-active table-group-divider" style="text-align: center;">
                                 <th scope="col">Num</th>
@@ -65,7 +65,7 @@ if (!isset($_SESSION['us']) || $_SESSION['puesto'] != 2) {
             <div class="card-body">
                 <h3>TERMINADO   </h3>
                 <div class="table-responsive-sm">
-                    <table class="table table-bordered border-dark table-hover" id="rutasProcesoTable">
+                    <table class="table  border-dark table-hover" id="rutasProcesoTable">
                         <thead class="table-dark">
                             <tr class="table-active table-group-divider" style="text-align: center;">
                                 <th scope="col">Num</th>

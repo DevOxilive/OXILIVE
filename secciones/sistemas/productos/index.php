@@ -21,7 +21,7 @@ if (!isset($_SESSION['us'])) {
 
       <div class="card-body">
         <div class="table-responsive-sm">
-          <table class="table table-bordered  border-dark table-hover" id="myTable">
+          <table class="table   border-dark table-hover" id="myTable">
             <thead class="table-dark">
               <tr class="table-active table-group-divider" style="text-align: center;">
                 <th scope="col">Num</th>
@@ -87,29 +87,12 @@ if (!isset($_SESSION['us'])) {
       success: function () {
         Swal.fire("Eliminado:", "Ha sido eliminado", "success").then((result) => {
           window.location.href = "index.php";
-
-
         });
       },
-
-
-
     });
-
-
-
   }
-    $(document).ready(function () {
-    $.noConflict();
-
-    $('#myTable').DataTable({
-      "language": {
-        "url": "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"
-      }
-    });
-
-  });
 </script>
+<script src="../../../js/tables.js"></script>
 <?php 
 
 include("../../../templates/footer.php");
