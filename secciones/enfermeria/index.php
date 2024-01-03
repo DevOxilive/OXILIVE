@@ -7,20 +7,6 @@ if (!isset($_SESSION['us'])) {
 } else {
     echo "Error en el sistema";
 }
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-    
-<main id="main" class="main">
-    ENFERMERIA 
-</main>
-</html>
-<?php
-    include("../../templates/footer.php");
+include("../../templates/404.php");
+include("../../templates/footer.php");
 ?>

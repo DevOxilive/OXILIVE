@@ -15,9 +15,9 @@ if (!isset($_SESSION['us'])) {
     <div class="card">
         <div class="card-body">
             <div class="table-responsive-sm">
-                <table class="table   border-dark table-hover" id="myTable">
+                <table class="table border-dark table-hover" id="myTable" style="border: 1px solid black">
                     <thead class="table-dark">
-                        <tr class="table-active table-group-divider" style="text-align: center;">
+                        <tr class="table-active table-group-divider">
                             <th scope="col">No.</th>
                             <th scope="col">Paciente</th>
                             <th scope="col">Medico</th>

@@ -9,6 +9,10 @@ $(document).ready(function() {
                 className: 'dt-head-center'
             },
             {
+                "targets": "_all",
+                className: 'dt-body-center'
+            },
+            {
                 "targets": -1,
                 "orderable": false
             }
