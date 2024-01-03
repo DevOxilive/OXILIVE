@@ -57,5 +57,3 @@ switch ($_SESSION['puesto']) {
         break;
 }
 ?>
-
-</html>
