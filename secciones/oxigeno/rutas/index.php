@@ -27,7 +27,7 @@ if (!isset($_SESSION['us'])) {
                 <div class="table-responsive-sm">
                     <table class="table  border-dark table-hover" id="rutasProcesoTable">
                         <thead class="table-dark">
-                            <tr class="table-active table-group-divider" style="text-align: center;">
+                            <tr class="table-active table-group-divider">
                                 <th scope="col">Num</th>
                                 
                                 <th scope="col">Fecha ruta</th>
@@ -76,7 +76,7 @@ if (!isset($_SESSION['us'])) {
                 <div class="table-responsive-sm">
                     <table class="table  border-dark table-hover" id="rutasProcesoTable">
                         <thead class="table-dark">
-                            <tr class="table-active table-group-divider" style="text-align: center;">
+                            <tr class="table-active table-group-divider">
                                 <th scope="col">Num</th>
                                 
                                 <th scope="col">Fecha ruta</th>

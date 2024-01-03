@@ -30,8 +30,8 @@ if (!isset($_SESSION['us'])) {
                 <?php } ?>
             </div>
             <div class="card-body">
-                <div class="table-responsive-sm" style="border: 1px black">
-                    <table class="table border-dark table-hover" id="myTable">
+                <div class="table-responsive-sm">
+                    <table class="table border-dark table-hover" id="myTable" style="border: 1px black">
                         <thead class="table-dark">
                             <tr class="table-active table-group-divider">
                                 <th scope="col">N° de Exp</th>
