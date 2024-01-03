@@ -34,63 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $sentensia2 = $con->prepare("UPDATE usuarios SET estatus = '1' WHERE id_usuarios = '{$_SESSION['idus']}' ");
             $sentensia2->execute();
 
-            switch ($datos["id_departamentos"]) {
-                case '1':
-                    alertSuccess("index.php");    
-                break;
-                case '2':
-                    alertSuccess("secciones/Padministradora/index.php");    
-                break;
-                case '3':
-                    alertSuccess("secciones/sistemas/index.php");
-                break;
-                case '4':
-                    alertSuccess("secciones/oxigeno/index.php");
-                break;
-                case '5':
-                    alertSuccess("secciones/call_center/index.php");
-                break;
-                case '6':
-                    alertSuccess("secciones/enfermeria/user/index.php");
-                break;
-                case '7':
-                    alertSuccess("secciones/Capital_humano/index.php");    
-                break;
-                case '8':
-                    alertSuccess("secciones/almacen/index.php");
-                break;
-                case '9':
-                    echo "<script> 
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'BIENVENIDO',
-                                showConfirmButton: false,
-                                timer: 1500,
-                                backdrop: `
-                                rgba(142,196,149,0.05)
-                                  url('img/pchofer.gif')
-                                  center top
-                                  no-repeat
-                                `
-                              }).then(function() {
-                            window.location = 'secciones/Pchofer/index.php';
-                                });
-                        </script>";
-                    break;
-                case '10':
-                    alertSuccess("secciones/catalogo/index.php");   
-                break;
-
-                case '11':
-                    alertSuccess("secciones/enfermeria/user/index.php");    
-                break;
-                case '12':
-                    alertSuccess("secciones/call_center/index.php");
-                break;
-                default:
-                    redirectTo('index.php');
-                break;
-            }
+            alertSuccess();
         } else {
             alertError("Campos Incorrectos", "Usuario y/o contraseña incorrecto(a)");
         }
@@ -98,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         alertError("Error", "Los campos no deben ir vacíos.");
     }
 }
-function alertSuccess($wnd){
+function alertSuccess(){
     $name=ucfirst(strtolower($_SESSION['no']));
     if($_SESSION['genero'] == 1){
         $msg = "Bienvenido ". $name;
@@ -112,13 +56,8 @@ function alertSuccess($wnd){
             showConfirmButton: false,
             timer: 1500,
         }).then(function() {
-            window.location = '".$wnd."';
+            window.location = 'index.php';
         });
-    </script>";
-}
-function redirectTo($location){
-    echo "<script>
-        window.location = '$location';
     </script>";
 }
 function alertError($ttl, $msg){

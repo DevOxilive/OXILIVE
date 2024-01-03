@@ -1,54 +1,56 @@
 <!-- esto se hizo en una plantila -->
 <?php
 session_start();
-//AQUI SE INDICA QUE SI EL PUESTO ES A ADMINISTRADOR PERTENECE A ESTA VISTA INICIO-
+
 switch ($_SESSION['puesto']) {
+    //Administrador
     case 1:
         include("templates/header.php");
         include("connection/conexion.php");
-?>
-        <main name="main" id="main">
-            <div class="card">
-                <div class="card-body" style="text-align:center; padding-top: 4rem;">
-                    <img src="img/404.png" alt="Not Found" height="auto" width="460">
-
-                    <h3 style="text-align: center;">Lo siento, por el momento no existe esta página. Seguimos trabajando para mostrarte lo mejor.</h3>
-                </div>
-            </div>
-        </main>
-<?php
+        include("templates/404.php");
         include("templates/footer.php");
         break;
+    //Administradora POR REVISAR
     case 2:
         header('Location: secciones/Padministradora/index.php');
         break;
+    //Sistemas
     case 3:
         header('Location: secciones/sistemas/index.php');
         break;
+    //Oxígeno
     case 4:
         header('Location: secciones/oxigeno/index.php');
         break;
+    //Call Center
     case 5:
         header('Location: secciones/call_center/index.php');
         break;
+    //Enfermeria
     case 6:
-        header('Location: secciones/enfermeria/user/index.php');
+        header('Location: secciones/enfermeria/index.php');
         break;
+    //Capital Humano
     case 7:
         header('Location: secciones/Capital_humano/index.php');
         break;
+    //Almacen
     case 8:
         header('Location: secciones/almacen/index.php');
         break;
+    //Chofer
     case 9:
         header('Location: secciones/Pchofer/index.php');
         break;
+    //Cliente POR REVISAR
     case 10:
         header('Location: secciones/enfermeria/index.php');
         break;
+    //Enfermero
     case 11:
         header('Location: secciones/enfermeria/user/index.php');
         break;
+    //Médico
     case 12:
         header('Location: secciones/call_center/index.php');
         break;
