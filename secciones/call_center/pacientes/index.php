@@ -18,20 +18,22 @@ if (!isset($_SESSION['us'])) {
     <link rel="stylesheet" href="../../../assets/css/edit.css">
 </head>
 <main id="main" class="main">
-    <section class="section dashboard">
+    <div class="row">
         <div class="card">
             <div class="card-header">
-                <h2>Pacientes</h2>
+                <h3 class="card-title">Pacientes</h3>
+                <hr>
                 <?php if ($_SESSION['puesto'] == 1 || $_SESSION['puesto'] == 5) { ?>
-                    <a class="btn btn-outline-primary" href="pages/crearPaciente.php" role="button">
-                        <i class="bi bi-person-fill-add"></i>
-                        Nuevo Paciente
-                    </a>
+                    <div class="btn-box justify-content-first">
+                        <a class="btn btn-outline-primary" href="pages/crearPaciente.php" role="button">
+                            <i class="bi bi-person-fill-add"></i> Nuevo Paciente
+                        </a>
+                    </div>
                 <?php } ?>
             </div>
             <div class="card-body">
                 <div class="table-responsive-sm">
-                    <table class="table border-dark table-hover" id="myTable" style="border: 1px black">
+                    <table class="table border-dark table-hover" id="myTable" style="border: 2px solid black">
                         <thead class="table-dark">
                             <tr class="table-active table-group-divider">
                                 <th scope="col">N° de Exp</th>

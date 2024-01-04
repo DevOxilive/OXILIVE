@@ -1,9 +1,3 @@
-<!-- Apartado Scanner -->
-<li class="nav-item">
-    <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/call_center/camara/camara.php">
-        <i class="bi bi-circle"></i><span>Scanner</span>
-    </a>
-</li>
 <!-- Apartado Pacientes -->
 <li class="nav-item">
     <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/call_center/pacientes/index.php">
@@ -28,7 +22,7 @@
         <i class="bi bi-circle"></i><span>Servicios</span>
     </a>
 </li>
-<!-- Apartado Alta -->
+<!-- Apartado Generar Incidencia -->
 <li class="nav-item">
     <a class="nav-link collapsed" class="nav-link" data-bs-toggle="collapse" data-bs-target="#alta" href="#"><i class="bi bi-circle"></i><span>Generar Incidencia</span><i class="bi bi-chevron-down ms-auto fs-6"></i></a>
     <ul id="alta" class="nav-content collapse">
@@ -45,10 +39,4 @@
             </a>
         </li>
     </ul>
-</li>
-<!-- Apartado Incidencia Médica -->
-<li class="nav-item">
-    <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/call_center/medicos/index.php">
-        <i class="bi bi-circle"></i><span>Incidencia Médica</span>
-    </a>
 </li>

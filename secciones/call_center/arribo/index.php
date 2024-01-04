@@ -12,7 +12,7 @@ if (!isset($_SESSION['us'])) {
 }
 ?>
 <main id="main" class="main">
-    <div id="mostrarArribo">
+    <div id="mostrarArribo" class="row">
         <!-- aqui se muestra la tabla del arribo -->
     </div>
 </main>
