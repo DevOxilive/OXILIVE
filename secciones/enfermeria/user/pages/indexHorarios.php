@@ -17,17 +17,22 @@ if (!isset($_SESSION['us'])) {
     <link rel="stylesheet" href="<?php echo $url_base; ?>secciones/enfermeria/user/css/horarios.css">
 </head>
 <main id="main" class="main">
-    <div class="pagetitle">
-        <h1>Lista de Horarios</h1>
-        <br>
-        <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="<?php echo $url_base; ?>secciones/enfermeria/user/index.php">Dashboard</a></li>
-                <li class="breadcrumb-item active">Horario</li>
-            </ol>
-        </nav>
+    <div class="row">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Lista de Horarios</h3>
+                <div class="breadcrumb-box">
+                    <nav>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="<?php echo $url_base; ?>secciones/enfermeria/user/index.php">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Horario</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
     </div>
-    <input type="hidden" id="idus" value="<?php echo $_SESSION['idus']?>">
+    
 </main>
 
 </html>
