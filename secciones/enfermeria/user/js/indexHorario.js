@@ -1,5 +1,5 @@
 var idus = document.getElementById("idus"),
-  main = document.getElementById("main");
+  main = document.getElementById("data");
 function getDia(d){
   var day;
   switch(d){

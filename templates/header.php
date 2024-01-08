@@ -155,7 +155,7 @@ include_once ($url_base . 'secciones/notificaciones/consulta.php');
                 break;
                 //Enfermero
                 case 11:
-                    include("navbar-items/enfermeria.php");
+                    include("navbar-items/enfermero.php");
                 break;
                 //Médico
                 case 12:

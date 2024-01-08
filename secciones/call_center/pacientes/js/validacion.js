@@ -132,7 +132,7 @@ form.addEventListener("submit", function (event) {
     if (validar(formArray)) {
       var formData = {
         nombres: nombre.value,
-        apel1lidos: apellidos.value,
+        apellidos: apellidos.value,
         genero: genero.value,
         edad: edad.value,
         tipo: tipoPac.value,
@@ -158,7 +158,6 @@ form.addEventListener("submit", function (event) {
       })
         .then((response) => response.json())
         .then((resultado) => {
-
           if (resultado == true) {
             Swal.fire({
               title: "Registrado",

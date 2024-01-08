@@ -284,6 +284,10 @@ h6 {
   border: 2px solid rgba(0, 0, 0, 0.226);
 }
 
+.breadcrumb-box {
+  padding-left: 14px;
+}
+
 /* Alerts */
 .alert-heading {
   font-weight: 500;
