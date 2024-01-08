@@ -34,9 +34,9 @@ if (!isset($_SESSION['us'])) {
                 <div class="row">
                     <div class="col-md-2 ">
                         <div class="formulario__grupo" id="grupo__Nombre_administradora">
-                            <label for="numeroAsignacion" class="formulario__label">N. asignacion:</label>
+                            <label for="numeroAsignacion" class="form-label">N. asignacion:</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="numeroAsignacion"
+                                <input type="text" class="form-control" name="numeroAsignacion"
                                     id="numeroAsignacion" value="<?php echo $asignacion['id_asignacionHorarios']; ?>"
                                     readonly disabled>
                             </div>
@@ -44,55 +44,55 @@ if (!isset($_SESSION['us'])) {
                     </div>
                     <div class="col-md-4 ">
                         <div class="formulario__grupo" id="grupo__Nombre_administradora">
-                            <label for="paciente" class="formulario__label">Nombre
+                            <label for="paciente" class="form-label">Nombre
                                 del paciente: </label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="paciente" id="paciente"
+                                <input type="text" class="form-control" name="paciente" id="paciente"
                                     value="<?php echo $asignacion['nombre del paciente'] ?>" readonly disabled>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="formulario__grupo">
-                            <label for="servicio" class="formulario__label">Servicio</label>
+                            <label for="servicio" class="form-label">Servicio</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="servicio" id="servicio"
+                                <input type="text" class="form-control" name="servicio" id="servicio"
                                     value="<?php echo $asignacion['nombreServicio']; ?>" readonly disabled>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="formulario__grupo">
-                            <label for="responsable" class="formulario__label">Familiar responsable:</label>
+                            <label for="responsable" class="form-label">Familiar responsable:</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="responsable" id="responsable"
+                                <input type="text" class="form-control" name="responsable" id="responsable"
                                     value="<?php echo $asignacion['responsable']; ?>" readonly disabled>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="formulario__grupo">
-                            <label for="edad" class="formulario__label">Edad del paciente:</label>
+                            <label for="edad" class="form-label">Edad del paciente:</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="edad" id="edad"
+                                <input type="text" class="form-control" name="edad" id="edad"
                                     value="<?php echo $asignacion['edad']; ?>" readonly disabled>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="formulario__grupo">
-                            <label for="medico" class="formulario__label">Nombre del Médico:</label>
+                            <label for="medico" class="form-label">Nombre del Médico:</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="medico" id="medico"
+                                <input type="text" class="form-control" name="medico" id="medico"
                                     value="<?php echo $asignacion['nombre del medico']; ?>" readonly disabled>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="formulario__grupo">
-                            <label for="peso" class="formulario__label">Nombre del enfermero:</label>
+                            <label for="peso" class="form-label">Nombre del enfermero:</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="enfermero" id="enfermero"
+                                <input type="text" class="form-control" name="enfermero" id="enfermero"
                                     value="<?php echo $asignacion['nombre del enfermero']; ?>" readonly disabled>
                             </div>
                         </div>

@@ -1,4 +1,9 @@
 <?php
+//$url_base = "http://localhost:8080/OXILIVE/";
+//include_once ('C:\laragon\www\OXILIVE\connection/conexion.php');
+//include_once ('C:\laragon\www\OXILIVE\module/puestos.php');
+//include_once ('C:\laragon\www\OXILIVE\module/foto.php');
+//include_once ('C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php');
 $url_base = "https://swoe.oxilive.com.mx/";
 include_once ($url_base . 'connection/conexion.php');
 include_once ($url_base . 'module/puestos.php');
@@ -154,6 +159,7 @@ include_once ($url_base . 'secciones/notificaciones/consulta.php');
                 break;
                 //Médico
                 case 12:
+                    include("navbar-items/medico.php");
                 break;
             } ?>
             <!--?if ($_SESSION['puesto'] === 2) { ?>

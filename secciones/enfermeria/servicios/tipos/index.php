@@ -11,30 +11,23 @@ if (!isset($_SESSION['us'])) {
 }
 
 ?>
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
 <main id="main" class="main">
     <div class="row">
         <div class="card">
             <div class="card-header">
-                <h2>Tipos de Servicio</h2>
+                <h3 class="card-title">Tipos de Servicio</h3>
                 <hr>
-                <a class="btn btn-outline-primary" href="crear.php" role="button">
-                    <i class="bi bi-heart-pulse"></i>
-                    Agregar Servicio
-                </a>
+                <div class="btn-box justify-content-first">
+                    <a class="btn btn-outline-primary" href="crear.php" role="button">
+                        <i class="bi bi-heart-pulse"></i> Agregar Servicio
+                    </a>
+                </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive-sm">
-                    <table class="table   border-dark table-hover" id="myTable">
+                    <table class="table border-dark table-hover" id="myTable" style="border: 2px solid black">
                         <thead class="table-dark">
-                            <tr class="table-active table-group-divider" style="text-align: center;">
+                            <tr class="table-active table-group-divider">
                                 <th scope="col">Nombre del Servicio</th>
                                 <th scope="col">Horas</th>
                                 <th scope="col">Paga por unidad</th>
@@ -72,8 +65,6 @@ if (!isset($_SESSION['us'])) {
         </div>
     </div>
 </main>
-
-</html>
 <script>
     const rows = document.querySelectorAll(".animated-border");
     rows.forEach(row => {
@@ -93,7 +84,7 @@ if (!isset($_SESSION['us'])) {
             text: 'Esta acción no se podrá deshacer una vez se realice',
             showCancelButton: true,
             width: 700,
-            icon: "warning",    
+            icon: "warning",
             confirmButtonText: 'Borrar',
             confirmButtonColor: '#3085d6',
             cancelButtonText: `Cancelar`,

@@ -28,9 +28,9 @@ if (!isset($_SESSION['us'])) {
                     <div class="contenido col-md-3">
                         <br>
                         <div class="formulario__grupo">
-                            <label for="cpt" class="formulario__label">CPT</label>
+                            <label for="cpt" class="form-label">CPT</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="cpt" id="cpt" placeholder="EN-BA-03">
+                                <input type="text" class="form-control" name="cpt" id="cpt" placeholder="EN-BA-03">
                                 <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                             </div>
                         </div>
@@ -39,9 +39,9 @@ if (!isset($_SESSION['us'])) {
                     <div class="contenido col-md-5">
                         <br>
                         <div class="formulario__grupo">
-                            <label for="descripcion" class="formulario__label">Descripción</label>
+                            <label for="descripcion" class="form-label">Descripción</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="descripcion" id="descripcion" placeholder="Apoyo Enfermerian General 8 horas">
+                                <input type="text" class="form-control" name="descripcion" id="descripcion" placeholder="Apoyo Enfermerian General 8 horas">
                                 <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                             </div>
                         </div>
@@ -51,9 +51,9 @@ if (!isset($_SESSION['us'])) {
                     <div class="contenido col-md-3">
                         <br>
                         <div class="formulario__grupo">
-                            <label for="unidades" class="formulario__label">Unidades</label>
+                            <label for="unidades" class="form-label">Unidades</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="unidades" id="unidades" placeholder="Turno 8 Horas">
+                                <input type="text" class="form-control" name="unidades" id="unidades" placeholder="Turno 8 Horas">
                                 <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                             </div>
                         </div>
@@ -62,9 +62,9 @@ if (!isset($_SESSION['us'])) {
                     <div class="contenido col-md-3">
                         <br>
                         <div class="formulario__grupo">
-                            <label for="fecha" class="formulario__label">Fecha</label>
+                            <label for="fecha" class="form-label">Fecha</label>
                             <div class="formulario__grupo-input">
-                                <input type="date" class="formulario__input" name="fecha" id="fecha" placeholder="11/07/2022">
+                                <input type="date" class="form-control" name="fecha" id="fecha" placeholder="11/07/2022">
                                 <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                             </div>
                         </div>

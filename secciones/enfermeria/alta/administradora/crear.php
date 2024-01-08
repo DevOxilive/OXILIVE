@@ -24,10 +24,10 @@ if (!isset($_SESSION['us'])) {
                 <form action="./administradoraADD.php" method="POST" class="formLogin" id="formulario">
                     <div class="contenido col-md-6"> <br>
                         <div class="formulario__grupo" id="grupo__Nombre_administradora">
-                            <label for="Nombre_administradora" class="formulario__label">Nombre de la
+                            <label for="Nombre_administradora" class="form-label">Nombre de la
                                 Administradora</label>
                             <div class="formulario__grupo-input">
-                                <input maxlength="40" type="text" class="formulario__input" name="Nombre_administradora" id="Nombre_administradora" placeholder="Nombre administradora">
+                                <input maxlength="40" type="text" class="form-control" name="Nombre_administradora" id="Nombre_administradora" placeholder="Nombre administradora">
                             </div>
                         </div>
                     </div>

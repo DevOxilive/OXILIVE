@@ -190,12 +190,6 @@
         <i class="bi bi-telephone-fill"></i><span> Call Center</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
     <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-        <!-- Apartado Scanner -->
-        <li>
-            <a href="<?php echo $url_base; ?>secciones/call_center/camara/camara.php">
-                <i class="bi bi-circle"></i><span>Scanner</span>
-            </a>
-        </li>
         <!-- Apartado Pacientes -->
         <li>
             <a href="<?php echo $url_base; ?>secciones/call_center/pacientes/index.php">
@@ -220,7 +214,7 @@
                 <i class="bi bi-circle"></i><span>Servicios</span>
             </a>
         </li>
-        <!-- Apartado Alta -->
+        <!-- Apartado Generar Incidencias -->
         <li>
             <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#alta" href="#"><i class="bi bi-circle"></i><span>Generar Incidencia</span><i class="bi bi-chevron-down ms-auto fs-6"></i></a>
             <ul id="alta" class="collapse">
@@ -237,12 +231,6 @@
                     </a>
                 </li>
             </ul>
-        </li>
-        <!-- Apartado Incidencia Médica -->
-        <li>
-            <a href="<?php echo $url_base; ?>secciones/call_center/medicos/index.php">
-                <i class="bi bi-circle"></i><span>Incidencia Médica</span>
-            </a>
         </li>
     </ul>
 </li>

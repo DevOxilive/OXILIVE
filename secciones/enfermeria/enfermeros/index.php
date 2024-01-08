@@ -14,17 +14,19 @@ if (!isset($_SESSION['us'])) {
     <div class="row">
         <div class="card">
             <div class="card-header">
-                <h2>Enfermeros</h2>
+                <h3 class="card-title">Enfermeros</h3>
                 <hr>
-                <a class="btn btn-outline-primary" href="crear.php" role="button"><i class="bi bi-person-fill"></i>
-                    Registrar Enfermero
-                </a>
+                <div class="btn-box justify-content-first">
+                    <a class="btn btn-outline-primary" href="crear.php" role="button">
+                        <i class="bi bi-person-fill"></i> Registrar Enfermero
+                    </a>
+                </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive-sm">
-                    <table class="table   border-dark table-hover" id="myTable">
+                    <table class="table border-dark table-hover" id="myTable" style="border: 2px solid black">
                         <thead class="table-dark">
-                            <tr class="table-active table-group-divider" style="text-align: center;">
+                            <tr class="table-active table-group-divider">
                                 <th scope="col">Nombre(s)</th>
                                 <th scope="col">Apellidos</th>
                                 <th scope="col">Estado</th>
@@ -36,13 +38,16 @@ if (!isset($_SESSION['us'])) {
                                 <tr>
                                     <td><?php echo $enfermeros['Nombres']; ?></td>
                                     <td><?php echo $enfermeros['Apellidos']; ?></td>
-                                    <td><center><span id="status<?php echo $enfermeros['id_usuarios']; ?>">
-                                    </span></center></td>
                                     <td>
-                                        <center>
-                                            <a name="" id="" class="btn btn-outline-warning" href="editar.php?txtID=<?php echo $enfermeros['id_usuarios']; ?>" role="button"><i class="bi bi-pencil-square"></i></a> |
-                                            <a name="" id="" class="btn btn-outline-danger" onclick="eliminar(<?php echo $enfermeros['id_usuarios']; ?>)" role="button"><i class="bi bi-trash-fill"></i></a>
-                                        </center>
+                                        <span id="status<?php echo $enfermeros['id_usuarios']; ?>"></span>
+                                    </td>
+                                    <td>
+                                        <a name="" id="" class="btn btn-outline-warning" href="editar.php?txtID=<?php echo $enfermeros['id_usuarios']; ?>" role="button">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </a> |
+                                        <a name="" id="" class="btn btn-outline-danger" onclick="eliminar(<?php echo $enfermeros['id_usuarios']; ?>)" role="button">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -103,30 +108,33 @@ if (!isset($_SESSION['us'])) {
             row.classList.remove("border-animation");
         });
     });
-    function getStatus(){
+
+    function getStatus() {
         fetch("model/status.php", {
-            headers: {"Content-Type":"application/json"}
-        })
-        .then(response => response.json())
-        .then(datos => {
-            datos.forEach(dato => {
-                let status = document.getElementById("status"+dato.id_usuarios);
-                status.classList = "";
-                status.textContent = "";
-                if(dato.Estado == 1){
-                    status.classList.add("badge", "bg-success", "fs-6");
-                } else if (dato.Estado == 5){
-                    status.classList.add("badge", "bg-info", "fs-6");
+                headers: {
+                    "Content-Type": "application/json"
                 }
-                status.textContent = dato.Nombre_estado;
-                
             })
-        });
+            .then(response => response.json())
+            .then(datos => {
+                datos.forEach(dato => {
+                    let status = document.getElementById("status" + dato.id_usuarios);
+                    status.classList = "";
+                    status.textContent = "";
+                    if (dato.Estado == 1) {
+                        status.classList.add("badge", "bg-success", "fs-6");
+                    } else if (dato.Estado == 5) {
+                        status.classList.add("badge", "bg-info", "fs-6");
+                    }
+                    status.textContent = dato.Nombre_estado;
+
+                })
+            });
     }
     getStatus();
     setInterval(getStatus, 2000);
 </script>
 <script src="../../../js/tables.js"></script>
 <?php
-    include("../../../templates/footer.php");
+include("../../../templates/footer.php");
 ?>

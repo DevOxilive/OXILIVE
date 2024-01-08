@@ -28,30 +28,30 @@ if (!isset($_SESSION['us'])) {
                 <form action="./pacientesADD.php" method="post" enctype="multipart/form-data" class="formLogin row g-3" id="formulario">
                     <div class="contenido col-md-3">
                         <div class="formulario__grupo" id="grupo__Nombres"> <br>
-                            <label for="Nombres" class="formulario__label">Nombre</label>
+                            <label for="Nombres" class="form-label">Nombre</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="Nombres" id="Nombres" placeholder="Ingresa el nombre completo">
+                                <input type="text" class="form-control" name="Nombres" id="Nombres" placeholder="Ingresa el nombre completo">
                             </div>
                         </div>
                     </div>
                     <div class="contenido col-md-4">
                         <div class="formulario__grupo" id="grupo__Apellidos"> <br>
-                            <label for="Apellidos" class="formulario__label">Apellidos</label>
+                            <label for="Apellidos" class="form-label">Apellidos</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="Apellidos" id="Apellidos" placeholder="Ingresa los Apellidos">
+                                <input type="text" class="form-control" name="Apellidos" id="Apellidos" placeholder="Ingresa los Apellidos">
                             </div>
                         </div>
                     </div>
                     <div class="contenido col-md-3">
                         <div class="formulario__grupo" id="grupo__rfc"> <br>
-                            <label for="rfc" class="formulario__label">RFC</label>
+                            <label for="rfc" class="form-label">RFC</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="rfc" id="rfc" placeholder="Ejem: EJEM123456">
+                                <input type="text" class="form-control" name="rfc" id="rfc" placeholder="Ejem: EJEM123456">
                             </div>
                         </div>
                     </div>
                     <div class="contenido col-md-2"> <br>
-                        <label for="Edad" class="formulario__label">Género</label>
+                        <label for="Edad" class="form-label">Género</label>
                         <select id="Genero" name="Genero" class="form-select">
                             <?php foreach ($lista_genero as $genero) { ?>
                                 <option value="<?php echo $genero['id_genero']; ?>"><?php echo $genero['genero']; ?>
@@ -62,94 +62,94 @@ if (!isset($_SESSION['us'])) {
                     </div>
                     <div class="contenido col-md-2">
                         <div class="formulario__grupo" id="grupo__Edad"> <br>
-                            <label for="Edad" class="formulario__label">Edad</label>
+                            <label for="Edad" class="form-label">Edad</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="Edad" id="Edad" placeholder="Edad">
+                                <input type="text" class="form-control" name="Edad" id="Edad" placeholder="Edad">
                             </div>
                         </div>
                     </div>
                     <div class="contenido col-md-3">
                         <div class="formulario__grupo" id="grupo__calle"> <br>
-                            <label for="calle" class="formulario__label">Calle</label>
+                            <label for="calle" class="form-label">Calle</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="calle" id="calle" placeholder="Ejem: Calle">
+                                <input type="text" class="form-control" name="calle" id="calle" placeholder="Ejem: Calle">
                             </div>
                         </div>
                     </div>
                     <div class="contenido col-md-2">
                         <div class="formulario__grupo" id="grupo__num_in"> <br>
-                            <label for="num_in" class="formulario__label">Núm. Interior</label>
+                            <label for="num_in" class="form-label">Núm. Interior</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="num_in" id="num_in" placeholder="Ejem: 2">
+                                <input type="text" class="form-control" name="num_in" id="num_in" placeholder="Ejem: 2">
                             </div>
                         </div>
                     </div>
                     <div class="contenido col-md-2">
                         <div class="formulario__grupo" id="grupo__num_ext"> <br>
-                            <label for="num_ext" class="formulario__label">Núm. Ext</label>
+                            <label for="num_ext" class="form-label">Núm. Ext</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="num_ext" id="num_ext" placeholder="Ejem: 3">
+                                <input type="text" class="form-control" name="num_ext" id="num_ext" placeholder="Ejem: 3">
                             </div>
                         </div>
                     </div>
                     <div class="contenido col-md-3">
                         <div class="formulario__grupo" id="grupo__colonia"> <br>
-                            <label for="colonia" class="formulario__label">Colonia</label>
+                            <label for="colonia" class="form-label">Colonia</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="colonia" id="colonia" placeholder="Ejem: Colonia">
+                                <input type="text" class="form-control" name="colonia" id="colonia" placeholder="Ejem: Colonia">
                             </div>
                         </div>
                     </div>
                     <div class="contenido col-md-2">
                         <div class="formulario__grupo" id="grupo__cp"> <br>
-                            <label for="cp" class="formulario__label">Código Postal</label>
+                            <label for="cp" class="form-label">Código Postal</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="cp" id="cp" placeholder="Ejem: 12345">
+                                <input type="text" class="form-control" name="cp" id="cp" placeholder="Ejem: 12345">
                             </div>
                         </div>
                     </div>
                     <div class="contenido col-md-3">
                         <div class="formulario__grupo" id="grupo__municipio"> <br>
-                            <label for="municipio" class="formulario__label">Municipio</label>
+                            <label for="municipio" class="form-label">Municipio</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="municipio" id="municipio" placeholder="Ejem: Municipio">
+                                <input type="text" class="form-control" name="municipio" id="municipio" placeholder="Ejem: Municipio">
                             </div>
                         </div>
                     </div>
                     <div class="contenido col-md-3">
                         <div class="formulario__grupo" id="grupo__estado_direccion"> <br>
-                            <label for="estado_direccion" class="formulario__label">Estado:</label>
+                            <label for="estado_direccion" class="form-label">Estado:</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="estado_direccion" id="estado_direccion" placeholder="Ejem: CDMX">
+                                <input type="text" class="form-control" name="estado_direccion" id="estado_direccion" placeholder="Ejem: CDMX">
                             </div>
                         </div>
                     </div>
                     <div class="contenido col-md-4">
                         <div class="formulario__grupo" id="grupo__Alcaldia"> <br>
-                            <label for="Alcaldia" class="formulario__label">Alcaldia</label>
+                            <label for="Alcaldia" class="form-label">Alcaldia</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="Alcaldia" id="Alcaldia" placeholder="Alcaldia">
+                                <input type="text" class="form-control" name="Alcaldia" id="Alcaldia" placeholder="Alcaldia">
                             </div>
                         </div>
                     </div>
                     <div class="contenido col-md-3">
                         <div class="formulario__grupo" id="grupo__referencias">
-                            <label for="referencias" class="formulario__label">Referencias</label>
+                            <label for="referencias" class="form-label">Referencias</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="referencias" id="referencias" placeholder="Referencias">
+                                <input type="text" class="form-control" name="referencias" id="referencias" placeholder="Referencias">
                             </div>
                         </div>
                     </div>
                     <div class="contenido col-md-2">
                         <div class="formulario__grupo" id="grupo__Telefono">
-                            <label for="Telefono" class="formulario__label">Teléfono</label>
+                            <label for="Telefono" class="form-label">Teléfono</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="Telefono" id="Telefono" placeholder="Teléfono">
+                                <input type="text" class="form-control" name="Telefono" id="Telefono" placeholder="Teléfono">
                             </div>
                         </div>
                     </div>
                     <div class="contenido col-md-3">
-                        <label for="Administradora" class="formulario__label">Administradora</label>
+                        <label for="Administradora" class="form-label">Administradora</label>
                         <select id="Administradora" name="Administradora" class="form-select" onchange="actualizarAseguradoras(this.value)">
                             <option value="0" selected disabled>Elija una opción</option>
                             <?php foreach ($lista_administradora as $admin) { ?>
@@ -161,7 +161,7 @@ if (!isset($_SESSION['us'])) {
                         </select>
                     </div>
                     <div class="contenido col-md-3">
-                        <label for="Aseguradora" class="formulario__label">Aseguradora</label>
+                        <label for="Aseguradora" class="form-label">Aseguradora</label>
                         <div id="div">
                             <select id="Aseguradora" name="Aseguradora" class="form-select">
                                 <option value="0" selected disabled>Elija una opción</option>
@@ -169,7 +169,7 @@ if (!isset($_SESSION['us'])) {
                         </div>
                     </div>
                     <div class="contenido col-md-2">
-                        <label for="Banco" class="formulario__label">Banco</label>
+                        <label for="Banco" class="form-label">Banco</label>
                         <select id="Banco" name="Banco" class="form-select">
                             <?php foreach ($lista_bancos as $ban) { ?>
                                 <option value="<?php echo $ban['id_bancos']; ?>"><?php echo $ban['Nombre_banco']; ?>
@@ -180,9 +180,9 @@ if (!isset($_SESSION['us'])) {
                     </div>
                     <div class="contenido col-md-2">
                         <div class="formulario__grupo" id="grupo__No_nomina">
-                            <label for="No_nomina" class="formulario__label">No. nomina</label>
+                            <label for="No_nomina" class="form-label">No. nomina</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="No_nomina" id="No_nomina" placeholder="No_nomina">
+                                <input type="text" class="form-control" name="No_nomina" id="No_nomina" placeholder="No_nomina">
                                 <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                             </div>
                             <p class="formulario__input-error">La nomina no es valida, solo se aceptan letras y numeros
@@ -191,18 +191,18 @@ if (!isset($_SESSION['us'])) {
                     </div>
                     <div class="contenido col-md-5">
                         <div class="formulario__grupo" id="grupo__responsable">
-                            <label for="responsable" class="formulario__label">Nombre del responsable</label>
+                            <label for="responsable" class="form-label">Nombre del responsable</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="responsable" id="responsable" placeholder="Ejem: Otra persona">
+                                <input type="text" class="form-control" name="responsable" id="responsable" placeholder="Ejem: Otra persona">
                             </div>
                         </div>
                     </div>
                     <div class="contenido col-md-4">
-                        <label for="comprobante" class="formulario__label">Comprobante de domicilio</label>
+                        <label for="comprobante" class="form-label">Comprobante de domicilio</label>
                         <input type="file" class="formulario__input-file" name="comprobante" id="comprobante" accept="application/pdf">
                     </div>
                     <div class="col-md-4">
-                        <label for="Credencial_front" class="formulario__label">Credencial INE Frontal</label>
+                        <label for="Credencial_front" class="form-label">Credencial INE Frontal</label>
                         <div class="profile-picture-cre">
                             <div class="picture-container-cre">
                                 <?php if (!empty($Credencial_front)) { ?>
@@ -224,7 +224,7 @@ if (!isset($_SESSION['us'])) {
                         <input type="file" class="form-control" name="Credencial_front" id="Credencial_front" onchange="previewImage(this);" style="display: none;" accept="application/jpg">
                     </div>
                     <div class="col-md-4">
-                        <label for="Credencial_post" class="formulario__label">Credencial INE Posterior</label>
+                        <label for="Credencial_post" class="form-label">Credencial INE Posterior</label>
                         <div class="profile-picture-cre">
                             <div class="picture-container-cre">
                                 <?php if (!empty($Credencial_post)) { ?>
@@ -253,7 +253,7 @@ if (!isset($_SESSION['us'])) {
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <label for="Credencial_aseguradora" class="formulario__label">Credencial Aseguradora
+                        <label for="Credencial_aseguradora" class="form-label">Credencial Aseguradora
                             Frontal</label>
                         <div class="profile-picture-cre">
                             <div class="picture-container-cre">
@@ -279,7 +279,7 @@ if (!isset($_SESSION['us'])) {
                         <label></label>
                     </div>
                     <div class="col-md-4">
-                        <label for="Credencial_aseguradoras_post" class="formulario__label">Credencial Aseguradora
+                        <label for="Credencial_aseguradoras_post" class="form-label">Credencial Aseguradora
                             Posterior</label>
                         <div class="profile-picture-cre">
                             <div class="picture-container-cre">

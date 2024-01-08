@@ -25,9 +25,9 @@ if (!isset($_SESSION['us'])) {
                 <form action="./choferADD.php" method="POST" class="formLogin row g-3" id="formulario">
                     <div class="contenido col-md-4">
                         <div class="formulario__grupo" id="grupo__nombres"> <br>
-                            <label for="nombres" class="formulario__label">Nombre completo</label>
+                            <label for="nombres" class="form-label">Nombre completo</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="nombres" id="nombres"
+                                <input type="text" class="form-control" name="nombres" id="nombres"
                                     placeholder="Ingresa el nombre completo">
                             </div>
                         </div>

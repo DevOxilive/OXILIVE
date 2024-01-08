@@ -34,7 +34,7 @@ if (!isset($_SESSION['us'])) {
                         <div class="formulario__grupo" id="grupo__nomServicio">
                             <label for="nomServicio" class="form-label">Nombre del servicio</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="nomServicio" id="nomServicio"
+                                <input type="text" class="form-control" name="nomServicio" id="nomServicio"
                                     placeholder="Eje: VISITA MEDICA DOMICILIARIA">
                             </div>
                         </div>
@@ -44,7 +44,7 @@ if (!isset($_SESSION['us'])) {
                         <div class="formulario__grupo" id="grupo__descripServicio">
                             <label for="descripServicio" class="form-label">Descripcion del servicio</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="descripServicio" id="descripServicio"
+                                <input type="text" class="form-control" name="descripServicio" id="descripServicio"
                                     placeholder="Eje: horario de 07:00 a las 20:00 hrs. ">
                             </div>
                         </div>

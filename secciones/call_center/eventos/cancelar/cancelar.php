@@ -15,9 +15,9 @@ if (!isset($_SESSION['us'])) {
     <div class="card">
         <div class="card-body">
             <div class="table-responsive-sm">
-                <table class="table   border-dark table-hover" id="myTable">
+                <table class="table border-dark table-hover" id="myTable" style="border: 2px solid black">
                     <thead class="table-dark">
-                        <tr class="table-active table-group-divider" style="text-align: center;">
+                        <tr class="table-active table-group-divider">
                             <th scope="col">No.</th>
                             <th scope="col">Paciente</th>
                             <th scope="col">Medico</th>
@@ -159,6 +159,7 @@ setInterval(() => {
     consultarServicio();
 }, 1000);
 </script>
+<script src="../../../../js/tables.js"></script>
 <?php
 include("../../../../templates/footer.php");
 ?>

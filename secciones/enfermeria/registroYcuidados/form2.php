@@ -30,57 +30,57 @@ if (!isset($_SESSION['us'])) {
             <form class="formLogin form-inline" id="formulario">
                 <div class="col-md-4 ">
                     <div class="formulario__grupo" id="grupo__Nombre_administradora">
-                        <label for="solucion" class="formulario__label">SOLUCION</label>
+                        <label for="solucion" class="form-label">SOLUCION</label>
                         <div class="formulario__grupo-input">
-                            <input type="text" class="formulario__input" name="solucion" id="solucion">
+                            <input type="text" class="form-control" name="solucion" id="solucion">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="formulario__grupo" id="grupo__Nombre_administradora">
-                        <label for="fecha" class="formulario__label">FECHA</label>
+                        <label for="fecha" class="form-label">FECHA</label>
                         <div class="formulario__grupo-input">
-                            <input type="date" class="formulario__input" name="fecha" id="fecha">
+                            <input type="date" class="form-control" name="fecha" id="fecha">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2 ">
                     <div class="formulario__grupo" id="grupo__Nombre_administradora">
-                        <label for="cantidad" class="formulario__label">CANT.</label>
+                        <label for="cantidad" class="form-label">CANT.</label>
                         <div class="formulario__grupo-input">
-                            <input type="text" class="formulario__input" name="cantidad" id="cantidad">
+                            <input type="text" class="form-control" name="cantidad" id="cantidad">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 ">
                     <div class="formulario__grupo" id="grupo__Nombre_administradora">
-                        <label for="goteo" class="formulario__label">GOT.</label>
+                        <label for="goteo" class="form-label">GOT.</label>
                         <div class="formulario__grupo-input">
-                            <input type="text" class="formulario__input" name="goteo" id="goteo">
+                            <input type="text" class="form-control" name="goteo" id="goteo">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 ">
                     <div class="formulario__grupo" id="grupo__Nombre_administradora">
-                        <label for="frecuencia" class="formulario__label">FREC.</label>
+                        <label for="frecuencia" class="form-label">FREC.</label>
                         <div class="formulario__grupo-input">
-                            <input type="text" class="formulario__input" name="frecuencia" id="frecuencia">
+                            <input type="text" class="form-control" name="frecuencia" id="frecuencia">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 ">
                     <div class="formulario__grupo" id="grupo__Nombre_administradora">
-                        <label for="inicia" class="formulario__label">INICIA</label>
+                        <label for="inicia" class="form-label">INICIA</label>
                         <div class="formulario__grupo-input">
-                            <input type="Time" class="formulario__input" name="inicia" id="inicia">
+                            <input type="Time" class="form-control" name="inicia" id="inicia">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 ">
                     <div class="formulario__grupo" id="grupo__Nombre_administradora">
-                        <label for="termina" class="formulario__label">TERMINA</label>
+                        <label for="termina" class="form-label">TERMINA</label>
                         <div class="formulario__grupo-input">
-                            <input type="Time" class="formulario__input" name="termina" id="termina">
+                            <input type="Time" class="form-control" name="termina" id="termina">
                         </div>
                     </div>
                 </div>

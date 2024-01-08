@@ -26,7 +26,7 @@ if (!isset($_SESSION['us'])) {
             <div class="card-body" style="border: 2px solid #BFE5FF;">
                 <form action="./insumoADD.php" method="POST" class="formLogin row g-3" id="formulario"> 
                 <div class="contenido col-md-2"><br>
-                        <label for="marca_insumo" class="formulario__label">Marca del insumo</label>
+                        <label for="marca_insumo" class="form-label">Marca del insumo</label>
                         <select id="marca_insumo" name="marca_insumo" class="form-select">
                         <option value="0" selected disabled>Elija una opcion</option>
                             <?php foreach ($lista_marca as $mar) { ?>
@@ -36,7 +36,7 @@ if (!isset($_SESSION['us'])) {
                         </select>
                     </div>
                     <div class="contenido col-md-2"><br>
-                        <label for="estado_insumo" class="formulario__label">Estado del insumo</label>
+                        <label for="estado_insumo" class="form-label">Estado del insumo</label>
                         <select id="estado_insumo" name="estado_insumo" class="form-select">
                         <option value="0" selected disabled>Elija una opcion</option>
                             <?php foreach ($lista_estado as $esta) { ?>
@@ -46,7 +46,7 @@ if (!isset($_SESSION['us'])) {
                         </select>
                     </div>
                     <div class="contenido col-md-2"><br>
-                        <label for="tamano_insumo" class="formulario__label">Tamaño del insumo</label>
+                        <label for="tamano_insumo" class="form-label">Tamaño del insumo</label>
                         <select id="tamano_insumo" name="tamano_insumo" class="form-select">
                         <option value="0" selected disabled>Elija una opcion</option>
                             <?php foreach ($lista_tama as $tama) { ?>
@@ -57,9 +57,9 @@ if (!isset($_SESSION['us'])) {
                     </div>
                     <div class="contenido col-md-2">
                         <div class="formulario__grupo" id="grupo__cantidad_insumo"> <br>
-                            <label for="cantidad_insumo" class="formulario__label">Cantidad de insumos</label>
+                            <label for="cantidad_insumo" class="form-label">Cantidad de insumos</label>
                             <div class="formulario__grupo-input">
-                                <input type="number" class="formulario__input" name="cantidad_insumo" id="cantidad_insumo" required>
+                                <input type="number" class="form-control" name="cantidad_insumo" id="cantidad_insumo" required>
                             </div>
                         </div>
                     </div>

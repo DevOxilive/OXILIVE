@@ -41,8 +41,6 @@ h6 {
 /*--------------------------------------------------------------
 # Tables
 --------------------------------------------------------------*/
-
-
 /*--------------------------------------------------------------
 # Main
 --------------------------------------------------------------*/
@@ -231,17 +229,22 @@ h6 {
 
 .card-header,
 .card-footer {
-  border-color: #ebeef4;
   background-color: #fff;
   color: #798eb3;
-  padding: 15px;
+  padding: 15px 15px 0 15px;
+  border-bottom: none !important;
+}
+
+.card-header hr {
+  opacity: 0.45 !important;
+  border-top: 2px solid rgb(69, 69, 76) !important;
 }
 
 .card-title {
-  padding: 20px 0 15px 0;
-  font-size: 18px;
+  padding: 20px 0 0 3px;
   font-weight: 500;
   color: #012970;
+  ;
   font-family: "Poppins", sans-serif;
 }
 
@@ -257,6 +260,28 @@ h6 {
 
 .card-img-overlay {
   background-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Buttons Groups */
+
+.btn-box {
+  padding: 0 15px 15px 0;
+  display: flex;
+}
+
+.btn-box .btn {
+  margin-right: 14px !important;
+  margin-left: 4px !important;
+}
+
+.btn-box .form-label {
+  color: rgb(55, 56, 66);
+  font-weight: bold;
+  padding-left: 5px;
+}
+
+.btn-box .form-control {
+  border: 2px solid rgba(0, 0, 0, 0.226);
 }
 
 /* Alerts */
@@ -815,6 +840,7 @@ h6 {
   margin: 0;
   padding: 0;
 }
+
 .dashboard .finish-service-card {
   padding-bottom: 10px;
 }
@@ -840,6 +866,7 @@ h6 {
   color: #198754;
   background: #e1f5e9;
 }
+
 .dashboard .next-service-card {
   border-width: 1px;
   border-style: solid;
@@ -850,6 +877,7 @@ h6 {
   color: #dc3545;
   background: #f8dbd7;
 }
+
 .dashboard .finish-service-card {
   border-width: 2px;
   border-style: solid;
@@ -1079,10 +1107,11 @@ h6 {
 .profile .profile-edit img {
   max-width: 120px;
 }
+
 /*--------------------------------------------------------------
 # Pacientes Page
 --------------------------------------------------------------*/
-.paciente .label{
+.paciente .label {
   font-weight: 600;
   color: rgba(1, 41, 112, 0.6);
 }
@@ -1270,5 +1299,3 @@ h6 {
   font-size: 13px;
   color: #012970;
 }
-
-

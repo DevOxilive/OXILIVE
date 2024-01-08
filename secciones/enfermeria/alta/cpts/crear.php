@@ -29,7 +29,7 @@ if (!isset($_SESSION['us'])) {
                 <form action="crearAdd.php" method="POST" enctype="multipart/form-data" class="formLogin row g-3" id="formulario">
                 <div class="contenido col-md-4">
                         <br>
-                        <label for="administradora" class="formulario__label">Administradora a la que
+                        <label for="administradora" class="form-label">Administradora a la que
                             pertenece</label>
                         <select id="administradora" name="administradora" class="form-select">
                         <option value="0" selected disabled>Elija una opción</option>
@@ -43,9 +43,9 @@ if (!isset($_SESSION['us'])) {
                     <div class="contenido col-md-5">
                         <br>
                         <div class="formulario__grupo" id="grupo__Nombre_aseguradora">
-                            <label for="cpt" class="formulario__label">Nombe del cpt</label>
+                            <label for="cpt" class="form-label">Nombe del cpt</label>
                             <div class="formulario__grupo-input">
-                                <input type="text"  class="formulario__input" name="cpt" id="cpt" placeholder="Ejemplo 25061" maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 5);">
+                                <input type="text"  class="form-control" name="cpt" id="cpt" placeholder="Ejemplo 25061" maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 5);">
                                 <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                             </div>
                         </div>

@@ -28,7 +28,7 @@ if (!isset($_SESSION['us'])) {
                     id="formulario">
                     <div class="contenido col-md-3">
                         <br>
-                        <label for="paciente" class="formulario__label">Nombre del Paciente</label>
+                        <label for="paciente" class="form-label">Nombre del Paciente</label>
                         <select id="paciente" name="paciente" class="form-select">
                             <option value="0" selected disabled>Elija una opción</option>
                             <?php foreach ($datosPacientes as $nomPaciente) { ?>
@@ -41,7 +41,7 @@ if (!isset($_SESSION['us'])) {
 
                     <div class="contenido col-md-3">
                         <br>
-                        <label for="medico" class="formulario__label">Nombre del enfermero</label>
+                        <label for="medico" class="form-label">Nombre del enfermero</label>
                         <select id="medico" name="medico" class="form-select">
                             <option value="0" selected disabled>Elija una opción</option>
                             <?php foreach ($medico as $medicoT) { ?>
@@ -54,9 +54,9 @@ if (!isset($_SESSION['us'])) {
                     <div class="contenido col-md-3">
                         <br>
                         <div class="formulario__grupo" id="grupo__Nombre_aseguradora">
-                            <label for="codigo_ICD" class="formulario__label">Código ICD:</label>
+                            <label for="codigo_ICD" class="form-label">Código ICD:</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" maxlength="15" class="formulario__input" name="codigo_ICD" id="codigo_ICD"
+                                <input type="text" maxlength="15" class="form-control" name="codigo_ICD" id="codigo_ICD"
                                     placeholder="187.2 / 163">
                                 <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                             </div>
@@ -65,9 +65,9 @@ if (!isset($_SESSION['us'])) {
                     <div class="contenido col-md-3">
                         <br>
                         <div class="formulario__grupo" id="grupo__Nombre_aseguradora">
-                            <label for="dx" class="formulario__label">DX: Insuficiencia Venosa / EVC</label>
+                            <label for="dx" class="form-label">DX: Insuficiencia Venosa / EVC</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" maxlength="49" class="formulario__input" name="dx" id="dx"
+                                <input type="text" maxlength="49" class="form-control" name="dx" id="dx"
                                     placeholder="Insuficiencia Venosa / EVC">
                                 <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                             </div>
@@ -75,7 +75,7 @@ if (!isset($_SESSION['us'])) {
                     </div>
                     <div class="contenido col-md-3">
 
-                        <label for="Nombre_admi" class="formulario__label" style="text-align:center">Administradora a la
+                        <label for="Nombre_admi" class="form-label" style="text-align:center">Administradora a la
                             que
                             pertenece</label>
                         <select id="Nombre_admi" name="Nombre_admi" class="form-select"
@@ -90,7 +90,7 @@ if (!isset($_SESSION['us'])) {
                     </div>
                     <div class="contenido col-md-3">
                         <br>
-                        <label for="codigo" class="formulario__label">codigo de facturación</label>
+                        <label for="codigo" class="form-label">codigo de facturación</label>
                         <div id="div">
                             <select id="codigo" name="codigo" class="form-select">
                                 <option value="0" selected disabled>Elija una opción</option>
@@ -99,7 +99,7 @@ if (!isset($_SESSION['us'])) {
                     </div>
                     <div class="contenido col-md-4">
                         <br>
-                        <label for="descripcion" class="formulario__label">Descripción</label>
+                        <label for="descripcion" class="form-label">Descripción</label>
                         <div id="div">
                             <select id="descripcion" name="descripcion" readonly class="form-select">
                                 <option value="0" selected disabled>Elija una opción</option>
@@ -108,7 +108,7 @@ if (!isset($_SESSION['us'])) {
                     </div>
                     <div class="contenido col-md-3">
                         <br>
-                        <label for="unidad" class="formulario__label">Unidad</label>
+                        <label for="unidad" class="form-label">Unidad</label>
                         <div id="div">
                             <select id="unidad" name="unidad" class="form-select">
                                 <option value="0" selected disabled>Elija una opción</option>
@@ -117,15 +117,15 @@ if (!isset($_SESSION['us'])) {
                     </div>
                     <div class="contenido col-md-3">
                         <br>
-                        <label for="fecha" class="formulario__label">Fecha</label>
+                        <label for="fecha" class="form-label">Fecha</label>
                         <div id="div">
-                            <input type="date" class="formulario__input" name="fecha" id="fecha">
+                            <input type="date" class="form-control" name="fecha" id="fecha">
                         </div>
                     </div>
 
                     <div class="contenido col-md-3">
                         <br>
-                        <label for="cpt" class="formulario__label">CPT</label>
+                        <label for="cpt" class="form-label">CPT</label>
                         <select id="cpt" name="cpt" class="form-select">
                             <option value="0" selected disabled>Elija una opción</option>
                             <?php foreach ($cpt_list as $cptA) { ?>

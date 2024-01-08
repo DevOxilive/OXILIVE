@@ -132,7 +132,7 @@ form.addEventListener("submit", function (event) {
     if (validar(formArray)) {
       var formData = {
         nombres: nombre.value,
-        apellidos: apellidos.value,
+        apel1lidos: apellidos.value,
         genero: genero.value,
         edad: edad.value,
         tipo: tipoPac.value,

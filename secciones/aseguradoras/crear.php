@@ -27,16 +27,16 @@ if (!isset($_SESSION['us'])) {
                     <div class="contenido col-md-5">
                         <br>
                         <div class="formulario__grupo" id="grupo__Nombre_aseguradora">
-                            <label for="Nombre_aseguradora" class="formulario__label">Nombe de la aseguradora</label>
+                            <label for="Nombre_aseguradora" class="form-label">Nombe de la aseguradora</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="Nombre_aseguradora" id="Nombre_aseguradora" placeholder="Nombre aseguradora">
+                                <input type="text" class="form-control" name="Nombre_aseguradora" id="Nombre_aseguradora" placeholder="Nombre aseguradora">
                                 <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                             </div>
                         </div>
                     </div>
                     <div class="contenido col-md-4">
                         <br>
-                        <label for="administradora" class="formulario__label">Administradora a la que
+                        <label for="administradora" class="form-label">Administradora a la que
                             pertenece</label>
                         <select id="administradora" name="administradora" class="form-select">
                         <option value="0" selected disabled>Elija una opción</option>

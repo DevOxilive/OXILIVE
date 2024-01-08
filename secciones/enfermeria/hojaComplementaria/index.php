@@ -4,8 +4,8 @@ if (!isset($_SESSION['us'])) {
   header('Location: ../../../login.php');
 } elseif (isset($_SESSION['us'])) {
   include("../../../templates/header.php");
-  include ("../../../connection/conexion.php");
-  include ("./consulta.php");
+  include("../../../connection/conexion.php");
+  include("./consulta.php");
 } else {
   echo "Error en el sistema";
 }
@@ -14,52 +14,52 @@ if (!isset($_SESSION['us'])) {
 
 <main id="main" class="main">
   <div class="row">
-  <div class="card-header" style="text-align: right;">
-  <h1 style="text-align: center; color:black;">Pacientes Generales</h1>
-            </div>
     <div class="card">
       <div class="card-header">
-        <a class="btn btn-outline-primary" href="buscador.php" role="button"><i class="bi bi-person-fill-add"></i>
-          Crear Hoja Complementaria</a>
-    </div>
-    <div class="card-body">
-      <div class="table-responsive-sm">
-        <table class="table   border-dark table-hover" id="myTable">
-          <thead class="table-dark">
-            <tr class="table-active table-group-divider" style="text-align: center;">
-              <th scope="col">Num</th>
-              <th scope="col">Nombre(s)</th>
-              <th scope="col">Apellidos</th>
-              <th scope="col">Aseguradora</th>
-              <th scope="col">Telefono</th>
-              <th scope="col">Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-        <?php foreach($pacientes as $pacien){ ?>
-          <tr>
-            <th scope="row"><?php echo $pacien['id_pacientes']; ?></th>
-            <td><?php echo $pacien['nombres']; ?></td>
-            <td><?php echo $pacien['apellidos']; ?></td>
-            <td><?php echo $pacien['Nombre_banco']; ?></td>
-            <td><?php echo $pacien['telefono']; ?></td>
-            <td>
-                <a name="" id="" class="btn btn-outline-info" href="pacientes.php?txtID=<?php echo $pacien['id_pacientes']; ?>" role="button" style="font-size=10px;"><i class="bi bi-file-earmark-pdf"></i></a> |
-                <a name="" id="" class="btn btn-outline-warning"
-                href="crear/editarPaciente.php?txtID=<?php echo $pacien['id_pacientes']; ?>" role="button"><i
-                    class="bi bi-pencil-square"></i></a> 
-                <!-- <a name="" id="" class="btn btn-outline-danger"
+        <h3 class="card-title">Pacientes Generales</h3>
+        <hr>
+        <div class="btn-box justify-content-first">
+          <a class="btn btn-outline-primary" href="buscador.php" role="button">
+            <i class="bi bi-person-fill-add"></i> Crear Hoja Complementaria
+          </a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive-sm">
+          <table class="table border-dark table-hover" id="myTable" style="border: 2px solid black">
+            <thead class="table-dark">
+              <tr class="table-active table-group-divider">
+                <th scope="col">Num</th>
+                <th scope="col">Nombre(s)</th>
+                <th scope="col">Apellidos</th>
+                <th scope="col">Aseguradora</th>
+                <th scope="col">Telefono</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($pacientes as $pacien) { ?>
+                <tr>
+                  <th scope="row"><?php echo $pacien['id_pacientes']; ?></th>
+                  <td><?php echo $pacien['nombres']; ?></td>
+                  <td><?php echo $pacien['apellidos']; ?></td>
+                  <td><?php echo $pacien['Nombre_banco']; ?></td>
+                  <td><?php echo $pacien['telefono']; ?></td>
+                  <td>
+                    <a name="" id="" class="btn btn-outline-info" href="pacientes.php?txtID=<?php echo $pacien['id_pacientes']; ?>" role="button" style="font-size=10px;"><i class="bi bi-file-earmark-pdf"></i></a> |
+                    <a name="" id="" class="btn btn-outline-warning" href="crear/editarPaciente.php?txtID=<?php echo $pacien['id_pacientes']; ?>" role="button"><i class="bi bi-pencil-square"></i></a>
+                    <!-- <a name="" id="" class="btn btn-outline-danger"
                   onclick="eliminar(<?php echo $pacien['id_pacientes']; ?>)" role="button" style="font-size=10px;"><i
                     class="bi bi-trash-fill"></i></a> -->
-              </td>
-            </tr>
-            <?php }?>
-        </tbody>
-        </table>
+                  </td>
+                </tr>
+              <?php } ?>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-  </div>
- </main><!-- End #main -->
+</main><!-- End #main -->
 <script>
   function eliminar(codigo) {
     Swal.fire({
@@ -82,13 +82,15 @@ if (!isset($_SESSION['us'])) {
   }
 
   function mandar(codigo) {
-    parametros = { id: codigo };
+    parametros = {
+      id: codigo
+    };
     $.ajax({
       data: parametros,
       url: "model/eliminar.php",
       type: "POST",
-      beforeSend: function () { },
-      success: function () {
+      beforeSend: function() {},
+      success: function() {
         Swal.fire("Eliminado:", "Ha sido eliminado", "success").then((result) => {
           window.location.href = "index.php";
         });

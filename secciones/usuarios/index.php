@@ -4,7 +4,7 @@ if (!isset($_SESSION['us'])) {
   header('Location: ../../../login.php');
 } elseif (isset($_SESSION['us'])) {
   include("../../templates/header.php");
-  include ("../../connection/conexion.php");
+  include("../../connection/conexion.php");
   include("../../secciones/usuarios/consulta.php");
 } else {
   echo "Error en el sistema";
@@ -15,49 +15,48 @@ if (!isset($_SESSION['us'])) {
   <div class="row">
     <div class="card">
       <div class="card-header">
-        <a class="btn btn-outline-primary" href="crear.php" role="button"><i class="bi bi-person-fill"></i>
-          Registrar
-        Usuario</a>
-    </div>
-    <div class="card-body">
-      <div class="table-responsive-sm">
-        <table class="table   border-dark table-hover" id="myTable">
-          <thead class="table-dark">
-            <tr class="table-active table-group-divider" style="text-align: center;">
-              <th scope="col">Num</th>
-              <th scope="col">Nombre</th>
-              <th scope="col">Correo</th>
-              <th scope="col">Usuario</th>
-              <th scope="col">Estado</th>
-              <th scope="col">Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-        <?php foreach($lista_usuarios as $registro ){ ?>
-          <tr>
-            <th scope="row"><?php echo $registro['id_usuarios']; ?></th>
-            <td><?php echo $registro['Nombres']; ?></td>
-            <td><?php echo $registro['Correo']; ?></td>
-            <td><?php echo $registro['Usuario']; ?></td>
-            <td><?php echo $registro['estado']; ?></td>
-            <td>
-                <a name="#" id="" class="btn btn-outline-info" role="button"><i
-                    class="bi bi-printer-fill"></i></a> |
-                <a name="" id="" class="btn btn-outline-warning"
-                href="editar.php?txtID=<?php echo $registro['id_usuarios']; ?>" role="button"><i
-                    class="bi bi-pencil-square"></i></a> |
-                <a name="" id="" class="btn btn-outline-danger"
-                  onclick="eliminar(<?php echo $registro['id_usuarios']; ?>)" role="button"><i
-                    class="bi bi-trash-fill"></i></a>
-              </td>
-            </tr>
-            <?php }?>
-        </tbody>
-        </table>
+        <h3 class="card-title">Usuarios</h3>
+        <hr>
+        <div class="btn-box justify-content-first">
+          <a class="btn btn-outline-primary" href="crear.php" role="button">
+            <i class="bi bi-person-fill"></i> Registrar Usuario
+          </a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive-sm">
+          <table class="table border-dark table-hover" id="myTable" style="border: 2px solid black">
+            <thead class="table-dark">
+              <tr class="table-active table-group-divider">
+                <th scope="col">Num</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Usuario</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($lista_usuarios as $registro) { ?>
+                <tr>
+                  <th scope="row"><?php echo $registro['id_usuarios']; ?></th>
+                  <td><?php echo $registro['Nombres']; ?></td>
+                  <td><?php echo $registro['Correo']; ?></td>
+                  <td><?php echo $registro['Usuario']; ?></td>
+                  <td><?php echo $registro['estado']; ?></td>
+                  <td>
+                    <a name="#" id="" class="btn btn-outline-info" role="button"><i class="bi bi-printer-fill"></i></a> |
+                    <a name="" id="" class="btn btn-outline-warning" href="editar.php?txtID=<?php echo $registro['id_usuarios']; ?>" role="button"><i class="bi bi-pencil-square"></i></a> |
+                    <a name="" id="" class="btn btn-outline-danger" onclick="eliminar(<?php echo $registro['id_usuarios']; ?>)" role="button"><i class="bi bi-trash-fill"></i></a>
+                  </td>
+                </tr>
+              <?php } ?>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-  </div>
-  
+
 </main><!-- End #main -->
 <script>
   function eliminar(codigo) {
@@ -79,14 +78,17 @@ if (!isset($_SESSION['us'])) {
       }
     })
   }
+
   function mandar(codigo) {
-    parametros = { id: codigo };
+    parametros = {
+      id: codigo
+    };
     $.ajax({
       data: parametros,
       url: "./eliminar.php",
       type: "POST",
-      beforeSend: function () { },
-      success: function () {
+      beforeSend: function() {},
+      success: function() {
         Swal.fire("Eliminado:", "Ha sido eliminado", "success").then((result) => {
           window.location.href = "index.php";
         });
