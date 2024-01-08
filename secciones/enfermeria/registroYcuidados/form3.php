@@ -30,7 +30,7 @@ if (!isset($_SESSION['us'])) {
             <form class="formLogin form-inline" id="formulario">
             <div class="col-md-12">
                     <div class="formulario__grupo">
-                        <label for="drescripcionCuracion" class="formulario__label">Curación (Descripción de procedimiento)</label>
+                        <label for="drescripcionCuracion" class="form-label">Curación (Descripción de procedimiento)</label>
                         <div class="formulario__grupo-input">
                             <textarea name="drescripcionCuracion" id="drescripcionCuracion"
                                 style="width: 100%; max-width: 1000px; height: 90px;"
@@ -40,7 +40,7 @@ if (!isset($_SESSION['us'])) {
                 </div>    
             <div class="col-md-12">
                     <div class="formulario__grupo">
-                        <label for="notaEnfermeria" class="formulario__label">NOTA DE ENFERMERÍA (DÍA O NOCHE)</label>
+                        <label for="notaEnfermeria" class="form-label">NOTA DE ENFERMERÍA (DÍA O NOCHE)</label>
                         <div class="formulario__grupo-input">
                             <textarea name="notaEnfermeria" id="notaEnfermeria"
                                 style="width: 100%; max-width: 1000px; height: 90px;"
@@ -50,7 +50,7 @@ if (!isset($_SESSION['us'])) {
                 </div>
                 <div class="col-md-12">
                     <div class="formulario__grupo">
-                        <label for="descripComidas" class="formulario__label">NOTA DE ALIMENTACION (DESAYUNO, COMIDA Y CENA)</label>
+                        <label for="descripComidas" class="form-label">NOTA DE ALIMENTACION (DESAYUNO, COMIDA Y CENA)</label>
                         <div class="formulario__grupo-input">
                             <textarea name="descripComidas" id="descripComidas"
                                 style="width: 100%; max-width: 900px; height: 90px;" placeholder="Descripción"></textarea>
@@ -59,9 +59,9 @@ if (!isset($_SESSION['us'])) {
                 </div>
                 <div class="col-md-3 ">
                     <div class="formulario__grupo" id="grupo__Nombre_administradora">
-                        <label for="horarioComidas" class="formulario__label">HORARIO</label>
+                        <label for="horarioComidas" class="form-label">HORARIO</label>
                         <div class="formulario__grupo-input">
-                            <input type="Time" class="formulario__input" name="horarioComidas" id="horarioComidas">
+                            <input type="Time" class="form-control" name="horarioComidas" id="horarioComidas">
                         </div>
                     </div>
                 </div>

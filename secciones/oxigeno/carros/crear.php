@@ -28,7 +28,7 @@ if (!isset($_SESSION['us'])) {
                         <div class="formulario__grupo" id="grupo__Nombre_carro">
                             <label for="Nombre_carro" class="form-label">Nombre del carro</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="Nombre_carro" id="Nombre_carro" placeholder="Eje: Aveo">
+                                <input type="text" class="form-control" name="Nombre_carro" id="Nombre_carro" placeholder="Eje: Aveo">
                             </div>
                         </div>
                     </div>
@@ -37,7 +37,7 @@ if (!isset($_SESSION['us'])) {
                         <div class="formulario__grupo" id="grupo__Nombredelmodelo">
                             <label for="Nombredelmodelo" class="form-label">Modelo</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="Nombredelmodelo" id="Nombredelmodelo" placeholder="Eje: Aveo">
+                                <input type="text" class="form-control" name="Nombredelmodelo" id="Nombredelmodelo" placeholder="Eje: Aveo">
                             </div>
                         </div>
                     </div>
@@ -45,7 +45,7 @@ if (!isset($_SESSION['us'])) {
                         <div class="formulario__grupo" id="grupo__Marca">
                             <label for="Marca" class="formulario-label">Marca</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="Marca" id="Marca" placeholder="Eje: Chevrolet">
+                                <input type="text" class="form-control" name="Marca" id="Marca" placeholder="Eje: Chevrolet">
                             </div>
                         </div>
                     </div>
@@ -53,7 +53,7 @@ if (!isset($_SESSION['us'])) {
                         <div class="formulario__grupo" id="grupo__Placas">
                             <label for="Placas" class="formulario-label">Placas</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="Placas" id="Placas" placeholder="Eje: MUG-13-13">
+                                <input type="text" class="form-control" name="Placas" id="Placas" placeholder="Eje: MUG-13-13">
                             </div>
                         </div>
                     </div>

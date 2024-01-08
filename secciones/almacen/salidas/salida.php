@@ -32,22 +32,22 @@ if (!isset($_SESSION['us'])) {
                 <input type="hidden" name="estado" id="estado" value="<?php echo $row['estado']; ?>">
                     <div class="contenido col-md-3">                        
                         <br>
-                        <label for="buscar_material" class="formulario__label">Material o recurso</label>
+                        <label for="buscar_material" class="form-label">Material o recurso</label>
                         <input type="text" value="<?php echo $row['nombre']; ?>" readonly class="form-control" name="buscar_material" id="buscar_material">
                     </div>
                     <div class="contenido col-md-2">
                         <br>
-                        <label for="cantidad" class="formulario__label">Disponibles</label>
+                        <label for="cantidad" class="form-label">Disponibles</label>
                         <input type="datatime-local" value="<?php echo $row['cantidad']; ?>" readonly class="form-control" name="cantidad" id="cantidad">
                     </div>
                     <div class="contenido col-md-6">
                         <br>
-                        <label for="observaciones" class="formulario__label">Observaciones</label>
+                        <label for="observaciones" class="form-label">Observaciones</label>
                         <input type="datatime-local" value="<?php echo $row['observaciones']; ?>" readonly class="form-control" name="observaciones" id="observacionessali">
                     </div>
                     <div class="contenido col-md-3">
                         <div class="formulario__grupo" id="grupo__entrega_salida">
-                            <label for="entrega_salida" class="formulario__label">¿Quien lo entrega?</label>
+                            <label for="entrega_salida" class="form-label">¿Quien lo entrega?</label>
                             <select id="entrega_salida" name="entrega_salida" class="form-select">
                                 <option value="0" selected disabled>Elija una opcion</option>
                                 <?php foreach ($lista_empleados as $entrega) { ?>
@@ -59,7 +59,7 @@ if (!isset($_SESSION['us'])) {
                     </div>
                     <div class="contenido col-md-3">
                         <div class="formulario__grupo" id="grupo__pide_salida">
-                            <label for="pide_salida" class="formulario__label">¿Quien lo recibe?</label>
+                            <label for="pide_salida" class="form-label">¿Quien lo recibe?</label>
                             <select id="pide_salida" name="pide_salida" class="form-select">
                                 <option value="0" selected disabled>Elija una opcion</option>
                                 <?php foreach ($lista_empleados as $recibe) { ?>
@@ -71,9 +71,9 @@ if (!isset($_SESSION['us'])) {
                     </div>
                     <div class="contenido col-md-2">
                         <div class="formulario__grupo" id="grupo__cantidad_salida">
-                            <label for="cantidad_salida" class="formulario__label">Cantidad a entregar</label>
+                            <label for="cantidad_salida" class="form-label">Cantidad a entregar</label>
                             <div class="formulario__grupo-input">
-                                <input type="number" class="formulario__input" name="cantidad_salida" id="cantidad_salida" placeholder="Eje: 2">
+                                <input type="number" class="form-control" name="cantidad_salida" id="cantidad_salida" placeholder="Eje: 2">
                             </div>
                         </div>
                     </div>

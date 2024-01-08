@@ -30,7 +30,7 @@ if (!isset($_SESSION['us'])) {
                 <form action="./bancoADD.php" method="POST" class="formLogin row g-3" id="formulario">
 
                     <div class="contenido col-md-4">
-                        <label for="administradora" class="formulario__label">Administradora a la que
+                        <label for="administradora" class="form-label">Administradora a la que
                             pertenece</label>
                         <select id="administradora" name="administradora" class="form-select">
                             <option value="0" selected disabled>Elija una opción</option>
@@ -45,9 +45,9 @@ if (!isset($_SESSION['us'])) {
 
                     <div class="contenido col-md-6"> 
                         <div class="formulario__grupo" id="grupo__Nombre_banco">
-                        <label for="Nombre_banco" class="formulario__label">Nombre del banco</label>
+                        <label for="Nombre_banco" class="form-label">Nombre del banco</label>
                             <div class="formulario__grupo-input">
-                                <input max="40" type="text" class="formulario__input" name="Nombre_banco[]" id="Nombre_banco"
+                                <input max="40" type="text" class="form-control" name="Nombre_banco[]" id="Nombre_banco"
                                     placeholder="Nombre del banco">
                                 <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                             </div>
@@ -75,7 +75,6 @@ if (!isset($_SESSION['us'])) {
             </div>
         </div>
 </main>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="../js/validaciones.js"></script>
 <script type="text/javascript">
 $(function() {

@@ -26,16 +26,16 @@ if (!isset($_SESSION['us'])) {
                 <form action="editarAdminUP.php" method="POST" class="formLogin" id="formulario">
                     <div class="row">
                         <div class="contenido col-md-1"> <br>
-                        <label for="Nombre_administradora" class="formulario__label">No.</label>
+                        <label for="Nombre_administradora" class="form-label">No.</label>
                             <input type="text" value="<?php echo $txtID; ?>" class="form-control" readonly name="txtID"
                                 id="txtID" aria-describedby="helpId">
                         </div>
                         <div class="contenido col-md-6"> <br>
                             <div class="formulario__grupo" id="grupo__Nombre_administradora">
-                                <label for="Nombre_administradora" class="formulario__label">Nombre de la
+                                <label for="Nombre_administradora" class="form-label">Nombre de la
                                     Administradora</label>
                                 <div class="formulario__grupo-input">
-                                    <input type="text" class="formulario__input" value="<?php echo $administradora ?>"
+                                    <input type="text" class="form-control" value="<?php echo $administradora ?>"
                                         name="Nombre_administradora" id="Nombre_administradora">
                                 </div>
                             </div>

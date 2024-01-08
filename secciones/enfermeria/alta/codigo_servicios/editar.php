@@ -43,7 +43,7 @@ if (!isset($_SESSION['us'])) {
                     <!-- Repite estos campos según sea necesario -->
                     <div class="col-md-3 align-self-center">
                         <div class="formulario__grupo" id="grupo__Nombre_aseguradora">
-                            <label for="codigo" class="formulario__label text-left">Código</label>
+                            <label for="codigo" class="form-label text-left">Código</label>
                             <div class="formulario__grupo-input">
                                 <input type="text" maxlength="12" value="<?php echo $codigo; ?>" name="codigo[]" class="form-control codigoInput" placeholder="Ejemplo E20B-21-ND" required>
                                 <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
@@ -52,7 +52,7 @@ if (!isset($_SESSION['us'])) {
                     </div>
                     <div class="col-md-3 align-self-center">
                         <div class="formulario__grupo" id="grupo__Nombre_aseguradora">
-                            <label for="descripcion" class="formulario__label text-left">Descripción</label>
+                            <label for="descripcion" class="form-label text-left">Descripción</label>
                             <div class="formulario__grupo-input">
                                 <input type="text" maxlength="40" value="<?php echo $descripcion; ?>" name="descripcion[]" class="form-control descripcionInput" placeholder="Apoyo General 8 Horas" required>
                                 <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
@@ -61,7 +61,7 @@ if (!isset($_SESSION['us'])) {
                     </div>
                     <div class="col-md-3 align-self-center">
                         <div class="formulario__grupo" id="grupo__Nombre_aseguradora">
-                            <label for="unidad" class="formulario__label text-left">Unidad</label>
+                            <label for="unidad" class="form-label text-left">Unidad</label>
                             <div class="formulario__grupo-input">
                                 <input type="text" maxlength="40" value="<?php echo $unidad; ?>" name="unidad[]" class="form-control unidadInput" placeholder="Turno 8 Horas" required>
                                 <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>

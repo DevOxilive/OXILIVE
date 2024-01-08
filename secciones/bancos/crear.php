@@ -29,7 +29,7 @@ if (!isset($_SESSION['us'])) {
                         <div class="formulario__grupo" id="grupo__Nombre_banco">
                             <label for="Nombre_banco" class="formulario-label">Nombre del banco</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="Nombre_banco" id="Nombre_banco"
+                                <input type="text" class="form-control" name="Nombre_banco" id="Nombre_banco"
                                     placeholder="Nombre del banco">
                                 <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                             </div>

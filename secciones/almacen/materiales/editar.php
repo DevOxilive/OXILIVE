@@ -31,16 +31,16 @@ if (!isset($_SESSION['us'])) {
                     </div>
                     <div class="contenido col-md-3">
                         <div class="formulario__grupo" id="grupo__nombre"> <br>
-                            <label for="nombre" class="formulario__label">Nombre del equipo</label>
+                            <label for="nombre" class="form-label">Nombre del equipo</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="nombre" id="nombre"
+                                <input type="text" class="form-control" name="nombre" id="nombre"
                                  value="<?php echo $nombre;?>">
                             </div>
                         </div>
                     </div>
                     <div class="contenido col-md-3">
                         <div class="formulario__grupo" id="grupo__tipo_material"> <br>
-                            <label for="tipo_material" class="formulario__label">Tipo de material que se entrega</label>
+                            <label for="tipo_material" class="form-label">Tipo de material que se entrega</label>
                             <select id="tipo_material" name="tipo_material" class="form-select">
                                 <?php foreach ($lista_material as $tipo) { ?>
                                     <option <?php echo ($tipo_material == $tipo['id_material']) ? "selected" : ""; ?>
@@ -53,7 +53,7 @@ if (!isset($_SESSION['us'])) {
                     </div>
                     <div class="contenido col-md-3">
                         <div class="formulario__grupo" id="grupo__entrega"> <br>
-                            <label for="entrega" class="formulario__label">¿Quien lo entrega?</label>
+                            <label for="entrega" class="form-label">¿Quien lo entrega?</label>
                             <select id="entrega" name="entrega" class="form-select">
                                 <?php foreach ($lista_empleados as $entreg) { ?>
                                     <option <?php echo ($entrega == $entreg['id_empleados']) ? "selected" : ""; ?>
@@ -66,7 +66,7 @@ if (!isset($_SESSION['us'])) {
                     </div>
                     <div class="contenido col-md-3">
                         <div class="formulario__grupo" id="grupo__recibe"> <br>
-                            <label for="recibe" class="formulario__label">¿Quien lo recibe?</label>
+                            <label for="recibe" class="form-label">¿Quien lo recibe?</label>
                             <select id="recibe" name="recibe" class="form-select">
                                 <?php foreach ($lista_empleados as $reci) { ?>
                                     <option <?php echo ($recibe == $reci['id_empleados']) ? "selected" : ""; ?>
@@ -80,23 +80,23 @@ if (!isset($_SESSION['us'])) {
 
                     <div class="contenido col-md-4">
                         <div class="formulario__grupo" id="grupo__observaciones"> <br>
-                            <label for="observaciones" class="formulario__label">Observaciones del material</label>
+                            <label for="observaciones" class="form-label">Observaciones del material</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="observaciones" value="<?php echo $observaciones; ?>" id="observaciones">
+                                <input type="text" class="form-control" name="observaciones" value="<?php echo $observaciones; ?>" id="observaciones">
                             </div>
                         </div>
                     </div>
                     <div class="contenido col-md-4">
                         <div class="formulario__grupo" id="grupo__cantidad">
-                            <label for="cantidad" class="formulario__label">Cantidad de material ingresado</label>
+                            <label for="cantidad" class="form-label">Cantidad de material ingresado</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="cantidad" value="<?php echo $cantidad; ?>" id="cantidad">
+                                <input type="text" class="form-control" name="cantidad" value="<?php echo $cantidad; ?>" id="cantidad">
                             </div>
                         </div>
                     </div>
                     <div class="contenido col-md-3">
                         <div class="formulario__grupo" id="grupo__estado">
-                            <label for="estado" class="formulario__label">Estado</label>
+                            <label for="estado" class="form-label">Estado</label>
                             <select id="estado" name="estado" class="form-select">
                                 <?php foreach ($estado_mate as $esta) { ?>
                                     <option <?php echo ($estado == $esta['id_estado']) ? "selected" : ""; ?>
@@ -109,7 +109,7 @@ if (!isset($_SESSION['us'])) {
                     </div>
                     <div class="contenido col-md-4">
                         <div class="formulario__grupo" id="grupo__fecha_entrada">
-                        <label for="fecha_entrada" class="formulario__label">Fecha y hora en que entro</label>
+                        <label for="fecha_entrada" class="form-label">Fecha y hora en que entro</label>
                         <input type="datetime-local" value="<?php echo $fecha_entrada; ?>" name="fecha_entrada"
                             id="fecha_entrada" class="form-control">
                         </div>

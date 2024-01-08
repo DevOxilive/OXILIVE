@@ -53,7 +53,7 @@ if (!isset($_SESSION['us'])) {
                     </div>
 
                     <div class="contenido col-md-3">
-                        <label for="medico" class="formulario__label">Nombre del medico</label>
+                        <label for="medico" class="form-label">Nombre del medico</label>
                         <select id="medico" name="medico" class="form-select">
                             <?php foreach ($medico as $nomMedico) { ?>
                             <?php $select_medico = ($proce['medico'] == $nomMedico['id_usuarios']) ? "selected" : ""; ?>
@@ -66,9 +66,9 @@ if (!isset($_SESSION['us'])) {
 
                     <div class="contenido col-md-3">
                         <div class="formulario__grupo" id="icd">
-                            <label for="icd" class="formulario__label">Código ICD:</label>
+                            <label for="icd" class="form-label">Código ICD:</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" value="<?php echo $proce['icd']; ?>" class="formulario__input"
+                                <input type="text" value="<?php echo $proce['icd']; ?>" class="form-control"
                                     name="icd" id="icd">
                                 <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                             </div>
@@ -77,9 +77,9 @@ if (!isset($_SESSION['us'])) {
 
                     <div class="contenido col-md-3">
                         <div class="formulario__grupo" id="dx">
-                            <label for="dx" class="formulario__label">DX: Insuficiencia Venosa / EVC</label>
+                            <label for="dx" class="form-label">DX: Insuficiencia Venosa / EVC</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="dx"
+                                <input type="text" class="form-control" name="dx"
                                     value="<?php echo $proce['dx']; ?>">
                                 <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                             </div>
@@ -116,7 +116,7 @@ if (!isset($_SESSION['us'])) {
                     </div>
 
                     <div class="contenido col-md-4">
-                        <label for="descripcion" class="formulario__label">Descripción</label>
+                        <label for="descripcion" class="form-label">Descripción</label>
                         <div id="div">
                             <select id="descripcion" name="descripcion" readonly class="form-select">
                                 <?php foreach ($codigoLista as $select_descripcion) { ?>
@@ -129,7 +129,7 @@ if (!isset($_SESSION['us'])) {
                     </div>
                     <div class="contenido col-md-3">
 
-                        <label for="unidad" class="formulario__label">Unidad</label>
+                        <label for="unidad" class="form-label">Unidad</label>
                         <div id="div">
                             <select id="unidad" name="unidad" class="form-select">
                                 <?php foreach ($codigoLista as $select_unidad) { ?>
@@ -141,16 +141,16 @@ if (!isset($_SESSION['us'])) {
                         </div>
                     </div>
                     <div class="contenido col-md-3">
-                        <label for="fecha" class="formulario__label">Fecha</label>
+                        <label for="fecha" class="form-label">Fecha</label>
                         <div id="div">
-                            <input type="date" value="<?php echo $proce['fecha']; ?>" class="formulario__input"
+                            <input type="date" value="<?php echo $proce['fecha']; ?>" class="form-control"
                                 name="fecha" id="fecha">
                         </div>
                     </div>
 
                   
                     <div class="contenido col-md-3">
-                    <label for="cpt" class="formulario__label">CPT</label>
+                    <label for="cpt" class="form-label">CPT</label>
                         <select id="cpt" name="cpt" class="form-select">
                             <?php foreach ($cpt_list as $cpt) { ?>
                             <?php $select_cpt = ($proce['cpt'] == $cpt['id_cpt']) ? "selected" : ""; ?>

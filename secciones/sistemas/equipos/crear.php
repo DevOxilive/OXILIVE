@@ -27,15 +27,15 @@ if (!isset($_SESSION['us'])) {
                 <form action="./add.php" method="POST" class="formLogin row g-3" id="formulario">
                     <div class="contenido col-md-3">
                         <div class="formulario__grupo" id="grupo__nombre"> <br>
-                            <label for="nombre" class="formulario__label">Nombre del equipo</label>
+                            <label for="nombre" class="form-label">Nombre del equipo</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Ingresa el nombre completo del dispositivo entregado" required>
+                                <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingresa el nombre completo del dispositivo entregado" required>
                             </div>
                         </div>
                     </div>
                     <div class="contenido col-md-3">
                         <div class="formulario__grupo"> <br>
-                            <label class="formulario__label">Tipos de equipo que se entregan</label>
+                            <label class="form-label">Tipos de equipo que se entregan</label>
                             <?php foreach ($tipos_equipo as $tipo) { ?>
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="tipo_equipo[]" value="<?php echo $tipo['id']; ?>">
@@ -48,7 +48,7 @@ if (!isset($_SESSION['us'])) {
                     </div>
                     <!-- <div class="contenido col-md-3">
                         <div class="formulario__grupo" id="grupo__tipo_equipo"> <br>
-                            <label for="tipo_equipo" class="formulario__label">Tipo de equipo que se entrega</label>
+                            <label for="tipo_equipo" class="form-label">Tipo de equipo que se entrega</label>
                             <select id="tipo_equipo" name="tipo_equipo" class="form-select">
                                 <?php foreach ($tipos_equipo as $tipo) { ?>
                                     <option value="<?php echo $tipo['id']; ?>"><?php echo $tipo['tipo']; ?>
@@ -59,23 +59,23 @@ if (!isset($_SESSION['us'])) {
                     </div> -->
                     <div class="contenido col-md-3">
                         <div class="formulario__grupo" id="grupo__no_serie"> <br>
-                            <label for="no_serie" class="formulario__label">No. Serie</label>
+                            <label for="no_serie" class="form-label">No. Serie</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="no_serie" id="no_serie" placeholder="Numero de serie del equipo" required>
+                                <input type="text" class="form-control" name="no_serie" id="no_serie" placeholder="Numero de serie del equipo" required>
                             </div>
                         </div>
                     </div>
                     <div class="contenido col-md-3">
                         <div class="formulario__grupo" id="grupo__IMEI"> <br>
-                            <label for="IMEI" class="formulario__label">IMEI</label>
+                            <label for="IMEI" class="form-label">IMEI</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="IMEI" id="IMEI" placeholder="IMEI del equipo" required>
+                                <input type="text" class="form-control" name="IMEI" id="IMEI" placeholder="IMEI del equipo" required>
                             </div>
                         </div>
                     </div>
                     <div class="contenido col-md-3">
                         <div class="formulario__grupo" id="grupo__entrego"> <br>
-                            <label for="entrego" class="formulario__label">¿Quien lo entrega?</label>
+                            <label for="entrego" class="form-label">¿Quien lo entrega?</label>
                             <select id="entrego" name="entrego" class="form-select">
                                 <option value="0" selected disabled>Elija una opcion</option>
                                 <?php foreach ($lista_empleados as $entrego) { ?>
@@ -87,7 +87,7 @@ if (!isset($_SESSION['us'])) {
                     </div>
                     <div class="contenido col-md-3">
                         <div class="formulario__grupo" id="grupo__recibio"> <br>
-                            <label for="recibio" class="formulario__label">¿Quien lo recibe?</label>
+                            <label for="recibio" class="form-label">¿Quien lo recibe?</label>
                             <select id="recibio" name="recibio" class="form-select">
                                 <option value="0" selected disabled>Elija una opcion</option>
                                 <?php foreach ($lista_empleados as $recibio) { ?>
@@ -99,7 +99,7 @@ if (!isset($_SESSION['us'])) {
                     </div>
                     <div class="contenido col-md-3">
                         <div class="formulario__grupo" id="grupo__autorizo"> <br>
-                            <label for="autorizo" class="formulario__label">¿Quien lo autoriza?</label>
+                            <label for="autorizo" class="form-label">¿Quien lo autoriza?</label>
                             <select id="autorizo" name="autorizo" class="form-select">
                                 <option value="0" selected disabled>Elija una opcion</option>
                                 <?php foreach ($lista_empleados as $autorizo) { ?>
@@ -112,9 +112,9 @@ if (!isset($_SESSION['us'])) {
 
                     <div class="contenido col-md-4">
                         <div class="formulario__grupo" id="grupo__observaciones"> <br>
-                            <label for="observaciones" class="formulario__label">Observaciones del equipo</label>
+                            <label for="observaciones" class="form-label">Observaciones del equipo</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="observaciones" id="observaciones" required>
+                                <input type="text" class="form-control" name="observaciones" id="observaciones" required>
                             </div>
                         </div>
                     </div>

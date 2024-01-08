@@ -57,9 +57,9 @@ if (!isset($_SESSION['us'])) {
                     <!--Implemente lo que es rfc-->
                     <div class="contenido col-md-3">
                         <div class="formulario__grupo" id="grupo__rfc">
-                            <label for="rfc" class="formulario__label">RFC</label>
+                            <label for="rfc" class="form-label">RFC</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" maxlength="13" class="formulario__input" name="rfc" id="rfc"
+                                <input type="text" maxlength="13" class="form-control" name="rfc" id="rfc"
                                     value="<?php echo $rfc?>" placeholder="Ejem: EJEM123456">
                             </div>
                         </div>
@@ -180,9 +180,9 @@ if (!isset($_SESSION['us'])) {
 
                     <div class="contenido col-md-2">
                         <div class="formulario__grupo" id="grupo__No_nomina">
-                            <label for="No_nomina" class="formulario__label">No. nomina</label>
+                            <label for="No_nomina" class="form-label">No. nomina</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="No_nomina" id="No_nomina"
+                                <input type="text" class="form-control" name="No_nomina" id="No_nomina"
                                     value="<?php echo $No_nomina; ?>" placeholder="No_nomina" maxlength="7">
                                 <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"><small
                                         class="formulario__input-error"> Nomina no valida.
@@ -210,7 +210,7 @@ if (!isset($_SESSION['us'])) {
                     <br><br><br><br><br>
                     <div class="row text-center">
                         <div class="col-md-5">
-                            <label for="Credencial_front" class="formulario__label">Credencial INE Frontal</label>
+                            <label for="Credencial_front" class="form-label">Credencial INE Frontal</label>
                             <div class="profile-picture-cre">
                             <div class="picture-container-cre">
                                 <?php if (!empty($Credencial_front)) : ?>
@@ -235,7 +235,7 @@ if (!isset($_SESSION['us'])) {
                     </div>
                         
                         <div class="col-md-4">
-                            <label for="Credencial_post" class="formulario__label">Credencial INE Posterior</label>
+                            <label for="Credencial_post" class="form-label">Credencial INE Posterior</label>
                             <div class="profile-picture-cre">
                             <div class="picture-container-cre">
                                 <?php if (!empty($Credencial_post)) : ?>
@@ -259,7 +259,7 @@ if (!isset($_SESSION['us'])) {
                     </div>
 
                     <div class="col-md-4">
-                        <label for="Credencial_aseguradora" class="formulario__label">Credencial Aseguradora
+                        <label for="Credencial_aseguradora" class="form-label">Credencial Aseguradora
                             Frontal</label>
                         <div class="profile-picture-cre">
                             <div class="picture-container-cre">
@@ -288,7 +288,7 @@ if (!isset($_SESSION['us'])) {
                         <label></label>
                     </div>
                     <div class="col-md-4">
-                        <label for="Credencial_aseguradoras_post" class="formulario__label">Credencial Aseguradora
+                        <label for="Credencial_aseguradoras_post" class="form-label">Credencial Aseguradora
                             Posterior</label>
                         <div class="profile-picture-cre">
                              <div class="picture-container-cre">
