@@ -4,7 +4,7 @@ if (!isset($_SESSION['us'])) {
     header('Location: ../../login.php');
 } elseif (isset($_SESSION['us'])) {
     include("../../templates/header.php");
-    include("../administradora/administradoraADD.php");
+    include("administradoraADD.php");
 } else {
     echo "Error en el sistema";
 }
@@ -64,22 +64,33 @@ if (!isset($_SESSION['us'])) {
 <!-- ESTA ALERTA SIRVE PARA NO PERMITIR NINGUN CAMPO VACIO -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        var nombreAdministradoraInput = document.getElementById('Nombre_administradora');
+        function validarCampo() {
+            var valorCampo = nombreAdministradoraInput.value;
+            if (valorCampo.length < 3) {
+                nombreAdministradoraInput.style.borderColor = 'red';
+            } else {
+                nombreAdministradoraInput.style.borderColor = '';
+            }
+        }
+        nombreAdministradoraInput.addEventListener('input', validarCampo);
         document.querySelector('.formLogin').addEventListener('submit', function(event) {
-            event.preventDefault();
-            // Verifica si los campos obligatorios están vacíos
-            var Nombre_administradora = document.getElementById('Nombre_administradora').value;
-            if (!Nombre_administradora) {
+            var Nombre_administradora = nombreAdministradoraInput.value;
+            if (Nombre_administradora.length < 3) {
                 Swal.fire({
                     icon: 'error',
-                    title: 'Campos vacíos',
-                    text: 'Por favor, completa todos los campos obligatorios.',
+                    title: 'Administradora Vacía',
+                    text: 'Por favor, complete el campo min 3 letras.',
                 });
-            } else {
-                this.submit();
+                nombreAdministradoraInput.style.borderColor = 'red';
+                event.preventDefault();
+                return;
             }
+            this.submit();
         });
     });
 </script>
+
 <?php
 include("../../templates/footer.php");
 ?>

@@ -115,6 +115,21 @@ include_once ($url_base . 'secciones/notificaciones/consulta.php');
                     <span>Chat General</span>
                 </a>
             </li>
+            <!--Administradora General-->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/administradora/index.php">
+                <i class="bi bi-person-workspace"></i>
+                    <span>Administradora</span>
+                </a>
+            </li>
+            <!--Bancos General-->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/bancos/index.php">
+                <i class="bi bi-bank2"></i>
+                    <span>Banco</span>
+                </a>
+            </li>
+            
             <?php switch ($_SESSION['puesto']) {
                 //Administrador
                 case 1:

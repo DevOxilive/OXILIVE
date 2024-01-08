@@ -4,4 +4,8 @@
     WHERE c.admi = a.id_administradora;");
     $sentencia->execute();
     $cpts = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+    $sentencia=$con->prepare("SELECT * FROM `administradora`");
+    $sentencia->execute();
+    $lista_administradora=$sentencia->fetchAll(PDO::FETCH_ASSOC);
 ?>

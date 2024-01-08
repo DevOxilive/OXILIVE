@@ -17,11 +17,11 @@
             </a>
         </li>
         <!-- Subapartado Administradora -->
-        <li>
+        <!-- <li>
             <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/alta/administradora/index.php">
                 <i class="bi bi-circle"></i><span>Administradora</span>
             </a>
-        </li>
+        </li> -->
     </ul>
 </li>
 <!-- Apartado Crear Proceso -->
@@ -40,12 +40,6 @@
         <li>
             <a href="<?php echo $url_base; ?>secciones/enfermeria/procedimientos/index.php">
                 <i class="bi bi-circle"></i><span>Procedimientos</span>
-            </a>
-        </li>
-        <!-- Subapartado Historial Aseguradoras -->
-        <li>
-            <a href="<?php echo $url_base; ?>secciones/enfermeria/lectura/index.php">
-                <i class="bi bi-circle"></i><span>Historial Aseguradoras</span>
             </a>
         </li>
     </ul>

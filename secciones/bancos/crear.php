@@ -7,14 +7,17 @@ if (!isset($_SESSION['us'])) {
 } elseif(isset($_SESSION['us'])){
     include ("../../templates/header.php");
     include ("../../connection/conexion.php");
+    include("consulta.php");
 }else{
     echo "Error en el sistema";
 }
 ?>
 <html>
 <link rel="stylesheet" href="../../assets/css/vali.css">
-
-</html>
+<style>.campo-invalido {
+    border: 1px solid red;
+}
+</style>
 <main id="main" class="main">
     <section class="section dashboard">
         <div class="card">
@@ -25,16 +28,41 @@ if (!isset($_SESSION['us'])) {
             </div>
             <div class="card-body" style="border: 2px solid #BFE5FF;">
                 <form action="./bancoADD.php" method="POST" class="formLogin row g-3" id="formulario">
-                    <div class="contenido col-md-6"> <br>
+                    <div class="contenido col-md-4">
+                        <label for="administradora" class="formulario__label">Administradora a la que
+                            pertenece</label>
+                        <select id="administradora" name="administradora" class="form-select">
+                            <option value="0" selected disabled>Elija una opción</option>
+                            <?php foreach ($lista_administradora as $admin) { ?>
+                            <option value="<?php echo $admin['id_administradora']; ?>">
+                                <?php echo $admin['Nombre_administradora']; ?>
+                            </option>
+                            <?php } ?>
+                        </select>
+                    </div>
+
+                    <div class="contenido col-md-6"> 
                         <div class="formulario__grupo" id="grupo__Nombre_banco">
-                            <label for="Nombre_banco" class="formulario-label">Nombre del banco</label>
+                        <label for="Nombre_banco" class="formulario__label">Nombre del banco</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="form-control" name="Nombre_banco" id="Nombre_banco"
+                                <input max="40" type="text" class="formulario__input" name="Nombre_banco[]" id="Nombre_banco"
                                     placeholder="Nombre del banco">
                                 <i class="formulario__validacion-estado bi bi-exclamation-triangle-fill"></i>
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-md-2 align-self-center">
+                        <br>
+                        <div class="formulario__grupo" id="grupo__Nombre_aseguradora">
+                            <label for="code" class="text-left"></label>
+                            <div class="formulario__grupo-input">
+                                <button class="btn add-btn btn-info">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="newData"></div>
                     <br>
                     <div class="contenido col-12">
                         <button type="submit" class="btn btn-outline-success">Guardar</button>
@@ -45,6 +73,52 @@ if (!isset($_SESSION['us'])) {
             </div>
         </div>
 </main>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../js/validaciones.js"></script>
+<script type="text/javascript">
+$(function() {
+    var maxDivs = 50; // Cambiar el límite a 6
+    $('.add-btn').click(function(e) {
+        e.preventDefault();
+
+        // Verifica si se ha alcanzado el límite
+        if ($('.newData .form-row').length < maxDivs) {
+            var i = $('.newData .form-row').length + 2;
+
+            var newDiv = $('<div class="form-row" id="codigo' + i + '">');
+            newDiv.html(
+                '<div class="col-md-12">' +
+                '<div class="row">' +
+                '<div class="col-md-6">' +
+                '<label class="mb-0">Banco</label> ' + i +
+                '<div class="input-group">' +
+                '<input type="text" name="Nombre_banco[]" value="" class="form-control required">' +
+                '<div class="input-group-append">' +
+                '<a href="#" class="btn add-btn btn-info remove-lnk" data-id="' + i +
+                '"> <i class="fas fa-trash-alt"></i></a>' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '</div>'
+            );
+
+            $('.newData').append(newDiv);
+        } else {
+            alert("No se pueden agregar más Código.");
+        }
+    });
+
+    $(document).on('click', '.remove-lnk', function(e) {
+        e.preventDefault();
+
+        var id = $(this).data("id");
+        $('#codigo' + id).remove();
+    });
+
+});
+</script>
+
 <script>
 function confirmCancel(event) {
     event.preventDefault();
@@ -63,26 +137,6 @@ function confirmCancel(event) {
         }
     });
 }
-</script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelector('.formLogin').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            // Verifica si los campos obligatorios están vacíos
-            var Nombre_banco = document.getElementById('Nombre_banco').value;
-
-            if (!Nombre_banco) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Campos vacíos',
-                    text: 'Por favor, completa todos los campos obligatorios.',
-                });
-            } else {
-                this.submit();
-            }
-        });
-    });
 </script>
 <?php
 include("../../templates/footer.php");

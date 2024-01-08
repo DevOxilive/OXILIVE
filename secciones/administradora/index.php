@@ -4,50 +4,41 @@ if (!isset($_SESSION['us'])) {
   header('Location: ../../login.php');
 } elseif (isset($_SESSION['us'])) {
   include("../../templates/header.php");
-  include("../administradora/consulta.php");
+  include("./consulta.php");
 } else {
   echo "Error en el sistema";
 }
 ?>
 <main id="main" class="main">
     <div class="row">
-    <div class="card-header" style="text-align: right;">
-                    <a class="btn btn-outline-dark" href="administradora.php" role="button"><i class="bi bi-printer-fill"></i></a>
-            </div>
+        <div class="card-header" style="text-align: right;">
+            <h1 style="text-align: center; color:black">Bancos Pertenecientes a Administradoras</h1>
+        </div>
         <div class="card">
             <div class="card-header">
-                <a class="btn btn-outline-primary" href="crear.php" role="button" ><i class="bi bi-person-workspace"></i>
-                    Registrar Administradora</a>
+                <a class="btn btn-outline-primary" href="crear.php" role="button"><i class="bi bi-person-workspace"></i>Registrar Administradora</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive-sm">
                     <table class="table border-dark table-hover" id="myTable" style="border: 2px solid black">
                         <thead class="table-dark">
                             <tr class="table-active table-group-divider">
-                                <th scope="col">Núm</th>
-                                <th scope="col">Nombre de Administradora</th>
-                                <th scope="col">Acciones</th>
+                               <th scope="col">Administradora</th>
+                            <th scope="col">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($lista_administradora as $registro) { ?>
-                            <tr class="">
-                                <th scope="row">
-                                    <?php echo $registro['id_administradora']; ?>
-                                </th>
-                                <td>
-                                    <?php echo $registro['Nombre_administradora']; ?>
-                               
-                                </td>
-
+                            <tr class="" style="text-align: center; ">
+                                <td><?php echo $registro['Nombre_administradora']; ?></td>
                                 <td style="text-align: center;">
                                     <a class="btn btn-outline-warning"
-                                        href="editar.php?txtID=<?php echo $registro['id_administradora']; ?>"
-                                        role="button"><i class="bi bi-pencil-square"></i></a>
+                                        href="editarAdmin.php?txtID=<?php echo $registro['id_administradora']; ?>" role="button"><i
+                                            class="bi bi-pencil-square"></i></a>
                                     |
                                     <a class="btn btn-outline-danger"
-                                        onclick="eliminar(<?php echo $registro['id_administradora']; ?>)"
-                                        role="button"><i class="bi bi-trash-fill"></i></a>
+                                        onclick="eliminar(<?php echo $registro['id_administradora']; ?>)" role="button"><i
+                                            class="bi bi-trash-fill"></i></a>
                                 </td>
                             </tr>
                             <?php } ?>
@@ -108,7 +99,7 @@ rows.forEach(row => {
     });
 });
 </script>
-<script src="../../js/tables.js"></script>
+<script src="../../../js/tables.js"></script>
 <?php
 include("../../templates/footer.php");
 ?>

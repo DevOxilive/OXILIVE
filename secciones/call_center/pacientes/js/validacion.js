@@ -20,26 +20,27 @@ var errTelUno = document.getElementById("errTelUno"),
   errTelDos = document.getElementById("errTelDos");
 var form = document.getElementById("formulario");
 var add = document.getElementById("add");
+
 var formArray = [
   nombre,
   apellidos,
   edad,
+  edad,
   genero,
-  tipoPac,
   telUno,
   calle,
-  numExt,
+  numExt
 ];
 
 nombre.addEventListener("input", function () {
-  var regex = /^[a-zA-Z\s]+$/;
+  var regex = /^[a-zA-ZñÑ0-9\s.]+$/;
   var string = nombre.value;
   if (!regex.test(string)) {
     nombre.value = string.slice(0, -1);
   }
 });
 apellidos.addEventListener("input", function () {
-  var regex = /^[a-zA-Z\s]+$/;
+  var regex = /^[a-zA-ZñÑ0-9\s.]+$/;
   var string = apellidos.value;
   if (!regex.test(string)) {
     apellidos.value = string.slice(0, -1);
@@ -69,12 +70,13 @@ telDos.addEventListener("input", function () {
   valNum(telDos);
 });
 calle.addEventListener("input", function () {
-  var regex = /^[a-zA-Z0-9\s]+$/;
+  var regex = /^[a-zA-ZñÑ0-9\s.]+$/;
   var string = calle.value;
   if (!regex.test(string)) {
     calle.value = string.slice(0, -1);
   }
 });
+
 numExt.addEventListener("input", function () {
   var regex = /^[a-zA-Z0-9\s]+$/;
   var string = numExt.value;
@@ -87,41 +89,6 @@ numInt.addEventListener("input", function () {
   var string = numInt.value;
   if (!regex.test(string)) {
     numInt.value = string.slice(0, -1);
-  }
-});
-calleUno.addEventListener("input", function () {
-  var regex = /^[a-zA-Z0-9\s]+$/;
-  var string = calleUno.value;
-  if (!regex.test(string)) {
-    calleUno.value = string.slice(0, -1);
-  }
-});
-calleDos.addEventListener("input", function () {
-  var regex = /^[a-zA-Z0-9\s]+$/;
-  var string = calleDos.value;
-  if (!regex.test(string)) {
-    calleDos.value = string.slice(0, -1);
-  }
-});
-exp.addEventListener("input", function () {
-  var regex = /^[a-zA-Z0-9\s]+$/;
-  var string = exp.value;
-  if (!regex.test(string)) {
-    exp.value = string.slice(0, -1);
-  }
-});
-autGen.addEventListener("input", function () {
-  var regex = /^[a-zA-Z0-9\s]+$/;
-  var string = autGen.value;
-  if (!regex.test(string)) {
-    autGen.value = string.slice(0, -1);
-  }
-});
-autEsp.addEventListener("input", function () {
-  var regex = /^[a-zA-Z0-9\s]+$/;
-  var string = autEsp.value;
-  if (!regex.test(string)) {
-    autEsp.value = string.slice(0, -1);
   }
 });
 
@@ -143,8 +110,6 @@ form.addEventListener("submit", function (event) {
         calle: calle.value,
         numExt: numExt.value,
         numInt: numInt.value,
-        calleUno: calleUno.value,
-        calleDos: calleDos.value,
         referencias: ref.value,
 
         idPac: idPac.value,
