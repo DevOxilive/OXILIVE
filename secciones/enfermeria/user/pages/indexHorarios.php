@@ -29,6 +29,10 @@ if (!isset($_SESSION['us'])) {
                         </ol>
                     </nav>
                 </div>
+                <hr>
+            </div>
+            <div class="card-body" id="data">
+                <input type="hidden" id="idus" value="<?php echo $_SESSION['idus']; ?>">
             </div>
         </div>
     </div>
