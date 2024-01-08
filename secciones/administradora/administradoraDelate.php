@@ -12,38 +12,33 @@ if (!isset($_SESSION['us'])) {
 <main id="main" class="main">
     <div class="row">
         <div class="card-header" style="text-align: right;">
-            <h1 style="text-align: center; color:black">Bancos Pertenecientes a Administradoras</h1>
+            <h1 style="text-align: center; color:black" >Administradoras</h1>
         </div>
         <div class="card">
             <div class="card-header">
-                <a class="btn btn-outline-primary" href="crear.php" role="button"><i class="bi bi-person-workspace"></i>
-                    Registrar Administradora</a>
-                <a class="btn btn-outline-success" href="bancos/crear.php" role="button"><i class="bi bi-bank2"></i>
-                    Registrar Bancos</a>
-                    <a class="btn btn btn-primary float-right" href="./administradoraDelate.php" role="button" ><i class="bi bi-bookmark-x"></i> Acciones a Administradora</a>
-            </div>
+                <a class="btn btn-outline-primary" href="index.php" role="button"><i class="bi bi-person-workspace"></i>
+                    Regresar</a>
+          </div>
             <div class="card-body">
                 <div class="table-responsive-sm">
-                    <table class="table border-dark table-hover" id="myTable" style="border: 2px solid black">
+                    <table class="table   border-dark table-hover" id="myTable">
                         <thead class="table-dark">
-                            <tr class="table-active table-group-divider">
-                                <th scope="col">Bancos</th>
+                            <tr class="table-active table-group-divider" style="text-align: center;">
                                 <th scope="col">Administradora</th>
-                                <th scope="col">Acciones a Bancos</th>
+                                <th scope="col">Acciones Administradora</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <?php foreach ($listaGeneral as $registro) { ?>
-                            <tr class="" style="text-align: center; ">
-                                <td><?php echo $registro['Nombre_banco']; ?></td>
+                        <tbody style="text-align: center;">
+                            <?php foreach ($lista_administradora as $registro) { ?>
+                            <tr class="">
                                 <td><?php echo $registro['Nombre_administradora']; ?></td>
                                 <td style="text-align: center;">
-                                    <a class="btn btn-outline-warning"
-                                        href="editar.php?txtID=<?php echo $registro['id_bancos']; ?>" role="button"><i
+                                <a class="btn btn-outline-warning"
+                                        href="editarAdmin.php?txtID=<?php echo $registro['id_administradora']; ?>" role="button"><i
                                             class="bi bi-pencil-square"></i></a>
-                                    |
+
                                     <a class="btn btn-outline-danger"
-                                        onclick="eliminar(<?php echo $registro['id_bancos']; ?>)" role="button"><i
+                                        onclick="delate(<?php echo $registro['id_administradora']; ?>)" role="button"><i
                                             class="bi bi-trash-fill"></i></a>
                                 </td>
                             </tr>
@@ -56,7 +51,7 @@ if (!isset($_SESSION['us'])) {
 </main>
 <!-- ESTO SIRVE PARA ELIMINAR LOS DATOS DESDE LAS ACCIONES DEL INDEX, SE BORRAN UNICAMENTE DESPUES DE CONFIRMAR -->
 <script>
-function eliminar(codigo) {
+function delate(codigo) {
     Swal.fire({
         title: '¿Estas seguro?',
         text: "No podrás recuperar los datos",
@@ -87,7 +82,7 @@ function mandar(codigo) {
         beforeSend: function() {},
         success: function() {
             Swal.fire("Eliminado:", "Ha sido eliminado", "success").then((result) => {
-                window.location.href = "index.php";
+                window.location.href = "administradoraDelate.php";
             });
         },
     });

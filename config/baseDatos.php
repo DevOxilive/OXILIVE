@@ -2,8 +2,8 @@
 
 $host = 'localhost';
 $dataBase = 'u199109938_swoe';
-$usuario = 'u199109938_hackerman';
-$contraseña = 'SwOe@xilive12';
+$usuario = 'root';
+$contraseña = '';
 
 // $host ='localhost';
 // $dataBase = 'bdoxilive';

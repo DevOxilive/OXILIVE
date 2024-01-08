@@ -4,12 +4,6 @@
         <i class="bi bi-person-rolodex"></i><span>Pacientes</span>
     </a>
 </li>
-<!-- Apartado Aseguradoras -->
-<li class="nav-item">
-    <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/aseguradoras/index.php">
-        <i class="bi bi-shield-check"></i><span>Aseguradoras</span>
-    </a>
-</li>
 <!-- Apartado Arribo -->
 <li class="nav-item">
     <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/call_center/arribo/index.php">

@@ -1,7 +1,6 @@
 <?php
     include("../../../../connection/conexion.php");
     $data = json_decode(file_get_contents('php://input'), true);
-
     $nom = $data['nombres'] != "" ?  $data['nombres'] : NULL;
     $ape = $data['apellidos'] != "" ? $data["apellidos"] : NULL;
     $gen = $data['genero'] != "" ? $data["genero"] : NULL;
@@ -9,7 +8,6 @@
     $tipo = $data['tipo'] != "" ? $data["tipo"] : NULL;
     $telUno = $data['telUno'] != "" ? $data["telUno"] : NULL;
     $telDos = $data['telDos'] != "" ? $data["telDos"] : NULL;
-
     $col = $data['colonia'] != "" ? $data["colonia"] : NULL;
     $calle = $data['calle'] != "" ? $data["calle"] : NULL;
     $numExt = $data['numExt'] != "" ? $data["numExt"] : NULL;
@@ -17,6 +15,8 @@
     $calleUno = $data['calleUno'] != "" ? $data["calleUno"] : NULL;
     $calleDos = $data['calleDos'] != "" ? $data["calleDos"] : NULL;
     $ref = $data['referencias'] != "" ? $data["referencias"] : NULL;
+    $banco = $data['banco'] != "" ? $data["banco"] : NULL;
+    $expediente = $data['expediente'] != "" ? $data["expediente"] : NULL;
 
     $idPac = $data['idPac'];
     
@@ -48,7 +48,9 @@
     num_int = :numInt,
     calleUno = :calleUno,
     calleDos = :calleDos,
-    referencias = :ref
+    referencias = :ref,
+    bancosAdmi = :banco,
+    no_expediente = :expediente
     WHERE id_pacientes = :idPac;
     ');
     $sentencia->bindparam(':nom', $nom);
@@ -65,6 +67,8 @@
     $sentencia->bindparam(':calleUno', $calleUno);
     $sentencia->bindparam(':calleDos', $calleDos);
     $sentencia->bindparam(':ref', $ref);
+    $sentencia->bindParam(':banco', $banco);
+    $sentencia->bindParam(':expediente', $expediente);
     $sentencia->bindparam(':idPac', $idPac);
     if ($sentencia->execute()) {
         echo json_encode(true);

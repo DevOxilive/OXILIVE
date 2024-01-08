@@ -22,12 +22,6 @@
                 <i class="bi bi-circle"></i><span>Administradora</span>
             </a>
         </li>
-        <!-- Apartado Aseguradora -->
-        <li>
-            <a href="<?php echo $url_base; ?>secciones/aseguradoras/index.php">
-                <i class="bi bi-circle"></i><span>Aseguradora</span>
-            </a>
-        </li>
         <!-- Apartado Bancos -->
         <li>
             <a href="<?php echo $url_base; ?>secciones/bancos/index.php">
@@ -111,11 +105,11 @@
                     </a>
                 </li>
                 <!-- Subapartado Administradora -->
-                <li>
+                <!-- <li>
                     <a href="<?php echo $url_base; ?>secciones/enfermeria/alta/administradora/index.php">
                         <i class="bi bi-circle"></i><span>Administradora</span>
                     </a>
-                </li>
+                </li> -->
             </ul>
         </li>
         <!-- Apartado Crear Proceso -->
@@ -196,12 +190,7 @@
                 <i class="bi bi-circle"></i><span>Pacientes</span>
             </a>
         </li>
-        <!-- Apartado Aseguradoras -->
-        <li>
-            <a href="<?php echo $url_base; ?>secciones/aseguradoras/index.php">
-                <i class="bi bi-circle"></i><span>Aseguradoras</span>
-            </a>
-        </li>
+        
         <!-- Apartado Arribo -->
         <li>
             <a href="<?php echo $url_base; ?>secciones/call_center/arribo/index.php">
@@ -244,12 +233,6 @@
         <li>
             <a href="<?php echo $url_base; ?>secciones/Capital_humano/empleados/index.php">
                 <i class="bi bi-circle"></i><span>Empleados</span>
-            </a>
-        </li>
-        <!-- Apartado Aseguradoras -->
-        <li>
-            <a href="<?php echo $url_base; ?>secciones/aseguradoras/index.php">
-                <i class="bi bi-circle"></i><span>Aseguradoras</span>
             </a>
         </li>
         <!-- Apartado Choferes -->

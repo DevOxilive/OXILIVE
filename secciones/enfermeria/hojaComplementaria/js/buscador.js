@@ -64,12 +64,8 @@ function showPacientes(datos) {
       resetList();
       select = 0;
     });
-    
-    // Verifica si el registro actual contiene 'Credencial_front'
     if (pac.Credencial_front) {
       pacienteEncontrado = true;
-
-      // Redirige a la página de creación para este paciente
       const crearPacienteItem = document.createElement("div");
       crearPacienteItem.setAttribute("data-url", "pacientes.php?txtID=" + pac.id_pacientes);
       crearPacienteItem.setAttribute("id", i + 1);
@@ -80,12 +76,13 @@ function showPacientes(datos) {
       });
       crearPacienteItem.textContent ="ESTE PACIENTE EXISTE  VER AQUI";
       lista.appendChild(crearPacienteItem);
+      
     }
   });
 }
-
-input.addEventListener("keydown", function (event) {
-  if (select>=0) {
+//Voy aplicar en esta función el manejo mejorado del teclado
+function manejarTeclado(event) {
+  if (select >= 0) {
     // Flecha arriba
     if (event.key === "ArrowUp") {
       event.preventDefault();
@@ -118,7 +115,15 @@ input.addEventListener("keydown", function (event) {
       event.preventDefault();
     }
   }
-});
+}
+//Aquí tengo mi input
+input.addEventListener("keydown", manejarTeclado);
+// Esperar 3 segundos antes de ejecutar el código
+setTimeout(function() {
+  // Tu código que quieres ejecutar después de 2 segundos
+}, 2000);
+
+
 function resetList() {
   for (let i = 1; i <= tamaño; i++) {
     elem = setElem(i);

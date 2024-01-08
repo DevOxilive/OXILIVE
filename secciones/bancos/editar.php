@@ -1,47 +1,83 @@
 <?php
 session_start();
-if(!isset($_SESSION['us'])){
+if (!isset($_SESSION['us'])) {
     header('Location: ../../login.php');
-} elseif(isset($_SESSION['us'])){
-    include ("../../templates/header.php");
-    include ("../bancos/bancoUP.php");
-}else{
+} else if (isset($_SESSION['us'])) {
+    include("../../templates/header.php");
+    include("../../connection/conexion.php");
+    include("editarUP.php");
+    include("consulta.php");
+    $txtID = $_GET['txtID'];
+    $sentencia = $con->prepare("SELECT * FROM bancos WHERE id_bancos=:bancos");
+    $sentencia->bindParam(':bancos', $txtID);
+    $sentencia->execute();
+    $registro = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+} else {
     echo "Error en el sistema";
 }
 ?>
 <html>
 <link rel="stylesheet" href="../../assets/css/edit.css">
-
-</html>
 <main id="main" class="main">
     <section class="section dashboard">
         <div class="card">
             <div class="card-header" style="border: 2px solid #012970; background: #005880;">
                 <h4
                     style="text-align: center; color: #fff; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
-                    Editar datos del Banco</H4>
+                    Editar administradora</H4>
             </div>
             <div class="card-body" style="border: 2px solid #BFE5FF;">
-                <form action="./bancoUP.php" method="POST" class="row g-3 formEdit">
+                <form action="./editarUP.php" method="POST" class="row g-3 formEdit">
+                    <?php foreach($registro as $reg) { ?>
                     <div class="contenido col-md-1"> <br>
-                        <label for="txtID" class="form-label">Núm</label>
+                        <label for="txtID" class="form-label">Num</label>
                         <input type="text" value="<?php echo $txtID; ?>" class="form-control" readonly name="txtID"
                             id="txtID" aria-describedby="helpId">
                     </div>
-                    <div class="contenido col-md-6"> <br>
-                        <label for="Nombre_banco" class="form-label">Nombre del banco</label>
-                        <input type="text" value="<?php echo $Nombre_banco; ?>" class="form-control" name="Nombre_banco"
-                            id="Nombre_banco" placeholder="Nombre del banco" required>
+
+                    <div class="contenido col-md-3"> <br>
+                        <label for="administradora" class="form-label">Administradora</label>
+                        <select id="administradora" name="administradora" class="form-select">
+                            <?php foreach ($lista_administradora as $admi) { ?>
+                            <option <?php echo ($admi['id_administradora'] == $reg['admi']) ? "selected" : ""; ?>
+                                value="<?php echo $admi['id_administradora']; ?>">
+                                <?php echo $admi['Nombre_administradora']; ?>
+                            </option>
+                            <?php } ?>
+                        </select>
                     </div>
+
+                    <div class="contenido col-md-3"> <br>
+                        <label for="Nombre_banco" class="form-label">Banco</label>
+                        <input type="text" id="Nombre_banco" name="Nombre_banco" class="form-control"
+                            value="<?php echo $reg['Nombre_banco']; ?>" readonly>
+                    </div>
+
+
+                    <!-- <div class="contenido col-md-3"> <br>
+                        <label for="Nombre_banco" class="form-label">Banco</label>
+                        <select id="Nombre_banco" name="Nombre_banco" class="form-select">
+                            <?php foreach ($listaGeneral as $banco) { ?>
+                                <option <?php echo ($banco['Nombre_banco'] == $reg['Nombre_banco']) ?  "selected" : ""; ?>
+                                    value="<?php echo $banco['id_bancos']; ?>">
+                                    <?php echo $banco['Nombre_banco']; ?>
+                                </option>
+                            <?php } ?>
+                        </select>
+                    </div> -->
+
                     <div class="col-12">
                         <button type="submit" class="btn btn-outline-success">Guardar</button>
                         <a role="button" onclick="mostrarAlertaCancelar()" name="cancelar"
                             class="btn btn-outline-danger"> Cancelar</a>
                     </div>
+                    <?php } ?>
                 </form>
             </div>
         </div>
 </main>
+<!-- CANCELA LA OPERACION SIEMPRE Y CUANDO SE CONFIRME LA ACCION -->
 <script>
 function mostrarAlertaCancelar() {
     Swal.fire({

@@ -1,0 +1,30 @@
+#add{
+    justify-content:left;
+    align-items: center;
+    padding-top: 0.8rem;
+}
+#addBoton{
+    cursor: pointer;
+}
+#delBoton {
+    position: absolute;
+    top: -1%;
+    right: -19.9%;
+    margin: 28%;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+@media (max-width: 767px) {
+    #tel {
+        width: 100%;
+    }
+    #delBoton {
+        position: absolute;
+        top: 29%;
+        right: -26%;
+        margin: 28%;
+        cursor: pointer;
+        font-size: 14px;
+    }
+}

@@ -1,20 +1,6 @@
 <?php
-include("../../../../connection/conexion.php");
-include_once '../../../../templates/hea.php';
-
-/*if (isset($_GET['txtID'])) {
-  //CONSULTA LOS DATOS Y TRAE LOS DATOS DE LA BASE DE DATOS
-  $txtID = (isset($_GET['txtID'])) ? $_GET['txtID'] : "";
-  //$administradora = (isset($_GET['adminis$administradora'])) ? $_GET['adminis$administradora'] : "";
-  //$Nombre_banco = (isset($_GET['Nombre_banco'])) ? $_GET['Nombre_banco'] : "";
-
-  $sentencia = $con->prepare("SELECT * FROM bancos WHERE id_bancos=:bancos");
-  $sentencia->bindParam(":bancos", $txtID);
-  $sentencia->execute();
-  $registro = $sentencia->fetchAll(PDO::FETCH_ASSOC);
-  $Nombre_banco = $registro["Nombre_banco"];
-  $administradora = $registro["administradora"];
-}*/
+include("../../connection/conexion.php");
+include_once '../../templates/hea.php';
 
 if ($_POST) {
   //PRIMERO VERIFICA SI EL DATO A EDITAR NO EXISTE
