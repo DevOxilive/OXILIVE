@@ -2,10 +2,12 @@
 //Script listado de horario
 include("../../../../../connection/conexion.php");
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
     $data = json_decode(file_get_contents('php://input'), true);
     $num = $data['estado'];
-    $sentencia = $con -> prepare('
-    SELECT ah.id_asignacionHorarios AS id,
+
+    $sentencia = $con->prepare(
+        'SELECT ah.id_asignacionHorarios AS id,
                 ah.horarioEntrada,
                 ah.horarioSalida,
                 ah.fecha,
@@ -19,12 +21,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ah.statusHorario = e.id_estadoHorarios AND
         u.id_departamentos = 11 AND
         ah.statusHorario = :num
-        ORDER BY ah.statusHorario ASC, ah.fecha ASC, ah.horarioEntrada ASC
-    ');
+        ORDER BY ah.statusHorario ASC, ah.fecha ASC, ah.horarioEntrada ASC'
+    );
+    
     $sentencia->bindParam(':num', $num);
     $sentencia->execute();
     $datos = $sentencia->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode($datos);
+
 } else {
 
     $sentenciaHor = $con->prepare(
@@ -42,9 +46,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ah.statusHorario = e.id_estadoHorarios AND
         u.id_departamentos = 11 AND
         ah.statusHorario != 4
-        ORDER BY ah.statusHorario ASC, ah.fecha ASC, ah.horarioEntrada ASC
-        ;'
+        ORDER BY ah.statusHorario ASC, ah.fecha ASC, ah.horarioEntrada ASC;'
     );
+    
     $sentenciaHor->execute();
     $lista_horarios = $sentenciaHor->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode($lista_horarios);
@@ -69,4 +73,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $sentenciaCancel->execute();
     $lista_cancelados = $sentenciaCancel->fetchAll(PDO::FETCH_ASSOC);
 }
-?>
+
