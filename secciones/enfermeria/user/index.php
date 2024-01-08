@@ -24,18 +24,16 @@ if (!isset($_SESSION['us'])) {
             Bienvenid<?php if ($_SESSION['genero'] == 1) { ?>o<?php } else { ?>a<?php } ?>
             <?php echo ucfirst(strtolower($_SESSION['no'])); ?>
         </h1>
-        <br>
-
-        <!-- breadcrumb del dashboard pasado -->
-        <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item active">Dashboard</li>
-            </ol>
-        </nav>
+        <div class="breadcrumb-box">
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active">Dashboard</li>
+                </ol>
+            </nav>
+        </div>
     </div><!-- End Page Title -->
     <section class="section dashboard">
         <div class="row">
-            <!-- Left side columns -->
             <div class="col-lg-8">
                 <div class="row">
                     <!-- Card Proximo Servicio -->
@@ -50,7 +48,7 @@ if (!isset($_SESSION['us'])) {
                                                 <i class="bi bi-clipboard-pulse"></i>
                                             </div>
                                             <div class="ps-4 ">
-                                                <h6><a class="text-black" href="../../pacientes/paciente.php?idPac=<?php echo $servicios['id_pacientes']?>"><?php echo $servicios['nomPaciente']; ?></a></h6>
+                                                <h6><a class="text-black" href="../../pacientes/paciente.php?idPac=<?php echo $servicios['id_pacientes'] ?>"><?php echo $servicios['nomPaciente']; ?></a></h6>
                                                 <span class="text-muted small pt-2 ps-1"><?php echo $servicios['nomGuardia']; ?></span>
                                             </div>
                                         </div>
@@ -72,7 +70,7 @@ if (!isset($_SESSION['us'])) {
                                 <?php } ?>
                             </div>
                         </div>
-                    </div><!-- End Card Próximo Servicio -->
+                    </div>
                     <!-- Card Actividad reciente -->
                     <div class="col-12">
                         <div class="card">
@@ -82,23 +80,19 @@ if (!isset($_SESSION['us'])) {
                                     <li class="dropdown-header text-start">
                                         <h6>Filtro</h6>
                                     </li>
-
                                     <li><a class="dropdown-item" onclick="range(this)">Hoy</a></li>
                                     <li><a class="dropdown-item" onclick="range(this)">Esta semana</a></li>
                                     <li><a class="dropdown-item" onclick="range(this)">Esta quincena</a></li>
                                 </ul>
                             </div>
-
                             <div class="card-body">
-                                <h5 class="card-title">Actividad Reciente <span>| </span><span id="range-activity">Hoy</span></h5>
-
-                                <div class="activity" id="activity">
-
-                                </div>
-
+                                <h5 class="card-title">
+                                    Actividad Reciente <span>| </span><span id="range-activity">Hoy</span>
+                                </h5>
+                                <div class="activity" id="activity"></div>
                             </div>
                         </div>
-                    </div><!-- End Actividad reciente -->
+                    </div>
                     <!-- Horarios del usuario -->
                     <div class="col-12">
                         <div class="card info-card customers-card">
@@ -117,14 +111,12 @@ if (!isset($_SESSION['us'])) {
                             <!-- End Filtro -->
                             <div class="card-body">
                                 <h5 class="card-title">Horarios <span>| </span><span id="range-schedule">Semana</span></h5>
-                                    
+
                             </div>
                         </div>
-                    </div><!-- End Horarios del usuario -->
-                    
+                    </div>
                 </div>
             </div>
-            <!-- End Left side columns -->
         </div>
     </section>
 </main>

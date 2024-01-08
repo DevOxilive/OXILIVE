@@ -1,12 +1,4 @@
 <?php
-// include '../../../../cargaDoc/control.php';
-
-// if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['file'])) {
-//     $nombreArchivo = $_FILES['file']['name'];
-//     $archivo = $_FILES['file']['tmp_name'];
-//     $carpeta = 'documentos/';
-//     guardarDocumento($con, $carpeta, $nombreArchivo, $archivo, $persona);
-// }
 include '../../../cargaDoc/control.php';
 include '../../../connection/conexion.php';
 session_start();
