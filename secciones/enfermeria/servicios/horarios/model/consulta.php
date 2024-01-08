@@ -1,5 +1,9 @@
 <?php
-//Script listado de horario
+/**
+ * nota:
+ * las condicionales estan algo rotas, que a reparar el codigo despues :V
+ * 
+ */
 include("../../../../../connection/conexion.php");
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -72,5 +76,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     );
     $sentenciaCancel->execute();
     $lista_cancelados = $sentenciaCancel->fetchAll(PDO::FETCH_ASSOC);
-}
-
+} 
