@@ -30,81 +30,81 @@ if (!isset($_SESSION['us'])) {
             <form  class="formLogin form-inline" id="formulario">
                     <div class="col-md-5">
                         <div class="formulario__grupo">
-                            <label for="medicamento_1" class="formulario__label">1.° MEDICAMENTO</label>
+                            <label for="medicamento_1" class="form-label">1.° MEDICAMENTO</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="medicamento_1" id="medicamento_1">
+                                <input type="text" class="form-control" name="medicamento_1" id="medicamento_1">
                             </div>
                         </div>
                     </div>
                     <div class="col-md-2 ">
                         <div class="formulario__grupo" id="grupo__Nombre_administradora">
-                            <label for="horario_1" class="formulario__label">HORARIO</label>
+                            <label for="horario_1" class="form-label">HORARIO</label>
                             <div class="formulario__grupo-input">
-                                <input type="Time" class="formulario__input" name="horario_1" id="horario_1">
+                                <input type="Time" class="form-control" name="horario_1" id="horario_1">
                             </div>
                         </div>
                     </div>
                     <div class="col-md-5">
                         <div class="formulario__grupo">
-                            <label for="medicamento_2" class="formulario__label">2.° MEDICAMENTO</label>
+                            <label for="medicamento_2" class="form-label">2.° MEDICAMENTO</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="medicamento_2" id="medicamento_2">
+                                <input type="text" class="form-control" name="medicamento_2" id="medicamento_2">
                             </div>
                         </div>
                     </div>
                     <div class="col-md-2 ">
                         <div class="formulario__grupo" id="grupo__Nombre_administradora">
-                            <label for="horario_2" class="formulario__label">HORARIO</label>
+                            <label for="horario_2" class="form-label">HORARIO</label>
                             <div class="formulario__grupo-input">
-                                <input type="Time" class="formulario__input" name="horario_2" id="horario_2">
+                                <input type="Time" class="form-control" name="horario_2" id="horario_2">
                             </div>
                         </div>
                     </div>
                     <div class="col-md-5">
                         <div class="formulario__grupo">
-                            <label for="medicamento_3" class="formulario__label">3.° MEDICAMENTO</label>
+                            <label for="medicamento_3" class="form-label">3.° MEDICAMENTO</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="medicamento_3" id="medicamento_3">
+                                <input type="text" class="form-control" name="medicamento_3" id="medicamento_3">
                             </div>
                         </div>
                     </div>
                     <div class="col-md-2 ">
                         <div class="formulario__grupo" id="grupo__Nombre_administradora">
-                            <label for="horario_3" class="formulario__label">HORARIO</label>
+                            <label for="horario_3" class="form-label">HORARIO</label>
                             <div class="formulario__grupo-input">
-                                <input type="Time" class="formulario__input" name="horario_3" id="horario_3">
+                                <input type="Time" class="form-control" name="horario_3" id="horario_3">
                             </div>
                         </div>
                     </div>
                     <div class="col-md-5">
                         <div class="formulario__grupo">
-                            <label for="medicamento_4" class="formulario__label">4.° MEDICAMENTO</label>
+                            <label for="medicamento_4" class="form-label">4.° MEDICAMENTO</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="medicamento_4" id="medicamento_4">
+                                <input type="text" class="form-control" name="medicamento_4" id="medicamento_4">
                             </div>
                         </div>
                     </div>
                     <div class="col-md-2 ">
                         <div class="formulario__grupo" id="grupo__Nombre_administradora">
-                            <label for="horario_4" class="formulario__label">HORARIO</label>
+                            <label for="horario_4" class="form-label">HORARIO</label>
                             <div class="formulario__grupo-input">
-                                <input type="Time" class="formulario__input" name="horario_4" id="horario_4">
+                                <input type="Time" class="form-control" name="horario_4" id="horario_4">
                             </div>
                         </div>
                     </div>
                     <div class="col-md-5">
                         <div class="formulario__grupo">
-                            <label for="medicamento_5" class="formulario__label">5.° MEDICAMENTO</label>
+                            <label for="medicamento_5" class="form-label">5.° MEDICAMENTO</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="medicamento_5" id="medicamento_5">
+                                <input type="text" class="form-control" name="medicamento_5" id="medicamento_5">
                             </div>
                         </div>
                     </div>
                     <div class="col-md-2 ">
                         <div class="formulario__grupo" id="grupo__Nombre_administradora">
-                            <label for="horario_5" class="formulario__label">HORARIO</label>
+                            <label for="horario_5" class="form-label">HORARIO</label>
                             <div class="formulario__grupo-input">
-                                <input type="Time" class="formulario__input" name="horario_5" id="horario_5">
+                                <input type="Time" class="form-control" name="horario_5" id="horario_5">
                             </div>
                         </div>
                     </div>

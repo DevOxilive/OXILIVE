@@ -18,7 +18,7 @@ if (!isset($_SESSION['us'])) {
   </div>
   <div class="card-body">
     <div class="table-responsive-sm">
-      <table class="table border-dark table-hover" id="myTable" style="border: 1px solid black">
+      <table class="table border-dark table-hover" id="myTable" style="border: 2px solid black">
         <thead class="table-dark">
           <tr>
             <th scope="col">Num</th>

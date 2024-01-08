@@ -32,7 +32,7 @@ if (!isset($_SESSION['us'])) {
                     <div class="formulario__grupo" id="grupo__Nombres">
                         <label for="Nombres" class="formulario-label">Nombres</label>
                         <div class="formulario__grupo-input">
-                            <input type="text" class="formulario__input" name="Nombres" id="Nombres"
+                            <input type="text" class="form-control" name="Nombres" id="Nombres"
                                 placeholder="Ejem: David Francisco" >
                         </div>
                     </div>
@@ -42,7 +42,7 @@ if (!isset($_SESSION['us'])) {
                     <div class="formulario__grupo" id="grupo__Apellidos">
                         <label for="Apellidos" class="formulario-label">Apellidos</label>
                         <div class="formulario__grupo-input">
-                            <input type="text" class="formulario__input" name="Apellidos" id="Apellidos"
+                            <input type="text" class="form-control" name="Apellidos" id="Apellidos"
                                 placeholder="Ejem: Cordoba Lopez" >
                         </div>
                     </div>
@@ -52,7 +52,7 @@ if (!isset($_SESSION['us'])) {
                     <div class="formulario__grupo" id="grupo__Edad">
                         <label for="Edad" class="formulario-label">Edad</label>
                         <div class="formulario__grupo-input">
-                            <input type="text" class="formulario__input" name="Edad" id="Edad"
+                            <input type="text" class="form-control" name="Edad" id="Edad"
                                 placeholder="Ejem: 57" >
                         </div>
                     </div>
@@ -73,7 +73,7 @@ if (!isset($_SESSION['us'])) {
                     <div class="formulario__grupo" id="grupo__Fecha_nacimiento">
                         <label for="Fecha_nacimiento" class="formulario-label">Fecha de nacimiento</label>
                         <div class="formulario__grupo-input">
-                            <input type="date" class="formulario__input" name="Fecha_nacimiento" id="Fecha_nacimiento" >
+                            <input type="date" class="form-control" name="Fecha_nacimiento" id="Fecha_nacimiento" >
                         </div>
                     </div>
                 </div>
@@ -81,7 +81,7 @@ if (!isset($_SESSION['us'])) {
                     <div class="formulario__grupo" id="grupo__Telefono">
                         <label for="Telefono" class="formulario-label">Telefono</label>
                         <div class="formulario__grupo-input">
-                            <input type="text" class="formulario__input" name="Telefono" id="Telefono"
+                            <input type="text" class="form-control" name="Telefono" id="Telefono"
                                 placeholder="Ejem: 55 11223344" >
                         </div>
                     </div>
@@ -94,7 +94,7 @@ if (!isset($_SESSION['us'])) {
                     <div class="formulario__grupo" id="grupo__rfc">
                         <label for="rfc" class="formulario-label">RFC</label>
                         <div class="formulario__grupo-input">
-                            <input type="text" class="formulario__input" name="rfc" id="rfc" placeholder="Eje: EJEM123456" >
+                            <input type="text" class="form-control" name="rfc" id="rfc" placeholder="Eje: EJEM123456" >
                         </div>
                     </div>
                 </div>
@@ -142,7 +142,7 @@ if (!isset($_SESSION['us'])) {
                     </select>
                 </div>
                 <div class="contenido col-md-2">
-                    <label for="Banco" class="formulario__label">Banco</label>
+                    <label for="Banco" class="form-label">Banco</label>
                     <select id="Banco" name="Banco" class="form-select">
                     <option value="0" selected disabled>Elija una opcion</option>
                         <?php foreach ($lista_bancos as $ban) { ?>
@@ -155,7 +155,7 @@ if (!isset($_SESSION['us'])) {
                     <div class="formulario__grupo" id="grupo__No_cuenta">
                         <label for="No_cuenta" class="formulario-label">No. de cuenta</label>
                         <div class="formulario__grupo-input">
-                            <input type="text" class="formulario__input" name="No_cuenta" id="No_cuenta" placeholder="Eje: 1234567891" >
+                            <input type="text" class="form-control" name="No_cuenta" id="No_cuenta" placeholder="Eje: 1234567891" >
                         </div>
                     </div>
                 </div>

@@ -72,7 +72,7 @@ $pacienteData = $_GET['pacienteData'];
                     </div>
                     <div class="contenido col-md-3">
                         <label for="auEspecial" class="form-label">No. Autorizacion especial:</label>
-                        <input type="text" class="formulario__input" name="auEspecial" id="auEspecial"
+                        <input type="text" class="form-control" name="auEspecial" id="auEspecial"
                             placeholder="Eje: MDF12421" required>
                     </div>
                     <div class="contenido col-md-5">
@@ -131,7 +131,6 @@ $(document).ready(function() {
 
     var select = document.querySelector('#tipoServicio');
     select.addEventListener("change", function() {
-        console.log(select.value);
         if (select.value !== "") {
             $('#add-btn').prop('disabled', false);
         } else {
@@ -141,7 +140,6 @@ $(document).ready(function() {
     var newData = 1;
     $('#add-btn').click(function(e) {
         e.preventDefault();
-
         // Verifica si se ha alcanzado el límite
         if (newData < maxDivs) {
             var i = newData + 1;
@@ -168,7 +166,7 @@ $(document).ready(function() {
                 "<option value='' selected>Selecciona un servicio</option>" +
                 opcionesServicios +
                 "</select>";
-            var btnDel = '<a class="btn btn-info remove-lnk"' +
+            var btnDel = '<a class="btn btn-danger remove-lnk"' +
                 ' role="button"><i class="bi bi-trash-fill text-white"></i></a>';
 
             //Se asignan cada conjunto de elementos al div corresponiente

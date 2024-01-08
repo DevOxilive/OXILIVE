@@ -33,22 +33,22 @@ if (!isset($_SESSION['us'])) {
                                
                     <div class="contenido col-md-3">                       
                         <br>
-                        <label for="buscar_material_devolver" class="formulario__label">Material o recurso sacado</label>
+                        <label for="buscar_material_devolver" class="form-label">Material o recurso sacado</label>
                         <input type="text" value="<?php echo $row['nombre_matesali']; ?>" readonly class="form-control" name="buscar_material_devolver" id="buscar_material_devolver">
                     </div>
                     <div class="contenido col-md-2">
                         <br>
-                        <label for="cantidad_salida" class="formulario__label">Cantidad que se saco</label>
+                        <label for="cantidad_salida" class="form-label">Cantidad que se saco</label>
                         <input type="datatime-local" value="<?php echo $row['cantidad_salida']; ?>" readonly class="form-control" name="cantidad_salida" id="cantidad_salida">
                     </div>
                     <div class="contenido col-md-6">
                         <br>
-                        <label for="pide_salida" class="formulario__label">Persona que lo solicito</label>
+                        <label for="pide_salida" class="form-label">Persona que lo solicito</label>
                         <input type="datatime-local" value="<?php echo $row['pide_salida']; ?>" readonly class="form-control" name="pide_salida" id="pide_salida">
                     </div>
                     <div class="contenido col-md-3">
                         <div class="formulario__grupo" id="grupo__recibe_entrada">
-                            <label for="recibe_entrada" class="formulario__label">¿Quien recibe la devolución?</label>
+                            <label for="recibe_entrada" class="form-label">¿Quien recibe la devolución?</label>
                             <select id="recibe_entrada" name="recibe_entrada" class="form-select">
                                 <option value="0" selected disabled>Elija una opcion</option>
                                 <?php foreach ($lista_empleados as $entrega) { ?>
@@ -60,7 +60,7 @@ if (!isset($_SESSION['us'])) {
                     </div>
                     <div class="contenido col-md-3">
                         <div class="formulario__grupo" id="grupo__pide_entrada">
-                            <label for="pide_entrada" class="formulario__label">¿Quien lo devuelve??</label>
+                            <label for="pide_entrada" class="form-label">¿Quien lo devuelve??</label>
                             <select id="pide_entrada" name="pide_entrada" class="form-select">
                                 <option value="0" selected disabled>Elija una opcion</option>
                                 <?php foreach ($lista_empleados as $recibe) { ?>
@@ -72,17 +72,17 @@ if (!isset($_SESSION['us'])) {
                     </div>
                     <div class="contenido col-md-2">
                         <div class="formulario__grupo" id="grupo__cantidad_entrada">
-                            <label for="cantidad_entrada" class="formulario__label">Cantidad que devuelve</label>
+                            <label for="cantidad_entrada" class="form-label">Cantidad que devuelve</label>
                             <div class="formulario__grupo-input">
-                                <input type="number" class="formulario__input" name="cantidad_entrada" id="cantidad_entrada" placeholder="Eje: 2">
+                                <input type="number" class="form-control" name="cantidad_entrada" id="cantidad_entrada" placeholder="Eje: 2">
                             </div>
                         </div>
                     </div>
                     <div class="contenido col-md-5">
                         <div class="formulario__grupo" id="grupo__observacionesentra">
-                            <label for="observacionesentra" class="formulario__label">Nuevas observaciones del material y/o producto</label>
+                            <label for="observacionesentra" class="form-label">Nuevas observaciones del material y/o producto</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="observacionesentra" id="observacionesentra" placeholder="Eje: 2">
+                                <input type="text" class="form-control" name="observacionesentra" id="observacionesentra" placeholder="Eje: 2">
                             </div>
                         </div>
                     </div>

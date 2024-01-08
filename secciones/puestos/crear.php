@@ -27,7 +27,7 @@ if (!isset($_SESSION['us'])) {
                     <div class="formulario__grupo" id="grupo__Nombredelpuestos">
                         <label for="Nombredelpuestos" class="formulario-label">Nombre Puesto</label>
                         <div class="formulario__grupo-input">
-                            <input type="text" class="formulario__input" name="Nombredelpuestos" id="Nombredelpuestos"
+                            <input type="text" class="form-control" name="Nombredelpuestos" id="Nombredelpuestos"
                                 placeholder="Nombre del puesto">
                         </div>
                     </div>

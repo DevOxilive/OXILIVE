@@ -52,7 +52,7 @@ switch ($_SESSION['puesto']) {
         break;
     //Médico
     case 12:
-        header('Location: secciones/call_center/index.php');
+        header('Location: secciones/call_center/user/index.php');
         break;
     default:
         header('Location: login.php');

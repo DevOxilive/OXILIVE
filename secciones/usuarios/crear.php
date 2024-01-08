@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 if (!isset($_SESSION['us'])) {
   header('Location: ../../login.php');
@@ -9,7 +8,7 @@ if (!isset($_SESSION['us'])) {
   include("../../secciones/puestos/consulta.php");
   include("../../module/genero.php");
   include("../../module/estado.php");
-  include("../../secciones/usuarios/usuariosADD.php");
+  include("usuariosADD.php");
 } else {
   echo "Error en el sistema";
 }

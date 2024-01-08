@@ -1,7 +1,7 @@
 <?php
-include("../../connection/conexion.php");
 include("../../connection/url.php");
 include("../../templates/hea.php");
+include("../../connection/conexion.php");
 include("../../ctrlArchivos/control/Archivero.php");
 $archivero = new Archivero();
 // comprobacion de envio de valores por metodo post.
@@ -44,8 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombres = strtoupper($nombres);
     $apellidos = strtoupper($apellidos);
     //comprobar errores de creacion de la carpeta del usuario nuevo.
-    $carpetaNueva = "OXILIVE/" . $apellidos . " " . $nombres;
-    $solicitud1 = $archivero->crearCarpeta("OXILIVE/", $apellidos . " " . $nombres);
+    $carpetaNueva = "OXILIVE/" . $apellidos . " " . $nombres . " " . $usuario;
+    $solicitud1 = $archivero->crearCarpeta("OXILIVE/", $apellidos . " " . $nombres . " " . $usuario);
     echo $solicitud1;
     if ($solicitud1 === true) {
         // comprobacion de contenido del archivo.

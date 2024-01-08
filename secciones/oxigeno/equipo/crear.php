@@ -27,7 +27,7 @@ if (!isset($_SESSION['us'])) {
             <div class="card-body" style="border: 2px solid #BFE5FF;">
                 <form action="./tanquesADD.php" method="POST" class="formLogin row g-3" id="formulario"> 
                 <div class="contenido col-md-2"><br>
-                        <label for="marca" class="formulario__label">Marca del equipo</label>
+                        <label for="marca" class="form-label">Marca del equipo</label>
                         <select id="marca" name="marca" class="form-select">
                         <option value="0" selected disabled>Elija una opcion</option>
                             <?php foreach ($lista_marca as $mar) { ?>
@@ -37,7 +37,7 @@ if (!isset($_SESSION['us'])) {
                         </select>
                     </div>
                     <div class="contenido col-md-2"><br>
-                        <label for="estado_tanque" class="formulario__label">Estado del equipo</label>
+                        <label for="estado_tanque" class="form-label">Estado del equipo</label>
                         <select id="estado_tanque" name="estado_tanque" class="form-select">
                         <option value="0" selected disabled>Elija una opcion</option>
                             <?php foreach ($lista_estado as $esta) { ?>
@@ -47,7 +47,7 @@ if (!isset($_SESSION['us'])) {
                         </select>
                     </div>
                     <div class="contenido col-md-2"><br>
-                        <label for="tamano" class="formulario__label">Tamaño del equipo</label>
+                        <label for="tamano" class="form-label">Tamaño del equipo</label>
                         <select id="tamano" name="tamano" class="form-select">
                         <option value="0" selected disabled>Elija una opcion</option>
                             <?php foreach ($lista_tama as $tama) { ?>
@@ -58,9 +58,9 @@ if (!isset($_SESSION['us'])) {
                     </div>
                     <div class="contenido col-md-2">
                         <div class="formulario__grupo" id="grupo__cantidad"> <br>
-                            <label for="cantidad" class="formulario__label">Cantidad de equipo</label>
+                            <label for="cantidad" class="form-label">Cantidad de equipo</label>
                             <div class="formulario__grupo-input">
-                                <input type="number" class="formulario__input" name="cantidad" id="cantidad" required>
+                                <input type="number" class="form-control" name="cantidad" id="cantidad" required>
                             </div>
                         </div>
                     </div>

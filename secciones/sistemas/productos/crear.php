@@ -26,54 +26,54 @@ if (!isset($_SESSION['us'])) {
                     class="formLogin row g-3 formcrear">
                     <div class="contenido col-md-6"> <br>
                         <div class="formulario__grupo" id="grupo__nombre">
-                            <label for="nombre" class="formulario__label">Nombre del producto</label>
+                            <label for="nombre" class="form-label">Nombre del producto</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="nombre"
+                                <input type="text" class="form-control" name="nombre"
                                     id="nombre" placeholder="Eje: AirFit N20">
                             </div>
                         </div>
                     </div>
                     <div class="contenido col-md-6"> <br>
                         <div class="formulario__grupo" id="grupo__descripcion">
-                            <label for="descripcion" class="formulario__label">Descripcion del producto</label>
+                            <label for="descripcion" class="form-label">Descripcion del producto</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="descripcion"
+                                <input type="text" class="form-control" name="descripcion"
                                     id="descripcion" placeholder="Eje: Aparato concentrador de oxígeno">
                             </div>
                         </div>
                     </div>
                     <div class="contenido col-md-2"> 
                         <div class="formulario__grupo" id="grupo__precio">
-                            <label for="precio" class="formulario__label">Precio del producto</label>
+                            <label for="precio" class="form-label">Precio del producto</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="precio"
+                                <input type="text" class="form-control" name="precio"
                                     id="precio" placeholder="Eje: $3449:00" min="1">
                             </div>
                         </div>
                     </div>
                     <div class="contenido col-md-2">
                         <div class="formulario__grupo" id="grupo__cantidad">
-                            <label for="cantidad" class="formulario__label">Cantidades en stock</label>
+                            <label for="cantidad" class="form-label">Cantidades en stock</label>
                             <div class="formulario__grupo-input">
-                                <input type="number" class="formulario__input" name="cantidad"
+                                <input type="number" class="form-control" name="cantidad"
                                     id="cantidad" placeholder="Eje: 2" min="0">
                             </div>
                         </div>
                     </div>  
                     <div class="contenido col-md-4"> 
                         <div class="formulario__grupo" id="grupo__imagen">
-                            <label for="imagen" class="formulario__label">Imagen</label>
+                            <label for="imagen" class="form-label">Imagen</label>
                             <div class="formulario__grupo-input">
-                                <input type="file" class="formulario__input" name="imagen"
+                                <input type="file" class="form-control" name="imagen"
                                     id="imagen">
                             </div>
                         </div>
                     </div>
                     <div class="contenido col-md-4"> 
                         <div class="formulario__grupo" id="grupo__disponible">
-                            <label for="disponible" class="formulario__label">¿Esta Disponibe?</label>
+                            <label for="disponible" class="form-label">¿Esta Disponibe?</label>
                             <div class="formulario__grupo-input">
-                                <input type="text" class="formulario__input" name="disponible"
+                                <input type="text" class="form-control" name="disponible"
                                     id="disponible" placeholder="Eje: Disponible/Agotado">
                             </div>
                         </div>
