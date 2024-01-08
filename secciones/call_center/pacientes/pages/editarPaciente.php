@@ -31,7 +31,7 @@ if (!isset($_SESSION['us'])) {
 <head>
     <link rel="stylesheet" href="../../../../assets/css/foto_perfil.css">
     <link rel="stylesheet" href="../../../../assets/css/edit.css">
-    <link rel="stylesheet" href="../css/btn.css">
+    <link rel="stylesheet" href="../css/btn2.css">
 </head>
 <main id="main" class="main">
     <section class="section dashboard">
@@ -87,13 +87,13 @@ if (!isset($_SESSION['us'])) {
                         <div class="contenido col-md-1" <?php echo ($pac['telefonoDos'] != '' ? 'style="display: none;"' : 'style="display: flex;"'); ?> id="add">
                             <span class="badge bg-primary fs-4" id="addBoton">+</span>
                         </div>
+
                         <div class="contenido col-md-3" <?php echo ($pac['telefonoDos'] != '' ? 'style="display: block;"' : 'style="display: none;"'); ?> id="tel">
                             <label for="telDos" class="form-label">Teléfono 2:</label>
-                            <input type="text" maxlength="10" class="form-control" name="telDos" id="telDos" placeholder="Ingresa un número de teléfono" value="<?php echo $pac['telefonoDos']; ?>">
+                            <input type="text" maxlength="10" class="form-control" name="telDos" id="telDos" placeholder="Ingresa un número de teléfono" value="<?php echo $pac['telefonoDos']; ?>">    
                             <span class="badge bg-danger border border-light rounded-circle" id="delBoton">X</span>
                             <p id="errTelDos" style="color:red; font-weight:bold;"></p>
                         </div>
-
                         <!-- Apartado del registro para domicilio -->
                         <div class="contenido col-md-12">
                             <hr>

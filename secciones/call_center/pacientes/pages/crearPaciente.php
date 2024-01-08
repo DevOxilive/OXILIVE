@@ -160,7 +160,7 @@ if (!isset($_SESSION['us'])) {
                     </div>
                     <div class="contenido col-md-4">
                         <label for="banco" class="form-label">Banco:</label>
-                        <select name="banco" id="banco" class="form-select">
+                        <select  name="banco" id="banco" class="form-select">
                             <option value="" selected>Selecciona el banco</option>
                             <?php foreach ($lista_bancos as $bancos) { ?>
                             <option value="<?php echo $bancos['id_bancos']; ?>"><?php echo $bancos['Nombre_banco']; ?>
@@ -171,7 +171,7 @@ if (!isset($_SESSION['us'])) {
 
                     <div class="contenido col-md-4">
                         <label for="administradora" class="form-label">Administradora</label>
-                        <input type="text" id="administradora" name="administradora" class="form-control"
+                        <input disabled type="text" id="administradora" name="administradora" class="form-control"
                             placeholder="Eliga el banco" readonly>
                     </div>
                     <div class="contenido col-md-3">

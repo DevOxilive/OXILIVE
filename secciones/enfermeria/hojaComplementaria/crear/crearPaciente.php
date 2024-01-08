@@ -154,9 +154,9 @@ if (!isset($_SESSION['us'])) {
                     <div class="contenido col-md-3">
                         <label for="banco" class="form-label">Banco:</label>
                         <select name="banco" id="banco" class="form-select">
-                            <option value="" selected>Selecciona el banco</option>
+                            <option  value="" selected>Selecciona el banco</option>
                             <?php foreach ($lista_bancos as $bancos) { ?>
-                            <option value="<?php echo $bancos['id_bancos']; ?>"><?php echo $bancos['Nombre_banco']; ?>
+                            <option  value="<?php echo $bancos['id_bancos']; ?> "><?php echo $bancos['Nombre_banco'];  ?>
                             </option>
                             <?php } ?>
                         </select>
@@ -165,7 +165,7 @@ if (!isset($_SESSION['us'])) {
                     <div class="contenido col-md-3">
                         <label for="administradora" class="form-label">Administradora</label>
                         <input type="text" id="administradora" name="administradora" class="form-control"
-                            placeholder="Eliga el banco" readonly>
+                            placeholder="Eliga el banco" readonly disabled>
                     </div>
 
 
