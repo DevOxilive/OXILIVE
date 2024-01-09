@@ -13,9 +13,7 @@ var nombre = document.getElementById("nombre"),
   calleUno = document.getElementById("calleUno"),
   calleDos = document.getElementById("calleDos"),
   ref = document.getElementById("referencias"),
-  exp = document.getElementById("expediente"),
-  autGen = document.getElementById("autorizacionGen"),
-  autEsp = document.getElementById("autorizacionEsp");
+  exp = document.getElementById("expediente");
 var errTelUno = document.getElementById("errTelUno"),
   errTelDos = document.getElementById("errTelDos");
 var form = document.getElementById("formulario");
@@ -25,11 +23,13 @@ var formArray = [
   nombre,
   apellidos,
   edad,
-  edad,
   genero,
+  tipoPac,
   telUno,
   calle,
-  numExt
+  numExt,
+  exp,
+  banco,
 ];
 
 nombre.addEventListener("input", function () {
@@ -93,9 +93,11 @@ numInt.addEventListener("input", function () {
 });
 
 form.addEventListener("submit", function (event) {
-  var idPac = document.getElementById("idPac");
   event.preventDefault();
+  var idPac = document.getElementById("idPac");
+
   if (valNum(telUno) & valNum(telDos)) {
+    console.log(formArray);
     if (validar(formArray)) {
       var formData = {
         nombres: nombre.value,
@@ -110,31 +112,38 @@ form.addEventListener("submit", function (event) {
         calle: calle.value,
         numExt: numExt.value,
         numInt: numInt.value,
+        calleUno: calleUno.value,
+        calleDos: calleDos.value,
         referencias: ref.value,
+
+        banco: banco.value,
+        expediente: exp.value,
 
         idPac: idPac.value,
       };
-      
-      if(idPac.value == 0){
-      fetch("../model/nuevoPaciente.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      })
-        .then((response) => response.json())
-        .then((resultado) => {
-          if (resultado == true) {
-            Swal.fire({
-              title: "Registrado",
-              text: "Registro realizado correctamente",
-              icon: "success",
-              showConfirmButton: false,
-              timer: 1500,
-            }).then(function () {
-              window.location.replace("../index.php");
-            });
-          }
-        });
+
+      if (idPac.value == 0) {
+        fetch("../model/nuevoPaciente.php", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        })
+          .then((response) => response.json())
+          .then((resultado) => {
+            if (resultado == true) {
+              Swal.fire({
+                title: "Registrado",
+                text: "Registro realizado correctamente",
+                icon: "success",
+                showConfirmButton: false,
+                timer: 1500,
+              }).then(function () {
+                window.location.replace("../index.php");
+              });
+            } else {
+              //Por agregar una alerta de llama a soporte
+            }
+          });
       } else {
         fetch("../model/editarPaciente.php", {
           method: "POST",
@@ -143,7 +152,6 @@ form.addEventListener("submit", function (event) {
         })
           .then((response) => response.json())
           .then((resultado) => {
-  
             if (resultado == true) {
               Swal.fire({
                 title: "Actualizado",
@@ -167,7 +175,7 @@ form.addEventListener("submit", function (event) {
       });
     }
   } else {
-    window.location.href="#nombre";
+    window.location.href = "#nombre";
   }
   reload();
   setInterval(reload, 1000);

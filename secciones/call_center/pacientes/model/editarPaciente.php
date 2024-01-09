@@ -50,7 +50,7 @@
     calleDos = :calleDos,
     referencias = :ref,
     bancosAdmi = :banco,
-    no_expediente = :expediente
+    No_nomina = :expediente
     WHERE id_pacientes = :idPac;
     ');
     $sentencia->bindparam(':nom', $nom);
