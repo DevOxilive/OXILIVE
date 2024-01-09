@@ -10,13 +10,6 @@ if (!isset($_SESSION['us'])) {
 } else {
     echo "Error en el sistema";
 }
-4
-
-
-
-
-
-
 
 ?>
 <main id="main" class="main">
