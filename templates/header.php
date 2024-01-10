@@ -1,9 +1,9 @@
 <?php
 $url_base = "http://localhost:8080/OXILIVE/";
-include_once ('C:\laragon\www\OXILIVE\connection/conexion.php');
-include_once ('C:\laragon\www\OXILIVE\module/puestos.php');
-include_once ('C:\laragon\www\OXILIVE\module/foto.php');
-include_once ('C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php');
+include_once('C:\laragon\www\OXILIVE\connection/conexion.php');
+include_once('C:\laragon\www\OXILIVE\module/puestos.php');
+include_once('C:\laragon\www\OXILIVE\module/foto.php');
+include_once('C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php');
 // $url_base = "https://swoe.oxilive.com.mx/";
 // include_once ($url_base . 'connection/conexion.php');
 // include_once ($url_base . 'module/puestos.php');
@@ -118,64 +118,64 @@ include_once ('C:\laragon\www\OXILIVE\secciones/notificaciones/consulta.php');
             <!--Administradora General-->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/administradora/index.php">
-                <i class="bi bi-person-workspace"></i>
+                    <i class="bi bi-person-workspace"></i>
                     <span>Administradora</span>
                 </a>
             </li>
             <!--Bancos General-->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/bancos/index.php">
-                <i class="bi bi-bank2"></i>
+                    <i class="bi bi-bank2"></i>
                     <span>Banco</span>
                 </a>
             </li>
-            
+
             <?php switch ($_SESSION['puesto']) {
-                //Administrador
+                    //Administrador
                 case 1:
                     include("navbar-items/admin.php");
-                break;
-                //Administradora POR CHECAR
+                    break;
+                    //Administradora POR CHECAR
                 case 2:
-                break;
-                //Sistemas
+                    break;
+                    //Sistemas
                 case 3:
                     include("navbar-items/sistemas.php");
-                break;
-                //Oxígeno
+                    break;
+                    //Oxígeno
                 case 4:
                     include("navbar-items/oxigeno.php");
-                break;
-                //Call Center
+                    break;
+                    //Call Center
                 case 5:
                     include("navbar-items/call-center.php");
-                break;
-                //Enfermeria
+                    break;
+                    //Enfermeria
                 case 6:
                     include("navbar-items/enfermeria.php");
-                break;
-                //Capital Humano
+                    break;
+                    //Capital Humano
                 case 7:
                     include("navbar-items/capital-humano.php");
-                break;
-                //Almacén
+                    break;
+                    //Almacén
                 case 8:
                     include("navbar-items/almacen.php");
-                break;
-                //Chofer
+                    break;
+                    //Chofer
                 case 9:
-                break;
-                //Cliente POR CHECAR
+                    break;
+                    //Cliente POR CHECAR
                 case 10:
-                break;
-                //Enfermero
+                    break;
+                    //Enfermero
                 case 11:
                     include("navbar-items/enfermero.php");
-                break;
-                //Médico
+                    break;
+                    //Médico
                 case 12:
                     include("navbar-items/medico.php");
-                break;
+                    break;
             } ?>
             <!--?if ($_SESSION['puesto'] === 2) { ?>
                 <li class="nav-item">
