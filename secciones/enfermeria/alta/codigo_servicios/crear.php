@@ -88,7 +88,7 @@ if (!isset($_SESSION['us'])) {
         document.querySelector('.formLogin').addEventListener('submit', function(event) {
             event.preventDefault();
 
-            var administradora = document.getElementsByClassName('form-control');
+            // var administradora = document.getElementsByClassName('form-control');
             var numCampos = document.querySelectorAll('.form-row').length;
             var camposIncompletos = false;
             var campos = document.querySelectorAll('.form-row input');
