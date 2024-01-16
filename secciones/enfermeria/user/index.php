@@ -38,7 +38,7 @@ if (!isset($_SESSION['us'])) {
                 <div class="row">
                     <!-- Card Proximo Servicio -->
                     <div class="col-12">
-                        <div class="card info-card next-service-card" id="service-card">
+                        <div class="card next-service-card" id="service-card">
                             <div class="card-body">
                                 <h5 class="card-title">Próximo servicio</h5>
                                 <?php if (!empty($lista_servicios)) { ?>
@@ -71,6 +71,56 @@ if (!isset($_SESSION['us'])) {
                             </div>
                         </div>
                     </div>
+                    <!-- Horarios del usuario -->
+                    <div class="col-12">
+                        <div class="card schedule-card" id="schedule-card">
+                            <!-- Filtro -->
+                            <div class="filter">
+                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                    <li class="dropdown-header text-start">
+                                        <h6>Filtro</h6>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Semana</a></li>
+                                    <li><a class="dropdown-item" href="#">Quincena</a></li>
+                                    <li><a class="dropdown-item" href="#">Mes</a></li>
+                                </ul>
+                            </div>
+                            <!-- End Filtro -->
+                            <div class="card-body ">
+                                <h5 class="card-title">Horarios <span>| </span><span id="range-schedule">Semana</span></h5>
+                                <div class="d-flex align-items-center">
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-emoji-astonished"></i>
+                                    </div>
+                                    <div class="ps-4">
+                                        <h6>¡No tienes horarios asignados!</h6>
+                                        <span class="text-muted small pt-2 ps-1">Espere a ser asignado</span>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Paciente</th>
+                                                <th>Horario</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Panfilo Pancrasio de la Sierra</td>
+                                                <td>07:00:00 - 12:00:00</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="row">
                     <!-- Card Actividad reciente -->
                     <div class="col-12">
                         <div class="card">
@@ -90,28 +140,6 @@ if (!isset($_SESSION['us'])) {
                                     Actividad Reciente <span>| </span><span id="range-activity">Hoy</span>
                                 </h5>
                                 <div class="activity" id="activity"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Horarios del usuario -->
-                    <div class="col-12">
-                        <div class="card info-card customers-card">
-                            <!-- Filtro -->
-                            <div class="filter">
-                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                    <li class="dropdown-header text-start">
-                                        <h6>Filter</h6>
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">Today</a></li>
-                                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                                </ul>
-                            </div>
-                            <!-- End Filtro -->
-                            <div class="card-body">
-                                <h5 class="card-title">Horarios <span>| </span><span id="range-schedule">Semana</span></h5>
-
                             </div>
                         </div>
                     </div>

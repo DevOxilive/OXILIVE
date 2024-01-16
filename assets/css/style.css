@@ -794,6 +794,14 @@ h6 {
 /*--------------------------------------------------------------
 # Dashboard
 --------------------------------------------------------------*/
+
+.dashboard h6 {
+  color: #012970;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+}
+
 /* Filter dropdown */
 .dashboard .filter {
   position: absolute;
@@ -832,30 +840,7 @@ h6 {
   padding: 8px 15px;
 }
 
-/* Info Cards */
-.dashboard .next-service-card {
-  padding-bottom: 10px;
-}
-
-.dashboard .next-service-card h6 {
-  font-size: 28px;
-  color: #012970;
-  font-weight: 700;
-  margin: 0;
-  padding: 0;
-}
-
-.dashboard .finish-service-card {
-  padding-bottom: 10px;
-}
-
-.dashboard .finish-service-card h6 {
-  font-size: 28px;
-  color: #012970;
-  font-weight: 700;
-  margin: 0;
-  padding: 0;
-}
+/* Cards */
 
 .dashboard .card-icon {
   font-size: 32px;
@@ -866,15 +851,31 @@ h6 {
   flex-grow: 0;
 }
 
+/* Service Cards */
+
+.dashboard .next-service-card h6,
+.dashboard .finish-service-card h6{
+  font-size: 28px;
+}
+
+/* Next Service Card */
+
+.dashboard .next-service-card {
+  padding-bottom: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #198754;
+}
+
 .dashboard .next-service-card .card-icon {
   color: #198754;
   background: #e1f5e9;
 }
 
-.dashboard .next-service-card {
-  border-width: 1px;
-  border-style: solid;
-  border-color: #198754;
+/* Finish Service Card */
+
+.dashboard .finish-service-card {
+  padding-bottom: 10px;
 }
 
 .dashboard .finish-service-card .card-icon {
@@ -889,9 +890,15 @@ h6 {
   box-shadow: 0.2em 0.2em 1em rgba(0, 0, 0, 0.2);
 }
 
-.dashboard .revenue-card .card-icon {
-  color: #2eca6a;
-  background: #e0f8e9;
+/* Schedule Card */
+
+.dashboard .schedule-card h6 {
+  font-size: 20px;
+}
+
+.dashboard .schedule-card .card-icon {
+  color: #000000;
+  background: #ebebeb;
 }
 
 .dashboard .customers-card .card-icon {
@@ -900,6 +907,7 @@ h6 {
 }
 
 /* Activity */
+
 .dashboard .activity {
   font-size: 14px;
 }
@@ -947,6 +955,7 @@ h6 {
 }
 
 /* News & Updates */
+
 .dashboard .news .post-item+.post-item {
   margin-top: 15px;
 }
@@ -980,6 +989,7 @@ h6 {
 }
 
 /* Recent Sales */
+
 .dashboard .recent-sales {
   font-size: 14px;
 }
