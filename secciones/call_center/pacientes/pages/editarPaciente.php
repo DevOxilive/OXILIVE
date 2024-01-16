@@ -90,7 +90,7 @@ if (!isset($_SESSION['us'])) {
 
                         <div class="contenido col-md-3" <?php echo ($pac['telefonoDos'] != '' ? 'style="display: block;"' : 'style="display: none;"'); ?> id="tel">
                             <label for="telDos" class="form-label">Teléfono 2:</label>
-                            <input type="text" maxlength="10" class="form-control" name="telDos" id="telDos" placeholder="Ingresa un número de teléfono" value="<?php echo $pac['telefonoDos']; ?>">    
+                            <input type="text" maxlength="10" class="form-control" name="telDos" id="telDos" placeholder="Ingresa un número de teléfono" value="<?php echo $pac['telefonoDos']; ?>">
                             <span class="badge bg-danger border border-light rounded-circle" id="delBoton">X</span>
                             <p id="errTelDos" style="color:red; font-weight:bold;"></p>
                         </div>
@@ -133,7 +133,7 @@ if (!isset($_SESSION['us'])) {
                             <select name="estadoDir" id="estadoDir" class="form-select" disabled>
                                 <option value="">Selecciona un Código Postal</option>
                             </select>
-                        </div>          
+                        </div>
                         <div class="contenido col-md-4">
                             <label for="calleUno" class="form-label">Entre la calle:</label>
                             <input type="text" class="form-control" name="calleUno" id="calleUno" placeholder="Ingresa la primera calle" value="<?php echo $pac['calleUno']; ?>">
@@ -149,36 +149,24 @@ if (!isset($_SESSION['us'])) {
 
                         <!-- Datos de la aseguradora -->
                         <div class="contenido col-md-5">
-                        <label for="banco" class="form-label">Banco:</label>
-                        <select name="banco" id="banco" class="form-select">
-                            <?php foreach ($lista_bancos as $registro) { ?>
-                            <option <?php echo ($pac['bancosAdmi'] == $registro['id_bancos']) ? "selected" : ""; ?>
-                                value="<?php echo $registro['id_bancos']; ?>">
-                                <?php echo $registro['Nombre_banco']; ?>
-                            </option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                    <div class="contenido col-md-3">
-                        <label for="administradora" class="form-label">Administradora</label>
-                        <input type="text" disabled value="<?php echo $pac['Nombre_administradora']?>" id="administradora" name="administradora" class="form-control" 				placeholder="Eliga el banco" readonly>
-                    </div>
+                            <label for="banco" class="form-label">Banco:</label>
+                            <select name="banco" id="banco" class="form-select">
+                                <?php foreach ($lista_bancos as $registro) { ?>
+                                    <option <?php echo ($pac['bancosAdmi'] == $registro['id_bancos']) ? "selected" : ""; ?> value="<?php echo $registro['id_bancos']; ?>">
+                                        <?php echo $registro['Nombre_banco']; ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="contenido col-md-3">
+                            <label for="administradora" class="form-label">Administradora</label>
+                            <input type="text" disabled value="<?php echo $pac['Nombre_administradora'] ?>" id="administradora" name="administradora" class="form-control" placeholder="Eliga el banco" readonly>
+                        </div>
                         <div class="contenido col-md-3">
                             <label for="expediente" class="form-label">N° de Expediente:</label>
-                            <input type="text" value="<?php echo $pac['no_expediente'] ?>" class="form-control" name="expediente" id="expediente"
-                                placeholder="Ingresa el N° de expediente">
+                            <input type="text" value="<?php echo $pac['No_nomina'] ?>" class="form-control" name="expediente" id="expediente" placeholder="Ingresa el N° de expediente">
                         </div>
 
-                        <div class="contenido col-md-4" style="display: none;">
-                            <label for="autorizacionGen" class="form-label">N° de Autorización General:</label>
-                            <input type="text" class="form-control" name="autorizacionGen" id="autorizacionGen" placeholder="Ingresa el N° de autorización">
-                        </div>
-                        <div class="contenido col-md-4" style="display: none;">
-                            <label for="autorizacionEsp" class="form-label">N° de Autorización Especial:</label>
-                            <input type="text" class="form-control" name="autorizacionEsp" id="autorizacionEsp" placeholder="Ingresa el N° de autorización">
-                        </div>
-                       
-                        
                         <!-- Botones para el formulario -->
                         <div class="col-12">
                             <br>
@@ -231,32 +219,31 @@ if (!isset($_SESSION['us'])) {
     }
 </script>
 <script>
-const bancos = document.querySelector('#banco');
-const administradoraInput = document.querySelector('#administradora');
-bancos.addEventListener('change', () => {
-    const selectedOption = banco.options[banco.selectedIndex];
-    const bancoId = selectedOption.value;
-    const op = new XMLHttpRequest();
-    op.open('GET', `../model/consultaAdmi.php?banco_id=${bancoId}`, true);
-    //Mi prueba de manejo de respuesta
-    op.onload = () => {
-        if (op.status === 200) {
-            const data = JSON.parse(op.responseText);
-            administradoraInput.value = data.Nombre_administradora;
-        } else {
-            console.error('Error al obtener la administradora..:( ', op.statusText);
+    const bancos = document.querySelector('#banco');
+    const administradoraInput = document.querySelector('#administradora');
+    bancos.addEventListener('change', () => {
+        const selectedOption = banco.options[banco.selectedIndex];
+        const bancoId = selectedOption.value;
+        const op = new XMLHttpRequest();
+        op.open('GET', `../model/consultaAdmi.php?banco_id=${bancoId}`, true);
+        //Mi prueba de manejo de respuesta
+        op.onload = () => {
+            if (op.status === 200) {
+                const data = JSON.parse(op.responseText);
+                administradoraInput.value = data.Nombre_administradora;
+            } else {
+                console.error('Error al obtener la administradora..:( ', op.statusText);
+            }
+        };
+        //Errores de conexion
+        op.onerror = () => {
+            console.error('Error de conexion al servidor..:(');
         }
-    };
-    //Errores de conexion
-    op.onerror = () => {
-        console.error('Error de conexion al servidor..:(');
-    }
-    op.send();
-});
-
+        op.send();
+    });
 </script>
 <script src="../js/botonTel.js"></script>
-<script src="../js/validacionEditar.js"></script>
+<script src="../js/validacion.js"></script>
 <script src="../js/formButtons.js"></script>
 <script src="../js/domicilio.js"></script>
 
