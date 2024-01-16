@@ -7,8 +7,8 @@ if (!isset($_SESSION['us'])) {
     include("../../../connection/conexion.php");
     include("../../../secciones/puestos/consulta.php");
     include("../../../secciones/usuarios/consulta.php");
-    include("../../../module/genero.php");
-    include("../../../module/estado.php");
+    include("../../../model/genero.php");
+    include("../../../model/estado.php");
     include("enfermeroUP.php");
 } else {
     echo "Error en el sistema";

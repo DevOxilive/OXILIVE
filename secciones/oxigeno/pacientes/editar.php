@@ -5,10 +5,10 @@ if (!isset($_SESSION['us'])) {
 } elseif (isset($_SESSION['us'])) {
     include("../../../templates/header.php");
     include("../../../connection/conexion.php");
-    include("../../../module/genero.php");
-    include("../../../module/banco.php");
-    include("../../../module/aseguradora.php");
-    include("../../../module/administradora.php");
+    include("../../../model/genero.php");
+    include("../../../model/banco.php");
+    include("../../../model/aseguradora.php");
+    include("../../../model/administradora.php");
     include("../../oxigeno/pacientes/pacientesUP.php");
 } else {
     echo "Error en el sistema";

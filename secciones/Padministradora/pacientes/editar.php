@@ -5,10 +5,10 @@ if (!isset($_SESSION['us']) || $_SESSION['puesto'] != 2) {
 } elseif (isset($_SESSION['us']) && $_SESSION['puesto'] == 2) {
     include("../../../templates/header.php");
     include("../../../connection/conexion.php");
-    include("../../../module/genero.php");
-    include("../../../module/banco.php");
-    include("../../../module/aseguradora.php");
-    include("../../../module/administradora.php");
+    include("../../../model/genero.php");
+    include("../../../model/banco.php");
+    include("../../../model/aseguradora.php");
+    include("../../../model/administradora.php");
     include_once './pacientesUP.php';
 } else {
     echo "Error en el sistema";

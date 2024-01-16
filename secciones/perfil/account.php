@@ -3,9 +3,9 @@ session_start();
 if (!isset($_SESSION['us'])) {
     header('Location: ../../login.php');
 } elseif (isset($_SESSION['us'])) {
-    include("../../module/puestos.php");
+    include("../../model/puestos.php");
     include("../../templates/header.php");
-    include("../../module/sesiones.php");
+    include("../../model/sesiones.php");
 } else {
     echo "Error en el sistema";
 }

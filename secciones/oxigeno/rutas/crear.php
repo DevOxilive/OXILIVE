@@ -9,7 +9,7 @@ if (!isset($_SESSION['us'])) {
     include("../carros/consulta.php");
     include("../choferes/consulta.php");
     include("./consulta_estado_entrega.php");
-    include("../../../module/aseguradora.php");
+    include("../../../model/aseguradora.php");
     include_once './buscarsubmit.php';
 } else {
     echo "Error en el sistema";

@@ -5,7 +5,7 @@ if (!isset($_SESSION['us'])) {
 } elseif (isset($_SESSION['us'])) {
     include("../../../templates/header.php");
     include("../../../connection/conexion.php");
-    include("../../../module/pacientesCallCenter.php");
+    include("../../../model/pacientesCallCenter.php");
 } else {
     echo "Error en el sistema";
 }

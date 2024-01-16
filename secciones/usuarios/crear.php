@@ -6,8 +6,8 @@ if (!isset($_SESSION['us'])) {
   include("../../templates/header.php");
   include("../../connection/conexion.php");
   include("../../secciones/puestos/consulta.php");
-  include("../../module/genero.php");
-  include("../../module/estado.php");
+  include("../../model/genero.php");
+  include("../../model/estado.php");
   include("usuariosADD.php");
 } else {
   echo "Error en el sistema";
