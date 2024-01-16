@@ -7,29 +7,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $vPassword = $_POST["txtPass"];
 
     if (!empty($vUsuario) && !empty($vPassword)) {
-        $consu = "SELECT * FROM usuarios WHERE Usuario = :vUsuario AND Estado != 2";
+        $consu = "SELECT * FROM usuarios u, empleados e WHERE e.usuarioSistema = u.id_usuarios AND u.usuario = :vUsuario AND u.estadoUsuarios != 2";
         $stmt = $con->prepare($consu);
         $stmt->bindParam(":vUsuario", $vUsuario);
         $stmt->execute();
         $datos = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $incremento = "UPDATE usuarios SET inicios_sesion = inicios_sesion + 1 WHERE Usuario = :vUsuario";
+        $incremento = "UPDATE usuarios SET iniciosSesion = iniciosSesion + 1 WHERE usuario = :vUsuario";
         $incre = $con->prepare($incremento);
         $incre->bindParam(":vUsuario", $vUsuario);
         $incre->execute();
 
         if ($datos && password_verify($vPassword, $datos["paswword"])) {
             $_SESSION['idus'] = $datos["id_usuarios"];
-            $_SESSION['us'] = $datos["Usuario"];
-            $_SESSION['no'] = $datos["Nombres"];
-            $_SESSION['ape'] = $datos["Apellidos"];
-            $_SESSION['puesto'] = $datos["id_departamentos"];
-            $_SESSION['foto'] = $datos["Foto_perfil"];
-            $_SESSION['genero'] = $datos["Genero"];
-            $_SESSION['tel'] = $datos["Telefono"];
-            $_SESSION['email'] = $datos["Correo"];
+            $_SESSION['us'] = $datos["usuario"];
+            $_SESSION['no'] = $datos["nombres"];
+            $_SESSION['ape'] = $datos["apellidos"];
+            $_SESSION['puesto'] = $datos["departamento"];
+            $_SESSION['foto'] = $datos["fotoPerfil"];
+            $_SESSION['genero'] = $datos["genero"];
+            $_SESSION['telUno'] = $datos["telefonoUno"];
             $_SESSION['rfc'] = $datos["rfc"];
-            $_SESSION['estado'] = $datos['Estado'];
+            $_SESSION['estado'] = $datos['estado'];
 
             $sentensia2 = $con->prepare("UPDATE usuarios SET estatus = '1' WHERE id_usuarios = '{$_SESSION['idus']}' ");
             $sentensia2->execute();
