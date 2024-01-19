@@ -24,7 +24,7 @@ if (!isset($_SESSION['us'])) {
     <div class="card">
       <div class="card-header" style="border: 2px solid #012970; background: #005880;">
         <h4 style="text-align: center; color: #fff; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
-          Datos del nuevo Usuario</H4>
+         asignacion de Usuario</H4>
       </div>
       <div class="card-body" style="border: 2px solid #BFE5FF;">
         <form action="./usuariosADD.php" method="POST" enctype="multipart/form-data" class="formLogin row g-3">
