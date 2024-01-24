@@ -299,6 +299,8 @@ include_once ('C:\laragon\www\OXILIVE\module/foto.php');
             verMasBtn.style.display = 'none'; // Oculta el botón "Ver más"
         });
     </script>
+    <!--Validaciones de formularios-->
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <!-- Datatables 1.13.7 JS -->
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>

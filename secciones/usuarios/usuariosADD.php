@@ -101,6 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     }
                 }
             } while ($regresar == true);
+
             $sentencia = $con->prepare("INSERT INTO `usuarios` (`id_usuarios`, `Usuario`, `paswword`, `Nombres`, `Apellidos`, `Genero`, `Telefono`, `Correo`, `Estado`, `Foto_perfil`, `id_departamentos`, `rfc`, `alcaldia`,`num_interior`,`num_exterior`,`codigo_postal`,`calleUno`,`calleDos`,`referencias`,`credencialFrente`,`credencialAtras`,`comprobante_domicilio`, `token`) 
                                 VALUES (Null, :usuario, :password, :nombres, :apellidos, :genero, :telefono, :email, 1, '$Foto_perfilX', :departamento , :rfc , :alcaldia, :num_interior, :num_exterior, :codigo_postal, :calleUno, :calleDos, :referencias, '$credencialFrenteX', '$credencialAtrasX', '$comprobante_domicilioX', :token);");
 
@@ -167,7 +168,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo '</script>';
             }
         } else {
-            $objArchivo->eliminarCarpeta($carpetaNueva);
+            $archivero->eliminarCarpeta($carpetaNueva);
             echo '<script language="javascript"> ';
             echo 'Swal.fire({
                 icon: "error",
