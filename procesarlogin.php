@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['genero'] = $datos["genero"];
             $_SESSION['telUno'] = $datos["telefonoUno"];
             $_SESSION['rfc'] = $datos["rfc"];
-            $_SESSION['estado'] = $datos['estado'];
+            $_SESSION['estado'] = $datos['estadoUsuarios'];
 
             $sentensia2 = $con->prepare("UPDATE usuarios SET estatus = '1' WHERE id_usuarios = '{$_SESSION['idus']}' ");
             $sentensia2->execute();

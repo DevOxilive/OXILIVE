@@ -5,49 +5,39 @@ if (!isset($_SESSION['us'])) {
 } elseif (isset($_SESSION['us'])) {
   include("../../templates/header.php");
   include("../../connection/conexion.php");
-  include("../../secciones/usuarios/consulta.php");
+  include("model/empleadosUsu.php");
 } else {
   echo "Error en el sistema";
 }
-
 ?>
 <main id="main" class="main">
   <div class="row">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Usuarios</h3>
+        <h3 class="card-title">Empleados sin Usuario</h3>
         <hr>
-        <div class="btn-box justify-content-first">
-          <a class="btn btn-outline-primary" href="crear.php" role="button">
-            <i class="bi bi-person-fill"></i> Registrar Usuario
-          </a>
-        </div>
       </div>
       <div class="card-body">
         <div class="table-responsive-sm">
           <table class="table border-dark table-hover" id="myTable" style="border: 2px solid black">
             <thead class="table-dark">
               <tr class="table-active table-group-divider">
-                <th scope="col">Num</th>
+                <th scope="col">ID</th>
                 <th scope="col">Nombre</th>
-                <th scope="col">Correo</th>
-                <th scope="col">Usuario</th>
-                <th scope="col">Estado</th>
+                <th scope="col">Apellidos</th>
                 <th scope="col">Acciones</th>
               </tr>
             </thead>
             <tbody>
-              <?php foreach ($lista_usuarios as $registro) { ?>
+              <?php foreach ($usuarios as $registro) { ?>
                 <tr>
-                  <th scope="row"><?php echo $registro['id_usuarios']; ?></th>
-                  <td><?php echo $registro['Nombres']; ?></td>
-                  <td><?php echo $registro['Correo']; ?></td>
-                  <td><?php echo $registro['Usuario']; ?></td>
-                  <td><?php echo $registro['estado']; ?></td>
+                  <th><?php echo $registro['id_usuarios']; ?></th>
+                  <td><?php echo $registro['nombres']; ?></td>
+                  <td><?php echo $registro['apellidos']; ?></td>
                   <td>
-                    <a name="#" id="" class="btn btn-outline-info" role="button"><i class="bi bi-printer-fill"></i></a> |
-                    <a name="" id="" class="btn btn-outline-warning" href="editar.php?txtID=<?php echo $registro['id_usuarios']; ?>" role="button"><i class="bi bi-pencil-square"></i></a> |
-                    <a name="" id="" class="btn btn-outline-danger" onclick="eliminar(<?php echo $registro['id_usuarios']; ?>)" role="button"><i class="bi bi-trash-fill"></i></a>
+                    <a name="" id="" href="crear.php?idus=<?php echo $registro['id_usuarios']; ?>" class="btn btn-success" role="button">
+                      <i class="bi bi-plus-lg"></i>
+                    </a>
                   </td>
                 </tr>
               <?php } ?>
@@ -56,8 +46,92 @@ if (!isset($_SESSION['us'])) {
         </div>
       </div>
     </div>
-
-</main><!-- End #main -->
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Usuarios Registrados</h3>
+        <hr>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive-sm">
+          <table class="table border-dark table-hover" id="usuarios" style="border: 2px solid black">
+            <thead class="table-dark">
+              <tr class="table-active table-group-divider">
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellidos</th>
+                <th scope="col">Departamento</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              $colorSt;
+              $colorDpto;
+              foreach ($usuarios as $registro) {
+                switch ($registro['estadoUsuarios']) {
+                    //Activo
+                  case 1:
+                    $colorSt = "badge text-bg-success fs-6";
+                    break;
+                    //Suspendido
+                  case 2:
+                    $colorSt = "badge text-bg-warning fs-6";
+                    break;
+                    //Baja
+                  case 3:
+                    $colorSt = "badge text-bg-danger fs-6";
+                    break;
+                    //En ruta
+                  case 4:
+                    $colorSt = "badge text-bg-info fs-6";
+                    break;
+                    //En Servicio
+                  case 5:
+                    $colorSt = "badge text-bg-info fs-6";
+                    break;
+                }
+                //Administrador general
+                if ($registro['departamento'] == 1) {
+                  $colorDpto = "badge text-bg-dark fs-6";
+                }
+                //Administrador de departamento
+                else if ($registro['departamento'] == 3 || $registro['departamento'] == 4 || $registro['departamento'] == 5 || $registro['departamento'] == 6 || $registro['departamento'] == 7) {
+                  $colorDpto = "badge text-bg-primary fs-6";
+                }
+                //Usuario
+                else if ($registro['departamento'] == 9 || $registro['departamento'] == 11 || $registro['departamento'] == 12) {
+                  $colorDpto = "badge text-bg-secondary fs-6";
+                }
+              ?>
+                <tr>
+                  <th><?php echo $registro['id_usuarios']; ?></th>
+                  <td><?php echo $registro['nombres']; ?></td>
+                  <td><?php echo $registro['apellidos']; ?></td>
+                  <td>
+                    <span class="<?php echo $colorDpto; ?>"><?php echo $registro['depto']; ?></span>
+                  </td>
+                  <td>
+                    <span class="<?php echo $colorSt; ?>"><?php echo $registro['estadoName']; ?></span>
+                  </td>
+                  <td>
+                    <a name="" id="" href="#" class="btn btn-warning" role="button">
+                      <i class="bi bi-pencil-square"></i>
+                    </a> |
+                    <a name="" id="" href="#" onclick="eliminar(<?php echo $registro['id_usuarios']; ?>)" class="btn btn-danger" role="button">
+                      <i class="bi bi-trash-fill"></i>
+                    </a>
+                  </td>
+                </tr>
+              <?php } ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<script src="../../js/tables.js"></script>
 <script>
   function eliminar(codigo) {
     Swal.fire({
@@ -85,7 +159,7 @@ if (!isset($_SESSION['us'])) {
     };
     $.ajax({
       data: parametros,
-      url: "./eliminar.php",
+      url: "model/eliminar.php",
       type: "POST",
       beforeSend: function() {},
       success: function() {
@@ -94,19 +168,8 @@ if (!isset($_SESSION['us'])) {
         });
       },
     });
-    // Agrega la animación a los bordes de las filas
-    const rows = document.querySelectorAll(".animated-border");
-    rows.forEach(row => {
-      row.addEventListener("mouseover", () => {
-        row.classList.add("border-animation");
-      });
-      row.addEventListener("mouseout", () => {
-        row.classList.remove("border-animation");
-      });
-    });
   }
 </script>
-<script src="../../js/tables.js"></script>
 <?php
 include("../../templates/footer.php");
 ?>
