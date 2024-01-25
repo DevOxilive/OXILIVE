@@ -8,6 +8,9 @@ if (!isset($_SESSION['us'])) {
   include("../../connection/conexion.php");
   // archivo encargado de traer los puestos.
   include("../../secciones/puestos/consulta.php");
+  include("../../model/genero.php");
+  include("../../model/estado.php");
+  include("usuariosADD.php");
 } else {
   echo "Error en el sistema";
 }

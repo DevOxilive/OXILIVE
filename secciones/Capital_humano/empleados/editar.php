@@ -5,8 +5,8 @@ if (!isset($_SESSION['us'])) {
 } elseif (isset($_SESSION['us'])) {
     include("../../../templates/header.php");
     require_once "../../../connection/conexion.php";
-    include("../../../module/banco.php");   
-    include("../../../module/genero.php");
+    include("../../../model/banco.php");   
+    include("../../../model/genero.php");
     include("../../../secciones/puestos/consulta.php");
     include("./empleadosUPP.php");
 } else {

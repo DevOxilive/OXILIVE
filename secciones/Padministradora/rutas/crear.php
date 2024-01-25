@@ -9,7 +9,7 @@ if (!isset($_SESSION['us']) || $_SESSION['puesto'] != 2) {
     include("../../oxigeno/carros/consulta.php");
     include("../../oxigeno/choferes/consulta.php");
     include("../rutas/consulta_estado_entrega.php");
-    include("../../../module/aseguradora.php");
+    include("../../../model/aseguradora.php");
     include_once './buscarsubmit.php';
 } else {
     echo "Error en el sistema";
