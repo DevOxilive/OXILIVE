@@ -81,7 +81,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             } while ($regresar == true);
 
+
             $sql = "INSERT INTO usuarios (usuario, passsword, estadoUsuarios, estatus, token, fotoPerfil, iniciosSesion, ultSesion, fechaRegistro) VALUES (:usuario, )";
+
 
             $sentencia->bindParam(":usuario", $usuario);
             $sentencia->bindParam(":password", $hashedPassword);
@@ -97,6 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             }).then(function() {
                                 window.location = "./index.php";
                             });';
+
             echo '</script>';
         }
     }
