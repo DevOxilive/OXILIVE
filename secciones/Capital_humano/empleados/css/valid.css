@@ -1,0 +1,21 @@
+
+/* Personalización para campos opcionales */
+.form-control.optional {
+    border-color: #FFA500; /* Borde de color naranja para campos opcionales */
+}
+
+.optional-tooltip {
+    color: #FFA500; /* Color naranja para el texto del tooltip */
+}
+
+/* Restablecer estilos para campos válidos e inválidos */
+.form-control.optional:valid,
+.form-control.optional:invalid {
+    border-color: #ced4da; /* Color de borde predeterminado para campos válidos o inválidos */
+}
+
+/* Restablecer estilos para selects */
+.form-select.optional:valid,
+.form-select.optional:invalid {
+    border-color: #ced4da; /* Color de borde predeterminado para selects válidos o inválidos */
+}

@@ -1,11 +1,9 @@
 <?php
 include_once("../../../connection/conexion.php");
-$sentencia = $con->prepare("SELECT *,
-(SELECT Nombre_estado FROM estado WHERE estado.id_estado=usuarios.Estado LIMIT 1) as estado
-FROM `usuarios` WHERE Estado = 1");
+$sentencia = $con->prepare('SELECT e.*, CONCAT(e.nombres," ",e.apellidos) AS nombreE, p.id_puestos,p.Nombre_puestos FROM empleados e, puestos p
+WHERE e.departamento = p.id_puestos');
 $sentencia->execute();
-$lista_usuarios = $sentencia->fetchAll(PDO::FETCH_ASSOC);
-
+$listadoEmpleados = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 ?>

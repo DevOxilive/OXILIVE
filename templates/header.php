@@ -49,7 +49,7 @@ include_once ('C:\laragon\www\OXILIVE\model/foto.php');
                 <!-- aqui empiesan las secciones paracada nivel de usuario -->
                 <li class="nav-item dropdown pe-3">
                     <!-- linea 129 header.php --> <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="<?php echo $_SESSION['foto'] ?>" id="fot" alt="Foto de perfil" style="width: 40px; height: 40px;" class="rounded-circle">
+                        <img src="<?php echo $_SESSION['foto']; ?>" id="fot" alt="Foto de perfil" style="width: 40px; height: 40px;" class="rounded-circle">
                         <span class="d-none d-md-block dropdown-toggle ps-2">
                             <?php echo $_SESSION['us'] ?>
                         </span>
@@ -299,6 +299,8 @@ include_once ('C:\laragon\www\OXILIVE\model/foto.php');
             verMasBtn.style.display = 'none'; // Oculta el botón "Ver más"
         });
     </script>
+    <!--Validaciones de formularios-->
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <!-- Datatables 1.13.7 JS -->
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
