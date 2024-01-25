@@ -4,7 +4,7 @@
 // $usuario = "u199109938_administrator";
 // $clave = "sudo-Sw03j3j3j3";
 $servidor = "localhost";
-$baseDeDatos = "bdoxilive";
+$baseDeDatos = "bdoxilive2";
 $usuario = "root";
 $clave = "";
 
@@ -15,5 +15,3 @@ try {
     echo "Error: " . $ex->getMessage();
     die();
 }
-
-?>

@@ -49,7 +49,7 @@ include_once ('C:\laragon\www\OXILIVE\module/foto.php');
                 <!-- aqui empiesan las secciones paracada nivel de usuario -->
                 <li class="nav-item dropdown pe-3">
                     <!-- linea 129 header.php --> <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="<?php echo $_SESSION['foto'] ?>" id="fot" alt="Foto de perfil" style="width: 40px; height: 40px;" class="rounded-circle">
+                        <img src="<?php echo $_SESSION['foto']; ?>" id="fot" alt="Foto de perfil" style="width: 40px; height: 40px;" class="rounded-circle">
                         <span class="d-none d-md-block dropdown-toggle ps-2">
                             <?php echo $_SESSION['us'] ?>
                         </span>
