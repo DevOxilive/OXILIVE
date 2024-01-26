@@ -5,7 +5,7 @@ if (!isset($_SESSION['us'])) {
 } elseif (isset($_SESSION['us'])) {
   include("../../templates/header.php");
   include("../../connection/conexion.php");
-  include("model/empleadosUsu.php");
+  include("./model/empleadosUsu.php");
 } else {
   echo "Error en el sistema";
 }
@@ -29,13 +29,13 @@ if (!isset($_SESSION['us'])) {
               </tr>
             </thead>
             <tbody>
-              <?php foreach ($usuarios as $registro) { ?>
+              <?php foreach ($empleados as $registro) { ?>
                 <tr>
-                  <th><?php echo $registro['id_usuarios']; ?></th>
+                  <th><?php echo $registro['id_empleado']; ?></th>
                   <td><?php echo $registro['nombres']; ?></td>
                   <td><?php echo $registro['apellidos']; ?></td>
                   <td>
-                    <a name="" id="" href="crear.php?idus=<?php echo $registro['id_usuarios']; ?>" class="btn btn-success" role="button">
+                    <a name="" id="" href="crear.php?idus=<?php echo $registro['id_empleado']; ?>" class="btn btn-success" role="button">
                       <i class="bi bi-plus-lg"></i>
                     </a>
                   </td>
