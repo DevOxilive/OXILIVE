@@ -4,6 +4,7 @@ include("../../connection/url.php");
 include("../../templates/hea.php");
 include("../../connection/conexion.php");
 include("../../ctrlArchivos/control/Archivero.php");
+include("model/carpetas.php");
 
 //instancia de un objeto.
 $archivero = new Archivero();
@@ -26,14 +27,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($existe_usuario) {
         echo '<script language="javascript"> ';
         echo 'Swal.fire({
-                icon: "error",
-                title: "ERROR",
-                text: "El usuario ya existe",
-                showConfirmButton: false,
-                timer: 5000,
-            }).then(function() {
-                window.location = "./index.php";
-            });';
+            icon: "error",
+            title: "ERROR",
+            text: "El usuario ya existe",
+            showConfirmButton: false,
+            2timer: 2000,
+        }).then(function() {
+            window.location = "./crear.php";
+        });';
         echo '</script>';
 
         // si no se repite el usuario, almacenar el usuario.
@@ -52,14 +53,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($actualizado) {
             echo '<script language="javascript"> ';
             echo 'Swal.fire({
-                                    icon: "success",
-                                    title: "Error al guardar al usuario :(",
-                                    text: "error...",
-                                    showConfirmButton: false,
-                                    timer: 5000,
-                                }).then(function() {
-                                    window.location = "./index.php";
-                                });';
+                icon: "success",
+                title: "Error al guardar al usuario :(",
+                text: "error...",
+                showConfirmButton: false,
+                timer: 2000,
+            }).then(function() {
+                window.location = "./index.php";
+            });';
             echo '</script>';
             // si se actualizo
         } else {
@@ -144,13 +145,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
     echo '<script language="javascript"> ';
     echo 'Swal.fire({
-                icon: "error",
-                title: "ERROR",
-                text: "Error en el servidor",
-                showConfirmButton: false,
-                timer: 5000,
-            }).then(function() {
-                window.location = "./crear.php";
-            });';
+        icon: "error",
+        title: "ERROR",
+        text: "Error en el servidor",
+        showConfirmButton: false,
+        timer: 2000,
+    }).then(function() {
+        window.location = "./crear.php";
+    });';
     echo '</script>';
 }

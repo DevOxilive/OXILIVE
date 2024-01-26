@@ -19,3 +19,15 @@
 .form-select.optional:invalid {
     border-color: #ced4da; /* Color de borde predeterminado para selects válidos o inválidos */
 }
+
+.error-message{
+    color: red;
+    margin-top: 5px;
+}
+.error-estudio{
+    color: red;
+    margin-top: 5px;
+}
+.verde {
+    color: green;
+}

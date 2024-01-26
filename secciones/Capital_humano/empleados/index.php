@@ -43,7 +43,11 @@ if (!isset($_SESSION['us'])) {
               <tr class="" style="text-align: center; ">
                 <td><?php echo $listado['nombreE'];?></td>
                 <td><?php echo $listado['Nombre_puestos']; ?></td>
-                <td><span class="badge text-bg-success fs-6"><?php echo $listado['contrato'] ?></span></td>
+                <td>
+                <span class="badge text-bg-<?php echo ($listado['contrato'] == 'SI') ? 'success' : 'danger'; ?> fs-6">
+                    <?php echo $listado['contrato']; ?>
+                </span>
+            </td>
                 <td><?php echo $listado['fechaRegistro'] ?></td>
                 <td></td>
               </tr>
