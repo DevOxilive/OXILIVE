@@ -3,18 +3,15 @@ include("../../../connection/conexion.php");
 include_once '../../../templates/hea.php';
 if ($_POST) {
  
-    $idPaciente = (isset($_POST["idPaciente"]) ? $_POST["idPaciente"] : NULL);
-    $nomSolicitante = (isset($_POST["nomSolicitante"]) ? $_POST["nomSolicitante"] : "");
-    $fechaServicio = (isset($_POST["fechaServicio"]) ? $_POST["fechaServicio"] : "");
-    $horaEntrada = (isset($_POST["horaEntrada"]) ? $_POST["horaEntrada"] : "");
-    $motivoConsulta = (isset($_POST["motivoConsulta"]) ? $_POST["motivoConsulta"] : "");
-    $nAutorizacion = (isset($_POST["nAutorizacion"]) ? $_POST["nAutorizacion"] : "");
-    $auEspecial = (isset($_POST["auEspecial"]) ? $_POST["auEspecial"] : "");
-    $id_usuarios = (isset($_POST["asignarMedico"]) ? $_POST["asignarMedico"] : NULL);
-    if ($id_usuarios === "") {
-        $id_usuarios = NULL;
-    }
-    $idServicio = (isset($_POST["tipoServicio"]) ? $_POST["tipoServicio"] : []);
+    $idPaciente = $_POST["idPaciente"];
+    $nomSolicitante = $_POST["nomSolicitante"];
+    $fechaServicio = $_POST["fechaServicio"];
+    $horaEntrada = $_POST["horaEntrada"];
+    $motivoConsulta = $_POST["motivoConsulta"];
+    $nAutorizacion = $_POST["nAutorizacion"];
+    $auEspecial = $_POST["auEspecial"];
+    $id_usuarios = $_POST["asignarMedico"];
+    $idServicio = $_POST["tipoServicio"];
 
 //es para que los datos se vean en mayusculas  
     
