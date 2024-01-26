@@ -4,9 +4,9 @@ if (!isset($_SESSION['us']) || $_SESSION['puesto'] != 2) {
     header('Location: ../../../login.php');
 } elseif (isset($_SESSION['us']) && $_SESSION['puesto'] == 2) {
     include("../../../templates/header.php");
-    include("../../../module/genero.php");
-    include("../../../module/administradora.php");
-    include("../../../module/banco.php");
+    include("../../../model/genero.php");
+    include("../../../model/administradora.php");
+    include("../../../model/banco.php");
 } else {
     echo "Error en el sistema";
 }

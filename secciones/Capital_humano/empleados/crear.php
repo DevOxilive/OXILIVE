@@ -3,12 +3,11 @@ session_start();
 if (!isset($_SESSION['us'])) {
   header('Location: ../../login.php');
 } elseif (isset($_SESSION['us'])) {
-  include("../../../templates/header.php");
-  include("../../../connection/conexion.php");
-  include("../../../secciones/puestos/consulta.php");
-  include("../../../module/genero.php");
-  include("../../../module/estado.php");
-    include("./empleadosADD.php");
+    include("../../../templates/header.php");
+    require_once "../../../connection/conexion.php";
+    include("../../../model/genero.php");
+    include("../../../model/banco.php");
+    include("../../../secciones/puestos/consulta.php");
 } else {
   echo "Error en el sistema";
 }

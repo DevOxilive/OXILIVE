@@ -4,9 +4,9 @@ if (!isset($_SESSION['us'])) {
     header('Location: ../../../login.php');
 } elseif (isset($_SESSION['us'])) {
     include("../../../templates/header.php");
-    include("../../../module/genero.php");
-    include("../../../module/administradora.php");
-    include("../../../module/banco.php");
+    include("../../../model/genero.php");
+    include("../../../model/administradora.php");
+    include("../../../model/banco.php");
 } else {
     echo "Error en el sistema";
 }

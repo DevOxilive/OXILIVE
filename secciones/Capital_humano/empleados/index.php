@@ -4,7 +4,8 @@ if (!isset($_SESSION['us'])) {
   header('Location: ../../../login.php');
 } elseif (isset($_SESSION['us'])) {
   include("../../../templates/header.php");
-  include("./consulta.php");
+  include("../../../connection/conexion.php");
+  include_once("../../../model/empleados.php");
 } else {
   echo "Error en el sistema";
 }

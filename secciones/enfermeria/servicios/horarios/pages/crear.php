@@ -5,8 +5,8 @@ if (!isset($_SESSION['us'])) {
 } elseif (isset($_SESSION['us'])) {
     include("../../../../../templates/header.php");
     include("../../../../../connection/conexion.php");
-    include("../../../../../module/enfermeros.php");
-    include("../../../../../module/pacientes.php");
+    include("../../../../../model/enfermeros.php");
+    include("../../../../../model/pacientes.php");
     include("../../tipos/model/tipos.php");
 } else {
     echo "Error en el sistema";

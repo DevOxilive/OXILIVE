@@ -5,7 +5,7 @@ if (!isset($_SESSION['us'])) {
 } elseif (isset($_SESSION['us'])) {
     include("../../../templates/header.php");
     include_once './consulta.php';
-    include_once '../../../module/empleados.php';
+    include_once '../../../model/empleados.php';
     include_once './buscarmaterial.php';
     include_once './consultasbuscar.php';
 } else {

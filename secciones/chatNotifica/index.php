@@ -21,6 +21,17 @@ if (!isset($_SESSION['us'])) {
                 <div class="user-list-container">
                     <div id="notifi"></div>
                     <h1><b>Chats</b></h1>
+                    <div class="buscador">
+                        <label for="buscador">
+                            <h1>Buscar usuario</h1>
+                            <input type="text" name="buscador" placeholder="Escribe el nombre del usuario..." id="buscador" maxlength="30">
+                        </label>
+                    </div>
+                    <div class="usuariosCaja">
+                        <ul class="cajaUsuarios" id="listaUsuarios">
+                            <!-- listado de usuarios -->
+                        </ul>
+                    </div>
                     <ul id="users-list">
                         <!-- aqui se generan los usuarios desde la base de datos -->
                     </ul>
@@ -30,6 +41,7 @@ if (!isset($_SESSION['us'])) {
     </main>
 </body>
 <script src="js/usuarios.js"></script>
+<script src="js/buscar.js"></script>
 <!-- terminacion de chat -->
 <?php
 include("../../templates/footer.php");

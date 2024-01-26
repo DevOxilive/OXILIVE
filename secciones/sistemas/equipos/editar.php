@@ -5,8 +5,8 @@ if (!isset($_SESSION['us'])) {
 } elseif (isset($_SESSION['us'])) {
     include("../../../templates/header.php");
     include("./add.php");
-    include("../../../module/tipoequipos.php");
-    include("../../../module/empleados.php");
+    include("../../../model/tipoequipos.php");
+    include("../../../model/empleados.php");
     include("./up.php");
 
 } else {

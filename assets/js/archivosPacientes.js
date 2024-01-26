@@ -293,7 +293,7 @@
         aseguradoraSelect.innerHTML = '<option value="0" selected disabled>Cargando...</option>';
 
         const xhr = new XMLHttpRequest();
-        xhr.open("POST", "../../../module/obtener_aseguradora.php", true);
+        xhr.open("POST", "../../../model/obtener_aseguradora.php", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
         xhr.onreadystatechange = function() {
