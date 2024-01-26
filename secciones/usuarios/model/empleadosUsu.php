@@ -9,7 +9,7 @@ FROM empleados e, puestos p, estado es, usuarios u
 WHERE e.usuarioSistema IS NOT NULL 
 AND e.usuarioSistema = u.id_usuarios
 AND u.estadoUsuarios = es.id_estado
-AND u.departamento = p.id_puestos"
+AND e.departamento = p.id_puestos"
 );
 $empleadosCon->execute();
 $usuarios = $empleadosCon->fetchAll(PDO::FETCH_ASSOC);

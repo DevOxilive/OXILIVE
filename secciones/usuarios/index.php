@@ -29,13 +29,13 @@ if (!isset($_SESSION['us'])) {
               </tr>
             </thead>
             <tbody>
-              <?php foreach ($usuarios as $registro) { ?>
+              <?php foreach ($empleados as $registro) { ?>
                 <tr>
-                  <th><?php echo $registro['id_usuarios']; ?></th>
+                  <th><?php echo $registro['id_empleado']; ?></th>
                   <td><?php echo $registro['nombres']; ?></td>
                   <td><?php echo $registro['apellidos']; ?></td>
                   <td>
-                    <a name="" id="" href="crear.php?idus=<?php echo $registro['id_usuarios']; ?>" class="btn btn-success" role="button">
+                    <a name="" id="" href="crear.php?idus=<?php echo $registro['id_empleado']; ?>" class="btn btn-success" role="button">
                       <i class="bi bi-plus-lg"></i>
                     </a>
                   </td>
@@ -56,7 +56,7 @@ if (!isset($_SESSION['us'])) {
           <table class="table border-dark table-hover" id="usuarios" style="border: 2px solid black">
             <thead class="table-dark">
               <tr class="table-active table-group-divider">
-                <th scope="col">ID</th>
+                <th scope="col">Username</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellidos</th>
                 <th scope="col">Departamento</th>
@@ -105,7 +105,7 @@ if (!isset($_SESSION['us'])) {
                 }
               ?>
                 <tr>
-                  <th><?php echo $registro['id_usuarios']; ?></th>
+                  <th><?php echo $registro['usuario']; ?></th>
                   <td><?php echo $registro['nombres']; ?></td>
                   <td><?php echo $registro['apellidos']; ?></td>
                   <td>
