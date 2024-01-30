@@ -1,16 +1,18 @@
 document.addEventListener("DOMContentLoaded", function () {
   var form = document.getElementById("formulario");
   var requiredElements = form.querySelectorAll("[required]");
+  requiredElements.forEach((elem) => {
+    elem.addEventListener("input", () => {
+      validarEnvio(elem);
+      reloadFeedback(elem);
+    });
+  });
   errorFeedback(requiredElements);
   form.addEventListener("submit", function (event) {
     event.preventDefault();
     requiredElements.forEach((elem) => {
       validarEnvio(elem);
       reloadFeedback(elem);
-      elem.addEventListener("input", () => {
-        validarEnvio(elem);
-        reloadFeedback(elem);
-      });
     });
     if (form.checkValidity()) {
       form.submit();
