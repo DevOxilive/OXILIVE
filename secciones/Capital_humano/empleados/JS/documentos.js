@@ -41,7 +41,7 @@
     }).then((result) => {
       if (result.isConfirmed) {
         // Aquí puedes redirigir al usuario a otra página o realizar alguna otra acción
-        window.location.href = "<?php echo $url_base; ?>secciones/usuarios/index.php";
+        window.location.href = "<?php echo $url_base; ?>secciones/empleados/index.php";
       }
     });
   }
