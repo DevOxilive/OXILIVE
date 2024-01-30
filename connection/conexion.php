@@ -4,7 +4,7 @@
 // $usuario = "u199109938_administrator";
 // $clave = "sudo-Sw03j3j3j3";
 $servidor = "localhost";
-$baseDeDatos = "bdoxilive2";
+$baseDeDatos = "bdoxilive";
 $usuario = "root";
 $clave = "";
 
