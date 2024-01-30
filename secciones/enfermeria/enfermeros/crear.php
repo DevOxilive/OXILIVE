@@ -1,220 +1,262 @@
 <?php
-
 session_start();
 if (!isset($_SESSION['us'])) {
     header('Location: ../../login.php');
 } elseif (isset($_SESSION['us'])) {
     include("../../../templates/header.php");
-    include("../../../connection/conexion.php");
+    require_once "../../../connection/conexion.php";
     include("../../../model/genero.php");
-    include("../../../model/estado.php");
+    include("../../../model/banco.php");
+    include("../../../secciones/puestos/consulta.php");
 } else {
     echo "Error en el sistema";
 }
-
 ?>
 <!DOCTYPE html>
 <link rel="stylesheet" href="../../../assets/css/foto_perfil.css">
 <link rel="stylesheet" href="../../../assets/css/edit.css">
+<link rel="stylesheet" href="css/valid.css">
 </head>
 
 </html>
 <main id="main" class="main">
-
     <section class="section dashboard">
         <div class="card">
             <div class="card-header" style="border: 2px solid #012970; background: #005880;">
-                <h4 style="text-align: center; color: #fff; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
-                    Registro de nuevo enfermero(a)
-                </h4>
+                <h2 style=" color: #fff; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                    Nuevo Enfermero</h2>
             </div>
             <div class="card-body" style="border: 2px solid #BFE5FF;">
-                <form action="enfermeroADD.php" method="POST" enctype="multipart/form-data" class="formLogin row g-3">
-                    <h1>Datos Generales</h1>
-                    <div class="col-md-3">
-                        <label for="Foto_perfil" class="form-label">Sube una foto de perfil</label>
-                        <div class="profile-picture">
-                            <div class="picture-container">
-                                <?php if (!empty($Foto_perfil)) { ?>
-                                    <img id="preview" src="<?php echo $Foto_perfil; ?>">
-                                <?php } else { ?>
-                                    <img id="preview" src="<?php echo $url_base; ?>img/usuario.png">
-                                <?php } ?>
-                                <div class="overlay">
-                                    <?php if (empty($Foto_perfil)) { ?>
-                                        <a href="#" class="change-link" onclick="openFilePicker(event)">
-                                            <i class="fa fa-camera"></i>
-                                        </a>
-                                    <?php } else { ?>
-                                        <a href="#" class="delete-link" onclick="deletePhoto(event)">Eliminar foto</a>
-                                    <?php } ?>
-                                </div>
-                            </div>
-                        </div>
-                        <input type="file" class="form-control" name="Foto_perfil" id="Foto_perfil" onchange="previewImage(this);" style="display: none;">
+                <form action="empleadosADD.php" method="POST" enctype="multipart/form-data" class="row g-3" id="formulario" novalidate>
+                    <div class="contenido col-md-4" id="departamentoBox"><br>
+                        <label for="departamento" class="form-label">Puesto: <span class="text-danger">*</span></label>
+                       <?php
+                        $puesto_11 = "";
+                        foreach ($lista_puestos as $puesto) {
+                        if ($puesto['id_puestos'] == 11) {
+                            $puesto_11 = $puesto['Nombre_puestos'];
+                            break;
+                        }
+                    }
+                    ?>
+                    <input type="text" value="<?php echo $puesto_11; ?>"  disabled>
                     </div>
-                    <div class="contenido col-md-4 align-self-center">
-                        <label for="nombres" class="form-label">Nombres</label>
-                        <input type="text" class="form-control" name="nombres" id="nombres" placeholder="Ingrese el nombre">
+                    <div class="contenido col-md-4" id="contratoBox"> <br>
+                        <label for="contrato" class="form-label">Cuenta con contrato <span class="text-danger">*</span></label>
+                        <select name="contrato" id="contrato" class="form-select" required>
+                            <option value="">Seleccione contrato</option>
+                            <option value="SI">Si contratado</option>
+                            <option value="NO">No contratado</option>
+                        </select>
                     </div>
 
-                    <div class="contenido col-md-4 align-self-center">
-                        <label for="apellidos" class="form-label">Apellidos</label>
-                        <input type="text" class="form-control" name="apellidos" id="apellidos" placeholder="Apellidos">
+                    <!-- Apartado de Datos Generales -->
+                    <div class="contenido col-md-12">
+                        <hr>
+                        <h2 class="form-title">Datos Generales</h2>
                     </div>
-                    <div class="contenido col-md-6">
-                        <label for="genero" class="form-label">Género</label>
 
-                        <select id="genero" name="genero" class="form-select">
+                    <div class="contenido col-md-5" id="nombresBox">
+                        <label for="nombres" class="form-label">Nombre(s): <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control only-letters" name="nombres" id="nombres" placeholder="Ingrese el nombre" maxlength="40" required>
+                    </div>
+                    <div class="contenido col-md-5" id="apellidosBox">
+                        <label for="apellidos" class="form-label">Apellidos: <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control only-letters" name="apellidos" id="apellidos" placeholder="Apellidos" maxlength="40" required>
+                    </div>
+                    <div class="contenido col-md-3" id="generoBox">
+                        <label for="genero" class="form-label">Género: <span class="text-danger">*</span></label>
+                        <select id="genero" name="genero" class="form-select" required>
+                            <option value="">Selecciona el género</option>
                             <?php foreach ($lista_genero as $genero) { ?>
-                                <option value="<?php echo $genero['id_genero']; ?>"><?php echo $genero['genero']; ?>
+                                <option value="<?php echo $genero['id_genero']; ?>">
+                                    <?php echo $genero['genero']; ?>
                                 </option>
                             <?php } ?>
+                        </select>
 
+                    </div>
+                    <div class="contenido col-md-4" id="curpBox">
+                        <label for="curp" class="form-label">CURP: <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control letters-and-numbers" name="curp" id="curp" placeholder="Ingresa el CURP" minlength="18" maxlength="18" required>
+                    </div>
+                    <div class="contenido col-md-3" id="rfcBox">
+                        <label for="rfc" class="form-label">RFC: <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control letters-and-numbers" name="rfc" id="rfc" maxlength="13" placeholder="x1x1x1x1x1x1x1x" required>
+                    </div>
+                    <div class="contenido col-md-4" id="telefonoBox">
+                        <label for="telefono" class="form-label">Teléfono: <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control only-numbers" name="telefono" id="telefono" placeholder="Telefono de 10 digitos" minlength="10" maxlength="10" required>
+                    </div>
+                    <div class="contenido col-md-1 d-flex align-items-center cursor-pointer" style="display: flex; padding: 35px; padding-left: 15px;"
+                         id="add">
+                        <span class=" badge bg-primary fs-4 " id="addBoton">+</span>
+                    </div>
+                    <div class="contenido col-md-4" style="display: none;" id="tel">
+                        <label for="telDos" class="form-label">Teléfono 2:</label>
+                        <div class="input-group" >
+                            <input type="text" maxlength="10" class="form-control" name="telDos" id="telDos"
+                                placeholder="Télefono de 10 digitos">
+                            <div class="input-group-append">
+                                <a href="#" class="btn btn-info remove-lnk d-flex align-items-center" id="delBoton"
+                                    style="border-radius: 4px; height: 100%;">
+                                    <i class="fas fa-trash-alt justify-content-center"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <p id="errTelDos" style="color: red; font-weight: bold;"></p>
+                    </div>
+                    <div class="contenido col-md-7">
+                        <label for="email" class="form-label">Correo electrónico:</label>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Ingrese el correo" maxlength="40">
+                    </div>
+
+                    <div class="contenido col-md-4" id="cuentaInputBox">
+                        <label for="cuentaInput" class="form-label">Cuenta Bancaria: <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control only-numbers" name="cuentaInput" id="cuentaInput" oninput="validarCuenta()" minlength="10" maxlength="20" placeholder="12345432" required>
+                        <div id="mensajeError" class="error-message"></div>
+                    </div>
+                    <div class="contenido col-md-3" id="nssBox">
+                        <label for="nss" class="form-label">NSS:</label>
+                        <input type="text" class="form-control only-numbers" name="nss" id="nss" placeholder="Ingrese el correo" maxlength="11">
+                    </div>
+                    <div class="contenido col-md-3" id="nivelEducativoBox">
+                        <label for="nivelEducativo" class="form-label">Nivel Estudios: <span class="text-danger">*</span></label>
+                        <select name="nivelEducativo" id="nivelEducativo" class="form-select" required>
+                            <option value="">Seleccione Grado</option>
+                            <option value="Cédula">Cédula</option>
+                            <option value="Bachillerato">Bachillerato</option>
+                            <option value="Secundaria">Secundaria</option>
                         </select>
                     </div>
 
-                    <div class="contenido col-md-6">
-                        <label for="usuario" class="form-label">RFC</label>
-                        <input type="text" class="form-control" name="rfc" id="rfc" placeholder="RFC">
+                    <!-- Apartado de Domicilio Actual -->
+                    <div class="contenido col-md-12">
+                        <hr>
+                        <h2 class="form-title">Domicilio Actual </h2>
                     </div>
-                    <hr>
-                    <h1>Datos de acceso al sistema</h1>
-                    <div class="contenido col-md-6">
-                        <label for="usuario" class="form-label">Usuario</label>
-                        <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Usuario">
+                    <!--Aquí voy a meter el codigo postal-->
+                    <div class="contenido col-md-7" id="calleBox">
+                        <label for="calle" class="form-label">Calle: <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control without-special" name="calle" id="calle" maxlength="100" placeholder="Rocita Elvires" required>
                     </div>
-                    <div class="contenido col-md-6">
-                        <label for="password" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" name="password" id="password" placeholder="********">
+                    <div class="contenido col-md-2" id="numExtBox">
+                        <label for="numExt" class="form-label">N° Ext.: <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control with-point" name="numExt" id="numExt" maxlength="15" placeholder="Lt2" required>
+                    </div>
+                    <div class="contenido col-md-2" id="numIntBox">
+                        <label for="numInt" class="form-label">N° Int.:</label>
+                        <input type="text" class="form-control with-point" name="numInt" id="numInt" maxlength="15" placeholder="12">
                     </div>
 
-                    <div class="contenido col-md-4">
-                        <label for="departamento" class="form-label">Departamento</label>
-                        <select id="departamento" name="departamento" class="form-select">
-                            <option value="6">
-                                Enfermeria
-                            </option>
+                    <div class="contenido col-md-2" id="cpBox">
+                        <label for="cp" class="form-label">Código Postal: <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="cp" placeholder="Ejem: 92734" required>
+                    </div>
+                    <div class="contenido col-md-3">
+                        <label for="colonia" class="form-label">Colonia: <span class="text-danger">*</span></label>
+                        <select name="colonia" id="colonia" class="form-select" required>
+                            <option value="">Selecciona un Código Postal</option>
                         </select>
                     </div>
+                    <div class="contenido col-md-3">
+                        <label for="delMun" class="form-label">Delegación/Municipio: </label>
+                        <select name="delMun" id="delMun" class="form-select" disabled>
+                            <option value="">Selecciona un Código Postal</option>
+                        </select>
+                    </div>
+                    <div class="contenido col-md-3">
+                        <label for="estadoDir" class="form-label">Estado:</label>
+                        <select name="estadoDir" id="estadoDir" class="form-select" disabled>
+                            <option value="">Selecciona un Código Postal</option>
+                        </select>
+                    </div>
+                    <!--Aquí lo voy a cerrar el codigo postal-->
+                    <div class="contenido col-md-5" id="calleUnoBox">
+                        <label for="calleUno" class="form-label">Entre Calle: </label>
+                        <input type="text" class="form-control without-special" name="calleUno" id="calleUno" placeholder="Laureles" maxlength="40">
+                    </div>
+
+                    <div class="contenido col-md-6" id="calleDosBox">
+                        <label for="referencias" class="form-label">Y Calle:</label>
+                        <input type="text" class="form-control without-special" name="calleDos" id="calleDos" placeholder="Rojo Gomez" maxlength="40">
+                    </div>
+                    <div class="contenido col-md-11" id="referenciasBox">
+                        <label for="referencias" class="form-label">Referencias:</label>
+                        <input type="text" class="form-control without-special" name="referencias" id="referencias" placeholder="Ejem. Frente a tiendita" maxlength="150">
+                    </div>
+
+                    <!-- Sección de Documentación -->
+                    <div class="contenido col-md-12">
+                        <hr>
+                        <h2 class="form-title">Documentación</h2>
+                    </div>
+
+                    <!-- INE -->
+                    <div class="contenido col-md-5" id="ineAnverso">
+                        <label for="ineAnverso" class="form-label">Credencial de Elector (Anverso): <span class="text-danger">*</span></label>
+                        <input type="file" class="form-control" aria-label="file example" name="ineAnverso" id="ineAnverso" required>
+                    </div>
+                    <div class="contenido col-md-5" id="ineReverso">
+                        <label for="ineReverso" class="form-label">Credencial de Elector (Reverso): <span class="text-danger">*</span></label>
+                        <input type="file" class="form-control" aria-label="file example" name="ineReverso" id="ineReverso" required>
+                    </div>
+                    <!-- Comprobante de domicilio -->
+                    <div class="contenido col-md-5">
+                        <label for="comprobanteDomicilio" class="form-label">Comprobante De Domicilio: <span class="text-danger">*</span></label>
+                        <input type="file" class="form-control" aria-label="file example" required name="comprobanteDomicilio" id="comprobanteDomicilio">
+                    </div>
 
                     <div class="contenido col-md-4">
-                        <label for="telefono" class="form-label">Telefono</label>
-                        <input type="Phone" class="form-control" name="telefono" id="telefono" placeholder="Telefono de 10 digitos">
+                        <label for="certificadoEstudios" class="form-label">Último Certificado / Cédula: <span class="text-danger">*</span></label>
+                        <input type="file" class="form-control" aria-label="file example" required name="certificadoEstudios" id="certificadoEstudios">
+                        <div class="">Seleccione archivo pdf.</div>
                     </div>
 
                     <div class="contenido col-md-4">
-                        <label for="email" class="form-label">Correo</label>
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Ingrese el correo ">
-                    </div>
-                    <hr>
-                    <h1>Documentos personales</h1>
-                    <div class="row justify-content-center">
-                        <div class="col-md-5">
-                            <label for="comprobante_domicilio" class="form-label">Comprobante de domicilio</label>
-                            <input type="file" value="" class="form-control" name="comprobante_domicilio" id="comprobante_domicilio">
-                        </div>
-
-                    </div>
-                    <div class="col-md-5">
-                        <label for="credencialFrente" class="form-label">Credencial de elector (Anverso) </label>
-                        <br>
-                        <div class="profile-picture-cre">
-                            <div class="picture-container-cre">
-                                <?php if (!empty($credencialFrente)) { ?>
-                                    <img src="../../usuarios/OXILIVE/<?php echo $apellidos . " " . $nombres ?>/<?php echo $credencialFrente; ?>" alt="" id="imagenActual1" class="img-thumbnail-ine" style="width: 350px ; height: 210px;">
-                                <?php } else { ?>
-                                    <img src="../../../img/anverso.jpg" alt="foto de perfil" id="imagenActual1" class="img-thumbnail-ine">
-                                <?php } ?>
-                                <div class="overlay-cre">
-                                    <?php if (empty($credencialFrente)) { ?>
-                                        <label for="credencialFrente" class="change-link"><i class="fas fa-camera"></i>
-                                        </label>
-                                    <?php } ?>
-                                </div>
-                            </div>
-                        </div>
-                        <input type="file" class="form-control" name="credencialFrente" id="credencialFrente" onchange="cambiarImagen1(event)" style="display: none;">
+                        <label for="cuenta" class="form-label">Estado de Cuenta: <span class="text-danger">*</span></label>
+                        <input type="file" class="form-control" aria-label="file example" required name="cuenta" id="cuenta">
+                        <div class="">Seleccione archivo pdf.</div>
                     </div>
 
-                    <div class="col-md-5">
-                        <label for="credencialAtras" class="form-label">Credencial de elector (Reverso) </label>
-                        <br>
-                        <div class="profile-picture-cre">
-                            <div class="picture-container-cre">
-                                <?php if (!empty($credencialAtras)) { ?>
-                                    <img src="../../usuarios/OXILIVE/<?php echo $apellidos . " " . $nombres ?>/<?php echo $credencialAtras; ?>" alt="" id="imagenActual2" class="img-thumbnail-ine" style="width: 350px ; height: 210px;">
-                                <?php } else { ?>
-                                    <img src="../../../img/reverso.jpg" alt="foto de perfil" id="imagenActual2" class="img-thumbnail-ine">
-                                <?php } ?>
-                                <div class="overlay-cre">
-                                    <?php if (empty($credencialAtras)) { ?>
-                                        <label for="credencialAtras" class="change-link"><i class="fas fa-camera"></i>
-                                        </label>
-                                    <?php } ?>
-                                </div>
-                            </div>
-                        </div>
-                        <input type="file" class="form-control" name="credencialAtras" id="credencialAtras" onchange="cambiarImagen2(event)" style="display: none;">
+                    <div class="contenido col-md-4">
+                        <label for="curpDoc" class="form-label">CURP</label>
+                        <input type="file" class="form-control" aria-label="file example" required name="curpDoc" id="curpDoc">
                     </div>
+
+                    <div class="contenido col-md-4">
+                        <label for="rfcDoc" class="form-label">RFC</label>
+                        <input type="file" class="form-control" aria-label="file example" required name="rfcDoc" id="rfcDoc">
+                    </div>
+                    <!--Estos tambien hay que insertarlos-->
+                    <div class="contenido col-md-4">
+                        <label for="referenciaLabUno" class="form-label">Referencia Laboral</label>
+                        <input type="file" class="form-control" aria-label="file example" name="referenciaLabUno" id="referenciaLabUno" required>
+                    </div>
+
+                    <div class="contenido col-md-4">
+                        <label for="referenciaLabDos" class="form-label">Referencia Personal</label>
+                        <input type="file" class="form-control" aria-label="file example" name="referenciaLabDos" id="referenciaLabDos">
+                    </div>
+                    
                     <div class="col-12">
                         <button type="submit" class="btn btn-outline-primary">Guardar</button>
-                        <a role="button" onclick="confirmCancel(event)" name="cancelar" class="btn btn-outline-danger"> Cancelar</a>
+                        <a role="button" onclick="confirmCancel(event)" name="cancelar" class="btn btn-outline-danger">
+                            Cancelar</a>
                     </div>
                 </form>
+
+
             </div>
         </div>
 </main>
-<script>
-    function previewImage(input) {
-        var preview = document.getElementById('preview');
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                preview.setAttribute('src', e.target.result);
-                preview.style.display = 'block';
-            }
-            reader.readAsDataURL(input.files[0]);
-        } else {
-            preview.style.display = 'none';
-        }
-    }
-
-    function openFilePicker(event) {
-        event.preventDefault();
-        document.getElementById('Foto_perfil').click();
-    }
-
-    function deletePhoto(event) {
-        event.preventDefault();
-        document.getElementById('preview').src = '../../img/png.png';
-        document.getElementById('preview').style.display = 'none';
-        document.getElementById('Foto_perfil').value = '';
-        var deleteLink = document.querySelector('.delete-link');
-        deleteLink.style.display = 'none';
-    }
-
-
-    function confirmCancel(event) {
-        event.preventDefault();
-        Swal.fire({
-            title: '¿Estás seguro?',
-            text: "Si cancelas, se perderán los datos ingresados.",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Sí, cancelar',
-            cancelButtonText: 'No, continuar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Aquí puedes redirigir al usuario a otra página o realizar alguna otra acción
-                window.location.href = "<?php echo $url_base; ?>secciones/enfermeria/enfermeros/index.php";
-            }
-        });
-    }
-</script>
-<script src="../../../assets/js/forms_validations.js"></script>
+<script src="../../../js/validacionRegex.js"></script>
+<script src="../../../js/validacionEnvio.js"></script>
+<script src="js/documentos.js"></script>
+<script src="./js/validaciones.js"></script>
+<!--<script src="../../../Js/domicilio.js"></script>-->
+<script src="js/domicilio.js"></script>
+<script src="../../../Js/botonAdd.js"></script>
 <?php
 include("../../../templates/footer.php");
 ?>

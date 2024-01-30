@@ -72,7 +72,7 @@
 </li>
 <!-- Apartado Enfermeros -->
 <li class="nav-item">
-    <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/enfermeros/index.php">
+    <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/enfermeria/enfermerosss/index.php">
         <i class="bi bi-circle"></i><span>Enfermeros</span>
     </a>
 </li>
