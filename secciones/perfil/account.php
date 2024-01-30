@@ -13,7 +13,7 @@ $id = $_SESSION['idus'];
 $sql = "SELECT * FROM empleados WHERE usuarioSistema = $id";
 $loadUser = $con->prepare($sql);
 $loadUser->execute();
-foreach($loadUser as $row);
+foreach ($loadUser as $row);
 ?>
 <main id="main" class="main">
     <div class="pagetitle">
@@ -49,19 +49,19 @@ foreach($loadUser as $row);
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label ">Nombre Completo</div>
                                     <div class="col-lg-9 col-md-8">
-                                    <?php echo $row['nombres'] . " " . $row['apellidos']; ?>
+                                        <?php echo $row['nombres'] . " " . $row['apellidos']; ?>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">RFC</div>
                                     <div class="col-lg-9 col-md-8">
-                                    <?php echo $row['rfc']; ?>
+                                        <?php echo $row['rfc']; ?>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Teléfono</div>
                                     <div class="col-lg-9 col-md-8">
-                                    <?php echo $row['telefonoUno']; ?>
+                                        <?php echo $row['telefonoUno']; ?>
                                     </div>
                                 </div>
                                 <div class="row">
