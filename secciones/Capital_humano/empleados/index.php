@@ -31,7 +31,7 @@ if (!isset($_SESSION['us'])) {
               <tr class="table-active table-group-divider">
                 <th scope="col">Nombre</th>
                 <th scope="col">Area</th>
-                <th scope="col">Contrato</th>
+                 <th scope="col">Contrato</th>
                 <th scope="col">Fecha de Alta</th>
                 <?php if ($_SESSION['puesto'] == 1 || $_SESSION['puesto'] == 7) { ?>
                   <th scope="col">Acciones</th>
@@ -41,7 +41,7 @@ if (!isset($_SESSION['us'])) {
             <tbody class="table-group-divider">
               <?php foreach($listadoEmpleados as $listado){ ?>
               <tr class="" style="text-align: center; ">
-                <td><?php echo $listado['nombreE'];?></td>
+                <td><?php echo $listado['nombres'];?></td>
                 <td><?php echo $listado['Nombre_puestos']; ?></td>
                 <td>
                 <span class="badge text-bg-<?php echo ($listado['contrato'] == 'SI') ? 'success' : 'danger'; ?> fs-6">
