@@ -16,6 +16,15 @@ if (!isset($_SESSION['us'])) {
 <head>
     <link rel="stylesheet" href="../../../assets/css/foto_perfil.css">
     <link rel="stylesheet" href="../../../assets/css/edit.css">
+
+    <style>
+  #customers th {
+  text-align: center;
+  background-color: #005880;
+  color: white;
+}
+  </style>
+
 </head>
 <main id="main" class="main">
     <div class="row">
@@ -33,9 +42,9 @@ if (!isset($_SESSION['us'])) {
             </div>
             <div class="card-body">
                 <div class="table-responsive-sm">
-                    <table class="table border-dark table-hover" id="myTable" style="border: 2px solid black">
-                        <thead class="table-dark">
-                            <tr class="table-active table-group-divider">
+                    <table class="table table-striped" id="myTable" >
+                        <thead id="customers">
+                            <tr class="table-active table-group-divider" >
                                 <th scope="col">N° de Exp</th>
                                 <th scope="col">Nombres</th>
                                 <th scope="col">Apellidos</th>
@@ -77,7 +86,7 @@ if (!isset($_SESSION['us'])) {
                                         </td>
                                     <?php } ?>
                                 </tr>
-
+                                             
                             <?php } ?>
                         </tbody>
                     </table>

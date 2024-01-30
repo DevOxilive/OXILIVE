@@ -10,6 +10,15 @@ if (!isset($_SESSION['us'])) {
     echo "Error en el sistema";
 }
 ?>
+
+<style>
+  #customers th {
+  text-align: center;
+  background-color: #005880;
+  color: white;
+}
+  </style>
+
 <main id="main" class="main">
     <div class="row">
         <div class="card">
@@ -25,8 +34,8 @@ if (!isset($_SESSION['us'])) {
             </div>
             <div class="card-body">
                 <div class="table-responsive-sm">
-                    <table class="table border-dark table-hover" id="myTable" style="border: 2px solid black">
-                        <thead class="table-dark">
+                <table class="table table-striped" id="myTable">
+                    <thead id="customers">
                             <!--títulos de las columnas-->
                             <tr class="">
                                 <th scope="col">N°</th>

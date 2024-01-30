@@ -9,6 +9,15 @@ if (!isset($_SESSION['us'])) {
   echo "Error en el sistema";
 }
 ?>
+
+<style>
+  #customers th {
+  text-align: center;
+  background-color: #005880;
+  color: white;
+}
+  </style>
+
 <main id="main" class="main">
     <div class="row">
         <div class="card-header" style="text-align: right;">
@@ -18,10 +27,11 @@ if (!isset($_SESSION['us'])) {
             <div class="card-header">
                 <a class="btn btn-outline-primary" href="crear.php" role="button"><i class="bi bi-person-workspace"></i>Registrar Administradora</a>
             </div>
+            <div class="espacio-linea"></div>
             <div class="card-body">
                 <div class="table-responsive-sm">
-                    <table class="table border-dark table-hover" id="myTable" style="border: 2px solid black">
-                        <thead class="table-dark">
+                    <table class="table table-striped" id="myTable">
+                        <thead id="customers">
                             <tr class="table-active table-group-divider">
                                <th scope="col">Administradora</th>
                             <th scope="col">Acciones</th>
