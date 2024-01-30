@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
   errorFeedback(requiredElements);
   form.addEventListener("submit", function (event) {
     event.preventDefault();
-    window.location.href = "#";
     requiredElements.forEach((elem) => {
       validarEnvio(elem);
       reloadFeedback(elem);
@@ -13,6 +12,11 @@ document.addEventListener("DOMContentLoaded", function () {
         reloadFeedback(elem);
       });
     });
+    if (form.checkValidity()) {
+      form.submit();
+    } else {
+      window.location.href = "#";
+    }
   });
 });
 
