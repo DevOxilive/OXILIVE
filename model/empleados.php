@@ -1,5 +1,8 @@
 <?php
-$sentencia = $con->prepare("SELECT * , (SELECT Nombre_puestos FROM puestos WHERE puestos.id_puestos=empleados.Puesto LIMIT 1) as p FROM empleados");
+$sentencia = $con->prepare(
+    "SELECT e.*, p.Nombre_puestos 
+    FROM empleados e, puestos p
+    WHERE e.departamento = p.id_puestos"
+);
 $sentencia->execute();
-$lista_empleados = $sentencia->fetchAll(PDO::FETCH_ASSOC);
-?>
+$listadoEmpleados = $sentencia->fetchAll(PDO::FETCH_ASSOC);
