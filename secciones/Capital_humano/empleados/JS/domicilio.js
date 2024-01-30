@@ -47,7 +47,7 @@ numeroInput.addEventListener("input", function () {
         })
         .catch((error) => console.error("Error: " + error));
     } else {
-      var reset = '<option value="">Selecciona un Código Postal</option>';
+      var reset = '<option value="0">Selecciona un Código Postal</option>';
       colonia.innerHTML = reset;
       delMun.innerHTML = reset;
       estadoDir.innerHTML = reset;
