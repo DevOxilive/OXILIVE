@@ -115,7 +115,7 @@ if (!isset($_SESSION['us'])) {
                     <span class="<?php echo $colorSt; ?>"><?php echo $registro['estadoName']; ?></span>
                   </td>
                   <td>
-                    <a name="" id="" href="#" class="btn btn-warning" role="button">
+                    <a name="" id="" href='editar.php?idus=<?php echo $registro['id_usuarios']; ?>' class="btn btn-warning" role="button">
                       <i class="bi bi-pencil-square"></i>
                     </a> |
                     <a name="" id="" href="#" onclick="eliminar(<?php echo $registro['id_usuarios']; ?>)" class="btn btn-danger" role="button">

@@ -41,17 +41,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         alertError("Error", "Los campos no deben ir vacíos.");
     }
 }
-function alertSuccess(){
-    $name=ucfirst(strtolower($_SESSION['no']));
-    if($_SESSION['genero'] == 1){
-        $msg = "Bienvenido ". $name;
+function alertSuccess()
+{
+    $name = ucfirst(strtolower($_SESSION['no']));
+    if ($_SESSION['genero'] == 1) {
+        $msg = "Bienvenido " . $name;
     } else {
-        $msg = "Bienvenida ". $name;
+        $msg = "Bienvenida " . $name;
     }
     echo "<script>
         Swal.fire({
             icon: 'success',
-            title: '".$msg."',
+            title: '" . $msg . "',
             showConfirmButton: false,
             timer: 1500,
         }).then(function() {
@@ -59,12 +60,13 @@ function alertSuccess(){
         });
     </script>";
 }
-function alertError($ttl, $msg){
+function alertError($ttl, $msg)
+{
     echo "<script>
         Swal.fire({
             icon: 'error',
-            title: '".$ttl."',
-            text: '".$msg."',
+            title: '" . $ttl . "',
+            text: '" . $msg . "',
             showConfirmButton: false,
             timer: 2000,
         }).then(function() {

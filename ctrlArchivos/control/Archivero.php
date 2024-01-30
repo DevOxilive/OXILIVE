@@ -48,12 +48,10 @@ class Archivero
     public function guardarArchivo($nombre, $archivo, $ruta)
     {
         $rutaCompleta = $ruta . '/' . $nombre;
-
         // if (file_exists($rutaCompleta)) {
         //     // echo 'Error: Ya existe un archivo con el mismo nombre. Intenta con otro nombre.';
         //     return false;
         // }
-
         if (move_uploaded_file($archivo, $rutaCompleta)) {
             // echo 'Archivo "' . $nombre . '" guardado correctamente en ' . $ruta;
             return true;
@@ -67,11 +65,14 @@ class Archivero
         if (file_exists($nombre_archivo)) {
             if (unlink($nombre_archivo)) {
                 echo 'Archivo eliminado correctamente.';
+                return true;
             } else {
                 echo 'Error al intentar eliminar el archivo.';
+                return false;
             }
         } else {
             echo 'El archivo no existe o no es válido.';
+            return false;
         }
     }
 }
