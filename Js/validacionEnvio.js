@@ -9,8 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
       validarEnvio(elem);
       reloadFeedback(elem);
       elem.addEventListener("input", () => {
-        validarEnvio(this);
-        reloadFeedback(this);
+        validarEnvio(elem);
+        reloadFeedback(elem);
       });
     });
   });
