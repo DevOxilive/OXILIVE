@@ -194,13 +194,10 @@ if (!isset($_SESSION['us'])) {
 
                     <!-- INE -->
                     <div class="contenido col-md-5" id="ineAnverso">
-                        <label for="ineAnverso" class="form-label">Credencial de Elector (Anverso): <span class="text-danger">*</span></label>
+                        <label for="ineAnverso" class="form-label">Credencial de Elector<span class="text-danger">*</span></label>
                         <input type="file" class="form-control" aria-label="file example" name="ineAnverso" id="ineAnverso" required>
                     </div>
-                    <div class="contenido col-md-5" id="ineReverso">
-                        <label for="ineReverso" class="form-label">Credencial de Elector (Reverso): <span class="text-danger">*</span></label>
-                        <input type="file" class="form-control" aria-label="file example" name="ineReverso" id="ineReverso" required>
-                    </div>
+                    
                     <!-- Comprobante de domicilio -->
                     <div class="contenido col-md-5">
                         <label for="comprobanteDomicilio" class="form-label">Comprobante De Domicilio: <span class="text-danger">*</span></label>
