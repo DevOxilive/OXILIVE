@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
       validarEnvio(elem);
       reloadFeedback(elem);
     });
-  })
+  });
   errorFeedback(requiredElements);
   form.addEventListener("submit", function (event) {
     event.preventDefault();
