@@ -141,8 +141,8 @@ try {
                     dangerMode: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Si, Eliminar',
-                    cancelButtonText: 'Cancelar'
+                    confirmButtonText: 'Si, Cancelar',
+                    cancelButtonText: 'No, Continuar'
                 }).then((result) => {
                     if (result.isConfirmed) {
                         window.location = "./index.php";
