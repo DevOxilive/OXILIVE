@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $respuesta = $user->fetchAll(PDO::FETCH_ASSOC);
         //checar el contendio de la la foto en la base de datos y eliminarla de la carpeta del usuario.
         foreach ($respuesta as $fila);
-        $ruta = '../Capital_humano/empleados/OXILIVE/' . $fila['curp'] . ' ' . $fila['nombres'] . ' ' . $fila['apellidos'];
+        $ruta = '../../../Capital_humano/empleados/OXILIVE/' . $fila['curp'] . ' ' . $fila['nombres'] . ' ' . $fila['apellidos'];
         $img = explode("/", $fila['fotoPerfil']);
         echo $ruta . $img[9];
         $respuesta = $archivero->eliminarArchivo($ruta . "/" . $img[9]);
@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             text: '<?php echo $mensajes ?>',
             icon: 'info',
         }).then(() => {
-            window.location = "./index.php";
+            window.location = "../index.php";
         });
     </script>
 <?php
@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             text: "estamos teniendo problemas para comunicarnos con el servidor",
             icon: "error",
         }).then(() => {
-            window.location = "./index.php";
+            window.location = "../index.php";
         });
     </script>
 <?php

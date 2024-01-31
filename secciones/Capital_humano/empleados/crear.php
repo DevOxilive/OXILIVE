@@ -285,7 +285,7 @@ if (!isset($_SESSION['us'])) {
                         <input type="file" class="form-control" aria-label="file example" name="licenciaUno"
                             id="licenciaUno">
                     </div>
-                    <div class="contenido col-md-3" >
+                    <div class="contenido col-md-3" id="tipoLicenciaBox">
                         <label for="tipoLicencia" class="form-label">Tipo de Licencia:</label>
                         <input type="text" class="form-control letters-and-numbers" name="tipoLicencia"
                             id="tipoLicencia" placeholder="Ejemplo A" minlength="1" maxlength="2" required>

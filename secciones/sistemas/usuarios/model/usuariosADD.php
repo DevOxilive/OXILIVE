@@ -1,9 +1,9 @@
 <?php
 //inclucion de librerias.
-include("../../connection/url.php");
-include("../../connection/conexion.php");
-include("../../templates/hea.php");
-include("../../ctrlArchivos/control/Archivero.php");
+include("../../../../connection/url.php");
+include("../../../../connection/conexion.php");
+include("../../../../templates/hea.php");
+include("../../../../ctrlArchivos/control/Archivero.php");
 //instancia de un objeto.
 $archivero = new Archivero();
 // comprobacion de envio de valores por metodo post.
@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             showConfirmButton: false,
             timer: 2000,
         }).then(function() {
-            window.location = "./crear.php?idus=' . $id . '";
+            window.location = "../pages/crear.php?idus=' . $id . '";
         });';
         echo '</script>';
         // si no se repite el usuario, almacenar el usuario.
@@ -42,12 +42,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $resultado = $carga->fetchAll(PDO::FETCH_ASSOC);
 
         foreach ($resultado as $fila);
-        $ruta = '../Capital_humano/empleados/OXILIVE/' . $fila['curp'] . ' ' . $fila['nombres'] . ' ' . $fila['apellidos'];
+        $ruta = '../../../Capital_humano/empleados/OXILIVE/' . $fila['curp'] . ' ' . $fila['nombres'] . ' ' . $fila['apellidos'];
         if ($_FILES['Foto_perfil']['error'] !== 4) {
             $Foto_perfilX = $_FILES['Foto_perfil']['name'];
         } else {
             $Foto_perfilX = "usuario.png";
-            $ruta = $url_base . 'secciones/chatNotifica/img/' . $Foto_perfilX;
+            $ruta = $url_base . 'img/' . $Foto_perfilX;
         }
         //existencia de archivo en el formulario
         if (!empty($contenidoFoto)) {
@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     showConfirmButton: false,
                     timer: 2000,
                 }).then(function() {
-                    window.location = "./crear.php?idus=' . $id . '";
+                    window.location = "../pages/crear.php?idus=' . $id . '";
                 });';
                 echo '</script>';
             }
@@ -124,7 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         showConfirmButton: false,
                         timer: 2000,
                     }).then(function() {
-                        window.location = "./index.php";
+                        window.location = "../index.php";
                     });';
             echo '</script>';
             // si se actualizo
@@ -148,7 +148,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         showConfirmButton: false,
                         timer: 3000,
                     }).then(function() {
-                        window.location = "./index.php";
+                        window.location = "../index.php";
                     });';
 
                 echo '</script>';
@@ -161,7 +161,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         showConfirmButton: false,
                         timer: 3000,
                     }).then(function() {
-                        window.location = "./index.php";
+                        window.location = "../index.php";
                     });';
 
                 echo '</script>';
@@ -294,7 +294,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             showConfirmButton: false,
             timer: 2000,
         }).then(function() {
-            window.location = "./crear.php";
+            window.location = "../pages/crear.php";
         });';
     echo '</script>';
 }
