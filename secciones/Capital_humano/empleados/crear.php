@@ -20,13 +20,11 @@ if (!isset($_SESSION['us'])) {
 </html>
 <main id="main" class="main">
     <section class="section dashboard">
-        <div class="card">
-            <div class="card-header" style="border: 2px solid #012970; background: #005880;">
-                <h4 style="text-align: center; color: #fff; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
-                    Nuevo Empleado</h4>
+        <div class="card card-form">
+            <div class="card-header">
+                <h4>Nuevo Empleado</h4>
             </div>
-
-            <div class="card-body" style="border: 2px solid #BFE5FF;">
+            <div class="card-body">
                 <form action="empleadosADD.php" method="POST" enctype="multipart/form-data" class="row g-3" id="formulario" novalidate>
 
                     <!-- Apartado Libre -->
@@ -135,60 +133,8 @@ if (!isset($_SESSION['us'])) {
                         </select>
                     </div>
 
-                    <!-- Apartado de Domicilio Actual -->
-                    <div class="contenido col-md-12">
-                        <hr>
-                        <h2 class="form-title">Domicilio Actual </h2>
-                    </div>
-
-                    <!-- Inicio de Libreria de domicilio -->
-                    <div class="contenido col-md-7" id="calleBox">
-                        <label for="calle" class="form-label">Calle: <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control without-special" name="calle" id="calle" placeholder="Ingresa el nombre de la calle" maxlength="100" required>
-                    </div>
-                    <div class="contenido col-md-2" id="numExtBox">
-                        <label for="numExt" class="form-label">N° Ext.: <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control with-point" name="numExt" id="numExt" placeholder="MZ 2" maxlength="15" required>
-                    </div>
-                    <div class="contenido col-md-2" id="numIntBox">
-                        <label for="numInt" class="form-label">N° Int.:</label>
-                        <input type="text" class="form-control with-point" name="numInt" id="numInt" placeholder="LT 21" maxlength="15">
-                    </div>
-                    <div class="contenido col-md-3" id="cpBox">
-                        <label for="cp" class="form-label">Código Postal: <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="cp" placeholder="Ejem: 92734" required>
-                    </div>
-                    <div class="contenido col-md-3" id="coloniaBox">
-                        <label for="colonia" class="form-label">Colonia: <span class="text-danger">*</span></label>
-                        <select name="colonia" id="colonia" class="form-select" required>
-                            <option value="">Selecciona un Código Postal</option>
-                        </select>
-                    </div>
-                    <div class="contenido col-md-3">
-                        <label for="delMun" class="form-label">Delegación/Municipio: </label>
-                        <select name="delMun" id="delMun" class="form-select" disabled>
-                            <option value="">Selecciona un Código Postal</option>
-                        </select>
-                    </div>
-                    <div class="contenido col-md-3">
-                        <label for="estadoDir" class="form-label">Estado:</label>
-                        <select name="estadoDir" id="estadoDir" class="form-select" disabled>
-                            <option value="">Selecciona un Código Postal</option>
-                        </select>
-                    </div>
-                    <div class="contenido col-md-5" id="calleUnoBox">
-                        <label for="calleUno" class="form-label">Entre Calle: </label>
-                        <input type="text" class="form-control without-special" name="calleUno" id="calleUno" placeholder="Laureles" maxlength="40">
-                    </div>
-                    <div class="contenido col-md-6" id="calleDosBox">
-                        <label for="calleDos" class="form-label">Y Calle:</label>
-                        <input type="text" class="form-control without-special" name="calleDos" id="calleDos" placeholder="Rojo Gomez" maxlength="40">
-                    </div>
-                    <div class="contenido col-md-11" id="referenciasBox">
-                        <label for="referencias" class="form-label">Referencias:</label>
-                        <input type="text" class="form-control without-special" name="referencias" id="referencias" placeholder="Ejem. Frente a tiendita" maxlength="150">
-                    </div>
-                    <!-- Fin de Libreria de Domicilio -->
+                    <!-- Apartado de Domicilio -->
+                    <?php include("../../../templates/apartadoDom.php");?>
 
                     <!-- Apartado de Documentación -->
                     <div class="contenido col-md-12">
@@ -279,5 +225,5 @@ if (!isset($_SESSION['us'])) {
 <script src="../../../js/validacionEnvio.js"></script>
 <script src="js/validaciones.js"></script>
 <script src="js/documentos.js"></script>
-<script src="js/domicilio.js"></script>
+<script src="../../../js/domicilio.js"></script>
 <?php include("../../../templates/footer.php"); ?>
