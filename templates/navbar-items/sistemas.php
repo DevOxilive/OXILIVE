@@ -1,6 +1,6 @@
 <!-- Apartado Usuarios -->
 <li class="nav-item">
-    <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/usuarios/index.php">
+    <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/sistemas/usuarios/index.php">
         <i class="bi bi-circle"></i><span>Usuarios</span>
     </a>
 </li>

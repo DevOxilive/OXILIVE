@@ -5,7 +5,7 @@ if (!isset($_SESSION['us'])) {
 } elseif (isset($_SESSION['us'])) {
     include("../../../../templates/header.php");
     include('../../../../connection/conexion.php');
-    include("../../../usuarios/consulta.php");
+    include("../../../sistemas/usuarios/consulta.php");
     include('model/eliminar.php');
 } else {
     echo "Error en el sistema";

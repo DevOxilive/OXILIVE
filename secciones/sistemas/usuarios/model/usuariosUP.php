@@ -1,8 +1,8 @@
 <?php
-include("../../connection/conexion.php");
-include("../../connection/url.php");
-include("../../ctrlArchivos/control/Archivero.php");
-include("../../templates/hea.php");
+include("../../../../connection/conexion.php");
+include("../../../../connection/url.php");
+include("../../../../ctrlArchivos/control/Archivero.php");
+include("../../../../templates/hea.php");
 $archivero = new Archivero();
 session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fotoNueva = $_FILES['Foto_perfil']['name'];
     $fotoNuevaX = $_FILES['Foto_perfil']['tmp_name'];
 
-    $mensajes = "rebicion: ";
+    $mensajes = "Revisión: ";
     // actualizacion de usuarios
     if (!empty($usuario)) {
         // Verificar si el usuario ya existe

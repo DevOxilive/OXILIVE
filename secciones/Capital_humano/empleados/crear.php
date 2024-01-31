@@ -70,12 +70,12 @@ if (!isset($_SESSION['us'])) {
                     <div class="contenido col-md-5" id="nombresBox">
                         <label for="nombres" class="form-label">Nombre(s): <span class="text-danger">*</span></label>
                         <input type="text" class="form-control only-letters" name="nombres" id="nombres"
-                            placeholder="Ingrese el/los nombre(s)" minlength="5" maxlength="40" required>
+                            placeholder="Ingrese el/los nombre(s)" minlength="3" maxlength="40" required>
                     </div>
                     <div class="contenido col-md-5" id="apellidosBox">
                         <label for="apellidos" class="form-label">Apellidos: <span class="text-danger">*</span></label>
                         <input type="text" class="form-control only-letters" name="apellidos" id="apellidos"
-                            placeholder="Ingrese los apellidos" minlength="10" maxlength="40" required>
+                            placeholder="Ingrese los apellidos" minlength="3" maxlength="40" required>
                     </div>
 
                     <!-- Género -->

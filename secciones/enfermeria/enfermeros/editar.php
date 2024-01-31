@@ -6,7 +6,7 @@ if (!isset($_SESSION['us'])) {
     include("../../../templates/header.php");
     include("../../../connection/conexion.php");
     include("../../../secciones/puestos/consulta.php");
-    include("../../../secciones/usuarios/consulta.php");
+    include("../../../secciones/sistemas/usuarios/consulta.php");
     include("../../../model/genero.php");
     include("../../../model/estado.php");
     include("enfermeroUP.php");
@@ -34,7 +34,7 @@ if (!isset($_SESSION['us'])) {
                         <div class="profile-picture">
                             <div class="picture-container">
                                 <?php if (!empty($Foto_perfil)){ ?>
-                                    <img src="../../../secciones/usuarios/OXILIVE/<?php echo $apellidos . " " .$nombres ?>/<?php echo $Foto_perfil; ?>" alt="" id="imagenActual"
+                                    <img src="../../../secciones/sistemas/usuarios/OXILIVE/<?php echo $apellidos . " " .$nombres ?>/<?php echo $Foto_perfil; ?>" alt="" id="imagenActual"
                                         class="img-thumbnail rounded-circle">
                                 <?php }else{ ?>
                                     <img src="../../../img/png.png" alt="Foto de perfil" id="imagenActual"
@@ -189,7 +189,7 @@ if (!isset($_SESSION['us'])) {
                         <div class="profile-picture-cre">
                             <div class="picture-container-cre">
                                 <?php if (!empty($credencialFrente)){ ?>
-                                    <img src="../../usuarios/OXILIVE/<?php echo $apellidos . " " . $nombres?>/<?php echo $credencialFrente; ?>"
+                                    <img src="../../sistemas/usuarios/OXILIVE/<?php echo $apellidos . " " . $nombres?>/<?php echo $credencialFrente; ?>"
                                         alt="" id="imagenActual1" class="img-thumbnail-ine"
                                         style="width: 350px ; height: 210px;">
                                 <?php }else{ ?>
@@ -214,7 +214,7 @@ if (!isset($_SESSION['us'])) {
                         <div class="profile-picture-cre">
                             <div class="picture-container-cre">
                                 <?php if (!empty($credencialAtras)){ ?>
-                                    <img src="../../usuarios/OXILIVE/<?php echo $apellidos . " " . $nombres?>/<?php echo $credencialAtras; ?>"
+                                    <img src="../../sistemas/usuarios/OXILIVE/<?php echo $apellidos . " " . $nombres?>/<?php echo $credencialAtras; ?>"
                                         alt="" id="imagenActual2" class="img-thumbnail-ine"
                                         style="width: 350px ; height: 210px;">
                                 <?php }else{ ?>

@@ -3,12 +3,12 @@ session_start();
 if (!isset($_SESSION['us'])) {
   header('Location: ../../../login.php');
 } elseif (isset($_SESSION['us'])) {
-  include("../../templates/header.php");
-  include("../../connection/conexion.php");
-  include("./model/empleadosUsu.php");
+  include("../../../templates/header.php");
+  include("../../../connection/conexion.php");
+  include("model/empleadosUsu.php");
 } else {
   echo "Error en el sistema";
-}
+} 
 ?>
 
 <style>
@@ -44,7 +44,7 @@ if (!isset($_SESSION['us'])) {
                   <td><?php echo $registro['nombres']; ?></td>
                   <td><?php echo $registro['apellidos']; ?></td>
                   <td>
-                    <a name="" id="" href="crear.php?idus=<?php echo $registro['id_empleado']; ?>" class="btn btn-success" role="button">
+                    <a name="" id="" href="pages/crear.php?idus=<?php echo $registro['id_empleado']; ?>" class="btn btn-success" role="button">
                       <i class="bi bi-plus-lg"></i>
                     </a>
                   </td>
@@ -124,7 +124,7 @@ if (!isset($_SESSION['us'])) {
                     <span class="<?php echo $colorSt; ?>"><?php echo $registro['estadoName']; ?></span>
                   </td>
                   <td>
-                    <a name="" id="" href='editar.php?idus=<?php echo $registro['id_usuarios']; ?>' class="btn btn-warning" role="button">
+                    <a name="" id="" href='pages/editar.php?idus=<?php echo $registro['id_usuarios']; ?>' class="btn btn-warning" role="button">
                       <i class="bi bi-pencil-square"></i>
                     </a> |
                     <a name="" id="" href="#" onclick="eliminar(<?php echo $registro['id_usuarios']; ?>)" class="btn btn-danger" role="button">
@@ -140,7 +140,7 @@ if (!isset($_SESSION['us'])) {
     </div>
   </div>
 </main>
-<script src="../../js/tables.js"></script>
+<script src="../../../js/tables.js"></script>
 <script>
   function eliminar(codigo) {
     Swal.fire({
@@ -180,5 +180,5 @@ if (!isset($_SESSION['us'])) {
   }
 </script>
 <?php
-include("../../templates/footer.php");
+include("../../../templates/footer.php");
 ?>
