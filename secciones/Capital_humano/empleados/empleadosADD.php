@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $genero = (isset($_POST["genero"]) ? $_POST["genero"] : "");
     $telefono = (isset($_POST["telefono"]) ? $_POST["telefono"] : "");
     $telefonoDos = (isset($_POST["telefonoDos"]) ? $_POST["telefonoDos"] : null);
-    
+
     $correo = (isset($_POST["email"]) ? $_POST["email"] : NULL);
     $curp = (isset($_POST["curp"]) ? $_POST["curp"] : "");
     $rfc = (isset($_POST["rfc"]) ? $_POST["rfc"] : "");
@@ -73,71 +73,71 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombres = strtoupper($nombres);
     $curp = strtoupper($curp);
     //comprobar errores de creacion de la carpeta del usuario nuevo.
-    $carpetaNueva = "OXILIVE/" . $curp . " " . $nombres;
+    $carpetaNueva = "Capital_humano/empleados/OXILIVE/" . $curp . " " . $nombres;
     $solicitud1 = $archivero->crearCarpeta("OXILIVE/", $curp . " " . $nombres);
     echo $solicitud1;
     if ($solicitud1 === true) {
         //Sale aquí sigue la comprobación
         if ($_FILES["cuenta"]['error'] !== 4) {
-            $cuenta = $url_base . "secciones/" . $carpetaNueva . $_FILES['cuenta']['name'];
+            $cuenta = $url_base . "secciones/" . $carpetaNueva . "/" . $_FILES['cuenta']['name'];
         } else {
             $cuenta = $url_base . "secciones/chatNotifica/img/usuario.png";
         }
-        if ($_FILES["certificadoEstudios"]["error"] !== 4){
-            $certificadoEstudios = $url_base . "secciones/" . $carpetaNueva . $_FILES['certificadoEstudios']['name'];
-        }else {
+        if ($_FILES["certificadoEstudios"]["error"] !== 4) {
+            $certificadoEstudios = $url_base . "secciones/" . $carpetaNueva . "/" . $_FILES['certificadoEstudios']['name'];
+        } else {
             $certificadoEstudios = $url_base . "secciones/chatNotifica/img/usuario.png";
         }
         if ($_FILES["ineDoc"]['error'] !== 4) {
-            $ineDoc = $url_base . "secciones/" . $carpetaNueva . $_FILES['ineDoc']['name'];
+            $ineDoc = $url_base . "secciones/" . $carpetaNueva . "/" . $_FILES['ineDoc']['name'];
         } else {
             $ineDoc = $url_base . "secciones/chatNotifica/img/usuario.png";
         }
-        if ($_FILES["actaNacimiento"]['error'] !== 4){
-            $actaNacimiento = $url_base . "secciones/" .  $carpetaNueva . $_FILES['actaNacimiento']['name'];
-        } else{
+        if ($_FILES["actaNacimiento"]['error'] !== 4) {
+            $actaNacimiento = $url_base . "secciones/" .  $carpetaNueva . "/" . $_FILES['actaNacimiento']['name'];
+        } else {
             $actaNacimiento = $url_base . "secciones/chatNotifica/img/usuario.png";
         }
-        if ($_FILES["comprobanteDomicilio"]['error'] !==4){
-            $comprobanteDomicilio = $url_base . "secciones/" .  $carpetaNueva . $_FILES['comprobanteDomicilio']['name'];
-        } else{
+        if ($_FILES["comprobanteDomicilio"]['error'] !== 4) {
+            $comprobanteDomicilio = $url_base . "secciones/" .  $carpetaNueva . "/" . $_FILES['comprobanteDomicilio']['name'];
+        } else {
             $comprobanteDomicilio = $url_base . "secciones/chatNotifica/img/usuario.png";
         }
-        if ($_FILES["nssDoc"]['error'] !==4){
-            $nssDoc = $url_base . "secciones/" .  $carpetaNueva . $_FILES['nssDoc']['name'];
-        } else{
+        if ($_FILES["nssDoc"]['error'] !== 4) {
+            $nssDoc = $url_base . "secciones/" .  $carpetaNueva . "/" . $_FILES['nssDoc']['name'];
+        } else {
             $nssDoc = $url_base . "secciones/chatNotifica/img/usuario.png";
         }
-        if ($_FILES["curpDoc"]['error'] !==4){
-            $curpDoc = $url_base . "secciones/" .  $carpetaNueva . $_FILES['curpDoc']['name'];
-        }else{
+        if ($_FILES["curpDoc"]['error'] !== 4) {
+            $curpDoc = $url_base . "secciones/" .  $carpetaNueva . "/" . $_FILES['curpDoc']['name'];
+        } else {
             $curpDoc = $url_base . "secciones/chatNotifica/img/usuario.png";
         }
-        if ($_FILES["rfcDoc"]['error'] !==4){
-            $rfcDoc = $url_base . "secciones/" .  $carpetaNueva . $_FILES['rfcDoc']['name'];
-        }else{
+        if ($_FILES["rfcDoc"]['error'] !== 4) {
+            $rfcDoc = $url_base . "secciones/" .  $carpetaNueva . "/" . $_FILES['rfcDoc']['name'];
+        } else {
             $rfcDoc = $url_base . "secciones/chatNotifica/img/usuario.png";
         }
         //Aqui van los que faltan
-        if ($_FILES["referenciaLabUno"]['error'] !==4){
-            $referenciaLabUno = $url_base . "secciones/" .  $carpetaNueva . $_FILES['referenciaLabUno']['name'];
-        }else{
+        if ($_FILES["referenciaLabUno"]['error'] !== 4) {
+            $referenciaLabUno = $url_base . "secciones/" .  $carpetaNueva . "/" . $_FILES['referenciaLabUno']['name'];
+        } else {
             $referenciaLabUno = $url_base . "secciones/chatNotifica/img/usuario.png";
         }
-        if ($_FILES["referenciaLabDos"]['error'] !==4){
-            $referenciaLabDos = $url_base . "secciones/" .  $carpetaNueva . $_FILES['referenciaLabDos']['name'];
-        }else{
+        if ($_FILES["referenciaLabDos"]['error'] !== 4) {
+            $referenciaLabDos = $url_base . "secciones/" .  $carpetaNueva . "/" . $_FILES['referenciaLabDos']['name'];
+        } else {
             $referenciaLabDos = $url_base . "secciones/chatNotifica/img/usuario.png";
         }
-        if ($_FILES["licenciaUno"]['error'] !==4){
-            $licenciaUno = $url_base . "secciones/" .  $carpetaNueva . $_FILES['licenciaUno']['name'];
-        }else{
+        if ($_FILES["licenciaUno"]['error'] !== 4) {
+            $licenciaUno = $url_base . "secciones/" .  $carpetaNueva . "/" . $_FILES['licenciaUno']['name'];
+        } else {
             $licenciaUno = $url_base . "secciones/chatNotifica/img/usuario.png";
         }
-        
+
         echo "<br>";
         for ($i = 0; $i < count($contenido); $i++) {
-            $respuestas[] = $archivero->guardarArchivo($doc[$i], $contenido[$i], $carpetaNueva) . "<br>";
+            $respuestas[] = $archivero->guardarArchivo($doc[$i], $contenido[$i], "OXILIVE/" . $curp . " " . $nombres) . "<br>";
         }
         for ($i = 0; $i < count($respuestas); $i++) {
             if ($respuestas[$i] === false) {
@@ -234,7 +234,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             '$referenciaLabUno',
                             '$referenciaLabDos',
                             '$licenciaUno'
-                                )");
+                                )"
+                );
                 $sentencia->bindParam(":nombres", $nombres);
                 $sentencia->bindParam(":apellidos", $apellidos);
                 $sentencia->bindParam(":genero", $genero);
@@ -297,4 +298,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo '</script>';
     }
 }
-?>

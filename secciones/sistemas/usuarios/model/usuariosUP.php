@@ -56,20 +56,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $respuesta = $user->fetchAll(PDO::FETCH_ASSOC);
         //checar el contendio de la la foto en la base de datos y eliminarla de la carpeta del usuario.
         foreach ($respuesta as $fila);
-        $ruta = '../../../Capital_humano/empleados/OXILIVE/' . $fila['curp'] . ' ' . $fila['nombres'] . ' ' . $fila['apellidos'];
+        $ruta = '../../../Capital_humano/empleados/OXILIVE/' . $fila['curp'] . ' ' . $fila['nombres'];
         $img = explode("/", $fila['fotoPerfil']);
-        echo $ruta . $img[9];
-        $respuesta = $archivero->eliminarArchivo($ruta . "/" . $img[9]);
-        if ($respuesta === false) {
-            $archivero->eliminarArchivo($ruta . "/" . $img[9]);
+
+        // print_r($img) . "<br>";
+
+        if (count($img) > 6) {
+            // echo $ruta . $img[9];
+            $respuesta = $archivero->eliminarArchivo($ruta . "/" . $img[9]);
+            if ($respuesta === false) {
+                $archivero->eliminarArchivo($ruta . "/" . $img[9]);
+            } else {
+                echo "imagen borrada exitosamente.";
+                $respuesta = $archivero->guardarArchivo($fotoNueva, $fotoNuevaX, $ruta);
+                if ($respuesta === false) {
+                    echo "algo fallo al guardar";
+                } else {
+                    $ruta = $url_base . 'secciones/Capital_humano/empleados/OXILIVE/' . $fila['curp'] . ' ' . $fila['nombres'] . '/' . $fotoNueva;
+                    if ($_SESSION['idus'] === $id_usuario) {
+                        $_SESSION['foto'] = $ruta;
+                    }
+                    $sql2 = "UPDATE usuarios SET fotoPerfil = '$ruta', usuario = '$usuario'  WHERE id_usuarios = $id_usuario";
+                    $stmt = $con->prepare($sql2);
+                    $stmt->execute();
+                    $mensajes .= "imagen guardad exitosa mente ";
+                }
+            }
         } else {
-            echo "imagen borrada exitosamente.";
+            // echo $ruta . $img[5];
             $respuesta = $archivero->guardarArchivo($fotoNueva, $fotoNuevaX, $ruta);
             if ($respuesta === false) {
                 echo "algo fallo al guardar";
             } else {
-                $ruta = $url_base . 'secciones/Capital_humano/empleados/OXILIVE/' . $fila['curp'] . ' ' . $fila['nombres'] . ' ' . $fila['apellidos'] . '/' . $fotoNueva;
-                $_SESSION['foto'] = $ruta;
+                $ruta = $url_base . 'secciones/Capital_humano/empleados/OXILIVE/' . $fila['curp'] . ' ' . $fila['nombres'] . '/' . $fotoNueva;
+                if ($_SESSION['idus'] === $id_usuario) {
+                    $_SESSION['foto'] = $ruta;
+                }
                 $sql2 = "UPDATE usuarios SET fotoPerfil = '$ruta', usuario = '$usuario'  WHERE id_usuarios = $id_usuario";
                 $stmt = $con->prepare($sql2);
                 $stmt->execute();
