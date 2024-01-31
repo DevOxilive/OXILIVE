@@ -38,6 +38,7 @@ if (!isset($_SESSION['us'])) {
                                 if (
                                     $puesto['id_puestos'] != "1" &&
                                     $puesto['id_puestos'] != "11"
+
                                 ) { ?>
                                     <option value="<?php echo $puesto['id_puestos']; ?>">
                                         <?php echo $puesto['Nombre_puestos']; ?>

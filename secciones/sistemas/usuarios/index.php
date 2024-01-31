@@ -8,16 +8,16 @@ if (!isset($_SESSION['us'])) {
   include("model/empleadosUsu.php");
 } else {
   echo "Error en el sistema";
-} 
+}
 ?>
 
 <style>
   #customers th {
-  text-align: center;
-  background-color: #005880;
-  color: white;
-}
-  </style>
+    text-align: center;
+    background-color: #005880;
+    color: white;
+  }
+</style>
 
 <main id="main" class="main">
   <div class="row">
@@ -62,7 +62,7 @@ if (!isset($_SESSION['us'])) {
       </div>
       <div class="card-body">
         <div class="table-responsive-sm">
-        <table class="table table-striped" id="myTable">
+          <table class="table table-striped" id="myTable">
             <thead id="customers">
               <tr class="table-active table-group-divider">
                 <th scope="col">Username</th>
@@ -127,7 +127,7 @@ if (!isset($_SESSION['us'])) {
                     <a name="" id="" href='pages/editar.php?idus=<?php echo $registro['id_usuarios']; ?>' class="btn btn-warning" role="button">
                       <i class="bi bi-pencil-square"></i>
                     </a> |
-                    <a name="" id="" href="#" onclick="eliminar(<?php echo $registro['id_usuarios']; ?>)" class="btn btn-danger" role="button">
+                    <a name="" id="<?php echo $registro['id_usuarios']; ?>" href="#" onclick="eliminar(<?php echo $registro['id_usuarios']; ?>)" class="btn btn-danger" role="button">
                       <i class="bi bi-trash-fill"></i>
                     </a>
                   </td>
@@ -145,7 +145,7 @@ if (!isset($_SESSION['us'])) {
   function eliminar(codigo) {
     Swal.fire({
       title: '¿Estas seguro?',
-      text: "No podrás recuperar los datos",
+      text: "No podrás recuperar los datos <?php echo $registro['id_usuarios']; ?>",
       cancelButtonText: 'Cancelar',
       icon: 'warning',
       buttons: true,
@@ -170,11 +170,25 @@ if (!isset($_SESSION['us'])) {
       data: parametros,
       url: "model/eliminar.php",
       type: "POST",
-      beforeSend: function() {},
-      success: function() {
-        Swal.fire("Eliminado:", "Ha sido eliminado", "success").then((result) => {
-          window.location.href = "index.php";
-        });
+      success: function(respuesta) {
+        console.log(respuesta);
+        if (respuesta == 1) {
+          Swal.fire({
+            title: 'Usuario Eliminado',
+            text: "el usuario fue eliminado con exito del sistema.",
+            icon: 'success',
+          }).then((result) => {
+            window.location = "./index.php";
+          });
+        } else {
+          Swal.fire({
+            title: 'Error al elimnar el usuario',
+            text: "el usuario no fue eliminado del sistema revisa el codigo fuente",
+            icon: 'info',
+          }).then((result) => {
+            window.location = "./index.php";
+          })
+        }
       },
     });
   }
