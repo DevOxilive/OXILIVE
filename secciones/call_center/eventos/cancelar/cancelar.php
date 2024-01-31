@@ -9,14 +9,6 @@ if (!isset($_SESSION['us'])) {
 }
 ?>
 
-<style>
-  #customers th {
-  text-align: center;
-  background-color: #005880;
-  color: white;
-}
-  </style>
-
 <main id="main" class="main">
     <div class="card-header" style="text-align: right;">
         <h1 style="text-align: center;" style="color:black">Servicios Asignados</h1>
@@ -25,7 +17,7 @@ if (!isset($_SESSION['us'])) {
         <div class="card-body">
             <div class="table-responsive-sm">
                 < <table class="table table-striped" id="myTable">
-                    <thead id="customers">
+                    <thead class="customers">
                         <tr class="table-active table-group-divider">
                             <th scope="col">No.</th>
                             <th scope="col">Paciente</th>

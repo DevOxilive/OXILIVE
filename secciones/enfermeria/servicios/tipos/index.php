@@ -25,8 +25,8 @@ if (!isset($_SESSION['us'])) {
             </div>
             <div class="card-body">
                 <div class="table-responsive-sm">
-                    <table class="table border-dark table-hover" id="myTable" style="border: 2px solid black">
-                        <thead class="table-dark">
+                    <table class="table table-striped" id="myTable">
+                        <thead class="customers">
                             <tr class="table-active table-group-divider">
                                 <th scope="col">Nombre del Servicio</th>
                                 <th scope="col">Horas</th>
