@@ -47,16 +47,21 @@ class Archivero
     }
     public function guardarArchivo($nombre, $archivo, $ruta)
     {
-        $rutaCompleta = $ruta . '/' . $nombre;
-        // if (file_exists($rutaCompleta)) {
-        //     // echo 'Error: Ya existe un archivo con el mismo nombre. Intenta con otro nombre.';
-        //     return false;
-        // }
-        if (move_uploaded_file($archivo, $rutaCompleta)) {
-            // echo 'Archivo "' . $nombre . '" guardado correctamente en ' . $ruta;
-            return true;
+        if (is_dir($ruta)) {
+            $rutaCompleta = $ruta . '/' . $nombre;
+            // if (file_exists($rutaCompleta)) {
+            //     // echo 'Error: Ya existe un archivo con el mismo nombre. Intenta con otro nombre.';
+            //     return false;
+            // }
+            if (move_uploaded_file($archivo, $rutaCompleta)) {
+                // echo 'Archivo "' . $nombre . '" guardado correctamente en ' . $ruta;
+                return true;
+            } else {
+                // echo 'Error al guardar el archivo "' . $nombre . '" en la carpeta ' . $ruta;
+                return false;
+            }
         } else {
-            // echo 'Error al guardar el archivo "' . $nombre . '" en la carpeta ' . $ruta;
+            echo "la carpeta no existe";
             return false;
         }
     }
