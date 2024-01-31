@@ -1,12 +1,12 @@
 <?php
 session_start();
 if (!isset($_SESSION['us'])) {
-    header('Location: ../../login.php');
+    header('Location: ../../../../login.php');
 } elseif (isset($_SESSION['us'])) {
-    include("../../templates/header.php");
-    include("../../connection/conexion.php");
-    include("../../secciones/puestos/consulta.php");
-    include("../../templates/hea.php");
+    include("../../../../templates/header.php");
+    include("../../../../connection/conexion.php");
+    include("../../../../secciones/puestos/consulta.php");
+    include("../../../../templates/hea.php");
 } else {
     echo "Error en el sistema";
 }
@@ -24,8 +24,8 @@ try {
     foreach ($datos as $column) {
 ?>
         <html lang="en">
-        <link rel="stylesheet" href="../../assets/css/foto_editar.css">
-        <link rel="stylesheet" href="../../assets/css/edit.css">
+        <link rel="stylesheet" href="../../../../assets/css/foto_editar.css">
+        <link rel="stylesheet" href="../../../../assets/css/edit.css">
 
         </html>
         <main id="main" class="main">
@@ -37,7 +37,7 @@ try {
                         </h4>
                     </div>
                     <div class="card-body" style="border: 2px solid #BFE5FF;"> <br>
-                        <form action="./usuariosUP.php" method="POST" enctype="multipart/form-data" class="formEdit row g-3">
+                        <form action="../model/usuariosUP.php" method="POST" enctype="multipart/form-data" class="formEdit row g-3">
                             <input type="number" hidden value="<?php echo $column['id_empleado']; ?>" name="id_empleado">
                             <input type="number" hidden value="<?php echo $column['id_usuarios']; ?>" name="id_usuarios">
                             <div class="contenido col-md-3">
@@ -145,7 +145,7 @@ try {
                     cancelButtonText: 'No, Continuar'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location = "./index.php";
+                        window.location = "../index.php";
                     }
                 });
             }
@@ -228,7 +228,7 @@ try {
             }
         </script>
     <?php
-        include("../../templates/footer.php");
+        include("../../../../templates/footer.php");
     }
 } catch (Exception $e) {
     ?>
@@ -238,7 +238,7 @@ try {
             title: "Oops...",
             text: "error en la obtencion de datos!",
         }).then(function() {
-            window.location = "./index.php";
+            window.location = "../index.php";
         });
     </script>;
 <?php

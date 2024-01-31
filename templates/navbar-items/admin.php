@@ -257,7 +257,7 @@
     <ul id="systemas-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <!-- Apartado Usuarios -->
         <li>
-            <a href="<?php echo $url_base; ?>secciones/usuarios/index.php">
+            <a href="<?php echo $url_base; ?>secciones/sistemas/usuarios/index.php">
                 <i class="bi bi-circle"></i><span>Usuarios</span>
             </a>
         </li>

@@ -4,12 +4,12 @@ if (!isset($_SESSION['us'])) {
   header('Location: ../../login.php');
 } elseif (isset($_SESSION['us'])) {
   //inclucion de archivos requeridos
-  include("../../templates/header.php");
-  include("../../connection/conexion.php");
+  include("../../../../templates/header.php");
+  include("../../../../connection/conexion.php");
   // archivo encargado de traer los puestos.
-  include("../../secciones/puestos/consulta.php");
-  include("../../model/genero.php");
-  include("../../model/estado.php");
+  include("../../../../secciones/puestos/consulta.php");
+  include("../../../../model/genero.php");
+  include("../../../../model/estado.php");
 } else {
   echo "Error en el sistema";
 }
@@ -22,10 +22,9 @@ $stmt->execute();
 $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
 foreach ($resultado as $dato) {
 ?>
-
   <!DOCTYPE html>
-  <link rel="stylesheet" href="../../assets/css/foto_perfil.css">
-  <link rel="stylesheet" href="../../assets/css/edit.css">
+  <link rel="stylesheet" href="../../../../assets/css/foto_perfil.css">
+  <link rel="stylesheet" href="../../../../assets/css/edit.css">
   </head>
   <html>
   <main id="main" class="main">
@@ -33,26 +32,29 @@ foreach ($resultado as $dato) {
       <div class="card">
         <div class="card-header" style="border: 2px solid #012970; background: #005880;">
           <h4 style="text-align: center; color: #fff; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
-            asignacion de Usuario</H4>
+            Asignación de Usuario</h4>
         </div>
         <div class="card-body" style="border: 2px solid #BFE5FF;">
-          <form action="./usuariosADD.php" method="POST" enctype="multipart/form-data" class="formLogin row g-3">
-            <h1>Datos</h1>
+          <form action="../model/usuariosADD.php" method="POST" enctype="multipart/form-data" class="formLogin row g-3">
+            <div class="col-md-12">
+              <br>
+              <h2 class="form-title">Datos</h2>
+            </div>
             <div class="contenido col-md-1">
-              <label for="idus" class="form-label">NUM</label>
+              <label for="idus" class="form-label">ID:</label>
               <input type="text" class="form-control" name="idus" id="id" value="<?php echo $dato['id_empleado']; ?>" readonly>
             </div>
             <div class="contenido col-md-3">
-              <label for="nombres" class="form-label">Nombres</label>
+              <label for="nombres" class="form-label">Nombres:</label>
               <input type="text" class="form-control" name="nombres" id="nombres" value="<?php echo $dato['nombres']; ?>" readonly>
             </div>
             <div class="contenido col-md-3">
-              <label for="apellidos" class="form-label">Apellidos</label>
+              <label for="apellidos" class="form-label">Apellidos:</label>
               <input type="text" class="form-control" name="apellidos" id="apellidos" value="<?php echo $dato['apellidos']; ?>" readonly>
             </div>
             <div class="contenido col-md-3">
-              <label for="departamento" class="form-label">Departamento</label>
-              <select name="departamento" id="departamento">
+              <label for="departamento" class="form-label">Departamento:</label>
+              <select name="departamento" id="departamento" class="form-select">
                 <?php
 
                 // carga de opciones del sistema. 
@@ -69,29 +71,34 @@ foreach ($resultado as $dato) {
                 ?>
               </select>
             </div>
-            <hr>
-            <h1>Acceso al sistema</h1>
+            <div class="col-md-12">
+              <hr>
+              <h2 class="form-title">Acceso al Sistema</h2>
+            </div>
             <div class="contenido col-md-3">
-              <label for="Foto_perfil" class="form-label">Foto de perfil</label> <br>
-              <div class="profile-picture">
-                <div class="picture-container">
-                  <img src="../chatNotifica/img/usuario.png" alt="Foto de perfil" id="imagenActual" class="img-thumbnail">
-                  <div class="overlay">
-                    <label for="Foto_perfil" class="change-link"><i class="fas fa-camera"></i></label>
+              <center>
+                <label for="Foto_perfil" class="form-label">Foto de perfil:</label> <br>
+                <div class="profile-picture">
+                  <div class="picture-container">
+                    <img src="../../../../img/usuario.png" alt="Foto de perfil" id="imagenActual" class="img-thumbnail">
+                    <div class="overlay">
+                      <label for="Foto_perfil" class="change-link"><i class="fas fa-camera"></i></label>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <input type="file" class="form-control" name="Foto_perfil" id="Foto_perfil" onchange="cambiarImagen(event)" style="display: none;">
+                <input type="file" class="form-control" name="Foto_perfil" id="Foto_perfil" onchange="cambiarImagen(event)" style="display: none;">
+              </center>
             </div>
-            <div class="contenido col-md-2">
-              <label for="usuario" class="form-label">Usuario</label>
+            <div class="contenido col-md-3">
+              <label for="usuario" class="form-label">Usuario:</label>
               <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Usuario" maxlength="20" minlength="3">
             </div>
-            <div class="contenido col-md-2">
-              <label for="password" class="form-label">Contraseña</label>
+            <div class="contenido col-md-3">
+              <label for="password" class="form-label">Contraseña:</label>
               <input type="password" class="form-control" name="password" id="password" placeholder="contraseña" class="" maxlength="16" minlength="8">
             </div>
             <div class="col-12">
+              <hr>
               <button type="submit" class="btn btn-outline-primary">Guardar</button>
               <a role="button" onclick="confirmCancel(event)" name="cancelar" class="btn btn-outline-danger"> Cancelar</a>
             </div>
@@ -114,7 +121,7 @@ foreach ($resultado as $dato) {
       }).then((result) => {
         if (result.isConfirmed) {
           // Aquí puedes redirigir al usuario a otra página o realizar alguna otra acción
-          window.location.href = "<?php echo $url_base; ?>secciones/usuarios/index.php";
+          window.location.href = "<?php echo $url_base; ?>secciones/sistemas/usuarios/index.php";
         }
       });
     }
@@ -181,6 +188,6 @@ foreach ($resultado as $dato) {
   </html>
 <?php
 }
-include("../../templates/footer.php");
+include("../../../../templates/footer.php");
 
 ?>
