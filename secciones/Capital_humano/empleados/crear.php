@@ -36,10 +36,9 @@ if (!isset($_SESSION['us'])) {
                             <option value="">Selecciona el departamento</option>
                             <?php foreach ($lista_puestos as $puesto) {
                                 if (
-                                    $puesto['Nombre_puestos'] != "Administradoras" &&
-                                    $puesto['Nombre_puestos'] != "Administrador" &&
-                                    $puesto['Nombre_puestos'] != "Cliente" &&
-                                    $puesto['Nombre_puestos'] != "Enfermero"
+                                    $puesto['id_puestos'] != "1" &&
+                                    $puesto['id_puestos'] != "11"
+
                                 ) { ?>
                                     <option value="<?php echo $puesto['id_puestos']; ?>">
                                         <?php echo $puesto['Nombre_puestos']; ?>
@@ -276,9 +275,9 @@ if (!isset($_SESSION['us'])) {
         </div>
     </section>
 </main>
-<script src="../../../Js/validacionRegex.js"></script>
-<script src="../../../Js/validacionEnvio.js"></script>
-<script src="JS/validaciones.js"></script>
-<script src="JS/documentos.js"></script>
-<script src="JS/domicilio.js"></script>
+<script src="../../../js/validacionRegex.js"></script>
+<script src="../../../js/validacionEnvio.js"></script>
+<script src="js/validaciones.js"></script>
+<script src="js/documentos.js"></script>
+<script src="js/domicilio.js"></script>
 <?php include("../../../templates/footer.php"); ?>
