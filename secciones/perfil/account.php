@@ -10,9 +10,10 @@ if (!isset($_SESSION['us'])) {
 }
 
 $id = $_SESSION['idus'];
-$sql = "SELECT * FROM empleados WHERE usuarioSistema = $id";
+$sql = "SELECT  FROM empleados E, usuarios U WHERE usuarioSistema = $id";
 $loadUser = $con->prepare($sql);
 $loadUser->execute();
+
 foreach ($loadUser as $row);
 ?>
 <main id="main" class="main">
@@ -67,6 +68,7 @@ foreach ($loadUser as $row);
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Correo</div>
                                     <div class="col-lg-9 col-md-8">
+                                        <?php echo $row['correo']; ?>
                                     </div>
                                 </div>
                             </div>
