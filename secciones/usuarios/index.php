@@ -11,14 +11,6 @@ if (!isset($_SESSION['us'])) {
 }
 ?>
 
-<style>
-  #customers th {
-  text-align: center;
-  background-color: #005880;
-  color: white;
-}
-  </style>
-
 <main id="main" class="main">
   <div class="row">
     <div class="card">
@@ -29,7 +21,7 @@ if (!isset($_SESSION['us'])) {
       <div class="card-body">
         <div class="table-responsive-sm">
           <table class="table table-striped" id="myTable">
-            <thead id="customers">
+            <thead class="customers">
               <tr class="table-active table-group-divider">
                 <th scope="col">ID</th>
                 <th scope="col">Nombre</th>
@@ -63,7 +55,7 @@ if (!isset($_SESSION['us'])) {
       <div class="card-body">
         <div class="table-responsive-sm">
         <table class="table table-striped" id="myTable">
-            <thead id="customers">
+            <thead class="customers">
               <tr class="table-active table-group-divider">
                 <th scope="col">Username</th>
                 <th scope="col">Nombre</th>
