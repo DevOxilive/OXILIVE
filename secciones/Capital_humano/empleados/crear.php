@@ -7,7 +7,7 @@ if (!isset($_SESSION['us'])) {
     require_once "../../../connection/conexion.php";
     include("../../../model/genero.php");
     include("../../../secciones/puestos/consulta.php");
-
+    include("./documentos.php");
 } else {
     echo "Error en el sistema";
 }
@@ -16,16 +16,16 @@ if (!isset($_SESSION['us'])) {
 <link rel="stylesheet" href="../../../assets/css/foto_perfil.css">
 <link rel="stylesheet" href="../../../assets/css/edit.css">
 <link rel="stylesheet" href="css/valid.css">
-</head>
 
-</html>
+
 <main id="main" class="main">
     <section class="section dashboard">
         <div class="card">
             <div class="card-header" style="border: 2px solid #012970; background: #005880;">
                 <h4
                     style="text-align: center; color: #fff; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
-                    Nuevo Empleado</h4>
+                    Nuevo Empleado
+                </h4>
             </div>
 
             <div class="card-body" style="border: 2px solid #BFE5FF;">
@@ -285,7 +285,7 @@ if (!isset($_SESSION['us'])) {
                         <input type="file" class="form-control" aria-label="file example" name="licenciaUno"
                             id="licenciaUno">
                     </div>
-                    <div class="contenido col-md-3" >
+                    <div class="contenido col-md-3"  id="tipoLicenciaBox">
                         <label for="tipoLicencia" class="form-label">Tipo de Licencia:</label>
                         <input type="text" class="form-control letters-and-numbers" name="tipoLicencia"
                             id="tipoLicencia" placeholder="Ejemplo A" minlength="1" maxlength="2" required>
@@ -307,6 +307,6 @@ if (!isset($_SESSION['us'])) {
 <script src="../../../Js/validacionRegex.js"></script>
 <script src="../../../Js/validacionEnvio.js"></script>
 <script src="JS/validaciones.js"></script>
-<script src="JS/documentos.js"></script>
+
 <script src="JS/domicilio.js"></script>
 <?php include("../../../templates/footer.php"); ?>

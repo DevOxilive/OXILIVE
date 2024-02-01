@@ -1,3 +1,4 @@
+<script>
 //Esta funciòn es para agregar las imagenes
   function previewImage(input) {
     var preview = document.getElementById('preview');
@@ -41,8 +42,10 @@
     }).then((result) => {
       if (result.isConfirmed) {
         // Aquí puedes redirigir al usuario a otra página o realizar alguna otra acción
-        window.location.href = "<?php echo $url_base; ?>secciones/empleados/index.php";
+        window.location.href = "<?php echo $url_base; ?>secciones/Capital_humano/empleados/index.php";
+
       }
     });
   }
 
+</script>
