@@ -3,8 +3,8 @@ session_start();
 if (!isset($_SESSION['us'])) {
   header('Location: ../../../login.php');
 } elseif (isset($_SESSION['us'])) {
-  include("../../templates/header.php");
-  include("../../connection/conexion.php");
+  include("../../../templates/header.php");
+  include("../../../connection/conexion.php");
   include("./model/empleadosUsu.php");
 } else {
   echo "Error en el sistema";
@@ -37,7 +37,7 @@ if (!isset($_SESSION['us'])) {
                   <td><?php echo $registro['nombres']; ?></td>
                   <td><?php echo $registro['apellidos']; ?></td>
                   <td>
-                    <a name="" id="" href="crear.php?idus=<?php echo $registro['id_empleado']; ?>" class="btn btn-success" role="button">
+                    <a name="" id="" href="pages/crear.php?idus=<?php echo $registro['id_empleado']; ?>" class="btn btn-success" role="button">
                       <i class="bi bi-plus-lg"></i>
                     </a>
                   </td>
@@ -55,7 +55,7 @@ if (!isset($_SESSION['us'])) {
       </div>
       <div class="card-body">
         <div class="table-responsive-sm">
-        <table class="table table-striped" id="myTable">
+          <table class="table table-striped" id="myTable">
             <thead id="customers">
               <tr class="table-active table-group-divider">
                 <th scope="col">Username</th>
@@ -117,7 +117,7 @@ if (!isset($_SESSION['us'])) {
                     <span class="<?php echo $colorSt; ?>"><?php echo $registro['estadoName']; ?></span>
                   </td>
                   <td>
-                    <a name="" id="" href='editar.php?idus=<?php echo $registro['id_usuarios']; ?>' class="btn btn-warning" role="button">
+                    <a name="" id="" href='pages/editar.php?idus=<?php echo $registro['id_usuarios']; ?>' class="btn btn-warning" role="button">
                       <i class="bi bi-pencil-square"></i>
                     </a> |
                     <a name="" id="" href="#" onclick="eliminar(<?php echo $registro['id_usuarios']; ?>)" class="btn btn-danger" role="button">
@@ -163,15 +163,29 @@ if (!isset($_SESSION['us'])) {
       data: parametros,
       url: "model/eliminar.php",
       type: "POST",
-      beforeSend: function() {},
-      success: function() {
-        Swal.fire("Eliminado:", "Ha sido eliminado", "success").then((result) => {
-          window.location.href = "index.php";
-        });
-      },
+      success: function(respuesta) {
+        console.log(respuesta);
+        if (respuesta == 1) {
+          Swal.fire({
+            title: 'Usuario Eliminado',
+            text: "datos eliminados",
+            icon: 'info',
+          }).then((result) => {
+            window.location = "./index.php";
+          });
+        } else {
+          Swal.fire({
+            title: 'Error en el sistema',
+            text: "revisar el codigo fuente",
+            icon: 'info',
+          }).then((result) => {
+            window.location = "./index.php";
+          });
+        }
+      }
     });
   }
 </script>
 <?php
-include("../../templates/footer.php");
+include("../../../templates/footer.php");
 ?>
