@@ -5,130 +5,142 @@ include("../../../templates/hea.php");
 if (isset($_GET['txtID'])) {
 
     $txtID = (isset($_GET['txtID'])) ? $_GET['txtID'] : "";
-
-    $sentencia = $con->prepare("SELECT * FROM empleados WHERE id_empleados=:id_empleados");
+    $sentencia = $con->prepare("SELECT em.*, col.id AS colonia_id, col.nombre AS colonia, m.nombre AS municipio, e.nombre AS estadoDir, codigo_postal 
+    FROM empleados em , colonias col, municipios m, estados e
+    WHERE em.colonia = col.id
+    AND col.municipio = m.id
+    AND m.estado = e.id AND em.id_empleado = :id_empleados");
     $sentencia->bindParam(":id_empleados", $txtID);
     $sentencia->execute();
     $registro = $sentencia->fetch(PDO::FETCH_LAZY);
 
-    //Traer los datos en la DB
-    $Nombres = $registro["Nombres"];
-    $Apellidos = $registro["Apellidos"];
-    $Edad = $registro["Edad"];
-    $Fecha_nacimiento = $registro["Fecha_nacimiento"];
+    // //Traer los datos en la DB
+    $Nombres = $registro["nombres"];
+    $Apellidos = $registro["apellidos"];
     $Genero = $registro["Genero"];
-    $Telefono = $registro["Telefono"];
-    $Seguro_social = $registro["Seguro_social"];
+    $Curp = $registro["curp"];
     $rfc = $registro["rfc"];
-    $Acta_nacimiento = $registro["Acta_nacimiento"];
-    $Comprobante_domicilio = $registro["Comprobante_domicilio"];
-    $Curp = $registro["Curp"];
-    $Titulo = $registro["Titulo"];
-    $Cedula = $registro["Cedula"];
-    $Carta_recomendacion1 = $registro["Carta_recomendacion1"];
-    $Carta_recomendacion2 = $registro["Carta_recomendacion2"];
-    $ine = $registro["ine"];
-    $Banco = $registro["Banco"];
-    $No_cuenta = $registro["No_cuenta"];
-    $Puesto = $registro["Puesto"];
+    $telefono = $registro["telefonoUno"];
+    $correo = $registro["correo"];
+    $cuentaBancaria = $registro["numCuenta"];
+    $nss = $registro["nss"];
+    $Puesto = $registro['departamento'];
+    $codigo_postal = $registro["codigo_postal"];
+    $coloniaId = $registro["colonia_id"];
+    $colonia = $registro["colonia"];
+    $municipio = $registro["municipio"];
+    $estado = $registro["estadoDir"];
+    $calle = $registro['calle'];
+    $numExt = $registro['numExt'];
+    $numInt = $registro['numInt'];
+    $calleUno = $registro['calleUno'];
+    $calleDos = $registro['calleDos'];
+    $referencias = $registro['referenciasDireccion'];
+    $tipoLicencia = $registro['tipoLicencia'];
+
+    $Ine = $registro['ineDoc'];
+    $acta = $registro['actaNacimiento'];
+    $comprobante = $registro['comprobanteDomicilio'];
+    $certificado = $registro['certificadoEstudios'];
+    $numCuenta = $registro['cuenta'];
+
+    $curp = $registro['curpDoc'];
+    $nssDoc = $registro['nssDoc'];
+    $rfcDoc = $registro['rfcDoc'];
+    $laboral = $registro['referenciaLabUno'];
+    $personal = $registro['referenciaLabDos'];
+    $licencia = $registro['licenciaUno'];
 }
 
-
 if ($_POST) {
-
-    $txtID = (isset($_POST['txtID'])) ? $_POST['txtID'] : "";
-    $Nombres = (isset($_POST["Nombres"]) ? $_POST["Nombres"] : "");
-    $Apellidos = (isset($_POST["Apellidos"]) ? $_POST["Apellidos"] : "");
-    $Edad = (isset($_POST["Edad"]) ? $_POST["Edad"] : "");
-    $Fecha_nacimiento = (isset($_POST["Fecha_nacimiento"]) ? $_POST["Fecha_nacimiento"] : "");
-    $Genero = (isset($_POST["Genero"]) ? $_POST["Genero"] : "");
-    $Telefono = (isset($_POST["Telefono"]) ? $_POST["Telefono"] : "");
+    $Nombres = (isset($_POST["nombres"]) ? $_POST["nombres"] : "");
+    $Apellidos = (isset($_POST["apellidos"]) ? $_POST["apellidos"] : "");
+    $Genero = (isset($_POST["genero"]) ? $_POST["genero"] : "");
+    $telefono = (isset($_POST["telefono"]) ? $_POST["telefono"] : "");
+    $telefonoDos = (isset($_POST["telefonoDos"]) ? $_POST["telefonoDos"] : null);
+    $correo = (isset($_POST["email"]) ? $_POST["email"] : NULL);
+    $Curp = (isset($_POST["curp"]) ? $_POST["curp"] : "");
     $rfc = (isset($_POST["rfc"]) ? $_POST["rfc"] : "");
-    $Banco = (isset($_POST["Banco"]) ? $_POST["Banco"] : "");
-    $No_cuenta = (isset($_POST["No_cuenta"]) ? $_POST["No_cuenta"] : "");
-    $Puesto = (isset($_POST["Puesto"]) ? $_POST["Puesto"] : "");
+    $departamento = (isset($_POST["departamento"]) ? $_POST["departamento"] : null);
+    $calle = (isset($_POST["calle"]) ? $_POST["calle"] : "");
+    $numExt = (isset($_POST["numExt"]) ? $_POST["numExt"] : "");
+    $numInt = (isset($_POST["numInt"]) ? $_POST["numInt"] : NULL);
+    $colonia = (isset($_POST['colonia']) ? $_POST['colonia'] : null);
+    $calleUno = (isset($_POST['calleUno']) ? $_POST['calleUno'] : null);
+    $calleDos = (isset($_POST['calleDos']) ? $_POST['calleDos'] : null);
+    $referencias = (isset($_POST['referencias']) ? $_POST['referencias'] : null);
+    $cuentaInput = (isset($_POST['cuentaInput']) ? $_POST['cuentaInput'] : null);
+    // $nivelEducativo = (isset($_POST['nivelEducativo']) ? $_POST['nivelEducativo'] : "");
+    $contrato = (isset($_POST['contrato']) ? $_POST['contrato'] : "");
+    $nss = (isset($_POST['nss']) ? $_POST['nss'] : "");
+    $tipoLicencia = (isset($_POST['tipoLicencia']) ? $_POST['tipoLicencia'] : null);
+    $fechaAlta = (isset($_POST['fechaAlta']) ? $_POST['fechaAlta'] : null);
+    $tipoDeContrato = (isset($_POST['tipoDeContrato']) ? $_POST['tipoDeContrato'] : null);
+    $ineDoc = (isset($_POST['ineDoc']) ? $_POST['ineDoc'] : "");
+    $actaNacimiento = (isset($_POST['actaNacimiento']) ? $_POST['actaNacimiento'] : null);
+    $comprobanteDomicilio = (isset($_POST['comprobanteDomicilio']) ? $_POST['comprobanteDomicilio'] : null);
+    $nssDoc = (isset($_POST['nssDoc']) ? $_POST['nssDoc'] : "");
+    $curpDoc = (isset($_POST['curpDoc']) ? $_POST['curpDoc'] : "");
+    $rfcDoc = (isset($_POST['rfcDoc']) ? $_POST['rfcDoc'] : "");
+    $referenciaLabUno = (isset($_POST['referenciaLabUno']) ? $_POST['referenciaLabUno'] : "");
+    $referenciaLabDos = (isset($_POST['referenciaLabDos']) ? $_POST['referenciaLabDos'] : "");
+    $licenciaUno = (isset($_POST['licenciaUno']) ? $_POST['licenciaUno'] : "");
+    $cuenta = (isset($_POST['cuenta']) ? $_POST['cuenta'] : null);
 
     $sentencia = $con->prepare("UPDATE empleados
-                            SET Nombres=:Nombres, Apellidos=:Apellidos, Edad=:Edad, Fecha_nacimiento=:Fecha_nacimiento, Genero=:Genero, Telefono= :Telefono, rfc=:rfc, Banco=:Banco, No_cuenta=:No_cuenta, Puesto=:Puesto
-                            WHERE id_empleados=:id_empleados");
+    SET nombres=:nombres, apellidos=:apellidos, genero=:genero, telefonoUno=:telefono, telefonoDos=:telefonoDos, correo=:correo, curp=:curp,
+    rfc=:rfc, departamento=:departamento, calle=:calle, numExt=:numExt, numInt=:numInt, colonia=:colonia, calleUno=:calleUno, calleDos=:calleDos,
+    referenciasDireccion=:referencias, cuenta=:cuentaInput,  contrato=:contrato, nss=:nss, tipoLicencia=:tipoLicencia,
+    ineDoc=:ineDoc, actaNacimiento=:actaNacimiento, comprobanteDomicilio=:comprobanteDomicilio, nssDoc=:nssDoc, curpDoc=:curpDoc, rfcDoc=:rfcDoc,
+    referenciaLabUno=:referenciaLabUno, referenciaLabDos=:referenciaLabDos, licenciaUno=:licenciaUno, cuenta=:cuenta, fechaAlta=:fechaAlta, tipoDeContrato=:tipoDeContrato
+    WHERE id_empleado=:id_empleados");
 
-    $sentencia->bindParam(":Nombres", $Nombres);
-    $sentencia->bindParam(":Apellidos", $Apellidos);
-    $sentencia->bindParam(":Edad", $Edad);
-    $sentencia->bindParam(":Fecha_nacimiento", $Fecha_nacimiento);
-    $sentencia->bindParam(":Genero", $Genero);
-    $sentencia->bindParam(":Telefono", $Telefono);
+    $sentencia->bindParam(":nombres", $nombres);
+    $sentencia->bindParam(":apellidos", $apellidos);
+    $sentencia->bindParam(":genero", $genero);
+    $sentencia->bindParam(":telefono", $telefono);
+    $sentencia->bindParam(":telefonoDos", $telefonoDos);
+    $sentencia->bindParam(":correo", $correo);
+    $sentencia->bindParam(":curp", $curp);
     $sentencia->bindParam(":rfc", $rfc);
-    $sentencia->bindParam(":Banco", $Banco);
-    $sentencia->bindParam(":No_cuenta", $No_cuenta);
-    $sentencia->bindParam(":Puesto", $Puesto);
+    $sentencia->bindParam(":departamento", $departamento);
+    $sentencia->bindParam(":calle", $calle);
+    $sentencia->bindParam(":numExt", $numExt);
+    $sentencia->bindParam(":numInt", $numInt);
+    $sentencia->bindParam(":colonia", $colonia);
+    $sentencia->bindParam(":calleUno", $calleUno);
+    $sentencia->bindParam(":calleDos", $calleDos);
+    $sentencia->bindParam(":referencias", $referencias);
+    $sentencia->bindParam(":cuentaInput", $cuentaInput);
+    // $sentencia->bindParam(":nivelEducativo", $nivelEducativo);
+    $sentencia->bindParam(":contrato", $contrato);
+    $sentencia->bindParam(":nss", $nss);
+    $sentencia->bindParam(":tipoLicencia", $tipoLicencia);
+    $sentencia->bindParam(":ineDoc", $ineDoc);
+    $sentencia->bindParam(":actaNacimiento", $actaNacimiento);
+    $sentencia->bindParam(":comprobanteDomicilio", $comprobanteDomicilio);
+    $sentencia->bindParam(":nssDoc", $nssDoc);
+    $sentencia->bindParam(":curpDoc", $curpDoc);
+    $sentencia->bindParam(":rfcDoc", $rfcDoc);
+    $sentencia->bindParam(":referenciaLabUno", $referenciaLabUno);
+    $sentencia->bindParam(":referenciaLabDos", $referenciaLabDos);
+    $sentencia->bindParam(":licenciaUno", $licenciaUno);
+    $sentencia->bindParam(":cuenta", $cuenta);
+    $sentencia->bindParam(":fechaAlta", $fechaAlta);
+    $sentencia->bindParam(":tipoDeContrato", $tipoDeContrato);
     $sentencia->bindParam(":id_empleados", $txtID);
     $sentencia->execute();
 
-
-    $carpeta_usuario = "../../Capital_humano/empleados/EMPLEADOS/".$Apellidos."_".$Nombres;
-
-    function guardarArchivo($tmp_file, $nombre_original, $carpeta_usuario) {
-        if (!empty($nombre_original) && $tmp_file != '') {
-            if (!file_exists($carpeta_usuario)) {
-                mkdir($carpeta_usuario, 0777, true);
-            }
-            $ruta_destino = $carpeta_usuario . "/" . $nombre_original;
-            if (move_uploaded_file($tmp_file, $ruta_destino)) {
-                return $nombre_original;
-            }
-        }
-        return "";
-    }
-    
-    $campos_archivos = array(
-        "Seguro_social",
-        "Acta_nacimiento",
-        "Comprobante_domicilio",
-        "Curp",
-        "Titulo",
-        "Cedula",
-        "Carta_recomendacion1",
-        "Carta_recomendacion2",
-        "ine",
-    );
-    
-    foreach ($campos_archivos as $campo_archivo) {
-        $nombre_archivo = (isset($_FILES[$campo_archivo]['name']) ? $_FILES[$campo_archivo]['name'] : "");
-        $fecha_archivo = new DateTime();
-        $nombre_archivo_original = (!empty($nombre_archivo) ? $fecha_archivo->getTimestamp() . "_" . $nombre_archivo : "");
-        $tmp_archivo = $_FILES[$campo_archivo]['tmp_name'];
-    
-        $archivo_guardado = guardarArchivo($tmp_archivo, $nombre_archivo_original, $carpeta_usuario);
-    
-        if (!empty($archivo_guardado)) {
-            $sentencia = $con->prepare("SELECT $campo_archivo FROM `empleados` WHERE id_empleados=:id_empleados");
-            $sentencia->bindParam(":id_empleados", $txtID);
-            $sentencia->execute();
-            $registro_recuperado = $sentencia->fetch(PDO::FETCH_ASSOC);
-    
-            if (isset($registro_recuperado[$campo_archivo])) {
-                $ruta_archivo = $carpeta_usuario . "/" . $registro_recuperado[$campo_archivo];
-                if (file_exists($ruta_archivo)) {
-                    unlink($ruta_archivo);
-                }
-            }
-    
-            $sentencia = $con->prepare("UPDATE empleados SET $campo_archivo=:archivo WHERE id_empleados=:id_empleados");
-            $sentencia->bindParam(":archivo", $archivo_guardado);
-            $sentencia->bindParam(":id_empleados", $txtID);
-            $sentencia->execute();
-        }
-    }
-    echo '<script language="javascript"> ';
-    echo 'Swal.fire({
-            icon: "success",
-            title: "DATOS MODIFICADOS ",
-            showConfirmButton: false,
-            timer: 1500,
-        }).then(function() {
-            window.location = "index.php";
-            });';
-    echo '</script>';
-}
+      echo '<script language="javascript"> ';
+      echo 'Swal.fire({
+                      icon: "success",
+                      title: "🫂 EMPLEADO MODIFICADO",
+                      text: "Los datos fueron guardados",
+                      showConfirmButton: false,
+                      timer: 2000,
+                  }).then(function() {
+                      window.location = "./index.php";
+                  });';
+      echo '</script>';
+  }
 ?>

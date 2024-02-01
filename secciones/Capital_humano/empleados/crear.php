@@ -46,14 +46,28 @@ if (!isset($_SESSION['us'])) {
                         </select>
                     </div>
 
-                    <div class="contenido col-md-4" id="contratoBox"> <br>
-                        <label for="contrato" class="form-label">Cuenta con contrato <span class="text-danger">*</span></label>
+                    <div class="contenido col-md-5" id="contratoBox"> <br>
+                        <label for="contrato" class="form-label">Cuenta con contrato: <span class="text-danger">*</span></label>
                         <select name="contrato" id="contrato" class="form-select" required>
                             <option value="">Seleccione contrato</option>
-                            <option value="SI">Si contratado</option>
-                            <option value="NO">No contratado</option>
+                            <option value="SI CONTRATADO">SI CONTRATADO</option>
+                            <option value="NO CONTRATADO">NO CONTRATADO</option>
                         </select>
                     </div>
+                    <div class="contenido col-md-3"> <br>
+                        <label for="tipoDeContrato" class="form-label">Tipo De Contrato:</label>
+                        <select name="tipoDeContrato" id="tipoDeContrato" class="form-select">
+                            <option value="">Seleccione contrato</option>
+                            <option value="PLANTA">PLANTA</option>
+                            <option value="TEMPORAL">TEMPORAL</option>
+                            <option value="INDEFINIDO">INDEFINIDO</option>
+                        </select>
+                    </div>
+                    <!-- <div class="contenido col-md-3" id="fechaAltaBox"><br>
+                        <label for="fechaAlta" class="form-label">Fecha Alta Contrato: <span class="text-danger">*</span></label>
+                        <input type="date" class="form-control " name="fechaAlta" id="fechaAlta" required>
+                    </div> -->
+                    
 
                     <!-- Apartado de Datos Generales -->
                     <div class="contenido col-md-12">
@@ -127,9 +141,9 @@ if (!isset($_SESSION['us'])) {
                         <label for="nivelEducativo" class="form-label">Nivel Estudios: <span class="text-danger">*</span></label>
                         <select name="nivelEducativo" id="nivelEducativo" class="form-select" required>
                             <option value="">Seleccione Grado</option>
-                            <option value="Cédula">Cédula</option>
-                            <option value="Bachillerato">Bachillerato</option>
-                            <option value="Secundaria">Secundaria</option>
+                            <option value="Cédula">CÈDULA</option>
+                            <option value="Bachillerato">BACHILLERATO</option>
+                            <option value="Secundaria">SECUNDARIA</option>
                         </select>
                     </div>
 
@@ -205,7 +219,7 @@ if (!isset($_SESSION['us'])) {
                     </div>
                     <div class="contenido col-md-3" id="tipoLicenciaBox">
                         <label for="tipoLicencia" class="form-label">Tipo de Licencia:</label>
-                        <input type="text" class="form-control letters-and-numbers" name="tipoLicencia" id="tipoLicencia" placeholder="Ejemplo A" minlength="1" maxlength="2" required>
+                        <input type="text" class="form-control letters-and-numbers" name="tipoLicencia" id="tipoLicencia" placeholder="Ejemplo A" minlength="1" maxlength="2">
                     </div>
 
                     <!-- Apartado Botones -->
