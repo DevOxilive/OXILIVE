@@ -68,15 +68,37 @@ class Archivero
     public function eliminarArchivo($nombre_archivo)
     {
         if (file_exists($nombre_archivo)) {
+            // si el archivo existe en la ruta especificada
             if (unlink($nombre_archivo)) {
+                // elimina el archivo
                 echo 'Archivo eliminado correctamente.';
                 return true;
             } else {
+                // no encontro el archivo en la ruta especificada, no elimina el archivo
                 echo 'Error al intentar eliminar el archivo.';
                 return false;
             }
         } else {
             echo 'El archivo no existe o no es válido.';
+            return false;
+        }
+    }
+
+    public function renombrar($nombre_antiguo, $nombre_nuevo)
+    {
+        // el nombre que este asta al final sera el que se cambiara
+        // es decir ../ruta/ruta/ruta/nombre_antiguo
+        //          ../ruta/ruta/ruta/nombre_nuevo
+        if (is_dir($nombre_antiguo)) {
+            if (rename($nombre_antiguo, $nombre_nuevo)) {
+                echo '¡El cambio de nombre fue exitoso!';
+                return true;
+            } else {
+                echo 'Hubo un error al intentar cambiar el nombre.';
+                return false;
+            }
+        } else {
+            echo 'no se encontro la ruta' . $nombre_antiguo . 'especificada';
             return false;
         }
     }

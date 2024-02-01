@@ -6,3 +6,4 @@ $sql = "SELECT doc.id_doc, dir.directorio, doc.nombre as document , doc.responsa
 $stmt = $db->prepare($sql);
 $stmt->execute();
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// esta parte no funciona :(

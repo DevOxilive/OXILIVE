@@ -73,8 +73,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     echo "algo fallo al guardar";
                 } else {
                     $ruta = $url_base . 'secciones/Capital_humano/empleados/OXILIVE/' . $fila['curp'] . ' ' . $fila['nombres'] . '/' . $fotoNueva;
-                    if ($_SESSION['idus'] === $id_usuario) {
-                        $_SESSION['foto'] = $ruta;
+                    if ($_SESSION['idus'] == $id_usuario) {
+                        echo $_SESSION['foto'] = $ruta;
+                    } else {
+                        echo "no se cambio la variable de sesion";
                     }
                     $sql2 = "UPDATE usuarios SET fotoPerfil = '$ruta', usuario = '$usuario'  WHERE id_usuarios = $id_usuario";
                     $stmt = $con->prepare($sql2);
