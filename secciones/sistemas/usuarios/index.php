@@ -167,7 +167,7 @@ if (!isset($_SESSION['us'])) {
         console.log(respuesta);
         if (respuesta == 1) {
           Swal.fire({
-            title: 'Usuario Eliminado',
+            title: 'Usuario <?php echo $registro['usuario']; ?> Eliminado',
             text: "datos eliminados",
             icon: 'info',
           }).then((result) => {
