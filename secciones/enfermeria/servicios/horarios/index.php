@@ -5,7 +5,7 @@ if (!isset($_SESSION['us'])) {
 } elseif (isset($_SESSION['us'])) {
     include("../../../../templates/header.php");
     include('../../../../connection/conexion.php');
-    include("../../../usuarios/consulta.php");
+    include("../../../sistemas/usuarios/consulta.php");
     include('model/eliminar.php');
 } else {
     echo "Error en el sistema";
@@ -46,8 +46,8 @@ if (!isset($_SESSION['us'])) {
             </div>
             <div class="card-body">
                 <div class="table-responsive-sm">
-                    <table class="table border-dark table-hover" id="myTable">
-                        <thead class="table-dark">
+                    <table class="table table-striped" id="myTable">
+                        <thead class="customers">
                             <tr class="table-active table-group-divider">
                                 <th scope="col">Enfermero(a)</th>
                                 <th scope="col">Fecha</th>

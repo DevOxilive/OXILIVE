@@ -11,13 +11,6 @@ if (!isset($_SESSION['us'])) {
 }
 ?>
 
-<style>
-  #customers th {
-  text-align: center;
-  background-color: #005880;
-  color: white;
-}
-  </style>
 
 <main id="main" class="main">
   <div class="row">

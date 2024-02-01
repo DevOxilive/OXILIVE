@@ -1,5 +1,5 @@
 <?php
-    include('../../../../connection/conexion.php');
+    include('../connection/conexion.php');
     $data = json_decode(file_get_contents('php://input'), true);
     $cp = $data['codigo_postal'];
     $sentenciaCP = $con->prepare('
@@ -13,4 +13,3 @@
     $sentenciaCP -> execute();
     $datosCP = $sentenciaCP->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode($datosCP);
-?>

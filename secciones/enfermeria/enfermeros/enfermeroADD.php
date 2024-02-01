@@ -113,7 +113,7 @@ if ($_POST) {
 
 
         if (!empty($Foto_perfil) || !empty($credencialFrente) || !empty($credencialAtras) || !empty($comprobante_domicilio)) {
-            $carpeta_usuario = '../../usuarios/OXILIVE/' . $apellidos . ' ' . $nombres;
+            $carpeta_usuario = '../../sistemas/usuarios/OXILIVE/' . $apellidos . ' ' . $nombres;
             if (!is_dir($carpeta_usuario)) {
                 mkdir($carpeta_usuario);
             }

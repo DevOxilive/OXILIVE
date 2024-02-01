@@ -29,11 +29,11 @@ if (!isset($_SESSION['us'])) {
                     Registro de Nuevo Paciente</h4>
             </div>
             <div class="card-body" style="border: 2px solid #BFE5FF">
-                <form method="POST" enctype="multipart/form-data" class="formLogin row g-3" id="formulario">
+                <form method="POST" enctype="multipart/form-data" class="formLogin row g-3" id="formulario" novalidate>
                     <!-- Apartado del registro para datos generales -->
                     <div class="contenido col-md-12">
                         <br>
-                        <h2>Datos Generales</h2>
+                        <h2 class="form-title">Datos Generales</h2>
                     </div>
                     <div class="contenido col-md-4">
                         <label for="nombre" class="form-label">Nombre(s):</label>
@@ -76,9 +76,6 @@ if (!isset($_SESSION['us'])) {
                     <div class="contenido col-md-1" style="display: flex;" id="add">
                         <span class="badge bg-primary fs-4" id="addBoton">+</span>
                     </div>
-
-                    <!-- Apartado del registro para domicilio -->
-
                     <div class="contenido col-md-3" style="display: none;" id="tel">
                         <div class="d-flex flex-column align-items-center">
                             <label for="telDos" class="form-label">Teléfono 2:</label>
@@ -89,60 +86,14 @@ if (!isset($_SESSION['us'])) {
                             <p id="errTelDos" class="mt-2" style="color:red; font-weight:bold;"></p>
                         </div>
                     </div>
-                    <div class="contenido col-md-12">
-                        <hr>
-                        <h2>Domicio</h2>
-                    </div>
-                    <div class="contenido col-md-6">
-                        <label for="calle" class="form-label">Calle:</label>
-                        <input type="text" maxlength="99" class="form-control" name="calle" id="calle" placeholder="Ingresa la calle">
-                    </div>
-                    <div class="contenido col-md-3">
-                        <label for="numExt" class="form-label">Nún.Ext</label>
-                        <input type="text" maxlength="6" class="form-control" name="numExt" id="numExt" placeholder="123">
-                    </div>
-                    <div class="contenido col-md-3">
-                        <label for="numInt" class="form-label">Núm.Int</label>
-                        <input type="text" maxlength="6" class="form-control" name="numInt" id="numInt" placeholder="456">
-                    </div>
-                    <div class="contenido col-md-4">
-                        <label for="cp" class="form-label">Código Postal:</label>
-                        <input type="text" class="form-control" id="cp" placeholder="Ingresa un Código Postal">
-                    </div>
-                    <div class="contenido col-md-4">
-                        <label for="colonia" class="form-label">Colonia:</label>
-                        <select name="colonia" id="colonia" class="form-select">
-                            <option value="">Selecciona un Código Postal</option>
-                        </select>
-                    </div>
-                    <div class="contenido col-md-4">
-                        <label for="delMun" class="form-label">Delegación/Municipio:</label>
-                        <select name="delMun" id="delMun" class="form-select" disabled>
-                            <option value="">Selecciona un Código Postal</option>
-                        </select>
-                    </div>
-                    <div class="contenido col-md-4">
-                        <label for="estadoDir" class="form-label">Estado:</label>
-                        <select name="estadoDir" id="estadoDir" class="form-select" disabled>
-                            <option value="">Selecciona un Código Postal</option>
-                        </select>
-                    </div>
-                    <div class="contenido col-md-4">
-                        <label for="calleUno" class="form-label">Entre la calle:</label>
-                        <input type="text" class="form-control" name="calleUno" id="calleUno" placeholder="Ingresa la primera calle">
-                    </div>
-                    <div class="contenido col-md-4">
-                        <label for="calleDos" class="form-label">Y la calle:</label>
-                        <input type="text" class="form-control" name="calleDos" id="calleDos" placeholder="Ingresa la segunda calle">
-                    </div>
-                    <div class="contenido col-md5">
-                        <label for="referencias" class="form-label">Referencias:</label>
-                        <input type="text" class="form-control" name="referencias" id="referencias" placeholder="Ingresa mayores referencias del domicilio" maxlength="249">
-                    </div>
+
+                    <!-- Apartado de Domicilio -->
+                    <?php include("../../../../templates/apartadoDom.php");?>
+                    
                     <!-- Datos de la aseguradora -->
                     <div class="contenido col-md-12">
                         <hr>
-                        <h2>Datos de la administradora</h2>
+                        <h2 class="form-title">Datos de la administradora</h2>
                     </div>
                     <div class="contenido col-md-4">
                         <label for="banco" class="form-label">Banco:</label>
@@ -154,7 +105,6 @@ if (!isset($_SESSION['us'])) {
                             <?php } ?>
                         </select>
                     </div>
-
                     <div class="contenido col-md-4">
                         <label for="administradora" class="form-label">Administradora</label>
                         <input disabled type="text" id="administradora" name="administradora" class="form-control" placeholder="Eliga el banco" readonly>
@@ -163,6 +113,7 @@ if (!isset($_SESSION['us'])) {
                         <label for="expediente" class="form-label">N° de Expediente:</label>
                         <input type="text" class="form-control" name="expediente" id="expediente" placeholder="Ingresa el N° de expediente">
                     </div>
+
                     <!-- Botones para el formulario -->
                     <div class="col-12">
                         <br>
@@ -202,10 +153,11 @@ if (!isset($_SESSION['us'])) {
         op.send();
     });
 </script>
+<script src="../../../../js/validacionEnvio.js"></script>
 <script src="../js/botonTel.js"></script>
 <script src="../js/validacion.js"></script>
 <script src="../js/formButtons.js"></script>
-<script src="../js/domicilio.js"></script>
+<script src="../../../../js/domicilio.js"></script>
 <!-- <script src="../js/tableClick.js"></script> -->
 
 </html>

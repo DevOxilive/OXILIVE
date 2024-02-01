@@ -1,3 +1,6 @@
+const scriptLocation = document.currentScript.src;
+const pathModel = scriptLocation+"/../../model/domicilio.php";
+
 // Selecciona el elemento de entrada y el elemento para mostrar mensajes de error
 var numeroInput = document.getElementById("cp");
 
@@ -17,7 +20,7 @@ numeroInput.addEventListener("input", function () {
       delMun.innerHTML = "";
       estadoDir.innerHTML = "";
       var data = { codigo_postal: numero };
-      fetch("../model/domicilio.php", {
+      fetch(pathModel, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

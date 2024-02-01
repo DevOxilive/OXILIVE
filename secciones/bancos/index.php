@@ -9,6 +9,7 @@ if (!isset($_SESSION['us'])) {
   echo "Error en el sistema";
 }
 ?>
+<<<<<<< HEAD
 
 <style>
   #customers th {
@@ -17,6 +18,8 @@ if (!isset($_SESSION['us'])) {
   color: white;
 }
   </style>
+=======
+>>>>>>> 18faeeda534d99784fcd8606a7ad7bc49dcea2a2
 <main id="main" class="main">
   <div class="row">
     <div class="card">
@@ -32,7 +35,7 @@ if (!isset($_SESSION['us'])) {
              <div class="card-body">
                 <div class="table-responsive-sm">
                 <table class="table table-striped" id="myTable">
-                        <thead id="customers">
+                        <thead class="customers">
                             <tr class="table-active table-group-divider">
                                 <th scope="col">Bancos</th>
                                 <th scope="col">Acciones a Bancos</th>

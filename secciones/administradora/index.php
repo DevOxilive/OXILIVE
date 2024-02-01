@@ -10,6 +10,7 @@ if (!isset($_SESSION['us'])) {
 }
 ?>
 
+<<<<<<< HEAD
  <style>
   #customers th {
   text-align: center;
@@ -35,6 +36,23 @@ if (!isset($_SESSION['us'])) {
         <table class="table table-striped" id="myTable">
             <thead id="customers">
               <tr class="table-active table-group-divider">
+=======
+<main id="main" class="main">
+    <div class="row">
+        <div class="card-header" style="text-align: right;">
+            <h1 style="text-align: center; color:black">Administradoras</h1>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-outline-primary" href="crear.php" role="button"><i class="bi bi-person-workspace"></i>Registrar Administradora</a>
+            </div>
+            <div class="espacio-linea"></div>
+            <div class="card-body">
+                <div class="table-responsive-sm">
+                    <table class="table table-striped" id="myTable">
+                        <thead class="customers">
+                            <tr class="table-active table-group-divider">
+>>>>>>> 18faeeda534d99784fcd8606a7ad7bc49dcea2a2
                                <th scope="col">Administradora</th>
                             <th scope="col">Acciones</th>
                 <?php if ($_SESSION['puesto'] == 1 || $_SESSION['puesto'] == 7) { ?>
