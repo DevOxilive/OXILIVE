@@ -1,3 +1,6 @@
+<?php
+include __DIR__ . "/../model/datosDom.php";
+?>
 
 <!-- Apartado Domicilio -->
 <div class="contenido col-md-12">
@@ -8,32 +11,36 @@
 <!-- Calle -->
 <div class="contenido col-md-6" id="calleBox">
     <label for="calle" class="form-label">Calle: <span class="text-danger">*</span></label>
-    <input type="text" maxlength="100" class="form-control without-special" name="calle" id="calle" placeholder="Ingresa la calle" required>
+    <input type="text" maxlength="100" class="form-control without-special" name="calle" id="calle" placeholder="Ingresa la calle" value="<?php echo $calle; ?>" required>
 </div>
 
 <!-- Número Exterior -->
 <div class="contenido col-md-3" id="numExtBox">
     <label for="numExt" class="form-label">N° Ext.: <span class="text-danger">*</span></label>
-    <input type="text" maxlength="10" class="form-control with-point" name="numExt" id="numExt" placeholder="123" required>
+    <input type="text" maxlength="10" class="form-control with-point" name="numExt" id="numExt" placeholder="123" value="<?php echo $numExt; ?>" required>
 </div>
 
 <!-- Número Interior -->
 <div class="contenido col-md-3">
     <label for="numInt" class="form-label">N° Int.:</label>
-    <input type="text" maxlength="10" class="form-control with-point" name="numInt" id="numInt" placeholder="456">
+    <input type="text" maxlength="10" class="form-control with-point" name="numInt" id="numInt" placeholder="456" value="<?php echo $numInt; ?>">
 </div>
 
 <!-- Código Postal -->
 <div class="contenido col-md-4" id="cpBox">
     <label for="cp" class="form-label">Código Postal: <span class="text-danger">*</span></label>
-    <input type="text" class="form-control" id="cp" placeholder="Ingresa un Código Postal" required>
+    <input type="text" class="form-control" id="cp" placeholder="Ingresa un Código Postal" value="<?php echo $cp; ?>" required>
 </div>
 
 <!-- Colonia -->
 <div class="contenido col-md-4" id="coloniaBox">
     <label for="colonia" class="form-label">Colonia: <span class="text-danger">*</span></label>
     <select name="colonia" id="colonia" class="form-select" required>
-        <option value="">Selecciona un Código Postal</option>
+        <?php if (isset($colonia)) {  ?>
+            <option value="">Selecciona un Código Postal</option>
+        <?php } else { ?>
+
+        <?php } ?>
     </select>
 </div>
 
@@ -56,15 +63,15 @@
 <!-- Entre calles -->
 <div class="contenido col-md-4">
     <label for="calleUno" class="form-label">Entre la calle:</label>
-    <input type="text" class="form-control without-special" name="calleUno" id="calleUno" maxlength="50" placeholder="Ingresa la primera calle">
+    <input type="text" class="form-control without-special" name="calleUno" id="calleUno" maxlength="50" placeholder="Ingresa la primera calle" value="<?php echo $calleUno; ?>">
 </div>
 <div class="contenido col-md-4">
     <label for="calleDos" class="form-label">Y la calle:</label>
-    <input type="text" class="form-control without-special" name="calleDos" id="calleDos" maxlength="50" placeholder="Ingresa la segunda calle">
+    <input type="text" class="form-control without-special" name="calleDos" id="calleDos" maxlength="50" placeholder="Ingresa la segunda calle" value="<?php echo $calleDos; ?>">
 </div>
 
 <!-- Referencias -->
 <div class="contenido col-md5">
     <label for="referencias" class="form-label">Referencias:</label>
-    <input type="text" class="form-control without-special" name="referencias" id="referencias" maxlength="100" placeholder="Ingresa mayores referencias del domicilio" maxlength="249">
+    <input type="text" class="form-control without-special" name="referencias" id="referencias" maxlength="100" placeholder="Ingresa mayores referencias del domicilio" value="<?php echo $referencias; ?>">
 </div>

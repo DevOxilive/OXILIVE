@@ -94,60 +94,15 @@ if (!isset($_SESSION['us'])) {
                             <span class="badge bg-danger border border-light rounded-circle" id="delBoton">X</span>
                             <p id="errTelDos" style="color:red; font-weight:bold;"></p>
                         </div>
+
                         <!-- Apartado del registro para domicilio -->
-                        <div class="contenido col-md-12">
-                            <hr>
-                            <h2>Domicilio</h2>
-                        </div>
-                        <div class="contenido col-md-6">
-                            <label for="calle" class="form-label">Calle:</label>
-                            <input type="text" class="form-control" name="calle" id="calle" placeholder="Ingresa la calle" value="<?php echo $pac['calle']; ?>">
-                        </div>
-                        <div class="contenido col-md-2">
-                            <label for="numExt" class="form-label">N° Ext.:</label>
-                            <input type="text" maxlength="15" class="form-control" name="numExt" id="numExt" placeholder="123" value="<?php echo $pac['num_ext']; ?>">
-                        </div>
-                        <div class="contenido col-md-2">
-                            <label for="numInt" class="form-label">N° Int.:</label>
-                            <input type="text" maxlength="15" class="form-control" name="numInt" id="numInt" placeholder="456" value="<?php echo $pac['num_int']; ?>">
-                        </div>
-                        <div class="contenido col-md-3">
-                            <label for="cp" class="form-label">Código Postal:</label>
-                            <input type="text" maxlength="5" class="form-control" id="cp" placeholder="Ingresa un Código Postal" value="<?php echo $pac['codigo_postal']; ?>">
-                        </div>
-                        <input type="hidden" id="col" value="<?php echo $pac['colonia']; ?>">
-                        <div class="contenido col-md-4">
-                            <label for="colonia" class="form-label">Colonia:</label>
-                            <select name="colonia" id="colonia" class="form-select">
-                                <option value="">Selecciona un Código Postal</option>
-                            </select>
-                        </div>
-                        <div class="contenido col-md-4">
-                            <label for="delMun" class="form-label">Delegación/Municipio:</label>
-                            <select name="delMun" id="delMun" class="form-select" disabled>
-                                <option value="">Selecciona un Código Postal</option>
-                            </select>
-                        </div>
-                        <div class="contenido col-md-3">
-                            <label for="estadoDir" class="form-label">Estado:</label>
-                            <select name="estadoDir" id="estadoDir" class="form-select" disabled>
-                                <option value="">Selecciona un Código Postal</option>
-                            </select>
-                        </div>
-                        <div class="contenido col-md-4">
-                            <label for="calleUno" class="form-label">Entre la calle:</label>
-                            <input type="text" class="form-control" name="calleUno" id="calleUno" placeholder="Ingresa la primera calle" value="<?php echo $pac['calleUno']; ?>">
-                        </div>
-                        <div class="contenido col-md-4">
-                            <label for="calleDos" class="form-label">Y la calle:</label>
-                            <input type="text" class="form-control" name="calleDos" id="calleDos" placeholder="Ingresa la segunda calle" value="<?php echo $pac['calleDos']; ?>">
-                        </div>
-                        <div class="contenido col-md-11">
-                            <label for="referencias" class="form-label">Referencias:</label>
-                            <input type="text" class="form-control" name="referencias" id="referencias" placeholder="Ingresa mayores referencias del domicilio" value="<?php echo $pac['referencias']; ?>">
-                        </div>
+                        <?php include("../../../../templates/apartadoDom.php"); ?>
 
                         <!-- Datos de la aseguradora -->
+                        <div class="contenido col-md-12">
+                            <hr>
+                            <h2 class="form-title">Datos de la administradora</h2>
+                        </div>
                         <div class="contenido col-md-5">
                             <label for="banco" class="form-label">Banco:</label>
                             <select name="banco" id="banco" class="form-select">
@@ -245,7 +200,7 @@ if (!isset($_SESSION['us'])) {
 <script src="../js/botonTel.js"></script>
 <script src="../js/validacion.js"></script>
 <script src="../js/formButtons.js"></script>
-<script src="../js/domicilio.js"></script>
+<script src="../../../../js/domicilio.js"></script>
 
 </html>
 <?php
