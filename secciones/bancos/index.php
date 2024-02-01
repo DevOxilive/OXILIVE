@@ -9,17 +9,29 @@ if (!isset($_SESSION['us'])) {
   echo "Error en el sistema";
 }
 ?>
+<<<<<<< HEAD
+
+<style>
+  #customers th {
+  text-align: center;
+  background-color: #005880;
+  color: white;
+}
+  </style>
+=======
+>>>>>>> 18faeeda534d99784fcd8606a7ad7bc49dcea2a2
 <main id="main" class="main">
-    <div class="row">
-            <div class="card-header" style="text-align: right;">
-                <h1 style="text-align: center; color:black">Bancos</h1>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <a class="btn btn-outline-success" href="crear.php" role="button"><i class="bi bi-bank2"></i> Registrar Bancos</a>
+  <div class="row">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Bancos</h3>
+        <hr>
+        <div class="btn-box justify-content-first">
+        <a class="btn btn-outline-success" href="crear.php" role="button"><i class="bi bi-bank2"></i> Registrar Bancos</a>
                     <a class="btn btn-outline-info"  href="../AdministradorasYbancos/asociado.php"
                      role="button"><i class="bi bi-bookmark-star"></i> Administradoras y Bancos</a>
-                </div>
+          </div>
+      </div>
              <div class="card-body">
                 <div class="table-responsive-sm">
                 <table class="table table-striped" id="myTable">

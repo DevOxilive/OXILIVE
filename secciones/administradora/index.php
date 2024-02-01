@@ -1,15 +1,42 @@
 <?php
 session_start();
 if (!isset($_SESSION['us'])) {
-  header('Location: ../../login.php');
+  header('Location: ../../../login.php');
 } elseif (isset($_SESSION['us'])) {
-  include("../../templates/header.php");
-  include("./consulta.php");
+    include("../../templates/header.php");
+    include("./consulta.php");
 } else {
   echo "Error en el sistema";
 }
 ?>
 
+<<<<<<< HEAD
+ <style>
+  #customers th {
+  text-align: center;
+  background-color: #005880;
+  color: white;
+}
+  </style>
+
+<main id="main" class="main">
+  <div class="row">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Administradora</h3>
+        <hr>
+        <div class="btn-box justify-content-first">
+            <a class="btn btn-outline-primary" href="crear.php" role="button">
+              <i class="bi bi-person-fill-add"></i> Nueva Administradora
+            </a>
+          </div>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive-sm">
+        <table class="table table-striped" id="myTable">
+            <thead id="customers">
+              <tr class="table-active table-group-divider">
+=======
 <main id="main" class="main">
     <div class="row">
         <div class="card-header" style="text-align: right;">
@@ -25,12 +52,16 @@ if (!isset($_SESSION['us'])) {
                     <table class="table table-striped" id="myTable">
                         <thead class="customers">
                             <tr class="table-active table-group-divider">
+>>>>>>> 18faeeda534d99784fcd8606a7ad7bc49dcea2a2
                                <th scope="col">Administradora</th>
                             <th scope="col">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($lista_administradora as $registro) { ?>
+                <?php if ($_SESSION['puesto'] == 1 || $_SESSION['puesto'] == 7) { ?>
+
+                <?php } ?>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+            <?php foreach ($lista_administradora as $registro) { ?>
                             <tr class="" style="text-align: center; ">
                                 <td><?php echo $registro['Nombre_administradora']; ?></td>
                                 <td style="text-align: center;">
@@ -44,11 +75,12 @@ if (!isset($_SESSION['us'])) {
                                 </td>
                             </tr>
                             <?php } ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            </tbody>
+          </table>
         </div>
+      </div>
+    </div>
+    </section>
 </main>
 <!-- ESTO SIRVE PARA ELIMINAR LOS DATOS DESDE LAS ACCIONES DEL INDEX, SE BORRAN UNICAMENTE DESPUES DE CONFIRMAR -->
 <script>

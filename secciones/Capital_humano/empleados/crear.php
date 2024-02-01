@@ -7,6 +7,10 @@ if (!isset($_SESSION['us'])) {
     require_once "../../../connection/conexion.php";
     include("../../../model/genero.php");
     include("../../../secciones/puestos/consulta.php");
+<<<<<<< HEAD
+    include("./documentos.php");
+=======
+>>>>>>> 18faeeda534d99784fcd8606a7ad7bc49dcea2a2
 } else {
     echo "Error en el sistema";
 }
@@ -15,14 +19,22 @@ if (!isset($_SESSION['us'])) {
 <link rel="stylesheet" href="../../../assets/css/foto_perfil.css">
 <link rel="stylesheet" href="../../../assets/css/edit.css">
 <link rel="stylesheet" href="css/valid.css">
-</head>
 
-</html>
+
 <main id="main" class="main">
     <section class="section dashboard">
+<<<<<<< HEAD
+        <div class="card">
+            <div class="card-header" style="border: 2px solid #012970; background: #005880;">
+                <h4
+                    style="text-align: center; color: #fff; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                    Nuevo Empleado
+                </h4>
+=======
         <div class="card card-form">
             <div class="card-header">
                 <h4>Nuevo Empleado</h4>
+>>>>>>> 18faeeda534d99784fcd8606a7ad7bc49dcea2a2
             </div>
             <div class="card-body">
                 <form action="empleadosADD.php" method="POST" enctype="multipart/form-data" class="row g-3" id="formulario" novalidate>
@@ -203,7 +215,11 @@ if (!isset($_SESSION['us'])) {
                         <label for="licenciaUno" class="form-label">Licencia: </label>
                         <input type="file" class="form-control" aria-label="file example" name="licenciaUno" id="licenciaUno">
                     </div>
+<<<<<<< HEAD
+                    <div class="contenido col-md-3"  id="tipoLicenciaBox">
+=======
                     <div class="contenido col-md-3" id="tipoLicenciaBox">
+>>>>>>> 18faeeda534d99784fcd8606a7ad7bc49dcea2a2
                         <label for="tipoLicencia" class="form-label">Tipo de Licencia:</label>
                         <input type="text" class="form-control letters-and-numbers" name="tipoLicencia" id="tipoLicencia" placeholder="Ejemplo A" minlength="1" maxlength="2" required>
                     </div>
@@ -221,9 +237,17 @@ if (!isset($_SESSION['us'])) {
         </div>
     </section>
 </main>
+<<<<<<< HEAD
+<script src="../../../Js/validacionRegex.js"></script>
+<script src="../../../Js/validacionEnvio.js"></script>
+<script src="JS/validaciones.js"></script>
+
+<script src="JS/domicilio.js"></script>
+=======
 <script src="../../../js/validacionRegex.js"></script>
 <script src="../../../js/validacionEnvio.js"></script>
 <script src="js/validaciones.js"></script>
 <script src="js/documentos.js"></script>
 <script src="../../../js/domicilio.js"></script>
+>>>>>>> 18faeeda534d99784fcd8606a7ad7bc49dcea2a2
 <?php include("../../../templates/footer.php"); ?>
