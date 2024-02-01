@@ -1,201 +1,293 @@
 <?php
 session_start();
 if (!isset($_SESSION['us'])) {
-    header('Location: ../../../login.php');
+    header('Location: ../../login.php');
 } elseif (isset($_SESSION['us'])) {
     include("../../../templates/header.php");
     require_once "../../../connection/conexion.php";
-    include("../../../model/banco.php");   
     include("../../../model/genero.php");
     include("../../../secciones/puestos/consulta.php");
     include("./empleadosUPP.php");
+    include("./documentos.php");
 } else {
     echo "Error en el sistema";
 }
 ?>
-<html lang="en">
-<link rel="stylesheet" href="../../../assets/css/foto_editar.css">
+<!DOCTYPE html>
+<link rel="stylesheet" href="../../../assets/css/foto_perfil.css">
 <link rel="stylesheet" href="../../../assets/css/edit.css">
+<link rel="stylesheet" href="css/valid.css">
 
-</html>
+
 <main id="main" class="main">
     <section class="section dashboard">
-        <div class="card">
-            <div class="card-header" style="border: 2px solid #012970; background: #005880;">
-                <h4
-                    style="text-align: center; color: #fff; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
-                    Registrar Empleado</h4>
+        <div class="card card-form">
+            <div class="card-header">
+                <h4>Nuevo Empleado</h4>
             </div>
-            <div class="card-body" style="border: 2px solid #BFE5FF;">
-                <form action="./empleadosUPP.php" method="post" enctype="multipart/form-data" class="formEdit row g-3">
+            <div class="card-body">
+                <form action="empleadosUPP.php" method="POST" enctype="multipart/form-data" class="row g-3"
+                    id="formulario" novalidate>
                     <div class="contenido col-md-1"> <br>
                         <label for="txtID" class="form-label">Num</label>
                         <input type="text" value="<?php echo $txtID; ?>" class="form-control" readonly name="txtID"
                             id="txtID" aria-describedby="helpId">
                     </div>
 
-                    <div class="contenido contenido col-md-4">
-                        <br>
-                        <div class="formulario__grupo" id="grupo__Nombres">
-                            <label for="Nombres" class="formulario-label">Nombres</label>
-                            <div class="formulario__grupo-input">
-                                <input type="text" class="form-control" name="Nombres" id="Nombres" value="<?php echo $Nombres; ?>" 
-                                    placeholder="Ejem: David Francisco" required>
-                            </div>
-                        </div>
+
+                    <!-- Apartado Libre -->
+                    <div class="contenido col-md-3" id="departamentoBox"><br>
+                        <label for="departamento" class="form-label">Puesto: <span class="text-danger">*</span></label>
+                        <select id="departamento" name="departamento" class="form-select" >
+                            <?php foreach ($lista_puestos as $puestos) { ?>
+                            <option <?php echo ($Puesto == $puestos['id_puestos']) ? "selected" : "";?>
+                                value="<?php echo $puestos['id_puestos']; ?>">
+                                <?php echo $puestos['Nombre_puestos']; ?>
+                            </option>
+                            <?php } ?>
+                        </select>
                     </div>
-                    <div class="contenido contenido col-md-4">
-                        <br>
-                        <div class="formulario__grupo" id="grupo__Apellidos">
-                            <label for="Apellidos" class="formulario-label">Apellidos</label>
-                            <div class="formulario__grupo-input">
-                                <input type="text" class="form-control" name="Apellidos" id="Apellidos" value="<?php echo $Apellidos; ?>" 
-                                    placeholder="Ejem: Cordoba Lopez" required>
-                            </div>
-                        </div>
+
+                    <div class="contenido col-md-5" id="contratoBox"> <br>
+                        <label for="contrato" class="form-label">Cuenta con contrato: <span
+                                class="text-danger">*</span></label>
+                        <select name="contrato" id="contrato" class="form-select" >
+                            <?php $si=""; $no=""; if($Contrato == 'SI CONTRATADO'){ $si = "selected"; } else { $no = 'selected'; } ?>
+                          
+                            <option value="SI CONTRATADO" <?php echo $si; ?>>SI CONTRATADO</option>
+                            <option value="NO CONTRATADO" <?php echo $no; ?>>NO CONTRATADO</option>
+                        </select>
                     </div>
-                    <div class="contenido col-md-2">
-                        <br>
-                        <div class="formulario__grupo" id="grupo__Edad">
-                            <label for="Edad" class="formulario-label">Edad</label>
-                            <div class="formulario__grupo-input">
-                                <input type="text" class="form-control" name="Edad" id="Edad" value="<?php echo $Edad; ?>" 
-                                    placeholder="Ejem: 57" required>
-                            </div>
-                        </div>
+                    <div class="contenido col-md-3"> <br>
+                        <label for="tipoDeContrato" class="form-label">Tipo De Contrato:</label>
+                        <select name="tipoDeContrato" id="tipoDeContrato" class="form-select">
+                            <?php $p = ""; $t = ""; $I = ""; 
+                            if ($p == "PLANTA"){
+                                $p = "selected";
+                            } if ($t == "TEMPORAL"){
+                                $t = "selected";
+                            }else{
+                                $I = "selected";
+                            }
+                            ?>
+                            
+                            <option value="PLANTA" <?php echo $p; ?>>PLANTA</option>
+                            <option value="TEMPORAL" <?php echo $t; ?>>TEMPORAL</option>
+                            <option value="INDEFINIDO" <?php echo $I; ?>>INDEFINIDO</option>
+                        </select>
                     </div>
-                    <div class="contenido col-md-2">
+                    <!-- <div class="contenido col-md-3" id="fechaAltaBox"><br>
+                        <label for="fechaAlta" class="form-label">Fecha Alta Contrato: <span class="text-danger">*</span></label>
+                        <input type="date" class="form-control " name="fechaAlta" id="fechaAlta" required>
+                    </div> -->
+
+
+                    <!-- Apartado de Datos Generales -->
+                    <div class="contenido col-md-12">
+                        <hr>
+                        <h2 class="form-title">Datos Generales</h2>
+                    </div>
+
+                    <!-- Nombre Completo -->
+                    <div class="contenido col-md-5" id="nombresBox">
+                        <label for="nombres" class="form-label">Nombre(s): <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control only-letters" value="<?php echo $Nombres; ?>"
+                            name="nombres" id="nombres" placeholder="Ingrese el/los nombre(s)" minlength="3"
+                            maxlength="40" >
+                    </div>
+                    <div class="contenido col-md-5" id="apellidosBox">
+                        <label for="apellidos" class="form-label">Apellidos: <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control only-letters" value="<?php echo $Apellidos ?>"
+                            name="apellidos" id="apellidos" placeholder="Ingrese los apellidos" minlength="3"
+                            maxlength="40" >
+                    </div>
+
+                    <!-- Género -->
+                    <div class="contenido col-md-3">
                         <label for="Genero" class="form-label">Género</label>
                         <select id="Genero" name="Genero" class="form-select">
                             <?php foreach ($lista_genero as $genero) { ?>
-                                <option <?php echo ($Genero == $genero['id_genero']) ? "selected" : ""; ?>
-                                    value="<?php echo $genero['id_genero']; ?>">
-                                    <?php echo $genero['genero']; ?>
-                                </option>
+                            <option <?php echo ($Genero == $genero['id_genero']) ? "selected" : ""; ?>
+                                value="<?php echo $genero['id_genero']; ?>">
+                                <?php echo $genero['genero']; ?>
+                            </option>
                             <?php } ?>
                         </select>
-                    </div>
-                    <div class="contenido col-md-3">
-                        <div class="formulario__grupo" id="grupo__Fecha_nacimiento">
-                            <label for="Fecha_nacimiento" class="formulario-label">Fecha de nacimiento</label>
-                            <div class="formulario__grupo-input">
-                                <input type="date" class="form-control" name="Fecha_nacimiento" value="<?php echo $Fecha_nacimiento; ?>" 
-                                    id="Fecha_nacimiento" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="contenido col-md-3">
-                        <div class="formulario__grupo" id="grupo__Telefono">
-                            <label for="Telefono" class="formulario-label">Telefono</label>
-                            <div class="formulario__grupo-input">
-                                <input type="text" class="form-control" name="Telefono" id="Telefono" value="<?php echo $Telefono; ?>" 
-                                    placeholder="Ejem: 55 11223344" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="contenido col-md-2">
-                        <div class="formulario__grupo" id="grupo__rfc">
-                            <label for="rfc" class="formulario-label">RFC</label>
-                            <div class="formulario__grupo-input">
-                                <input type="text" class="form-control" name="rfc" id="rfc" value="<?php echo $rfc; ?>"
-                                    placeholder="Eje: EJEM123456" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <label for="Seguro_social" class="form-label">Comprobante de Seguro Social, Ver: <a href="../empleados/EMPLEADOS/<?php echo $Apellidos."_".$Nombres?>/<?php echo $Seguro_social; ?>"> <i class="bi bi-eye-fill"></i></a></label>
-                        <input class="form-control" type="file" value="../empleados/EMPLEADOS/<?php echo $Apellidos."_".$Nombres?>/<?php echo $Seguro_social; ?>" name="Seguro_social" id="Seguro_social" >
                     </div>
 
-                    <div class="col-md-3">
-                        <label for="Acta_nacimiento" class="form-label">Acta de nacimiento, Ver:  <a href="../empleados/EMPLEADOS/<?php echo $Apellidos."_".$Nombres?>/<?php echo $Acta_nacimiento; ?>"><i class="bi bi-eye-fill"></i></a></label>
-                        <input class="form-control" type="file" name="Acta_nacimiento" id="Acta_nacimiento">
+                    <!-- CURP y RFC -->
+                    <div class="contenido col-md-4" id="curpBox">
+                        <label for="curp" class="form-label">CURP: <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control letters-and-numbers" value="<?php echo $Curp; ?>"
+                            name="curp" id="curp" placeholder="Ingresa el CURP" minlength="18" maxlength="18" >
                     </div>
-                    <div class="col-md-3">
-                        <label for="Comprobante_domicilio" class="form-label">Comprobante de domicilio, Ver:  <a href="../../Capital_humano/empleados/EMPLEADOS/<?php echo $Apellidos."_".$Nombres?>/<?php echo $Comprobante_domicilio; ?>"><i class="bi bi-eye-fill"></i></a> </label>
-                        <input class="form-control" type="file" name="Comprobante_domicilio" id="Comprobante_domicilio" value="<?php echo $Comprobante_domicilio; ?>" >
+                    <div class="contenido col-md-3" id="rfcBox">
+                        <label for="rfc" class="form-label">RFC: <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control letters-and-numbers" value="<?php echo $rfc ?>"
+                            name="rfc" id="rfc" placeholder="x1x1x1x1x1x1x1x" minlength="13" maxlength="13" >
                     </div>
-                    <div class="col-md-3">
-                        <label for="Curp" class="form-label">CURP, Ver:  <a href="../../Capital_humano/empleados/EMPLEADOS/<?php echo $Apellidos."_".$Nombres?>/<?php echo $Curp; ?>"><i class="bi bi-eye-fill"></i></a> </label>
-                        <input class="form-control" type="file" name="Curp" id="Curp" value="<?php echo $Curp; ?>">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="Titulo" class="form-label">Titulo, Ver:  <a href="../../Capital_humano/empleados/EMPLEADOS/<?php echo $Apellidos."_".$Nombres?>/<?php echo $Titulo; ?>"><i class="bi bi-eye-fill"></i></a> </label>
-                        <input class="form-control" type="file" name="Titulo" id="Titulo" value="<?php echo $Titulo; ?>">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="Cedula" class="form-label">Cédula, Ver:  <a href="../../Capital_humano/empleados/EMPLEADOS/<?php echo $Apellidos."_".$Nombres?>/<?php echo $Cedula; ?>"><i class="bi bi-eye-fill"></i></a> </label>
-                        <input class="form-control" type="file" name="Cedula" id="Cedula" value="<?php echo $Cedula; ?>">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="Carta_recomendacion1" class="form-label">Carta de recomendacion 1, Ver:  <a href="../../Capital_humano/empleados/EMPLEADOS/<?php echo $Apellidos."_".$Nombres?>/<?php echo $Carta_recomendacion1; ?>"><i class="bi bi-eye-fill"></i></a> </label>
-                        <input class="form-control" type="file" name="Carta_recomendacion1" value="<?php echo $Carta_recomendacion1; ?>"  id="Carta_recomendacion1"
-                    >
-                    </div>
-                    <div class="col-md-3">
-                        <label for="Carta_recomendacion2" class="form-label">Carta de recomendacion 2, Ver:  <a href="../../Capital_humano/empleados/EMPLEADOS/<?php echo $Apellidos."_".$Nombres?>/<?php echo $Carta_recomendacion2; ?>"><i class="bi bi-eye-fill"></i></a> </label>
-                        <input class="form-control" type="file" name="Carta_recomendacion2" value="<?php echo $Carta_recomendacion2; ?>"  id="Carta_recomendacion2"
-                    >
-                    </div>
-                    <div class="col-md-3">
-                        <label for="ine" class="form-label">INE, Ver:  <a href="../../Capital_humano/empleados/EMPLEADOS/<?php echo $Apellidos."_".$Nombres?>/<?php echo $ine; ?>"><i class="bi bi-eye-fill"></i></a> </label>
-                        <input class="form-control" type="file" name="ine" id="ine" value="<?php echo $ine; ?>">
-                    </div>
-                    <div class="contenido col-md-2">
-                        <label for="Puesto" class="form-label">Puesto</label>
-                        <select id="Puesto" name="Puesto" class="form-select">
-                            <?php foreach ($lista_puestos as $puesto) { ?>
-                                <option <?php echo ($Puesto == $puesto['id_puestos']) ? "selected" : ""; ?> value="<?php echo $puesto['id_puestos']; ?>"><?php echo $puesto['Nombre_puestos']; ?>
-                                </option>
-                            <?php } ?>
 
+                    <!-- Teléfono -->
+                    <div class="contenido col-md-3" id="telefonoBox">
+                        <label for="telefono" class="form-label">Teléfono: <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control only-numbers" value="<?php echo $telefono?>"
+                            name="telefono" id="telefono" placeholder="Teléfono de 10 digitos" minlength="10"
+                            maxlength="10" >
+                    </div>
+
+                    <!-- Correo Electrónico -->
+                    <div class="contenido col-md-4">
+                        <label for="email" class="form-label">Correo electrónico:</label>
+                        <input type="email" class="form-control" name="email" value="<?php echo $correo ?>" id="email"
+                            placeholder="Ingresa el correo electrónico" minlength="15" maxlength="50">
+                    </div>
+
+                    <!-- Div de relleno -->
+                    <div class="col-md-2"></div>
+
+                    <!-- Número de cuenta bancaria -->
+                    <div class="contenido col-md-4" id="cuentaInputBox">
+                        <label for="cuentaInput" class="form-label">Cuenta Bancaria: <span
+                                class="text-danger">*</span></label>
+                        <input type="text" class="form-control only-numbers" value="<?php echo $cuentaBancaria ?>"
+                            name="cuentaInput" id="cuentaInput" placeholder="12345432" oninput="validarCuenta()"
+                            minlength="10" maxlength="20" >
+                        <div id="mensajeError" class="error-message"></div>
+                    </div>
+
+                    <!-- NSS -->
+                    <div class="contenido col-md-3" id="nssBox">
+                        <label for="nss" class="form-label">NSS: <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control only-numbers" name="nss" id="nss"
+                            value="<?php echo $nss ?>" placeholder="Ingrese el correo" minlength="11" maxlength="11"
+                            >
+                    </div>
+
+                    <!-- Nivel Educativo -->
+                    <div class="contenido col-md-3" id="nivelEducativoBox">
+                        <label for="nivelEducativo" class="form-label">Nivel Estudios: <span
+                                class="text-danger">*</span></label>
+                        <select name="nivelEducativo" id="nivelEducativo" class="form-select" >
+                            <?php $c=""; $b=""; $s="";
+                                if($c == "CEDULA"){
+                                    $c = "selectd";
+                                } if ($b == "BACHILLERATO"){
+                                    $b = "selected";
+                                } else{
+                                    $s = "selected";
+                                }
+                            ?>
+                            <option value="Cédula" <?php echo $c ?>>CÈDULA</option>
+                            <option value="Bachillerato" <?php echo $b ?>>BACHILLERATO</option>
+                            <option value="Secundaria" <?php echo $s ?>>SECUNDARIA</option>
                         </select>
                     </div>
-                    <div class="contenido col-md-2">
-                        <label for="Banco" class="form-label">Banco</label>
-                        <select id="Banco" name="Banco" class="form-select">
-                            <?php foreach ($lista_bancos as $ban) { ?>
-                                <option <?php echo ($Banco == $ban['id_bancos']) ? "selected" : ""; ?> value="<?php echo $ban['id_bancos']; ?>"><?php echo $ban['Nombre_banco']; ?>
-                                </option>
-                            <?php } ?>
-                        </select>
+
+                    <!-- Apartado de Domicilio -->
+                    <?php include("../../../templates/apartadoDomEdit.php");?>
+
+                    <!-- Apartado de Documentación -->
+                    <div class="contenido col-md-12">
+                        <hr>
+                        <h2 class="form-title">Documentación</h2>
                     </div>
-                    <div class="contenido col-md-3">
-                        <div class="formulario__grupo" id="grupo__No_cuenta">
-                            <label for="No_cuenta" class="formulario-label">No. de cuenta</label>
-                            <div class="formulario__grupo-input">
-                                <input type="text" class="form-control" name="No_cuenta" id="No_cuenta" value="<?php echo $No_cuenta; ?>" 
-                                    placeholder="Eje: 1234567891" required>
-                            </div>
-                        </div>
+
+                    <!-- INE -->
+                    <div class="contenido col-md-5" id="ineDocBox">
+                        <label for="ineDoc" class="form-label">Credencial de Elector: <span
+                                class="text-danger">*</span> </label>
+                        <input type="file" value="<?php echo $Ine ?>" class="form-control" name="ineDoc" id="ineDoc" > Ver INE: <a target="_blank" href="<?php echo $Ine; ?>"><i class="bi bi-eye-fill"></i></a></label>
                     </div>
+                    <!-- Acta de Nacimiento -->
+                    <div class="contenido col-md-5" id="actaNacimientoBox">
+                        <label for="actaNacimiento" class="form-label">Acta De Nacimiento: </label>
+                        <input type="file" value="<?php echo $acta ?>" class="form-control" name="actaNacimiento" id="actaNacimiento"> Ver Acta Nacimiento: <a target="_blank" href="<?php echo $acta; ?>"><i class="bi bi-eye-fill"></i></a></label>
+                    </div>
+
+                    <!-- Comprobante de domicilio -->
+                    <div class="contenido col-md-5" id="comprobanteDomicilioBox">
+                        <label for="comprobanteDomicilio" class="form-label">Comprobante De Domicilio: <span
+                                class="text-danger">*</span></label>
+                        <input type="file" value="<?php echo $comprobante ?>" class="form-control" name="comprobanteDomicilio" id="comprobanteDomicilio"
+                            >Ver Comprobante: <a target="_blank" href="<?php echo $comprobante; ?>"><i class="bi bi-eye-fill"></i></a></label>
+                    </div>
+
+                    <!-- Último certificado o Cédula -->
+                    <div class="contenido col-md-4" id="certificadoEstudiosBox">
+                        <label for="certificadoEstudios" class="form-label">Último Certificado / Cédula: <span
+                                class="text-danger">*</span></label>
+                        <input type="file" class="form-control" name="certificadoEstudios" id="certificadoEstudios"
+                            >Ver Certificado: <a target="_blank" href="<?php echo $certificado; ?>"><i class="bi bi-eye-fill"></i></a></label>
+                    </div>
+
+                    <!-- Estado de cuenta -->
+                    <div class="contenido col-md-4" id="cuentaBox">
+                        <label for="cuenta" class="form-label">Estado de Cuenta: <span
+                                class="text-danger">*</span></label>
+                        <input type="file" class="form-control" name="cuenta" id="cuenta" 
+                        >Ver Estado Cuenta: <a target="_blank" href="<?php echo $numCuenta; ?>"><i class="bi bi-eye-fill"></i></a></label>
+                    </div>
+
+                    <!-- NSS Documento -->
+                    <div class="contenido col-md-4" id="nssDocBox">
+                        <label for="nssDoc" class="form-label">Nùmero De Seguro Social:</label>
+                        <input type="file" class="form-control" name="nssDoc" id="nssDoc" 
+                        >Ver NSS: <a target="_blank" href="<?php echo $nssDoc; ?>"><i class="bi bi-eye-fill"></i></a></label>
+                    </div>
+
+                    <!-- CURP Documento -->
+                    <div class="contenido col-md-4" id="curpDocBox">
+                        <label for="curpDoc" class="form-label">CURP: <span class="text-danger">*</span></label>
+                        <input type="file" class="form-control" name="curpDoc" id="curpDoc" >Ver CURP: <a target="_blank" href="<?php echo $curp; ?>"><i class="bi bi-eye-fill"></i></a></label>
+                    </div>
+
+                    <!-- RFC Documento -->
+                    <div class="contenido col-md-4" id="rfcDocBox">
+                        <label for="rfcDoc" class="form-label">RFC: <span class="text-danger">*</span></label>
+                        <input type="file" class="form-control" name="rfcDoc" id="rfcDoc"
+                         >Ver RFC: <a target="_blank" href="<?php echo $rfcDoc; ?>"><i class="bi bi-eye-fill"></i></a></label>
+                    </div>
+
+                    <!--Estos tambien hay que insertarlos-->
+                    <div class="contenido col-md-4" id="referenciaLabBox">
+                        <label for="referenciaLabUno" class="form-label">Referencia Laboral: <span
+                                class="text-danger">*</span></label>
+                        <input type="file" class="form-control" name="referenciaLabUno" id="referenciaLab" 
+                        >Ver Ref.Laboral: <a target="_blank" href="<?php echo $laboral; ?>"><i class="bi bi-eye-fill"></i></a></label>
+                    </div>
+
+                    <div class="contenido col-md-4">
+                        <label for="referenciaLabDos" class="form-label">Referencia Personal:</label>
+                        <input type="file" class="form-control" aria-label="file example" name="referenciaLabDos"
+                            id="referenciaLabDos">Ver Ref.Personal: <a target="_blank" href="<?php echo $personal; ?>"><i class="bi bi-eye-fill"></i></a></label>
+                    </div>
+                    <div class="contenido col-md-4">
+                        <label for="licenciaUno" class="form-label">Licencia: </label>
+                        <input type="file" class="form-control" aria-label="file example" name="licenciaUno"
+                            id="licenciaUno">Ver Licencia: <a target="_blank" href="<?php echo $licencia; ?>"><i class="bi bi-eye-fill"></i></a></label>
+                    </div>
+                    <div class="contenido col-md-3" id="tipoLicenciaBox">
+                        <label for="tipoLicencia" class="form-label">Tipo de Licencia:</label>
+                        <input type="text" class="form-control letters-and-numbers" name="tipoLicencia"
+                          value="<?php echo $tipoLicencia ?>"  id="tipoLicencia" placeholder="Ejemplo A" minlength="1" maxlength="2">
+                    </div>
+
+                    <!-- Apartado Botones -->
                     <div class="col-12">
-                        <button type="submit" name="guardar" class="btn btn-outline-primary">Guardar</button>
-                        <a role="button"onclick="mostrarAlertaCancelar()" 
-                            name="cancelar" class="btn btn-outline-danger"> Cancelar</a>
+                        <hr>
+                        <button type="submit" class="btn btn-outline-primary">Guardar</button>
+                        <a role="button" onclick="confirmCancel(event)" name="cancelar" class="btn btn-outline-danger">
+                            Cancelar
+                        </a>
                     </div>
                 </form>
             </div>
         </div>
+    </section>
 </main>
-<script>
-    function mostrarAlertaCancelar() {
-        Swal.fire({
-            title: '¿Estás seguro?',
-            text: 'Los cambios no se guardarán',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Sí, cancelar',
-            cancelButtonText: 'No, continuar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = '<?php echo $url_base; ?>secciones/Capital_humano/empleados/index.php';
-            }
-        })
-    }
-</script>
-<?php
-include("../../../templates/footer.php");
-?>
+<script src="../../../js/validacionRegex.js"></script>
+<script src="../../../js/validacionEnvio.js"></script>
+<script src="js/validaciones.js"></script>
+<script src="js/documentos.js"></script>
+<script src="../../../js/domicilio.js"></script>
+<?php include("../../../templates/footer.php"); ?>

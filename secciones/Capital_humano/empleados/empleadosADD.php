@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $calleDos = (isset($_POST['calleDos']) ? $_POST['calleDos'] : null);
     $referencias = (isset($_POST['referencias']) ? $_POST['referencias'] : null);
     $cuentaInput = (isset($_POST['cuentaInput']) ? $_POST['cuentaInput'] : null);
-    $estudio = (isset($_POST['nivel_educativo']) ? $_POST['nivel_educativo'] : "");
+    $nivelEducativo = (isset($_POST['nivelEducativo']) ? $_POST['nivelEducativo'] : "");
     $contrato = (isset($_POST['contrato']) ? $_POST['contrato'] : "");
     $nss = (isset($_POST['nss']) ? $_POST['nss'] : "");
     $tipoLicencia = (isset($_POST['tipoLicencia']) ? $_POST['tipoLicencia'] : null);
@@ -40,6 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $referenciaLabDos = (isset($_POST['referenciaLabDos']) ? $_POST['referenciaLabDos'] : "");
     $licenciaUno = (isset($_POST['licenciaUno']) ? $_POST['licenciaUno'] : "");
     $cuenta = (isset($_POST['cuenta']) ? $_POST['cuenta'] : null);
+    $fechaAlta = (isset($_POST['fechaAlta']) ? $_POST['fechaAlta'] : null);
+    $tipoDeContrato = (isset($_POST['tipoDeContrato']) ? $_POST['tipoDeContrato'] : null);
 
 
     //Los anteriores ya se insertan
@@ -192,6 +194,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         contrato, 
                         nss,
                         tipoLicencia,
+                        fechaAlta,
+                        tipoDeContrato,
                         certificadoEstudios,
                         ineDoc, 
                         actaNacimiento,
@@ -220,10 +224,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             :referencias,
                             '$cuenta',
                             :numCuenta, 
-                            :estudio, 
+                            :nivelEducativo, 
                             :contrato, 
                             :nss , 
                             :tipoLicencia,
+                            :fechaAlta,
+                            :tipoDeContrato,
                             '$certificadoEstudios' , 
                             '$ineDoc', 
                             '$actaNacimiento', 
@@ -253,15 +259,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $sentencia->bindParam(":calleDos", $calleDos);
                 $sentencia->bindParam(":referencias", $referencias);
                 $sentencia->bindParam(":numCuenta", $cuentaInput);
-                $sentencia->bindParam(":estudio", $estudio);
+                $sentencia->bindParam(":nivelEducativo", $nivelEducativo);
                 $sentencia->bindParam(":contrato", $contrato);
                 $sentencia->bindParam(":nss", $nss);
                 $sentencia->bindParam(":tipoLicencia", $tipoLicencia);
+                $sentencia->bindParam(":fechaAlta", $fechaAlta);
+                $sentencia->bindParam(":tipoDeContrato",$tipoDeContrato);
                 $sentencia->execute();
                 echo '<script language="javascript"> ';
                 echo 'Swal.fire({
                                 icon: "success",
-                                title: "USUARIO AGREGADO",
+                                title: "🫂 EMPLEADO AGREGADO",
                                 text: "Los datos fueron guardados",
                                 showConfirmButton: false,
                                 timer: 2000,
