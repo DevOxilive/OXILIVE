@@ -113,9 +113,29 @@ if (!isset($_SESSION['us'])) {
                         <label for="telefono" class="form-label">Teléfono: <span class="text-danger">*</span></label>
                         <input type="text" class="form-control only-numbers" name="telefono" id="telefono" placeholder="Teléfono de 10 digitos" minlength="10" maxlength="10" required>
                     </div>
-
+                    <!-- Telefono Dos -->
+                    <div class="contenido col-md-1 d-flex align-items-center cursor-pointer" style="display: flex; padding: 35px; padding-left: 15px;"
+                         id="add">
+                        <span class=" badge bg-primary fs-4 " id="addBoton">+</span>
+                    </div>
+                    <div class="contenido col-md-4" style="display: none;" id="tel">
+                        <label for="telDos" class="form-label">Teléfono 2:</label>
+                        <div class="input-group" >
+                            <input type="text" maxlength="10" class="form-control" name="telDos" id="telDos"
+                                placeholder="Télefono de 10 digitos">
+                            <div class="input-group-append">
+                                <a href="#" class="btn btn-info remove-lnk d-flex align-items-center" id="delBoton"
+                                    style="border-radius: 3px; height: 100%;">
+                                    <i class="fas fa-trash-alt justify-content-center"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <p id="errTelDos" style="color: red; font-weight: bold;"></p>
+                    </div>
+                    <!--Fin del telefono dos-->
+                    
                     <!-- Correo Electrónico -->
-                    <div class="contenido col-md-6">
+                    <div class="contenido col-md-5">
                         <label for="email" class="form-label">Correo electrónico:</label>
                         <input type="email" class="form-control" name="email" id="email" placeholder="Ingresa el correo electrónico" minlength="15" maxlength="50">
                     </div>
@@ -240,4 +260,5 @@ if (!isset($_SESSION['us'])) {
 <script src="js/validaciones.js"></script>
 <script src="js/documentos.js"></script>
 <script src="../../../js/domicilio.js"></script>
+<script src="../../../Js/botonAdd.js"></script>
 <?php include("../../../templates/footer.php"); ?>
