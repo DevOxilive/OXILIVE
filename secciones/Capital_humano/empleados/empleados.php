@@ -68,6 +68,11 @@ if (!isset($_SESSION['us'])) {
 
                             <dt class="col-lg-3 col-md-4 label">rfc:</dt>
                             <dd class="col-lg-9 col-md-8"><?php echo $rfc; ?></dd>
+
+                            <dt class="col-lg-3 col-md-4 label">NSS:</dt>
+                            <dd class="col-lg-9 col-md-8"><?php echo $nss; ?></dd>
+
+                            
                         </dl>
 
                     </div>
