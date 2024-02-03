@@ -1,6 +1,7 @@
 <?php
 include("../../../connection/conexion.php");
 include("../../../templates/hea.php");
+include("../../../connection/url.php");
 include("../../../ctrlArchivos/control/Archivero.php");
 
 if (isset($_GET['txtID'])) {
@@ -56,40 +57,62 @@ if (isset($_GET['txtID'])) {
 if ($_POST) {
     $archivero = new Archivero();
     $txtID = $_POST['txtID'];
-    echo $txtID;
-    // $Nombres = (isset($_POST["nombres"]) ? $_POST["nombres"] : "");
-    // $Apellidos = (isset($_POST["apellidos"]) ? $_POST["apellidos"] : "");
-    // // $Genero = (isset($_POST["genero"]) ? $_POST["genero"] : "");
-    // $telefono = (isset($_POST["telefono"]) ? $_POST["telefono"] : "");
-    // $telefonoDos = (isset($_POST["telefonoDos"]) ? $_POST["telefonoDos"] : null);
-    // $correo = (isset($_POST["email"]) ? $_POST["email"] : NULL);
-    // $Curp = (isset($_POST["curp"]) ? $_POST["curp"] : "");
-    // $rfc = (isset($_POST["rfc"]) ? $_POST["rfc"] : "");
-    // $departamento = (isset($_POST["departamento"]) ? $_POST["departamento"] : null);
-    // $calle = (isset($_POST["calle"]) ? $_POST["calle"] : "");
-    // $numExt = (isset($_POST["numExt"]) ? $_POST["numExt"] : "");
-    // $numInt = (isset($_POST["numInt"]) ? $_POST["numInt"] : NULL);
-    // $colonia = (isset($_POST['colonia']) ? $_POST['colonia'] : null);
-    // $calleUno = (isset($_POST['calleUno']) ? $_POST['calleUno'] : null);
-    // $calleDos = (isset($_POST['calleDos']) ? $_POST['calleDos'] : null);
-    // $referencias = (isset($_POST['referencias']) ? $_POST['referencias'] : null);
-    // $cuentaInput = (isset($_POST['cuentaInput']) ? $_POST['cuentaInput'] : null);
-    // $nivelEducativo = (isset($_POST['nivelEducativo']) ? $_POST['nivelEducativo'] : "");
-    // $contrato = (isset($_POST['contrato']) ? $_POST['contrato'] : "");
-    // $nss = (isset($_POST['nss']) ? $_POST['nss'] : "");
-    // $tipoLicencia = (isset($_POST['tipoLicencia']) ? $_POST['tipoLicencia'] : null);
-    // $fechaAlta = (isset($_POST['fechaAlta']) ? $_POST['fechaAlta'] : null);
-    // $tipoDeContrato = (isset($_POST['tipoDeContrato']) ? $_POST['tipoDeContrato'] : null);
+    echo $txtID . " ";
+    $Nombres = (isset($_POST["nombres"]) ? $_POST["nombres"] : "");
+    $Apellidos = (isset($_POST["apellidos"]) ? $_POST["apellidos"] : "");
+    $Genero = (isset($_POST["genero"]) ? $_POST["genero"] : "");
+    $telefono = (isset($_POST["telefono"]) ? $_POST["telefono"] : "");
+    $telefonoDos = (isset($_POST["telefonoDos"]) ? $_POST["telefonoDos"] : null);
+    $correo = (isset($_POST["email"]) ? $_POST["email"] : NULL);
+    $Curp = (isset($_POST["curp"]) ? $_POST["curp"] : "");
+    $rfc = (isset($_POST["rfc"]) ? $_POST["rfc"] : "");
+    $departamento = (isset($_POST["departamento"]) ? $_POST["departamento"] : null);
+    $calle = (isset($_POST["calle"]) ? $_POST["calle"] : "");
+    $numExt = (isset($_POST["numExt"]) ? $_POST["numExt"] : "");
+    $numInt = (isset($_POST["numInt"]) ? $_POST["numInt"] : NULL);
+    $colonia = (isset($_POST['colonia']) ? $_POST['colonia'] : null);
+    $calleUno = (isset($_POST['calleUno']) ? $_POST['calleUno'] : null);
+    $calleDos = (isset($_POST['calleDos']) ? $_POST['calleDos'] : null);
+    $referencias = (isset($_POST['referencias']) ? $_POST['referencias'] : null);
+    $cuentaInput = (isset($_POST['cuentaInput']) ? $_POST['cuentaInput'] : null);
+    $nivelEducativo = (isset($_POST['nivelEducativo']) ? $_POST['nivelEducativo'] : "");
+    $contrato = (isset($_POST['contrato']) ? $_POST['contrato'] : "");
+    $nss = (isset($_POST['nss']) ? $_POST['nss'] : "");
+    $tipoLicencia = (isset($_POST['tipoLicencia']) ? $_POST['tipoLicencia'] : null);
+    $fechaAlta = (isset($_POST['fechaAlta']) ? $_POST['fechaAlta'] : null);
+    $tipoDeContrato = (isset($_POST['tipoDeContrato']) ? $_POST['tipoDeContrato'] : null);
 
     //ESTOS SON LOS FILES
     $ineDoc = $_FILES['ineDoc']['name'];
-    $ineDocNew = $_FILES['ineDoc']['tmp_name'];
+    $actaN = $_FILES['actaNacimiento']['name'];
+    $domicilio = $_FILES['comprobanteDomicilio']['name'];
+    $certificadoEstudios = $_FILES['certificadoEstudios']['name'];
+    $cuenta = $_FILES['cuenta']['name'];
+    $nssDoc = $_FILES['nssDoc']['name'];
+    $curpDoc = $_FILES['curpDoc']['name'];
+    $rfcDoc = $_FILES['rfcDoc']['name'];
+    $referenciaLabUno = $_FILES['referenciaLabUno']['name'];
+    $referenciaLabDos = $_FILES['referenciaLabDos']['name'];
+    $licenciaUno = $_FILES['licenciaUno']['name'];
 
-    $mensajes = "";
-    echo $ineDoc;
+    $ineDocNew = $_FILES['ineDoc']['tmp_name'];
+    $actaNew = $_FILES['actaNacimiento']['tmp_name'];
+    $domicilioNew = $_FILES['comprobanteDomicilio']['tmp_name'];
+    $certificadoEstudiosNew = $_FILES['certificadoEstudios']['tmp_name'];
+    $cuentaNew = $_FILES['cuenta']['tmp_name'];
+    $nssDocNew = $_FILES['nssDoc']['tmp_name'];
+    $curpNew = $_FILES['curpDoc']['tmp_name'];
+    $rfcDocNew = $_FILES['rfcDoc']['tmp_name'];
+    $referenciaLabUnoNew = $_FILES['referenciaLabUno']['tmp_name'];
+    $referenciaLabDosNew = $_FILES['referenciaLabDos']['tmp_name'];
+    $tipoLicenciaNew = $_FILES['licenciaUno']['tmp_name'];
+
+    $mensajes = " ";
+
+    echo $ineDoc . " ";
 
     if (!empty($ineDoc)) {
-        echo "si llego archivo";
+        // echo "si llego archivo";
         $sql = "SELECT * FROM empleados WHERE id_empleado = $txtID";
         $actualizar = $con->prepare($sql);
         $actualizar->execute();
@@ -100,127 +123,351 @@ if ($_POST) {
         // print_r($arreglo);
         // echo "<br>";
         // echo $arreglo[9];
-        $ruta = './OXILIVE/' . $fotos['curp'] . ' ' . $fotos['nombres'];
-        $archivero->eliminarArchivo($ruta . "/" . $arreglo[9]);
-        $msj = "NUEVA INE CARGADA: $ineDoc";
-    } else {
-        echo "$ruta";
-        $archivero->guardarArchivo($ineDoc, $ineDocNew, $ruta);
-        if ($archivero === false) {
+        $ruta = 'OXILIVE/' . $fotos['curp'] . ' ' . $fotos['nombres'];
+        echo $resultado = $archivero->eliminarArchivo($ruta . "/" . $arreglo[9]);
+
+        if ($resultado === false) {
             echo "algo fallo al guardar";
         } else {
-            $ruta = './OXILIVE/' . $fotos['curp'] . ' ' . $fotos['nombres'];
-            if ($_SESSION['id_empleado'] == $txtID) {
-                echo $_SESSION['ineDoc'] = $ruta;
-            } else {
-                echo "no se cambio la variable de sesion";
+            echo $ruta = './OXILIVE/' . $fotos['curp'] . ' ' . $fotos['nombres'];
+            $resultado = $archivero->guardarArchivo($ineDoc, $ineDocNew, $ruta);
+            if ($resultado === false) {
+                echo "error en guaerdar la imagen en la carpeta :" . $ruta;
             }
-            $sql2 = "UPDATE empleados SET ineDoc = '$ineDoc'  WHERE id_empleado = $txtID";
+            $ruta = $url_base . "secciones/Capital_humano/empleados/OXILIVE/" . $fotos['curp'] . ' ' . $fotos['nombres'] . "/" .  $ineDoc;
+            $sql2 = "UPDATE empleados SET ineDoc = '$ruta'  WHERE id_empleado = $txtID";
             $stmt = $con->prepare($sql2);
             $stmt->execute();
             $mensajes .= "imagen guardad exitosa mente ";
         }
     }
-    // if(empty($ineDoc)){
-    //     echo "SIN CAMBIOS";
-    // }else{
-    //     $msj="";
+    //ACTA DE NACIMIENTO
+    if (!empty($actaN)) {
+        // echo "si llego archivo";
+        $sql = "SELECT * FROM empleados WHERE id_empleado = $txtID";
+        $actualizar = $con->prepare($sql);
+        $actualizar->execute();
+        $dato = $actualizar->fetchAll(PDO::FETCH_ASSOC);
+        //Recorrer
+        foreach ($dato as $fotos);
+        $arreglo = explode("/", $fotos['actaNacimiento']);
+        $ruta = 'OXILIVE/' . $fotos['curp'] . ' ' . $fotos['nombres'];
+        echo $resultado = $archivero->eliminarArchivo($ruta . "/" . $arreglo[9]);
 
-    //     if(!empty($ineDoc)){
-    //         $sentencia = "UPDATE empleados SET '$ineDoc' WHERE id_empleado = '$txtID'";
-    //         $up-> $con->prepare($sentencia);
-    //         $up->execute();
-    //         $msj="NUEVA INE CARGADA: $ineDoc"; 
-    //     }
-    //     foreach($listado as $docmuentos){
-    //         $ruta = './OXILIVE/' . $fila['curp']. ' '. $fila['nombres'];
-    //         $img = explode("/", $fila['curp']);
+        if ($resultado === false) {
+            echo "algo fallo al guardar";
+        } else {
+            echo $ruta = './OXILIVE/' . $fotos['curp'] . ' ' . $fotos['nombres'];
+            $resultado = $archivero->guardarArchivo($actaN, $actaNew, $ruta);
+            if ($resultado === false) {
+                echo "error en guaerdar la imagen en la carpeta :" . $ruta;
+            }
+            $ruta = $url_base . "secciones/Capital_humano/empleados/OXILIVE/" . $fotos['curp'] . ' ' . $fotos['nombres'] . "/" .  $actaN;
+            $sql2 = "UPDATE empleados SET actaNacimiento = '$ruta'  WHERE id_empleado = $txtID";
+            $stmt = $con->prepare($sql2);
+            $stmt->execute();
+            $mensajes .= "imagen guardad exitosa mente ";
+        }
+    }
+    //Comprobante de domicilio
+    if (!empty($domicilio)) {
+        // echo "si llego archivo";
+        $sql = "SELECT * FROM empleados WHERE id_empleado = $txtID";
+        $actualizar = $con->prepare($sql);
+        $actualizar->execute();
+        $dato = $actualizar->fetchAll(PDO::FETCH_ASSOC);
+        //Recorrer
+        foreach ($dato as $fotos);
+        $arreglo = explode("/", $fotos['comprobanteDomicilio']);
+        $ruta = 'OXILIVE/' . $fotos['curp'] . ' ' . $fotos['nombres'];
+        echo $resultado = $archivero->eliminarArchivo($ruta . "/" . $arreglo[9]);
 
-    //         if (count($img) > 9) {
-    //             // echo $ruta . $img[9];
-    //             $respuesta = $archivero->eliminarArchivo($ruta . "/" . $img[9]);
-    //             if ($respuesta === false) {
-    //                 $archivero->eliminarArchivo($ruta . "/" . $img[9]);
-    //             } else {
-    //                 echo "imagen borrada exitosamente.";
-    //                 $respuesta = $archivero->guardarArchivo($ineDoc, $ineDocNew, $ruta);
-    //                 if ($respuesta === false) {
-    //                     echo "algo fallo al guardar";
-    //                 } else {
-    //                     $ruta = $url_base . './OXILIVE/' . $fila['curp'] . ' ' . $fila['nombres'] . '/' . $ineDoc;
-    //                     if ($_SESSION['idus'] == $id_usuario) {
-    //                         echo $_SESSION['ineDoc'] = $ruta;
-    //                     } else {
-    //                         echo "no se cambio la variable de sesion";
-    //                     }
-    //                     $sql2 = "UPDATE empleados SET ineDoc = '$ineDoc'  WHERE id_empleado = $txtID";
-    //                     $stmt = $con->prepare($sql2);
-    //                     $stmt->execute();
-    //                     $mensajes .= "imagen guardad exitosa mente ";
-    //                 }
-    //             }
-    //         }
+        if ($resultado === false) {
+            echo "algo fallo al guardar";
+        } else {
+            echo $ruta = './OXILIVE/' . $fotos['curp'] . ' ' . $fotos['nombres'];
+            $resultado = $archivero->guardarArchivo($domicilio, $domicilioNew, $ruta);
+            if ($resultado === false) {
+                echo "error en guaerdar la imagen en la carpeta :" . $ruta;
+            }
+            $ruta = $url_base . "secciones/Capital_humano/empleados/OXILIVE/" . $fotos['curp'] . ' ' . $fotos['nombres'] . "/" .  $domicilio;
+            $sql2 = "UPDATE empleados SET comprobanteDomicilio = '$ruta'  WHERE id_empleado = $txtID";
+            $stmt = $con->prepare($sql2);
+            $stmt->execute();
+            $mensajes .= "imagen guardad exitosa mente ";
+        }
+    }
+    //Ultimo Certificado / Cèdula
+    if (!empty($certificadoEstudios)) {
+        // echo "si llego archivo";
+        $sql = "SELECT * FROM empleados WHERE id_empleado = $txtID";
+        $actualizar = $con->prepare($sql);
+        $actualizar->execute();
+        $dato = $actualizar->fetchAll(PDO::FETCH_ASSOC);
+        //Recorrer
+        foreach ($dato as $fotos);
+        $arreglo = explode("/", $fotos['certificadoEstudios']);
+        $ruta = 'OXILIVE/' . $fotos['curp'] . ' ' . $fotos['nombres'];
+        echo $resultado = $archivero->eliminarArchivo($ruta . "/" . $arreglo[9]);
 
+        if ($resultado === false) {
+            echo "algo fallo al guardar";
+        } else {
+            echo $ruta = './OXILIVE/' . $fotos['curp'] . ' ' . $fotos['nombres'];
+            $resultado = $archivero->guardarArchivo($certificadoEstudios, $certificadoEstudiosNew, $ruta);
+            if ($resultado === false) {
+                echo "error en guaerdar la imagen en la carpeta :" . $ruta;
+            }
+            $ruta = $url_base . "secciones/Capital_humano/empleados/OXILIVE/" . $fotos['curp'] . ' ' . $fotos['nombres'] . "/" .  $certificadoEstudios;
+            $sql2 = "UPDATE empleados SET certificadoEstudios = '$ruta'  WHERE id_empleado = $txtID";
+            $stmt = $con->prepare($sql2);
+            $stmt->execute();
+            $mensajes .= "imagen guardad exitosa mente ";
+        }
+    }
+    //Estado de Cuenta
+    if (!empty($cuenta)) {
+        // echo "si llego archivo";
+        $sql = "SELECT * FROM empleados WHERE id_empleado = $txtID";
+        $actualizar = $con->prepare($sql);
+        $actualizar->execute();
+        $dato = $actualizar->fetchAll(PDO::FETCH_ASSOC);
+        //Recorrer
+        foreach ($dato as $fotos);
+        $arreglo = explode("/", $fotos['cuenta']);
+        $ruta = 'OXILIVE/' . $fotos['curp'] . ' ' . $fotos['nombres'];
+        echo $resultado = $archivero->eliminarArchivo($ruta . "/" . $arreglo[9]);
 
-    //     }
-    // }
+        if ($resultado === false) {
+            echo "algo fallo al guardar";
+        } else {
+            echo $ruta = './OXILIVE/' . $fotos['curp'] . ' ' . $fotos['nombres'];
+            $resultado = $archivero->guardarArchivo($cuenta, $cuentaNew, $ruta);
+            if ($resultado === false) {
+                echo "error en guaerdar la imagen en la carpeta :" . $ruta;
+            }
+            $ruta = $url_base . "secciones/Capital_humano/empleados/OXILIVE/" . $fotos['curp'] . ' ' . $fotos['nombres'] . "/" .  $cuenta;
+            $sql2 = "UPDATE empleados SET cuenta = '$ruta'  WHERE id_empleado = $txtID";
+            $stmt = $con->prepare($sql2);
+            $stmt->execute();
+            $mensajes .= "imagen guardad exitosa mente ";
+        }
+    }
+    //Nùmero de seguro social
+    if (!empty($nssDoc)) {
+        // echo "si llego archivo";
+        $sql = "SELECT * FROM empleados WHERE id_empleado = $txtID";
+        $actualizar = $con->prepare($sql);
+        $actualizar->execute();
+        $dato = $actualizar->fetchAll(PDO::FETCH_ASSOC);
+        //Recorrer
+        foreach ($dato as $fotos);
+        $arreglo = explode("/", $fotos['nssDoc']);
+        $ruta = 'OXILIVE/' . $fotos['curp'] . ' ' . $fotos['nombres'];
+        echo $resultado = $archivero->eliminarArchivo($ruta . "/" . $arreglo[9]);
 
+        if ($resultado === false) {
+            echo "algo fallo al guardar";
+        } else {
+            echo $ruta = './OXILIVE/' . $fotos['curp'] . ' ' . $fotos['nombres'];
+            $resultado = $archivero->guardarArchivo($nssDoc, $nssDocNew, $ruta);
+            if ($resultado === false) {
+                echo "error en guaerdar la imagen en la carpeta :" . $ruta;
+            }
+            $ruta = $url_base . "secciones/Capital_humano/empleados/OXILIVE/" . $fotos['curp'] . ' ' . $fotos['nombres'] . "/" .  $nssDoc;
+            $sql2 = "UPDATE empleados SET nssDoc = '$ruta'  WHERE id_empleado = $txtID";
+            $stmt = $con->prepare($sql2);
+            $stmt->execute();
+            $mensajes .= "imagen guardad exitosa mente ";
+        }
+    }
+    //CURP
+    if (!empty($curpDoc)) {
+        // echo "si llego archivo";
+        $sql = "SELECT * FROM empleados WHERE id_empleado = $txtID";
+        $actualizar = $con->prepare($sql);
+        $actualizar->execute();
+        $dato = $actualizar->fetchAll(PDO::FETCH_ASSOC);
+        //Recorrer
+        foreach ($dato as $fotos);
+        $arreglo = explode("/", $fotos['curpDoc']);
+        $ruta = 'OXILIVE/' . $fotos['curp'] . ' ' . $fotos['nombres'];
+        echo $resultado = $archivero->eliminarArchivo($ruta . "/" . $arreglo[9]);
 
-    // $ineDoc = (isset($_POST['ineDoc']) ? $_POST['ineDoc'] : "");
-    // $actaNacimiento = (isset($_POST['actaNacimiento']) ? $_POST['actaNacimiento'] : null);
-    // $comprobanteDomicilio = (isset($_POST['comprobanteDomicilio']) ? $_POST['comprobanteDomicilio'] : null);
-    // $nssDoc = (isset($_POST['nssDoc']) ? $_POST['nssDoc'] : "");
-    // $curpDoc = (isset($_POST['curpDoc']) ? $_POST['curpDoc'] : "");
-    // $rfcDoc = (isset($_POST['rfcDoc']) ? $_POST['rfcDoc'] : "");
-    // $referenciaLabUno = (isset($_POST['referenciaLabUno']) ? $_POST['referenciaLabUno'] : "");
-    // $referenciaLabDos = (isset($_POST['referenciaLabDos']) ? $_POST['referenciaLabDos'] : "");
-    // $licenciaUno = (isset($_POST['licenciaUno']) ? $_POST['licenciaUno'] : "");
-    // // $cuenta = (isset($_POST['cuenta']) ? $_POST['cuenta'] : null);
+        if ($resultado === false) {
+            echo "algo fallo al guardar";
+        } else {
+            echo $ruta = './OXILIVE/' . $fotos['curp'] . ' ' . $fotos['nombres'];
+            $resultado = $archivero->guardarArchivo($curpDoc, $curpNew, $ruta);
+            if ($resultado === false) {
+                echo "error en guaerdar la imagen en la carpeta :" . $ruta;
+            }
+            $ruta = $url_base . "secciones/Capital_humano/empleados/OXILIVE/" . $fotos['curp'] . ' ' . $fotos['nombres'] . "/" .  $curpDoc;
+            $sql2 = "UPDATE empleados SET curpDoc = '$ruta'  WHERE id_empleado = $txtID";
+            $stmt = $con->prepare($sql2);
+            $stmt->execute();
+            $mensajes .= "imagen guardad exitosa mente ";
+        }
+    }
+    //RFC
+    if (!empty($rfcDoc)) {
+        // echo "si llego archivo";
+        $sql = "SELECT * FROM empleados WHERE id_empleado = $txtID";
+        $actualizar = $con->prepare($sql);
+        $actualizar->execute();
+        $dato = $actualizar->fetchAll(PDO::FETCH_ASSOC);
+        //Recorrer
+        foreach ($dato as $fotos);
+        $arreglo = explode("/", $fotos['rfcDoc']);
+        $ruta = 'OXILIVE/' . $fotos['curp'] . ' ' . $fotos['nombres'];
+        echo $resultado = $archivero->eliminarArchivo($ruta . "/" . $arreglo[9]);
 
+        if ($resultado === false) {
+            echo "algo fallo al guardar";
+        } else {
+            echo $ruta = './OXILIVE/' . $fotos['curp'] . ' ' . $fotos['nombres'];
+            $resultado = $archivero->guardarArchivo($rfcDoc, $rfcDocNew, $ruta);
+            if ($resultado === false) {
+                echo "error en guaerdar la imagen en la carpeta :" . $ruta;
+            }
+            $ruta = $url_base . "secciones/Capital_humano/empleados/OXILIVE/" . $fotos['curp'] . ' ' . $fotos['nombres'] . "/" .  $rfcDoc;
+            $sql2 = "UPDATE empleados SET rfcDoc = '$ruta'  WHERE id_empleado = $txtID";
+            $stmt = $con->prepare($sql2);
+            $stmt->execute();
+            $mensajes .= "imagen guardad exitosa mente ";
+        }
+    }
+    //REFERENCIA LABORAL 1
+    if (!empty($referenciaLabUno)) {
+        // echo "si llego archivo";
+        $sql = "SELECT * FROM empleados WHERE id_empleado = $txtID";
+        $actualizar = $con->prepare($sql);
+        $actualizar->execute();
+        $dato = $actualizar->fetchAll(PDO::FETCH_ASSOC);
+        //Recorrer
+        foreach ($dato as $fotos);
+        $arreglo = explode("/", $fotos['referenciaLabUno']);
+        $ruta = 'OXILIVE/' . $fotos['curp'] . ' ' . $fotos['nombres'];
+        echo $resultado = $archivero->eliminarArchivo($ruta . "/" . $arreglo[9]);
 
-    // $sentencia = $con->prepare("UPDATE empleados SET nombres=:nombres,apellidos=:apellidos, telefonoUno=:telefono, telefonoDos=:telefonoDos, correo=:correo, curp=:curp,
-    // rfc=:rfc, departamento=:departamento, calle=:calle, numExt=:numExt, numInt=:numInt, colonia=:colonia, calleUno=:calleUno, calleDos=:calleDos,
-    // referenciasDireccion=:referencias, numCuenta=:cuentaInput, estudio=:nivelEducativo ,contrato=:contrato, nss=:nss, tipoLicencia=:tipoLicencia,
-    // ineDoc=:ineDoc, actaNacimiento=:actaNacimiento, comprobanteDomicilio=:comprobanteDomicilio, nssDoc=:nssDoc, curpDoc=:curpDoc, rfcDoc=:rfcDoc,
-    // referenciaLabUno=:referenciaLabUno, referenciaLabDos=:referenciaLabDos, licenciaUno=:licenciaUno, cuenta=:cuenta, fechaAlta=:fechaAlta, tipoDeContrato=:tipoDeContrato WHERE id_empleado = :id_empleados");
-    // $sentencia->bindParam(":id_empleados", $txtID);
-    // $sentencia->bindParam(":nombres", $Nombres);
-    // $sentencia->bindParam(":apellidos", $Apellidos);
-    // // $sentencia->bindParam(":genero", $Genero);
-    // $sentencia->bindParam(":telefono", $telefono);
-    // $sentencia->bindParam(":telefonoDos", $telefonoDos);
-    // $sentencia->bindParam(":correo", $correo);
-    // $sentencia->bindParam(":curp", $Curp);
-    // $sentencia->bindParam(":rfc", $rfc);
-    // $sentencia->bindParam(":departamento", $departamento);
-    // $sentencia->bindParam(":calle", $calle);
-    // $sentencia->bindParam(":numExt", $numExt);
-    // $sentencia->bindParam(":numInt", $numInt);
-    // $sentencia->bindParam(":colonia", $colonia);
-    // $sentencia->bindParam(":calleUno", $calleUno);
-    // $sentencia->bindParam(":calleDos", $calleDos);
-    // $sentencia->bindParam(":referencias", $referencias);
-    // $sentencia->bindParam(":cuentaInput", $cuentaInput);
-    // //NIVEL EDUCATIVO
-    // $sentencia->bindParam(":nivelEducativo", $nivelEducativo);
-    // $sentencia->bindParam(":contrato", $contrato);
-    // $sentencia->bindParam(":nss", $nss);
-    // $sentencia->bindParam(":tipoLicencia", $tipoLicencia);
+        if ($resultado === false) {
+            echo "algo fallo al guardar";
+        } else {
+            echo $ruta = './OXILIVE/' . $fotos['curp'] . ' ' . $fotos['nombres'];
+            $resultado = $archivero->guardarArchivo($referenciaLabUno, $referenciaLabUnoNew, $ruta);
+            if ($resultado === false) {
+                echo "error en guaerdar la imagen en la carpeta :" . $ruta;
+            }
+            $ruta = $url_base . "secciones/Capital_humano/empleados/OXILIVE/" . $fotos['curp'] . ' ' . $fotos['nombres'] . "/" .  $referenciaLabUno;
+            $sql2 = "UPDATE empleados SET referenciaLabUno = '$ruta'  WHERE id_empleado = $txtID";
+            $stmt = $con->prepare($sql2);
+            $stmt->execute();
+            $mensajes .= "imagen guardad exitosa mente ";
+        }
+    }
+    //REFERENCIA LABORAL 2
+    if (!empty($referenciaLabDos)) {
+        // echo "si llego archivo";
+        $sql = "SELECT * FROM empleados WHERE id_empleado = $txtID";
+        $actualizar = $con->prepare($sql);
+        $actualizar->execute();
+        $dato = $actualizar->fetchAll(PDO::FETCH_ASSOC);
+        //Recorrer
+        foreach ($dato as $fotos);
+        $arreglo = explode("/", $fotos['referenciaLabDos']);
+        $ruta = 'OXILIVE/' . $fotos['curp'] . ' ' . $fotos['nombres'];
+        echo $resultado = $archivero->eliminarArchivo($ruta . "/" . $arreglo[9]);
 
-    // $sentencia->bindParam(":ineDoc", $ineDoc);
-    // $sentencia->bindParam(":actaNacimiento", $actaNacimiento);
-    // $sentencia->bindParam(":comprobanteDomicilio", $comprobanteDomicilio);
-    // $sentencia->bindParam(":nssDoc", $nssDoc);
-    // $sentencia->bindParam(":curpDoc", $curpDoc);
-    // $sentencia->bindParam(":rfcDoc", $rfcDoc);
-    // $sentencia->bindParam(":referenciaLabUno", $referenciaLabUno);
-    // $sentencia->bindParam(":referenciaLabDos", $referenciaLabDos);
-    // $sentencia->bindParam(":licenciaUno", $licenciaUno);
-    // $sentencia->bindParam(":cuenta", $cuenta);
-    // $sentencia->bindParam(":fechaAlta", $fechaAlta);
-    // $sentencia->bindParam(":tipoDeContrato", $tipoDeContrato);
-    // $sentencia->execute();
-    // $respuesta = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+        if ($resultado === false) {
+            echo "algo fallo al guardar";
+        } else {
+            echo $ruta = './OXILIVE/' . $fotos['curp'] . ' ' . $fotos['nombres'];
+            $resultado = $archivero->guardarArchivo($referenciaLabDos, $referenciaLabDosNew, $ruta);
+            if ($resultado === false) {
+                echo "error en guaerdar la imagen en la carpeta :" . $ruta;
+            }
+            $ruta = $url_base . "secciones/Capital_humano/empleados/OXILIVE/" . $fotos['curp'] . ' ' . $fotos['nombres'] . "/" .  $referenciaLabDos;
+            $sql2 = "UPDATE empleados SET referenciaLabDos = '$ruta'  WHERE id_empleado = $txtID";
+            $stmt = $con->prepare($sql2);
+            $stmt->execute();
+            $mensajes .= "imagen guardad exitosa mente ";
+        }
+    }
+    //Licencia
+    if (!empty($licenciaUno)) {
+        // echo "si llego archivo";
+        $sql = "SELECT * FROM empleados WHERE id_empleado = $txtID";
+        $actualizar = $con->prepare($sql);
+        $actualizar->execute();
+        $dato = $actualizar->fetchAll(PDO::FETCH_ASSOC);
+        //Recorrer
+        foreach ($dato as $fotos);
+        $arreglo = explode("/", $fotos['licenciaUno']);
+        $ruta = 'OXILIVE/' . $fotos['curp'] . ' ' . $fotos['nombres'];
+        echo $resultado = $archivero->eliminarArchivo($ruta . "/" . $arreglo[9]);
+
+        if ($resultado === false) {
+            echo "algo fallo al guardar";
+        } else {
+            echo $ruta = './OXILIVE/' . $fotos['curp'] . ' ' . $fotos['nombres'];
+            $resultado = $archivero->guardarArchivo($licenciaUno, $tipoLicenciaNew, $ruta);
+            if ($resultado === false) {
+                echo "error en guaerdar la imagen en la carpeta :" . $ruta;
+            }
+            $ruta = $url_base . "secciones/Capital_humano/empleados/OXILIVE/" . $fotos['curp'] . ' ' . $fotos['nombres'] . "/" .  $licenciaUno;
+            $sql2 = "UPDATE empleados SET licenciaUno = '$ruta'  WHERE id_empleado = $txtID";
+            $stmt = $con->prepare($sql2);
+            $stmt->execute();
+            $mensajes .= "imagen guardad exitosa mente ";
+        }
+    }
+    if (!empty($txtID)) {
+        $sentencia = $con->prepare("UPDATE empleados 
+        SET nombres=:nombres,apellidos=:apellidos, telefonoUno=:telefono, telefonoDos=:telefonoDos, correo=:correo, curp=:curp,
+        rfc=:rfc, departamento=:departamento, calle=:calle, numExt=:numExt, numInt=:numInt, colonia=:colonia, calleUno=:calleUno, calleDos=:calleDos,
+        referenciasDireccion=:referencias, numCuenta=:cuentaInput, estudio=:nivelEducativo ,contrato=:contrato, nss=:nss, tipoLicencia=:tipoLicencia
+        WHERE id_empleado = :id_empleados");
+        $sentencia->bindParam(":id_empleados", $txtID);
+        $sentencia->bindParam(":nombres", $Nombres);
+        $sentencia->bindParam(":apellidos", $Apellidos);
+        // $sentencia->bindParam(":genero", $Genero);
+        $sentencia->bindParam(":telefono", $telefono);
+        $sentencia->bindParam(":telefonoDos", $telefonoDos);
+        $sentencia->bindParam(":correo", $correo);
+        $sentencia->bindParam(":curp", $Curp);
+        $sentencia->bindParam(":rfc", $rfc);
+        $sentencia->bindParam(":departamento", $departamento);
+        $sentencia->bindParam(":calle", $calle);
+        $sentencia->bindParam(":numExt", $numExt);
+        $sentencia->bindParam(":numInt", $numInt);
+        $sentencia->bindParam(":colonia", $colonia);
+        $sentencia->bindParam(":calleUno", $calleUno);
+        $sentencia->bindParam(":calleDos", $calleDos);
+        $sentencia->bindParam(":referencias", $referencias);
+        $sentencia->bindParam(":cuentaInput", $cuentaInput);
+        //NIVEL EDUCATIVO
+        $sentencia->bindParam(":nivelEducativo", $nivelEducativo);
+        $sentencia->bindParam(":contrato", $contrato);
+        $sentencia->bindParam(":nss", $nss);
+        $sentencia->bindParam(":tipoLicencia", $tipoLicencia);
+        $sentencia->execute();
+        $respuesta = $sentencia->rowCount();
+        if ($respuesta > 0) {
+?>
+            <script language="javascript">
+                Swal.fire({
+                    icon: "success",
+                    title: "🫂 EMPLEADO MODIFICADO",
+                    text: "Los datos fueron guardados",
+                    showConfirmButton: false,
+                    timer: 2000,
+                }).then(function() {
+                    window.location = "./index.php";
+                });
+            </script>';
+<?php
+        }
+    }
     // // echo "Num" . $txtID; 
     // if (count($respuesta) > 0) {
     // } else {
@@ -237,4 +484,6 @@ if ($_POST) {
     //               });';
     //     echo '</script>';
     // }
+} else {
+    echo "error fatal";
 }
