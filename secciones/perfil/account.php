@@ -64,12 +64,22 @@ foreach ($loadUser as $row);
                             </div>
                             <br>
                             <div class="row">
-                                <div class="col-lg-3 col-md-4 label">Teléfono</div>
+                                <div class="col-lg-3 col-md-4 label">Teléfono uno</div>
                                 <div class="col-lg-9 col-md-8">
                                     <?php echo $row['telefonoUno']; ?>
                                 </div>
                             </div>
                             <br>
+                            <?php
+                            if ($row['telefonoDos'] !== null) {
+                                echo '<div class="row">';
+                                echo '<div class="col-lg-3 col-md-4 label">Teléfono dos</div>
+                                        <div class="col-lg-9 col-md-8">';
+                                echo $row['telefonoDos'];
+                                echo "</div></div>";
+                                echo "<br>";
+                            }
+                            ?>
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 label">Correo</div>
                                 <div class="col-lg-9 col-md-8">
@@ -115,8 +125,13 @@ foreach ($loadUser as $row);
                             <br>
                             <div class="form-group row">
                                 <label for="inputEmail3" class="col-sm-2 col-form-label">Email:</label>
-                                <div class="col-sm-8" >
-                                    <input name="correo" type="email" class="form-control" id="inputEmail3" placeholder="<?php echo $row['correo']; ?>">
+                                <div class="col-sm-8">
+                                    <input name="correo" type="email" class="form-control" id="inputEmail3" placeholder="<?php
+                                                                                                                            if ($row['correo'] == null) {
+                                                                                                                                echo "Actualizar correo";
+                                                                                                                            } else {
+                                                                                                                                echo $row['correo'];
+                                                                                                                            } ?>">
                                 </div>
                             </div>
                             <br>
@@ -130,7 +145,12 @@ foreach ($loadUser as $row);
                             <div class="form-group row" id="telefonoBox">
                                 <label for="telefono" class="col-sm-2 col-form-label">telefono uno:</label>
                                 <div class="col-sm-8">
-                                    <input name="telefonoUno" type="text" class="form-control only-numbers" id="telefonoBox" placeholder="<?php echo $row['telefonoUno'] ?>" maxlength="10" minlength="10">
+                                    <input name="telefonoUno" type="text" class="form-control only-numbers" id="telefonoBox" placeholder="<?php
+                                                                                                                                            if ($row['telefonoUno'] == null) {
+                                                                                                                                                echo "telefono uno";
+                                                                                                                                            } else {
+                                                                                                                                                echo $row['telefonoUno'];
+                                                                                                                                            } ?>" maxlength="10" minlength="10">
                                 </div>
                             </div>
                             <br>
