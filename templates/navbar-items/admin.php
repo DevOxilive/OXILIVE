@@ -236,18 +236,12 @@
             </a>
         </li>
         <!-- Apartado Choferes -->
-        <li>
+        <!-- <li>
             <a href="<?php echo $url_base; ?>secciones/oxigeno/choferes/index.php">
                 <i class="bi bi-circle"></i><span>Choferes</span>
             </a>
-        </li>
-        <!-- Apartado Carros -->
-        <li>
-            <a href="<?php echo $url_base; ?>secciones/oxigeno/carros/index.php">
-                <i class="bi bi-circle"></i><span>Carros</span>
-            </a>
-        </li>
-    </ul>
+        </li>-->
+    </ul> 
 </li>
 <!-- Módulo Sistemas -->
 <li class="nav-item">

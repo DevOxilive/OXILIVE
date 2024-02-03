@@ -196,19 +196,19 @@ if (!isset($_SESSION['us'])) {
                     <div class="contenido col-md-5" id="ineDocBox">
                         <label for="ineDoc" class="form-label">Credencial de Elector: <span
                                 class="text-danger">*</span> </label>
-                        <input type="file" value="<?php echo $Ine ?>" class="form-control" name="ineDoc" id="ineDoc" > Ver INE: <a target="_blank" href="<?php echo $Ine; ?>"><i class="bi bi-eye-fill"></i></a></label>
+                        <input type="file"  class="form-control" name="ineDoc" id="ineDoc" > Ver INE: <a target="_blank" href="<?php echo $Ine; ?>"><i class="bi bi-eye-fill"></i></a></label>
                     </div>
                     <!-- Acta de Nacimiento -->
                     <div class="contenido col-md-5" id="actaNacimientoBox">
                         <label for="actaNacimiento" class="form-label">Acta De Nacimiento: </label>
-                        <input type="file" value="<?php echo $acta ?>" class="form-control" name="actaNacimiento" id="actaNacimiento"> Ver Acta Nacimiento: <a target="_blank" href="<?php echo $acta; ?>"><i class="bi bi-eye-fill"></i></a></label>
+                        <input type="file" class="form-control" name="actaNacimiento" id="actaNacimiento"> Ver Acta Nacimiento: <a target="_blank" href="<?php echo $acta; ?>"><i class="bi bi-eye-fill"></i></a></label>
                     </div>
 
                     <!-- Comprobante de domicilio -->
                     <div class="contenido col-md-5" id="comprobanteDomicilioBox">
                         <label for="comprobanteDomicilio" class="form-label">Comprobante De Domicilio: <span
                                 class="text-danger">*</span></label>
-                        <input type="file" value="<?php echo $comprobante ?>" class="form-control" name="comprobanteDomicilio" id="comprobanteDomicilio"
+                        <input type="file" class="form-control" name="comprobanteDomicilio" id="comprobanteDomicilio"
                             >Ver Comprobante: <a target="_blank" href="<?php echo $comprobante; ?>"><i class="bi bi-eye-fill"></i></a></label>
                     </div>
 

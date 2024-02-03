@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $apellidos = (isset($_POST["apellidos"]) ? $_POST["apellidos"] : "");
     $genero = (isset($_POST["genero"]) ? $_POST["genero"] : "");
     $telefono = (isset($_POST["telefono"]) ? $_POST["telefono"] : "");
-    $telefonoDos = (isset($_POST["telefonoDos"]) ? $_POST["telefonoDos"] : null);
+    $telefonoDos = (isset($_POST["telDos"]) ? $_POST["telDos"] : null);
 
     $correo = (isset($_POST["email"]) ? $_POST["email"] : NULL);
     $curp = (isset($_POST["curp"]) ? $_POST["curp"] : "");
