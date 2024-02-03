@@ -124,9 +124,9 @@ foreach ($loadUser as $row);
                             </div>
                             <br>
                             <div class="form-group row">
-                                <label for="inputEmail3" class="col-sm-2 col-form-label">Email:</label>
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Correo:</label>
                                 <div class="col-sm-8">
-                                    <input name="correo" type="email" class="form-control" id="inputEmail3" placeholder="<?php
+                                    <input name="correo" type="email" class="form-control" maxlength="50" id="inputEmail3" placeholder="<?php
                                                                                                                             if ($row['correo'] == null) {
                                                                                                                                 echo "Actualizar correo";
                                                                                                                             } else {
@@ -138,7 +138,7 @@ foreach ($loadUser as $row);
                             <div class="form-group row">
                                 <label for="inputPassword3" class="col-sm-2 col-form-label">Password:</label>
                                 <div class="col-sm-8">
-                                    <input name="pass" type="password" class="form-control" id="inputPassword3" placeholder="Actualizar contraseña">
+                                    <input name="pass" type="password" class="form-control" id="inputPassword3" placeholder="Actualizar contraseña" maxlength="16" minlength="8">
                                 </div>
                             </div>
                             <br>
