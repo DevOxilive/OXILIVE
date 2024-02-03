@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $sql = "UPDATE empleados SET correo = '$correo' WHERE id_empleado = $id_empleado";
             $update = $con->prepare($sql);
             $update->execute();
-            $mensaje .= "$correo ";
+            $mensaje .= "Correo nuevo: $correo ";
         }
         if (!empty($pass)) {
             $hashedPassword = password_hash($pass, PASSWORD_DEFAULT);
@@ -53,13 +53,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $sql = "UPDATE empleados SET telefonoUno = '$tel1' WHERE id_empleado = $id_empleado";
             $update = $con->prepare($sql);
             $update->execute();
-            $mensaje .= "$tel1 ";
+            $mensaje .= "telefono uno nuevo: $tel1 ";
         }
         if (!empty($tel2)) {
             $sql = "UPDATE empleados SET telefonoDos = '$tel2' WHERE id_empleado = $id_empleado";
             $update = $con->prepare($sql);
             $update->execute();
-            $mensaje .= "$tel2 ";
+            $mensaje .= "telefono dos nuevo: $tel2 ";
         }
         if (!empty($fotoNueva)) {
             $query = "SELECT fotoPerfil, curp, nombres, apellidos FROM usuarios, empleados WHERE id_usuarios = $id AND usuarioSistema = $id";
@@ -113,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 }
             }
 
-            $mensaje .= "$fotoNueva";
+            $mensaje .= "nueva foto: $fotoNueva";
         }
     ?>
         <script>
