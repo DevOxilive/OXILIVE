@@ -22,7 +22,7 @@ if (!isset($_SESSION['us'])) {
       <div class="card-body">
         <div class="table-responsive-sm">
           <table class="table table-striped" id="myTable">
-            <thead id="customers">
+            <thead class="customers">
               <tr class="table-active table-group-divider">
                 <th scope="col">ID</th>
                 <th scope="col">Nombre</th>
@@ -55,8 +55,8 @@ if (!isset($_SESSION['us'])) {
       </div>
       <div class="card-body">
         <div class="table-responsive-sm">
-          <table class="table table-striped" id="myTable">
-            <thead id="customers">
+          <table class="table table-striped" id="usuarios">
+            <thead class="customers">
               <tr class="table-active table-group-divider">
                 <th scope="col">Username</th>
                 <th scope="col">Nombre</th>
@@ -133,7 +133,7 @@ if (!isset($_SESSION['us'])) {
     </div>
   </div>
 </main>
-<script src="../../js/tables.js"></script>
+<script src="../../../js/tables.js"></script>
 <script>
   function eliminar(codigo) {
     Swal.fire({

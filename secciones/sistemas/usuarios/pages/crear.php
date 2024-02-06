@@ -22,17 +22,12 @@ $stmt->execute();
 $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
 foreach ($resultado as $dato) {
 ?>
-  <!DOCTYPE html>
-  <link rel="stylesheet" href="../../../../assets/css/foto_perfil.css">
-  <link rel="stylesheet" href="../../../../assets/css/edit.css">
-  </head>
   <html>
   <main id="main" class="main">
     <section class="section dashboard">
-      <div class="card">
-        <div class="card-header" style="border: 2px solid #012970; background: #005880;">
-          <h4 style="text-align: center; color: #fff; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
-            Asignación de Usuario</h4>
+      <div class="card card-form">
+        <div class="card-header">
+          <h4>Asignación de Usuario</h4>
         </div>
         <div class="card-body" style="border: 2px solid #BFE5FF;">
           <form action="../model/usuariosADD.php" method="POST" enctype="multipart/form-data" class="formLogin row g-3">
@@ -82,7 +77,7 @@ foreach ($resultado as $dato) {
                   <div class="picture-container">
                     <img src="../../../../img/usuario.png" alt="Foto de perfil" id="imagenActual" class="img-thumbnail">
                     <div class="overlay">
-                      <label for="Foto_perfil" class="change-link"><i class="fas fa-camera"></i></label>
+                      <button type="button" class="change-link" onclick="abrirSelectorArchivo(event)"><i class="fas fa-camera"></i></button>
                     </div>
                   </div>
                 </div>

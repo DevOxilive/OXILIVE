@@ -11,24 +11,15 @@ if(!isset($_SESSION['us'])){
     echo "Error en el sistema";
 }
 ?>
-<html>
-<!--trae los estilos-->
-<link rel="stylesheet" href="../../../assets/css/vali.css">
-<link rel="stylesheet" href="../../../assets/css/edit.css">
-
-</html>
-
 <!--formulario para editar el servico selecionado-->
 <main id="main" class="main">
     <section class="section dashboard">
-        <div class="card">
-            <div class="card-header" style="border: 2px solid #005880; background: #005880;">
-                <h4
-                    style="text-align: center; color: #fff; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
-                    Editar datos del servicio</H4>
+        <div class="card card-form">
+            <div class="card-header">
+                <h4>Editar datos del servicio</H4>
             </div>
             <!--los valores se llaman a través de su identificador-->
-            <div class="card-body" style="border: 12px solid #005880;">
+            <div class="card-body">
                 <form action="./guardarEditar.php" method="POST" class="row g-3 formEdit">
                     <div class="contenido col-md-1"> <br>
                         <label for="txtID" class="form-label">N°</label>

@@ -14,18 +14,16 @@ if (!isset($_SESSION['us'])) {
 $pacienteData = $_GET['pacienteData'];
 ?>
 <html>
-<link rel="stylesheet" href="../../../assets/css/edit.css">
 <link rel="stylesheet" href="../../../assets/css/vali.css">
 </html>
 <main id="main" class="main">
     <section class="section dashboard">
-        <div class="card">
-            <div class="card-header" style="border: 2px solid #012970; background: #005880;">
-                <h4 style="text-align: center; color: #fff; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
-                    Asignacion de evento</h4>
+        <div class="card card-form">
+            <div class="card-header">
+                <h4>Asignacion de evento</h4>
             </div>
             <input type="hidden" id="idPac" value="<?php echo $pacienteData; ?>">
-            <div class="card-body" style="border: 2px solid #BFE5FF;">
+            <div class="card-body">
                 <form action="./guardarEvento.php" method="POST" class="formLogin row g-3 needs-validation" id="formulario" novalidate>
                     <div class="contenido col-md-1">
                         <br>
