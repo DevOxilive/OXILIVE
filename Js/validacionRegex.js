@@ -1,9 +1,9 @@
 // Regex de validaciones
-const RegexOnlyLetters = /^[A-Za-zñÑ ]+$/;
+const RegexOnlyLetters = /^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$/;
 const RegexOnlyNumbers = /^[0-9]+$/;
-const RegexLettersAndNumbers = /^[A-Za-zñÑ0-9]+$/;
-const RegexWithoutSpecial = /^[A-Za-zñÑ0-9 ]+$/;
-const RegexWithPoint = /^[A-Za-zñÑ0-9. ]+$/;
+const RegexLettersAndNumbers = /^[A-Za-zñÑáéíóúÁÉÍÓÚ0-9]+$/;
+const RegexWithoutSpecial = /^[A-Za-zñÑáéíóúÁÉÍÓÚ0-9 ]+$/;
+const RegexWithPoint = /^[A-Za-zñÑáéíóúÁÉÍÓÚ0-9. ]+$/;
 //const NewRegex = /^[Parámetros de nuevo regex]/;
 
 

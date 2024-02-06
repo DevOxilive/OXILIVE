@@ -1,14 +1,11 @@
-const scriptLocation = document.currentScript.src;
-
 var tamaño;
 var select = -1;
 var elem;
-var input = document.getElementById("search_cliente");
+var input = document.getElementById("search");
 const lista = document.getElementById("show-list");
 $(document).ready(function () {
-  $("#search_cliente").on("input", function () {
+  $("#search").on("input", function () {
     // Obtén el texto de búsqueda
-    validar();
     let searchText = $(this).val();
     if (searchText != "") {
       fetch("model/buscarPaciente.php", {
@@ -114,13 +111,4 @@ function setElem(index) {
 function changeClass(select) {
   elem = setElem(select);
   elem.classList.add("item-pseudo-hover");
-}
-function validar(){
-    text = input.value;
-    var regex = /^[a-zA-Z ]+$/;
-    if (regex.test(text)) {
-    } else {
-        text=text.slice(0, -1);
-    }
-    input.value = text;
 }

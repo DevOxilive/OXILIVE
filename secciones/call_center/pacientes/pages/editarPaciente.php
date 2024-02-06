@@ -29,18 +29,15 @@ if (!isset($_SESSION['us'])) {
 <html lang="es">
 
 <head>
-    <link rel="stylesheet" href="../../../../assets/css/foto_perfil.css">
-    <link rel="stylesheet" href="../../../../assets/css/edit.css">
     <link rel="stylesheet" href="../css/btn2.css">
 </head>
 <main id="main" class="main">
     <section class="section dashboard">
-        <div class="card">
-            <div class="card-header" style="border: 2px solid #012970; background: #005880;">
-                <h4 style="text-align: center; color: #fff; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
-                    Datos del nuevo Paciente</h4>
+        <div class="card card-form">
+            <div class="card-header">
+                <h4>Datos del nuevo Paciente</h4>
             </div>
-            <div class="card-body" style="border: 2px solid #BFE5FF">
+            <div class="card-body">
                 <form method="POST" enctype="multipart/form-data" class="formLogin row g-3" id="formulario">
                     <?php foreach ($datosPaciente as $pac) { ?>
                         <!-- Apartado del registro para datos generales -->

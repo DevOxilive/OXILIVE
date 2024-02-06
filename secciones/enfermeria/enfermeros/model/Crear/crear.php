@@ -1,20 +1,21 @@
+
 <?php
 session_start();
 if (!isset($_SESSION['us'])) {
     header('Location: ../../login.php');
 } elseif (isset($_SESSION['us'])) {
-    include("../../../templates/header.php");
-    require_once "../../../connection/conexion.php";
-    include("../../../model/genero.php");
-    include("../../../secciones/puestos/consulta.php");
-    include("./documentos.php");
+    include("../../../../../templates/header.php");
+    require_once "../../../../../connection/conexion.php";
+    include("../../../../../model/genero.php");
+    include("../../consulta.php");
 } else {
     echo "Error en el sistema";
 }
 ?>
 <!DOCTYPE html>
-
-<link rel="stylesheet" href="css/valid.css">
+<link rel="stylesheet" href="../../../../../assets/css/foto_perfil.css">
+<link rel="stylesheet" href="../../../../../assets/css/edit.css">
+<link rel="stylesheet" href="../../css/valid.css">
 
 
 <main id="main" class="main">
@@ -24,25 +25,20 @@ if (!isset($_SESSION['us'])) {
                 <h4>Nuevo Empleado</h4>
             </div>
             <div class="card-body">
-                <form action="empleadosADD.php" method="POST" enctype="multipart/form-data" class="row g-3" id="formulario" novalidate>
-
-                    <!-- Apartado Libre -->
+                <form action="./enfermeroADD.php" method="POST" enctype="multipart/form-data" class="row g-3" id="formulario" novalidate>
+                    <!--PUESTO DE ENFERMERIA -->
                     <div class="contenido col-md-4" id="departamentoBox"><br>
                         <label for="departamento" class="form-label">Puesto: <span class="text-danger">*</span></label>
-                        <select id="departamento" name="departamento" class="form-select" required>
-                            <option value="">Selecciona el departamento</option>
-                            <?php foreach ($lista_puestos as $puesto) {
-                                if (
-                                    $puesto['id_puestos'] != "1" &&
-                                    $puesto['id_puestos'] != "11"
-
-                                ) { ?>
-                                    <option value="<?php echo $puesto['id_puestos']; ?>">
-                                        <?php echo $puesto['Nombre_puestos']; ?>
-                                    </option>
-                            <?php }
-                            } ?>
-                        </select>
+                        <?php
+                        $puesto_11 = "";
+                        foreach ($lista as $puesto) {
+                        if ($puesto['id_puestos'] == 6) {
+                            $puesto_11 = $puesto['Nombre_puestos']; 
+                            break;
+                        }
+                    }
+                    ?>
+                    <input type="text" value="<?php echo $puesto_11; ?>"  disabled>
                     </div>
 
                     <div class="contenido col-md-5" id="contratoBox"> <br>
@@ -67,7 +63,6 @@ if (!isset($_SESSION['us'])) {
                         <input type="date" class="form-control " name="fechaAlta" id="fechaAlta" required>
                     </div> -->
                     
-
                     <!-- Apartado de Datos Generales -->
                     <div class="contenido col-md-12">
                         <hr>
@@ -149,43 +144,19 @@ if (!isset($_SESSION['us'])) {
                         <div id="mensajeError" class="error-message"></div>
                     </div>
 
-                    <!-- NSS -->
-                    <div class="contenido col-md-3" id="nssBox">
-                        <label for="nss" class="form-label">NSS: <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control only-numbers" name="nss" id="nss" placeholder="Ingrese el correo" minlength="11" maxlength="11" required>
-                    </div>
-
-                    <!-- Nivel Educativo -->
-                    <div class="contenido col-md-3" id="nivelEducativoBox">
-                        <label for="nivelEducativo" class="form-label">Nivel Estudios: <span class="text-danger">*</span></label>
-                        <select name="nivelEducativo" id="nivelEducativo" class="form-select" required>
-                            <option value="">Seleccione Grado</option>
-                            <option value="Cédula">CÈDULA</option>
-                            <option value="Bachillerato">BACHILLERATO</option>
-                            <option value="Secundaria">SECUNDARIA</option>
-                        </select>
-                    </div>
-
                     <!-- Apartado de Domicilio -->
-                    <?php include("../../../templates/apartadoDom.php");?>
+                    <?php include("../../../../../templates/apartadoDom.php");?>
 
                     <!-- Apartado de Documentación -->
                     <div class="contenido col-md-12">
                         <hr>
                         <h2 class="form-title">Documentación</h2>
                     </div>
-
                     <!-- INE -->
                     <div class="contenido col-md-5" id="ineDocBox">
                         <label for="ineDoc" class="form-label">Credencial de Elector: <span class="text-danger">*</span></label>
                         <input type="file" class="form-control" name="ineDoc" id="ineDoc" required>
                     </div>
-                    <!-- Acta de Nacimiento -->
-                    <div class="contenido col-md-5" id="actaNacimientoBox">
-                        <label for="actaNacimiento" class="form-label">Acta De Nacimiento: </label>
-                        <input type="file" class="form-control" name="actaNacimiento" id="actaNacimiento">
-                    </div>
-
                     <!-- Comprobante de domicilio -->
                     <div class="contenido col-md-5" id="comprobanteDomicilioBox">
                         <label for="comprobanteDomicilio" class="form-label">Comprobante De Domicilio: <span class="text-danger">*</span></label>
@@ -202,12 +173,6 @@ if (!isset($_SESSION['us'])) {
                     <div class="contenido col-md-4" id="cuentaBox">
                         <label for="cuenta" class="form-label">Estado de Cuenta: <span class="text-danger">*</span></label>
                         <input type="file" class="form-control" name="cuenta" id="cuenta" required>
-                    </div>
-
-                    <!-- NSS Documento -->
-                    <div class="contenido col-md-4" id="nssDocBox">
-                        <label for="nssDoc" class="form-label">Nùmero De Seguro Social:</label>
-                        <input type="file" class="form-control" name="nssDoc" id="nssDoc" required>
                     </div>
 
                     <!-- CURP Documento -->
@@ -232,14 +197,6 @@ if (!isset($_SESSION['us'])) {
                         <label for="referenciaLabDos" class="form-label">Referencia Personal:</label>
                         <input type="file" class="form-control" aria-label="file example" name="referenciaLabDos" id="referenciaLabDos">
                     </div>
-                    <div class="contenido col-md-4">
-                        <label for="licenciaUno" class="form-label">Licencia: </label>
-                        <input type="file" class="form-control" aria-label="file example" name="licenciaUno" id="licenciaUno">
-                    </div>
-                    <div class="contenido col-md-3" id="tipoLicenciaBox">
-                        <label for="tipoLicencia" class="form-label">Tipo de Licencia:</label>
-                        <input type="text" class="form-control letters-and-numbers" name="tipoLicencia" id="tipoLicencia" placeholder="Ejemplo A" minlength="1" maxlength="2">
-                    </div>
 
                     <!-- Apartado Botones -->
                     <div class="col-12">
@@ -254,10 +211,13 @@ if (!isset($_SESSION['us'])) {
         </div>
     </section>
 </main>
-<script src="../../../js/validacionRegex.js"></script>
-<script src="../../../js/validacionEnvio.js"></script>
-<script src="js/validaciones.js"></script>
-<script src="js/documentos.js"></script>
-<script src="../../../js/domicilio.js"></script>
-<script src="../../../Js/botonAdd.js"></script>
-<?php include("../../../templates/footer.php"); ?>
+<script src="../../../../../Js/validacionRegex.js"></script>
+<script src="../../../../../Js/validacionEnvio.js"></script>
+<script src="../../js/validaciones.js"></script>
+<script src="../../../../../js/domicilio.js"></script>
+<script src="../../../../../Js/botonAdd.js"></script>
+
+<!--<script src="js/documentos.js"></script>
+ -->
+<?php include("../../../../../templates/footer.php"); ?>
+

@@ -10,10 +10,6 @@ if (!isset($_SESSION['us'])) {
 };
 
 ?>
-<html>
-<link rel="stylesheet" href="../../assets/css/edit.css">
-
-</html>
 <main id="main" class="main">
     <section class="section dashboard">
         <div class="card">
