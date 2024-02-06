@@ -23,20 +23,13 @@ try {
 
     foreach ($datos as $column) {
 ?>
-        <html lang="en">
-        <link rel="stylesheet" href="../../../../assets/css/foto_editar.css">
-        <link rel="stylesheet" href="../../../../assets/css/edit.css">
-
-        </html>
         <main id="main" class="main">
             <section class="section dashboard">
-                <div class="card">
-                    <div class="card-header" style="border: 2px solid #012970; background: #005880;">
-                        <h4 style="text-align: center; color: #fff; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
-                            Editar datos de Usuario
-                        </h4>
+                <div class="card card-form">
+                    <div class="card-header">
+                        <h4>Editar datos de Usuario</h4>
                     </div>
-                    <div class="card-body" style="border: 2px solid #BFE5FF;"> <br>
+                    <div class="card-body"><br>
                         <form action="../model/usuariosUP.php" method="POST" enctype="multipart/form-data" class="formEdit row g-3">
                             <input type="number" hidden value="<?php echo $column['id_empleado']; ?>" name="id_empleado">
                             <input type="number" hidden value="<?php echo $column['id_usuarios']; ?>" name="id_usuarios">
@@ -47,7 +40,7 @@ try {
                                         <img src="<?php echo $column['fotoPerfil']; ?>" alt="Foto de perfil" id="imagenActual" class="img-thumbnail">
 
                                         <div class="overlay">
-                                            <label for="Foto_perfil" class="change-link"><i class="fas fa-camera"></i></label>
+                                            <button type="button" class="change-link" onclick="abrirSelectorArchivo(event)"><i class="fas fa-camera"></i></button>
                                         </div>
                                     </div>
                                 </div>

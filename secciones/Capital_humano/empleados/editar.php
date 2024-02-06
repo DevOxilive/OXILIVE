@@ -14,8 +14,6 @@ if (!isset($_SESSION['us'])) {
 }
 ?>
 <!DOCTYPE html>
-<link rel="stylesheet" href="../../../assets/css/foto_perfil.css">
-<link rel="stylesheet" href="../../../assets/css/edit.css">
 <link rel="stylesheet" href="css/valid.css">
 
 

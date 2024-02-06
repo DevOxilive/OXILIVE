@@ -11,11 +11,6 @@ if (!isset($_SESSION['us'])) {
 }
 ?>
 <!DOCTYPE html>
-
-<head>
-    <link rel="stylesheet" href="<?php echo $url_base; ?>assets/css/foto_perfil.css">
-    <link rel="stylesheet" href="<?php echo $url_base; ?>assets/css/edit.css">
-</head>
 <main id="main" class="main">
     <div class="card">
         <div class="card-header">

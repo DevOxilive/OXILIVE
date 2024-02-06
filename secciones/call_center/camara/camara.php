@@ -13,8 +13,6 @@ if (!isset($_SESSION['us'])) {
 <html>
 
 <head>
-    <link rel="stylesheet" href="<?php echo $url_base; ?>assets/css/foto_perfil.css">
-    <link rel="stylesheet" href="<?php echo $url_base; ?>assets/css/edit.css">
     <style>
     #videoContainer {
         position: absolute;

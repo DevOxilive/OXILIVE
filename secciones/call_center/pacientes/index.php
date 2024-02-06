@@ -12,12 +12,6 @@ if (!isset($_SESSION['us'])) {
 ?>
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-    <link rel="stylesheet" href="../../../assets/css/foto_perfil.css">
-    <link rel="stylesheet" href="../../../assets/css/edit.css">
-
-</head>
 <main id="main" class="main">
     <div class="row">
         <div class="card">
