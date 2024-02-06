@@ -58,7 +58,6 @@ if (isset($_GET['txtID'])) {
 if ($_POST) {
     $archivero = new Archivero();
     $txtID = $_POST['txtID'];
-    echo $txtID . " ";
     $Nombres = (isset($_POST["nombres"]) ? $_POST["nombres"] : "");
     $Apellidos = (isset($_POST["apellidos"]) ? $_POST["apellidos"] : "");
     $Genero = (isset($_POST["genero"]) ? $_POST["genero"] : "");
@@ -108,9 +107,9 @@ if ($_POST) {
     $referenciaLabDosNew = $_FILES['referenciaLabDos']['tmp_name'];
     $tipoLicenciaNew = $_FILES['licenciaUno']['tmp_name'];
 
-    $mensajes = " ";
+    // $mensajes = " ";
 
-    echo $ineDoc . " ";
+    // echo $ineDoc . " ";
 
     function procesarArchivo($con, $archivero, $txtID, $tipoArchivo, $nombreArchivo, $nombreArchivoNuevo, $url_base, $campoDB) {
         if (!empty($nombreArchivo)) {
@@ -132,6 +131,8 @@ if ($_POST) {
                     title: "ARCHIVO?",
                     text: "EL ARCHIVO '.$nombreArchivo.' NO SE PUEDE REPETIR",
                     icon: "question"
+                    }).then(function() {
+                        window.location = "./index.php";
                   });
                         </script>';
                 return; // Salir de la función sin procesar el archivo
@@ -162,7 +163,17 @@ if ($_POST) {
                 $sql2 = "UPDATE empleados SET $campoDB = '$ruta'  WHERE id_empleado = $txtID";
                 $stmt = $con->prepare($sql2);
                 $stmt->execute();
-                echo "Imagen guardada exitosamente";
+                echo '<script language="javascript">
+                Swal.fire({
+                    icon: "success",
+                    title: "🫂 EMPLEADO MODIFICADO",
+                    text: "Los datos fueron guardados",
+                    showConfirmButton: false,
+                    timer: 2000,
+                }).then(function() {
+                    window.location = "./index.php";
+                });
+              </script>';
             }
         }
     }
@@ -221,19 +232,16 @@ procesarArchivo($con, $archivero, $txtID, 'Licencia', $licenciaUno, $tipoLicenci
         $sentencia->bindParam(":tipoLicencia", $tipoLicencia);
         $sentencia->execute();
         $respuesta = $sentencia->rowCount();
-        if($respuesta>0){
-    echo '<script language="javascript">
-            Swal.fire({
-                icon: "success",
-                title: "🫂 EMPLEADO MODIFICADO",
-                text: "Los datos fueron guardados",
-                showConfirmButton: false,
-                timer: 2000,
-            }).then(function() {
-                window.location = "./index.php";
-            });
-          </script>';
-        }
+
+        // Suponiendo que $sentencia es una instancia válida de PDOStatement después de ejecutar la consulta de actualización
+$filas_afectadas = $sentencia->rowCount();
+
+// Ahora puedes verificar si se han modificado filas y mostrar el mensaje en consecuencia
+if ($filas_afectadas > 0) {
+    echo "EMPLEADO MODIFICADO";
+} else {
+    "NO ENTRES AQUÌ HAHAHA";
+}
     }
 } else {
     echo "error fatal";
