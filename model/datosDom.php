@@ -28,15 +28,16 @@ if (isset($idEmp)) {
 if (isset($lista_datos)) {
     foreach ($lista_datos as $datos) {
         $calle = $datos['calle'];
-        $numExt = $datos['num_ext'];
-        $numInt = isset($datos['num_int']) ? $datos['num_int'] : "";
+        $numExt = $datos['numExt'];
+        $numInt = isset($datos['numInt']) ? $datos['numInt'] : "";
         $cp = $datos['codigo_postal'];
         $colonia = $datos['colName'];
+        $id_col = $datos['colonia'];
         $delName = $datos['delName'];
         $estName = $datos['estName'];
         $calleUno = isset($datos['calleUno']) ? $datos['calleUno'] : "";
         $calleDos = isset($datos['calleDos']) ? $datos['calleDos'] : "";
-        $referencias = isset($datos['referencias']) ? $datos['referencias'] : "";
+        $referencias = isset($datos['referenciasDireccion']) ? $datos['referenciasDireccion'] : "";
     }
 } else {
     $calle = "";
