@@ -10,11 +10,6 @@ if (!isset($_SESSION['us'])) {
 }
 ?>
 <!DOCTYPE html>
-
-<head>
-    <link rel="stylesheet" href="<?php echo $url_base; ?>assets/css/foto_perfil.css">
-    <link rel="stylesheet" href="<?php echo $url_base; ?>assets/css/edit.css">
-</head>
 <main id="main" class="main">
     <input type="hidden" id="statusUs" name="statusUs" value="<?php echo $_SESSION['estado']; ?>">
     <input type="hidden" id="idMed" name="idMed" value="<?php echo $_SESSION['idus']; ?>">

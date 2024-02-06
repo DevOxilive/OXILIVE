@@ -14,4 +14,3 @@ foreach($newEstado as $ne){
 
 session_write_close();
 echo $_SESSION['estado'];
-?>

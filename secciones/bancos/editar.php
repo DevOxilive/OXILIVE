@@ -18,16 +18,13 @@ if (!isset($_SESSION['us'])) {
 }
 ?>
 <html>
-<link rel="stylesheet" href="../../assets/css/edit.css">
 <main id="main" class="main">
     <section class="section dashboard">
-        <div class="card">
-            <div class="card-header" style="border: 2px solid #012970; background: #005880;">
-                <h4
-                    style="text-align: center; color: #fff; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
-                    Editar administradora</H4>
+        <div class="card card-form">
+            <div class="card-header">
+                <h4>Editar administradora</H4>
             </div>
-            <div class="card-body" style="border: 2px solid #BFE5FF;">
+            <div class="card-body">
                 <form action="./editarUP.php" method="POST" class="row g-3 formEdit">
                     <?php foreach($registro as $reg) { ?>
                     <div class="contenido col-md-1"> <br>

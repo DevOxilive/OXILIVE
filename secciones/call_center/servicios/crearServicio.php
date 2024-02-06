@@ -9,25 +9,15 @@ if (!isset($_SESSION['us'])) {
     echo "Error en el sistema";
 }
 ?>
-
-<html>
-<!--trae los estilos-->
-<link rel="stylesheet" href="../../../assets/css/vali.css">
-<link rel="stylesheet" href="../../../assets/css/edit.css">
-
-</html>
-
 <!--formulario para crear nuevo servicio-->
 <main id="main" class="main">
 
     <section class="section dashboard">
-        <div class="card">
-            <div class="card-header" style="border: 2px solid #005880; background: #005880;">
-                <h4 style="text-align: center; color: #fff; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
-                    Datos del nuevo servicio
-                </h4>
+        <div class="card card-form">
+            <div class="card-header">
+                <h4>Datos del nuevo servicio</h4>
             </div>
-            <div class="card-body" style="border: 2px solid #BFE5FF;">
+            <div class="card-body">
                 <form action="./model/agregarServicio.php" method="POST" class="formLogin row g-3" id="formulario">
 
                     <div class="contenido col-md-6"> <br>

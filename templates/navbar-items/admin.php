@@ -63,20 +63,26 @@
         <!-- Apartado Materiales y Recursos -->
         <li>
             <a href="<?php echo $url_base; ?>secciones/almacen/materiales/index.php">
-                <i class="bi bi-circle"></i><span>Materiales y recursos</span>
+                <i class="bi bi-circle"></i><span>Materiales y Recursos</span>
             </a>
         </li>
-        <!-- Apartado Salida de Materiales y Recursos -->
+        <!-- Apartado Gestión de Material -->
         <li>
-            <a href="<?php echo $url_base; ?>secciones/almacen/salidas/index.php">
-                <i class="bi bi-circle"></i><span>Salida de Materiales y recursos</span>
+            <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#gestionMat" href="#">
+                <i class="bi bi-circle"></i><span>Gestión de Material</span><i class="bi bi-chevron-down ms-auto fs-6"></i>
             </a>
-        </li>
-        <!-- Apartado Entrada de Materiales y Recursos -->
-        <li>
-            <a href="<?php echo $url_base; ?>secciones/almacen/entradas/index.php">
-                <i class="bi bi-circle"></i><span>Entrada de Materiales y recursos</span>
-            </a>
+            <ul id="gestionMat" class="collapse">
+                <li>
+                    <a href="<?php echo $url_base; ?>secciones/almacen/pages/buscador.php">
+                        <i class="bi bi-circle"></i><span>Entrada o Salida</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <i class="bi bi-circle"></i><span>Historial</span>
+                    </a>
+                </li>
+            </ul>
         </li>
     </ul>
 </li>
@@ -85,8 +91,8 @@
     <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
         <i class="bi bi-capsule"></i><span>Enfermeria</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
+    <!-- Apartado Dar de Alta -->
     <ul id="forms-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-        <!-- Apartado Dar de Alta -->
         <li>
             <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#alta" href="#">
                 <i class="bi bi-circle"></i><span>Dar de Alta</span><i class="bi bi-chevron-down ms-auto fs-6"></i>
@@ -104,12 +110,6 @@
                         <i class="bi bi-circle"></i><span>Cpts</span>
                     </a>
                 </li>
-                <!-- Subapartado Administradora -->
-                <!-- <li>
-                    <a href="<?php echo $url_base; ?>secciones/enfermeria/alta/administradora/index.php">
-                        <i class="bi bi-circle"></i><span>Administradora</span>
-                    </a>
-                </li> -->
             </ul>
         </li>
         <!-- Apartado Crear Proceso -->
@@ -190,7 +190,7 @@
                 <i class="bi bi-circle"></i><span>Pacientes</span>
             </a>
         </li>
-        
+
         <!-- Apartado Arribo -->
         <li>
             <a href="<?php echo $url_base; ?>secciones/call_center/arribo/index.php">
@@ -241,7 +241,7 @@
                 <i class="bi bi-circle"></i><span>Choferes</span>
             </a>
         </li>-->
-    </ul> 
+    </ul>
 </li>
 <!-- Módulo Sistemas -->
 <li class="nav-item">
