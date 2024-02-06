@@ -36,10 +36,9 @@ include __DIR__ . "/../model/datosDom.php";
 <div class="contenido col-md-4" id="coloniaBox">
     <label for="colonia" class="form-label">Colonia: <span class="text-danger">*</span></label>
     <select name="colonia" id="colonia" class="form-select" required>
-        <?php if (isset($colonia)) {  ?>
-            <option value="">Selecciona un Código Postal</option>
-        <?php } else { ?>
-
+        <option value="">Selecciona un Código Postal</option>
+        <?php if (!empty($colonia)) {  ?>
+            <option value="<?php echo $id_col; ?>" selected><?php echo $colonia; ?></option>
         <?php } ?>
     </select>
 </div>
@@ -49,6 +48,9 @@ include __DIR__ . "/../model/datosDom.php";
     <label for="delMun" class="form-label">Delegación/Municipio:</label>
     <select name="delMun" id="delMun" class="form-select" disabled>
         <option value="">Selecciona un Código Postal</option>
+        <?php if (!empty($delName)) {  ?>
+            <option value="" selected><?php echo $delName; ?></option>
+        <?php } ?>
     </select>
 </div>
 
@@ -57,6 +59,9 @@ include __DIR__ . "/../model/datosDom.php";
     <label for="estadoDir" class="form-label">Estado:</label>
     <select name="estadoDir" id="estadoDir" class="form-select" disabled>
         <option value="">Selecciona un Código Postal</option>
+        <?php if (!empty($estName)) {  ?>
+            <option value="" selected><?php echo $estName; ?></option>
+        <?php } ?>
     </select>
 </div>
 

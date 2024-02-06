@@ -184,7 +184,7 @@ if (!isset($_SESSION['us'])) {
                     </div>
 
                     <!-- Apartado de Domicilio -->
-                    <?php include("../../../templates/apartadoDomEdit.php");?>
+                    <?php include("../../../templates/apartadoDom.php");?>
 
                     <!-- Apartado de Documentación -->
                     <div class="contenido col-md-12">

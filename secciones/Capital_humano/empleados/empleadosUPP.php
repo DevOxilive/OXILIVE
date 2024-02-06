@@ -13,6 +13,7 @@ if (isset($_GET['txtID'])) {
     $sentencia->bindParam(":id_empleados", $txtID);
     $sentencia->execute();
     $registro = $sentencia->fetch(PDO::FETCH_LAZY);
+    $idEmp = $txtID;
 
     // //Traer los datos en la DB
     $Nombres = $registro["nombres"];

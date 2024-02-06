@@ -51,10 +51,10 @@ if (!isset($_SESSION['us'])) {
                                     </span>
                                 </td>
                                 <td><?php echo $listado['fechaRegistro'] ?></td>
-                                <td><a class="btn btn-outline-warning"
+                                <td><a class="btn btn-warning"
                                         href="editar.php?txtID=<?php echo $listado['id_empleado']; ?>" role="button"><i
                                             class="bi bi-pencil-square"></i></a>
-                                    <a class="btn btn-outline-success" href="empleados.php?txtID=<?php echo $listado['id_empleado']; ?>" role="button">
+                                    <a class="btn btn-primary" href="empleados.php?txtID=<?php echo $listado['id_empleado']; ?>" role="button">
                                     <i class="bi bi-eye"></i></a>
                                 </td>
                             </tr>
