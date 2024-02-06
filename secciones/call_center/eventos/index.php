@@ -23,7 +23,7 @@ if (!isset($_SESSION['us'])) {
                 <form class="formLogin row g-3">
                     <div class="contenido col-md-12">
                         <label class="form-label fs-5">Buscar paciente:</label>
-                        <input type="text" class="form-control" id="search_cliente" placeholder="Nombre del paciente" autocomplete="off">
+                        <input type="text" class="form-control" id="search" placeholder="Nombre del paciente" autocomplete="off">
                     </div>
                     <div class="contenido col-md-12">
                         <div class="dropdown-list" id="show-list"></div>

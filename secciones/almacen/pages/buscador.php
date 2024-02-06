@@ -15,8 +15,8 @@ if (!isset($_SESSION['us'])) {
             <div class="card-body"><br>
                 <form class="formLogin row g-3">
                     <div class="contenido col-md-12">
-                        <label class="form-label fs-5">Buscar material:</label>
-                        <input type="text" class="form-control" placeholder="Nombre del material" autocomplete="off">
+                        <label class="form-label fs-5 form-title">Buscar material:</label>
+                        <input type="text" class="form-control only-letters" placeholder="Nombre del material" autocomplete="off">
                     </div>
                     <div class="contenido col-md-12">
                         <div class="dropdown-list" id="show-list"></div>
@@ -26,3 +26,4 @@ if (!isset($_SESSION['us'])) {
         </div>
     </section>
 </main>
+<script src="../../../js//validacionRegex.js"></script>

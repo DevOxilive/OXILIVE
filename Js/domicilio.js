@@ -1,3 +1,5 @@
+
+//Ruta estática del módelo Domicilio
 const scriptLocation = document.currentScript.src;
 const pathModel = scriptLocation+"/../../model/domicilio.php";
 
