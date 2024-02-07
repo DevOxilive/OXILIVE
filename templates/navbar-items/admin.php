@@ -84,6 +84,23 @@
                 </li>
             </ul>
         </li>
+        <li>
+            <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#foliosAlma" href="#">
+                <i class="bi bi-circle"></i><span>Folios</span><i class="bi bi-chevron-down ms-auto fs-6"></i>
+            </a>
+            <ul id="foliosAlma" class="collapse">
+                <li>
+                    <a href="<?php echo $url_base; ?>secciones/folios/index.php">
+                        <i class="bi bi-circle"></i><span>Existencias</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <i class="bi bi-circle"></i><span>Historial</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
     </ul>
 </li>
 <!-- Módulo Enfermeria -->
