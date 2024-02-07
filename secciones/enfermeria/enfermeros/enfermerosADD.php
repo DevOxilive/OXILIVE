@@ -1,8 +1,8 @@
 <?php
-include("../../../../../connection/url.php");
-include("../../../../../templates/hea.php");
-include("../../../../../connection/conexion.php");
-include("../../../../../ctrlArchivos/control/Archivero.php");
+include("../../../connection/url.php");
+include("../../../templates/hea.php");
+include("../../../connection/conexion.php");
+include("../../../ctrlArchivos/control/Archivero.php");
 $archivero = new Archivero();
 // comprobación de envío de valores por método POST.
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $correo = (isset($_POST["email"]) ? $_POST["email"] : NULL);
     $curp = (isset($_POST["curp"]) ? $_POST["curp"] : "");
     $rfc = (isset($_POST["rfc"]) ? $_POST["rfc"] : "");
-    // $departamento = (isset($_POST["departamento"]) ? $_POST["departamento"] : "");
+    $departamento = (isset($_POST["departamento"]) ? $_POST["departamento"] : null);
     $calle = (isset($_POST["calle"]) ? $_POST["calle"] : "");
     $numExt = (isset($_POST["numExt"]) ? $_POST["numExt"] : "");
     $numInt = (isset($_POST["numInt"]) ? $_POST["numInt"] : NULL);
@@ -24,21 +24,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $calleDos = (isset($_POST['calleDos']) ? $_POST['calleDos'] : null);
     $referencias = (isset($_POST['referencias']) ? $_POST['referencias'] : null);
     $cuentaInput = (isset($_POST['cuentaInput']) ? $_POST['cuentaInput'] : null);
-    $nivelEducativo = (isset($_POST['nivelEducativo']) ? $_POST['nivelEducativo'] : "");
+    // $nivelEducativo = (isset($_POST['nivelEducativo']) ? $_POST['nivelEducativo'] : "");
     $contrato = (isset($_POST['contrato']) ? $_POST['contrato'] : "");
-    $nss = (isset($_POST['nss']) ? $_POST['nss'] : "");
-    // $tipoLicencia = (isset($_POST['tipoLicencia']) ? $_POST['tipoLicencia'] : null);
-
     $ineDoc = (isset($_POST['ineDoc']) ? $_POST['ineDoc'] : "");
-    $actaNacimiento = (isset($_POST['actaNacimiento']) ? $_POST['actaNacimiento'] : null);
+
     $comprobanteDomicilio = (isset($_POST['comprobanteDomicilio']) ? $_POST['comprobanteDomicilio'] : null);
-    // $nssDoc = (isset($_POST['nssDoc']) ? $_POST['nssDoc'] : "");
+
     $curpDoc = (isset($_POST['curpDoc']) ? $_POST['curpDoc'] : "");
     $rfcDoc = (isset($_POST['rfcDoc']) ? $_POST['rfcDoc'] : "");
     //Los restantes
     $referenciaLabUno = (isset($_POST['referenciaLabUno']) ? $_POST['referenciaLabUno'] : "");
     $referenciaLabDos = (isset($_POST['referenciaLabDos']) ? $_POST['referenciaLabDos'] : "");
-    // $licenciaUno = (isset($_POST['licenciaUno']) ? $_POST['licenciaUno'] : "");
     $cuenta = (isset($_POST['cuenta']) ? $_POST['cuenta'] : null);
     $fechaAlta = (isset($_POST['fechaAlta']) ? $_POST['fechaAlta'] : null);
     $tipoDeContrato = (isset($_POST['tipoDeContrato']) ? $_POST['tipoDeContrato'] : null);
@@ -48,34 +44,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $doc[] = $_FILES['cuenta']['name'];
     $doc[] = $_FILES['certificadoEstudios']['name'];
     $doc[] = $_FILES['ineDoc']['name'];
-    $doc[] = $_FILES['actaNacimiento']['name'];
     $doc[] = $_FILES['comprobanteDomicilio']['name'];
-    // $doc[] = $_FILES['nssDoc']['name'];
+
     $doc[] = $_FILES['curpDoc']['name'];
     $doc[] = $_FILES['rfcDoc']['name'];
     $doc[] = $_FILES['referenciaLabUno']['name'];
     $doc[] = $_FILES['referenciaLabDos']['name'];
-    // $doc[] = $_FILES['licenciaUno']['name'];
     //Contenido del file
     $contenido[] = $_FILES['cuenta']['tmp_name'];
     $contenido[] = $_FILES['certificadoEstudios']['tmp_name'];
     $contenido[] = $_FILES['ineDoc']['tmp_name'];
-    $contenido[] = $_FILES['actaNacimiento']['tmp_name'];
     $contenido[] = $_FILES['comprobanteDomicilio']['tmp_name'];
-    // $contenido[] = $_FILES['nssDoc']['tmp_name'];
+
     $contenido[] = $_FILES['curpDoc']['tmp_name'];
     $contenido[] = $_FILES['rfcDoc']['tmp_name'];
 
     $contenido[] = $_FILES['referenciaLabUno']['tmp_name'];
     $contenido[] = $_FILES['referenciaLabDos']['tmp_name'];
-    // $contenido[] = $_FILES['licenciaUno']['tmp_name'];
 
 
     //mayuscula o minuscula según sea el caso 
     $nombres = strtoupper($nombres);
     $curp = strtoupper($curp);
     //comprobar errores de creacion de la carpeta del usuario nuevo.
-    $carpetaNueva = "Capital_humano/empleados/OXILIVE/" . $curp . " " . $nombres;
+    $carpetaNueva = "enfermeria/enfermeros/OXILIVE/" . $curp . " " . $nombres;
     $solicitud1 = $archivero->crearCarpeta("OXILIVE/", $curp . " " . $nombres);
     echo $solicitud1;
     if ($solicitud1 === true) {
@@ -95,21 +87,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             $ineDoc = $url_base . "secciones/chatNotifica/img/usuario.png";
         }
-        if ($_FILES["actaNacimiento"]['error'] !== 4) {
-            $actaNacimiento = $url_base . "secciones/" .  $carpetaNueva . "/" . $_FILES['actaNacimiento']['name'];
-        } else {
-            $actaNacimiento = $url_base . "secciones/chatNotifica/img/usuario.png";
-        }
+       
         if ($_FILES["comprobanteDomicilio"]['error'] !== 4) {
             $comprobanteDomicilio = $url_base . "secciones/" .  $carpetaNueva . "/" . $_FILES['comprobanteDomicilio']['name'];
         } else {
             $comprobanteDomicilio = $url_base . "secciones/chatNotifica/img/usuario.png";
         }
-        // if ($_FILES["nssDoc"]['error'] !== 4) {
-        //     $nssDoc = $url_base . "secciones/" .  $carpetaNueva . "/" . $_FILES['nssDoc']['name'];
-        // } else {
-        //     $nssDoc = $url_base . "secciones/chatNotifica/img/usuario.png";
-        // }
+        
         if ($_FILES["curpDoc"]['error'] !== 4) {
             $curpDoc = $url_base . "secciones/" .  $carpetaNueva . "/" . $_FILES['curpDoc']['name'];
         } else {
@@ -131,11 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             $referenciaLabDos = $url_base . "secciones/chatNotifica/img/usuario.png";
         }
-        // if ($_FILES["licenciaUno"]['error'] !== 4) {
-        //     $licenciaUno = $url_base . "secciones/" .  $carpetaNueva . "/" . $_FILES['licenciaUno']['name'];
-        // } else {
-        //     $licenciaUno = $url_base . "secciones/chatNotifica/img/usuario.png";
-        // }
+   
 
         echo "<br>";
         for ($i = 0; $i < count($contenido); $i++) {
@@ -192,19 +172,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         numCuenta, 
                         estudio, 
                         contrato, 
-                        nss,
-
                         fechaAlta,
                         tipoDeContrato,
                         certificadoEstudios,
                         ineDoc, 
-                        actaNacimiento,
                         comprobanteDomicilio,
-        
                         curpDoc, 
                         rfcDoc,
                         referenciaLabUno, 
-                        referenciaLabDos,
+                        referenciaLabDos
                         ) VALUES (
                             :nombres, 
                             :apellidos, 
@@ -226,14 +202,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             :numCuenta, 
                             :nivelEducativo, 
                             :contrato, 
-                            :nss , 
-
                             :fechaAlta,
                             :tipoDeContrato,
                             '$certificadoEstudios' , 
-                            '$ineDoc', 
-                            '$actaNacimiento', 
+                            '$ineDoc',  
                             '$comprobanteDomicilio', 
+
                             '$curpDoc', 
                             '$rfcDoc' , 
                             '$referenciaLabUno',
@@ -259,8 +233,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $sentencia->bindParam(":numCuenta", $cuentaInput);
                 $sentencia->bindParam(":nivelEducativo", $nivelEducativo);
                 $sentencia->bindParam(":contrato", $contrato);
-                $sentencia->bindParam(":nss", $nss);
-                // $sentencia->bindParam(":tipoLicencia", $tipoLicencia);
                 $sentencia->bindParam(":fechaAlta", $fechaAlta);
                 $sentencia->bindParam(":tipoDeContrato",$tipoDeContrato);
                 $sentencia->execute();
@@ -270,7 +242,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 title: "🫂 EMPLEADO AGREGADO",
                                 text: "Los datos fueron guardados",
                                 showConfirmButton: false,
-                                timer: 2000,
+                                timer: 5000,
                             }).then(function() {
                                 window.location = "./index.php";
                             });';
