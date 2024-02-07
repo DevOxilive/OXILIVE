@@ -26,7 +26,6 @@ if (isset($_GET['txtID'])) {
     $telefono = $registro["telefonoUno"];
     $correo = $registro["correo"];
     $cuentaBancaria = $registro["numCuenta"];
-    $nss = $registro["nss"];
     $Puesto = $registro['departamento'];
     $codigo_postal = $registro["codigo_postal"];
     $coloniaId = $registro["colonia_id"];
@@ -39,20 +38,18 @@ if (isset($_GET['txtID'])) {
     $calleUno = $registro['calleUno'];
     $calleDos = $registro['calleDos'];
     $referencias = $registro['referenciasDireccion'];
-    $tipoLicencia = $registro['tipoLicencia'];
+  
 
     $Ine = $registro['ineDoc'];
-    $acta = $registro['actaNacimiento'];
     $comprobante = $registro['comprobanteDomicilio'];
     $certificado = $registro['certificadoEstudios'];
     $numCuenta = $registro['cuenta'];
 
     $curp = $registro['curpDoc'];
-    $nssDoc = $registro['nssDoc'];
     $rfcDoc = $registro['rfcDoc'];
     $laboral = $registro['referenciaLabUno'];
     $personal = $registro['referenciaLabDos'];
-    $licencia = $registro['licenciaUno'];
+    
 }
 
 if ($_POST) {
@@ -77,35 +74,29 @@ if ($_POST) {
     $cuentaInput = (isset($_POST['cuentaInput']) ? $_POST['cuentaInput'] : null);
     $nivelEducativo = (isset($_POST['nivelEducativo']) ? $_POST['nivelEducativo'] : "");
     $contrato = (isset($_POST['contrato']) ? $_POST['contrato'] : "");
-    $nss = (isset($_POST['nss']) ? $_POST['nss'] : "");
-    $tipoLicencia = (isset($_POST['tipoLicencia']) ? $_POST['tipoLicencia'] : null);
     $fechaAlta = (isset($_POST['fechaAlta']) ? $_POST['fechaAlta'] : null);
     $tipoDeContrato = (isset($_POST['tipoDeContrato']) ? $_POST['tipoDeContrato'] : null);
 
     //ESTOS SON LOS FILES
     $ineDoc = $_FILES['ineDoc']['name'];
-    $actaN = $_FILES['actaNacimiento']['name'];
+
     $domicilio = $_FILES['comprobanteDomicilio']['name'];
     $certificadoEstudios = $_FILES['certificadoEstudios']['name'];
     $cuenta = $_FILES['cuenta']['name'];
-    $nssDoc = $_FILES['nssDoc']['name'];
     $curpDoc = $_FILES['curpDoc']['name'];
     $rfcDoc = $_FILES['rfcDoc']['name'];
     $referenciaLabUno = $_FILES['referenciaLabUno']['name'];
     $referenciaLabDos = $_FILES['referenciaLabDos']['name'];
-    $licenciaUno = $_FILES['licenciaUno']['name'];
 
     $ineDocNew = $_FILES['ineDoc']['tmp_name'];
-    $actaNew = $_FILES['actaNacimiento']['tmp_name'];
+
     $domicilioNew = $_FILES['comprobanteDomicilio']['tmp_name'];
     $certificadoEstudiosNew = $_FILES['certificadoEstudios']['tmp_name'];
     $cuentaNew = $_FILES['cuenta']['tmp_name'];
-    $nssDocNew = $_FILES['nssDoc']['tmp_name'];
     $curpNew = $_FILES['curpDoc']['tmp_name'];
     $rfcDocNew = $_FILES['rfcDoc']['tmp_name'];
     $referenciaLabUnoNew = $_FILES['referenciaLabUno']['tmp_name'];
     $referenciaLabDosNew = $_FILES['referenciaLabDos']['tmp_name'];
-    $tipoLicenciaNew = $_FILES['licenciaUno']['tmp_name'];
 
     // $mensajes = " ";
 
@@ -180,16 +171,12 @@ if ($_POST) {
     
 // INE
 procesarArchivo($con, $archivero, $txtID, 'INE', $ineDoc, $ineDocNew, $url_base, 'ineDoc');
-// Acta de Nacimiento
-procesarArchivo($con, $archivero, $txtID, 'Acta de Nacimiento', $actaN, $actaNew, $url_base, 'actaNacimiento');
 // Comprobante de Domicilio
 procesarArchivo($con, $archivero, $txtID, 'Comprobante de Domicilio', $domicilio, $domicilioNew, $url_base, 'comprobanteDomicilio');
 // Certificado de Estudios
 procesarArchivo($con, $archivero, $txtID, 'Certificado de Estudios', $certificadoEstudios, $certificadoEstudiosNew, $url_base, 'certificadoEstudios');
 // Estado de Cuenta
 procesarArchivo($con, $archivero, $txtID, 'Estado de Cuenta', $cuenta, $cuentaNew, $url_base, 'cuenta');
-// Número de Seguro Social
-procesarArchivo($con, $archivero, $txtID, 'Número de Seguro Social', $nssDoc, $nssDocNew, $url_base, 'nssDoc');
 // CURP
 procesarArchivo($con, $archivero, $txtID, 'CURP', $curpDoc, $curpNew, $url_base, 'curpDoc');
 // RFC
@@ -198,14 +185,12 @@ procesarArchivo($con, $archivero, $txtID, 'RFC', $rfcDoc, $rfcDocNew, $url_base,
 procesarArchivo($con, $archivero, $txtID, 'Referencia Laboral 1', $referenciaLabUno, $referenciaLabUnoNew, $url_base, 'referenciaLabUno');
 // Referencia Laboral 2
 procesarArchivo($con, $archivero, $txtID, 'Referencia Laboral 2', $referenciaLabDos, $referenciaLabDosNew, $url_base, 'referenciaLabDos');
-// Licencia
-procesarArchivo($con, $archivero, $txtID, 'Licencia', $licenciaUno, $tipoLicenciaNew, $url_base, 'licenciaUno');
     
     if (!empty($txtID)) {
         $sentencia = $con->prepare("UPDATE empleados 
         SET nombres=:nombres,apellidos=:apellidos, telefonoUno=:telefono, telefonoDos=:telefonoDos, correo=:correo, curp=:curp,
         rfc=:rfc, departamento=:departamento, calle=:calle, numExt=:numExt, numInt=:numInt, colonia=:colonia, calleUno=:calleUno, calleDos=:calleDos,
-        referenciasDireccion=:referencias, numCuenta=:cuentaInput, estudio=:nivelEducativo ,contrato=:contrato, nss=:nss, tipoLicencia=:tipoLicencia
+        referenciasDireccion=:referencias, numCuenta=:cuentaInput, estudio=:nivelEducativo ,contrato=:contrato
         WHERE id_empleado = :id_empleados");
         $sentencia->bindParam(":id_empleados", $txtID);
         $sentencia->bindParam(":nombres", $Nombres);
@@ -228,8 +213,6 @@ procesarArchivo($con, $archivero, $txtID, 'Licencia', $licenciaUno, $tipoLicenci
         //NIVEL EDUCATIVO
         $sentencia->bindParam(":nivelEducativo", $nivelEducativo);
         $sentencia->bindParam(":contrato", $contrato);
-        $sentencia->bindParam(":nss", $nss);
-        $sentencia->bindParam(":tipoLicencia", $tipoLicencia);
         $sentencia->execute();
         $respuesta = $sentencia->rowCount();
 
