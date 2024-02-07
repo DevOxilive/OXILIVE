@@ -238,7 +238,17 @@ $filas_afectadas = $sentencia->rowCount();
 
 // Ahora puedes verificar si se han modificado filas y mostrar el mensaje en consecuencia
 if ($filas_afectadas > 0) {
-    echo "EMPLEADO MODIFICADO";
+    echo '<script language="javascript">
+    Swal.fire({
+        icon: "success",
+        title: "🫂 EMPLEADO MODIFICADO",
+        text: "Los datos fueron guardados",
+        showConfirmButton: false,
+        timer: 2000,
+    }).then(function() {
+        window.location = "./index.php";
+    });
+  </script>';
 } else {
     "NO ENTRES AQUÌ HAHAHA";
 }
