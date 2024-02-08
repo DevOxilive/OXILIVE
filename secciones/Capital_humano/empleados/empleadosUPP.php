@@ -6,10 +6,11 @@ include("../../../ctrlArchivos/control/Archivero.php");
 
 if (isset($_GET['txtID'])) {
     $txtID = (isset($_GET['txtID'])) ? $_GET['txtID'] : "";
-    $sentencia = $con->prepare("SELECT em.*, col.id AS colonia_id, col.nombre AS colonia, m.nombre AS municipio, e.nombre AS estadoDir, codigo_postal 
-    FROM empleados em , colonias col, municipios m, estados e
+    $sentencia = $con->prepare("SELECT em.*, col.id AS colonia_id, col.nombre AS colonia, m.nombre AS municipio, e.nombre AS estadoDir, codigo_postal, ps.gradoPuesto 
+    FROM empleados em , colonias col, municipios m, estados e, puestos ps
     WHERE em.colonia = col.id
     AND col.municipio = m.id
+    AND em.departamento = ps.id_puestos
     AND m.estado = e.id AND em.id_empleado = :id_empleados");
     $sentencia->bindParam(":id_empleados", $txtID);
     $sentencia->execute();
@@ -18,7 +19,7 @@ if (isset($_GET['txtID'])) {
 
     // //Traer los datos en la DB
     $Nombres = $registro["nombres"];
-    echo "nombre ingresado; $Nombres";
+    // echo "nombre ingresado; $Nombres";
     $Apellidos = $registro["apellidos"];
     $Genero = $registro["Genero"];
     $Curp = $registro["curp"];
@@ -41,10 +42,17 @@ if (isset($_GET['txtID'])) {
     $referencias = $registro['referenciasDireccion'];
     $tipoLicencia = $registro['tipoLicencia'];
 
+    $contrato = $registro['contrato'];
+    $tipoDeContrato = $registro['$tipoDeContrato'];
+    
+    $Grado = $registro['gradoPuesto'];
+    $nivelEducativo = $registro['nivelEducativo'];
+
     $Ine = $registro['ineDoc'];
     $acta = $registro['actaNacimiento'];
     $comprobante = $registro['comprobanteDomicilio'];
     $certificado = $registro['certificadoEstudios'];
+    $especialidad = $registro['especialidadEstudio'];
     $numCuenta = $registro['cuenta'];
 
     $curp = $registro['curpDoc'];
@@ -81,6 +89,7 @@ if ($_POST) {
     $tipoLicencia = (isset($_POST['tipoLicencia']) ? $_POST['tipoLicencia'] : null);
     $fechaAlta = (isset($_POST['fechaAlta']) ? $_POST['fechaAlta'] : null);
     $tipoDeContrato = (isset($_POST['tipoDeContrato']) ? $_POST['tipoDeContrato'] : null);
+    $especialidad = (isset($_POST['especialidad']) ? $_POST['especialidad'] : null);
 
     //ESTOS SON LOS FILES
     $ineDoc = $_FILES['ineDoc']['name'];
@@ -205,7 +214,7 @@ procesarArchivo($con, $archivero, $txtID, 'Licencia', $licenciaUno, $tipoLicenci
         $sentencia = $con->prepare("UPDATE empleados 
         SET nombres=:nombres,apellidos=:apellidos, telefonoUno=:telefono, telefonoDos=:telefonoDos, correo=:correo, curp=:curp,
         rfc=:rfc, departamento=:departamento, calle=:calle, numExt=:numExt, numInt=:numInt, colonia=:colonia, calleUno=:calleUno, calleDos=:calleDos,
-        referenciasDireccion=:referencias, numCuenta=:cuentaInput, estudio=:nivelEducativo ,contrato=:contrato, nss=:nss, tipoLicencia=:tipoLicencia
+        referenciasDireccion=:referencias, numCuenta=:cuentaInput, estudio=:nivelEducativo, especialidadEstudio = :especialidad,contrato=:contrato, nss=:nss, tipoLicencia=:tipoLicencia, tipoDeContrato = :tipoDeContrato
         WHERE id_empleado = :id_empleados");
         $sentencia->bindParam(":id_empleados", $txtID);
         $sentencia->bindParam(":nombres", $Nombres);
@@ -225,11 +234,14 @@ procesarArchivo($con, $archivero, $txtID, 'Licencia', $licenciaUno, $tipoLicenci
         $sentencia->bindParam(":calleDos", $calleDos);
         $sentencia->bindParam(":referencias", $referencias);
         $sentencia->bindParam(":cuentaInput", $cuentaInput);
+
         //NIVEL EDUCATIVO
         $sentencia->bindParam(":nivelEducativo", $nivelEducativo);
+        $sentencia->bindParam(":especialidad", $especialidad);
         $sentencia->bindParam(":contrato", $contrato);
         $sentencia->bindParam(":nss", $nss);
         $sentencia->bindParam(":tipoLicencia", $tipoLicencia);
+        $sentencia->bindParam(":tipoDeContrato",$tipoDeContrato);
         $sentencia->execute();
         $respuesta = $sentencia->rowCount();
 
