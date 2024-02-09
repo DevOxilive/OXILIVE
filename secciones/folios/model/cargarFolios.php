@@ -24,12 +24,16 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         </script>
 <?php
     } else {
-        for ($inicio; $inicio <= $rango; $inicio++, $cero = "00") {
-            echo $cero . $inicio;
+        $tamaño = strlen($rango);
+        for ($i = $inicio; $i <= $rango; $i++) {
+            $folio = $nombreFolio . str_pad($i, $tamaño, '0', STR_PAD_LEFT);
+            echo $folio . "<br>";
+            // $sql = "INSERT INTO folios (nombreFolio, id_banco, tipoFolio, statusFolio) VALUES ('$nombreFolio" . "$ceros" . "$i', $id_banco, 'no aplica', 'almacen')";
+            // $folio = $con->prepare($sql);
+            // $folio->execute();
         }
     }
+} else {
+    echo "las cosas como son jaja XD lo más rico de las cosas";
 }
-// $sql = "INSERT INTO folios (nombreFolio, id_banco, tipoFolio, statusFolio) VALUES ('$nombreFolio" . "$ceros" . "$i', $id_banco, 'no aplica', 'almacen')";
-// $folio = $con->prepare($sql);
-// $folio->execute();
 ?>

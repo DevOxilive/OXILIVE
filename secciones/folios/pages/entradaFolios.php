@@ -17,7 +17,7 @@ if (!empty($_SESSION['idus'])) {
                 <div class="row">
                     <div class="contenido col-md-4" id="nombreFolioBox">
                         <label for="nombreFolio" class="form-label">Nombre del folio: </label>
-                        <input type="text" name="nombreFolio" id="nombreFolio" class="form-control only-letters" minlength="4" maxlength="30" required placeholder="ejemplo: folios de almacen">
+                        <input type="text" name="nombreFolio" id="nombreFolio" class="form-control letters-and-numbers" minlength="4" maxlength="30" required placeholder="ejemplo: folios de almacen">
                     </div>
                     <br>
                     <div class="contenido col-md-4" id="idFolioBox">
@@ -26,7 +26,7 @@ if (!empty($_SESSION['idus'])) {
                     </div>
                     <br>
                     <div class="contenido col-md-4" id="bancoBox">
-                        <label for="bonco" class="form-label">Cuerpo del folio: </label>
+                        <label for="bonco" class="form-label">Banco As: </label>
                         <select name="banco" id="banco">
                             <?php foreach ($lista_bancos as $bancos) { ?>
                                 <option value="<?php echo $bancos['id_bancos'] ?>"><?php echo $bancos['Nombre_banco'] ?></option>
