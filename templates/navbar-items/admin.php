@@ -99,6 +99,11 @@
                         <i class="bi bi-circle"></i><span>Historial</span>
                     </a>
                 </li>
+                <li>
+                    <a href="<?php echo $url_base; ?>secciones/folios/archivo/archivoFolios.php">
+                        <i class="bi bi-circle"></i><span>Archivo</span>
+                    </a>
+                </li>
             </ul>
         </li>
     </ul>
