@@ -1,12 +1,12 @@
 <?php
-$url_base = "http://localhost:8080/OXILIVE/";
-include_once ('C:\laragon\www\OXILIVE\connection/conexion.php');
-include_once ('C:\laragon\www\OXILIVE\model/puestos.php');
-include_once ('C:\laragon\www\OXILIVE\model/foto.php');
-// $url_base = "https://swoe.oxilive.com.mx/";
-// include_once ($url_base . 'connection/conexion.php');
-// include_once ($url_base . 'model/puestos.php');
-// include_once ($url_base . 'model/foto.php');
+// $url_base = "http://localhost:8080/OXILIVE/";
+// include_once ('C:\laragon\www\OXILIVE\connection/conexion.php');
+// include_once ('C:\laragon\www\OXILIVE\model/puestos.php');
+// include_once ('C:\laragon\www\OXILIVE\model/foto.php');
+$url_base = "https://swoe.oxilive.com.mx/";
+include_once ($url_base . 'connection/conexion.php');
+include_once ($url_base . 'model/puestos.php');
+include_once ($url_base . 'model/foto.php');
 ?>
 <!DOCTYPE html>
 <html lang="es">
