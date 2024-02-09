@@ -127,11 +127,11 @@ foreach ($loadUser as $row);
                                 <label for="inputEmail3" class="col-sm-2 col-form-label">Correo:</label>
                                 <div class="col-sm-8">
                                     <input name="correo" type="email" class="form-control" maxlength="50" id="inputEmail3" placeholder="<?php
-                                                                                                                            if ($row['correo'] == null) {
-                                                                                                                                echo "Actualizar correo";
-                                                                                                                            } else {
-                                                                                                                                echo $row['correo'];
-                                                                                                                            } ?>">
+                                                                                                                                        if ($row['correo'] == null) {
+                                                                                                                                            echo "Actualizar correo";
+                                                                                                                                        } else {
+                                                                                                                                            echo $row['correo'];
+                                                                                                                                        } ?>">
                                 </div>
                             </div>
                             <br>
@@ -157,7 +157,8 @@ foreach ($loadUser as $row);
                             <div class="form-group row" id="telefonoDosBox">
                                 <label for="telefono" class="col-sm-2 col-form-label">telefono dos:</label>
                                 <div class="col-sm-8">
-                                    <input name="telefonoDos" type="text" class="form-control only-numbers" id="telefonoDosBox" maxlength="10" minlength="10" placeholder="<?php
+                                    <input name="telefonoDos" type="text" class="form-control only-numbers" id="telefonoDosBox" maxlength="10" minlength=
+                                    "10" placeholder="<?php
                                                                                                                                                                             if ($row['telefonoDos'] == null) {
                                                                                                                                                                                 echo "telefono dos";
                                                                                                                                                                             } else {
