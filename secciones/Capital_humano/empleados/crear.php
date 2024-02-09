@@ -292,11 +292,11 @@ if (!isset($_SESSION['us'])) {
         </div>
     </section>
 </main>
-<script src="./JS/grado.js"></script>
+<script src="js/grado.js"></script>
 <script src="../../../js/validacionRegex.js"></script>
 <script src="../../../js/validacionEnvio.js"></script>
 <script src="js/validaciones.js"></script>
 <script src="js/documentos.js"></script>
 <script src="../../../js/domicilio.js"></script>
-<script src="../../../Js/botonAdd.js"></script>
+<script src="../../../js/botonAdd.js"></script>
 <?php include("../../../templates/footer.php"); ?>

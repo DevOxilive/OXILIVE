@@ -2,7 +2,7 @@
 include_once('../connection/conexion.php');
 session_start();
 
-$consultaStatus = $con->prepare("SELECT Estado FROM usuarios WHERE id_usuarios = :iduser;");
+$consultaStatus = $con->prepare("SELECT estadoUsuarios FROM usuarios WHERE id_usuarios = :iduser;");
 $iduser = $_SESSION['idus'];
 $consultaStatus->bindParam(':iduser', $iduser);
 $consultaStatus->execute();
