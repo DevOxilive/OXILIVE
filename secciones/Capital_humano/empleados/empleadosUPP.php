@@ -168,8 +168,6 @@ if ($_POST) {
                         title: "Error",
                         text: "Hubo un problema al guardar la imagen en la carpeta",
                         icon: "error"
-                    }).then(function() {
-                        window.location = "./crear.php";
                     });
                   </script>';
                 }
