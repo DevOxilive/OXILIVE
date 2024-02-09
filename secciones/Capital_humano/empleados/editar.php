@@ -69,7 +69,7 @@ if (!isset($_SESSION['us'])) {
                         <select name="contrato" id="contrato" class="form-select">
                             
                             <option value="SI CONTRATADO" <?php echo ($contrato == "SI CONTRATADO") ? "selected" : "";  ?>>SI CONTRATO</option>
-                            <option value="NO  CONTRATADO" <?php echo ($contrato == "NO CONTRATADO") ? "selected" : "";  ?>>NO CONTRATADO</option>
+                            <option value="NO CONTRATADO" <?php echo ($contrato == "NO CONTRATADO") ? "selected" : "";  ?>>NO CONTRATADO</option>
                         </select>
                     </div>
                     <div class="contenido col-md-3"> <br>
@@ -77,7 +77,7 @@ if (!isset($_SESSION['us'])) {
                         <select name="tipoDeContrato" id="tipoDeContrato" class="form-select">
 
                         <option value="PLANTA" <?php echo ($tipoDeContrato == "PLANTA") ? "selected" : "";  ?>>PLANTA</option>                        
-                        <option value="PLANTA" <?php echo ($tipoDeContrato == "INDEFINIDO") ? "selected" : "";  ?>>INDEFINIDO</option>
+                        <option value="INDEFINIDO" <?php echo ($tipoDeContrato == "INDEFINIDO") ? "selected" : "";  ?>>INDEFINIDO</option>
                         </select>
                     </div>
                     <!-- <div class="contenido col-md-3" id="fechaAltaBox"><br>
@@ -157,7 +157,7 @@ if (!isset($_SESSION['us'])) {
                         <label for="nivelEducativo" class="form-label">Nivel Estudios: <span class="text-danger">*</span></label>
                         <select name="nivelEducativo" id="nivelEducativo" class="form-select">
 
-                        <option value="CEDULA" <?php echo ($nivelEducativo == "CÈDULA") ? "selected" : "";  ?>>CÈDULA</option>                        
+                        <option value="CEDULA" <?php echo ($nivelEducativo == "CEDULA") ? "selected" : "";  ?>>CÈDULA</option>                        
                         <option value="BACHILLERATO" <?php echo ($nivelEducativo == "BACHILLERATO") ? "selected" : "";  ?>>BACHILLERATO</option>                        
                         <option value="SECUNDARIA" <?php echo ($nivelEducativo == "SECUNDARIA") ? "selected" : "";  ?>>SECUNDARIA</option>                        
 
