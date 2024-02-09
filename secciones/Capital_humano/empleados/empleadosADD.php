@@ -76,8 +76,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombres = strtoupper($nombres);
     $curp = strtoupper($curp);
     //comprobar errores de creacion de la carpeta del usuario nuevo.
-    $carpetaNueva = "../../../archvieroOxi/capitalHumano/" . $curp . " " . $nombres;
-    $solicitud1 = $archivero->crearCarpeta("../../../archvieroOxi/capitalHumano/", $curp . " " . $nombres);
+    $carpetaNueva = "../../../archiveroOxi/capitalHumano/" . $curp . " " . $nombres;
+    $solicitud1 = $archivero->crearCarpeta("../../../archiveroOxi/capitalHumano/", $curp . " " . $nombres);
     echo $solicitud1;
     if ($solicitud1 === true) {
         $ruta = "archvieroOxi/capitalHumano/" . $curp . " " . $nombres;
