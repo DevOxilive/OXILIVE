@@ -9,7 +9,7 @@ $consultaStatus->execute();
 $newEstado = $consultaStatus->fetchAll(PDO::FETCH_ASSOC);
 
 foreach($newEstado as $ne){
-    $_SESSION['estado'] = $ne['Estado'];
+    $_SESSION['estado'] = $ne['estadoUsuarios'];
 }
 
 session_write_close();
