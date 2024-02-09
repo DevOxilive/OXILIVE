@@ -130,7 +130,7 @@ if ($_POST) {
 
             foreach ($dato as $fotos);
             $arreglo = explode("/", $fotos[$campoDB]);
-            $ruta = '../../../archvieroOxi/capitalHumano/' . $fotos['curp'] . ' ' . $fotos['nombres'];
+            $ruta = '../../../archiveroOxi/capitalHumano/' . $fotos['curp'] . ' ' . $fotos['nombres'];
 
             // Validar si el archivo ya existe en la carpeta de destino
             if (file_exists($ruta . "/" . $nombreArchivo)) {
@@ -156,8 +156,6 @@ if ($_POST) {
                     title: "Error",
                     text: "Hubo un problema al aliminar el archivo de la carpeta",
                     icon: "error"
-                }).then(function() {
-                    window.location = "./crear.php";
                 });
               </script>';
             } else {
@@ -175,7 +173,7 @@ if ($_POST) {
                     });
                   </script>';
                 }
-                $ruta = $url_base . "archvieroOxi/capitalHumano/" . $fotos['curp'] . ' ' . $fotos['nombres'] . "/" .  $nombreArchivo;
+                $ruta = $url_base . "archiveroOxi/capitalHumano/" . $fotos['curp'] . ' ' . $fotos['nombres'] . "/" .  $nombreArchivo;
                 $sql2 = "UPDATE empleados SET $campoDB = '$ruta'  WHERE id_empleado = $txtID";
                 $stmt = $con->prepare($sql2);
                 $stmt->execute();
