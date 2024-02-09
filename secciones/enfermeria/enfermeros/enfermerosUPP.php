@@ -150,7 +150,7 @@ if ($_POST) {
             
 
                 }
-                $ruta = $url_base . "secciones/Capital_humano/empleados/OXILIVE/" . $fotos['curp'] . ' ' . $fotos['nombres'] . "/" .  $nombreArchivo;
+                $ruta = $url_base . "/secciones/Capital_humano/empleados/OXILIVE/" . $fotos['curp'] . ' ' . $fotos['nombres'] . "/" .  $nombreArchivo;
                 $sql2 = "UPDATE empleados SET $campoDB = '$ruta'  WHERE id_empleado = $txtID";
                 $stmt = $con->prepare($sql2);
                 $stmt->execute();

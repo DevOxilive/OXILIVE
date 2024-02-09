@@ -24,29 +24,40 @@ if (!isset($_SESSION['us'])) {
                 <h4>Nuevo Empleado</h4>
             </div>
             <div class="card-body">
-                <form action="empleadosADD.php" method="POST" enctype="multipart/form-data" class="row g-3" id="formulario" novalidate>
+                <form action="empleadosADD.php" method="POST" enctype="multipart/form-data" class="row g-3"
+                    id="formulario" novalidate>
 
+                    <!--Este sera el grado al  que pertenecera el puesto-->
+                    <div class="contenido col-md-3"> <br>
+                        <label for="grado" class="form-label">Grado:</label>
+                        <select name="grado" id="grado" class="form-select">
+                            <option value="">Seleccione puesto</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
                     <!-- Apartado Libre -->
                     <div class="contenido col-md-4" id="departamentoBox"><br>
                         <label for="departamento" class="form-label">Puesto: <span class="text-danger">*</span></label>
                         <select id="departamento" name="departamento" class="form-select" required>
                             <option value="">Selecciona el departamento</option>
-                            <?php foreach ($lista_puestos as $puesto) {
-                                if (
-                                    $puesto['id_puestos'] != "1" &&
-                                    $puesto['id_puestos'] != "11"
-
-                                ) { ?>
-                                    <option value="<?php echo $puesto['id_puestos']; ?>">
-                                        <?php echo $puesto['Nombre_puestos']; ?>
-                                    </option>
+                            <?php foreach ($listadoEmpleados as $puesto) {
+                               { ?>
+                            <option value="<?php echo $puesto['id_puestos']; ?>">
+                                <?php echo $puesto['Nombre_puestos']; ?>
+                            </option>
                             <?php }
                             } ?>
                         </select>
                     </div>
 
                     <div class="contenido col-md-5" id="contratoBox"> <br>
-                        <label for="contrato" class="form-label">Cuenta con contrato: <span class="text-danger">*</span></label>
+                        <label for="contrato" class="form-label">Cuenta con contrato: <span
+                                class="text-danger">*</span></label>
                         <select name="contrato" id="contrato" class="form-select" required>
                             <option value="">Seleccione contrato</option>
                             <option value="SI CONTRATADO">SI CONTRATADO</option>
@@ -57,16 +68,16 @@ if (!isset($_SESSION['us'])) {
                         <label for="tipoDeContrato" class="form-label">Tipo De Contrato:</label>
                         <select name="tipoDeContrato" id="tipoDeContrato" class="form-select">
                             <option value="">Seleccione contrato</option>
-                            <option value="PLANTA">PLANTA</option>
-                            <option value="TEMPORAL">TEMPORAL</option>
+                            <option value="PLANTA">PLANTA / TEMPORAL</option>
                             <option value="INDEFINIDO">INDEFINIDO</option>
                         </select>
                     </div>
-                    <!-- <div class="contenido col-md-3" id="fechaAltaBox"><br>
-                        <label for="fechaAlta" class="form-label">Fecha Alta Contrato: <span class="text-danger">*</span></label>
+                    <div class="contenido col-md-3" id="fechaAltaBox"><br>
+                        <label for="fechaAlta" class="form-label">Fecha Alta Contrato: <span
+                                class="text-danger">*</span></label>
                         <input type="date" class="form-control " name="fechaAlta" id="fechaAlta" required>
-                    </div> -->
-                    
+                    </div>
+
 
                     <!-- Apartado de Datos Generales -->
                     <div class="contenido col-md-12">
@@ -77,11 +88,13 @@ if (!isset($_SESSION['us'])) {
                     <!-- Nombre Completo -->
                     <div class="contenido col-md-5" id="nombresBox">
                         <label for="nombres" class="form-label">Nombre(s): <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control only-letters" name="nombres" id="nombres" placeholder="Ingrese el/los nombre(s)" minlength="3" maxlength="40" required>
+                        <input type="text" class="form-control only-letters" name="nombres" id="nombres"
+                            placeholder="Ingrese el/los nombre(s)" minlength="3" maxlength="40" required>
                     </div>
                     <div class="contenido col-md-5" id="apellidosBox">
                         <label for="apellidos" class="form-label">Apellidos: <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control only-letters" name="apellidos" id="apellidos" placeholder="Ingrese los apellidos" minlength="3" maxlength="40" required>
+                        <input type="text" class="form-control only-letters" name="apellidos" id="apellidos"
+                            placeholder="Ingrese los apellidos" minlength="3" maxlength="40" required>
                     </div>
 
                     <!-- Género -->
@@ -90,9 +103,9 @@ if (!isset($_SESSION['us'])) {
                         <select id="genero" name="genero" class="form-select" required>
                             <option value="">Selecciona el género</option>
                             <?php foreach ($lista_genero as $genero) { ?>
-                                <option value="<?php echo $genero['id_genero']; ?>">
-                                    <?php echo $genero['genero']; ?>
-                                </option>
+                            <option value="<?php echo $genero['id_genero']; ?>">
+                                <?php echo $genero['genero']; ?>
+                            </option>
                             <?php } ?>
                         </select>
                     </div>
@@ -100,26 +113,29 @@ if (!isset($_SESSION['us'])) {
                     <!-- CURP y RFC -->
                     <div class="contenido col-md-4" id="curpBox">
                         <label for="curp" class="form-label">CURP: <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control letters-and-numbers" name="curp" id="curp" placeholder="Ingresa el CURP" minlength="18" maxlength="18" required>
+                        <input type="text" class="form-control letters-and-numbers" name="curp" id="curp"
+                            placeholder="Ingresa el CURP" minlength="18" maxlength="18" required>
                     </div>
                     <div class="contenido col-md-3" id="rfcBox">
                         <label for="rfc" class="form-label">RFC: <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control letters-and-numbers" name="rfc" id="rfc" placeholder="x1x1x1x1x1x1x1x" minlength="13" maxlength="13" required>
+                        <input type="text" class="form-control letters-and-numbers" name="rfc" id="rfc"
+                            placeholder="x1x1x1x1x1x1x1x" minlength="13" maxlength="13" required>
                     </div>
 
                     <!-- Teléfono -->
                     <div class="contenido col-md-4" id="telefonoBox">
                         <label for="telefono" class="form-label">Teléfono: <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control only-numbers" name="telefono" id="telefono" placeholder="Teléfono de 10 digitos" minlength="10" maxlength="10" required>
+                        <input type="text" class="form-control only-numbers" name="telefono" id="telefono"
+                            placeholder="Teléfono de 10 digitos" minlength="10" maxlength="10" required>
                     </div>
                     <!-- Telefono Dos -->
-                    <div class="contenido col-md-1 d-flex align-items-center cursor-pointer" style="display: flex; padding: 35px; padding-left: 15px;"
-                         id="add">
+                    <div class="contenido col-md-1 d-flex align-items-center cursor-pointer"
+                        style="display: flex; padding: 35px; padding-left: 15px;" id="add">
                         <span class=" badge bg-primary fs-4 " id="addBoton">+</span>
                     </div>
                     <div class="contenido col-md-4" style="display: none;" id="tel">
                         <label for="telDos" class="form-label">Teléfono 2:</label>
-                        <div class="input-group" >
+                        <div class="input-group">
                             <input type="text" maxlength="10" class="form-control" name="telDos" id="telDos"
                                 placeholder="Télefono de 10 digitos">
                             <div class="input-group-append">
@@ -132,11 +148,12 @@ if (!isset($_SESSION['us'])) {
                         <p id="errTelDos" style="color: red; font-weight: bold;"></p>
                     </div>
                     <!--Fin del telefono dos-->
-                    
+
                     <!-- Correo Electrónico -->
                     <div class="contenido col-md-5">
                         <label for="email" class="form-label">Correo electrónico:</label>
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Ingresa el correo electrónico" minlength="15" maxlength="50">
+                        <input type="email" class="form-control" name="email" id="email"
+                            placeholder="Ingresa el correo electrónico" minlength="15" maxlength="50">
                     </div>
 
                     <!-- Div de relleno -->
@@ -144,26 +161,37 @@ if (!isset($_SESSION['us'])) {
 
                     <!-- Número de cuenta bancaria -->
                     <div class="contenido col-md-4" id="cuentaInputBox">
-                        <label for="cuentaInput" class="form-label">Cuenta Bancaria: <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control only-numbers" name="cuentaInput" id="cuentaInput" placeholder="12345432" oninput="validarCuenta()" minlength="10" maxlength="20" required>
+                        <label for="cuentaInput" class="form-label">Cuenta Bancaria: <span
+                                class="text-danger">*</span></label>
+                        <input type="text" class="form-control only-numbers" name="cuentaInput" id="cuentaInput"
+                            placeholder="12345432" oninput="validarCuenta()" minlength="10" maxlength="20" required>
                         <div id="mensajeError" class="error-message"></div>
                     </div>
 
                     <!-- NSS -->
                     <div class="contenido col-md-3" id="nssBox">
                         <label for="nss" class="form-label">NSS: <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control only-numbers" name="nss" id="nss" placeholder="Ingrese el correo" minlength="11" maxlength="11" required>
+                        <input type="text" class="form-control only-numbers" name="nss" id="nss"
+                            placeholder="Nùmero de seguro social" minlength="11" maxlength="11" required>
                     </div>
 
                     <!-- Nivel Educativo -->
                     <div class="contenido col-md-3" id="nivelEducativoBox">
-                        <label for="nivelEducativo" class="form-label">Nivel Estudios: <span class="text-danger">*</span></label>
+                        <label for="nivelEducativo" class="form-label">Nivel Estudios: <span
+                                class="text-danger">*</span></label>
                         <select name="nivelEducativo" id="nivelEducativo" class="form-select" required>
                             <option value="">Seleccione Grado</option>
                             <option value="Cédula">CÈDULA</option>
                             <option value="Bachillerato">BACHILLERATO</option>
                             <option value="Secundaria">SECUNDARIA</option>
                         </select>
+                    </div>
+
+                    <!-- NSS -->
+                    <div class="contenido col-md-12">
+                        <label for="especialidad" class="form-label">Especialidad:</label>
+                        <input type="text" class="form-control " name="especialidad" id="especialidad"
+                            placeholder="Especialidad del àrea" maxlength="249">
                     </div>
 
                     <!-- Apartado de Domicilio -->
@@ -177,7 +205,8 @@ if (!isset($_SESSION['us'])) {
 
                     <!-- INE -->
                     <div class="contenido col-md-5" id="ineDocBox">
-                        <label for="ineDoc" class="form-label">Credencial de Elector: <span class="text-danger">*</span></label>
+                        <label for="ineDoc" class="form-label">Credencial de Elector: <span
+                                class="text-danger">*</span></label>
                         <input type="file" class="form-control" name="ineDoc" id="ineDoc" required>
                     </div>
                     <!-- Acta de Nacimiento -->
@@ -188,19 +217,24 @@ if (!isset($_SESSION['us'])) {
 
                     <!-- Comprobante de domicilio -->
                     <div class="contenido col-md-5" id="comprobanteDomicilioBox">
-                        <label for="comprobanteDomicilio" class="form-label">Comprobante De Domicilio: <span class="text-danger">*</span></label>
-                        <input type="file" class="form-control" name="comprobanteDomicilio" id="comprobanteDomicilio" required>
+                        <label for="comprobanteDomicilio" class="form-label">Comprobante De Domicilio: <span
+                                class="text-danger">*</span></label>
+                        <input type="file" class="form-control" name="comprobanteDomicilio" id="comprobanteDomicilio"
+                            required>
                     </div>
 
                     <!-- Último certificado o Cédula -->
                     <div class="contenido col-md-4" id="certificadoEstudiosBox">
-                        <label for="certificadoEstudios" class="form-label">Último Certificado / Cédula: <span class="text-danger">*</span></label>
-                        <input type="file" class="form-control" name="certificadoEstudios" id="certificadoEstudios" required>
+                        <label for="certificadoEstudios" class="form-label">Último Certificado / Cédula: <span
+                                class="text-danger">*</span></label>
+                        <input type="file" class="form-control" name="certificadoEstudios" id="certificadoEstudios"
+                            required>
                     </div>
 
                     <!-- Estado de cuenta -->
                     <div class="contenido col-md-4" id="cuentaBox">
-                        <label for="cuenta" class="form-label">Estado de Cuenta: <span class="text-danger">*</span></label>
+                        <label for="cuenta" class="form-label">Estado de Cuenta: <span
+                                class="text-danger">*</span></label>
                         <input type="file" class="form-control" name="cuenta" id="cuenta" required>
                     </div>
 
@@ -224,21 +258,25 @@ if (!isset($_SESSION['us'])) {
 
                     <!--Estos tambien hay que insertarlos-->
                     <div class="contenido col-md-4" id="referenciaLabBox">
-                        <label for="referenciaLabUno" class="form-label">Referencia Laboral: <span class="text-danger">*</span></label>
+                        <label for="referenciaLabUno" class="form-label">Referencia Laboral: <span
+                                class="text-danger">*</span></label>
                         <input type="file" class="form-control" name="referenciaLabUno" id="referenciaLab" required>
                     </div>
 
                     <div class="contenido col-md-4">
                         <label for="referenciaLabDos" class="form-label">Referencia Personal:</label>
-                        <input type="file" class="form-control" aria-label="file example" name="referenciaLabDos" id="referenciaLabDos">
+                        <input type="file" class="form-control" aria-label="file example" name="referenciaLabDos"
+                            id="referenciaLabDos">
                     </div>
                     <div class="contenido col-md-4">
                         <label for="licenciaUno" class="form-label">Licencia: </label>
-                        <input type="file" class="form-control" aria-label="file example" name="licenciaUno" id="licenciaUno">
+                        <input type="file" class="form-control" aria-label="file example" name="licenciaUno"
+                            id="licenciaUno">
                     </div>
                     <div class="contenido col-md-3" id="tipoLicenciaBox">
                         <label for="tipoLicencia" class="form-label">Tipo de Licencia:</label>
-                        <input type="text" class="form-control letters-and-numbers" name="tipoLicencia" id="tipoLicencia" placeholder="Ejemplo A" minlength="1" maxlength="2">
+                        <input type="text" class="form-control letters-and-numbers" name="tipoLicencia"
+                            id="tipoLicencia" placeholder="Ejemplo A" minlength="1" maxlength="2">
                     </div>
 
                     <!-- Apartado Botones -->
@@ -254,6 +292,7 @@ if (!isset($_SESSION['us'])) {
         </div>
     </section>
 </main>
+<script src="./JS/grado.js"></script>
 <script src="../../../js/validacionRegex.js"></script>
 <script src="../../../js/validacionEnvio.js"></script>
 <script src="js/validaciones.js"></script>
