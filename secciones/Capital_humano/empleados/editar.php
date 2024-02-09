@@ -20,7 +20,7 @@ if (!isset($_SESSION['us'])) {
     <section class="section dashboard">
         <div class="card card-form">
             <div class="card-header">
-                <h4>Nuevo Empleado</h4>
+                <h4>Editar Empleado</h4>
             </div>
             <div class="card-body">
                 <form action="empleadosUPP.php" method="POST" enctype="multipart/form-data" class="row g-3" id="formulario" novalidate>
