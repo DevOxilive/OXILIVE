@@ -148,7 +148,7 @@ if ($_POST) {
                 return; // Salir de la función sin procesar el archivo
             }
             // echo $ruta . "/" . $arreglo[7];
-            $resultado = $archivero->eliminarArchivo($ruta . "/" . $arreglo[7]);
+            $resultado = $archivero->eliminarArchivo($ruta . "/" . $arreglo[6]);
             // print_r($arreglo);
             if ($resultado === false) {
                 echo '<script language="javascript">
