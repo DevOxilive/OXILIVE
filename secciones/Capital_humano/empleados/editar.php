@@ -76,8 +76,8 @@ if (!isset($_SESSION['us'])) {
                         <label for="tipoDeContrato" class="form-label">Tipo De Contrato:</label>
                         <select name="tipoDeContrato" id="tipoDeContrato" class="form-select">
 
-                        <option value="PLANTA" <?php echo ($tipoDeContrato == "PLANTA") ? "selected" : "";  ?>>PLANTA</option>                        
-                        <option value="INDEFINIDO" <?php echo ($tipoDeContrato == "INDEFINIDO") ? "selected" : "";  ?>>INDEFINIDO</option>
+                        <option value="PLANTA" <?php echo ($tipoDeContrato == "PLANTA") ? "selected" : "";  ?>>PLANTA / INDEFINIDO</option>                        
+                        <option value="TEMPORAL" <?php echo ($tipoDeContrato == "TEMPORAL") ? "selected" : "";  ?>>TEMPORAL</option>
                         </select>
                     </div>
                     <!-- <div class="contenido col-md-3" id="fechaAltaBox"><br>
