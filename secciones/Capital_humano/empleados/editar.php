@@ -69,15 +69,15 @@ if (!isset($_SESSION['us'])) {
                         <select name="contrato" id="contrato" class="form-select">
                             
                             <option value="SI CONTRATADO" <?php echo ($contrato == "SI CONTRATADO") ? "selected" : "";  ?>>SI CONTRATO</option>
-                            <option value="SI CONTRATADO" <?php echo ($contrato == "NO CONTRATADO") ? "selected" : "";  ?>>NO CONTRATADO</option>
+                            <option value="NO CONTRATADO" <?php echo ($contrato == "NO CONTRATADO") ? "selected" : "";  ?>>NO CONTRATADO</option>
                         </select>
                     </div>
                     <div class="contenido col-md-3"> <br>
                         <label for="tipoDeContrato" class="form-label">Tipo De Contrato:</label>
                         <select name="tipoDeContrato" id="tipoDeContrato" class="form-select">
 
-                        <option value="PLANTA" <?php echo ($tipoDeContrato == "PLANTA") ? "selected" : "";  ?>>PLANTA</option>                        
-                        <option value="PLANTA" <?php echo ($tipoDeContrato == "INDEFINIDO") ? "selected" : "";  ?>>INDEFINIDO</option>
+                        <option value="PLANTA" <?php echo ($tipoDeContrato == "PLANTA") ? "selected" : "";  ?>>PLANTA / INDEFINIDO</option>                        
+                        <option value="TEMPORAL" <?php echo ($tipoDeContrato == "TEMPORAL") ? "selected" : "";  ?>>TEMPORAL</option>
                         </select>
                     </div>
                     <!-- <div class="contenido col-md-3" id="fechaAltaBox"><br>
@@ -157,7 +157,7 @@ if (!isset($_SESSION['us'])) {
                         <label for="nivelEducativo" class="form-label">Nivel Estudios: <span class="text-danger">*</span></label>
                         <select name="nivelEducativo" id="nivelEducativo" class="form-select">
 
-                        <option value="CEDULA" <?php echo ($nivelEducativo == "CÈDULA") ? "selected" : "";  ?>>CÈDULA</option>                        
+                        <option value="CEDULA" <?php echo ($nivelEducativo == "CEDULA") ? "selected" : "";  ?>>CÈDULA</option>                        
                         <option value="BACHILLERATO" <?php echo ($nivelEducativo == "BACHILLERATO") ? "selected" : "";  ?>>BACHILLERATO</option>                        
                         <option value="SECUNDARIA" <?php echo ($nivelEducativo == "SECUNDARIA") ? "selected" : "";  ?>>SECUNDARIA</option>                        
 
@@ -257,25 +257,6 @@ if (!isset($_SESSION['us'])) {
         </div>
     </section>
 </main>
-<script>
-    function confirmCancel(event) {
-    event.preventDefault();
-    Swal.fire({
-        title: '¿Estás seguro?',
-        text: "Si cancelas, se perderán los datos ingresados.",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Sí, cancelar',
-        cancelButtonText: 'No, continuar'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.location.href = "index.php";
-        }
-    });
-}
-</script>
 <script src="../../../js/validacionRegex.js"></script>
 <script src="../../../js/validacionEnvio.js"></script>
 <script src="./js/validaciones.js"></script>

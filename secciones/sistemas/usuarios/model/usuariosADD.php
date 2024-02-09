@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $resultado = $carga->fetchAll(PDO::FETCH_ASSOC);
 
         foreach ($resultado as $fila);
-        $ruta = '../../../Capital_humano/empleados/OXILIVE/' . $fila['curp'] . ' ' . $fila['nombres'];
+        $ruta = '../../../../archiveroOxi/capitalHumano/' . $fila['curp'] . ' ' . $fila['nombres'];
         if ($_FILES['Foto_perfil']['error'] !== 4) {
             $Foto_perfilX = $_FILES['Foto_perfil']['name'];
         } else {
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 });';
                 echo '</script>';
             }
-            $ruta = $url_base . 'secciones/Capital_humano/empleados/OXILIVE/' . $fila['curp'] . ' ' . $fila['nombres'] . '/' . $Foto_perfilX;
+            $ruta = $url_base . 'archivero/capitalHumano/' . $fila['curp'] . ' ' . $fila['nombres'] . '/' . $Foto_perfilX;
         }
 
         // encriptar contraseña

@@ -42,7 +42,7 @@ if (isset($_GET['txtID'])) {
     $tipoLicencia = $registro['tipoLicencia'];
 
     $contrato = $registro['contrato'];
-    $tipoDeContrato = $registro['$tipoDeContrato'];
+    $tipoDeContrato = $registro['tipoDeContrato'];
 
     $Grado = $registro['gradoPuesto'];
     $nivelEducativo = $registro['nivelEducativo'];

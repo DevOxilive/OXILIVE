@@ -9,17 +9,7 @@ if (!isset($_SESSION['us'])) {
   echo "Error en el sistema";
 }
 ?>
-<<<<<<< HEAD
 
-<style>
-  #customers th {
-  text-align: center;
-  background-color: #005880;
-  color: white;
-}
-  </style>
-=======
->>>>>>> 18faeeda534d99784fcd8606a7ad7bc49dcea2a2
 <main id="main" class="main">
   <div class="row">
     <div class="card">
