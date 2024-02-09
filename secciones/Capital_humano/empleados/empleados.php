@@ -52,9 +52,15 @@ if (!isset($_SESSION['us'])) {
 
                         <dt class="col-lg-3 col-md-4 col-sm-5 label">Telefono Dos:</dt>
                         <dd class="col-lg-9 col-md-8 col-sm-7"><?php echo $telefonoDos ?></dd>
-
+                        
                         <dt class="col-lg-3 col-md-4 col-sm-5 label">Correo:</dt>
                         <dd class="col-lg-9 col-md-8 col-sm-7"><?php echo $correo; ?></dd>
+
+                        <dt class="col-lg-3 col-md-4 col-sm-5 label">Contrato:</dt>
+                        <dd class="col-lg-9 col-md-8 col-sm-7"><?php echo $contrato ?></dd>
+
+                        <dt class="col-lg-3 col-md-4 col-sm-5 label">Tipo De Contrato:</dt>
+                        <dd class="col-lg-9 col-md-8 col-sm-7"><?php echo $tipoDeContrato ?></dd>
 
                         <dt class="col-lg-3 col-md-4 col-sm-5 label">CURP:</dt>
                         <dd class="col-lg-9 col-md-8 col-sm-7"><?php echo $Curp; ?></dd>
@@ -64,6 +70,13 @@ if (!isset($_SESSION['us'])) {
 
                         <dt class="col-lg-3 col-md-4 col-sm-5 label">NSS:</dt>
                         <dd class="col-lg-9 col-md-8 col-sm-7"><?php echo $nss; ?></dd>
+
+                    
+                        <dt class="col-lg-3 col-md-4 col-sm-5 label">Estudios:</dt>
+                        <dd class="col-lg-9 col-md-8 col-sm-7"><?php echo $estudios; ?></dd>
+
+                        <dt class="col-lg-3 col-md-4 col-sm-5 label">Especialista:</dt>
+                        <dd class="col-lg-9 col-md-8 col-sm-7"><?php echo $especialista; ?></dd>
                     </dl>
                 </div>
                 <div class="tab-pane fade paciente" id="direccion">
