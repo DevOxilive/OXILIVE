@@ -257,5 +257,5 @@ if (!isset($_SESSION['us'])) {
 <script src="js/validaciones.js"></script>
 <script src="js/documentos.js"></script>
 <script src="../../../js/domicilio.js"></script>
-<script src="../../../Js/botonAdd.js"></script>
+<script src="../../../js/botonAdd.js"></script>
 <?php include("../../../templates/footer.php"); ?>
