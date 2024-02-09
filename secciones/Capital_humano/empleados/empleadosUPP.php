@@ -3,13 +3,13 @@ include("../../../connection/conexion.php");
 include("../../../templates/hea.php");
 include("../../../connection/url.php");
 include("../../../ctrlArchivos/control/Archivero.php");
-
 if (isset($_GET['txtID'])) {
     $txtID = (isset($_GET['txtID'])) ? $_GET['txtID'] : "";
-    $sentencia = $con->prepare("SELECT em.*, col.id AS colonia_id, col.nombre AS colonia, m.nombre AS municipio, e.nombre AS estadoDir, codigo_postal 
-    FROM empleados em , colonias col, municipios m, estados e
+    $sentencia = $con->prepare("SELECT em.*, col.id AS colonia_id, col.nombre AS colonia, m.nombre AS municipio, e.nombre AS estadoDir, codigo_postal, ps.gradoPuesto 
+    FROM empleados em , colonias col, municipios m, estados e, puestos ps
     WHERE em.colonia = col.id
     AND col.municipio = m.id
+    AND em.departamento = ps.id_puestos
     AND m.estado = e.id AND em.id_empleado = :id_empleados");
     $sentencia->bindParam(":id_empleados", $txtID);
     $sentencia->execute();
@@ -18,7 +18,7 @@ if (isset($_GET['txtID'])) {
 
     // //Traer los datos en la DB
     $Nombres = $registro["nombres"];
-    echo "nombre ingresado; $Nombres";
+    // echo "nombre ingresado; $Nombres";
     $Apellidos = $registro["apellidos"];
     $Genero = $registro["Genero"];
     $Curp = $registro["curp"];
@@ -41,10 +41,17 @@ if (isset($_GET['txtID'])) {
     $referencias = $registro['referenciasDireccion'];
     $tipoLicencia = $registro['tipoLicencia'];
 
+    $contrato = $registro['contrato'];
+    $tipoDeContrato = $registro['$tipoDeContrato'];
+
+    $Grado = $registro['gradoPuesto'];
+    $nivelEducativo = $registro['nivelEducativo'];
+
     $Ine = $registro['ineDoc'];
     $acta = $registro['actaNacimiento'];
     $comprobante = $registro['comprobanteDomicilio'];
     $certificado = $registro['certificadoEstudios'];
+    $especialidad = $registro['especialidadEstudio'];
     $numCuenta = $registro['cuenta'];
 
     $curp = $registro['curpDoc'];
@@ -56,6 +63,7 @@ if (isset($_GET['txtID'])) {
 }
 
 if ($_POST) {
+    $url_base;
     $archivero = new Archivero();
     $txtID = $_POST['txtID'];
     $Nombres = (isset($_POST["nombres"]) ? $_POST["nombres"] : "");
@@ -81,6 +89,7 @@ if ($_POST) {
     $tipoLicencia = (isset($_POST['tipoLicencia']) ? $_POST['tipoLicencia'] : null);
     $fechaAlta = (isset($_POST['fechaAlta']) ? $_POST['fechaAlta'] : null);
     $tipoDeContrato = (isset($_POST['tipoDeContrato']) ? $_POST['tipoDeContrato'] : null);
+    $especialidad = (isset($_POST['especialidad']) ? $_POST['especialidad'] : null);
 
     //ESTOS SON LOS FILES
     $ineDoc = $_FILES['ineDoc']['name'];
@@ -111,25 +120,26 @@ if ($_POST) {
 
     // echo $ineDoc . " ";
 
-    function procesarArchivo($con, $archivero, $txtID, $tipoArchivo, $nombreArchivo, $nombreArchivoNuevo, $url_base, $campoDB) {
+    function procesarArchivo($con, $archivero, $txtID, $tipoArchivo, $nombreArchivo, $nombreArchivoNuevo, $url_base, $campoDB)
+    {
         if (!empty($nombreArchivo)) {
             $sql = "SELECT * FROM empleados WHERE id_empleado = $txtID";
             $actualizar = $con->prepare($sql);
             $actualizar->execute();
             $dato = $actualizar->fetchAll(PDO::FETCH_ASSOC);
-    
-            foreach ($dato as $fotos) ;
+
+            foreach ($dato as $fotos);
             $arreglo = explode("/", $fotos[$campoDB]);
-            $ruta = 'OXILIVE/' . $fotos['curp'] . ' ' . $fotos['nombres'];
-    
+            $ruta = '../../../archvieroOxi/capitalHumano/' . $fotos['curp'] . ' ' . $fotos['nombres'];
+
             // Validar si el archivo ya existe en la carpeta de destino
             if (file_exists($ruta . "/" . $nombreArchivo)) {
                 // echo "El archivo  ya existe. No se puede cargar uno con el mismo nombre.";
-                
+
                 echo '<script language="javascript">
                 Swal.fire({
                     title: "ARCHIVO?",
-                    text: "EL ARCHIVO '.$nombreArchivo.' NO SE PUEDE REPETIR",
+                    text: "EL ARCHIVO ' . $nombreArchivo . ' NO SE PUEDE REPETIR",
                     icon: "question"
                     }).then(function() {
                         window.location = "./index.php";
@@ -137,13 +147,21 @@ if ($_POST) {
                         </script>';
                 return; // Salir de la función sin procesar el archivo
             }
-    
-            $resultado = $archivero->eliminarArchivo($ruta . "/" . $arreglo[9]);
-    
+            // echo $ruta . "/" . $arreglo[7];
+            $resultado = $archivero->eliminarArchivo($ruta . "/" . $arreglo[7]);
+            // print_r($arreglo);
             if ($resultado === false) {
-                echo "Algo falló al eliminar el archivo existente";
+                echo '<script language="javascript">
+                Swal.fire({
+                    title: "Error",
+                    text: "Hubo un problema al aliminar el archivo de la carpeta",
+                    icon: "error"
+                }).then(function() {
+                    window.location = "./crear.php";
+                });
+              </script>';
             } else {
-                $ruta = './OXILIVE/' . $fotos['curp'] . ' ' . $fotos['nombres'];
+
                 $resultado = $archivero->guardarArchivo($nombreArchivo, $nombreArchivoNuevo, $ruta);
                 if ($resultado === false) {
                     // echo "Error al guardar la imagen en la carpeta: " . $ruta;
@@ -156,10 +174,8 @@ if ($_POST) {
                         window.location = "./crear.php";
                     });
                   </script>';
-            
-
                 }
-                $ruta = $url_base . "secciones/Capital_humano/empleados/OXILIVE/" . $fotos['curp'] . ' ' . $fotos['nombres'] . "/" .  $nombreArchivo;
+                $ruta = $url_base . "archvieroOxi/capitalHumano/" . $fotos['curp'] . ' ' . $fotos['nombres'] . "/" .  $nombreArchivo;
                 $sql2 = "UPDATE empleados SET $campoDB = '$ruta'  WHERE id_empleado = $txtID";
                 $stmt = $con->prepare($sql2);
                 $stmt->execute();
@@ -177,35 +193,35 @@ if ($_POST) {
             }
         }
     }
-    
-// INE
-procesarArchivo($con, $archivero, $txtID, 'INE', $ineDoc, $ineDocNew, $url_base, 'ineDoc');
-// Acta de Nacimiento
-procesarArchivo($con, $archivero, $txtID, 'Acta de Nacimiento', $actaN, $actaNew, $url_base, 'actaNacimiento');
-// Comprobante de Domicilio
-procesarArchivo($con, $archivero, $txtID, 'Comprobante de Domicilio', $domicilio, $domicilioNew, $url_base, 'comprobanteDomicilio');
-// Certificado de Estudios
-procesarArchivo($con, $archivero, $txtID, 'Certificado de Estudios', $certificadoEstudios, $certificadoEstudiosNew, $url_base, 'certificadoEstudios');
-// Estado de Cuenta
-procesarArchivo($con, $archivero, $txtID, 'Estado de Cuenta', $cuenta, $cuentaNew, $url_base, 'cuenta');
-// Número de Seguro Social
-procesarArchivo($con, $archivero, $txtID, 'Número de Seguro Social', $nssDoc, $nssDocNew, $url_base, 'nssDoc');
-// CURP
-procesarArchivo($con, $archivero, $txtID, 'CURP', $curpDoc, $curpNew, $url_base, 'curpDoc');
-// RFC
-procesarArchivo($con, $archivero, $txtID, 'RFC', $rfcDoc, $rfcDocNew, $url_base, 'rfcDoc');
-// Referencia Laboral 1
-procesarArchivo($con, $archivero, $txtID, 'Referencia Laboral 1', $referenciaLabUno, $referenciaLabUnoNew, $url_base, 'referenciaLabUno');
-// Referencia Laboral 2
-procesarArchivo($con, $archivero, $txtID, 'Referencia Laboral 2', $referenciaLabDos, $referenciaLabDosNew, $url_base, 'referenciaLabDos');
-// Licencia
-procesarArchivo($con, $archivero, $txtID, 'Licencia', $licenciaUno, $tipoLicenciaNew, $url_base, 'licenciaUno');
-    
+
+    // INE
+    procesarArchivo($con, $archivero, $txtID, 'INE', $ineDoc, $ineDocNew, $url_base, 'ineDoc');
+    // Acta de Nacimiento
+    procesarArchivo($con, $archivero, $txtID, 'Acta de Nacimiento', $actaN, $actaNew, $url_base, 'actaNacimiento');
+    // Comprobante de Domicilio
+    procesarArchivo($con, $archivero, $txtID, 'Comprobante de Domicilio', $domicilio, $domicilioNew, $url_base, 'comprobanteDomicilio');
+    // Certificado de Estudios
+    procesarArchivo($con, $archivero, $txtID, 'Certificado de Estudios', $certificadoEstudios, $certificadoEstudiosNew, $url_base, 'certificadoEstudios');
+    // Estado de Cuenta
+    procesarArchivo($con, $archivero, $txtID, 'Estado de Cuenta', $cuenta, $cuentaNew, $url_base, 'cuenta');
+    // Número de Seguro Social
+    procesarArchivo($con, $archivero, $txtID, 'Número de Seguro Social', $nssDoc, $nssDocNew, $url_base, 'nssDoc');
+    // CURP
+    procesarArchivo($con, $archivero, $txtID, 'CURP', $curpDoc, $curpNew, $url_base, 'curpDoc');
+    // RFC
+    procesarArchivo($con, $archivero, $txtID, 'RFC', $rfcDoc, $rfcDocNew, $url_base, 'rfcDoc');
+    // Referencia Laboral 1
+    procesarArchivo($con, $archivero, $txtID, 'Referencia Laboral 1', $referenciaLabUno, $referenciaLabUnoNew, $url_base, 'referenciaLabUno');
+    // Referencia Laboral 2
+    procesarArchivo($con, $archivero, $txtID, 'Referencia Laboral 2', $referenciaLabDos, $referenciaLabDosNew, $url_base, 'referenciaLabDos');
+    // Licencia
+    procesarArchivo($con, $archivero, $txtID, 'Licencia', $licenciaUno, $tipoLicenciaNew, $url_base, 'licenciaUno');
+
     if (!empty($txtID)) {
         $sentencia = $con->prepare("UPDATE empleados 
         SET nombres=:nombres,apellidos=:apellidos, telefonoUno=:telefono, telefonoDos=:telefonoDos, correo=:correo, curp=:curp,
         rfc=:rfc, departamento=:departamento, calle=:calle, numExt=:numExt, numInt=:numInt, colonia=:colonia, calleUno=:calleUno, calleDos=:calleDos,
-        referenciasDireccion=:referencias, numCuenta=:cuentaInput, estudio=:nivelEducativo ,contrato=:contrato, nss=:nss, tipoLicencia=:tipoLicencia
+        referenciasDireccion=:referencias, numCuenta=:cuentaInput, estudio=:nivelEducativo, especialidadEstudio = :especialidad,contrato=:contrato, nss=:nss, tipoLicencia=:tipoLicencia, tipoDeContrato = :tipoDeContrato
         WHERE id_empleado = :id_empleados");
         $sentencia->bindParam(":id_empleados", $txtID);
         $sentencia->bindParam(":nombres", $Nombres);
@@ -225,20 +241,23 @@ procesarArchivo($con, $archivero, $txtID, 'Licencia', $licenciaUno, $tipoLicenci
         $sentencia->bindParam(":calleDos", $calleDos);
         $sentencia->bindParam(":referencias", $referencias);
         $sentencia->bindParam(":cuentaInput", $cuentaInput);
+
         //NIVEL EDUCATIVO
         $sentencia->bindParam(":nivelEducativo", $nivelEducativo);
+        $sentencia->bindParam(":especialidad", $especialidad);
         $sentencia->bindParam(":contrato", $contrato);
         $sentencia->bindParam(":nss", $nss);
         $sentencia->bindParam(":tipoLicencia", $tipoLicencia);
+        $sentencia->bindParam(":tipoDeContrato", $tipoDeContrato);
         $sentencia->execute();
         $respuesta = $sentencia->rowCount();
 
         // Suponiendo que $sentencia es una instancia válida de PDOStatement después de ejecutar la consulta de actualización
-$filas_afectadas = $sentencia->rowCount();
+        $filas_afectadas = $sentencia->rowCount();
 
-// Ahora puedes verificar si se han modificado filas y mostrar el mensaje en consecuencia
-if ($filas_afectadas > 0) {
-    echo '<script language="javascript">
+        // Ahora puedes verificar si se han modificado filas y mostrar el mensaje en consecuencia
+        if ($filas_afectadas > 0) {
+            echo '<script language="javascript">
     Swal.fire({
         icon: "success",
         title: "🫂 EMPLEADO MODIFICADO",
@@ -249,9 +268,9 @@ if ($filas_afectadas > 0) {
         window.location = "./index.php";
     });
   </script>';
-} else {
-    "NO ENTRES AQUÌ HAHAHA";
-}
+        } else {
+            "NO ENTRES AQUÌ HAHAHA";
+        }
     }
 } else {
     echo "error fatal";

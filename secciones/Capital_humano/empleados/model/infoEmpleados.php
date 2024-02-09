@@ -38,6 +38,7 @@ $calleUno = $registro['calleUno'];
 $calleDos = $registro['calleDos'];
 $referencias = $registro['referenciasDireccion'];
 $tipoLicencia = $registro['tipoLicencia'];
+$especialista = $registro['especialidadEstudio'];
 
 $Ine = $registro['ineDoc'];
 $acta = $registro['actaNacimiento'];
@@ -51,4 +52,7 @@ $rfcDoc = $registro['rfcDoc'];
 $laboral = $registro['referenciaLabUno'];
 $personal = $registro['referenciaLabDos'];
 $licencia = $registro['licenciaUno'];
+$tipoDeContrato = $registro['tipoDeContrato'];
+$estudios = $registro['estudio'];
+$contrato = $registro['contrato'];
 }
