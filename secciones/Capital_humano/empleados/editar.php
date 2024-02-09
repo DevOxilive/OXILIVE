@@ -257,25 +257,6 @@ if (!isset($_SESSION['us'])) {
         </div>
     </section>
 </main>
-<script>
-    function confirmCancel(event) {
-    event.preventDefault();
-    Swal.fire({
-        title: '¿Estás seguro?',
-        text: "Si cancelas, se perderán los datos ingresados.",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Sí, cancelar',
-        cancelButtonText: 'No, continuar'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.location.href = "index.php";
-        }
-    });
-}
-</script>
 <script src="../../../js/validacionRegex.js"></script>
 <script src="../../../js/validacionEnvio.js"></script>
 <script src="./js/validaciones.js"></script>
