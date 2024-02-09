@@ -7,7 +7,6 @@ if (!isset($_SESSION['us'])) {
     require_once "../../../connection/conexion.php";
     include("../../../model/genero.php");
     include("../../../secciones/puestos/consulta.php");
-    include("./documentos.php");
 } else {
     echo "Error en el sistema";
 }
@@ -29,7 +28,7 @@ if (!isset($_SESSION['us'])) {
 
                     <!--Este sera el grado al  que pertenecera el puesto-->
                     <div class="contenido col-md-3"> <br>
-                        <label for="grado" class="form-label">Grado:</label>
+                        <label for="grado" class="form-label">Grado: <span class="text-danger">*</span></label>
                         <select name="grado" id="grado" class="form-select">
                             <option value="">Seleccione puesto</option>
                             <option value="1">1</option>
@@ -73,8 +72,7 @@ if (!isset($_SESSION['us'])) {
                         </select>
                     </div>
                     <div class="contenido col-md-3" id="fechaAltaBox"><br>
-                        <label for="fechaAlta" class="form-label">Fecha Alta Contrato: <span
-                                class="text-danger">*</span></label>
+                        <label for="fechaAlta" class="form-label">Fecha Alta Contrato:</label>
                         <input type="date" class="form-control " name="fechaAlta" id="fechaAlta" required>
                     </div>
 
