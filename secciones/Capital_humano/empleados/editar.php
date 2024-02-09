@@ -69,7 +69,7 @@ if (!isset($_SESSION['us'])) {
                         <select name="contrato" id="contrato" class="form-select">
                             
                             <option value="SI CONTRATADO" <?php echo ($contrato == "SI CONTRATADO") ? "selected" : "";  ?>>SI CONTRATO</option>
-                            <option value="SI CONTRATADO" <?php echo ($contrato == "NO CONTRATADO") ? "selected" : "";  ?>>NO CONTRATADO</option>
+                            <option value="NO  CONTRATADO" <?php echo ($contrato == "NO CONTRATADO") ? "selected" : "";  ?>>NO CONTRATADO</option>
                         </select>
                     </div>
                     <div class="contenido col-md-3"> <br>
