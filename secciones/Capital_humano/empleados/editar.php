@@ -72,7 +72,7 @@ if (!isset($_SESSION['us'])) {
                             <option value="NO CONTRATADO" <?php echo ($contrato == "NO CONTRATADO") ? "selected" : "";  ?>>NO CONTRATADO</option>
                         </select>
                     </div>
-                    <div class="contenido col-md-3"> <br>
+                    <div class="contenido col-md-3" id="tipoDeContratoHid" style="display:none;">
                         <label for="tipoDeContrato" class="form-label">Tipo De Contrato:</label>
                         <select name="tipoDeContrato" id="tipoDeContrato" class="form-select">
 
@@ -80,10 +80,8 @@ if (!isset($_SESSION['us'])) {
                         <option value="TEMPORAL" <?php echo ($tipoDeContrato == "TEMPORAL") ? "selected" : "";  ?>>TEMPORAL</option>
                         </select>
                     </div>
-                    <!-- <div class="contenido col-md-3" id="fechaAltaBox"><br>
-                        <label for="fechaAlta" class="form-label">Fecha Alta Contrato: <span class="text-danger">*</span></label>
-                        <input type="date" class="form-control " name="fechaAlta" id="fechaAlta" required>
-                    </div> -->
+                    <div class="contenido col-md-3" id="fechaAltaBox">
+                    </div>
 
 
                     <!-- Apartado de Datos Generales -->
@@ -260,5 +258,6 @@ if (!isset($_SESSION['us'])) {
 <script src="../../../js/validacionEnvio.js"></script>
 <script src="./js/validaciones.js"></script>
 <script src="../../../js/domicilio.js"></script>
-<script src="./js/grado.js"></script>
+<script src="js/grado.js"></script>
+<script src="js/contrato.js"></script>
 <?php include("../../../templates/footer.php"); ?>

@@ -63,15 +63,15 @@ if (!isset($_SESSION['us'])) {
                             <option value="NO CONTRATADO">NO CONTRATADO</option>
                         </select>
                     </div>
-                    <div class="contenido col-md-3" id="tipoDeContratoHid" style="display:none;"> <br>
+                    <div class="contenido col-md-3" id="tipoDeContratoHid" style="display:none;">
                         <label for="tipoDeContrato" class="form-label">Tipo De Contrato:</label>
                         <select name="tipoDeContrato" id="tipoDeContrato" class="form-select">
                             <option value="">Seleccione contrato</option>
                             <option value="PLANTA">PLANTA / INDEFINIDO</option>
-                            <option value="INDEFINIDO">TEMPORAL</option>
+                            <option value="TEMPORAL">TEMPORAL</option>
                         </select>
                     </div>
-                    <div class="contenido col-md-3" id="fechaAltaHid" style="display:none;"><br>
+                    <div class="contenido col-md-3" id="fechaAltaHid" style="display:none;">
                         <label for="fechaAlta" class="form-label">Fecha Alta Contrato:</label>
                         <input type="date" class="form-control " name="fechaAlta" id="fechaAlta">
                     </div>
