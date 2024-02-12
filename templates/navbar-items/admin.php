@@ -1,6 +1,7 @@
 <!-- Módulo Oxígeno -->
 <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="<?php echo $url_base; ?>secciones/oxigeno/index.php">
+    <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse"
+        href="<?php echo $url_base; ?>secciones/oxigeno/index.php">
         <i class="bi bi-clipboard2-pulse"></i><span>Oxigeno</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
     <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
@@ -56,7 +57,8 @@
 </li>
 <!-- Módulo Almacén -->
 <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#alma-nav" data-bs-toggle="collapse" href="<?php echo $url_base; ?>secciones/catalogo/index.php">
+    <a class="nav-link collapsed" data-bs-target="#alma-nav" data-bs-toggle="collapse"
+        href="<?php echo $url_base; ?>secciones/catalogo/index.php">
         <i class="bi bi-house-lock-fill"></i><span>Almacen</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
     <ul id="alma-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
@@ -66,10 +68,16 @@
                 <i class="bi bi-circle"></i><span>Materiales y Recursos</span>
             </a>
         </li>
+        <li>
+            <a href="<?php echo $url_base; ?>secciones/almacen/vales/insumos.php">
+                <i class="bi bi-circle"></i><span>Insumos</span>
+            </a>
+        </li>
         <!-- Apartado Gestión de Material -->
         <li>
             <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#gestionMat" href="#">
-                <i class="bi bi-circle"></i><span>Gestión de Material</span><i class="bi bi-chevron-down ms-auto fs-6"></i>
+                <i class="bi bi-circle"></i><span>Gestión de Material</span><i
+                    class="bi bi-chevron-down ms-auto fs-6"></i>
             </a>
             <ul id="gestionMat" class="collapse">
                 <li>
@@ -82,6 +90,8 @@
                         <i class="bi bi-circle"></i><span>Historial</span>
                     </a>
                 </li>
+
+
             </ul>
         </li>
         <li>
@@ -227,7 +237,9 @@
         </li>
         <!-- Apartado Generar Incidencias -->
         <li>
-            <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#alta" href="#"><i class="bi bi-circle"></i><span>Generar Incidencia</span><i class="bi bi-chevron-down ms-auto fs-6"></i></a>
+            <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#alta" href="#"><i
+                    class="bi bi-circle"></i><span>Generar Incidencia</span><i
+                    class="bi bi-chevron-down ms-auto fs-6"></i></a>
             <ul id="alta" class="collapse">
                 <!-- Subapartado Crear Evento -->
                 <li>
@@ -277,17 +289,17 @@
                 <i class="bi bi-circle"></i><span>Usuarios</span>
             </a>
         </li>
-        <!-- Apartado Puestos -->
+        <!-- Apartado Puestos
         <li>
             <a href="<?php $url_base; ?>secciones/puestos/index.php">
                 <i class="bi bi-circle"></i><span>Puestos</span>
             </a>
-        </li>
-        <!-- Apartado Entrada de Materiales y Recursos -->
+        </li> -->
+        <!-- Apartado Entrada de Materiales y Recursos 
         <li>
             <a href="<?php echo $url_base; ?>secciones/almacen/entradas/index.php">
                 <i class="bi bi-box-arrow-right"></i><span>Entrada de Materiales y recursos</span>
             </a>
-        </li>
+        </li>-->
     </ul>
 </li>

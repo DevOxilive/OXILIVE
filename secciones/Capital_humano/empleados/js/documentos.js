@@ -42,7 +42,7 @@ function confirmCancel(event) {
     if (result.isConfirmed) {
       // Aquí puedes redirigir al usuario a otra página o realizar alguna otra acción
       window.location.href =
-        "<?php echo $url_base; ?>secciones/Capital_humano/empleados/index.php";
+        "index.php";
     }
   });
 }
