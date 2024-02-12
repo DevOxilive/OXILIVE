@@ -54,7 +54,7 @@ if (!empty($_SESSION['idus'])) {
                 </div>
                 <br>
                 <button type="submit" class="btn btn-outline-info">Guardar</button>
-                <button class="btn btn-outline-danger">Cancelar</button>
+                <button type="button" onclick="mostrarAlertaCancelar()" class="btn btn-outline-danger">Cancelar</button>
             </form>
         </div>
     </div>
@@ -64,3 +64,23 @@ include("../../../templates/footer.php");
 ?>
 <script src="../../../Js/validacionRegex.js"></script>
 <script src="../../../Js/validacionEnvio.js"></script>
+<script>
+    function mostrarAlertaCancelar() {
+        Swal.fire({
+            title: '¿Estas seguro de cancelar?',
+            text: 'No se actualizara nada',
+            icon: 'info',
+            buttons: true,
+            showCancelButton: true,
+            dangerMode: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, Cancelar',
+            cancelButtonText: 'No, Continuar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location = "../index.php";
+            }
+        });
+    }
+</script>

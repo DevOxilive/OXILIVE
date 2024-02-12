@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         // $tamaño = strlen($rango);
 
         echo "<br>";
-        echo "cuerpo del folio: $cuerpo, inicio del folio: $inicio, termino del folio: $rango, banco asociado: $id_banco, tipo de folio: $tipo";
+        echo "cuerpo del folio: $cuerpo, inicio del folio: $inicio, termino del folio: $rango, banco asociado: $id_banco, tipo de folio: $tipo <br>";
 
 
         for($i = $inicio; $i <= $rango; $i++){
@@ -38,11 +38,24 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
             $folio->execute();
             $respuesta = $folio->rowCount();
             if($respuesta){
-               echo "true"; 
+               echo "true";
+               $respuesta2 = true; 
             } else {
                 echo 'false';
+                break;
             }
         } 
+        if ($respuesta2) {
+            ?>
+        <script>
+            Swal.fire({
+                icon: 'info',
+                title: 'listo',
+                text: 'carga de folios lista',
+            });
+        </script>
+<?php
+        }
     }
 } else {
     echo "las cosas como son jaja XD lo más rico de las cosas";
