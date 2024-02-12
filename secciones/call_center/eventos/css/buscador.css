@@ -1,0 +1,15 @@
+.item-search{
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+
+}
+.item-search:hover{
+    background-color: rgb(150, 150, 150);
+    color: white;
+    cursor: pointer;
+}
+.item-pseudo-hover{
+    background-color: rgb(150, 150, 150);
+    color: white;
+}

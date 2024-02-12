@@ -1,0 +1,43 @@
+.vistaArchivos {
+    display:none;
+    padding: 10px;
+    height: 55vh;
+    overflow-y: scroll;
+    background-color: #dcdcdc;
+    color: black;
+}
+
+#list-documentos {
+    display:grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+
+.archivos {
+    border-radius: 5px;
+    width: 100px;
+    max-height: fit-content;
+    object-fit: cover;
+    aspect-ratio: 3/2;
+    background-color: white;
+    color: black;
+}
+
+.mensaje-previo {
+    text-align: center;
+    max-height: 40px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#btnMostrar {
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+    .imagen {
+        max-width: 100%;
+    }
+}

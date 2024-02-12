@@ -1,0 +1,152 @@
+body {
+    background-color: rgb(59, 59, 59);
+}
+
+/* Estilo para el contenedor principal del chat */
+#chat-container {
+    /* pociocionamiento del chat a lo ancho de forma automatica */
+    width: auto;
+    margin: 0 auto;
+    border: 1px solid #ffffff;
+    background-color: #dcdcdc;
+    color: black;
+    padding: 10px;
+    height: 55vh;
+    overflow-y: scroll;
+    /* Habilitar desplazamiento vertical */
+}
+
+.chat-header {
+    background-color: #0966b3;
+    color: #ffffff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header h2 {
+    margin: 0;
+}
+
+/* Estilo para el formulario de entrada */
+#chat-form {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    /* Alinea verticalmente en el centro */
+}
+
+/*  */
+#message {
+    flex: 1;
+    padding: 5px;
+    border: none;
+}
+
+#send {
+    background-color: white;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 5px;
+    width: 50px;
+}
+
+/* texto de usuario*/
+#username {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+button[type="submit"] {
+    position: fixed;
+    display: block;
+    margin-top: 5px;
+}
+
+#chat-container::-webkit-scrollbar-thumb {
+    background-color: #888;
+    /* Color de la barra de desplazamiento */
+    display: none;
+    /* Ocultar la barra de desplazamiento */
+}
+
+/* Estilo para ocultar la barra de desplazamiento */
+#chat-container::-webkit-scrollbar {
+    width: 0.5em;
+    /* Ancho de la barra de desplazamiento */
+}
+
+/* estilos de los textos */
+.burbuja {
+    background-color: #ffffff;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    padding: 10px;
+    /* Limitar el ancho máximo de las burbujas */
+    max-width: 100%;
+    width: fit-content;
+    word-wrap: break-word;
+    float: left;
+    clear: both;
+}
+
+.burbuja-you {
+    background-color: #0966b3;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    padding: 10px;
+    color: rgb(255, 255, 255);
+    /* Limitar el ancho máximo de las burbujas */
+    width: fit-content;
+    word-wrap: break-word;
+    max-width: 100%;
+    float: right;
+    clear: both;
+    /* Alinear a la derecha */
+}
+
+.iconoUsuario {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+    border-radius: 100%;
+}
+
+/* Estilo para el contenedor principal del chat */
+
+/* input */
+.custom-file-upload {
+    background-color: #007BFF;
+    color: #fff;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    border: none;
+    margin: 3px;
+}
+
+#fileInput {
+    display: none;
+    /* Oculta el campo de archivo real */
+}
+
+.custom-file-upload:hover {
+    background-color: blue;
+}
+
+.envioArchi {
+    background-color: white;
+    border-radius: 10px;
+}
+
+.file-selected {
+    background-color: rgb(64, 255, 64);
+}
+
+.ocult {
+    display: none;
+}

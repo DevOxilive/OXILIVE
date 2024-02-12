@@ -1,0 +1,19 @@
+body{
+    background-color: rgba(0, 0, 0, 0.76);
+    overflow: hidden;
+}
+video{
+    height: 100%;
+    width:fit-content;
+}
+canvas{
+    display: none;
+}
+.btn-bar{
+    position: absolute;
+    display:flex;    
+}
+.btn-bar div{
+    position: relative;
+    width: 8rem;
+}
