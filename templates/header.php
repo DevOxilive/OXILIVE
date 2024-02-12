@@ -219,7 +219,7 @@ include_once ('C:\laragon\www\OXILIVE\model/foto.php');
     </aside>
     <!-- JQuery 3.7.1 JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script>
+    <!--<script>
         // Función para actualizar el estatus
         function actualizarEstatus() {
             $.ajax({
@@ -232,7 +232,7 @@ include_once ('C:\laragon\www\OXILIVE\model/foto.php');
         $(document).ready(function() {
             var url = window.location;
         });
-    </script>
+    </script>-->
     <script>
         function mostrarImagen(event) {
             var input = event.target;

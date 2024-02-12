@@ -80,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $solicitud1 = $archivero->crearCarpeta("../../../archiveroOxi/capitalHumano/", $curp . " " . $nombres);
     echo $solicitud1;
     if ($solicitud1 === true) {
-        $ruta = "archvieroOxi/capitalHumano/" . $curp . " " . $nombres;
+        $ruta = "archiveroOxi/capitalHumano/" . $curp . " " . $nombres;
         //Sale aquí sigue la comprobación
         if ($_FILES["cuenta"]['error'] !== 4) {
             $cuenta = $url_base  . $ruta . "/" . $_FILES['cuenta']['name'];

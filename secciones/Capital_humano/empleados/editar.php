@@ -20,7 +20,7 @@ if (!isset($_SESSION['us'])) {
     <section class="section dashboard">
         <div class="card card-form">
             <div class="card-header">
-                <h4>Nuevo Empleado</h4>
+                <h4>Editar Empleado</h4>
             </div>
             <div class="card-body">
                 <form action="empleadosUPP.php" method="POST" enctype="multipart/form-data" class="row g-3" id="formulario" novalidate>
@@ -69,21 +69,19 @@ if (!isset($_SESSION['us'])) {
                         <select name="contrato" id="contrato" class="form-select">
                             
                             <option value="SI CONTRATADO" <?php echo ($contrato == "SI CONTRATADO") ? "selected" : "";  ?>>SI CONTRATO</option>
-                            <option value="SI CONTRATADO" <?php echo ($contrato == "NO CONTRATADO") ? "selected" : "";  ?>>NO CONTRATADO</option>
+                            <option value="NO CONTRATADO" <?php echo ($contrato == "NO CONTRATADO") ? "selected" : "";  ?>>NO CONTRATADO</option>
                         </select>
                     </div>
-                    <div class="contenido col-md-3"> <br>
+                    <div class="contenido col-md-3" id="tipoDeContratoHid" style="display:none;">
                         <label for="tipoDeContrato" class="form-label">Tipo De Contrato:</label>
                         <select name="tipoDeContrato" id="tipoDeContrato" class="form-select">
 
-                        <option value="PLANTA" <?php echo ($tipoDeContrato == "PLANTA") ? "selected" : "";  ?>>PLANTA</option>                        
-                        <option value="PLANTA" <?php echo ($tipoDeContrato == "INDEFINIDO") ? "selected" : "";  ?>>INDEFINIDO</option>
+                        <option value="PLANTA" <?php echo ($tipoDeContrato == "PLANTA") ? "selected" : "";  ?>>PLANTA / INDEFINIDO</option>                        
+                        <option value="TEMPORAL" <?php echo ($tipoDeContrato == "TEMPORAL") ? "selected" : "";  ?>>TEMPORAL</option>
                         </select>
                     </div>
-                    <!-- <div class="contenido col-md-3" id="fechaAltaBox"><br>
-                        <label for="fechaAlta" class="form-label">Fecha Alta Contrato: <span class="text-danger">*</span></label>
-                        <input type="date" class="form-control " name="fechaAlta" id="fechaAlta" required>
-                    </div> -->
+                    <div class="contenido col-md-3" id="fechaAltaBox">
+                    </div>
 
 
                     <!-- Apartado de Datos Generales -->
@@ -156,8 +154,7 @@ if (!isset($_SESSION['us'])) {
                     <div class="contenido col-md-3" id="nivelEducativoBox">
                         <label for="nivelEducativo" class="form-label">Nivel Estudios: <span class="text-danger">*</span></label>
                         <select name="nivelEducativo" id="nivelEducativo" class="form-select">
-
-                        <option value="CEDULA" <?php echo ($nivelEducativo == "CÈDULA") ? "selected" : "";  ?>>CÈDULA</option>                        
+                        <option value="CEDULA" <?php echo ($nivelEducativo == "CEDULA") ? "selected" : "";  ?>>CÈDULA</option>                        
                         <option value="BACHILLERATO" <?php echo ($nivelEducativo == "BACHILLERATO") ? "selected" : "";  ?>>BACHILLERATO</option>                        
                         <option value="SECUNDARIA" <?php echo ($nivelEducativo == "SECUNDARIA") ? "selected" : "";  ?>>SECUNDARIA</option>                        
 
@@ -181,63 +178,63 @@ if (!isset($_SESSION['us'])) {
                     <!-- INE -->
                     <div class="contenido col-md-5" id="ineDocBox">
                         <label for="ineDoc" class="form-label">Credencial de Elector: <span class="text-danger">*</span> </label>
-                        <input type="file" class="form-control" name="ineDoc" id="ineDoc"> Ver INE: <a target="_blank" href="<?php echo $Ine; ?>"><i class="bi bi-eye-fill"></i></a></label>
+                        <input type="file" class="form-control" name="ineDoc" id="ineDoc" accept="image/*,.pdf"> Ver INE: <a target="_blank"  href="<?php echo $Ine; ?>"><i class="bi bi-eye-fill"></i></a></label>
                     </div>
                     <!-- Acta de Nacimiento -->
                     <div class="contenido col-md-5" id="actaNacimientoBox">
                         <label for="actaNacimiento" class="form-label">Acta De Nacimiento: </label>
-                        <input type="file" class="form-control" name="actaNacimiento" id="actaNacimiento"> Ver Acta Nacimiento: <a target="_blank" href="<?php echo $acta; ?>"><i class="bi bi-eye-fill"></i></a></label>
+                        <input type="file" class="form-control" name="actaNacimiento" id="actaNacimiento" accept="image/*,.pdf"> Ver Acta Nacimiento: <a target="_blank" href="<?php echo $acta; ?>"><i class="bi bi-eye-fill"></i></a></label>
                     </div>
 
                     <!-- Comprobante de domicilio -->
                     <div class="contenido col-md-5" id="comprobanteDomicilioBox">
                         <label for="comprobanteDomicilio" class="form-label">Comprobante De Domicilio: <span class="text-danger">*</span></label>
-                        <input type="file" class="form-control" name="comprobanteDomicilio" id="comprobanteDomicilio">Ver Comprobante: <a target="_blank" href="<?php echo $comprobante; ?>"><i class="bi bi-eye-fill"></i></a></label>
+                        <input type="file" class="form-control" name="comprobanteDomicilio" id="comprobanteDomicilio" accept="image/*,.pdf">Ver Comprobante: <a target="_blank" href="<?php echo $comprobante; ?>"><i class="bi bi-eye-fill"></i></a></label>
                     </div>
 
                     <!-- Último certificado o Cédula -->
                     <div class="contenido col-md-4" id="certificadoEstudiosBox">
                         <label for="certificadoEstudios" class="form-label">Último Certificado / Cédula: <span class="text-danger">*</span></label>
-                        <input type="file" class="form-control" name="certificadoEstudios" id="certificadoEstudios">Ver Certificado: <a target="_blank" href="<?php echo $certificado; ?>"><i class="bi bi-eye-fill"></i></a></label>
+                        <input type="file" class="form-control" name="certificadoEstudios" id="certificadoEstudios" accept="image/*,.pdf">Ver Certificado: <a target="_blank" href="<?php echo $certificado; ?>"><i class="bi bi-eye-fill"></i></a></label>
                     </div>
 
                     <!-- Estado de cuenta -->
                     <div class="contenido col-md-4" id="cuentaBox">
                         <label for="cuenta" class="form-label">Estado de Cuenta: <span class="text-danger">*</span></label>
-                        <input type="file" class="form-control" name="cuenta" id="cuenta">Ver Estado Cuenta: <a target="_blank" href="<?php echo $numCuenta; ?>"><i class="bi bi-eye-fill"></i></a></label>
+                        <input type="file" class="form-control" name="cuenta" id="cuenta" accept="image/*,.pdf">Ver Estado Cuenta: <a target="_blank" href="<?php echo $numCuenta; ?>"><i class="bi bi-eye-fill"></i></a></label>
                     </div>
 
                     <!-- NSS Documento -->
                     <div class="contenido col-md-4" id="nssDocBox">
                         <label for="nssDoc" class="form-label">Nùmero De Seguro Social:</label>
-                        <input type="file" class="form-control" name="nssDoc" id="nssDoc">Ver NSS: <a target="_blank" href="<?php echo $nssDoc; ?>"><i class="bi bi-eye-fill"></i></a></label>
+                        <input type="file" class="form-control" name="nssDoc" id="nssDoc" accept="image/*,.pdf">Ver NSS: <a target="_blank" href="<?php echo $nssDoc; ?>"><i class="bi bi-eye-fill"></i></a></label>
                     </div>
 
                     <!-- CURP Documento -->
                     <div class="contenido col-md-4" id="curpDocBox">
                         <label for="curpDoc" class="form-label">CURP: <span class="text-danger">*</span></label>
-                        <input type="file" class="form-control" name="curpDoc" id="curpDoc">Ver CURP: <a target="_blank" href="<?php echo $curp; ?>"><i class="bi bi-eye-fill"></i></a></label>
+                        <input type="file" class="form-control" name="curpDoc" id="curpDoc" accept="image/*,.pdf">Ver CURP: <a target="_blank" href="<?php echo $curp; ?>"><i class="bi bi-eye-fill"></i></a></label>
                     </div>
 
                     <!-- RFC Documento -->
                     <div class="contenido col-md-4" id="rfcDocBox">
                         <label for="rfcDoc" class="form-label">RFC: <span class="text-danger">*</span></label>
-                        <input type="file" class="form-control" name="rfcDoc" id="rfcDoc">Ver RFC: <a target="_blank" href="<?php echo $rfcDoc; ?>"><i class="bi bi-eye-fill"></i></a></label>
+                        <input type="file" class="form-control" name="rfcDoc" id="rfcDoc" accept="image/*,.pdf">Ver RFC: <a target="_blank" href="<?php echo $rfcDoc; ?>"><i class="bi bi-eye-fill"></i></a></label>
                     </div>
 
                     <!--Estos tambien hay que insertarlos-->
                     <div class="contenido col-md-4" id="referenciaLabBox">
                         <label for="referenciaLabUno" class="form-label">Referencia Laboral: <span class="text-danger">*</span></label>
-                        <input type="file" class="form-control" name="referenciaLabUno" id="referenciaLab">Ver Ref.Laboral: <a target="_blank" href="<?php echo $laboral; ?>"><i class="bi bi-eye-fill"></i></a></label>
+                        <input type="file" class="form-control" name="referenciaLabUno" id="referenciaLab" accept="image/*,.pdf">Ver Ref.Laboral: <a target="_blank" href="<?php echo $laboral; ?>"><i class="bi bi-eye-fill"></i></a></label>
                     </div>
 
                     <div class="contenido col-md-4">
                         <label for="referenciaLabDos" class="form-label">Referencia Personal:</label>
-                        <input type="file" class="form-control" aria-label="file example" name="referenciaLabDos" id="referenciaLabDos">Ver Ref.Personal: <a target="_blank" href="<?php echo $personal; ?>"><i class="bi bi-eye-fill"></i></a></label>
+                        <input type="file" class="form-control" aria-label="file example" name="referenciaLabDos" id="referenciaLabDos" accept="image/*,.pdf">Ver Ref.Personal: <a target="_blank" href="<?php echo $personal; ?>"><i class="bi bi-eye-fill"></i></a></label>
                     </div>
                     <div class="contenido col-md-4">
                         <label for="licenciaUno" class="form-label">Licencia: </label>
-                        <input type="file" class="form-control" aria-label="file example" name="licenciaUno" id="licenciaUno">Ver Licencia: <a target="_blank" href="<?php echo $licencia; ?>"><i class="bi bi-eye-fill"></i></a></label>
+                        <input type="file" class="form-control" aria-label="file example" name="licenciaUno" id="licenciaUno" accept="image/*,.pdf">Ver Licencia: <a target="_blank" href="<?php echo $licencia; ?>"><i class="bi bi-eye-fill"></i></a></label>
                     </div>
                     <div class="contenido col-md-3" id="tipoLicenciaBox">
                         <label for="tipoLicencia" class="form-label">Tipo de Licencia:</label>
@@ -259,7 +256,8 @@ if (!isset($_SESSION['us'])) {
 </main>
 <script src="../../../js/validacionRegex.js"></script>
 <script src="../../../js/validacionEnvio.js"></script>
-<script src="js/validaciones.js"></script>
+<script src="./js/validaciones.js"></script>
 <script src="../../../js/domicilio.js"></script>
-<script src="./JS/grado.js"></script>
+<script src="js/grado.js"></script>
+<script src="js/contrato.js"></script>
 <?php include("../../../templates/footer.php"); ?>

@@ -234,7 +234,7 @@ foreach ($loadUser as $row);
         });
     }
 </script>
-<script src="../../Js/validacionRegex.js"></script>
+<script src="../../js/validacionRegex.js"></script>
 <?php
 include("../../templates/footer.php");
 ?>

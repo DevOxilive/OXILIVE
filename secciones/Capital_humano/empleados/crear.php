@@ -7,7 +7,6 @@ if (!isset($_SESSION['us'])) {
     require_once "../../../connection/conexion.php";
     include("../../../model/genero.php");
     include("../../../secciones/puestos/consulta.php");
-    include("./documentos.php");
 } else {
     echo "Error en el sistema";
 }
@@ -29,7 +28,7 @@ if (!isset($_SESSION['us'])) {
 
                     <!--Este sera el grado al  que pertenecera el puesto-->
                     <div class="contenido col-md-3"> <br>
-                        <label for="grado" class="form-label">Grado:</label>
+                        <label for="grado" class="form-label">Grado: <span class="text-danger">*</span></label>
                         <select name="grado" id="grado" class="form-select">
                             <option value="">Seleccione puesto</option>
                             <option value="1">1</option>
@@ -55,7 +54,7 @@ if (!isset($_SESSION['us'])) {
                         </select>
                     </div>
 
-                    <div class="contenido col-md-5" id="contratoBox"> <br>
+                    <div class="contenido col-md-3" id="contratoBox"> <br>
                         <label for="contrato" class="form-label">Cuenta con contrato: <span
                                 class="text-danger">*</span></label>
                         <select name="contrato" id="contrato" class="form-select" required>
@@ -64,18 +63,17 @@ if (!isset($_SESSION['us'])) {
                             <option value="NO CONTRATADO">NO CONTRATADO</option>
                         </select>
                     </div>
-                    <div class="contenido col-md-3"> <br>
+                    <div class="contenido col-md-3" id="tipoDeContratoHid" style="display:none;">
                         <label for="tipoDeContrato" class="form-label">Tipo De Contrato:</label>
                         <select name="tipoDeContrato" id="tipoDeContrato" class="form-select">
                             <option value="">Seleccione contrato</option>
-                            <option value="PLANTA">PLANTA / TEMPORAL</option>
-                            <option value="INDEFINIDO">INDEFINIDO</option>
+                            <option value="PLANTA">PLANTA / INDEFINIDO</option>
+                            <option value="TEMPORAL">TEMPORAL</option>
                         </select>
                     </div>
-                    <div class="contenido col-md-3" id="fechaAltaBox"><br>
-                        <label for="fechaAlta" class="form-label">Fecha Alta Contrato: <span
-                                class="text-danger">*</span></label>
-                        <input type="date" class="form-control " name="fechaAlta" id="fechaAlta" required>
+                    <div class="contenido col-md-3" id="fechaAltaHid" style="display:none;">
+                        <label for="fechaAlta" class="form-label">Fecha Alta Contrato:</label>
+                        <input type="date" class="form-control " name="fechaAlta" id="fechaAlta">
                     </div>
 
 
@@ -181,17 +179,17 @@ if (!isset($_SESSION['us'])) {
                                 class="text-danger">*</span></label>
                         <select name="nivelEducativo" id="nivelEducativo" class="form-select" required>
                             <option value="">Seleccione Grado</option>
-                            <option value="Cédula">CÈDULA</option>
+                            <option value="Cédula">CÉDULA</option>
                             <option value="Bachillerato">BACHILLERATO</option>
                             <option value="Secundaria">SECUNDARIA</option>
                         </select>
                     </div>
 
-                    <!-- NSS -->
+                    <!-- Especialidad -->
                     <div class="contenido col-md-12">
                         <label for="especialidad" class="form-label">Especialidad:</label>
                         <input type="text" class="form-control " name="especialidad" id="especialidad"
-                            placeholder="Especialidad del àrea" maxlength="249">
+                            placeholder="Especialidad del área" maxlength="249">
                     </div>
 
                     <!-- Apartado de Domicilio -->
@@ -207,12 +205,12 @@ if (!isset($_SESSION['us'])) {
                     <div class="contenido col-md-5" id="ineDocBox">
                         <label for="ineDoc" class="form-label">Credencial de Elector: <span
                                 class="text-danger">*</span></label>
-                        <input type="file" class="form-control" name="ineDoc" id="ineDoc" required>
+                        <input type="file" class="form-control" name="ineDoc" id="ineDoc" required accept="image/*,.pdf">
                     </div>
                     <!-- Acta de Nacimiento -->
                     <div class="contenido col-md-5" id="actaNacimientoBox">
                         <label for="actaNacimiento" class="form-label">Acta De Nacimiento: </label>
-                        <input type="file" class="form-control" name="actaNacimiento" id="actaNacimiento">
+                        <input type="file" class="form-control" name="actaNacimiento" id="actaNacimiento"accept="image/*,.pdf" >
                     </div>
 
                     <!-- Comprobante de domicilio -->
@@ -220,7 +218,7 @@ if (!isset($_SESSION['us'])) {
                         <label for="comprobanteDomicilio" class="form-label">Comprobante De Domicilio: <span
                                 class="text-danger">*</span></label>
                         <input type="file" class="form-control" name="comprobanteDomicilio" id="comprobanteDomicilio"
-                            required>
+                           accept="image/*,.pdf"  required>
                     </div>
 
                     <!-- Último certificado o Cédula -->
@@ -228,50 +226,50 @@ if (!isset($_SESSION['us'])) {
                         <label for="certificadoEstudios" class="form-label">Último Certificado / Cédula: <span
                                 class="text-danger">*</span></label>
                         <input type="file" class="form-control" name="certificadoEstudios" id="certificadoEstudios"
-                            required>
+                           accept="image/*,.pdf"  required>
                     </div>
 
                     <!-- Estado de cuenta -->
                     <div class="contenido col-md-4" id="cuentaBox">
                         <label for="cuenta" class="form-label">Estado de Cuenta: <span
                                 class="text-danger">*</span></label>
-                        <input type="file" class="form-control" name="cuenta" id="cuenta" required>
+                        <input type="file" class="form-control" name="cuenta" id="cuenta" accept="image/*,.pdf" required>
                     </div>
 
                     <!-- NSS Documento -->
                     <div class="contenido col-md-4" id="nssDocBox">
-                        <label for="nssDoc" class="form-label">Nùmero De Seguro Social:</label>
-                        <input type="file" class="form-control" name="nssDoc" id="nssDoc" required>
+                        <label for="nssDoc" class="form-label">Número De Seguro Social: <span class="text-danger">*</span></label>
+                        <input type="file" class="form-control" name="nssDoc" id="nssDoc" accept="image/*,.pdf" required>
                     </div>
 
                     <!-- CURP Documento -->
                     <div class="contenido col-md-4" id="curpDocBox">
                         <label for="curpDoc" class="form-label">CURP: <span class="text-danger">*</span></label>
-                        <input type="file" class="form-control" name="curpDoc" id="curpDoc" required>
+                        <input type="file" class="form-control" name="curpDoc" id="curpDoc" accept="image/*,.pdf" required>
                     </div>
 
                     <!-- RFC Documento -->
                     <div class="contenido col-md-4" id="rfcDocBox">
                         <label for="rfcDoc" class="form-label">RFC: <span class="text-danger">*</span></label>
-                        <input type="file" class="form-control" name="rfcDoc" id="rfcDoc" required>
+                        <input type="file" class="form-control" name="rfcDoc" id="rfcDoc" accept="image/*,.pdf" required>
                     </div>
 
                     <!--Estos tambien hay que insertarlos-->
                     <div class="contenido col-md-4" id="referenciaLabBox">
                         <label for="referenciaLabUno" class="form-label">Referencia Laboral: <span
                                 class="text-danger">*</span></label>
-                        <input type="file" class="form-control" name="referenciaLabUno" id="referenciaLab" required>
+                        <input type="file" class="form-control" name="referenciaLabUno" id="referenciaLab" accept="image/*,.pdf" required>
                     </div>
 
                     <div class="contenido col-md-4">
                         <label for="referenciaLabDos" class="form-label">Referencia Personal:</label>
                         <input type="file" class="form-control" aria-label="file example" name="referenciaLabDos"
-                            id="referenciaLabDos">
+                            id="referenciaLabDos" accept="image/*,.pdf">
                     </div>
                     <div class="contenido col-md-4">
                         <label for="licenciaUno" class="form-label">Licencia: </label>
                         <input type="file" class="form-control" aria-label="file example" name="licenciaUno"
-                            id="licenciaUno">
+                            id="licenciaUno" accept="image/*,.pdf">
                     </div>
                     <div class="contenido col-md-3" id="tipoLicenciaBox">
                         <label for="tipoLicencia" class="form-label">Tipo de Licencia:</label>
@@ -292,11 +290,13 @@ if (!isset($_SESSION['us'])) {
         </div>
     </section>
 </main>
-<script src="./JS/grado.js"></script>
+<script src="./js/valiTipoFile.js"></script>
+<script src="js/grado.js"></script>
+<script src="js/contrato.js"></script>
 <script src="../../../js/validacionRegex.js"></script>
 <script src="../../../js/validacionEnvio.js"></script>
 <script src="js/validaciones.js"></script>
 <script src="js/documentos.js"></script>
 <script src="../../../js/domicilio.js"></script>
-<script src="../../../Js/botonAdd.js"></script>
+<script src="../../../js/botonAdd.js"></script>
 <?php include("../../../templates/footer.php"); ?>
