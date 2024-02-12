@@ -67,7 +67,6 @@ $pdf-> AliasNbPages();
 $pdf->AddPage();
 while($imprime = $sentencia->fetch(PDO::FETCH_ASSOC)){
 $pdf->SetXY(10, 20);
-//$pdf->MultiCell(500, 5, ('Nombre del Paciente: '));
 $pdf->MultiCell(500, 5, ('Nombre del Paciente: '.$imprime['Paciente']));
 $pdf->SetXY(10,29);
 $pdf->MultiCell(70, 5, ('Numero de Nomina: ' .$imprime['No_nomina'] ));
