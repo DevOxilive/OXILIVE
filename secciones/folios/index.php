@@ -9,7 +9,7 @@ if (!isset($_SESSION['us'])) {
     echo "Error en el sistema";
 }
 ?>
-<style>
+<!--<style>
     .nav-tabs {
         --bs-nav-tabs-border-color: #011A46;
         --bs-nav-tabs-border-width: 2px;
@@ -24,7 +24,7 @@ if (!isset($_SESSION['us'])) {
     .nav-tabs .nav-link:hover {
         border-bottom: 2px solid #011A46;
     }
-</style>
+</style>-->
 <main id="main" class="main">
     <div class="row">
         <div class="card">
