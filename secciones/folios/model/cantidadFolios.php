@@ -5,3 +5,5 @@ $stmt = $con -> prepare(
     WHERE b.id_bancos = f.id_banco
     GROUP BY f.id_banco"
 );
+$stmt -> execute();
+$listado_cant_folios = $stmt->fetchAll(PDO::FETCH_ASSOC);
