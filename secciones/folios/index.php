@@ -33,6 +33,9 @@ if (!isset($_SESSION['us'])) {
                 <hr>
             </div>
             <div class="card-body">
+                <div class="btn-box">
+                    <a href="#" class="btn btn-primary"><i class="bi bi-box-arrow-right"></i> Salida</a>
+                </div>
                 <nav>
                     <div class="nav nav-tabs" id="folios-nav" role="tablist">
                         <button class="nav-link fw-bolder active" id="nav-consul-tab" data-bs-toggle="tab" data-bs-target="#nav-consul" type="button" role="tab" aria-controls="nav-consul" aria-selected="true">Consultas</button>
