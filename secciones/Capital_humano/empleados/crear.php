@@ -205,7 +205,7 @@ if (!isset($_SESSION['us'])) {
                     <div class="contenido col-md-5" id="ineDocBox">
                         <label for="ineDoc" class="form-label">Credencial de Elector: <span
                                 class="text-danger">*</span></label>
-                        <input type="file" class="form-control" name="ineDoc" id="ineDoc" required>
+                        <input type="file" class="form-control" name="ineDoc" id="ineDoc" required accept="image/*,.pdf">
                     </div>
                     <!-- Acta de Nacimiento -->
                     <div class="contenido col-md-5" id="actaNacimientoBox">
@@ -290,6 +290,7 @@ if (!isset($_SESSION['us'])) {
         </div>
     </section>
 </main>
+<script src="./js/valiTipoFile.js"></script>
 <script src="js/grado.js"></script>
 <script src="js/contrato.js"></script>
 <script src="../../../js/validacionRegex.js"></script>

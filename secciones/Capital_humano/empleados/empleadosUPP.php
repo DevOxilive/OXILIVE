@@ -149,7 +149,7 @@ if ($_POST) {
             }
             // echo $ruta . "/" . $arreglo[7];
             $resultado = $archivero->eliminarArchivo($ruta . "/" . $arreglo[6]);
-            // print_r($arreglo);
+            print_r($arreglo);
             if ($resultado === false) {
                 echo '<script language="javascript">
                 Swal.fire({
