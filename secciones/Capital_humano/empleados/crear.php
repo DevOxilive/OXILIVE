@@ -7,7 +7,6 @@ if (!isset($_SESSION['us'])) {
     require_once "../../../connection/conexion.php";
     include("../../../model/genero.php");
     include("../../../secciones/puestos/consulta.php");
-    include("./documentos.php");
 } else {
     echo "Error en el sistema";
 }
@@ -29,7 +28,7 @@ if (!isset($_SESSION['us'])) {
 
                     <!--Este sera el grado al  que pertenecera el puesto-->
                     <div class="contenido col-md-3"> <br>
-                        <label for="grado" class="form-label">Grado:</label>
+                        <label for="grado" class="form-label">Grado: <span class="text-danger">*</span></label>
                         <select name="grado" id="grado" class="form-select">
                             <option value="">Seleccione puesto</option>
                             <option value="1">1</option>
@@ -55,7 +54,7 @@ if (!isset($_SESSION['us'])) {
                         </select>
                     </div>
 
-                    <div class="contenido col-md-5" id="contratoBox"> <br>
+                    <div class="contenido col-md-3" id="contratoBox"> <br>
                         <label for="contrato" class="form-label">Cuenta con contrato: <span
                                 class="text-danger">*</span></label>
                         <select name="contrato" id="contrato" class="form-select" required>
@@ -64,18 +63,17 @@ if (!isset($_SESSION['us'])) {
                             <option value="NO CONTRATADO">NO CONTRATADO</option>
                         </select>
                     </div>
-                    <div class="contenido col-md-3"> <br>
+                    <div class="contenido col-md-3" id="tipoDeContratoHid" style="display:none;">
                         <label for="tipoDeContrato" class="form-label">Tipo De Contrato:</label>
                         <select name="tipoDeContrato" id="tipoDeContrato" class="form-select">
                             <option value="">Seleccione contrato</option>
-                            <option value="PLANTA">PLANTA / TEMPORAL</option>
-                            <option value="INDEFINIDO">INDEFINIDO</option>
+                            <option value="PLANTA">PLANTA / INDEFINIDO</option>
+                            <option value="TEMPORAL">TEMPORAL</option>
                         </select>
                     </div>
-                    <div class="contenido col-md-3" id="fechaAltaBox"><br>
-                        <label for="fechaAlta" class="form-label">Fecha Alta Contrato: <span
-                                class="text-danger">*</span></label>
-                        <input type="date" class="form-control " name="fechaAlta" id="fechaAlta" required>
+                    <div class="contenido col-md-3" id="fechaAltaHid" style="display:none;">
+                        <label for="fechaAlta" class="form-label">Fecha Alta Contrato:</label>
+                        <input type="date" class="form-control " name="fechaAlta" id="fechaAlta">
                     </div>
 
 
@@ -181,17 +179,17 @@ if (!isset($_SESSION['us'])) {
                                 class="text-danger">*</span></label>
                         <select name="nivelEducativo" id="nivelEducativo" class="form-select" required>
                             <option value="">Seleccione Grado</option>
-                            <option value="Cédula">CÈDULA</option>
+                            <option value="Cédula">CÉDULA</option>
                             <option value="Bachillerato">BACHILLERATO</option>
                             <option value="Secundaria">SECUNDARIA</option>
                         </select>
                     </div>
 
-                    <!-- NSS -->
+                    <!-- Especialidad -->
                     <div class="contenido col-md-12">
                         <label for="especialidad" class="form-label">Especialidad:</label>
                         <input type="text" class="form-control " name="especialidad" id="especialidad"
-                            placeholder="Especialidad del àrea" maxlength="249">
+                            placeholder="Especialidad del área" maxlength="249">
                     </div>
 
                     <!-- Apartado de Domicilio -->
@@ -240,7 +238,7 @@ if (!isset($_SESSION['us'])) {
 
                     <!-- NSS Documento -->
                     <div class="contenido col-md-4" id="nssDocBox">
-                        <label for="nssDoc" class="form-label">Nùmero De Seguro Social:</label>
+                        <label for="nssDoc" class="form-label">Número De Seguro Social: <span class="text-danger">*</span></label>
                         <input type="file" class="form-control" name="nssDoc" id="nssDoc" required>
                     </div>
 
@@ -292,11 +290,12 @@ if (!isset($_SESSION['us'])) {
         </div>
     </section>
 </main>
-<script src="./JS/grado.js"></script>
+<script src="js/grado.js"></script>
+<script src="js/contrato.js"></script>
 <script src="../../../js/validacionRegex.js"></script>
 <script src="../../../js/validacionEnvio.js"></script>
 <script src="js/validaciones.js"></script>
 <script src="js/documentos.js"></script>
 <script src="../../../js/domicilio.js"></script>
-<script src="../../../Js/botonAdd.js"></script>
+<script src="../../../js/botonAdd.js"></script>
 <?php include("../../../templates/footer.php"); ?>

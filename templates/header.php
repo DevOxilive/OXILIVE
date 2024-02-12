@@ -1,12 +1,12 @@
 <?php
-//$url_base = "http://localhost:8080/OXILIVE/";
-//include_once ('C:\laragon\www\OXILIVE\connection/conexion.php');
-//include_once ('C:\laragon\www\OXILIVE\model/puestos.php');
-//include_once ('C:\laragon\www\OXILIVE\model/foto.php');
-$url_base = "https://swoe.oxilive.com.mx/";
-include_once ($url_base . 'connection/conexion.php');
-include_once ($url_base . 'model/puestos.php');
-include_once ($url_base . 'model/foto.php');
+$url_base = "http://localhost:8080/OXILIVE/";
+include_once ('C:\laragon\www\OXILIVE\connection/conexion.php');
+include_once ('C:\laragon\www\OXILIVE\model/puestos.php');
+include_once ('C:\laragon\www\OXILIVE\model/foto.php');
+//$url_base = "https://swoe.oxilive.com.mx/";
+//include_once ($url_base . 'connection/conexion.php');
+//include_once ($url_base . 'model/puestos.php');
+//include_once ($url_base . 'model/foto.php');
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -219,7 +219,7 @@ include_once ($url_base . 'model/foto.php');
     </aside>
     <!-- JQuery 3.7.1 JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script>
+    <!--<script>
         // Función para actualizar el estatus
         function actualizarEstatus() {
             $.ajax({
@@ -232,7 +232,7 @@ include_once ($url_base . 'model/foto.php');
         $(document).ready(function() {
             var url = window.location;
         });
-    </script>
+    </script>-->
     <script>
         function mostrarImagen(event) {
             var input = event.target;

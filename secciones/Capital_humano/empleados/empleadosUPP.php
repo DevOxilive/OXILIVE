@@ -42,7 +42,7 @@ if (isset($_GET['txtID'])) {
     $tipoLicencia = $registro['tipoLicencia'];
 
     $contrato = $registro['contrato'];
-    $tipoDeContrato = $registro['$tipoDeContrato'];
+    $tipoDeContrato = $registro['tipoDeContrato'];
 
     $Grado = $registro['gradoPuesto'];
     $nivelEducativo = $registro['nivelEducativo'];
@@ -130,7 +130,7 @@ if ($_POST) {
 
             foreach ($dato as $fotos);
             $arreglo = explode("/", $fotos[$campoDB]);
-            $ruta = '../../../archvieroOxi/capitalHumano/' . $fotos['curp'] . ' ' . $fotos['nombres'];
+            $ruta = '../../../archiveroOxi/capitalHumano/' . $fotos['curp'] . ' ' . $fotos['nombres'];
 
             // Validar si el archivo ya existe en la carpeta de destino
             if (file_exists($ruta . "/" . $nombreArchivo)) {
@@ -148,7 +148,7 @@ if ($_POST) {
                 return; // Salir de la función sin procesar el archivo
             }
             // echo $ruta . "/" . $arreglo[7];
-            $resultado = $archivero->eliminarArchivo($ruta . "/" . $arreglo[7]);
+            $resultado = $archivero->eliminarArchivo($ruta . "/" . $arreglo[6]);
             // print_r($arreglo);
             if ($resultado === false) {
                 echo '<script language="javascript">
@@ -156,8 +156,6 @@ if ($_POST) {
                     title: "Error",
                     text: "Hubo un problema al aliminar el archivo de la carpeta",
                     icon: "error"
-                }).then(function() {
-                    window.location = "./crear.php";
                 });
               </script>';
             } else {
@@ -170,12 +168,10 @@ if ($_POST) {
                         title: "Error",
                         text: "Hubo un problema al guardar la imagen en la carpeta",
                         icon: "error"
-                    }).then(function() {
-                        window.location = "./crear.php";
                     });
                   </script>';
                 }
-                $ruta = $url_base . "archvieroOxi/capitalHumano/" . $fotos['curp'] . ' ' . $fotos['nombres'] . "/" .  $nombreArchivo;
+                $ruta = $url_base . "archiveroOxi/capitalHumano/" . $fotos['curp'] . ' ' . $fotos['nombres'] . "/" .  $nombreArchivo;
                 $sql2 = "UPDATE empleados SET $campoDB = '$ruta'  WHERE id_empleado = $txtID";
                 $stmt = $con->prepare($sql2);
                 $stmt->execute();

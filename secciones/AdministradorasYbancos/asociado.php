@@ -40,7 +40,7 @@ if (!isset($_SESSION['us'])) {
             </div>
         </div>
 </main>
-<script src="../../Js/tables.js"></script>
+<script src="../../js/tables.js"></script>
 <?php
 include("../../templates/footer.php");
 ?>

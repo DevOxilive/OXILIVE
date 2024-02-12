@@ -20,7 +20,7 @@ if (!isset($_SESSION['us'])) {
     <section class="section dashboard">
         <div class="card card-form">
             <div class="card-header">
-                <h4>Nuevo Empleado</h4>
+                <h4>Editar Empleado</h4>
             </div>
             <div class="card-body">
                 <form action="empleadosUPP.php" method="POST" enctype="multipart/form-data" class="row g-3" id="formulario" novalidate>
@@ -69,21 +69,19 @@ if (!isset($_SESSION['us'])) {
                         <select name="contrato" id="contrato" class="form-select">
                             
                             <option value="SI CONTRATADO" <?php echo ($contrato == "SI CONTRATADO") ? "selected" : "";  ?>>SI CONTRATO</option>
-                            <option value="SI CONTRATADO" <?php echo ($contrato == "NO CONTRATADO") ? "selected" : "";  ?>>NO CONTRATADO</option>
+                            <option value="NO CONTRATADO" <?php echo ($contrato == "NO CONTRATADO") ? "selected" : "";  ?>>NO CONTRATADO</option>
                         </select>
                     </div>
-                    <div class="contenido col-md-3"> <br>
+                    <div class="contenido col-md-3" id="tipoDeContratoHid" style="display:none;">
                         <label for="tipoDeContrato" class="form-label">Tipo De Contrato:</label>
                         <select name="tipoDeContrato" id="tipoDeContrato" class="form-select">
 
-                        <option value="PLANTA" <?php echo ($tipoDeContrato == "PLANTA") ? "selected" : "";  ?>>PLANTA</option>                        
-                        <option value="PLANTA" <?php echo ($tipoDeContrato == "INDEFINIDO") ? "selected" : "";  ?>>INDEFINIDO</option>
+                        <option value="PLANTA" <?php echo ($tipoDeContrato == "PLANTA") ? "selected" : "";  ?>>PLANTA / INDEFINIDO</option>                        
+                        <option value="TEMPORAL" <?php echo ($tipoDeContrato == "TEMPORAL") ? "selected" : "";  ?>>TEMPORAL</option>
                         </select>
                     </div>
-                    <!-- <div class="contenido col-md-3" id="fechaAltaBox"><br>
-                        <label for="fechaAlta" class="form-label">Fecha Alta Contrato: <span class="text-danger">*</span></label>
-                        <input type="date" class="form-control " name="fechaAlta" id="fechaAlta" required>
-                    </div> -->
+                    <div class="contenido col-md-3" id="fechaAltaBox">
+                    </div>
 
 
                     <!-- Apartado de Datos Generales -->
@@ -156,8 +154,7 @@ if (!isset($_SESSION['us'])) {
                     <div class="contenido col-md-3" id="nivelEducativoBox">
                         <label for="nivelEducativo" class="form-label">Nivel Estudios: <span class="text-danger">*</span></label>
                         <select name="nivelEducativo" id="nivelEducativo" class="form-select">
-
-                        <option value="CEDULA" <?php echo ($nivelEducativo == "CÈDULA") ? "selected" : "";  ?>>CÈDULA</option>                        
+                        <option value="CEDULA" <?php echo ($nivelEducativo == "CEDULA") ? "selected" : "";  ?>>CÈDULA</option>                        
                         <option value="BACHILLERATO" <?php echo ($nivelEducativo == "BACHILLERATO") ? "selected" : "";  ?>>BACHILLERATO</option>                        
                         <option value="SECUNDARIA" <?php echo ($nivelEducativo == "SECUNDARIA") ? "selected" : "";  ?>>SECUNDARIA</option>                        
 
@@ -259,7 +256,8 @@ if (!isset($_SESSION['us'])) {
 </main>
 <script src="../../../js/validacionRegex.js"></script>
 <script src="../../../js/validacionEnvio.js"></script>
-<script src="js/validaciones.js"></script>
+<script src="./js/validaciones.js"></script>
 <script src="../../../js/domicilio.js"></script>
-<script src="./JS/grado.js"></script>
+<script src="js/grado.js"></script>
+<script src="js/contrato.js"></script>
 <?php include("../../../templates/footer.php"); ?>
