@@ -3,8 +3,8 @@ include("../../../connection/conexion.php");
 include("../../../templates/hea.php");
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
-    echo $nombreFolio = $_POST["nombreFolio"];
-    echo $id_folio = $_POST["idFolio"];
+    echo $tipo = $_POST["tipofolio"];
+    echo $cuerpo = $_POST["cuerpo"];
     echo $id_banco = $_POST["banco"];
     echo $inicio = $_POST["inicioFolio"];
     echo $rango = $_POST["rangoFolio"];
@@ -24,14 +24,25 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         </script>
 <?php
     } else {
-        $tamaño = strlen($rango);
-        for ($i = $inicio; $i <= $rango; $i++) {
-            $folio = $nombreFolio . str_pad($i, $tamaño, '0', STR_PAD_LEFT);
+        // $tamaño = strlen($rango);
+
+        echo "<br>";
+        echo "cuerpo del folio: $cuerpo, inicio del folio: $inicio, termino del folio: $rango, banco asociado: $id_banco, tipo de folio: $tipo";
+
+
+        for($i = $inicio; $i <= $rango; $i++){
+            $folio = $cuerpo . str_pad($i, 3, '0', STR_PAD_LEFT);
             echo $folio . "<br>";
-            // $sql = "INSERT INTO folios (nombreFolio, id_banco, tipoFolio, statusFolio) VALUES ('$nombreFolio" . "$ceros" . "$i', $id_banco, 'no aplica', 'almacen')";
-            // $folio = $con->prepare($sql);
-            // $folio->execute();
-        }
+            $sql = "INSERT INTO folios (folio, tipo, id_banco, estatus) VALUES ('$folio', '$tipo', $id_banco, 1)";
+            $folio = $con->prepare($sql);
+            $folio->execute();
+            $respuesta = $folio->rowCount();
+            if($respuesta){
+               echo "true"; 
+            } else {
+                echo 'false';
+            }
+        } 
     }
 } else {
     echo "las cosas como son jaja XD lo más rico de las cosas";
