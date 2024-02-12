@@ -63,7 +63,7 @@ if (!isset($_SESSION['us'])) {
                             <div class="card-body collapse" id="sub<?php echo $admin['id_administradora']; ?>">
                                 bancos 
                             </div>
-                        </div> 
+                        </div> >
                         <?php } ?>
                     </div>
                 </div>
