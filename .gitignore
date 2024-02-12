@@ -1,7 +1,4 @@
-*/conexion.php
-*/url.php
-
-connection/conexion.php
+gitconnection/conexion.php
 connection/url.php
 templates/header.php
 bdoxilive.sql
