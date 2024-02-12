@@ -210,7 +210,7 @@ if (!isset($_SESSION['us'])) {
                     <!-- Acta de Nacimiento -->
                     <div class="contenido col-md-5" id="actaNacimientoBox">
                         <label for="actaNacimiento" class="form-label">Acta De Nacimiento: </label>
-                        <input type="file" class="form-control" name="actaNacimiento" id="actaNacimiento">
+                        <input type="file" class="form-control" name="actaNacimiento" id="actaNacimiento"accept="image/*,.pdf" >
                     </div>
 
                     <!-- Comprobante de domicilio -->
@@ -218,7 +218,7 @@ if (!isset($_SESSION['us'])) {
                         <label for="comprobanteDomicilio" class="form-label">Comprobante De Domicilio: <span
                                 class="text-danger">*</span></label>
                         <input type="file" class="form-control" name="comprobanteDomicilio" id="comprobanteDomicilio"
-                            required>
+                           accept="image/*,.pdf"  required>
                     </div>
 
                     <!-- Último certificado o Cédula -->
@@ -226,50 +226,50 @@ if (!isset($_SESSION['us'])) {
                         <label for="certificadoEstudios" class="form-label">Último Certificado / Cédula: <span
                                 class="text-danger">*</span></label>
                         <input type="file" class="form-control" name="certificadoEstudios" id="certificadoEstudios"
-                            required>
+                           accept="image/*,.pdf"  required>
                     </div>
 
                     <!-- Estado de cuenta -->
                     <div class="contenido col-md-4" id="cuentaBox">
                         <label for="cuenta" class="form-label">Estado de Cuenta: <span
                                 class="text-danger">*</span></label>
-                        <input type="file" class="form-control" name="cuenta" id="cuenta" required>
+                        <input type="file" class="form-control" name="cuenta" id="cuenta" accept="image/*,.pdf" required>
                     </div>
 
                     <!-- NSS Documento -->
                     <div class="contenido col-md-4" id="nssDocBox">
                         <label for="nssDoc" class="form-label">Número De Seguro Social: <span class="text-danger">*</span></label>
-                        <input type="file" class="form-control" name="nssDoc" id="nssDoc" required>
+                        <input type="file" class="form-control" name="nssDoc" id="nssDoc" accept="image/*,.pdf" required>
                     </div>
 
                     <!-- CURP Documento -->
                     <div class="contenido col-md-4" id="curpDocBox">
                         <label for="curpDoc" class="form-label">CURP: <span class="text-danger">*</span></label>
-                        <input type="file" class="form-control" name="curpDoc" id="curpDoc" required>
+                        <input type="file" class="form-control" name="curpDoc" id="curpDoc" accept="image/*,.pdf" required>
                     </div>
 
                     <!-- RFC Documento -->
                     <div class="contenido col-md-4" id="rfcDocBox">
                         <label for="rfcDoc" class="form-label">RFC: <span class="text-danger">*</span></label>
-                        <input type="file" class="form-control" name="rfcDoc" id="rfcDoc" required>
+                        <input type="file" class="form-control" name="rfcDoc" id="rfcDoc" accept="image/*,.pdf" required>
                     </div>
 
                     <!--Estos tambien hay que insertarlos-->
                     <div class="contenido col-md-4" id="referenciaLabBox">
                         <label for="referenciaLabUno" class="form-label">Referencia Laboral: <span
                                 class="text-danger">*</span></label>
-                        <input type="file" class="form-control" name="referenciaLabUno" id="referenciaLab" required>
+                        <input type="file" class="form-control" name="referenciaLabUno" id="referenciaLab" accept="image/*,.pdf" required>
                     </div>
 
                     <div class="contenido col-md-4">
                         <label for="referenciaLabDos" class="form-label">Referencia Personal:</label>
                         <input type="file" class="form-control" aria-label="file example" name="referenciaLabDos"
-                            id="referenciaLabDos">
+                            id="referenciaLabDos" accept="image/*,.pdf">
                     </div>
                     <div class="contenido col-md-4">
                         <label for="licenciaUno" class="form-label">Licencia: </label>
                         <input type="file" class="form-control" aria-label="file example" name="licenciaUno"
-                            id="licenciaUno">
+                            id="licenciaUno" accept="image/*,.pdf">
                     </div>
                     <div class="contenido col-md-3" id="tipoLicenciaBox">
                         <label for="tipoLicencia" class="form-label">Tipo de Licencia:</label>
