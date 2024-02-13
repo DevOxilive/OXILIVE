@@ -30,6 +30,9 @@ if (!isset($_SESSION['us'])) {
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Folios</h3>
+                <div class="col-5">
+                    <a href="pages/entradaFolios.php" class="btn btn-outline-info">Guardad Folios</a>
+                </div>
                 <hr>
             </div>
             <div class="card-body">
