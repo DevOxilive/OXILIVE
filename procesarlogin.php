@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 function alertSuccess()
 {
-    $name = ucfirst(strtolower($_SESSION['no']));
+    $name = ucwords(strtolower($_SESSION['no']));
     if ($_SESSION['genero'] == 1) {
         $msg = "Bienvenido " . $name;
     } else {
