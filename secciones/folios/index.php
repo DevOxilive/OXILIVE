@@ -30,12 +30,22 @@ if (!isset($_SESSION['us'])) {
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Folios</h3>
+                <div class="col-5">
+                    <a href="pages/entradaFolios.php" class="btn btn-outline-info">Guardad Folios</a>
+                </div>
                 <hr>
             </div>
             <div class="card-body">
-                <div class="btn-box">
-                    <a href="./pages/entradaFolios.php" class="btn btn-primary">Entrada <i class="bi bi-box-arrow-right"></i></a>
-                </div>
+                <?php if ($_SESSION['puesto'] == 1 || $_SESSION['puesto'] == 8) { ?>
+                    <div class="btn-box justify-content-between">
+                        <a href="#" class="btn btn-primary" role="button">
+                            <i class="bi bi-box-arrow-right"></i> Salida
+                        </a>
+                        <a href="pages/entradaFolios.php" class="btn btn-danger">
+                            <i class="bi bi-box-arrow-in-right"></i> Entrada
+                        </a>
+                    </div>
+                <?php } ?>
                 <nav>
                     <div class="nav nav-tabs" id="folios-nav" role="tablist">
                         <button class="nav-link fw-bolder active" id="nav-consul-tab" data-bs-toggle="tab" data-bs-target="#nav-consul" type="button" role="tab" aria-controls="nav-consul" aria-selected="true">Consultas</button>
@@ -45,28 +55,35 @@ if (!isset($_SESSION['us'])) {
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-consul" role="tabpanel" aria-labelledby="nav-consul-tab" tabindex="0">
                         <br>
-                        <?php foreach($lista_administradora as $admin){ ?>
-                        <div class="card card-list">
-                            <div class="card-header" data-bs-toggle="collapse" data-bs-target="#sub<?php echo $admin['id_administradora']; ?>">
-                                <h5 class="item-title"><?php echo $admin['Nombre_administradora']; ?></h5>
-                            </div>
-                            <div class="card-body collapse" id="sub<?php echo $admin['id_administradora']; ?>">
-                                bancos
-                            </div>
+                        <div class="table-responsive-sm">
+                            <table class="table table-striped" id="myTable">
+                                <thead class="customers">
+                                    <tr class="table-active table-group-divider">
+                                        <th scope="col">Administradora</th>
+                                        <th scope="col">Banco</th>
+                                        <th scope="col">Cantidad</th>
+                                        <th scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-group-divider">
+                                    <tr>
+                                        
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <?php } ?>
                     </div>
                     <div class="tab-pane fade" id="nav-rec" role="tabpanel" aria-labelledby="nav-rec-tab" tabindex="0">
-                    <br>
-                        <?php foreach($lista_administradora as $admin){ ?>
-                        <div class="card card-list">
-                            <div class="card-header" data-bs-toggle="collapse" data-bs-target="#sub<?php echo $admin['id_administradora']; ?>">
-                                <h5 class="item-title"><?php echo $admin['Nombre_administradora']; ?></h5>
+                        <br>
+                        <?php foreach ($lista_administradora as $admin) { ?>
+                            <div class="card card-list">
+                                <div class="card-header" data-bs-toggle="collapse" data-bs-target="#sub<?php echo $admin['id_administradora']; ?>">
+                                    <h5 class="item-title"><?php echo $admin['Nombre_administradora']; ?></h5>
+                                </div>
+                                <div class="card-body collapse" id="sub<?php echo $admin['id_administradora']; ?>">
+                                    bancos
+                                </div>
                             </div>
-                            <div class="card-body collapse" id="sub<?php echo $admin['id_administradora']; ?>">
-                                bancos 
-                            </div>
-                        </div> >
                         <?php } ?>
                     </div>
                 </div>
@@ -74,7 +91,7 @@ if (!isset($_SESSION['us'])) {
         </div>
     </div>
 </main>
-
+<script src="../../js/tables.js"></script>
 <?php
 include("../../templates/footer.php");
 ?>
