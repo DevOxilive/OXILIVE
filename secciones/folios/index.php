@@ -52,16 +52,23 @@ if (!isset($_SESSION['us'])) {
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-consul" role="tabpanel" aria-labelledby="nav-consul-tab" tabindex="0">
                         <br>
-                        <?php foreach ($lista_administradora as $admin) { ?>
-                            <div class="card card-list">
-                                <div class="card-header" data-bs-toggle="collapse" data-bs-target="#sub<?php echo $admin['id_administradora']; ?>">
-                                    <h5 class="item-title"><?php echo $admin['Nombre_administradora']; ?></h5>
-                                </div>
-                                <div class="card-body collapse" id="sub<?php echo $admin['id_administradora']; ?>">
-                                    Bancos
-                                </div>
-                            </div>
-                        <?php } ?>
+                        <div class="table-responsive-sm">
+                            <table class="table table-striped" id="myTable">
+                                <thead class="customers">
+                                    <tr class="table-active table-group-divider">
+                                        <th scope="col">Administradora</th>
+                                        <th scope="col">Banco</th>
+                                        <th scope="col">Cantidad</th>
+                                        <th scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-group-divider">
+                                    <tr>
+                                        
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="nav-rec" role="tabpanel" aria-labelledby="nav-rec-tab" tabindex="0">
                         <br>
@@ -81,7 +88,7 @@ if (!isset($_SESSION['us'])) {
         </div>
     </div>
 </main>
-
+<script src="../../js/tables.js"></script>
 <?php
 include("../../templates/footer.php");
 ?>
