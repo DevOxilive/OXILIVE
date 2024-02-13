@@ -1,12 +1,12 @@
 <?php
-$url_base = "http://localhost:8080/OXILIVE/";
-include_once ('C:\laragon\www\OXILIVE\connection/conexion.php');
-include_once ('C:\laragon\www\OXILIVE\model/puestos.php');
-include_once ('C:\laragon\www\OXILIVE\model/foto.php');
-// $url_base = "https://swoe.oxilive.com.mx/";
-// include_once ($url_base . 'connection/conexion.php');
-// include_once ($url_base . 'model/puestos.php');
-// include_once ($url_base . 'model/foto.php');
+//$url_base = "http://localhost:8080/OXILIVE/";
+//include_once ('C:\laragon\www\OXILIVE\connection/conexion.php');
+//include_once ('C:\laragon\www\OXILIVE\model/puestos.php');
+//include_once ('C:\laragon\www\OXILIVE\model/foto.php');
+$url_base = "https://swoe.oxilive.com.mx/";
+include_once ($url_base . 'connection/conexion.php');
+include_once ($url_base . 'model/puestos.php');
+include_once ($url_base . 'model/foto.php');
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -107,30 +107,17 @@ include_once ('C:\laragon\www\OXILIVE\model/foto.php');
                 </a>
             </li>
             <!-- Módulo Chat General -->
-            <li class="nav-item">
+            <!--<li class="nav-item">
                 <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/chatNotifica/index.php">
                     <i class="bi bi-chat-square-text"></i>
                     <span>Chat General</span>
                 </a>
-            </li>
-            <!--Administradora General-->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/administradora/index.php">
-                    <i class="bi bi-person-workspace"></i>
-                    <span>Administradora</span>
-                </a>
-            </li>
-            <!--Bancos General-->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="<?php echo $url_base; ?>secciones/bancos/index.php">
-                    <i class="bi bi-bank2"></i>
-                    <span>Banco</span>
-                </a>
-            </li>
+            </li>-->
 
             <?php switch ($_SESSION['puesto']) {
                     //Administrador
                 case 1:
+                    include("navbar-items/bancos.php");
                     include("navbar-items/admin.php");
                     break;
                     //Administradora POR CHECAR
@@ -146,6 +133,7 @@ include_once ('C:\laragon\www\OXILIVE\model/foto.php');
                     break;
                     //Call Center
                 case 5:
+                    include("navbar-items/bancos.php");
                     include("navbar-items/call-center.php");
                     break;
                     //Enfermeria

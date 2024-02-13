@@ -72,9 +72,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $contenido[] = $_FILES['licenciaUno']['tmp_name'];
 
 
-    //mayuscula o minuscula según sea el caso 
+    //mayuscula o minuscula según sea el caso
     $nombres = strtoupper($nombres);
+    $apellidos = strtoupper($apellidos);
+    
+    $correo = strtolower($correo);
     $curp = strtoupper($curp);
+    $rfc = strtoupper($rfc);
+    
+    $calle = strtoupper($calle);
+    $numExt = strtoupper($numExt);
+    $numInt = strtoupper($numInt);
+    $calleUno = strtoupper($calleUno);
+    $calleDos = strtoupper($calleDos);
+    $referencias = strtoupper($referencias);
+    
     //comprobar errores de creacion de la carpeta del usuario nuevo.
     $carpetaNueva = "../../../archiveroOxi/capitalHumano/" . $curp . " " . $nombres;
     $solicitud1 = $archivero->crearCarpeta("../../../archiveroOxi/capitalHumano/", $curp . " " . $nombres);

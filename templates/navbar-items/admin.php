@@ -68,12 +68,26 @@
                 <i class="bi bi-circle"></i><span>Materiales y Recursos</span>
             </a>
         </li>
+        <!--Apartado de Gestion de Insumos-->
         <li>
+            <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#gestionMat" href="#">
+                <i class="bi bi-circle"></i><span>Vales</span><i
+                    class="bi bi-chevron-down ms-auto fs-6"></i>
+            </a>
+            <ul id="gestionMat" class="collapse">
+            <li>
             <a href="<?php echo $url_base; ?>secciones/almacen/vales/insumos.php">
                 <i class="bi bi-circle"></i><span>Insumos</span>
             </a>
+                 </li>
+                    <li>
+                        <a href="<?php echo $url_base; ?>secciones/almacen/vales/oxigeno.php">
+                            <i class="bi bi-circle"></i><span>Oxìgeno</span>
+                        </a>
+                </li>
+            </ul>
         </li>
-        <!-- Apartado Gestión de Material -->
+        <!--Apartado Gestión de Material-->
         <li>
             <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#gestionMat" href="#">
                 <i class="bi bi-circle"></i><span>Gestión de Material</span><i
