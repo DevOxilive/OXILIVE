@@ -30,6 +30,9 @@ if (!isset($_SESSION['us'])) {
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Folios</h3>
+                <div class="col-5">
+                    <a href="pages/entradaFolios.php" class="btn btn-outline-info">Guardad Folios</a>
+                </div>
                 <hr>
             </div>
             <div class="card-body">
@@ -42,28 +45,28 @@ if (!isset($_SESSION['us'])) {
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-consul" role="tabpanel" aria-labelledby="nav-consul-tab" tabindex="0">
                         <br>
-                        <?php foreach($lista_administradora as $admin){ ?>
-                        <div class="card card-list">
-                            <div class="card-header" data-bs-toggle="collapse" data-bs-target="#sub<?php echo $admin['id_administradora']; ?>">
-                                <h5 class="item-title"><?php echo $admin['Nombre_administradora']; ?></h5>
+                        <?php foreach ($lista_administradora as $admin) { ?>
+                            <div class="card card-list">
+                                <div class="card-header" data-bs-toggle="collapse" data-bs-target="#sub<?php echo $admin['id_administradora']; ?>">
+                                    <h5 class="item-title"><?php echo $admin['Nombre_administradora']; ?></h5>
+                                </div>
+                                <div class="card-body collapse" id="sub<?php echo $admin['id_administradora']; ?>">
+                                    bancos
+                                </div>
                             </div>
-                            <div class="card-body collapse" id="sub<?php echo $admin['id_administradora']; ?>">
-                                bancos
-                            </div>
-                        </div>
                         <?php } ?>
                     </div>
                     <div class="tab-pane fade" id="nav-rec" role="tabpanel" aria-labelledby="nav-rec-tab" tabindex="0">
-                    <br>
-                        <?php foreach($lista_administradora as $admin){ ?>
-                        <div class="card card-list">
-                            <div class="card-header" data-bs-toggle="collapse" data-bs-target="#sub<?php echo $admin['id_administradora']; ?>">
-                                <h5 class="item-title"><?php echo $admin['Nombre_administradora']; ?></h5>
+                        <br>
+                        <?php foreach ($lista_administradora as $admin) { ?>
+                            <div class="card card-list">
+                                <div class="card-header" data-bs-toggle="collapse" data-bs-target="#sub<?php echo $admin['id_administradora']; ?>">
+                                    <h5 class="item-title"><?php echo $admin['Nombre_administradora']; ?></h5>
+                                </div>
+                                <div class="card-body collapse" id="sub<?php echo $admin['id_administradora']; ?>">
+                                    bancos
+                                </div>
                             </div>
-                            <div class="card-body collapse" id="sub<?php echo $admin['id_administradora']; ?>">
-                                bancos 
-                            </div>
-                        </div> 
                         <?php } ?>
                     </div>
                 </div>
