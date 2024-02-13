@@ -34,7 +34,7 @@ if (!isset($_SESSION['us'])) {
             </div>
             <div class="card-body">
                 <div class="btn-box">
-                    <a href="#" class="btn btn-primary"><i class="bi bi-box-arrow-right"></i> Salida</a>
+                    <a href="./pages/entradaFolios.php" class="btn btn-primary">Entrada <i class="bi bi-box-arrow-right"></i></a>
                 </div>
                 <nav>
                     <div class="nav nav-tabs" id="folios-nav" role="tablist">

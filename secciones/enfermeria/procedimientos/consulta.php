@@ -1,10 +1,10 @@
 <?php
 include("../../../connection/conexion.php");
 //Esta consulta es para traer solo los datos en tabla 
-$sentencia = $con->prepare("SELECT p.id_procedi,c.cpt , p.icd, p.dx, p.fecha, p.pacienteYnomina, 
-CONCAT(u.Nombres, ' ', u.Apellidos) AS Medico,
-CONCAT(po.Nombres, ' ', po.Apellidos) AS Paciente,po.No_nomina,
-cg.codigo , cg.descripcion, cg.unidad
+$sentencia = $con->prepare("SELECT p.id_procedi,c.cpt,p.icd,
+p.dx, p.fecha, p.pacienteYnomina, 
+u.usuario,CONCAT(po.Nombres, ' ', po.Apellidos) AS Paciente,
+po.No_nomina,cg.codigo , cg.descripcion, cg.unidad
 FROM procedimientos p, usuarios u, 
 pacientes_call_center po , codigo_administradora cg , cpts c
 WHERE p.medico = u.id_usuarios
@@ -19,7 +19,7 @@ $procedimientos->execute();
 $procedimientos = $procedimientos->fetchAll(PDO::FETCH_ASSOC);
 
 //Esta consulta seria para ENFERMERO
-$usuarios = $con->prepare("SELECT *, CONCAT (u.Nombres ,' ' ,u.Apellidos ) AS medico FROM usuarios u WHERE u.id_departamentos = 11");
+$usuarios = $con->prepare("SELECT *, u.usuario FROM usuarios u WHERE u.id_usuarios = 11");
 $usuarios->execute();
 $medico = $usuarios->fetchAll(PDO::FETCH_ASSOC);
 

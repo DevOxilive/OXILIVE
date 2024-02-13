@@ -16,32 +16,44 @@ function Header(){
  $this->Image('../../../img/Logo.png', 12, 10, 45);
   //Arial bold 15
   $this->SetFont('Arial','B',20);
- $this->MultiCell(120, 8, ('VALE DE SALIDA DEL ALMACEN'), 1, 'C', false);
+ $this->MultiCell(120, 8, ('VALE DE SALIDA DEL ALMACEN OXIGENO'), 1, 'C', false);
   // Continuar con el contenido
   $this->Ln(10);
   $this->SetFont('Arial','B',10);
   $this->Cell(30, 10, 'Fecha de solicitud: ____________________', 0, 'C', 0);
 
-  $this->Cell(27, 10, ('Area solicitante: ________________________'), 0, 'C', 0);
-  $this->Cell(40, 10, ('Nombre y firma de quien solicita: _______________________'), 0, 'C', 0);
+  $this->Cell(27, 10, ('Nombre y firma del solicitante: _____________'), 0, 'C', 0);
+  $this->Cell(40, 10, ('Nombre y firma del conductor: _______________________'), 0, 'C', 0);
+  
   $this->Ln(1);
   $this->SetX(90);
   $this->Cell(105, -30, ('Nombre y firma de quien recibe: __________________________'), 0, 'C', 0);
   $this->Ln(19);
   $this->SetX(90);
   $this->Cell(105, -30, ('Nombre y firma de quien entrega de almacen: ________________'), 0, 'C', 0);
+
+  $this->Ln(30);
+  $this->SetX(110);
+  $this->Cell(40, 10, ('Camioneta: _______________________'), 0, 'C', 0);
     //Aquí va ir la tabla del insumo
-    $this->Ln(44);
-    $this->Cell(25, 10, 'CANTIDAD.', 1, 0, 'C', 0);
-    $this->SetXY(35, 67);
-    $this->Cell(108, 10, 'DESCRIPCION DEL INSUMO.', 1, 0, 'C', 0);
-    $this->SetXY(143, 67);
-    $this->Cell(60, 10, 'OBSERVACIONES.', 1, 0, 'C', 0);
+    $this->SetXY(10, 76);
+    $this->Cell(20, 10, 'CANTIDAD.', 1, 0, 'C', 0);
+   //DESCRIPCION DEL INSUMO
+    $this->SetXY(30, 76);
+    $this->Cell(70, 10, 'DESCRIPCION DEL INSUMO.', 1, 0, 'C', 0);
+    //PACIENTE
+    $this->SetXY(100, 76);
+    $this->Cell(43, 10, 'PACIENTE.', 1, 0, 'C', 0);
+    //OBSERVACIONES
+    $this->SetXY(143, 76);
+    $this->Cell(60, 10, 'ASEGURADORA.', 1, 0, 'C', 0);
     //ESTA ES LA PARTE DE LA FIRMA DEL VOBO DE DIRECCIÓN
     // $this->Ln(30);
     $this->SetXY(45, 90);
     $this->Cell(90, 10, 'VoBo de Direccion: _______________________________________________', 0, 'C', 0);
-   
+    //OBSERVACIONES
+    $this->SetXY(10, 95);
+    $this->Cell(100, 20, 'OBSERVACIONES: ____________________________________________________________________________', 0, 'C', 0);
 }
 
 // Pie de página
