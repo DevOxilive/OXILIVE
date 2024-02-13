@@ -3,7 +3,7 @@ include("../../../connection/conexion.php");
 //Este es para traer la información de los pacientes
 $txtID = (isset($_GET['txtID'])) ? $_GET['txtID'] : "";
 $idPaciente = $con->prepare("SELECT p.id_procedi, p.icd, p.dx, p.pacienteYnomina, 
-u.id_usuarios, CONCAT(u.Nombres, ' ', u.Apellidos) AS Medico,
+u.id_usuarios, u.usuario,
 po.id_pacientes, CONCAT(po.Nombres, ' ', po.Apellidos) AS Paciente,po.No_nomina,
 po.Fecha_registro, po.Edad,po.colonia,po.rfc,
 codigo.id_codigo, codigo.codigo , codigo.descripcion, codigo.unidad
@@ -17,8 +17,8 @@ $idPaciente->execute();
 $idLista = $idPaciente->fetchAll(PDO::FETCH_ASSOC);
 
 //Esta consulta es para traer solo los datos en tabla 
-$sentencia = $con->prepare("SELECT p.id_procedi, p.icd, p.dx, p.fecha, p.pacienteYnomina, 
-CONCAT(u.Nombres, ' ', u.Apellidos) AS Medico,
+$sentencia = $con->prepare("SELECT p.id_procedi, p.icd,
+p.dx, p.fecha, p.pacienteYnomina,u.usuario,
 CONCAT(po.Nombres, ' ', po.Apellidos) AS Paciente,po.No_nomina,
 codigo.codigo , codigo.descripcion, codigo.unidad, ad.Nombre_administradora
 FROM procedimientos p, usuarios u, 
@@ -32,7 +32,7 @@ $listaProce = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 //Esta consulta es para acceder a los id de los procedimientos
 $txtID = (isset($_GET['txtID'])) ? $_GET['txtID'] : "";
 $im = $con->prepare("SELECT p.id_procedi, p.icd, p.dx, p.pacienteYnomina, 
-u.id_usuarios, CONCAT(u.Nombres, ' ', u.Apellidos) AS Medico,
+u.id_usuarios,u.usuario,
 po.id_pacientes, CONCAT(po.Nombres, ' ', po.Apellidos) AS Paciente,po.No_nomina,
 po.Fecha_registro, po.Edad,po.colonia,po.rfc,
 cp.id_codigo, cp.codigo , cp.descripcion, cp.unidad
