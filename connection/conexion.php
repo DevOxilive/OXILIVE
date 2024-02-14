@@ -1,12 +1,12 @@
 <?php
-//$servidor = "localhost";
-//$baseDeDatos = "u199109938_bdoxilive";
-//$usuario = "u199109938_administrator";
-//$clave = "sudo-Sw03j3j3j3";
 $servidor = "localhost";
-$baseDeDatos = "bdoxilive";
-$usuario = "root";
-$clave = "";
+$baseDeDatos = "u199109938_bdoxilive";
+$usuario = "u199109938_administrator";
+$clave = "sudo-Sw03j3j3j3";
+//$servidor = "localhost";
+//$baseDeDatos = "bdoxilive";
+//$usuario = "root";
+//$clave = "";
 
 try {
     $con = new PDO("mysql:host=$servidor;dbname=$baseDeDatos", $usuario, $clave);
