@@ -191,21 +191,16 @@ h1, h2, h3, h4, h5, h6, strong {
     padding: 25px 0;
   }
 }
-
 .sparkboxes .box {
   padding: 3px 0 0 0;
   position: relative;
 }
-
 #spark1, #spark2, #spark3, #spark4 {
   position: relative;
   padding-top: 15px;
 }
 
-
-/* overrides */
 .sparkboxes #apexcharts-subtitle-text { fill: #8799a2 !important; }
-
 
 .spinner-border {
   display: none;
@@ -222,10 +217,10 @@ h1, h2, h3, h4, h5, h6, strong {
   color: #fff;
 }
 .box1:hover {
-  background-color: #64a8b3;
+  background-color: #663399;
 }
 .box2:hover{
-  background-color: green;
+  background-color: #232e34;
 }
 .box2 {
   border-radius: 10px;
@@ -233,4 +228,13 @@ h1, h2, h3, h4, h5, h6, strong {
 }
 .box2:hover h3 {
   color: #fff;
+}
+#mostrar{
+  transition: opacity 0.5s ease-in-out;
+}
+#btnToggle{
+  opacity: 1;
+}
+.ocultar {
+  opacity: 0;
 }
