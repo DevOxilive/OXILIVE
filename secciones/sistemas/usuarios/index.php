@@ -55,7 +55,7 @@ if (!isset($_SESSION['us'])) {
       </div>
       <div class="card-body">
         <div class="table-responsive-sm">
-          <table class="table table-striped" id="usuarios">
+          <table class="table table-striped" id="myTable2">
             <thead class="customers">
               <tr class="table-active table-group-divider">
                 <th scope="col">Username</th>
