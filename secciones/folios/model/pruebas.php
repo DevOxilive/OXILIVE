@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php
             }
             // revisa el rango de folios maximo por asignar
-            if ($_POST['cant'] <= 50) {
+            if ($_POST['cant'] < 50) {
                 // comienza a cargar los datos
                 $bancos = $_POST['bancos'];
                 $administradora = $_POST['administradora'];
@@ -26,15 +26,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ?>
                 <b>Caracteristicas del folio(s)</b> solicitado: <br>
 
-                <?php
+            <?php
                 echo "Banco: " . $bancos . "<br>";
                 echo "Administradora: " . $administradora . "<br>";
                 echo "Tipo: " . $tipo . "<br>";
                 echo "Cantidad: " . $limit . "<br>";
-
-                if ($bancos == "" || $administradora == "" || $tipo == "" || $limit == "") {
-                    echo "faltan campos por seleccionar";
-                } else {
+            } else {
+            ?>
+                <script>
+                    swal.fire({
+                        icon: 'info',
+                        title: 'Recordatorio!',
+                        text: 'solo se pueden enviar un maximo de 50 folios.'
+                    });
+                </script>
+                <?php
+                if (!$bancos == "" || !$administradora == "" || !$tipo == "" || !$limit == "") {
                     $sql = 'SELECT * FROM folios 
                     WHERE bancoFolio = :bancoFolio
                     AND adminFolio = :adminFolio
@@ -50,35 +57,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     $cont = 0;
                     $separar = 0;
-                    if (count($folioSeek) > 0) {
-                        if ($limit <= $rows) {
-                            foreach ($folioSeek as $fol) {
-                                $cont++;
-                                if ($cont <= $limit) {
-                                    $separar++;
+                    // si no hay datos
+                    if (count($folioSeek) == 0) {
                 ?>
-                                    <label for="folios"><?php echo $fol['folio'] ?></label>
-                                    <input type="checkbox" name="folios[]" id="" value="<?php echo $fol['id_folio'] ?>" checked>
-                            <?php
-                                    if ($separar >= 5) {
-                                        echo "<br>";
-                                        $separar = 0;
-                                    }
-                                }
-                            }
-                        } else {
-                            ?>
-                            <script>
-                                swal.fire({
-                                    title: '¡Ooups!',
-                                    text: "<?php echo "No hay '{$limit}': folios disponibles. Hay: '{$rows}' folios disponibles."; ?>",
-                                    icon: 'info'
-                                });
-                            </script>
-                        <?php
-                        }
-                    } else {
-                        ?>
                         <script>
                             swal.fire({
                                 title: '¡Ooups!',
@@ -86,24 +67,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 icon: 'info'
                             });
                         </script>
-                <?php
-                    }
-                }
-            } else {
-                ?>
-                <script>
-                    swal.fire({
-                        icon: 'info',
-                        title: 'Recordatorio!',
-                        text: 'solo se pueden enviar un maximo de 50 folios.'
-                    });
-                </script>
+                        <?php
+                        // si el rango solisitado de folios es menor al de la existencia, dejar, si es mayor denegar por que no existen mas de los que estan en la base de datos.
+                    } else if ($limit <= $rows) {
+                        foreach ($folioSeek as $fol) {
+                            $cont++;
+                            if ($cont <= $limit) {
+                                $separar++;
+                        ?>
+                                <label for="folios"><?php echo $fol['folio'] ?></label>
+                                <input type="checkbox" name="folios[]" id="" value="<?php echo $fol['id_folio'] ?>" checked>
+                        <?php
+                                if ($separar >= 5) {
+                                    echo "<br>";
+                                    $separar = 0;
+                                }
+                            }
+                        }
+                    } else {
+                        ?>
+                        <script>
+                            swal.fire({
+                                title: '¡Ooups!',
+                                text: "<?php echo "No hay '{$limit}': folios disponibles. Hay: '{$rows}' folios disponibles."; ?>",
+                                icon: 'info'
+                            });
+                        </script>
             <?php
-                echo "Disminulle la cantidad de folios solicitados a un maximo de 50!.";
+                    }
+                } else {
+                    echo "faltan campos por llenar";
+                }
             }
-        } else {
             ?>
-            <h4>No hay folios registrados en el sistema</h4>
-    <?php
+    </div>
+<?php
+        } else {
+?>
+    <h4>No hay folios registrados en el sistema</h4>
+<?php
         }
     }

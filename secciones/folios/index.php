@@ -38,7 +38,7 @@ if (!isset($_SESSION['us'])) {
             <div class="card-body">
                 <?php if ($_SESSION['puesto'] == 1 || $_SESSION['puesto'] == 8) { ?>
                     <div class="btn-box justify-content-between">
-                        <a href="#" class="btn btn-primary" role="button">
+                        <a href="pages/salidaFolios.php" class="btn btn-primary" role="button">
                             <i class="bi bi-box-arrow-right"></i> Salida
                         </a>
                         <a href="pages/entradaFolios.php" class="btn btn-danger">
