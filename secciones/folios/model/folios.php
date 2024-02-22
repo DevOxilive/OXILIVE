@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     WHERE bancoFolio = :bancoFolio
                     AND adminFolio = :adminFolio
                     AND tipo = :tipo
-                    AND estado = 3 OR estado = 1';
+                    AND estado = 3';
                     $buscar = $con->prepare($sql);
                     $buscar->bindParam(':bancoFolio', $bancos);
                     $buscar->bindParam(':adminFolio', $administradora);
