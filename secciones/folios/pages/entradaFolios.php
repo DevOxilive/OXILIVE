@@ -62,7 +62,7 @@ if (!empty($_SESSION['idus'])) {
                     <div class="contenido col-md-6" id="rangoFolioBox">
                         <label for="rangoFolio" class="form-label">termino de folio: </label>
                         <input type="text" name="rangoFolio" id="rangoFolio" class="form-control only-numbers" minlength="1" maxlength="3" required placeholder="cantidad de folios max">
-                    </div>  
+                    </div>
                 </div>
                 <br>
                 <button type="submit" class="btn btn-outline-info">Guardar</button>
