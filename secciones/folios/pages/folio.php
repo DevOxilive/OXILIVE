@@ -11,7 +11,10 @@ if (!isset($_SESSION['us'])) {
     <div class="row">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Folio <?php echo $folio; ?></h3>
+                <div class="d-flex justify-content-between">
+                    <h3 class="card-title">Folio <?php echo $folio; ?></h3>
+                    <a href="" class="btn btn-outline-primary">Volver</a>
+                </div>
                 <hr>
             </div>
             <div class="card-body">
@@ -23,32 +26,32 @@ if (!isset($_SESSION['us'])) {
                         switch ($historial['tipoMovimiento']) {
                             case 1:
                                 $bg = "bg-primary-subtle";
-                                $icon = "fa-solid fa-file-import text-primary";
+                                $icon = "fa-file-import text-primary";
                                 break;
                             case 2:
                                 $bg = "bg-danger-subtle";
-                                $icon = "fa-solid fa-file-export text-danger";
+                                $icon = "fa-file-export text-danger";
                                 break;
                             case 3:
                                 $bg = "bg-warning-subtle";
-                                $icon = "fa-solid fa-box-archive text-warning";
+                                $icon = "fa-box-archive text-warning";
                                 break;
                             case 4:
                                 $bg = "bg-success-subtle";
-                                $icon = "fa-solid hand-holding-box text-success";
+                                $icon = "hand-holding-box text-success";
                                 break;
                         }
                     ?>
                         <li class="timeline-item mb-5 ps-3">
                             <span class="timeline-icon <?php echo $bg; ?>">
-                                <i class="<?php echo $icon; ?> fa-md fa-fw"></i>
+                                <i class="fa-solid <?php echo $icon; ?> fa-md fa-fw"></i>
                             </span>
                             <h5 class="fw-bold"><?php echo $historial['mov']; ?></h5>
                             <p class="text-muted my-3 fw-bold"><?php echo $fecha . " / " . $hora; ?></p>
                             <p class="text-muted mb-1 fw-semibold"><?php echo $historial['descripcion']; ?></p>
                             <p class="text-muted mb-2 fw-lighter fst-italic">
                                 - Por el usuario
-                                <a href="" class="fw-bold text-black">
+                                <a href="../../perfil/pages/profile.php?idus=<?php echo $historial['id_usuario']; ?>" class="fw-bold text-black">
                                     <?php echo $historial['usuario']; ?>
                                 </a>
                             </p>

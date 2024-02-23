@@ -309,6 +309,38 @@ form .contenido select {
 }
 
 /*--------------------------------------------------------------
+# Animacion retorno
+--------------------------------------------------------------*/
+.slide-left:hover {
+  -webkit-animation: slide-left 0.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+  animation: slide-left 0.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+@-webkit-keyframes slide-left {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+
+  100% {
+    -webkit-transform: translateX(-100px);
+    transform: translateX(-100px);
+  }
+}
+
+@keyframes slide-left {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+
+  100% {
+    -webkit-transform: translateX(-100px);
+    transform: translateX(-100px);
+  }
+}
+
+/*--------------------------------------------------------------
 # Timeline
 --------------------------------------------------------------*/
 .timeline-with-icons {
@@ -480,7 +512,6 @@ form .contenido select {
   padding: 20px 0 0 3px;
   font-weight: 500;
   color: #012970;
-  ;
   font-family: "Poppins", sans-serif;
 }
 
