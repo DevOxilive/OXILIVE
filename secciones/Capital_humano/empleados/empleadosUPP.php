@@ -92,12 +92,7 @@ if ($_POST) {
     $especialidad = (isset($_POST['especialidad']) ? $_POST['especialidad'] : null);
 
     //mayuscula o minuscula según sea el caso
-    $Nombres = strtoupper($nombres);
-    $Apellidos = strtoupper($apellidos);
-    
-    $correo = strtolower($correo);
-    $Curp = strtoupper($curp);
-    $rfc = strtoupper($rfc);
+  
     
     $calle = strtoupper($calle);
     $numExt = strtoupper($numExt);
