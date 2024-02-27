@@ -1,0 +1,33 @@
+.boxFolios {
+    border: solid 1px rgb(96, 123, 143);
+    padding: 10px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+@keyframes cambioDeColor {
+    0% {
+        color: rgb(0, 128, 255);
+    }
+
+    25% {
+        color: rgb(0, 0, 85);
+    }
+
+    50% {
+        color: rgb(69, 137, 255);
+    }
+
+    75% {
+        color: rgb(0, 0, 85);
+    }
+
+    100% {
+        color: rgb(69, 137, 255);
+    }
+}
+
+#busc {
+    font-size: 24px;
+    animation: cambioDeColor 4s infinite;
+}

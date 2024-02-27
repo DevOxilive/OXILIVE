@@ -7,7 +7,6 @@ $servidor = "localhost";
 $baseDeDatos = "bdoxilive";
 $usuario = "root";
 $clave = "";
-
 try {
     $con = new PDO("mysql:host=$servidor;dbname=$baseDeDatos", $usuario, $clave);
     $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

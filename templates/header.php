@@ -57,7 +57,7 @@ include_once ('C:\laragon\www\OXILIVE\model/foto.php');
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
                             <span>
-                                <?php echo $datos['Nombre_puestos'] ?>
+                                <?php echo $_SESSION['puesto'] ?>
                             </span>
                         </li>
                         <li>
@@ -298,3 +298,5 @@ include_once ('C:\laragon\www\OXILIVE\model/foto.php');
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <!-- SweetAlert2 11.10.1 JS -->
     <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.all.min.js"></script>
+    <!--APEXCHARTS.COM-->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
