@@ -1,9 +1,13 @@
 <?php
-$sql = "SELECT doc.id_doc, dir.directorio, doc.nombre as document , doc.responsable, usu.nombre
-        FROM documentos AS doc INNER JOIN usuarios AS usu, directorios AS dir 
-        WHERE doc.directorio = dir.id_directorio AND usu.id_usuario = doc.responsable
-        ORDER BY id_doc DESC;";
-$stmt = $db->prepare($sql);
-$stmt->execute();
-$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-// esta parte no funciona :(
+// se incluye el archivero.
+include("../control/Archivero.php");
+
+// se instancia un objeto.
+$objeto =  new Archivero();
+
+// declarar las variables
+$ruta = "../../../"; # A donde ira a guardar el archivo desde 
+$nombreArchivo = $_FILES['nombredelPost']['name']; # Nombre de la carpeta
+$archivoTmp = $_FILES['nombredelPost']['tmp_name']; # contenido del archivo temporal.
+
+$objeto->eliminarArchivo($ruta . $nombreArchivo); # aqui va concatenada la ruta y el nombre

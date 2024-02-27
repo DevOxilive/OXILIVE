@@ -88,7 +88,7 @@ class Archivero
     {
         // el nombre que este asta al final sera el que se cambiara
         // es decir ../ruta/ruta/ruta/nombre_antiguo
-        //          ../ruta/ruta/ruta/nombre_nuevo
+        //         ../ruta/ruta/ruta/nombre_nuevo
         if (is_dir($nombre_antiguo)) {
             if (rename($nombre_antiguo, $nombre_nuevo)) {
                 echo '¡El cambio de nombre fue exitoso!';
