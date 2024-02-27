@@ -119,7 +119,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="<?php echo $url_base; ?>secciones/folios/pages/historial.php">
                         <i class="bi bi-circle"></i><span>Historial</span>
                     </a>
                 </li>
