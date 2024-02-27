@@ -4,7 +4,7 @@ if (!isset($_SESSION['us'])) {
     header('Location: ../../login.php');
 } elseif (isset($_SESSION['us'])) {
     include("../../templates/header.php");
-    include("model/cantidadFolios.php");
+    include("../../model/administradora.php");
 } else {
     echo "Error en el sistema";
 }
@@ -30,19 +30,19 @@ if (!isset($_SESSION['us'])) {
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Folios</h3>
+                <div class="col-5">
+                    <a href="pages/entradaFolios.php" class="btn btn-outline-info">Guardad Folios</a>
+                </div>
                 <hr>
             </div>
             <div class="card-body">
                 <?php if ($_SESSION['puesto'] == 1 || $_SESSION['puesto'] == 8) { ?>
                     <div class="btn-box justify-content-between">
-                        <a href="#" class="btn btn-primary" role="button">
+                        <a href="pages/salidaFolios.php" class="btn btn-primary" role="button">
                             <i class="bi bi-box-arrow-right"></i> Salida
                         </a>
                         <a href="pages/entradaFolios.php" class="btn btn-danger">
                             <i class="bi bi-box-arrow-in-right"></i> Entrada
-                        </a>
-                        <a href="pages/entradaFolios.php" class="btn btn-warning" role="button">
-                            <i class="bi bi-box-arrow-right"></i> Salida
                         </a>
                     </div>
                 <?php } ?>
@@ -66,42 +66,25 @@ if (!isset($_SESSION['us'])) {
                                     </tr>
                                 </thead>
                                 <tbody class="table-group-divider">
-                                    <?php foreach ($consulta_cant as $cons) { ?>
-                                        <tr>
-                                            <td><?php echo $cons['adminFolio']; ?></td>
-                                            <td><?php echo $cons['bancoFolio']; ?></td>
-                                            <td><?php echo $cons['cantidadFolios']; ?></td>
-                                            <td><a href="pages/listado.php?admin=<?php echo $cons['adminFolio']; ?>&banco=<?php echo $cons['bancoFolio']; ?>&tipo=CONSULTA&estado=3" class="btn btn-primary"><i class="bi bi-list-stars"></i></a></td>
-                                        </tr>
-                                    <?php } ?>
+                                    <tr>
+                                        
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="nav-rec" role="tabpanel" aria-labelledby="nav-rec-tab" tabindex="0">
                         <br>
-                        <div class="table-responsive-sm">
-                            <table class="table table-striped" id="myTable2">
-                                <thead class="customers">
-                                    <tr class="table-active table-group-divider">
-                                        <th scope="col">Administradora</th>
-                                        <th scope="col">Banco</th>
-                                        <th scope="col">Cantidad</th>
-                                        <th scope="col">Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="table-group-divider">
-                                    <?php foreach ($receta_cant as $cons) { ?>
-                                        <tr>
-                                            <td><?php echo $cons['adminFolio']; ?></td>
-                                            <td><?php echo $cons['bancoFolio']; ?></td>
-                                            <td><?php echo $cons['cantidadFolios']; ?></td>
-                                            <td><a href="pages/listado.php?admin=<?php echo $cons['adminFolio']; ?>&banco=<?php echo $cons['bancoFolio']; ?>&tipo=RECETA&estado=3" class="btn btn-primary"><i class="bi bi-list-stars"></i></a></td>
-                                        </tr>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
-                        </div>
+                        <?php foreach ($lista_administradora as $admin) { ?>
+                            <div class="card card-list">
+                                <div class="card-header" data-bs-toggle="collapse" data-bs-target="#sub<?php echo $admin['id_administradora']; ?>">
+                                    <h5 class="item-title"><?php echo $admin['Nombre_administradora']; ?></h5>
+                                </div>
+                                <div class="card-body collapse" id="sub<?php echo $admin['id_administradora']; ?>">
+                                    bancos
+                                </div>
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
