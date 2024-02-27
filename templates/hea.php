@@ -6,3 +6,5 @@
 </head>
 </html>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!--APEXCHARTS.COM-->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
