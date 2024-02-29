@@ -4,6 +4,22 @@ body {
   color: #777;
   font-family: 'Titillium Web', Arial, Helvetica, sans-serif
 }
+.num{
+  position: absolute;
+  top: 0;
+  margin: auto;
+  width: 60%;
+  height: 50%;
+  border: 1px solid red !important;
+}
+.usu{
+  position: relative;
+  padding: auto;
+  margin: auto;
+  top:125px;
+  width: 10%;
+  height: 10%;
+}
 
 h1, h2, h3, h4, h5, h6, strong {
   font-weight: 600;

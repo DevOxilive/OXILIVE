@@ -4,12 +4,6 @@ if (!isset($_SESSION['us'])) {
     header('Location: ../../login.php');
 } elseif (isset($_SESSION['us'])) {
     include("../../templates/header.php");
-    include("../../connection/conexion.php");
-    $sentencia = $con->prepare("SELECT *, CONCAT(e.nombres, ' ', e.apellidos) AS emple 
-    FROM  empleados e 
-    WHERE contrato = 'NO CONTRATADO';");
-    $sentencia->execute();
-    $contrato = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 } else {
     echo "Error en el sistema";
 }
@@ -34,16 +28,22 @@ if (!isset($_SESSION['us'])) {
                 <div class="container-fluid">
                     <div class="text-right mt-3 mb-3 d-fixed">
                     </div>
-                   
                     <div class="row mt-3 mb-3">
                         <div class="col-md-6">
                             <div class="box">
                                 <div id="bar"></div>
+                                
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="box">
                                 <div id="donut"></div>
+                                <div class="num"> 
+                                    <div class="usu">
+                                        <p class="num-1">1</p>
+                                        <p class="num-2">2</p>
+                                    </div>
+                                </div>                               
                             </div>
                         </div>
                     </div>
