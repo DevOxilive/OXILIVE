@@ -33,7 +33,6 @@ if (!isset($_SESSION['us'])) {
             <div class="content-area">
                 <div class="container-fluid">
                     <div class="text-right mt-3 mb-3 d-fixed">
-                        
                     </div>
                     <div class="main">
                         <div class="row sparkboxes mt-4 mb-4">
@@ -51,11 +50,6 @@ if (!isset($_SESSION['us'])) {
                                     </div>
                                 </a>
                              </div>
-                            <div class="col-md-4">
-                                <div class="box box3" style="border-radius: 10px;">
-                                    <h3 style="color: black; text-align: center;">EYE</h3>
-                                </div>
-                            </div>
                     </div>
                         <!--Aquì voy a poner la tabla super puesta-->
                         <div class="container mt-6" id="mostrar" style="display: none;">
@@ -115,7 +109,7 @@ if (!isset($_SESSION['us'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.slim.min.js"></script>
     <script src="assets/data.js"></script>
     <script src="assets/scripts.js"></script>
-    <script>
+<script>
             document.getElementById('btnToggle').addEventListener('click', function() {
             var tabla = document.getElementById('mostrar');
             if (tabla.style.display === 'none') {
@@ -130,4 +124,4 @@ if (!isset($_SESSION['us'])) {
                 },500); // Duración de la transición, ajusta según lo necesario
             }
         });
-    </script>
+</script>
