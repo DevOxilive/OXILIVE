@@ -9,7 +9,7 @@ if (!isset($_SESSION['us'])) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="ES">
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -32,12 +32,12 @@ if (!isset($_SESSION['us'])) {
                         <div class="col-md-6">
                             <div class="box">
                                 <div id="bar"></div>
-                                
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="box">
-                            <div id="donut" class="donutChart"></div>                         
+                            <div class="col-md-6">
+                                <div class="box">
+                                    <div id="donut" class="donutChart"></div>                         
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -45,11 +45,9 @@ if (!isset($_SESSION['us'])) {
             </div>
         </div>
     </div>
-    <?php
-    include("../../templates/footer.php");
-    ?>
-    </div>
 </div>
+    <?php
+    include("../../templates/footer.php"); ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.slim.min.js"></script>
     <script src="assets/data.js"></script>
     <script src="assets/scripts.js"></script>

@@ -91,7 +91,7 @@ if (!isset($_SESSION['us'])) {
                         </div>
                         <div class="col-md-6">
                             <div class="box">
-                                <div id="donut"></div>
+                            <div id="donut" class="donutChart"></div>                         
                             </div>
                         </div>
                     </div>
@@ -99,16 +99,9 @@ if (!isset($_SESSION['us'])) {
             </div>
         </div>
     </div>
-    <?php
- include("../../templates/footer.php");
-?>
     </div>
 </div>
-
-<main id="main" class="main">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.slim.min.js"></script>
-    <script src="assets/data.js"></script>
-    <script src="assets/scripts.js"></script>
+<?php include("../../templates/footer.php");?>
 <script>
             document.getElementById('btnToggle').addEventListener('click', function() {
             var tabla = document.getElementById('mostrar');
@@ -125,3 +118,7 @@ if (!isset($_SESSION['us'])) {
             }
         });
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.slim.min.js"></script>
+<script src="assets/data.js"></script>
+<script src="assets/scripts.js"></script>
+<script src="./assets/capitalHum.js"></script>
