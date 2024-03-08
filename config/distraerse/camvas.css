@@ -1,3 +1,26 @@
+body {
+    text-align: center;
+    background-color: black;
+    font-family: 'Arial', sans-serif;
+}
+
 #miCanvas {
-    border: solid 1px black;
+    margin: 20px auto;
+    background-color: white;
+    border: 5px solid rgb(0, 117, 128);
+    box-shadow: inset 0 0 10px rgb(0, 117, 128);
+}
+
+.caja_precentacion {
+    background-color: white;
+    width: max-content;
+    margin: auto;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid rgb(0, 117, 128);
+    box-shadow: inset 0 0 10px rgb(0, 117, 128);
+}
+
+canvas {
+    margin: 20px auto;
 }
