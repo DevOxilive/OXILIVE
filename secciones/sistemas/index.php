@@ -37,13 +37,7 @@ if (!isset($_SESSION['us'])) {
                         </div>
                         <div class="col-md-6">
                             <div class="box">
-                                <div id="donut"></div>
-                                <div class="num"> 
-                                    <div class="usu">
-                                        <p class="num-1">1</p>
-                                        <p class="num-2">2</p>
-                                    </div>
-                                </div>                               
+                            <div id="donut" class="donutChart"></div>                         
                             </div>
                         </div>
                     </div>
@@ -52,15 +46,14 @@ if (!isset($_SESSION['us'])) {
         </div>
     </div>
     <?php
- include("../../templates/footer.php");
-?>
+    include("../../templates/footer.php");
+    ?>
     </div>
 </div>
-
-<main id="main" class="main">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.slim.min.js"></script>
     <script src="assets/data.js"></script>
     <script src="assets/scripts.js"></script>
+    <script src="chismoso.js"></script>
 <script>
             document.getElementById('btnToggle').addEventListener('click', function() {
             var tabla = document.getElementById('mostrar');

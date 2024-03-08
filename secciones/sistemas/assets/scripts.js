@@ -466,7 +466,7 @@ Apex.grid = {
       }
     },
     series: [4,1],
-    labels: ['SISTEMAS','CAPITAL HUMANO'],
+    labels: ['OXIGENO','SUB-DIRECCIÓN'],
     legend: {
       position: 'left',
       offsetY: 80
