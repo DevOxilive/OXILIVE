@@ -31,12 +31,16 @@ if (!isset($_SESSION['us'])) {
                     <div class="row mt-3 mb-3">
                         <div class="col-md-6">
                             <div class="box">
+                            <h2>PORCENTAJE DE POBLACIÓN</h2>
+                            <hr>
                                 <div id="bar"></div>
                             </div>
                         </div>
                             <div class="col-md-6">
                                 <div class="box">
-                                    <div id="donut" class="donutChart"></div>                         
+                                <h2>ÁREAS DE EMPLEADOS</h2>
+                                <hr>
+                                    <div id="donut"></div>                         
                                 </div>
                             </div>
                         </div>
