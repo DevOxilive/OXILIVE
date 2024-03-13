@@ -1,4 +1,3 @@
-//ESTE AJAX ES PARA CONSULTAR LA DONA
 $(document).ready(function() {
     var donutOptions = {
         chart: {
@@ -9,58 +8,69 @@ $(document).ready(function() {
     };
     var donut = new ApexCharts(document.querySelector("#donut"), donutOptions);
     donut.render();
+
+    // Crea una instancia de ApexCharts para la gráfica de barras fuera del ámbito de la función consultarGenero()
+    var barOptions = {
+        chart: {
+            type: 'bar'  
+        },
+        series: [{
+            name: 'Cantidad',
+            data: []
+        }],
+        xaxis: { 
+            categories: ['FEMENINO', 'MASCULINO']
+        }
+    };
+    var barChart = new ApexCharts(document.querySelector("#bar"), barOptions);
+    barChart.render();
+
     function obtenerDatosUsuarios() {
         $.ajax({
             url: './consultaAjax.php',
             method: 'GET',
             dataType: 'json',
             success: function(response) {
-                actualizarGraficaDonut(response.datosAreas);
-                
-                setTimeout(obtenerDatosUsuarios, 3000); 
+                actualizarGraficaDonut(response.datosAreas);  
             },
             error: function(xhr, status, error) {
                 console.error('Error al obtener los datos de usuarios:', error);
-
-                setTimeout(obtenerDatosUsuarios, 20000);
             }
         });
     }
+
     function actualizarGraficaDonut(datosAreas) {
         donut.updateSeries(datosAreas.series);
         donut.updateOptions({
             labels: datosAreas.labels
         });
     }
-    obtenerDatosUsuarios(); 
-});
-//ESTE AJAX ES PARA CONSULTAR LA GRAFICA
-$.ajax({
-    url: '../consultaAjax.php',
-    type: 'GET',
-    dataType: 'json',
-    success: function(data){
-    console.log(data);
 
-    var options = {
-        chart:{
-            type: 'bar'  
-        },
-        series: [{
-            name: 'Cantidad',
-            data: [
-            {x: 'Mujeres', y: data["Mujeres"]},
-            {x: 'Hombres', y: data["Hombres"]}
-            ]
-        }],
-        xaxis: {
-            categories: ['Mujeres', 'Hombres']
+    function consultarGenero() {
+        $.ajax({
+            url: './consultaGnero.php',
+            type: 'GET',
+            dataType: 'json',
+            success: function(data){
+                // Actualiza los datos de la serie en la gráfica de barras
+                barChart.updateSeries([{
+                    data: [
+                        {x: 'FEMENINO', y: data["FEMENINO"]},
+                        {x: 'MASCULINO', y: data["MASCULINO"]}
+                    ]
+                }]);
+            },
+            error: function(xhr,status, error){
+                console.error(error);
             }
-        };
-        var chart = new ApexCharts(document.querySelector("#bar"), options);
-        chart.render();
-    },
-    error: function(xhr,status, error){
-        console.error(error);
+        });
     }
+
+    function consultarDatos() {
+        obtenerDatosUsuarios();
+        consultarGenero();
+    }
+    // Realizar la primera consulta cuando la página se carga
+    consultarDatos();
+    setInterval(consultarDatos, 7000);
 });

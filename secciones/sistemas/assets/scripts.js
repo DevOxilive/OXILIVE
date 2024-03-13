@@ -379,17 +379,7 @@ Apex.grid = {
   chartArea.render();
   
   var optionsBar = {
-    chart: {
-      type: 'bar',
-      height: 380,
-      width: '100%',
-      stacked: true,
-    },
-    plotOptions: {
-      bar: {
-        columnWidth: '45%',
-      }
-    },
+    
     colors: colorPalette,
     series: [{
       name: "Hombres",
@@ -433,7 +423,7 @@ Apex.grid = {
   
   }
   
-  var chartBar = new ApexCharts(document.querySelector('#bar'), optionsBar);
+  //var chartBar = new ApexCharts(document.querySelector('#bar'), optionsBar);
   chartBar.render();
   
   
@@ -465,8 +455,7 @@ Apex.grid = {
         fontSize: '18px'
       }
     },
-    series: [4,1],
-    labels: ['OXIGENO','SUB-DIRECCIÓN'],
+    
     legend: {
       position: 'left',
       offsetY: 80
