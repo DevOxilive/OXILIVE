@@ -1,8 +1,8 @@
 <?php
 $url_base = "http://localhost:8080/OXILIVE/";
-include_once ('C:\laragon\www\OXILIVE\connection/conexion.php');
-include_once ('C:\laragon\www\OXILIVE\model/puestos.php');
-include_once ('C:\laragon\www\OXILIVE\model/foto.php');
+include_once('C:\laragon\www\OXILIVE\connection/conexion.php');
+include_once('C:\laragon\www\OXILIVE\model/puestos.php');
+include_once('C:\laragon\www\OXILIVE\model/foto.php');
 include_once('C:\laragon\www\OXILIVE\notificaciones/control/notificacion.php');
 //$url_base = "https://swoe.oxilive.com.mx/";
 //include_once ($url_base . 'connection/conexion.php');
@@ -33,10 +33,10 @@ include_once('C:\laragon\www\OXILIVE\notificaciones/control/notificacion.php');
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
     <!-- Estilos del template -->
     <link href="<?php echo $url_base; ?>assets/css/style.css" rel="stylesheet">
-    <script src="<?php echo $url_base;?>js/push.min.js"></script>
+    <script src="<?php echo $url_base; ?>js/push.min.js"></script>
     <title>OXILIVE S.A de C.V</title>
     <?php
-    $notificacion = new Notificacion("","");
+    $notificacion = new Notificacion("", "");
     echo $notificacion->notificar();
     ?>
 </head>
