@@ -1,5 +1,13 @@
-    <?php
-    include_once('../../../ctrlArchivos/control/Archivero.php');
+<?php
+
+// objeto chat, con las acciones de carga de usuarios, carga de chats, envio 
+// de mensajes, obtenciones de mensajes, envio de archivos con la extencion de los el archivero
+// para la obtencion de archivos de la semana más rica de la cosas de las cosas.
+
+// @author dazz <ofter3132@gmail.com>
+// @date 15/03/2024
+
+include_once('../../../ctrlArchivos/control/Archivero.php');
     class Chat extends Archivero
     {
         public function loadChat($token, $con)
