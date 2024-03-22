@@ -35,10 +35,6 @@ include_once('C:\laragon\www\OXILIVE\notificaciones/control/notificacion.php');
     <link href="<?php echo $url_base; ?>assets/css/style.css" rel="stylesheet">
     <script src="<?php echo $url_base; ?>js/push.min.js"></script>
     <title>OXILIVE S.A de C.V</title>
-    <?php
-    $notificacion = new Notificacion("", "");
-    echo $notificacion->notificar();
-    ?>
 </head>
 
 <body>
