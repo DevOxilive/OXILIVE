@@ -224,4 +224,3 @@ class Chat extends Archivero
                 </script>';
     }
 }
- 
