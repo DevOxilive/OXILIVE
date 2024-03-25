@@ -8,8 +8,6 @@ switch ($_SESSION['puesto']) {
         include("templates/header.php");
         include("connection/conexion.php");
         include("templates/404.php");
-        $notificacion = new Notificacion("", "");
-        echo $notificacion->notificar();
         include("templates/footer.php");
         break;
         //Administradora POR REVISAR
