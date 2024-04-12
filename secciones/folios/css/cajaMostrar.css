@@ -2,7 +2,7 @@
     border: solid 1px rgb(96, 123, 143);
     padding: 10px;
     border-radius: 20px;
-    text-align: center;
+    text-align:left;
 }
 
 @keyframes cambioDeColor {
