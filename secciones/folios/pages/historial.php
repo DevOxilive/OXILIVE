@@ -22,26 +22,25 @@ if (!isset($_SESSION['us'])) {
                                 <div class="col-md-1 d-flex justify-content-center align-items-center">
                                     <?php switch ($historial['tipoMovimiento']) {
                                         case 1:
-                                    ?>
-                                            <i class="bi bi-circle"></i>
-                                        <?php
+                                            $icon = 'bi bi-file-arrow-up-fill';
+                                            $color = 'success';
                                             break;
                                         case 2:
-                                        ?>
-                                            <i class="bi bi-circle"></i>
-                                        <?php
+                                            $icon = 'bi bi-file-arrow-down-fill';
+                                            $color = 'primary';
                                             break;
                                         case 3:
-                                        ?>
-                                            <i class="bi bi-circle"></i>
-                                        <?php
+                                            $icon = 'bi bi-circle';
+                                            $color = 'warning';
                                             break;
                                         case 4:
-                                        ?>
-                                            <i class="bi bi-circle"></i>
-                                    <?php
+                                            $icon = 'bi bi-circle';
+                                            $color = 'danger';
                                             break;
                                     } ?>
+                                    <div class="rounded-circle bg-<?php echo $color; ?>-subtle d-flex justify-content-center align-items-center" style="width: 4rem; height: 4rem;">
+                                        <i class="<?php echo $icon; ?> fs-2 text-<?php echo $color; ?>"></i>
+                                    </div>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="row">
