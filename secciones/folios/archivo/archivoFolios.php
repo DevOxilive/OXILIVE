@@ -5,6 +5,8 @@ if (!isset($_SESSION['us'])) {
 } elseif (isset($_SESSION['us'])) {
     include("../../../templates/header.php");
     require_once "../../../connection/conexion.php";
+    include_once("./consultaFolios.php");   
+
 } else {
     echo "Error en el sistema";
 }
@@ -17,8 +19,7 @@ if (!isset($_SESSION['us'])) {
         <h3 class="card-title">Archivo de Folios</h3>
         <hr>
         <div class="btn-box justify-content-first">
-        <a class="btn btn-outline-success" href="" role="button"><i class=""></i>Agregar</a>
-        <a class="btn btn-outline-info"  href=""   role="button"><i class=""></i>Quitar</a>
+        <!--Por si se quiere agregar un boton o algo queda este div-->
           </div>
       </div>
              <div class="card-body">
@@ -29,18 +30,32 @@ if (!isset($_SESSION['us'])) {
                                 <th scope="col">Folio</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Tipo</th>
+                                <th scope="col">Estatus</th>
+                                <th scope="col">Acciones</th>
                             </tr>
                             
                         </thead>
-                        <tbody>
-                            
+                        <?php foreach( $listaArchivoFolio as $estatus){ ?>
+                        <tbody style="text-align: center;">
+                            <tr>
+                                <td><?php echo $estatus['folio']; ?></td>
+                                <td><?php echo $estatus['bancoFolio']; ?></td>
+                                <td><?php echo $estatus['folio']; ?></td>
+                                <td><?php echo $estatus['estatus']; ?></td>
+                                <td style="text-align: center;">
+                                        <a class="btn btn-outline-primary" role="button"><i class="bi bi-box-arrow-right"></i></a>
+                                        |
+                                        <a class="btn btn-outline-danger"  role="button"><i class="bi bi-trash-fill"></i></a>
+                                </td>
+                            </tr>
                         </tbody>
+                        <?php } ?>
                     </table>
                 </div>
             </div>
         </div>
 </main>
-
+<script src="./js/ajaxFolios.js"></script>
 <script src="../../js/tables.js"></script>
 <?php
 include("../../../templates/footer.php");
