@@ -65,11 +65,31 @@ if (!empty($_SESSION['idus'])) {
                 </div>
                 <br>
                 <div class="contenido col-md-6">
-                    <button type="submit" id="botonEnvio">enviar</button>
-                    <button type="button">cancelar</button>
+                    <button type="submit" id="botonEnvio" class="btn btn-outline-info">enviar</button>
+                    <button type="button" onclick="cancelar()" class="btn btn-outline-danger">cancelar</button>
                 </div>
             </form>
         </div>
     </div>
 </main>
 <script src="../js/cargaFolios.js"></script>
+<script>
+    function cancelar() {
+        swal.fire({
+            title: '¿Estas seguro de cancelar?',
+            text: 'No se actualizara nada',
+            icon: 'info',
+            buttons: true,
+            showCancelButton: true,
+            dangerMode: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, Cancelar',
+            cancelButtonText: 'No, Continuar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location = "../index.php";
+            }
+        });
+    }
+</script>

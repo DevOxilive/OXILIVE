@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($_POST['bancos'] == "" || $_POST['administradora'] == "" || $_POST['tipo'] == "" || $_POST['cant'] == "") {
         ?>
                 <p id="busc">buscando folios...</p>
+                <hr>
             <?php
             }
             // revisa el rango de folios maximo por asignar

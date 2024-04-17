@@ -93,7 +93,7 @@ try {
                         </div>
                         <br>
                         <button type="submit" class="btn btn-outline-info">enviar</button>
-                        <button onclick="" class="btn btn-outline-danger">cancelar</button>
+                        <button type="button" onclick="cancelar()" class="btn btn-outline-danger">cancelar</button>
                     </form>
                 </div>
             </div>
@@ -114,3 +114,23 @@ try {
     ?>
     </div>
         </main>
+        <script>
+            function cancelar() {
+                swal.fire({
+                    title: '¿Estas seguro de cancelar?',
+                    text: 'No se actualizara nada',
+                    icon: 'info',
+                    buttons: true,
+                    showCancelButton: true,
+                    dangerMode: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si, Cancelar',
+                    cancelButtonText: 'No, Continuar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location = "../index.php";
+                    }
+                });
+            }
+        </script>
