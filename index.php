@@ -1,4 +1,5 @@
 <!-- esto se hizo en una plantila -->
+
 <?php
 session_start();
 
@@ -24,7 +25,7 @@ switch ($_SESSION['puesto']) {
         break;
         //Call Center
     case 5:
-        header('Location: secciones/call_center/index.php');
+            header('Location: secciones/call_center/index.php');
         break;
         //Enfermeria
     case 6:

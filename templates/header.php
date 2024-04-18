@@ -31,13 +31,20 @@ include_once('C:\laragon\www\OXILIVE\notificaciones/control/notificacion.php');
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <!-- Datatables 1.13.7 CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+    <!-- popover -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
     <!-- Estilos del template -->
     <link href="<?php echo $url_base; ?>assets/css/style.css" rel="stylesheet">
-    <script src="<?php echo $url_base; ?>js/push.min.js"></script>
     <title>OXILIVE S.A de C.V</title>
+    <script src="<?php echo $url_base; ?>js/push.min.js"></script>
 </head>
 
 <body>
+    <div id="notify"></div>
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
         <div class="d-flex align-items-center justify-content-between">
@@ -49,6 +56,7 @@ include_once('C:\laragon\www\OXILIVE\notificaciones/control/notificacion.php');
         </div><!-- End Logo -->
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
+                <div id="cont" class="pe-3">Cargando notificaciones</div>
                 <!-- aqui empiesan las secciones paracada nivel de usuario -->
                 <li class="nav-item dropdown pe-3">
                     <!-- linea 129 header.php --> <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
@@ -290,6 +298,10 @@ include_once('C:\laragon\www\OXILIVE\notificaciones/control/notificacion.php');
             verMasBtn.style.display = 'none'; // Oculta el botón "Ver más"
         });
     </script>
+    <script>
+        const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+        const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+    </script>
     <!--Validaciones de formularios-->
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <!-- Datatables 1.13.7 JS -->
@@ -303,3 +315,5 @@ include_once('C:\laragon\www\OXILIVE\notificaciones/control/notificacion.php');
     <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.all.min.js"></script>
     <!--APEXCHARTS.COM-->
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="<?php echo $url_base; ?>notificaciones/js/load.js"></script>
+    <script src="<?php echo $url_base; ?>notificaciones/js/contadorNoti.js"></script>

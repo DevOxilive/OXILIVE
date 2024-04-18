@@ -11,9 +11,15 @@ $cantNoti = $notifi->rowCount();
 if ($cantNoti > 0) {
     $datos = $notifi->fetchAll(PDO::FETCH_ASSOC);
     foreach ($datos as $content) {
+
         $obj = new Notificacion($content['titulo'], $content['texto']);
-        if ($content['tipo'] == 'sys') {
-            echo $obj->notificar();
+        if ($content['tipo'] == 'sys' || $content['tipo'] == 'msg' && $content['estatus'] == 0) {
+            $response = $obj->notificar() . '<br>';
+            echo $response;
+            $sql = "UPDATE notificaciones SET estatus = 1 WHERE id_notifi = :id";
+            $notifi = $con->prepare($sql);
+            $notifi->bindParam(':id', $content['id_notifi']);
+            $notifi->execute();
         }
     }
 }
