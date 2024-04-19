@@ -1,26 +1,42 @@
-<?php 
+<?php
+
+use SebastianBergmann\Environment\Console;
+
 include("../../../connection/conexion.php");
-$sentencia=$con->prepare("SELECT MAX(f.id_folio) AS id_folio, MAX(f.folio) AS folio, MAX(f.tipo) AS tipo, MAX(f.adminFolio) AS adminFolio, f.bancoFolio,fe.estatus 
-FROM folios f 
-INNER JOIN folio_estatus fe ON f.estado = fe.id_estatus
-GROUP BY f.bancoFolio, fe.estatus;");
+//Esta consulta es para el index
+$sentencia=$con->prepare("SELECT fs.*, f.estatus
+FROM folios fs,folio_estatus f 
+WHERE fs.estado = f.id_estatus 
+AND fs.estado = 10");
 $sentencia->execute();
 $listaArchivoFolio=$sentencia->fetchAll(PDO::FETCH_ASSOC);
 
-//Aquí va la consulta del ajax
-try{
-$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$sen = $con->prepare("SELECT f.*, fe.estatus 
-FROM folios f
-JOIN folio_estatus fe ON f.estado = fe.id_estatus;");
+//Consulta para traerme los bancos
+$bancos = $con->prepare("SELECT DISTINCT(bancoFolio) FROM folios;"); 
+$bancos->execute();
+$listafolio=$bancos->fetchAll(PDO::FETCH_ASSOC);
+
+//Consulta para el motivo de devolución
+$sen=$con->prepare("SELECT fe.* FROM folio_estatus fe
+WHERE fe.id_estatus IN (4, 10)");
 $sen->execute();
-$estatus = $sen->fetchAll(PDO::FETCH_ASSOC);
-if(count($estatus) > 0){
-    echo json_encode($estatus);
-} else {
-    echo "No se encontraron resultados";
-}
-}catch(PDOException $e){
-    echo "Error de conexion: " . $e->getMessage();
-}
+$listMotivos=$sen->fetchAll(PDO::FETCH_ASSOC);
+
+//Aquí va la consulta del ajax
+$selectedBanco = $_POST['banco'];
+$traerFolios = $con->prepare("SELECT * FROM folios 
+WHERE (estado = 4 OR estado = 10)
+AND bancoFolio = :banco");
+$traerFolios->bindParam(':banco', $selectedBanco);
+$traerFolios->execute();
+
+$folios = $traerFolios->fetchAll(PDO::FETCH_ASSOC);
+echo json_encode($folios);
+
+
+//Consulta para el filtro
+
+
+
+
 ?>
