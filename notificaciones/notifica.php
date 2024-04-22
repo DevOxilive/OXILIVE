@@ -27,6 +27,7 @@ if ($cantNoti > 0) {
 
 
 // genera tu QUERY o INSERT para tu notificacion
+
 $sql = "INSERT INTO notificaciones (titulo, texto, fecha_hora, tipo, id_recibe, estatus) 
         VALUES ('hola mundo', 'NOTIFICACION DE PRUEBA', NOW(), 'sys', 10, 0);";
 
