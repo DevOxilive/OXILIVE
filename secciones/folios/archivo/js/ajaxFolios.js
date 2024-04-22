@@ -7,10 +7,10 @@ $(document).ready(function() {
           data: { banco: selectedBanco },
           dataType: 'json',
           success: function(response) {
-              $('#folios').empty();
+              $('#foliosB').empty();
               $('#id_folio').val(''); 
               $.each(response, function(index, folio) {
-                  $('#folios').append('<option value="' + folio.id_folio + '">' + folio.folio + '</option>');
+                  $('#foliosB').append('<option value="' + folio.id_folio + '">' + folio.folio + '</option>');
               });
               if (response.length > 0) {
                   $('#id_folio').val(response[0].id_folio);

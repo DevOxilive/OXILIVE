@@ -8,7 +8,7 @@ if (!isset($_SESSION['us'])) {
     include ("../../../templates/header.php");
     include ("../../../connection/conexion.php");
     include_once("./consultaFolios.php");
-    
+    include_once("./devolucionADD.php");
 }else{
     echo "Error en el sistema";
 }
@@ -24,7 +24,8 @@ if (!isset($_SESSION['us'])) {
             </div>
 
             <div class="card-body" style="border: 2px solid #BFE5FF;">
-                <form action="devolucion.php" method="POST" class="formLogin row g-3" id="formulario">
+                <form action="devolucionADD.php" method="POST" class="formLogin row g-3" id="formulario">
+                   <!--Motivo de la devolución-->
                     <div class="contenido col-md-4">
                         <label for="estatus" class="formulario__label">Motivo de Devolución</label>
                         <select id="estatus" name="estatus" class="form-select">
@@ -36,8 +37,9 @@ if (!isset($_SESSION['us'])) {
                             <?php } ?>
                         </select>
                     </div>
+
                     <!--Aqui va ir la lista de los folios-->
-                    <div class="contenido col-md-4">
+                    <div class="contenido col-md-3">
                         <label for="banco" class="formulario__label">Banco</label>
                         <select id="banco" name="banco" class="form-select">
                             <option value="0" selected disabled>Elija una opción</option>
@@ -55,12 +57,20 @@ if (!isset($_SESSION['us'])) {
                     </div>
 
                     <div class="contenido col-md-4">
-                        <label for="folios" class="formulario__label">Numero de folio</label>
-                        <select id="folios" name="folios" class="form-select">
+                        <label for="foliosB" class="formulario__label">Numero de folio</label>
+                        <select id="foliosB" name="foliosB" class="form-select">
                             <option value="0" selected disabled>Eliga el banco</option>
                         </select>
                     </div>
                     <input type="hidden" id="id_folio" name="id_folio">
+
+                                
+                <!--Aquí va ir el id correspondiente-->
+                <div class="contenido col-md-1">
+                        <label for="Nombre_administradora" class="formulario__label"></label>
+                            <input type="text" value="<?php echo $txtID; ?>" class="form-control" readonly name="txtID"
+                                id="txtID" aria-describedby="helpId" style="display: none;"></div>
+
 
                     <div class="contenido col-12">
                         <button type="submit" class="btn btn-outline-success">Guardar</button>
@@ -93,16 +103,18 @@ function confirmCancel(event) {
 </script>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    var selectorFolios = document.getElementById("folios");
-    var idFolioInput = document.getElementById("id_folio");
+    document.addEventListener("DOMContentLoaded", function() {
+        var selectorFolios = document.getElementById("foliosB");
+        var idFolioInput = document.getElementById("id_folio");
+        var txtIDInput = document.getElementById("txtID");
 
-    selectorFolios.addEventListener("change", function() {
-        var selectedFolioId = selectorFolios.value;
-        idFolioInput.value = selectedFolioId;
-        console.log(selectedFolioId);
+        selectorFolios.addEventListener("change", function() {
+            var selectedFolioId = selectorFolios.value;
+            idFolioInput.value = selectedFolioId;
+            txtIDInput.value = selectedFolioId; // Aquí asignamos el valor también al campo txtID
+            console.log(selectedFolioId);
+        });
     });
-});
 </script>
 <script src="./js/ajaxFolios.js"></script>
 <?php

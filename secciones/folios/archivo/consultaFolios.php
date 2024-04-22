@@ -7,7 +7,7 @@ include("../../../connection/conexion.php");
 $sentencia=$con->prepare("SELECT fs.*, f.estatus
 FROM folios fs,folio_estatus f 
 WHERE fs.estado = f.id_estatus 
-AND fs.estado = 10");
+AND fs.estado != 4");
 $sentencia->execute();
 $listaArchivoFolio=$sentencia->fetchAll(PDO::FETCH_ASSOC);
 
@@ -25,7 +25,7 @@ $listMotivos=$sen->fetchAll(PDO::FETCH_ASSOC);
 //Aquí va la consulta del ajax
 $selectedBanco = $_POST['banco'];
 $traerFolios = $con->prepare("SELECT * FROM folios 
-WHERE (estado = 4 OR estado = 10)
+WHERE estado != 4
 AND bancoFolio = :banco");
 $traerFolios->bindParam(':banco', $selectedBanco);
 $traerFolios->execute();

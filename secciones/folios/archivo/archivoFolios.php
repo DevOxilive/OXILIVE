@@ -24,7 +24,7 @@ if (!isset($_SESSION['us'])) {
                             <i class="bi bi-funnel-fill"></i> Filtro
                         </button>
                         <ul class="dropdown-menu" id="lista">
-                            <li><a class="dropdown-item" href="" onclick="filtro(event, 1, this)"></a></li>                      
+                            <li><a class="dropdown-item" href="" onclick="filtro(event, 1, this)"></a></li>                   
                             <li class="deleteFilter"><a class="dropdown-item text-danger" href="" onyclick="filtro(event, 0, this)">Restaurar filtro</a></li>
                         </ul>
                     </div>
