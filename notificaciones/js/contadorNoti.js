@@ -10,5 +10,5 @@ $(document).ready(function() {
         })
     }
 
-    setInterval(totalNotificaciones, 2000)
+    setInterval(totalNotificaciones, 5000)
 })
