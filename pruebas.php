@@ -1,30 +1,44 @@
-<!-- <!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-    <title>Bootstrap Example</title>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="prueba.css">
+    <title>pruebas notificaciones, primeros vistasos</title>
 </head>
 
-<body class="p-3 m-0 border-0 bd-example m-0 border-0"> -->
+<body>
+    <div id="caja_de_notificacion">
+        <div id="camapana">Campana</div>
+        <div id="contador"></div>
+    </div>
+    <div id="notificaciones"></div>
+    <script>
+        $(document).ready(function() {
+            caja = document.getElementById('notificaciones');
+            cajaCount = document.getElementById('contador')
+            cont = 0;
+            text = '';
+            $.ajax({
+                url: 'pruebas2.php',
+                type: 'POST',
+                dataType: 'json',
+                success: function(response) {
+                    text += '<lu>';
+                    $.each(response, function(index, notificacion) {
+                        text += '<li>' + notificacion.titulo + ':' + notificacion.texto + '</li>';
+                        cont++;
+                    })
+                    text += '</lu>';
+                    console.log(cont)
+                    $(caja).html(text);
+                    $(cajaCount).html(cont);
+                }
+            })
+        })
+    </script>
+</body>
 
-<!-- Example Code -->
-
-
-<!-- <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" data-bs-title="Popover title" data-bs-content="And here's some amazing content. It's very engaging. Right?" aria-describedby="popover151559">Click to toggle popover</button> -->
-
-
-<!-- End Example Code -->
-<!-- </body>
-<script>
-    const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
-    const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
-</script> -->
-
-<!-- </html> -->
+</html>

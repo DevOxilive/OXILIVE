@@ -3,12 +3,11 @@
 
 La clase notificacion() trae 2 propiedades y 1 un atributo.
 
-Para poder enviar una notificacion, se deben declarar las
-propiedades con un dato.
+Para poder enviar una notificacion, se deben declarar las propiedades con un dato.
 
 Para asignar el valor de las propiedades, es directamente desde la
 instancia del objeto, ya que cuenta con el metodo constructor. El tipo dato recomendado 
-para los atributos cadena("String"), 
+para los atributos cadena("String").
 
     Ejemplo:
 
@@ -27,3 +26,15 @@ el dato a una vairble y mostrarlo.
         echo $obtenerDatoRetornado;
 
 dependiendo del uso de la notificacion, coloca tu logica.
+
+agregado a la lagica, se reeestructuran diferentes formas de soluciones
+posibles para la implementacion.
+
+se planea para la siguiente prueba el uso de los objetos Json
+parte del lenguaje de programacion JavaScript.
+
+notificacion {
+    titulo: '',
+    texto:  '',
+    etc     
+}
