@@ -19,7 +19,7 @@ if (!isset($_SESSION['us'])) {
                     <?php foreach ($lista_historial as $historial) { ?>
                         <li class="list-group-item">
                             <div class="row d-flex justify-content-between">
-                                <div class="col-md-1 d-flex justify-content-center align-items-center">
+                                <div class="col-md-2 d-flex justify-content-center align-items-center">
                                     <?php switch ($historial['tipoMovimiento']) {
                                         case 1:
                                             $icon = 'bi bi-file-arrow-up-fill';
@@ -42,17 +42,28 @@ if (!isset($_SESSION['us'])) {
                                         <i class="<?php echo $icon; ?> fs-2 text-<?php echo $color; ?>"></i>
                                     </div>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-7">
                                     <div class="row">
-                                        <?php echo $historial['mov']; ?>
+                                        <div class="col-md-6 d-flex justify-content-center">
+                                            <?php echo $historial['mov']; ?>
+                                        </div>
+                                        /
+                                        <div class="col-md-5 d-flex justify-content-center">
+                                            <?php echo $historial['fecha']; ?>
+                                        </div>
                                     </div>
                                     <div class="row">
-                                        <span>
+                                        <span class="d-flex justify-content-center">
                                             <?php echo $historial['adminFolio'] . " - " . $historial['bancoFolio']; ?>
                                         </span>
                                     </div>
                                     <div class="row">
-                                        <?php echo $historial['descripcion']; ?>
+                                        <div class="col-md-9 d-flex justify-content-center">
+                                            <?php echo $historial['descripcion']; ?>
+                                        </div>
+                                        <div class="col-md-3 d-flex justify-content-center">
+                                            <i>- Por el usuario </i><b><?php  ?></b>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-2 d-flex justify-content-center align-items-center">

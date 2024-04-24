@@ -11,9 +11,12 @@ if (!isset($_SESSION['us'])) {
     <div class="row">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title"><?php echo $admin . " - " . $banco; ?>
-                    <span> (<?php echo $tipo; ?>)</span>
-                </h3>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h3 class="card-title"><?php echo $admin . " - " . $banco; ?>
+                        <span> (<?php echo $tipo; ?>)</span>
+                    </h3>
+                    <a onclick="backPage()" class="btn btn-outline-primary">Volver <i class="bi bi-arrow-return-left"></i></a>
+                </div>
                 <hr>
             </div>
             <div class="card-body">

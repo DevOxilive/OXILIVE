@@ -11,9 +11,9 @@ if (!isset($_SESSION['us'])) {
     <div class="row">
         <div class="card">
             <div class="card-header">
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between align-items-center">
                     <h3 class="card-title">Folio <?php echo $folio; ?></h3>
-                    <a href="" class="btn btn-outline-primary">Volver</a>
+                    <a onclick="backPage()" class="btn btn-outline-primary">Volver <i class="bi bi-arrow-return-left"></i></a>
                 </div>
                 <hr>
             </div>

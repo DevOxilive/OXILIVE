@@ -284,6 +284,11 @@ include_once('C:\laragon\www\OXILIVE\notificaciones/control/notificacion.php');
         }
     </script>
     <script>
+        function backPage() {
+            window.history.back();
+        }
+    </script>
+    <script>
         var verMasBtn = document.getElementById('verMasBtn');
         verMasBtn.addEventListener('click', function(event) {
             event.preventDefault();
