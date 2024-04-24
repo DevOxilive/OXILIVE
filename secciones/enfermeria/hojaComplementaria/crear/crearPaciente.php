@@ -8,17 +8,15 @@ if (!isset($_SESSION['us'])) {
     include("../../../../model/genero.php");
     include("../../../../model/administradora.php");
     include("../../../../model/tipoPaciente.php");
-    include("../../../../model/banco.php"); //Listo ya quedo..:3
+    include("../../../../model/banco.php");
 } else {
     echo "Error en el sistema";
 }
 ?>
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <link rel="stylesheet" href="../../../../assets/css/foto_perfil.css">
-    <link rel="stylesheet" href="../../../../assets/css/edit.css">
     <link rel="stylesheet" href="../css/nomina.css">
 </head>
 <main id="main" class="main">
@@ -161,14 +159,11 @@ if (!isset($_SESSION['us'])) {
                             <?php } ?>
                         </select>
                     </div>
-
                     <div class="contenido col-md-3">
                         <label for="administradora" class="form-label">Administradora</label>
                         <input type="text" id="administradora" name="administradora" class="form-control"
                             placeholder="Eliga el banco" readonly disabled>
                     </div>
-
-
                     <div class="contenido col-md-2">
                         <div class="formulario__grupo" id="grupo__No_nomina">
                             <label for="No_nomina" class="form-label">No. nomina</label>
@@ -181,18 +176,15 @@ if (!isset($_SESSION['us'])) {
                             </div>
                         </div>
                     </div>
-                   
                     <div class="contenido col-md-3">
                         <label for="responsable" class="form-label">Familiar Responsable</label>
                         <input type="text" maxlength="249" id="responsable" name="responsable" class="form-control"
                             placeholder="Ejem-Maria Gutierrez">
                     </div>
-                    
                     <div class="contenido col-md-5">
                         <label for="comprobante" class="form-label">Comprobante de domicilio</label>
                         <input type="file" class="formulario__input-file" name="comprobante" id="comprobante" accept="application/pdf">
                     </div>
-                    
                     <!--Credencial INE Frontal-->
                     <br><br><br><br><br>
                     <div class="row text-center">
@@ -249,8 +241,7 @@ if (!isset($_SESSION['us'])) {
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <label for="Credencial_aseguradora" class="form-label">Credencial Aseguradora
-                            Frontal</label>
+                        <label for="Credencial_aseguradora" class="form-label">Credencial Aseguradora Frontal</label>
                         <div class="profile-picture-cre">
                             <div class="picture-container-cre">
                                 <?php if (!empty($Credencial_aseguradora)) { ?>
@@ -311,15 +302,11 @@ if (!isset($_SESSION['us'])) {
                     </div>
                     <br>
                     <!-- Botones para el formulario -->
-
                     <div class="col-12">
                         <br>
-                        <a role="button" onclick="confirmCancel(event)" name="cancelar" class="btn btn-outline-danger">
-                            Cancelar
-                        </a>
+                        <a role="button" onclick="confirmCancel(event)" name="cancelar" class="btn btn-outline-danger">Cancelar</a>
                         <button type="submit" class="btn btn-outline-primary">Registrar</button>
-                        <a href="camara.php" target="_blank" class="btn btn-outline-success">
-                            <i class="fa fa-camera"></i></a>
+                        <a href="camara.php" target="_blank" class="btn btn-outline-success"><i class="fa fa-camera"></i></a>
                     </div>
                     <input type="hidden" id="idPac" value="0">
                 </form>
@@ -333,9 +320,7 @@ const administradoraInput = document.querySelector('#administradora');
 banco.addEventListener('change', () => {
     const selectedOption = banco.options[banco.selectedIndex];
     const bancoId = selectedOption.value;
-
     const op = new XMLHttpRequest();
-
     //Configuro la colicitud
     op.open('GET', `consultaAdmi.php?banco_id=${bancoId}`, true);
     //Mi prueba de manejo de respuesta
@@ -352,8 +337,7 @@ banco.addEventListener('change', () => {
         console.error('Error de conexion al servidor..:(');
     }
     op.send();
-});
-
+    });
 </script>
 <script src="../js/nomina.js"></script>
 <script src="../js/botonAdd.js"></script>
@@ -361,7 +345,6 @@ banco.addEventListener('change', () => {
 <script src="../js/formButtons.js"></script>
 <script src="../js/domicilio.js"></script>
 <script src="../js/paciente.js"></script>
-</html>
 <?php
-include("../../../../templates/footer.php");
+include("../../../../templates/footer.php"); 
 ?>
