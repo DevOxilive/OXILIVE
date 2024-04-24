@@ -4,10 +4,22 @@ use SebastianBergmann\Environment\Console;
 
 include("../../../connection/conexion.php");
 //Esta consulta es para el index
-$sentencia=$con->prepare("SELECT fs.*, f.estatus
-FROM folios fs,folio_estatus f 
-WHERE fs.estado = f.id_estatus 
-AND fs.estado != 4");
+$sentencia=$con->prepare("SELECT 
+fs.*, 
+f.estatus
+FROM 
+folios fs
+INNER JOIN 
+folio_estatus f ON fs.estado = f.id_estatus 
+WHERE 
+fs.estado = 10
+AND (fs.tipo = 'Receta' OR fs.tipo = 'Consulta')
+AND fs.id_folio IN (
+    SELECT MIN(id_folio)
+    FROM folios
+    WHERE estado = 10
+    GROUP BY tipo
+);");
 $sentencia->execute();
 $listaArchivoFolio=$sentencia->fetchAll(PDO::FETCH_ASSOC);
 
@@ -34,9 +46,11 @@ $folios = $traerFolios->fetchAll(PDO::FETCH_ASSOC);
 echo json_encode($folios);
 
 
-//Consulta para el filtro
-
-
-
+//Aquí pondre mi consulta para el filtro dinamico. jsjsj
+$f= $con->prepare("SELECT bancoFolio, MIN(id_folio) AS id_folio
+FROM folios
+GROUP BY bancoFolio");
+$f->execute();
+$fls = $f->fetchAll(PDO::FETCH_ASSOC);
 
 ?>

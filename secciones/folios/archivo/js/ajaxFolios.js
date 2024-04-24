@@ -3,7 +3,7 @@ $(document).ready(function() {
       var selectedBanco = $(this).val();
       $.ajax({
           type: 'POST',
-          url: './consultaFolios.php', 
+          url: '../consultaFolios.php', 
           data: { banco: selectedBanco },
           dataType: 'json',
           success: function(response) {
