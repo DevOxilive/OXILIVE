@@ -63,10 +63,10 @@ if (!isset($_SESSION['us'])) {
                                         <td>
                                             <center>
                                                 <a class="btn btn-outline-primary" href="pages/editarPaciente.php?idPac=<?php echo $datos['id_pacientes']; ?>" role="button">
-                                                    <i class="bi bi-pencil-square"></i><span> Editar</span>
+                                                    <i class="bi bi-pencil-square"></i>
                                                 </a> |
                                                 <a class="btn btn-outline-danger" href="#" onclick="deletePac(<?php echo $datos['id_pacientes']; ?>)" role="button">
-                                                    <i class="bi bi-trash-fill"></i> Eliminar</span>
+                                                    <i class="bi bi-trash-fill"></i>
                                                 </a>
                                             </center>
                                         </td>

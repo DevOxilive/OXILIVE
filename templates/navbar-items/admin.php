@@ -1,7 +1,6 @@
 <!-- Módulo Oxígeno -->
 <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse"
-        href="<?php echo $url_base; ?>secciones/oxigeno/index.php">
+    <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="<?php echo $url_base; ?>secciones/oxigeno/index.php">
         <i class="bi bi-clipboard2-pulse"></i><span>Oxigeno</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
     <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
@@ -57,8 +56,7 @@
 </li>
 <!-- Módulo Almacén -->
 <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#alma-nav" data-bs-toggle="collapse"
-        href="<?php echo $url_base; ?>secciones/catalogo/index.php">
+    <a class="nav-link collapsed" data-bs-target="#alma-nav" data-bs-toggle="collapse" href="<?php echo $url_base; ?>secciones/catalogo/index.php">
         <i class="bi bi-house-lock-fill"></i><span>Almacen</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
     <ul id="alma-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
@@ -70,28 +68,26 @@
         </li>
         <!--Apartado de Gestion de Insumos-->
         <li>
-            <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#gestionMat" href="#">
-                <i class="bi bi-circle"></i><span>Vales</span><i
-                    class="bi bi-chevron-down ms-auto fs-6"></i>
+            <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#valMat" href="#">
+                <i class="bi bi-circle"></i><span>Vales</span><i class="bi bi-chevron-down ms-auto fs-6"></i>
             </a>
-            <ul id="gestionMat" class="collapse">
-            <li>
-            <a href="<?php echo $url_base; ?>secciones/almacen/vales/insumos.php">
-                <i class="bi bi-circle"></i><span>Insumos</span>
-            </a>
-                 </li>
-                    <li>
-                        <a href="<?php echo $url_base; ?>secciones/almacen/vales/oxigeno.php">
-                            <i class="bi bi-circle"></i><span>Oxìgeno</span>
-                        </a>
+            <ul id="valMat" class="collapse">
+                <li>
+                    <a href="<?php echo $url_base; ?>secciones/almacen/vales/insumos.php">
+                        <i class="bi bi-circle"></i><span>Insumos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo $url_base; ?>secciones/almacen/vales/oxigeno.php">
+                        <i class="bi bi-circle"></i><span>Oxìgeno</span>
+                    </a>
                 </li>
             </ul>
         </li>
         <!--Apartado Gestión de Material-->
         <li>
             <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#gestionMat" href="#">
-                <i class="bi bi-circle"></i><span>Gestión de Material</span><i
-                    class="bi bi-chevron-down ms-auto fs-6"></i>
+                <i class="bi bi-circle"></i><span>Gestión de Material</span><i class="bi bi-chevron-down ms-auto fs-6"></i>
             </a>
             <ul id="gestionMat" class="collapse">
                 <li>
@@ -251,9 +247,7 @@
         </li>
         <!-- Apartado Generar Incidencias -->
         <li>
-            <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#alta" href="#"><i
-                    class="bi bi-circle"></i><span>Generar Incidencia</span><i
-                    class="bi bi-chevron-down ms-auto fs-6"></i></a>
+            <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#alta" href="#"><i class="bi bi-circle"></i><span>Generar Incidencia</span><i class="bi bi-chevron-down ms-auto fs-6"></i></a>
             <ul id="alta" class="collapse">
                 <!-- Subapartado Crear Evento -->
                 <li>

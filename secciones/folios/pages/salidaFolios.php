@@ -21,7 +21,7 @@ if (!empty($_SESSION['idus'])) {
                 <div class="row">
                     <div class="contenido col-md-6" id="selectAdmin">
                         <label for="administradora">Selecciona la administradora</label>
-                        <select name="administradora" id="administradora">
+                        <select name="administradora" id="administradora" class="form-select">
                             <option value="" selected disabled required>Selecciona una opcion</option>
                             <?php foreach ($lista_administradora as $valores) {
                                 echo '<option value="' . $valores['Nombre_administradora'] . '">' . $valores['Nombre_administradora'] . '</option>';
@@ -32,7 +32,7 @@ if (!empty($_SESSION['idus'])) {
                     <br>
                     <div class="contenido col-md-6" id="selectBanco">
                         <label for="bancos">Selecciona el banco</label>
-                        <select name="bancos" id="bancos">
+                        <select name="bancos" id="bancos" class="form-select">
                             <option value="" selected disabled required>Selecciona una opcion</option>
                             <?php foreach ($lista_bancos as $valores) {
                                 echo '<option value="' . $valores['Nombre_banco'] . '">' . $valores['Nombre_banco'] . '</option>';
@@ -44,23 +44,23 @@ if (!empty($_SESSION['idus'])) {
                 <br>
                 <div class="row">
                     <div class="contenido col-md-6">
-                        <label for="tipo">tipo</label>
-                        <select name="tipo" id="tipo">
-                            <option value="" selected disabled required>Selecciona una opcion</option>
+                        <label for="tipo">Tipo</label>
+                        <select name="tipo" id="tipo" class="form-select">
+                            <option value="" selected disabled required>Selecciona una opción</option>
                             <option value="CONSULTA">CONSULTA</option>
                             <option value="RECETA">RECETA</option>
                         </select>
                     </div>
                     <!-- por revisar-->
                     <div class="contenido col-md-6">
-                        <label for="cantidad">cantidad</label>
+                        <label for="cantidad">Cantidad</label>
                         <input type="number" name="cant" id="cant" min="1" max="50" required>
                     </div>
                 </div>
                 <hr>
                 <h1>Folios disponibles</h1>
                 <div class="col-md-12" id="verFolios">
-                    <h5>selecciona las caracteristicas del folio</h5>
+                    <h5>Selecciona las características del folio</h5>
                     <!-- aqui se generan los folios con las especicaciones -->
                 </div>
                 <br>
