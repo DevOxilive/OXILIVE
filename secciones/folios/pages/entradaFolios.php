@@ -4,6 +4,7 @@ if (!empty($_SESSION['idus'])) {
     include("../../../templates/header.php");
     include("../../../model/banco.php");
     include("../../../model/administradora.php");
+    include('../../../templates/hea.php');
 } else {
     header("location: ../../../index.php");
 }
@@ -81,7 +82,7 @@ include("../../../templates/footer.php");
 <script src="../../../js/validacionEnvio.js"></script>
 <script>
     function mostrarAlertaCancelar() {
-        Swal.fire({
+        swal.fire({
             title: '¿Estas seguro de cancelar?',
             text: 'No se actualizara nada',
             icon: 'info',
