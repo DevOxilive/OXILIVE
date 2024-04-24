@@ -34,6 +34,7 @@ if (isset($_SESSION['us'])) {
             </div>
         </div>
     </main>
+    
 </body>
 <?php
 include('../../templates/footer.php');

@@ -1,0 +1,29 @@
+// @author dazz
+// @date 22/03/2024
+
+La clase notificacion() trae 2 propiedades y 1 un atributo.
+
+Para poder enviar una notificacion, se deben declarar las
+propiedades con un dato.
+
+Para asignar el valor de las propiedades, es directamente desde la
+instancia del objeto, ya que cuenta con el metodo constructor. El tipo dato recomendado 
+para los atributos cadena("String"), 
+
+    Ejemplo:
+
+        $obj = new Notificacion($titulo, $texto);
+
+Una vez delcarados las propiedades, puedes proceder a lanzar la notificacion con la
+funcion Notificar(), esta funcion retorna el script de notificacion, por lo que puedes darle
+el dato a una vairble y mostrarlo.
+
+    Ejemplo:
+        // Ejemplo uno
+        echo $obj->Notificar();
+
+        // Ejemplo dos
+        $obtenerDatoRetornado = $obj->Notificar();
+        echo $obtenerDatoRetornado;
+
+dependiendo del uso de la notificacion, coloca tu logica.

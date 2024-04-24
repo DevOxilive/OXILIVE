@@ -9,18 +9,14 @@ class Notificacion
         $this->title = $title;
         $this->text = $text;
     }
-
     public function notificar()
     {
-        $notificacion = "
-        <script>
-            Push.create('Sistema: " . $this->text . "' {
-                body: '$this->title',
-                timeout: 4000
-            });
-        </script>
-        ";
+        $notificacion = '<script>
+        Push.create("Oxilive: ' . $this->title . '", {
+            body: "' . $this->text . '",
+            timeout: 4000
+        })
+    </script>';
         return $notificacion;
     }
 }
- 

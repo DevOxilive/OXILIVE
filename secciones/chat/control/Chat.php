@@ -155,7 +155,7 @@ class Chat extends Archivero
             $send->bindParam(':estatus', $estatus);
             $send->execute();
         }
-    }
+    }     
     public function getMessage($token, $con)
     {
         session_start();

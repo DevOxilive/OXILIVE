@@ -31,17 +31,20 @@ include_once('C:\laragon\www\OXILIVE\notificaciones/control/notificacion.php');
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <!-- Datatables 1.13.7 CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+    <!-- popover -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
     <!-- Estilos del template -->
     <link href="<?php echo $url_base; ?>assets/css/style.css" rel="stylesheet">
-    <script src="<?php echo $url_base; ?>js/push.min.js"></script>
     <title>OXILIVE S.A de C.V</title>
-    <?php
-    $notificacion = new Notificacion("", "");
-    echo $notificacion->notificar();
-    ?>
+    <script src="<?php echo $url_base; ?>js/push.min.js"></script>
 </head>
 
 <body>
+    <div id="notify"></div>
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
         <div class="d-flex align-items-center justify-content-between">
@@ -53,54 +56,60 @@ include_once('C:\laragon\www\OXILIVE\notificaciones/control/notificacion.php');
         </div><!-- End Logo -->
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
-                <!-- aqui empiesan las secciones paracada nivel de usuario -->
-                <li class="nav-item dropdown pe-3">
-                    <!-- linea 129 header.php --> <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="<?php echo $_SESSION['foto']; ?>" id="fot" alt="Foto de perfil" style="width: 40px; height: 40px;" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">
-                            <?php echo $_SESSION['us'] ?>
-                        </span>
-                    </a> <!-- End Profile Iamge Icon -->
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-                        <li class="dropdown-header">
-                            <span>
-                                <?php echo $_SESSION['puesto'] ?>
+                <div id="cont" class="pe-3">Cargando notificaciones</div>
+
+                <!--  -->
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+
+
+                    <!-- aqui empiesan las secciones paracada nivel de usuario -->
+                    <li class="nav-item dropdown pe-3">
+                        <!-- linea 129 header.php --> <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                            <img src="<?php echo $_SESSION['foto']; ?>" id="fot" alt="Foto de perfil" style="width: 40px; height: 40px;" class="rounded-circle">
+                            <span class="d-none d-md-block dropdown-toggle ps-2">
+                                <?php echo $_SESSION['us'] ?>
                             </span>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <?php if ($_SESSION['puesto'] != 2) : ?>
-                            <li>
-                                <a class="dropdown-item d-flex align-items-center" href="<?php echo $url_base; ?>secciones/perfil/account.php">
-                                    <i class="bi bi-gear"></i>
-                                    <span>Configuración</span>
-                                </a>
+                        </a> <!-- End Profile Iamge Icon -->
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                            <li class="dropdown-header">
+                                <span>
+                                    <?php echo $_SESSION['puesto'] ?>
+                                </span>
                             </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                        <?php endif; ?>
-                        <?php if ($_SESSION['puesto'] == 10) : ?>
+                            <?php if ($_SESSION['puesto'] != 2) : ?>
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center" href="<?php echo $url_base; ?>secciones/perfil/account.php">
+                                        <i class="bi bi-gear"></i>
+                                        <span>Configuración</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                            <?php endif; ?>
+                            <?php if ($_SESSION['puesto'] == 10) : ?>
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center" href="<?php echo $url_base; ?>secciones/perfil/help.php">
+                                        <i class="bi bi-question-circle"></i>
+                                        <span>¿Necesitas ayuda?</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                            <?php endif; ?>
                             <li>
-                                <a class="dropdown-item d-flex align-items-center" href="<?php echo $url_base; ?>secciones/perfil/help.php">
-                                    <i class="bi bi-question-circle"></i>
-                                    <span>¿Necesitas ayuda?</span>
+                                <a class="dropdown-item d-flex align-items-center" href="#" onclick="cerrar(this.value)">
+                                    <i class="bi bi-box-arrow-right"></i>
+                                    <span>Cerrar sesión</span>
                                 </a>
                             </li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                        <?php endif; ?>
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="#" onclick="cerrar(this.value)">
-                                <i class="bi bi-box-arrow-right"></i>
-                                <span>Cerrar sesión</span>
-                            </a>
-                        </li>
-                    </ul><!-- End Profile Dropdown Items -->
-                </li><!-- End Profile Nav -->
-            </ul>
+                        </ul><!-- End Profile Dropdown Items -->
+                    </li><!-- End Profile Nav -->
+                </ul>
         </nav><!-- End Icons Navigation -->
     </header><!-- End Header -->
     <!-- ======= Sidebar ======= -->
@@ -294,6 +303,10 @@ include_once('C:\laragon\www\OXILIVE\notificaciones/control/notificacion.php');
             verMasBtn.style.display = 'none'; // Oculta el botón "Ver más"
         });
     </script>
+    <script>
+        const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+        const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+    </script>
     <!--Validaciones de formularios-->
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <!-- Datatables 1.13.7 JS -->
@@ -307,3 +320,5 @@ include_once('C:\laragon\www\OXILIVE\notificaciones/control/notificacion.php');
     <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.all.min.js"></script>
     <!--APEXCHARTS.COM-->
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="<?php echo $url_base; ?>notificaciones/js/load.js"></script>
+    <script src="<?php echo $url_base; ?>notificaciones/js/contadorNoti.js"></script>
