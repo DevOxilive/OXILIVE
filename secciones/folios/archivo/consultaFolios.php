@@ -35,15 +35,21 @@ $sen->execute();
 $listMotivos=$sen->fetchAll(PDO::FETCH_ASSOC);
 
 //Aquí va la consulta del ajax
-$selectedBanco = $_POST['banco'];
-$traerFolios = $con->prepare("SELECT * FROM folios 
-WHERE estado != 4
-AND bancoFolio = :banco");
-$traerFolios->bindParam(':banco', $selectedBanco);
-$traerFolios->execute();
-
-$folios = $traerFolios->fetchAll(PDO::FETCH_ASSOC);
-echo json_encode($folios);
+if(isset($_POST['banco']))
+try {
+    $selectedBanco = $_POST['banco'];
+    $traerFolios = $con->prepare("SELECT * FROM folios 
+    WHERE estado != 4
+    AND bancoFolio = :banco");
+    $traerFolios->bindParam(':banco', $selectedBanco);
+    $traerFolios->execute();
+    $folios = $traerFolios->fetchAll(PDO::FETCH_ASSOC);
+    echo json_encode($folios);
+} catch (PDOException $e) {
+    echo "Error al ejecutar la consulta: " . $e->getMessage();
+}else{
+    echo "Algo salio mal xd";
+}
 
 
 //Aquí pondre mi consulta para el filtro dinamico. jsjsj

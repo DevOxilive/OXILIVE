@@ -5,7 +5,14 @@ if (!isset($_SESSION['us'])) {
 } elseif (isset($_SESSION['us'])) {
     include("../../../templates/header.php");
     require_once "../../../connection/conexion.php";
-    include_once("./consultaFolios.php");
+    $bancoFolio = $_GET['txtID'];
+    $id_folio = $_GET['id_folio'];
+    $stmt = $con->prepare("SELECT folio, bancoFolio, f.estatus,estado 
+    FROM folios, folio_estatus f 
+    WHERE bancoFolio = :bancoFolio AND estado = f.id_estatus AND estado = 4");
+    $stmt->bindParam(':bancoFolio', $bancoFolio);
+    $stmt->execute();
+    $fltA = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <main id="main" class="main">
     <div class="row">
@@ -14,22 +21,7 @@ if (!isset($_SESSION['us'])) {
                 <h3 class="card-title">Archivo de Folios</h3>
                 <hr>
                 <div class="btn-box justify-content-first">
-                    <a class="btn btn-outline-primary" href="./devolucion.php" role="button"><i
-                            class="bi bi-box-arrow-right"></i> Archivar</a>
-                    <div class="dropdown" id="btnToggle">
-                        <button type="button" class="btn btn-outline-secondary dropdown-toggle"
-                            data-bs-toggle="dropdown" aria-expanded="false" id="btnFiltro">
-                            <i class="bi bi-funnel-fill"></i> Filtro
-                        </button>
-                        <ul class="dropdown-menu" id="lista" >
-                            <?php foreach ($fls as $bFl) { ?>
-                            <li>
-                            <a class="dropdown-item" href="filtro.php?txtID=<?php echo $bFl['bancoFolio'];?>" onclick="filtro(event, '&id_folio=<?php echo $bFl['id_folio']; ?>')"><?php echo $bFl['bancoFolio']; ?></a>
-                            </li>
-                            <?php } ?>
-                            <li class="deleteFilter"><a class="dropdown-item text-danger" href="#"
-                                    onclick="limpiarFiltro(event)">Restaurar filtro</a></li>
-                        </ul>
+                    <div class="dropdown">
                     </div>
                 </div>
             </div>
@@ -41,10 +33,9 @@ if (!isset($_SESSION['us'])) {
                                 <th scope="col">Banco</th>
                                 <th scope="col">Folio</th>
                                 <th scope="col">Estatus</th>
-                                <th scope="col">Observaciones</th>
                             </tr>
                         </thead>
-                        <?php foreach ($listaArchivoFolio as $estatus) { ?>
+                        <?php foreach ($fltA as $estatus) { ?>
                         <tbody style="text-align: center;">
                             <tr>
                                 <td><?php echo $estatus['bancoFolio']; ?></td>
@@ -52,8 +43,6 @@ if (!isset($_SESSION['us'])) {
                                 <td><span
                                         class="badge text-bg-success <?php echo ($estatus['estatus'] == 'ALMACENADO') ? 'success' : 'text-bg-danger'; ?> fs-6"><?php echo $estatus['estatus']; ?></span>
                                 </td>
-                                <td style="text-align: center;"> | <a class="btn btn-outline-warning" role="button"><i
-                                            class="bi bi-eye"></i></a></td>
                             </tr>
                         </tbody>
                         <?php } ?>

@@ -9,6 +9,7 @@ if (!isset($_SESSION['us'])) {
     include ("../../../connection/conexion.php");
     include_once("./consultaFolios.php");
     include_once("./devolucionADD.php");
+    
 }else{
     echo "Error en el sistema";
 }
@@ -24,11 +25,11 @@ if (!isset($_SESSION['us'])) {
             </div>
 
             <div class="card-body" style="border: 2px solid #BFE5FF;">
-                <form action="devolucionADD.php" method="POST" class="formLogin row g-3" id="formulario">
+                <form action="devolucionADD.php"  method="POST" class="formLogin row g-3 needs-validation" novalidate id="formulario">
                    <!--Motivo de la devolución-->
-                    <div class="contenido col-md-4">
+                    <div class="contenido col-md-4" id="estatusBox">
                         <label for="estatus" class="formulario__label">Motivo de Devolución</label>
-                        <select id="estatus" name="estatus" class="form-select">
+                        <select id="estatus" name="estatus" class="form-select" required>
                             <option value="0" selected disabled>Elija una opción</option>
                             <?php foreach ($listMotivos as $motivo) { ?>
                             <option value="<?php echo $motivo['id_estatus']; ?>">
@@ -39,9 +40,9 @@ if (!isset($_SESSION['us'])) {
                     </div>
 
                     <!--Aqui va ir la lista de los folios-->
-                    <div class="contenido col-md-3">
+                    <div class="contenido col-md-3" id="bancoBox">
                         <label for="banco" class="formulario__label">Banco</label>
-                        <select id="banco" name="banco" class="form-select">
+                        <select id="banco" name="banco" class="form-select" required>
                             <option value="0" selected disabled>Elija una opción</option>
                             <?php 
                              if ($listafolio !== false && !empty($listafolio)) {
@@ -56,9 +57,9 @@ if (!isset($_SESSION['us'])) {
                         </select>
                     </div>
 
-                    <div class="contenido col-md-4">
+                    <div class="contenido col-md-4" id="foliosBBox">
                         <label for="foliosB" class="formulario__label">Numero de folio</label>
-                        <select id="foliosB" name="foliosB" class="form-select">
+                        <select id="foliosB" name="foliosB" class="form-select" required>
                             <option value="0" selected disabled>Eliga el banco</option>
                         </select>
                     </div>
@@ -111,7 +112,7 @@ function confirmCancel(event) {
         selectorFolios.addEventListener("change", function() {
             var selectedFolioId = selectorFolios.value;
             idFolioInput.value = selectedFolioId;
-            txtIDInput.value = selectedFolioId; // Aquí asignamos el valor también al campo txtID
+            txtIDInput.value = selectedFolioId; 
             console.log(selectedFolioId);
         });
     });

@@ -3,7 +3,7 @@ $(document).ready(function() {
       var selectedBanco = $(this).val();
       $.ajax({
           type: 'POST',
-          url: '../consultaFolios.php', 
+          url: './consultaFolios.php', 
           data: { banco: selectedBanco },
           dataType: 'json',
           success: function(response) {
@@ -21,4 +21,20 @@ $(document).ready(function() {
           }
       });
   });
+});
+
+
+document.getElementById('btnToggle').addEventListener('click', function(){
+    var tabla = document.getElementById('mostrar');
+    if (tabla.style.display === 'none') {
+        tabla.style.display = 'block';
+        setTimeout(function() {
+            tabla.style.opacity = '1';
+        }, 20); // Se inicia la transición después de un breve tiempo para que funcione correctamente
+    } else {
+        tabla.style.opacity = '0';
+        setTimeout(function() {
+            tabla.style.display = 'none';
+        }, 500); // Duración de la transición, ajusta según lo necesario
+    }
 });
