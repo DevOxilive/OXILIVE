@@ -11,7 +11,7 @@
 
 <body>
     <div id="caja_de_notificacion">
-        <div id="camapana">Campana</div>
+        <div id="campana">Campana</div>
         <div id="contador"></div>
     </div>
     <div id="notificaciones"></div>
@@ -41,4 +41,4 @@
     </script>
 </body>
 
-</html>
+</html> 

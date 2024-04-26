@@ -44,7 +44,6 @@ include_once('C:\laragon\www\OXILIVE\notificaciones/control/notificacion.php');
 </head>
 
 <body>
-    <div id="notify"></div>
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
         <div class="d-flex align-items-center justify-content-between">
@@ -55,61 +54,56 @@ include_once('C:\laragon\www\OXILIVE\notificaciones/control/notificacion.php');
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
         <nav class="header-nav ms-auto">
-            <ul class="d-flex align-items-center">
-                <div id="cont" class="pe-3">Cargando notificaciones</div>
-
-                <!--  -->
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-
-
-                    <!-- aqui empiesan las secciones paracada nivel de usuario -->
-                    <li class="nav-item dropdown pe-3">
-                        <!-- linea 129 header.php --> <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                            <img src="<?php echo $_SESSION['foto']; ?>" id="fot" alt="Foto de perfil" style="width: 40px; height: 40px;" class="rounded-circle">
-                            <span class="d-none d-md-block dropdown-toggle ps-2">
-                                <?php echo $_SESSION['us'] ?>
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                <!-- aqui empiesan las secciones paracada nivel de usuario -->
+                <li class="nav-item dropdown pe-3">
+                    <!-- linea 129 header.php -->
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                        <img src="<?php echo $_SESSION['foto']; ?>" id="fot" alt="Foto de perfil" style="width: 40px; height: 40px;" class="rounded-circle">
+                        <span class="d-none d-md-block dropdown-toggle ps-2">
+                            <?php echo $_SESSION['us'] ?>
+                        </span>
+                    </a> <!-- End Profile Iamge Icon -->
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                        <li class="dropdown-header">
+                            <span>
+                                <?php echo $_SESSION['puesto'] ?>
                             </span>
-                        </a> <!-- End Profile Iamge Icon -->
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-                            <li class="dropdown-header">
-                                <span>
-                                    <?php echo $_SESSION['puesto'] ?>
-                                </span>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <?php if ($_SESSION['puesto'] != 2) : ?>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="<?php echo $url_base; ?>secciones/perfil/account.php">
+                                    <i class="bi bi-gear"></i>
+                                    <span>Configuración</span>
+                                </a>
                             </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <?php if ($_SESSION['puesto'] != 2) : ?>
-                                <li>
-                                    <a class="dropdown-item d-flex align-items-center" href="<?php echo $url_base; ?>secciones/perfil/account.php">
-                                        <i class="bi bi-gear"></i>
-                                        <span>Configuración</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                            <?php endif; ?>
-                            <?php if ($_SESSION['puesto'] == 10) : ?>
-                                <li>
-                                    <a class="dropdown-item d-flex align-items-center" href="<?php echo $url_base; ?>secciones/perfil/help.php">
-                                        <i class="bi bi-question-circle"></i>
-                                        <span>¿Necesitas ayuda?</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                            <?php endif; ?>
+                        <?php endif; ?>
+                        <?php if ($_SESSION['puesto'] == 10) : ?>
                             <li>
-                                <a class="dropdown-item d-flex align-items-center" href="#" onclick="cerrar(this.value)">
-                                    <i class="bi bi-box-arrow-right"></i>
-                                    <span>Cerrar sesión</span>
+                                <a class="dropdown-item d-flex align-items-center" href="<?php echo $url_base; ?>secciones/perfil/help.php">
+                                    <i class="bi bi-question-circle"></i>
+                                    <span>¿Necesitas ayuda?</span>
                                 </a>
                             </li>
-                        </ul><!-- End Profile Dropdown Items -->
-                    </li><!-- End Profile Nav -->
-                </ul>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                        <?php endif; ?>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="#" onclick="cerrar(this.value)">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>Cerrar sesión</span>
+                            </a>
+                        </li>
+                    </ul><!-- End Profile Dropdown Items -->
+                </li><!-- End Profile Nav -->
+            </ul>
         </nav><!-- End Icons Navigation -->
     </header><!-- End Header -->
     <!-- ======= Sidebar ======= -->
@@ -221,6 +215,7 @@ include_once('C:\laragon\www\OXILIVE\notificaciones/control/notificacion.php');
             ?php } ?>-->
         </ul>
     </aside>
+    <div id="notify"></div>
     <!-- JQuery 3.7.1 JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!--<script>

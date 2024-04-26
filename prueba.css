@@ -3,4 +3,31 @@
     margin: 0%;
 }
 
- 
+#campana {
+    margin: 10px;
+    background-color: rgba(243, 243, 0, 0.993);
+    box-shadow: 0px 0px 10px black;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
+
+#campana:hover {
+    background-color: rgb(178, 178, 0);
+}
+
+#contador {
+    background-color: rgba(243, 0, 0, 0.993);
+    box-shadow: 0px 0px 10px black;
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    color: white;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    border-radius: 50%;
+}
